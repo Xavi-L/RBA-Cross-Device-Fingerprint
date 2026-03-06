@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨端指纹采集 - Web</title>
+</head>
+<body>
+    <h2>设备指纹采集与算力验证中...</h2>
+    <div id="log"></div>
+
+    <script>
+        function logMsg(msg) {
+            document.getElementById('log').innerHTML += `<p>${msg}</p>`;
+            console.log(msg);
+        }
+
+        // 1. 获取 WebGL 底层显卡信息
+        function getWebGLInfo() {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            let vendor = "Unknown";
+            let renderer = "Unknown";
+            
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                if (debugInfo) {
+                    vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                }
+            }
+            return { vendor, renderer };
+        }
+
+        // 2. 执行计算挑战 (利用密集的矩阵/浮点运算制造耗时差异)
+        function runComputeChallenge() {
+            const startTime = performance.now();
+            
+            // 模拟一个极其消耗性能的运算循环 (根据实际设备的性能，可以调大循环次数)
+            let result = 0;
+            for (let i = 0; i < 5000000; i++) {
+                result += Math.sin(i) * Math.cos(i) + Math.tan(i % 100);
+            }
+
+            const endTime = performance.now();
+            return {
+                time_ms: parseFloat((endTime - startTime).toFixed(2)),
+                _dummy_result: result // 防止编译器优化掉这个循环
+            };
+        }
+
+        // 3. 收集所有数据并发送给后端
+        async function collectAndSend() {
+            logMsg("开始收集基础环境特征...");
+            const ua = navigator.userAgent;
+            const logicalRes = `${window.screen.width}x${window.screen.height}`;
+            const dpr = window.devicePixelRatio || 1;
+
+            logMsg("正在执行 WebGL 显卡嗅探...");
+            const webglInfo = getWebGLInfo();
+
+            logMsg("正在执行 CPU/GPU 算力挑战...");
+            const challenge = runComputeChallenge();
+
+            // 按照 cross_device_spec.json 的结构组装数据
+            // 注意：这里我们先只组装 web_data 部分，后续结合 Android 时再带上原生数据
+            const payload = {
+                session_id: "test-session-" + Date.now(), // 临时测试ID
+                timestamp: Math.floor(Date.now() / 1000),
+                web_data: {
+                    user_agent: ua,
+                    screen_resolution_logical: logicalRes,
+                    device_pixel_ratio: dpr,
+                    webgl_vendor: webglInfo.vendor,
+                    webgl_renderer: webglInfo.renderer,
+                    canvas_hash: "dummy_hash_for_now", // Canvas哈希生成代码较长，可后续引入专门的库
+                    compute_task_time_ms: challenge.time_ms
+                }
+            };
+
+            logMsg(`算力挑战完成，耗时: ${challenge.time_ms} ms`);
+            logMsg(`检测到显卡: ${webglInfo.renderer}`);
+            logMsg("准备发送数据至后端...");
+
+            try {
+                // 请把这里的 URL 换成你 FastAPI 跑起来的实际地址 (注意跨域 CORS 问题)
+                const response = await fetch('http://127.0.0.1:8000/api/collect/fingerprint', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    logMsg("✅ 数据发送成功！请检查后端控制台。");
+                } else {
+                    logMsg("❌ 发送失败，HTTP 状态码: " + response.status);
+                }
+            } catch (error) {
+                logMsg("❌ 网络请求报错: " + error.message);
+            }
+        }
+
+        // 页面加载完毕后自动执行
+        window.onload = collectAndSend;
+    </script>
+</body>
+</html>

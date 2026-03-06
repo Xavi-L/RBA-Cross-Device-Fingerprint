@@ -5,7 +5,7 @@ from typing import Optional
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-
+from fastapi.middleware.cors import CORSMiddleware
 
 # 配置日志
 logging.basicConfig(
@@ -18,43 +18,43 @@ logger = logging.getLogger(__name__)
 # Pydantic 模型定义
 class AndroidNativeData(BaseModel):
     """Android 原生数据模型"""
-    device_model: str = Field(..., description="设备型号")
-    device_brand: str = Field(..., description="设备品牌")
-    os_version: str = Field(..., description="操作系统版本")
-    cpu_abi: str = Field(..., description="CPU 架构")
-    total_memory_gb: float = Field(..., description="总内存(GB)")
-    screen_resolution_physical: str = Field(..., description="物理屏幕分辨率")
-    uptime_ms: int = Field(..., description="设备运行时间(毫秒)")
+    device_model: Optional[str] = Field(None, description="设备型号")
+    device_brand: Optional[str] = Field(None, description="设备品牌")
+    os_version: Optional[str] = Field(None, description="操作系统版本")
+    cpu_abi: Optional[str] = Field(None, description="CPU 架构")
+    total_memory_gb: Optional[float] = Field(None, description="总内存(GB)")
+    screen_resolution_physical: Optional[str] = Field(None, description="物理屏幕分辨率")
+    uptime_ms: Optional[int] = Field(None, description="设备运行时间(毫秒)")
 
 
 class WebViewData(BaseModel):
     """WebView 数据模型"""
-    user_agent: str = Field(..., description="用户代理")
-    screen_resolution_logical: str = Field(..., description="逻辑屏幕分辨率")
-    device_pixel_ratio: float = Field(..., description="设备像素比")
-    webgl_vendor: str = Field(..., description="WebGL 供应商")
-    webgl_renderer: str = Field(..., description="WebGL 渲染器")
-    canvas_hash: str = Field(..., description="Canvas 指纹哈希")
-    compute_task_time_ms: float = Field(..., description="计算任务耗时(毫秒)")
-    jsbridge_injected: bool = Field(..., description="是否注入 JSBridge")
+    user_agent: Optional[str] = Field(None, description="用户代理")
+    screen_resolution_logical: Optional[str] = Field(None, description="逻辑屏幕分辨率")
+    device_pixel_ratio: Optional[float] = Field(None, description="设备像素比")
+    webgl_vendor: Optional[str] = Field(None, description="WebGL 供应商")
+    webgl_renderer: Optional[str] = Field(None, description="WebGL 渲染器")
+    canvas_hash: Optional[str] = Field(None, description="Canvas 指纹哈希")
+    compute_task_time_ms: Optional[float] = Field(None, description="计算任务耗时(毫秒)")
+    jsbridge_injected: Optional[bool] = Field(None, description="是否注入 JSBridge")
 
 
 class WebData(BaseModel):
     """Web 数据模型"""
-    user_agent: str = Field(..., description="用户代理")
-    screen_resolution_logical: str = Field(..., description="逻辑屏幕分辨率")
-    device_pixel_ratio: float = Field(..., description="设备像素比")
-    webgl_vendor: str = Field(..., description="WebGL 供应商")
-    webgl_renderer: str = Field(..., description="WebGL 渲染器")
-    canvas_hash: str = Field(..., description="Canvas 指纹哈希")
-    compute_task_time_ms: float = Field(..., description="计算任务耗时(毫秒)")
+    user_agent: Optional[str] = Field(None, description="用户代理")
+    screen_resolution_logical: Optional[str] = Field(None, description="逻辑屏幕分辨率")
+    device_pixel_ratio: Optional[float] = Field(None, description="设备像素比")
+    webgl_vendor: Optional[str] = Field(None, description="WebGL 供应商")
+    webgl_renderer: Optional[str] = Field(None, description="WebGL 渲染器")
+    canvas_hash: Optional[str] = Field(None, description="Canvas 指纹哈希")
+    compute_task_time_ms: Optional[float] = Field(None, description="计算任务耗时(毫秒)")
 
 
 class FingerprintPayload(BaseModel):
     """设备指纹数据载荷"""
     session_id: str = Field(..., description="会话ID")
     timestamp: int = Field(..., description="时间戳(Unix)")
-    client_ip: str = Field(..., description="客户端IP地址")
+    client_ip: Optional[str] = Field(None, description="客户端IP地址")
     android_native_data: Optional[AndroidNativeData] = Field(None, description="Android 原生数据")
     webview_data: Optional[WebViewData] = Field(None, description="WebView 数据")
     web_data: Optional[WebData] = Field(None, description="Web 数据")
@@ -65,6 +65,15 @@ app = FastAPI(
     title="跨端设备指纹收集服务",
     description="用于收集和验证跨设备指纹数据",
     version="1.0.0"
+)
+
+# 允许跨域资源共享（CORS）
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 允许所有来源（仅限本地测试阶段这样写，生产环境需要改回具体域名）
+    allow_credentials=True,
+    allow_methods=["*"],  # 允许所有 HTTP 方法 (POST, GET 等)
+    allow_headers=["*"],  # 允许所有请求头
 )
 
 
