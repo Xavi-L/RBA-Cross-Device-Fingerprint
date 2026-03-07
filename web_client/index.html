@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>跨端指纹采集 - Web</title>
@@ -49,8 +50,60 @@
             };
         }
 
-        // 3. 收集所有数据并发送给后端
+        // 3. 生成 Canvas 指纹并计算 SHA-256 哈希
+        async function getCanvasFingerprint() {
+            return new Promise(async (resolve) => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 250;
+                    canvas.height = 50;
+                    const ctx = canvas.getContext('2d');
+
+                    // 1. 绘制带有特殊颜色的底层背景矩形
+                    ctx.textBaseline = "top";
+                    ctx.font = "14px 'Arial', 'Helvetica', 'sans-serif'";
+                    ctx.fillStyle = "#f60";
+                    ctx.fillRect(125, 1, 62, 20);
+
+                    // 2. 绘制带有半透明和阴影混合的文字 (极易触发操作系统的抗锯齿差异)
+                    ctx.fillStyle = "#069";
+                    ctx.fillText("HybridGuard 2026", 2, 15);
+                    ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+                    ctx.fillText("HybridGuard 2026", 4, 17);
+
+                    // 3. 绘制 Emoji (用于探测系统底层 Emoji 字体库差异)
+                    ctx.font = "20px Arial";
+                    ctx.fillText("👾🤖", 180, 10);
+
+                    // 获取画布的 Base64 数据 URI
+                    const dataURL = canvas.toDataURL();
+
+                    // 👇 核心修改：直接使用引入的 sha256 库计算，完美绕过 HTTP 限制
+                    const hashHex = sha256(dataURL);
+                    
+                    resolve(hashHex);
+                } catch (error) {
+                    console.error("Canvas Fingerprint 失败:", error);
+                    resolve("canvas_error_fallback");
+                }
+            });
+        }
+
+        // 4. 收集所有数据并发送给后端
         async function collectAndSend() {
+            // 1. 尝试从 JSBridge 获取原生分配的 session_id
+            let currentSessionId = "fallback-web-session-" + Date.now();
+            let isBridgeInjected = false;
+
+            if (window.AndroidBridge && window.AndroidBridge.getSessionId) {
+                currentSessionId = window.AndroidBridge.getSessionId();
+                isBridgeInjected = true;
+                logMsg("✅ 成功从 Android JSBridge 获取会话 ID: " + currentSessionId);
+            } else {
+                logMsg("⚠️ 未检测到 JSBridge，使用网页独立生成的会话 ID。");
+            }
+
+            // 2. 收集基础环境特征与执行计算挑战
             logMsg("开始收集基础环境特征...");
             const ua = navigator.userAgent;
             const logicalRes = `${window.screen.width}x${window.screen.height}`;
@@ -62,29 +115,38 @@
             logMsg("正在执行 CPU/GPU 算力挑战...");
             const challenge = runComputeChallenge();
 
-            // 按照 cross_device_spec.json 的结构组装数据
-            // 注意：这里我们先只组装 web_data 部分，后续结合 Android 时再带上原生数据
+            logMsg("正在生成 Canvas 渲染指纹...");
+            const canvasHash = await getCanvasFingerprint();
+
+            // 3. 将所有数据拼装成【唯一】的 payload 结构
             const payload = {
-                session_id: "test-session-" + Date.now(), // 临时测试ID
+                session_id: currentSessionId, 
                 timestamp: Math.floor(Date.now() / 1000),
+                
+                webview_data: {
+                    jsbridge_injected: isBridgeInjected
+                },
+                
                 web_data: {
                     user_agent: ua,
                     screen_resolution_logical: logicalRes,
                     device_pixel_ratio: dpr,
                     webgl_vendor: webglInfo.vendor,
                     webgl_renderer: webglInfo.renderer,
-                    canvas_hash: "dummy_hash_for_now", // Canvas哈希生成代码较长，可后续引入专门的库
+                    canvas_hash: canvasHash, 
                     compute_task_time_ms: challenge.time_ms
                 }
             };
 
+            logMsg(`Canvas 指纹生成完毕: ${canvasHash.substring(0, 12)}...`);
             logMsg(`算力挑战完成，耗时: ${challenge.time_ms} ms`);
             logMsg(`检测到显卡: ${webglInfo.renderer}`);
             logMsg("准备发送数据至后端...");
 
             try {
-                // 请把这里的 URL 换成你 FastAPI 跑起来的实际地址 (注意跨域 CORS 问题)
-                const response = await fetch('http://127.0.0.1:8000/api/collect/fingerprint', {
+                // ⚠️ 极其重要：在 Android 模拟器中，访问电脑本地的后端必须用 10.0.2.2
+                // 如果你这会儿只是想在电脑浏览器里单独测网页，请把它改回 127.0.0.1
+                const response = await fetch('http://10.0.2.2:8000/api/collect/fingerprint', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

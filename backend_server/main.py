@@ -1,6 +1,7 @@
 import json
 import logging
 from datetime import datetime
+import os
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
@@ -76,6 +77,14 @@ app.add_middleware(
     allow_headers=["*"],  # 允许所有请求头
 )
 
+# 模拟一个内存数据库，用于根据 session_id 暂存和合并数据
+sessions_db = {}
+
+# 如果本地已有数据文件，启动时先加载进来（防止重启服务器丢数据）
+DB_FILE = "merged_sessions.json"
+if os.path.exists(DB_FILE):
+    with open(DB_FILE, "r", encoding="utf-8") as f:
+        sessions_db = json.load(f)
 
 @app.post("/api/collect/fingerprint")
 async def collect_fingerprint(payload: FingerprintPayload):
@@ -89,19 +98,55 @@ async def collect_fingerprint(payload: FingerprintPayload):
         成功响应
     """
     try:
-        # 打印接收日志
-        dt = datetime.fromtimestamp(payload.timestamp)
-        logger.info(
-            f"✅ 成功接收设备指纹数据 | Session ID: {payload.session_id} | "
-            f"时间: {dt.strftime('%Y-%m-%d %H:%M:%S')} | "
-            f"客户端IP: {payload.client_ip}"
-        )
+        # # 打印接收日志
+        # dt = datetime.fromtimestamp(payload.timestamp)
+        # logger.info(
+        #     f"✅ 成功接收设备指纹数据 | Session ID: {payload.session_id} | "
+        #     f"时间: {dt.strftime('%Y-%m-%d %H:%M:%S')} | "
+        #     f"客户端IP: {payload.client_ip}"
+        # )
 
-        # 数据持久化到 JSONL 文件
-        data_dict = payload.model_dump()
-        with open("collected_data.jsonl", "a", encoding="utf-8") as f:
-            json.dump(data_dict, f, ensure_ascii=False)
-            f.write("\n")
+        # # 数据持久化到 JSONL 文件
+        # data_dict = payload.model_dump()
+        # with open("collected_data.jsonl", "a", encoding="utf-8") as f:
+        #     json.dump(data_dict, f, ensure_ascii=False)
+        #     f.write("\n")
+        session_id = payload.session_id
+    
+        # 1. 检查是否是新会话。如果是，初始化一条空记录
+        if session_id not in sessions_db:
+            sessions_db[session_id] = {
+                "session_id": session_id,
+                "timestamp": payload.timestamp,
+                "client_ip": payload.client_ip,
+                "android_native_data": None,
+                "webview_data": None,
+                "web_data": None
+            }
+            print(f"发现新会话创建: {session_id}")
+        else:
+            print(f"收到已有会话的数据补充: {session_id}")
+
+        # 2. 提取前端真正传过来的非空数据 (排除掉为 None 的默认字段)
+        # 这一步是合并的魔法所在：只有前端传了的数据才会去覆盖现有的库
+        incoming_data = payload.dict(exclude_unset=True, exclude_none=True)
+
+        # 3. 将新数据合并到数据库记录中
+        if "android_native_data" in incoming_data:
+            sessions_db[session_id]["android_native_data"] = incoming_data["android_native_data"]
+        if "webview_data" in incoming_data:
+            sessions_db[session_id]["webview_data"] = incoming_data["webview_data"]
+        if "web_data" in incoming_data:
+            sessions_db[session_id]["web_data"] = incoming_data["web_data"]
+        
+        # 更新最新时间戳和 IP（如果有变化的话）
+        if "client_ip" in incoming_data:
+            sessions_db[session_id]["client_ip"] = incoming_data["client_ip"]
+        sessions_db[session_id]["timestamp"] = incoming_data["timestamp"]
+
+        # 4. 将合并后的全量数据持久化保存到本地 JSON 文件
+        with open(DB_FILE, "w", encoding="utf-8") as f:
+            json.dump(sessions_db, f, ensure_ascii=False, indent=4)
 
         # 返回成功响应
         return {
