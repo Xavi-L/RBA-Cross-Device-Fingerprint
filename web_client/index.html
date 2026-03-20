@@ -255,26 +255,30 @@
             });
         }
 
-        // 5. 核心：收集与发送
+        // 5. 核心：收集与发送 (完全嵌套进化版)
         async function collectAndSend() {
             updateStatus("ESTABLISHING JSBRIDGE CONNECTION...");
             await sleep(500);
 
+            // ==========================================
+            // 1. 获取并组装 WebView 容器安全特征 (L3)
+            // ==========================================
             let currentSessionId = "fallback-web-" + Date.now();
-            let webviewData = { jsbridge_injected: false, bridge_latency_ms: 0.0 };
+            let jsbridge_injected = false;
+            let bridge_latency_ms = 0.0;
+            let securityData = {};
 
             if (window.AndroidBridge && window.AndroidBridge.getSessionId) {
-                webviewData.jsbridge_injected = true;
+                jsbridge_injected = true;
                 try {
                     const t0 = performance.now();
                     currentSessionId = window.AndroidBridge.getSessionId();
                     const t1 = performance.now();
-                    webviewData.bridge_latency_ms = parseFloat((t1 - t0).toFixed(3));
-                    logMsg(`[JSBridge] 连接建立成功，链路延迟: ${webviewData.bridge_latency_ms} ms`, 'success');
+                    bridge_latency_ms = parseFloat((t1 - t0).toFixed(3));
+                    logMsg(`[JSBridge] 连接建立成功，链路延迟: ${bridge_latency_ms} ms`, 'success');
 
                     if (window.AndroidBridge.getWebViewSecurityFeatures) {
-                        const securityData = JSON.parse(window.AndroidBridge.getWebViewSecurityFeatures());
-                        webviewData = { ...webviewData, ...securityData };
+                        securityData = JSON.parse(window.AndroidBridge.getWebViewSecurityFeatures());
                         logMsg("[Container] 已提取沙箱级环境特征矩阵 (20+ Vectors)");
                     }
                 } catch (e) { logMsg("[JSBridge] 异常拦截!", "danger"); }
@@ -282,6 +286,38 @@
                 logMsg("[Warning] 纯净 Web 环境，未检测到注入沙箱", "danger");
             }
 
+            // 组装 WebView 嵌套结构
+            const webviewDataNested = {
+                bridge_routing_layer: {
+                    jsbridge_injected: jsbridge_injected,
+                    bridge_latency_ms: bridge_latency_ms
+                },
+                kernel_container_layer: {
+                    webview_provider_package: securityData.webview_provider_package,
+                    webview_provider_version: securityData.webview_provider_version,
+                    webview_provider_version_code: securityData.webview_provider_version_code,
+                    system_http_agent: securityData.system_http_agent || securityData.default_ua_native
+                },
+                host_security_layer: {
+                    is_debuggable: securityData.is_debuggable,
+                    app_package_name: securityData.app_package_name,
+                    installer_package: securityData.installer_package,
+                    is_cleartext_traffic_permitted: securityData.is_cleartext_traffic_permitted
+                },
+                temporal_build_layer: {
+                    first_install_time: securityData.first_install_time,
+                    last_update_time: securityData.last_update_time,
+                    target_sdk_version: securityData.target_sdk_version,
+                    min_sdk_version: securityData.min_sdk_version
+                }
+            };
+            if (securityData.error_msg) {
+                webviewDataNested.exception_layer = { error_msg: securityData.error_msg };
+            }
+
+            // ==========================================
+            // 2. 获取并组装 Web 前端渲染与算力特征 (L4)
+            // ==========================================
             updateStatus("EXTRACTING BROWSER FINGERPRINTS...");
             await sleep(600);
             
@@ -300,23 +336,48 @@
             const canvasHash = await getCanvasFingerprint();
             logMsg(`[Render] Canvas 像素级哈希生成: ${canvasHash.substring(0, 16)}...`, 'success');
 
+            // ⚠️ 修复点：确保在拼装 JSON 前，提前呼叫并声明探针变量
             const advancedFeatures = getAdvancedWebFeatures();
             logMsg(`[Metrics] 已提取前端扩展特征群 (40+ Vectors)`);
 
+            // 组装 Web 嵌套结构
+            const webDataNested = {
+                navigator_layer: {
+                    user_agent: navigator.userAgent,
+                    language: advancedFeatures.language,
+                    platform: advancedFeatures.platform,
+                    hardware_concurrency: advancedFeatures.hardware_concurrency,
+                    device_memory: advancedFeatures.device_memory,
+                    max_touch_points: advancedFeatures.max_touch_points
+                },
+                screen_layer: {
+                    screen_resolution_logical: `${window.screen.width}x${window.screen.height}`,
+                    device_pixel_ratio: window.devicePixelRatio || 1,
+                    color_depth: advancedFeatures.color_depth,
+                    pixel_depth: advancedFeatures.pixel_depth,
+                    avail_width: advancedFeatures.avail_width,
+                    avail_height: advancedFeatures.avail_height
+                },
+                graphics_layer: {
+                    webgl_vendor: webglInfo.vendor,
+                    webgl_renderer: webglInfo.renderer,
+                    webgl_extensions_count: advancedFeatures.webgl_extensions_count,
+                    canvas_hash: canvasHash
+                },
+                execution_layer: {
+                    compute_task_time_ms: challenge.time_ms,
+                    timezone_offset: advancedFeatures.timezone_offset
+                }
+            };
+
+            // ==========================================
+            // 3. 终极组装与发送
+            // ==========================================
             const payload = {
                 session_id: currentSessionId, 
                 timestamp: Math.floor(Date.now() / 1000),
-                webview_data: webviewData, 
-                web_data: {
-                    user_agent: navigator.userAgent,
-                    screen_resolution_logical: `${window.screen.width}x${window.screen.height}`,
-                    device_pixel_ratio: window.devicePixelRatio || 1,
-                    webgl_vendor: webglInfo.vendor,
-                    webgl_renderer: webglInfo.renderer,
-                    canvas_hash: canvasHash, 
-                    compute_task_time_ms: challenge.time_ms,
-                    ...advancedFeatures 
-                }
+                webview_data: webviewDataNested, 
+                web_data: webDataNested
             };
 
             updateStatus("UPLOADING TO RBA ENGINE...");

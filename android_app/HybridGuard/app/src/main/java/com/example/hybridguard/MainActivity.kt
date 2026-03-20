@@ -35,72 +35,88 @@ class MainActivity : AppCompatActivity() {
         thread {
             try {
                 // ==========================================
-                // 🚀 1. 史诗级原生硬件与物理探针库 (40+ 维度)
+                // 🚀 1. 史诗级原生硬件与物理探针库 (分层架构版)
                 // ==========================================
-                val nativeDataJson = org.json.JSONObject()
 
-                // --- A. 深度构建指纹 (Build Properties) ---
-                nativeDataJson.put("device_model", Build.MODEL)
-                nativeDataJson.put("device_brand", Build.BRAND)
-                nativeDataJson.put("device_manufacturer", Build.MANUFACTURER)
-                nativeDataJson.put("device_product", Build.PRODUCT)
-                nativeDataJson.put("device_board", Build.BOARD)
-                nativeDataJson.put("device_hardware", Build.HARDWARE)
-                nativeDataJson.put("os_version", "Android ${Build.VERSION.RELEASE}")
-                nativeDataJson.put("os_api_level", Build.VERSION.SDK_INT)
-                nativeDataJson.put("cpu_abi", Build.SUPPORTED_ABIS.firstOrNull() ?: "unknown")
-                nativeDataJson.put("build_fingerprint", Build.FINGERPRINT)
-                nativeDataJson.put("build_tags", Build.TAGS)
-                nativeDataJson.put("build_type", Build.TYPE)
-                nativeDataJson.put("uptime_ms", SystemClock.uptimeMillis())
+                // --- A. 深度构建指纹层 ---
+                val buildLayer = org.json.JSONObject().apply {
+                    put("device_model", Build.MODEL)
+                    put("device_brand", Build.BRAND)
+                    put("device_manufacturer", Build.MANUFACTURER)
+                    put("device_product", Build.PRODUCT)
+                    put("device_board", Build.BOARD)
+                    put("device_hardware", Build.HARDWARE)
+                    put("os_version", "Android ${Build.VERSION.RELEASE}")
+                    put("os_api_level", Build.VERSION.SDK_INT)
+                    put("cpu_abi", Build.SUPPORTED_ABIS.firstOrNull() ?: "unknown")
+                    put("build_fingerprint", Build.FINGERPRINT)
+                    put("build_tags", Build.TAGS)
+                    put("build_type", Build.TYPE)
+                    put("uptime_ms", SystemClock.uptimeMillis())
+                }
 
-                // --- B. 真实内存探测 (ActivityManager) ---
+                // --- B. 真实内存探测层 ---
                 val actManager = getSystemService(ACTIVITY_SERVICE) as android.app.ActivityManager
                 val memInfo = android.app.ActivityManager.MemoryInfo()
                 actManager.getMemoryInfo(memInfo)
-                nativeDataJson.put("total_memory_gb", memInfo.totalMem / (1024.0 * 1024.0 * 1024.0))
-                nativeDataJson.put("avail_memory_gb", memInfo.availMem / (1024.0 * 1024.0 * 1024.0))
-                nativeDataJson.put("is_low_memory", memInfo.lowMemory)
-
-                // --- C. 物理屏幕深度参数 (DisplayMetrics) ---
-                val metrics = resources.displayMetrics
-                nativeDataJson.put("screen_resolution_physical", "${metrics.widthPixels}x${metrics.heightPixels}")
-                nativeDataJson.put("screen_density_dpi", metrics.densityDpi)
-                nativeDataJson.put("screen_xdpi", metrics.xdpi.toDouble())
-                nativeDataJson.put("screen_ydpi", metrics.ydpi.toDouble())
-                nativeDataJson.put("screen_scaled_density", metrics.scaledDensity.toDouble())
-
-                // --- D. 电池动态物理量 (BatteryManager - 抓模拟器神器) ---
-                val batteryStatus: android.content.Intent? = android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
-                    registerReceiver(null, ifilter)
+                val memoryLayer = org.json.JSONObject().apply {
+                    put("total_memory_gb", memInfo.totalMem / (1024.0 * 1024.0 * 1024.0))
+                    put("avail_memory_gb", memInfo.availMem / (1024.0 * 1024.0 * 1024.0))
+                    put("is_low_memory", memInfo.lowMemory)
                 }
+
+                // --- C. 物理屏幕深度层 ---
+                val metrics = resources.displayMetrics
+                val screenLayer = org.json.JSONObject().apply {
+                    put("screen_resolution_physical", "${metrics.widthPixels}x${metrics.heightPixels}")
+                    put("screen_density_dpi", metrics.densityDpi)
+                    put("screen_xdpi", metrics.xdpi.toDouble())
+                    put("screen_ydpi", metrics.ydpi.toDouble())
+                    put("screen_scaled_density", metrics.scaledDensity.toDouble())
+                }
+
+                // --- D. 电池动态物理层 ---
+                val batteryStatus = registerReceiver(null, android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED))
                 val batteryLevel = batteryStatus?.getIntExtra(android.os.BatteryManager.EXTRA_LEVEL, -1) ?: -1
                 val batteryScale = batteryStatus?.getIntExtra(android.os.BatteryManager.EXTRA_SCALE, -1) ?: -1
                 val batteryTemp = (batteryStatus?.getIntExtra(android.os.BatteryManager.EXTRA_TEMPERATURE, -1) ?: -1) / 10.0
                 val batteryVoltage = batteryStatus?.getIntExtra(android.os.BatteryManager.EXTRA_VOLTAGE, -1) ?: -1
                 val isCharging = batteryStatus?.getIntExtra(android.os.BatteryManager.EXTRA_STATUS, -1) == android.os.BatteryManager.BATTERY_STATUS_CHARGING
+                val batteryLayer = org.json.JSONObject().apply {
+                    put("battery_level_pct", if (batteryLevel >= 0 && batteryScale > 0) (batteryLevel * 100f / batteryScale).toDouble() else -1.0)
+                    put("battery_temp_celsius", batteryTemp)
+                    put("battery_voltage_mv", batteryVoltage)
+                    put("is_charging", isCharging)
+                }
 
-                nativeDataJson.put("battery_level_pct", if (batteryLevel >= 0 && batteryScale > 0) (batteryLevel * 100f / batteryScale).toDouble() else -1.0)
-                nativeDataJson.put("battery_temp_celsius", batteryTemp)
-                nativeDataJson.put("battery_voltage_mv", batteryVoltage)
-                nativeDataJson.put("is_charging", isCharging)
-
-                // --- E. 传感器全局矩阵 (SensorManager - 数量即正义) ---
+                // --- E. 传感器全局矩阵层 ---
                 val sensorManager = getSystemService(SENSOR_SERVICE) as android.hardware.SensorManager
                 val sensorList = sensorManager.getSensorList(android.hardware.Sensor.TYPE_ALL)
+                val sensorLayer = org.json.JSONObject().apply {
+                    put("sensor_total_count", sensorList.size)
+                    put("has_gyroscope", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE) != null)
+                    put("has_accelerometer", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER) != null)
+                    put("has_magnetic_field", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_MAGNETIC_FIELD) != null)
+                    put("has_light_sensor", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_LIGHT) != null)
+                    put("has_proximity_sensor", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_PROXIMITY) != null)
+                    put("has_pressure_sensor", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_PRESSURE) != null)
+                }
 
-                nativeDataJson.put("sensor_total_count", sensorList.size)
-                nativeDataJson.put("has_gyroscope", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE) != null)
-                nativeDataJson.put("has_accelerometer", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER) != null)
-                nativeDataJson.put("has_magnetic_field", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_MAGNETIC_FIELD) != null)
-                nativeDataJson.put("has_light_sensor", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_LIGHT) != null)
-                nativeDataJson.put("has_proximity_sensor", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_PROXIMITY) != null)
-                nativeDataJson.put("has_pressure_sensor", sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_PRESSURE) != null)
-
-                // --- F. 系统底层安全与调试配置 ---
+                // --- F. 系统底层安全层 ---
                 val adbEnabled = android.provider.Settings.Global.getInt(contentResolver, android.provider.Settings.Global.ADB_ENABLED, 0) == 1
-                nativeDataJson.put("is_adb_enabled", adbEnabled)
+                val securityLayer = org.json.JSONObject().apply {
+                    put("is_adb_enabled", adbEnabled)
+                }
 
+                // 👇 核心拼装：把 6 个子层组装成最终的嵌套 JSON 对象
+                val nativeDataJson = org.json.JSONObject().apply {
+                    put("build_fingerprint_layer", buildLayer)
+                    put("memory_layer", memoryLayer)
+                    put("screen_display_layer", screenLayer)
+                    put("battery_dynamics_layer", batteryLayer)
+                    put("sensor_matrix_layer", sensorLayer)
+                    put("security_config_layer", securityLayer)
+                }
 
                 // ==========================================
                 // 🚀 2. 组装 Payload 数据包

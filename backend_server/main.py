@@ -3,6 +3,7 @@ import logging
 from datetime import datetime
 import os
 from typing import Optional
+import copy
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
@@ -17,113 +18,132 @@ logger = logging.getLogger(__name__)
 
 
 # Pydantic 模型定义
+# 👇 1. 先定义 Android 原生特征的 6 个子层级 Model
+class BuildFingerprintLayer(BaseModel):
+    device_model: Optional[str] = None
+    device_brand: Optional[str] = None
+    device_manufacturer: Optional[str] = None
+    device_product: Optional[str] = None
+    device_board: Optional[str] = None
+    device_hardware: Optional[str] = None
+    os_version: Optional[str] = None
+    os_api_level: Optional[int] = None
+    cpu_abi: Optional[str] = None
+    build_fingerprint: Optional[str] = None
+    build_tags: Optional[str] = None
+    build_type: Optional[str] = None
+    uptime_ms: Optional[int] = None
+
+class NativeMemoryLayer(BaseModel):
+    total_memory_gb: Optional[float] = None
+    avail_memory_gb: Optional[float] = None
+    is_low_memory: Optional[bool] = None
+
+class NativeScreenLayer(BaseModel):
+    screen_resolution_physical: Optional[str] = None
+    screen_density_dpi: Optional[int] = None
+    screen_xdpi: Optional[float] = None
+    screen_ydpi: Optional[float] = None
+    screen_scaled_density: Optional[float] = None
+
+class BatteryDynamicsLayer(BaseModel):
+    battery_level_pct: Optional[float] = None
+    battery_temp_celsius: Optional[float] = None
+    battery_voltage_mv: Optional[int] = None
+    is_charging: Optional[bool] = None
+
+class SensorMatrixLayer(BaseModel):
+    sensor_total_count: Optional[int] = None
+    has_gyroscope: Optional[bool] = None
+    has_accelerometer: Optional[bool] = None
+    has_magnetic_field: Optional[bool] = None
+    has_light_sensor: Optional[bool] = None
+    has_proximity_sensor: Optional[bool] = None
+    has_pressure_sensor: Optional[bool] = None
+
+class SecurityConfigLayer(BaseModel):
+    is_adb_enabled: Optional[bool] = None
+
+# 👇 2. 将它们组合进最终的原生模型中
 class AndroidNativeData(BaseModel):
-    """Android 原生数据模型 (工业级全量版)"""
-    # A. 深度构建指纹
-    device_model: Optional[str] = Field(None, description="设备型号")
-    device_brand: Optional[str] = Field(None, description="设备品牌")
-    device_manufacturer: Optional[str] = Field(None, description="设备制造商")
-    device_product: Optional[str] = Field(None, description="产品代号")
-    device_board: Optional[str] = Field(None, description="主板代号")
-    device_hardware: Optional[str] = Field(None, description="底层硬件代号")
-    os_version: Optional[str] = Field(None, description="操作系统版本")
-    os_api_level: Optional[int] = Field(None, description="Android API 级别")
-    cpu_abi: Optional[str] = Field(None, description="CPU 架构")
-    build_fingerprint: Optional[str] = Field(None, description="系统完整指纹字符串")
-    build_tags: Optional[str] = Field(None, description="构建标签(如 release-keys)")
-    build_type: Optional[str] = Field(None, description="构建类型(如 user/userdebug)")
-    uptime_ms: Optional[int] = Field(None, description="设备运行时间(毫秒)")
+    """Android 原生数据模型 (工业级分层版)"""
+    build_fingerprint_layer: Optional[BuildFingerprintLayer] = Field(None, description="构建指纹层")
+    memory_layer: Optional[NativeMemoryLayer] = Field(None, description="物理内存层")
+    screen_display_layer: Optional[NativeScreenLayer] = Field(None, description="物理显示层")
+    battery_dynamics_layer: Optional[BatteryDynamicsLayer] = Field(None, description="电池动态层")
+    sensor_matrix_layer: Optional[SensorMatrixLayer] = Field(None, description="传感器矩阵层")
+    security_config_layer: Optional[SecurityConfigLayer] = Field(None, description="安全配置层")
 
-    # B. 真实内存探测
-    total_memory_gb: Optional[float] = Field(None, description="物理总内存(GB)")
-    avail_memory_gb: Optional[float] = Field(None, description="可用内存(GB)")
-    is_low_memory: Optional[bool] = Field(None, description="是否处于低内存状态")
+# 👇 1. 先定义 WebView 容器的子层级 Model
+class BridgeRoutingLayer(BaseModel):
+    jsbridge_injected: Optional[bool] = None
+    bridge_latency_ms: Optional[float] = None
 
-    # C. 物理屏幕深度参数
-    screen_resolution_physical: Optional[str] = Field(None, description="物理屏幕分辨率")
-    screen_density_dpi: Optional[int] = Field(None, description="屏幕像素密度(DPI)")
-    screen_xdpi: Optional[float] = Field(None, description="X轴精确物理像素密度")
-    screen_ydpi: Optional[float] = Field(None, description="Y轴精确物理像素密度")
-    screen_scaled_density: Optional[float] = Field(None, description="字体缩放密度")
+class KernelContainerLayer(BaseModel):
+    webview_provider_package: Optional[str] = None
+    webview_provider_version: Optional[str] = None
+    webview_provider_version_code: Optional[int] = None
+    system_http_agent: Optional[str] = None
+    default_ua_native: Optional[str] = None
 
-    # D. 电池动态物理量
-    battery_level_pct: Optional[float] = Field(None, description="电池电量百分比")
-    battery_temp_celsius: Optional[float] = Field(None, description="电池物理温度(摄氏度)")
-    battery_voltage_mv: Optional[int] = Field(None, description="电池当前电压(毫伏)")
-    is_charging: Optional[bool] = Field(None, description="是否正在充电")
+class HostSecurityLayer(BaseModel):
+    is_debuggable: Optional[bool] = None
+    app_package_name: Optional[str] = None
+    installer_package: Optional[str] = None
+    is_cleartext_traffic_permitted: Optional[bool] = None
 
-    # E. 传感器全局矩阵
-    sensor_total_count: Optional[int] = Field(None, description="系统传感器总数量")
-    has_gyroscope: Optional[bool] = Field(None, description="是否有陀螺仪")
-    has_accelerometer: Optional[bool] = Field(None, description="是否有加速度计")
-    has_magnetic_field: Optional[bool] = Field(None, description="是否有地磁传感器")
-    has_light_sensor: Optional[bool] = Field(None, description="是否有光线传感器")
-    has_proximity_sensor: Optional[bool] = Field(None, description="是否有距离传感器")
-    has_pressure_sensor: Optional[bool] = Field(None, description="是否有气压计")
+class TemporalBuildLayer(BaseModel):
+    first_install_time: Optional[int] = None
+    last_update_time: Optional[int] = None
+    target_sdk_version: Optional[int] = None
+    min_sdk_version: Optional[int] = None
 
-    # F. 安全特征
-    is_adb_enabled: Optional[bool] = Field(None, description="是否开启了USB调试")
+class ExceptionLayer(BaseModel):
+    error_msg: Optional[str] = None
 
+# 👇 2. 将它们组合进最终的容器模型中
 class WebViewData(BaseModel):
-    """WebView 容器与宿主环境特征 (满血版)"""
-    # 基础通信特征
-    jsbridge_injected: Optional[bool] = Field(None, description="是否注入 JSBridge")
-    bridge_latency_ms: Optional[float] = Field(None, description="JSBridge通信延迟(毫秒)")
+    """WebView 容器与宿主环境特征 (工业级分层版)"""
+    bridge_routing_layer: Optional[BridgeRoutingLayer] = Field(None, description="通信桥接层")
+    kernel_container_layer: Optional[KernelContainerLayer] = Field(None, description="内核容器层")
+    host_security_layer: Optional[HostSecurityLayer] = Field(None, description="宿主安全层")
+    temporal_build_layer: Optional[TemporalBuildLayer] = Field(None, description="时间与编译层")
+    exception_layer: Optional[ExceptionLayer] = Field(None, description="异常记录层")
     
-    # App 宿主安全特征
-    is_debuggable: Optional[bool] = Field(None, description="App是否处于Debug模式")
-    app_package_name: Optional[str] = Field(None, description="宿主App包名")
-    installer_package: Optional[str] = Field(None, description="App安装渠道包名")
-    
-    # 内核真实溯源
-    webview_provider_package: Optional[str] = Field(None, description="内核提供商包名")
-    webview_provider_version: Optional[str] = Field(None, description="真实内核版本号")
-    webview_provider_version_code: Optional[int] = Field(None, description="真实内核版本代码")
-    
-    # 容器安全配置
-    is_multi_process: Optional[bool] = Field(None, description="是否开启多进程WebView")
-    is_cleartext_traffic_permitted: Optional[bool] = Field(None, description="是否允许明文HTTP流量")
-    
-    # 宿主时间与编译特征
-    first_install_time: Optional[int] = Field(None, description="宿主App首次安装时间戳")
-    last_update_time: Optional[int] = Field(None, description="宿主App最后更新时间戳")
-    target_sdk_version: Optional[int] = Field(None, description="编译目标SDK版本")
-    min_sdk_version: Optional[int] = Field(None, description="最低支持SDK版本")
-    
-    # 底层网络探针
-    system_http_agent: Optional[str] = Field(None, description="系统底层默认UA")
-    error_msg: Optional[str] = Field(None, description="采集过程异常信息")
+# 👇 1. 先定义子层级的 Model
+class NavigatorLayer(BaseModel):
+    user_agent: Optional[str] = None
+    language: Optional[str] = None
+    platform: Optional[str] = None
+    hardware_concurrency: Optional[int] = None
+    device_memory: Optional[float] = None
+    max_touch_points: Optional[int] = None
 
+class ScreenLayer(BaseModel):
+    screen_resolution_logical: Optional[str] = None
+    device_pixel_ratio: Optional[float] = None
+    color_depth: Optional[int] = None
+    pixel_depth: Optional[int] = None
+    avail_width: Optional[int] = None
+    avail_height: Optional[int] = None
+
+class GraphicsLayer(BaseModel):
+    webgl_vendor: Optional[str] = None
+    webgl_renderer: Optional[str] = None
+    webgl_extensions_count: Optional[int] = None
+    canvas_hash: Optional[str] = None
+
+class ExecutionLayer(BaseModel):
+    compute_task_time_ms: Optional[float] = None
+    timezone_offset: Optional[int] = None
+
+# 👇 2. 再将它们组合进最终的 WebData 模型中
 class WebData(BaseModel):
-    """Web 数据模型 (火力加强版)"""
-    user_agent: Optional[str] = Field(None, description="用户代理")
-    screen_resolution_logical: Optional[str] = Field(None, description="逻辑屏幕分辨率")
-    device_pixel_ratio: Optional[float] = Field(None, description="设备像素比")
-    webgl_vendor: Optional[str] = Field(None, description="WebGL 供应商")
-    webgl_renderer: Optional[str] = Field(None, description="WebGL 渲染器")
-    canvas_hash: Optional[str] = Field(None, description="Canvas 指纹哈希")
-    compute_task_time_ms: Optional[float] = Field(None, description="计算任务耗时(毫秒)")
-    
-    # 新增的高级特征接收字段
-    color_depth: Optional[int] = Field(None, description="色彩深度")
-    pixel_depth: Optional[int] = Field(None, description="像素深度")
-    avail_width: Optional[int] = Field(None, description="可用屏幕宽度")
-    avail_height: Optional[int] = Field(None, description="可用屏幕高度")
-    hardware_concurrency: Optional[int] = Field(None, description="CPU逻辑核心数")
-    device_memory: Optional[float] = Field(None, description="设备内存级别(GB)")
-    max_touch_points: Optional[int] = Field(None, description="最大触控点数")
-    language: Optional[str] = Field(None, description="语言")
-    platform: Optional[str] = Field(None, description="平台标识")
-    cookie_enabled: Optional[bool] = Field(None, description="是否启用Cookie")
-    timezone_offset: Optional[int] = Field(None, description="时区偏移")
-    timezone: Optional[str] = Field(None, description="时区名称")
-    webgl_unmasked_vendor: Optional[str] = Field(None, description="底层显卡真实供应商")
-    webgl_unmasked_renderer: Optional[str] = Field(None, description="底层显卡真实渲染器")
-    webgl_extensions: Optional[list] = Field(None, description="WebGL扩展指令集数组")
-    webgl_extensions_count: Optional[int] = Field(None, description="WebGL扩展指令集数量")
-    local_storage_supported: Optional[bool] = Field(None, description="支持LocalStorage")
-    session_storage_supported: Optional[bool] = Field(None, description="支持SessionStorage")
-    indexed_db_supported: Optional[bool] = Field(None, description="支持IndexedDB")
+    """Web 数据模型 (工业级分层版)"""
+    navigator_layer: Optional[NavigatorLayer] = Field(None, description="导航器环境层")
+    screen_layer: Optional[ScreenLayer] = Field(None, description="屏幕显示层")
+    graphics_layer: Optional[GraphicsLayer] = Field(None, description="图形渲染层")
+    execution_layer: Optional[ExecutionLayer] = Field(None, description="执行算力层")
 
 class FingerprintPayload(BaseModel):
     """设备指纹数据载荷"""
@@ -218,15 +238,44 @@ async def collect_fingerprint(payload: FingerprintPayload):
             sessions_db[session_id]["client_ip"] = incoming_data["client_ip"]
         sessions_db[session_id]["timestamp"] = incoming_data["timestamp"]
 
-        # 4. 将合并后的全量数据持久化保存到本地 JSON 文件
+        # 4. 将合并后的全量数据持久化保存到本地 JSON 文件 (这里保存的是原始嵌套结构)
         with open(DB_FILE, "w", encoding="utf-8") as f:
             json.dump(sessions_db, f, ensure_ascii=False, indent=4)
 
-        # 核心新增：只有当双端数据都“会师”完毕，才写入 jsonl 喂给大模型
         current_session = sessions_db[session_id]
+        
+        # 👇 核心新增：数据降维 (Flatten) 逻辑
         if current_session.get("android_native_data") and current_session.get("web_data"):
-            save_to_jsonl(current_session)
+            import copy
+            llm_session_data = copy.deepcopy(current_session)
+            
+            # 1. 拍平 Web 前端数据
+            if "web_data" in llm_session_data and llm_session_data["web_data"]:
+                flat_web_data = {}
+                for layer_name, layer_dict in llm_session_data["web_data"].items():
+                    if isinstance(layer_dict, dict):
+                        flat_web_data.update(layer_dict)
+                llm_session_data["web_data"] = flat_web_data
 
+            # 2. 拍平 Android 原生数据
+            if "android_native_data" in llm_session_data and llm_session_data["android_native_data"]:
+                flat_native_data = {}
+                for layer_name, layer_dict in llm_session_data["android_native_data"].items():
+                    if isinstance(layer_dict, dict):
+                        flat_native_data.update(layer_dict)
+                llm_session_data["android_native_data"] = flat_native_data
+
+            # 3. 拍平 WebView 容器数据 (新加的逻辑)
+            if "webview_data" in llm_session_data and llm_session_data["webview_data"]:
+                flat_webview_data = {}
+                for layer_name, layer_dict in llm_session_data["webview_data"].items():
+                    if isinstance(layer_dict, dict):
+                        flat_webview_data.update(layer_dict)
+                llm_session_data["webview_data"] = flat_webview_data
+            
+            # 把彻底扁平化的大模型特供版数据追加到 jsonl 中
+            save_to_jsonl(llm_session_data)
+            
         # 返回成功响应
         return {
             "status": "success",
