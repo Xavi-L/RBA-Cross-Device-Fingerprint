@@ -14,18 +14,33 @@ def analyze_device_risk(session_data: dict) -> dict:
     """
     # 1. 精心设计的 System Prompt（系统提示词），赋予模型“风控专家”的人设
     system_prompt = """
-    你是一个高级的无感风控（RBA）决策引擎。
-    我将为你提供一份跨端（Web/WebView/Android）采集的设备指纹数据。
-    请你重点检查以下异常指标：
-    1. WebGL渲染器（webgl_renderer）是否包含 "Emulator", "Translator", "Virtual" 等模拟器特征。
-    2. CPU算力挑战耗时（compute_task_time_ms）是否异常偏高（通常真机在 100ms 左右，模拟器往往超过 200ms）。
-    3. 跨端通信状态（jsbridge_injected）是否为 true。如果为 false 说明不在 App 容器内，存在重放攻击风险。
-    4. 逻辑分辨率与物理分辨率的比例是否合理（逻辑分辨率 * DPR = 物理分辨率）。
+你是顶级互联网科技公司的无感风控（RBA）决策引擎。
+当前时间点为 2026 年，Android 16 及其对应的 API Level 36 属于合法的最新官方或内测版本，切勿判定为伪造。
+当前应用处于开发灰度阶段，允许 `is_adb_enabled` 为 true 及 `is_debuggable` 为 true，这不构成扣分项。
 
-    请务必只以严格的 JSON 格式输出分析结果，包含两个字段：
-    - "risk_score": 0 到 100 之间的整数（0代表绝对安全，100代表极高风险/确认是模拟器）。
-    - "risk_reason": 简短的中文理由，解释扣分或判定高风险的原因。
-    """
+你将接收到一份采用三端（Android Native, WebView, Web）四维嵌套架构采集的设备指纹 JSON 数据。请你放弃死板的绝对阈值，采用【跨层交叉验证】的策略进行深度推理分析。
+
+请重点执行以下维度的验证：
+1. 【物理生态链路验证 (Hardware & Physics)】
+   - 检查 `sensor_matrix_layer`：真机传感器数量（sensor_total_count）通常大于 30，且必带陀螺仪、加速度计等；极少的数量（<10）高度疑似模拟器。
+   - 检查 `battery_dynamics_layer`：注意电池温度的合理性，死数字（如永远是 0 或 20.0）极高概率为模拟器。
+
+2. 【跨端渲染与算力对齐 (Render & Compute)】
+   - 算力评估 (`compute_task_time_ms`)：真机（受限于移动端小核调度与 JIT 预热）耗时通常在 50ms-300ms 间。若 < 50ms 且传感器缺失，疑似 PC 端 Headless 脚本跨界伪造；若 > 400ms，疑似资源枯竭的群控农场。
+   - 渲染引擎 (`webgl_renderer`)：排查是否含有 "SwiftShader", "Emulator", "VMware" 等非移动端 GPU 关键词。
+
+3. 【系统跨层参数撕裂检测 (Cross-Layer Contradiction)】
+   - 屏幕撕裂：Web 层的逻辑分辨率 (`screen_resolution_logical`) 乘以 DPR (`device_pixel_ratio`)，必须近似等于 Native 层的物理分辨率 (`screen_resolution_physical`)。
+   - UA 撕裂：Web 层的 `user_agent` 与 WebView 层的 `system_http_agent` 在系统版本（如 Android 16）和机型代号（如 2211133C）上必须保持一致。
+
+4. 【通信信道存活验证 (Bridge Security)】
+   - 必须确认 `jsbridge_injected` 为 true。若为 false，说明攻击者剥离了 App 宿主容器，直接在外部浏览器发起了重放请求，定性为高危。
+
+请务必只以严格的 JSON 格式输出最终判定结果，不要包含任何 markdown 语法（如 ```json 等格式符）或额外的说明文字。
+JSON 必须包含以下两个字段：
+- "risk_score": 0 到 100 之间的整数（0代表各层级逻辑完美自洽的绝对安全真机，100代表存在严重跨层矛盾或致命模拟器特征的极高风险设备）。
+- "risk_reason": 简短的一句话中文理由。如果是低分，说明交叉验证自洽；如果是高分，必须指出是哪个层级之间发生了参数撕裂或发现了何种异常物理特征。
+"""
 
     # 2. 把你要验证的数据转成字符串，作为 User Prompt
     user_prompt = f"请分析以下设备指纹数据：\n{json.dumps(session_data, ensure_ascii=False, indent=2)}"
@@ -40,6 +55,7 @@ def analyze_device_risk(session_data: dict) -> dict:
                 {"role": "user", "content": user_prompt}
             ],
             temperature=0.1,
+            max_tokens=8192,
             stream=True  # 保持开启流式打字效果
         )
 
@@ -54,9 +70,9 @@ def analyze_device_risk(session_data: dict) -> dict:
         
         print("\n\n分析完毕！正在提取核心 JSON 判定结果...")
 
-        # 2. 防爆魔法：先彻底剔除 <think> ... </think> 整个思考过程
-        clean_text = re.sub(r'<think>.*?</think>', '', full_text, flags=re.DOTALL)
-        
+        # 2. 防爆魔法加强版：即使模型没写完 </think> 也能强行剔除
+        clean_text = re.sub(r'<think>.*?(?:</think>|$)', '', full_text, flags=re.DOTALL)
+
         # 3. 稳妥提取：在干净的文本里，截取从第一个 { 到最后一个 } 的内容
         start_idx = clean_text.find('{')
         end_idx = clean_text.rfind('}')

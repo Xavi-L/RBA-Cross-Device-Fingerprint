@@ -8,6 +8,7 @@ import copy
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
 # 配置日志
 logging.basicConfig(
@@ -180,6 +181,11 @@ if os.path.exists(DB_FILE):
     with open(DB_FILE, "r", encoding="utf-8") as f:
         sessions_db = json.load(f)
 
+@app.get("/")
+async def serve_frontend():
+    """直接用 FastAPI 托管前端网页"""
+    return FileResponse("index.html")
+
 @app.post("/api/collect/fingerprint")
 async def collect_fingerprint(payload: FingerprintPayload):
     """
@@ -275,7 +281,7 @@ async def collect_fingerprint(payload: FingerprintPayload):
             
             # 把彻底扁平化的大模型特供版数据追加到 jsonl 中
             save_to_jsonl(llm_session_data)
-            
+
         # 返回成功响应
         return {
             "status": "success",

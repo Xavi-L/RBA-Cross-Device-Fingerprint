@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         // 注入 JSBridge
         myWebView.addJavascriptInterface(WebAppInterface(this, sessionId), "AndroidBridge")
         // 加载探针网页
-        myWebView.loadUrl("http://10.0.2.2:5500/index.html")
+        myWebView.loadUrl("https://hemispheric-overmoist-candance.ngrok-free.dev")
     }
 
     private fun collectAndSendNativeData() {
@@ -136,8 +136,12 @@ class MainActivity : AppCompatActivity() {
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val body = payload.toString().toRequestBody(mediaType)
 
+                // ... 前面的拼装 body 代码保持不变 ...
+
                 val request = okhttp3.Request.Builder()
-                    .url("http://10.0.2.2:8000/api/collect/fingerprint")
+                    .url("https://hemispheric-overmoist-candance.ngrok-free.dev/api/collect/fingerprint")
+                    // 👇 加入这行神仙代码，直接无视 Ngrok 的警告页面！
+                    .addHeader("ngrok-skip-browser-warning", "true")
                     .post(body)
                     .build()
 
