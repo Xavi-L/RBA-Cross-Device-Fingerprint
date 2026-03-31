@@ -27,8 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         // 注入 JSBridge
         myWebView.addJavascriptInterface(WebAppInterface(this, sessionId), "AndroidBridge")
+        // 构造一个包含绕过特征的 Header Map
+        val extraHeaders = mutableMapOf<String, String>()
+        extraHeaders["ngrok-skip-browser-warning"] = "true"
         // 加载探针网页
-        myWebView.loadUrl("https://hemispheric-overmoist-candance.ngrok-free.dev")
+        myWebView.loadUrl("https://hemispheric-overmoist-candance.ngrok-free.dev", extraHeaders)
     }
 
     private fun collectAndSendNativeData() {
