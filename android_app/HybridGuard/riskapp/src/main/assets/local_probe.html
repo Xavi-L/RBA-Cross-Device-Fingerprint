@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HybridGuard Local Probe</title>
+    <style>
+        :root {
+            --bg: #f5f7fa;
+            --panel: #ffffff;
+            --text: #101828;
+            --muted: #667085;
+            --accent: #1a73e8;
+            --good: #12805c;
+            --bad: #c5221f;
+            --border: #d0d5dd;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: max(56px, calc(env(safe-area-inset-top) + 28px)) 18px 28px;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .pulse {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.35);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            to { box-shadow: 0 0 0 12px rgba(26, 115, 232, 0); }
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.25;
+        }
+
+        .sub {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .status {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .canvas-box {
+            display: none;
+            margin-top: 12px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+        }
+
+        .log {
+            height: 320px;
+            overflow-y: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .line {
+            margin: 0 0 7px;
+            color: var(--text);
+        }
+
+        .line.good { color: var(--good); }
+        .line.bad { color: var(--bad); }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="pulse"></div>
+    <div>
+        <h1>Local Web Probe</h1>
+        <div id="subtitle" class="sub">Signals stay on device until the final score is produced.</div>
+    </div>
+</div>
+
+<div class="panel">
+    <div id="status" class="status">Starting JSBridge handshake...</div>
+    <div id="canvasBox" class="canvas-box"></div>
+</div>
+
+<div class="panel log" id="log"></div>
+
+<script>
+    const statusEl = document.getElementById("status");
+    const subtitleEl = document.getElementById("subtitle");
+    const logEl = document.getElementById("log");
+    const canvasBox = document.getElementById("canvasBox");
+
+    function setStatus(text) {
+        statusEl.textContent = text;
+    }
+
+    function log(text, cls) {
+        const p = document.createElement("p");
+        p.className = "line" + (cls ? " " + cls : "");
+        p.textContent = text;
+        logEl.appendChild(p);
+        logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    window.HybridGuardProbe = {
+        updateResult(status, detail, cls) {
+            setStatus(status);
+            if (detail) {
+                subtitleEl.textContent = detail;
+                log(detail, cls);
+            }
+        }
+    };
+
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    function getWebGLInfo() {
+        const canvas = document.createElement("canvas");
+        const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        let vendor = "Unknown";
+        let renderer = "Unknown";
+        if (gl) {
+            const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+            if (debugInfo) {
+                vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            }
+        }
+        return { vendor, renderer };
+    }
+
+    function getAdvancedWebFeatures() {
+        const features = {};
+        features.color_depth = screen.colorDepth || 0;
+        features.pixel_depth = screen.pixelDepth || 0;
+        features.avail_width = screen.availWidth || 0;
+        features.avail_height = screen.availHeight || 0;
+        features.hardware_concurrency = navigator.hardwareConcurrency || 0;
+        features.device_memory = navigator.deviceMemory || 0;
+        features.max_touch_points = navigator.maxTouchPoints || 0;
+        features.language = navigator.language || "";
+        features.platform = navigator.platform || "";
+        features.timezone_offset = new Date().getTimezoneOffset();
+
+        const canvas = document.createElement("canvas");
+        const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        if (gl) {
+            const extensions = gl.getSupportedExtensions();
+            features.webgl_extensions_count = extensions ? extensions.length : 0;
+        } else {
+            features.webgl_extensions_count = 0;
+        }
+        return features;
+    }
+
+    function runComputeChallenge() {
+        const startTime = performance.now();
+        let result = 0;
+        for (let i = 0; i < 5000000; i++) {
+            result += Math.sin(i) * Math.cos(i) + Math.tan(i % 100);
+        }
+        return { time_ms: parseFloat((performance.now() - startTime).toFixed(2)), guard: result };
+    }
+
+    function getCanvasFingerprint() {
+        const canvas = document.createElement("canvas");
+        canvas.width = 250;
+        canvas.height = 50;
+        const ctx = canvas.getContext("2d");
+
+        ctx.textBaseline = "top";
+        ctx.font = "14px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif";
+        ctx.fillStyle = "rgba(0, 113, 227, 0.2)";
+        ctx.fillRect(125, 1, 62, 20);
+        ctx.fillStyle = "rgba(29, 29, 31, 0.8)";
+        ctx.fillText("HybridGuard 2026", 2, 15);
+        ctx.fillStyle = "rgba(52, 199, 89, 0.5)";
+        ctx.fillText("HybridGuard 2026", 4, 17);
+        ctx.font = "20px -apple-system";
+        ctx.fillText("HG", 180, 10);
+
+        canvasBox.style.display = "block";
+        canvasBox.appendChild(canvas);
+
+        const dataURL = canvas.toDataURL();
+        if (window.AndroidBridge && window.AndroidBridge.sha256) {
+            return window.AndroidBridge.sha256(dataURL);
+        }
+        return String(dataURL.length);
+    }
+
+    async function collectLocalSignals() {
+        setStatus("Establishing JSBridge connection...");
+        await sleep(250);
+
+        let currentSessionId = "fallback-local-" + Date.now();
+        let jsbridgeInjected = false;
+        let bridgeLatencyMs = 0.0;
+        let securityData = {};
+
+        if (window.AndroidBridge && window.AndroidBridge.getSessionId) {
+            jsbridgeInjected = true;
+            const t0 = performance.now();
+            currentSessionId = window.AndroidBridge.getSessionId();
+            const t1 = performance.now();
+            bridgeLatencyMs = parseFloat((t1 - t0).toFixed(3));
+            log("JSBridge connected in " + bridgeLatencyMs + " ms", "good");
+
+            if (window.AndroidBridge.getWebViewSecurityFeatures) {
+                securityData = JSON.parse(window.AndroidBridge.getWebViewSecurityFeatures());
+                log("WebView host signals collected");
+            }
+        } else {
+            log("Android bridge missing", "bad");
+        }
+
+        const webviewDataNested = {
+            bridge_routing_layer: {
+                jsbridge_injected: jsbridgeInjected,
+                bridge_latency_ms: bridgeLatencyMs
+            },
+            kernel_container_layer: {
+                webview_provider_package: securityData.webview_provider_package,
+                webview_provider_version: securityData.webview_provider_version,
+                webview_provider_version_code: securityData.webview_provider_version_code,
+                system_http_agent: securityData.system_http_agent || securityData.default_ua_native
+            },
+            host_security_layer: {
+                is_debuggable: securityData.is_debuggable,
+                app_package_name: securityData.app_package_name,
+                installer_package: securityData.installer_package,
+                is_cleartext_traffic_permitted: securityData.is_cleartext_traffic_permitted
+            },
+            temporal_build_layer: {
+                first_install_time: securityData.first_install_time,
+                last_update_time: securityData.last_update_time,
+                target_sdk_version: securityData.target_sdk_version,
+                min_sdk_version: securityData.min_sdk_version
+            }
+        };
+
+        if (securityData.error_msg) {
+            webviewDataNested.exception_layer = { error_msg: securityData.error_msg };
+        }
+
+        setStatus("Collecting browser runtime signals...");
+        await sleep(250);
+
+        const webglInfo = getWebGLInfo();
+        const advanced = getAdvancedWebFeatures();
+        const challenge = runComputeChallenge();
+        const canvasHash = getCanvasFingerprint();
+
+        log("UA: " + navigator.userAgent.substring(0, 68));
+        log("Logical screen: " + window.screen.width + "x" + window.screen.height + " DPR " + (window.devicePixelRatio || 1));
+        log("WebGL renderer: " + webglInfo.renderer);
+        log("Compute challenge: " + challenge.time_ms + " ms", "good");
+        log("Canvas hash: " + canvasHash.substring(0, 16));
+
+        const webDataNested = {
+            navigator_layer: {
+                user_agent: navigator.userAgent,
+                language: advanced.language,
+                platform: advanced.platform,
+                hardware_concurrency: advanced.hardware_concurrency,
+                device_memory: advanced.device_memory,
+                max_touch_points: advanced.max_touch_points
+            },
+            screen_layer: {
+                screen_resolution_logical: window.screen.width + "x" + window.screen.height,
+                device_pixel_ratio: window.devicePixelRatio || 1,
+                color_depth: advanced.color_depth,
+                pixel_depth: advanced.pixel_depth,
+                avail_width: advanced.avail_width,
+                avail_height: advanced.avail_height
+            },
+            graphics_layer: {
+                webgl_vendor: webglInfo.vendor,
+                webgl_renderer: webglInfo.renderer,
+                webgl_extensions_count: advanced.webgl_extensions_count,
+                canvas_hash: canvasHash
+            },
+            execution_layer: {
+                compute_task_time_ms: challenge.time_ms,
+                timezone_offset: advanced.timezone_offset
+            }
+        };
+
+        const payload = {
+            session_id: currentSessionId,
+            timestamp: Math.floor(Date.now() / 1000),
+            webview_data: webviewDataNested,
+            web_data: webDataNested
+        };
+
+        setStatus("Waiting for Android scorer...");
+        window.AndroidBridge.submitWebPayload(JSON.stringify(payload));
+        log("Local payload handed to RandomForest scorer", "good");
+    }
+
+    window.onload = collectLocalSignals;
+</script>
+</body>
+</html>

@@ -155,6 +155,16 @@ class FingerprintPayload(BaseModel):
     webview_data: Optional[WebViewData] = Field(None, description="WebView 数据")
     web_data: Optional[WebData] = Field(None, description="Web 数据")
 
+class LocalRiskScorePayload(BaseModel):
+    """App 端本地评分结果载荷，不包含三端原始指纹数据"""
+    session_id: str = Field(..., description="会话ID")
+    timestamp: int = Field(..., description="App 端评分时间戳(Unix)")
+    risk_score: float = Field(..., description="端侧随机森林风险评分")
+    risk_level: Optional[str] = Field(None, description="端侧风险等级")
+    risk_reason: Optional[str] = Field(None, description="端侧评分说明")
+    scoring_engine: Optional[str] = Field(None, description="端侧评分器标识")
+    feature_count: Optional[int] = Field(None, description="端侧输入特征数量")
+
 
 # 创建 FastAPI 应用
 app = FastAPI(
@@ -299,6 +309,22 @@ async def health_check():
     """健康检查接口"""
     return {"status": "healthy"}
 
+@app.post("/api/risk/local-score")
+async def collect_local_score(payload: LocalRiskScorePayload):
+    """接收新 App 在端侧完成的随机森林评分结果"""
+    try:
+        result = payload.dict(exclude_none=True)
+        result["server_received_at"] = datetime.utcnow().isoformat() + "Z"
+        save_local_score_to_jsonl(result)
+        return {
+            "status": "success",
+            "session_id": payload.session_id,
+            "message": "端侧评分结果已接收"
+        }
+    except Exception as e:
+        logger.error(f"处理端侧评分结果时出错: {str(e)}")
+        raise HTTPException(status_code=500, detail="内部服务器错误")
+
 def save_to_jsonl(merged_data: dict):
     jsonl_file_path = "collected_data.jsonl"
     
@@ -309,6 +335,15 @@ def save_to_jsonl(merged_data: dict):
         f.write(json_line + "\n")
         
     print(f"会话 {merged_data.get('session_id')} 已追加到 collected_data.jsonl")
+
+def save_local_score_to_jsonl(score_data: dict):
+    jsonl_file_path = "local_score_results.jsonl"
+
+    with open(jsonl_file_path, "a", encoding="utf-8") as f:
+        json_line = json.dumps(score_data, ensure_ascii=False)
+        f.write(json_line + "\n")
+
+    print(f"会话 {score_data.get('session_id')} 端侧评分已追加到 local_score_results.jsonl")
 
 
 if __name__ == "__main__":
