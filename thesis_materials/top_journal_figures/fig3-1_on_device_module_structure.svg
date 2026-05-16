@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15cm" height="13.2292cm" viewBox="0 0 566.929 500.000">
+  <defs>
+    <marker id="arrow" markerWidth="5.8" markerHeight="5.2" refX="5.3" refY="2.6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L5.8,2.6 L0,5.2 Z" fill="#5D6B76"/>
+    </marker>
+    <filter id="softShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#8AA0B4" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <style>
+    .text { font-family: "Times New Roman", "Songti SC", "STSong", "SimSun", serif; font-size: 10.5pt; fill: #1F3142; letter-spacing: 0; }
+    .medium { font-weight: 600; }
+  </style>
+  <rect width="566.929" height="500.000" fill="#FFFFFF"/>
+  <text x="28.00" y="38.90" text-anchor="start" class="text medium">
+    <tspan x="28.00" dy="0.00">端侧模块结构：调度、采集、桥接与评分</tspan>
+  </text>
+
+  <rect x="34.00" y="70.00" width="498.00" height="380.00" fill="#F7FAFC" stroke="#DDE5EC" stroke-width="1.15"/>
+  <line x1="34.00" y1="116.00" x2="532.00" y2="116.00" stroke="#DDE5EC" stroke-width="1"/>
+  <text x="66.00" y="98.90" text-anchor="start" class="text medium">
+    <tspan x="66.00" dy="0.00">RiskApp</tspan>
+  </text>
+
+  <rect x="198.00" y="84.00" width="170.00" height="46.00" fill="#EFF3F6" stroke="#6D7A86" stroke-width="1.15"/>
+  <text x="283.00" y="102.90" text-anchor="middle" class="text medium">
+    <tspan x="283.00" dy="0.00">MainActivity</tspan>
+    <tspan x="283.00" dy="18.00">生成session_id</tspan>
+  </text>
+
+  <rect x="66.00" y="176.00" width="198.00" height="98.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="165.00" y="202.90" text-anchor="middle" class="text medium">
+    <tspan x="165.00" dy="0.00">FingerprintCollector</tspan>
+  </text>
+  <rect x="92.00" y="224.00" width="146.00" height="34.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="165.00" y="245.90" text-anchor="middle" class="text medium">
+    <tspan x="165.00" dy="0.00">采集Native扁平特征</tspan>
+  </text>
+
+  <rect x="306.00" y="156.00" width="198.00" height="138.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="405.00" y="174.90" text-anchor="middle" class="text medium">
+    <tspan x="405.00" dy="0.00">WebView加载</tspan>
+    <tspan x="405.00" dy="18.00">local_probe.html</tspan>
+  </text>
+  <rect x="332.00" y="208.00" width="146.00" height="28.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="405.00" y="226.90" text-anchor="middle" class="text medium">
+    <tspan x="405.00" dy="0.00">local_probe.html</tspan>
+  </text>
+  <rect x="332.00" y="246.00" width="146.00" height="34.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="405.00" y="259.90" text-anchor="middle" class="text medium">
+    <tspan x="405.00" dy="0.00">ScoringWebBridge</tspan>
+    <tspan x="405.00" dy="15.00">返回宿主特征</tspan>
+  </text>
+  <rect x="332.00" y="304.00" width="146.00" height="34.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="405.00" y="317.90" text-anchor="middle" class="text medium">
+    <tspan x="405.00" dy="0.00">回传webview_data</tspan>
+    <tspan x="405.00" dy="15.00">与web_data</tspan>
+  </text>
+
+  <rect x="96.00" y="356.00" width="374.00" height="70.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="120.00" y="376.90" text-anchor="start" class="text medium">
+    <tspan x="120.00" dy="0.00">评分闭环</tspan>
+  </text>
+  <rect x="148.00" y="386.00" width="150.00" height="34.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="223.00" y="399.90" text-anchor="middle" class="text medium">
+    <tspan x="223.00" dy="0.00">RiskFeatureEncoder</tspan>
+    <tspan x="223.00" dy="15.00">构造65维输入</tspan>
+  </text>
+  <rect x="312.00" y="386.00" width="150.00" height="34.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="387.00" y="399.90" text-anchor="middle" class="text medium">
+    <tspan x="387.00" dy="0.00">DeviceRiskScorer</tspan>
+    <tspan x="387.00" dy="15.00">本地推理</tspan>
+  </text>
+  <rect x="210.00" y="456.00" width="146.00" height="34.00" fill="#FFF4DF" stroke="#D89A24" stroke-width="1.15"/>
+  <text x="283.00" y="477.90" text-anchor="middle" class="text medium">
+    <tspan x="283.00" dy="0.00">展示风险分并上传摘要</tspan>
+  </text>
+
+  <polyline points="283.00,130.00 283.00,150.00 165.00,150.00 165.00,176.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="283.00,130.00 283.00,150.00 405.00,150.00 405.00,156.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="405.00" y1="236.00" x2="405.00" y2="246.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="405.00,280.00 405.00,294.00 405.00,294.00 405.00,304.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="165.00,274.00 165.00,330.00 223.00,330.00 223.00,386.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="405.00,338.00 405.00,350.00 223.00,350.00 223.00,386.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="298.00" y1="403.00" x2="312.00" y2="403.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="387.00,420.00 387.00,438.00 283.00,438.00 283.00,456.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+</svg>

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15cm" height="13.2292cm" viewBox="0 0 566.929 500.000">
+  <defs>
+    <marker id="arrow" markerWidth="5.8" markerHeight="5.2" refX="5.3" refY="2.6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L5.8,2.6 L0,5.2 Z" fill="#5D6B76"/>
+    </marker>
+    <filter id="softShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.2" flood-color="#8AA0B4" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <style>
+    .text { font-family: "Times New Roman", "Songti SC", "STSong", "SimSun", serif; font-size: 10.5pt; fill: #1F3142; letter-spacing: 0; }
+    .medium { font-weight: 600; }
+  </style>
+  <rect width="566.929" height="500.000" fill="#FFFFFF"/>
+  <text x="28.00" y="38.90" text-anchor="start" class="text medium">
+    <tspan x="28.00" dy="0.00">系统总体架构：离线训练与端侧评分双链路</tspan>
+  </text>
+
+  <rect x="26.00" y="60.00" width="514.93" height="236.00" fill="#F7FAFC" stroke="#DDE5EC" stroke-width="1"/>
+  <line x1="26.00" y1="100.00" x2="540.93" y2="100.00" stroke="#DDE5EC" stroke-width="1"/>
+  <line x1="190.00" y1="60.00" x2="190.00" y2="296.00" stroke="#DDE5EC" stroke-width="1"/>
+  <line x1="360.00" y1="60.00" x2="360.00" y2="296.00" stroke="#DDE5EC" stroke-width="1"/>
+  <text x="108.00" y="84.90" text-anchor="middle" class="text medium">
+    <tspan x="108.00" dy="0.00">采集层</tspan>
+  </text>
+  <text x="275.00" y="84.90" text-anchor="middle" class="text medium">
+    <tspan x="275.00" dy="0.00">服务与数据层</tspan>
+  </text>
+  <text x="450.00" y="84.90" text-anchor="middle" class="text medium">
+    <tspan x="450.00" dy="0.00">规则与训练层</tspan>
+  </text>
+
+  <rect x="54.00" y="118.00" width="108.00" height="38.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="108.00" y="142.90" text-anchor="middle" class="text medium">
+    <tspan x="108.00" dy="0.00">Android Native</tspan>
+  </text>
+  <rect x="54.00" y="178.00" width="108.00" height="38.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="108.00" y="202.90" text-anchor="middle" class="text medium">
+    <tspan x="108.00" dy="0.00">WebView宿主</tspan>
+  </text>
+  <rect x="54.00" y="238.00" width="108.00" height="38.00" fill="#EAF2FB" stroke="#4C78A8" stroke-width="1.15"/>
+  <text x="108.00" y="262.90" text-anchor="middle" class="text medium">
+    <tspan x="108.00" dy="0.00">Web前端</tspan>
+  </text>
+
+  <rect x="220.00" y="118.00" width="112.00" height="34.00" fill="#E8F5F2" stroke="#2A9D8F" stroke-width="1.15"/>
+  <text x="276.00" y="139.90" text-anchor="middle" class="text medium">
+    <tspan x="276.00" dy="0.00">FastAPI接口</tspan>
+  </text>
+  <rect x="220.00" y="178.00" width="112.00" height="38.00" fill="#E8F5F2" stroke="#2A9D8F" stroke-width="1.15"/>
+  <text x="276.00" y="193.90" text-anchor="middle" class="text medium">
+    <tspan x="276.00" dy="0.00">session_id</tspan>
+    <tspan x="276.00" dy="16.00">会话合并</tspan>
+  </text>
+  <rect x="220.00" y="238.00" width="112.00" height="38.00" fill="#E8F5F2" stroke="#2A9D8F" stroke-width="1.15"/>
+  <text x="276.00" y="253.90" text-anchor="middle" class="text medium">
+    <tspan x="276.00" dy="0.00">原始JSON /</tspan>
+    <tspan x="276.00" dy="16.00">训练JSONL</tspan>
+  </text>
+
+  <rect x="392.00" y="106.00" width="116.00" height="38.00" fill="#FFF4DF" stroke="#D89A24" stroke-width="1.15"/>
+  <text x="450.00" y="129.90" text-anchor="middle" class="text medium">
+    <tspan x="450.00" dy="0.00">跨层语义规则</tspan>
+  </text>
+  <rect x="392.00" y="156.00" width="116.00" height="38.00" fill="#FFF4DF" stroke="#D89A24" stroke-width="1.15"/>
+  <text x="450.00" y="179.90" text-anchor="middle" class="text medium">
+    <tspan x="450.00" dy="0.00">本地大模型标注</tspan>
+  </text>
+  <rect x="392.00" y="206.00" width="116.00" height="38.00" fill="#FFF4DF" stroke="#D89A24" stroke-width="1.15"/>
+  <text x="450.00" y="229.90" text-anchor="middle" class="text medium">
+    <tspan x="450.00" dy="0.00">带标签风险数据集</tspan>
+  </text>
+  <rect x="392.00" y="256.00" width="116.00" height="34.00" fill="#FFF4DF" stroke="#D89A24" stroke-width="1.15"/>
+  <text x="450.00" y="277.90" text-anchor="middle" class="text medium">
+    <tspan x="450.00" dy="0.00">轻量评分器训练</tspan>
+  </text>
+
+  <polyline points="162.00,137.00 190.00,137.00 190.00,135.00 220.00,135.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="162.00,197.00 190.00,197.00 190.00,135.00 220.00,135.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="162.00,257.00 190.00,257.00 190.00,135.00 220.00,135.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="276.00" y1="152.00" x2="276.00" y2="178.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="276.00" y1="216.00" x2="276.00" y2="238.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <polyline points="332.00,257.00 360.00,257.00 360.00,125.00 392.00,125.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="450.00" y1="144.00" x2="450.00" y2="156.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="450.00" y1="194.00" x2="450.00" y2="206.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="450.00" y1="244.00" x2="450.00" y2="256.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+
+  <rect x="204.00" y="318.00" width="160.00" height="44.00" fill="#F0EEFA" stroke="#7A6BB5" stroke-width="1.15"/>
+  <text x="284.00" y="335.90" text-anchor="middle" class="text medium">
+    <tspan x="284.00" dy="0.00">统一特征契约</tspan>
+    <tspan x="284.00" dy="18.00">字段顺序 / 编码策略</tspan>
+  </text>
+  <polyline points="450.00,290.00 450.00,310.00 284.00,310.00 284.00,318.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+
+  <rect x="26.00" y="382.00" width="514.93" height="82.00" fill="#F7FAFC" stroke="#DDE5EC" stroke-width="1"/>
+  <line x1="26.00" y1="410.00" x2="540.93" y2="410.00" stroke="#DDE5EC" stroke-width="1"/>
+  <text x="42.00" y="401.90" text-anchor="start" class="text medium">
+    <tspan x="42.00" dy="0.00">端侧评分层</tspan>
+  </text>
+  <rect x="52.00" y="420.00" width="108.00" height="38.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="106.00" y="435.90" text-anchor="middle" class="text medium">
+    <tspan x="106.00" dy="0.00">App本地</tspan>
+    <tspan x="106.00" dy="16.00">三端采集</tspan>
+  </text>
+  <rect x="184.00" y="424.00" width="108.00" height="30.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="238.00" y="443.90" text-anchor="middle" class="text medium">
+    <tspan x="238.00" dy="0.00">特征编码</tspan>
+  </text>
+  <rect x="316.00" y="424.00" width="108.00" height="30.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="370.00" y="443.90" text-anchor="middle" class="text medium">
+    <tspan x="370.00" dy="0.00">轻量模型推理</tspan>
+  </text>
+  <rect x="448.00" y="424.00" width="78.00" height="30.00" fill="#ECF7EE" stroke="#5C9E5C" stroke-width="1.15"/>
+  <text x="487.00" y="443.90" text-anchor="middle" class="text medium">
+    <tspan x="487.00" dy="0.00">结果上报</tspan>
+  </text>
+  <polyline points="284.00,362.00 284.00,374.00 238.00,374.00 238.00,424.00" fill="none" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="160.00" y1="439.00" x2="184.00" y2="439.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="292.00" y1="439.00" x2="316.00" y2="439.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+  <line x1="424.00" y1="439.00" x2="448.00" y2="439.00" stroke="#5D6B76" stroke-width="1.12" marker-end="url(#arrow)"/>
+</svg>

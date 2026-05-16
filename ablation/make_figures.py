@@ -15,33 +15,63 @@ os.environ.setdefault("MPLCONFIGDIR", str(MPLCONFIG_DIR))
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.font_manager import FontProperties
 from matplotlib.patches import Patch
 
 
+CM = 1 / 2.54
+FIG_WIDTH_CM = 15.0
+DPI = 600
+FONT_SIZE = 10.5
+FONT_CN = FontProperties(family="Songti SC", size=FONT_SIZE)
+FONT_CN_BOLD = FontProperties(family="Songti SC", size=FONT_SIZE, weight="bold")
+FONT_EN = FontProperties(family="Times New Roman", size=FONT_SIZE)
+FONT_EN_BOLD = FontProperties(family="Times New Roman", size=FONT_SIZE, weight="bold")
+
+INK = "#222222"
+MUTED = "#666666"
+GRID = "#E7EDF5"
+
 SOURCE_ORDER = ["physical_device", "cloud_device", "script_attack"]
 SOURCE_LABELS = {
-    "physical_device": "Physical devices",
-    "cloud_device": "Cloud/lab devices",
-    "script_attack": "Script attacks",
+    "physical_device": "Physical",
+    "cloud_device": "Cloud",
+    "script_attack": "Script",
+}
+SOURCE_LABELS_COMPACT = {
+    "physical_device": "Phys.",
+    "cloud_device": "Cloud",
+    "script_attack": "Script",
 }
 SOURCE_COLORS = {
-    "physical_device": "#3f7d4d",
-    "cloud_device": "#2f6f9f",
-    "script_attack": "#b44b3b",
+    "physical_device": "#2F80ED",
+    "cloud_device": "#27AE60",
+    "script_attack": "#F2994A",
 }
 
 GROUP_COLORS = {
-    "raw": "#4e5d6c",
-    "native_web": "#3f7d4d",
-    "native_webview": "#2f6f9f",
-    "webview_web": "#8a6f2a",
-    "tri_layer": "#c76039",
-    "consistency": "#6a5f9f",
+    "raw": "#8DA0B6",
+    "raw_plus": "#9B51E0",
+    "native_web": "#27AE60",
+    "native_webview": "#2F80ED",
+    "webview_web": "#F2C94C",
+    "tri_layer": "#EB5757",
+    "consistency": "#9B51E0",
 }
+
+HEATMAP_CMAP = LinearSegmentedColormap.from_list(
+    "hybridguard_heatmap",
+    ["#F7FBFF", "#D6EAF8", "#7FC8F8", "#2F80ED", "#1455C0"],
+)
 
 
 def load_csv(name: str) -> pd.DataFrame:
     return pd.read_csv(ROOT / name)
+
+
+def figure_size(height_cm: float) -> tuple[float, float]:
+    return (FIG_WIDTH_CM * CM, height_cm * CM)
 
 
 def setup_style() -> None:
@@ -49,24 +79,26 @@ def setup_style() -> None:
         {
             "figure.facecolor": "white",
             "axes.facecolor": "white",
-            "font.family": "DejaVu Sans",
-            "font.size": 10,
-            "axes.titlesize": 13,
-            "axes.labelsize": 10,
+            "font.family": "Times New Roman",
+            "font.size": FONT_SIZE,
+            "axes.titlesize": FONT_SIZE,
+            "axes.labelsize": FONT_SIZE,
             "axes.titleweight": "bold",
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.grid": True,
-            "grid.color": "#d7dce2",
-            "grid.linewidth": 0.8,
+            "grid.color": GRID,
+            "grid.linewidth": 0.7,
             "grid.alpha": 0.6,
             "legend.frameon": False,
-            "xtick.color": "#334155",
-            "ytick.color": "#334155",
-            "axes.labelcolor": "#1f2937",
-            "axes.titlecolor": "#111827",
-            "savefig.bbox": "tight",
-            "savefig.dpi": 220,
+            "xtick.color": INK,
+            "ytick.color": INK,
+            "axes.labelcolor": INK,
+            "axes.titlecolor": INK,
+            "legend.fontsize": FONT_SIZE,
+            "legend.title_fontsize": FONT_SIZE,
+            "axes.unicode_minus": False,
+            "savefig.dpi": DPI,
         }
     )
 
@@ -74,11 +106,44 @@ def setup_style() -> None:
 def save(fig: plt.Figure, filename: str) -> Path:
     FIG_DIR.mkdir(exist_ok=True)
     output = FIG_DIR / filename
-    fig.tight_layout()
-    fig.savefig(output)
+    fig.savefig(output, dpi=DPI)
     plt.close(fig)
     print(output.relative_to(ROOT))
     return output
+
+
+def set_en_legend(legend) -> None:
+    for text in legend.get_texts():
+        text.set_fontproperties(FONT_EN)
+    legend.get_title().set_fontproperties(FONT_EN)
+
+
+def draw_donut(ax: plt.Axes, values: pd.Series, title: str, center_label: str) -> None:
+    colors = [SOURCE_COLORS[source] for source in SOURCE_ORDER]
+    total = values.sum()
+
+    ax.pie(
+        values.to_numpy(),
+        startangle=92,
+        counterclock=False,
+        colors=colors,
+        wedgeprops={"width": 0.36, "edgecolor": "white", "linewidth": 3},
+    )
+
+    ax.text(
+        0,
+        0.04,
+        f"{int(total):,}",
+        ha="center",
+        va="center",
+        fontproperties=FONT_EN_BOLD,
+        color=INK,
+    )
+    ax.text(0, -0.28, center_label, ha="center", va="center", fontproperties=FONT_EN, color=MUTED)
+    ax.set_title(title, pad=12, fontproperties=FONT_EN_BOLD)
+    ax.set_aspect("equal")
+    ax.set_xticks([])
+    ax.set_yticks([])
 
 
 def figure_source_distribution() -> Path:
@@ -100,39 +165,26 @@ def figure_source_distribution() -> Path:
         .astype(int)
     )
 
-    labels = [SOURCE_LABELS[s] for s in SOURCE_ORDER]
-    colors = [SOURCE_COLORS[s] for s in SOURCE_ORDER]
+    fig, axes = plt.subplots(1, 2, figsize=figure_size(7.0))
+    draw_donut(axes[0], samples, "Samples", "samples")
+    draw_donut(axes[1], groups, "Device/template groups", "groups")
 
-    fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.6))
-    panels = [
-        (axes[0], samples, "Sample Count by Source", "Samples"),
-        (axes[1], groups, "Group Count by Source", "Groups"),
-    ]
+    legend_labels = [SOURCE_LABELS[source] for source in SOURCE_ORDER]
+    legend_handles = [Patch(facecolor=SOURCE_COLORS[source], label=label) for source, label in zip(SOURCE_ORDER, legend_labels)]
+    legend = fig.legend(handles=legend_handles, loc="lower center", ncol=3, frameon=False, bbox_to_anchor=(0.5, 0.06))
+    set_en_legend(legend)
 
-    for ax, series, title, xlabel in panels:
-        values = series.to_numpy()
-        total = values.sum()
-        bars = ax.barh(labels, values, color=colors, height=0.55)
-        ax.set_title(title)
-        ax.set_xlabel(xlabel)
-        ax.grid(axis="x")
-        ax.grid(axis="y", visible=False)
-        ax.invert_yaxis()
-        max_value = max(values) if len(values) else 1
-        ax.set_xlim(0, max_value * 1.22)
-        for bar, value in zip(bars, values):
-            pct = value / total if total else 0
-            ax.text(
-                bar.get_width() + max_value * 0.025,
-                bar.get_y() + bar.get_height() / 2,
-                f"{value:,} ({pct:.1%})",
-                va="center",
-                ha="left",
-                color="#1f2937",
-                fontsize=9,
-            )
-
-    fig.suptitle("Dataset Source Composition", y=1.04, fontsize=15, fontweight="bold")
+    fig.suptitle("数据来源构成", y=0.97, fontproperties=FONT_CN_BOLD, color=INK)
+    fig.text(
+        0.5,
+        0.88,
+        "样本来源不均衡，分组评估可降低同源设备/模板泄漏。",
+        ha="center",
+        va="center",
+        color=MUTED,
+        fontproperties=FONT_CN,
+    )
+    fig.subplots_adjust(left=0.18, right=0.82, top=0.72, bottom=0.22, wspace=0.04)
     return save(fig, "figure_01_source_distribution.png")
 
 
@@ -140,10 +192,10 @@ def figure_fold_distribution() -> Path:
     fold_dist = load_csv("grouped_fold_source_distribution.csv")
     folds = sorted(fold_dist["fold"].unique())
 
-    fig, axes = plt.subplots(1, 2, figsize=(12.5, 4.8))
+    fig, axes = plt.subplots(1, 2, figsize=figure_size(7.8))
     panels = [
-        (axes[0], "rows", "Test Samples per Fold"),
-        (axes[1], "groups", "Test Groups per Fold"),
+        (axes[0], "rows", "Test samples"),
+        (axes[1], "groups", "Test groups"),
     ]
 
     for ax, metric, title in panels:
@@ -152,65 +204,56 @@ def figure_fold_distribution() -> Path:
             .reindex(index=folds, columns=SOURCE_ORDER)
             .fillna(0)
         )
-        bottom = np.zeros(len(folds))
+        matrix = pivot.to_numpy()
         totals = pivot.sum(axis=1).to_numpy()
-        small_threshold = max(totals) * 0.06
-        x = np.arange(len(folds))
-        for source in SOURCE_ORDER:
-            values = pivot[source].to_numpy()
-            bars = ax.bar(
-                x,
-                values,
-                bottom=bottom,
-                label=SOURCE_LABELS[source],
-                color=SOURCE_COLORS[source],
-                width=0.62,
-            )
-            for bar, value, base in zip(bars, values, bottom):
-                if value <= 0:
-                    continue
-                if value < small_threshold:
-                    y_pos = base + value + max(totals) * 0.012
-                    color = "#1f2937"
-                    va = "bottom"
-                else:
-                    y_pos = base + value / 2
-                    color = "white"
-                    va = "center"
+
+        image = ax.imshow(matrix, cmap=HEATMAP_CMAP, aspect="auto")
+        threshold = matrix.max() * 0.52
+        for row_idx, (fold, total) in enumerate(zip(folds, totals)):
+            for col_idx, source in enumerate(SOURCE_ORDER):
+                value = matrix[row_idx, col_idx]
+                text_color = "white" if value >= threshold else INK
                 ax.text(
-                    bar.get_x() + bar.get_width() / 2,
-                    y_pos,
+                    col_idx,
+                    row_idx,
                     f"{int(value)}",
                     ha="center",
-                    va=va,
-                    color=color,
-                    fontsize=9,
-                    fontweight="bold",
+                    va="center",
+                    fontproperties=FONT_EN_BOLD,
+                    color=text_color,
                 )
-            bottom += values
-
-        y_pad = max(totals) * 0.04
-        for xi, total in zip(x, totals):
             ax.text(
-                xi,
-                total + y_pad,
+                len(SOURCE_ORDER) + 0.18,
+                row_idx,
                 f"Total {int(total)}",
-                ha="center",
-                va="bottom",
-                fontsize=9,
-                color="#1f2937",
+                ha="left",
+                va="center",
+                fontproperties=FONT_EN,
+                color=MUTED,
             )
 
-        ax.set_title(title)
-        ax.set_xticks(x)
-        ax.set_xticklabels([f"Fold {fold}" for fold in folds])
-        ax.set_ylabel(metric.title())
-        ax.set_ylim(0, max(totals) * 1.16)
-        ax.grid(axis="y")
-        ax.grid(axis="x", visible=False)
+        ax.set_title(title, fontproperties=FONT_EN_BOLD)
+        ax.set_xticks(np.arange(len(SOURCE_ORDER)))
+        ax.set_xticklabels([SOURCE_LABELS_COMPACT[source] for source in SOURCE_ORDER], fontproperties=FONT_EN)
+        ax.set_yticks(np.arange(len(folds)))
+        ax.set_yticklabels([f"Fold {fold}" for fold in folds], fontproperties=FONT_EN)
+        ax.set_xlim(-0.5, len(SOURCE_ORDER) + 1.18)
+        ax.tick_params(axis="both", length=0)
+        ax.grid(False)
+        for spine in ax.spines.values():
+            spine.set_visible(False)
 
-    axes[0].legend(loc="upper left", bbox_to_anchor=(0, 1.18), ncol=3)
-    fig.suptitle("Grouped Cross-Validation Fold Composition", y=1.06, fontsize=15, fontweight="bold")
+    fig.suptitle("分组交叉验证各折构成", y=0.97, fontproperties=FONT_CN_BOLD, color=INK)
+    fig.text(
+        0.5,
+        0.88,
+        "每一折均覆盖三类来源，并按设备组或脚本模板整体留出。",
+        ha="center",
+        va="center",
+        color=MUTED,
+        fontproperties=FONT_CN,
+    )
+    fig.subplots_adjust(left=0.10, right=0.96, top=0.76, bottom=0.14, wspace=0.42)
     return save(fig, "figure_02_fold_distribution.png")
 
 
@@ -223,9 +266,9 @@ def collect_holdout_vs_grouped() -> pd.DataFrame:
         ("web_only", "coarse_layer", "Web only"),
         ("webview_only", "coarse_layer", "WebView only"),
         ("raw_all", "consistency", "Raw all"),
-        ("consistency_only", "consistency", "Consistency only"),
-        ("native_webview_consistency", "consistency", "N-WV consistency"),
-        ("tri_layer_semantic", "consistency", "Tri-layer semantic"),
+        ("consistency_only", "consistency", "Cons. only"),
+        ("native_webview_consistency", "consistency", "N-WV cons."),
+        ("tri_layer_semantic", "consistency", "Tri semantic"),
     ]
 
     rows = []
@@ -249,49 +292,51 @@ def collect_holdout_vs_grouped() -> pd.DataFrame:
 
 def figure_holdout_vs_grouped_mae() -> Path:
     comparison = collect_holdout_vs_grouped()
-    x = np.arange(len(comparison))
-    width = 0.36
+    comparison["delta"] = comparison["grouped_mae"] - comparison["holdout_mae"]
+    comparison = comparison.sort_values("delta", ascending=False)
+    y = np.arange(len(comparison))
 
-    fig, ax = plt.subplots(figsize=(12.5, 5.2))
-    holdout_bars = ax.bar(
-        x - width / 2,
-        comparison["holdout_mae"],
-        width,
-        label="Random holdout",
-        color="#8fb3c9",
+    fig, ax = plt.subplots(figsize=figure_size(7.8))
+    ax.axvline(0, color="#9AA6B2", linewidth=1.0, linestyle="--")
+    max_delta = comparison["delta"].max()
+    colors = [
+        "#EB5757" if delta >= 4 else "#F2994A" if delta >= 1.5 else "#2F80ED"
+        for delta in comparison["delta"]
+    ]
+    bars = ax.barh(y, comparison["delta"], color=colors, height=0.56, edgecolor="white", linewidth=1.2)
+
+    for bar, row in zip(bars, comparison.itertuples(index=False)):
+        ax.text(
+            bar.get_width() + max_delta * 0.035,
+            bar.get_y() + bar.get_height() / 2,
+            f"+{row.delta:.2f} ({row.holdout_mae:.2f} -> {row.grouped_mae:.2f})",
+            ha="left",
+            va="center",
+            fontproperties=FONT_EN,
+            color=INK,
+        )
+
+    ax.set_title("Generalization gap after grouped split", fontproperties=FONT_EN_BOLD)
+    ax.set_xlabel("MAE increase (Grouped CV - random holdout)", fontproperties=FONT_EN)
+    ax.set_yticks(y)
+    ax.set_yticklabels(comparison["label"], fontproperties=FONT_EN)
+    ax.invert_yaxis()
+    ax.set_xlim(-0.25, max_delta * 1.58)
+    ax.grid(axis="x")
+    ax.grid(axis="y", visible=False)
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+    fig.suptitle("随机留出的误差偏乐观", y=0.97, fontproperties=FONT_CN_BOLD, color=INK)
+    fig.text(
+        0.5,
+        0.88,
+        "横轴表示分组交叉验证相对随机留出增加的 MAE。",
+        ha="center",
+        va="center",
+        color=MUTED,
+        fontproperties=FONT_CN,
     )
-    grouped_bars = ax.bar(
-        x + width / 2,
-        comparison["grouped_mae"],
-        width,
-        yerr=comparison["grouped_mae_std"],
-        capsize=4,
-        label="Grouped CV",
-        color="#d08b5b",
-        error_kw={"elinewidth": 1.2, "ecolor": "#6b7280"},
-    )
-
-    ax.set_title("Random Holdout vs Grouped CV Error")
-    ax.set_ylabel("MAE (lower is better)")
-    ax.set_xticks(x)
-    ax.set_xticklabels(comparison["label"], rotation=22, ha="right")
-    ax.legend(loc="upper left")
-    ax.grid(axis="y")
-    ax.grid(axis="x", visible=False)
-
-    for bars in (holdout_bars, grouped_bars):
-        for bar in bars:
-            height = bar.get_height()
-            ax.text(
-                bar.get_x() + bar.get_width() / 2,
-                height + 0.15,
-                f"{height:.2f}",
-                ha="center",
-                va="bottom",
-                fontsize=8.5,
-                color="#1f2937",
-            )
-
+    fig.subplots_adjust(left=0.19, right=0.96, top=0.74, bottom=0.16)
     return save(fig, "figure_03_holdout_vs_grouped_mae.png")
 
 
@@ -300,11 +345,11 @@ def collect_grouped_main_results() -> pd.DataFrame:
     items = [
         ("raw_all", "consistency", "Raw all"),
         ("raw_clean", "consistency", "Raw cleaned"),
-        ("consistency_only", "consistency", "Consistency only"),
-        ("raw_all_plus_consistency", "consistency", "Raw all + consistency"),
-        ("raw_clean_plus_consistency", "consistency", "Raw cleaned + consistency"),
-        ("native_webview_consistency", "consistency", "N-WV consistency"),
-        ("tri_layer_semantic", "consistency", "Tri-layer semantic"),
+        ("consistency_only", "consistency", "Cons. only"),
+        ("raw_all_plus_consistency", "consistency", "Raw+cons."),
+        ("raw_clean_plus_consistency", "consistency", "Cleaned+cons."),
+        ("native_webview_consistency", "consistency", "N-WV cons."),
+        ("tri_layer_semantic", "consistency", "Tri semantic"),
     ]
 
     rows = []
@@ -328,50 +373,128 @@ def collect_grouped_main_results() -> pd.DataFrame:
 
 def figure_grouped_main_results() -> Path:
     results = collect_grouped_main_results()
-    labels = [f"{row.label}\n{row.feature_count} features" for row in results.itertuples()]
-    y = np.arange(len(results))
-    colors = [
-        "#c76039" if label.startswith("Tri-layer") else "#6f8fa8"
-        for label in results["label"]
-    ]
+    fig, (ax, table_ax) = plt.subplots(
+        1,
+        2,
+        figsize=figure_size(9.2),
+        gridspec_kw={"width_ratios": [1.28, 0.72]},
+    )
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5.7), sharey=True)
-    metrics = [
-        (axes[0], "mae", "mae_std", "MAE"),
-        (axes[1], "rmse", "rmse_std", "RMSE"),
-    ]
+    raw_all = results.loc[results["label"] == "Raw all"].iloc[0]
+    ax.axvline(raw_all["mae"], color="#9AA6B2", linestyle="--", linewidth=1.0, zorder=0)
+    ax.axhline(raw_all["rmse"], color="#9AA6B2", linestyle="--", linewidth=1.0, zorder=0)
 
-    for ax, metric, std_metric, title in metrics:
-        bars = ax.barh(
-            y,
-            results[metric],
-            xerr=results[std_metric],
-            color=colors,
-            height=0.58,
-            capsize=4,
-            error_kw={"elinewidth": 1.2, "ecolor": "#6b7280"},
+    def point_color(label: str) -> str:
+        if label == "Tri semantic":
+            return GROUP_COLORS["tri_layer"]
+        if label == "N-WV cons.":
+            return GROUP_COLORS["native_webview"]
+        if "cons." in label or label == "Cons. only":
+            return GROUP_COLORS["consistency"]
+        return GROUP_COLORS["raw"]
+
+    def point_size(feature_count: int) -> float:
+        return 68 + np.sqrt(feature_count) * 36
+
+    number_offsets = {
+        "Tri semantic": (16, 8),
+        "N-WV cons.": (-24, -18),
+        "Raw cleaned": (-22, 18),
+        "Raw all": (24, -16),
+        "Cleaned+cons.": (-26, 20),
+        "Cons. only": (18, -22),
+        "Raw+cons.": (28, 14),
+    }
+
+    display_rows = list(results.itertuples(index=False))
+    for idx, row in enumerate(display_rows, start=1):
+        color = point_color(row.label)
+        marker = "*" if row.label == "Tri semantic" else "o"
+        ax.scatter(
+            row.mae,
+            row.rmse,
+            s=point_size(row.feature_count),
+            color=color,
+            marker=marker,
+            edgecolor="white",
+            linewidth=1.6,
+            alpha=0.95,
+            zorder=3,
         )
-        ax.set_title(f"Grouped CV {title}")
-        ax.set_xlabel(f"{title} (lower is better)")
-        ax.set_yticks(y)
-        ax.set_yticklabels(labels)
-        ax.grid(axis="x")
-        ax.grid(axis="y", visible=False)
-        max_value = (results[metric] + results[std_metric]).max()
-        ax.set_xlim(0, max_value * 1.24)
-        for bar, value in zip(bars, results[metric]):
-            ax.text(
-                bar.get_width() + max_value * 0.03,
-                bar.get_y() + bar.get_height() / 2,
-                f"{value:.2f}",
-                va="center",
-                ha="left",
-                fontsize=9,
-                color="#1f2937",
-            )
+        offset = number_offsets[row.label]
+        ax.annotate(
+            str(idx),
+            xy=(row.mae, row.rmse),
+            xytext=offset,
+            textcoords="offset points",
+            ha="center",
+            va="center",
+            fontproperties=FONT_EN_BOLD,
+            color="white",
+            bbox={"boxstyle": "circle,pad=0.18", "facecolor": color, "edgecolor": "white", "linewidth": 1.0},
+            arrowprops={
+                "arrowstyle": "-",
+                "color": "#C7D2E0",
+                "lw": 0.8,
+                "shrinkA": 4,
+                "shrinkB": 5,
+            },
+            zorder=4,
+        )
 
-    axes[0].invert_yaxis()
-    fig.suptitle("Main Consistency Ablation under Grouped CV", y=1.03, fontsize=15, fontweight="bold")
+    x_min = max(0, results["mae"].min() - 0.42)
+    x_max = results["mae"].max() + 0.22
+    y_min = max(0, results["rmse"].min() - 0.48)
+    y_max = results["rmse"].max() + 0.48
+    ax.set_xlim(x_min, x_max)
+    ax.set_ylim(y_min, y_max)
+    ax.set_xlabel("MAE (lower is better)", fontproperties=FONT_EN)
+    ax.set_ylabel("RMSE (lower is better)", fontproperties=FONT_EN)
+    ax.grid(True, axis="both")
+    ax.text(
+        0.04,
+        0.96,
+        "Dashed lines: Raw all baseline",
+        transform=ax.transAxes,
+        color=MUTED,
+        fontproperties=FONT_EN,
+        ha="left",
+        va="top",
+    )
+
+    table_ax.set_axis_off()
+    table_ax.text(0.00, 0.98, "Config / dim.", transform=table_ax.transAxes, fontproperties=FONT_EN_BOLD, color=INK, va="top")
+
+    for idx, row in enumerate(display_rows, start=1):
+        y_pos = 0.84 - (idx - 1) * 0.105
+        color = point_color(row.label)
+        marker = "*" if row.label == "Tri semantic" else "o"
+        table_ax.scatter(0.04, y_pos, s=70, color=color, marker=marker, edgecolor="white", linewidth=1.0, transform=table_ax.transAxes)
+        table_ax.text(0.10, y_pos, str(idx), transform=table_ax.transAxes, fontproperties=FONT_EN_BOLD, color=INK, va="center")
+        table_ax.text(0.20, y_pos, row.label, transform=table_ax.transAxes, fontproperties=FONT_EN, color=INK, va="center")
+        table_ax.text(0.94, y_pos, f"{row.feature_count}", transform=table_ax.transAxes, fontproperties=FONT_EN, color=INK, ha="right", va="center")
+
+    table_ax.text(
+        0.02,
+        0.06,
+        "Bubble size = feature count",
+        transform=table_ax.transAxes,
+        fontproperties=FONT_EN,
+        color=MUTED,
+        va="bottom",
+    )
+
+    fig.suptitle("分组交叉验证下的一致性消融主结果", y=0.97, fontproperties=FONT_CN_BOLD, color=INK)
+    fig.text(
+        0.5,
+        0.88,
+        "三端语义仅用 7 个特征，即低于原始三端基线。",
+        ha="center",
+        va="center",
+        color=MUTED,
+        fontproperties=FONT_CN,
+    )
+    fig.subplots_adjust(left=0.11, right=0.97, top=0.78, bottom=0.14, wspace=0.10)
     return save(fig, "figure_04_grouped_main_results.png")
 
 
@@ -417,37 +540,53 @@ def figure_consistency_feature_importance() -> Path:
     )
     top["label"] = top["feature"].map(short_feature_name)
     top["group"] = top["feature"].map(feature_group)
-    top = top.iloc[::-1]
 
-    fig, ax = plt.subplots(figsize=(11.5, 6.2))
+    fig, ax = plt.subplots(figsize=figure_size(10.6))
     colors = [GROUP_COLORS[group] for group in top["group"]]
-    bars = ax.barh(top["label"], top["importance"], color=colors, height=0.58)
+    y = np.arange(len(top))
+    bars = ax.barh(y, top["importance"], color=colors, height=0.58, edgecolor="white", linewidth=1.1)
 
-    ax.set_title("Top Consistency Features Used by Random Forest")
-    ax.set_xlabel("Feature importance")
+    ax.set_yticks(y)
+    ax.set_yticklabels(top["label"], fontproperties=FONT_EN)
+    ax.invert_yaxis()
     ax.grid(axis="x")
     ax.grid(axis="y", visible=False)
     max_value = top["importance"].max()
-    ax.set_xlim(0, max_value * 1.23)
+    ax.set_xlim(0, max_value * 1.28)
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(axis="y", length=0)
     for bar, value in zip(bars, top["importance"]):
         ax.text(
-            bar.get_width() + max_value * 0.025,
+            value + max_value * 0.025,
             bar.get_y() + bar.get_height() / 2,
             f"{value:.3f}",
             va="center",
             ha="left",
-            fontsize=9,
-            color="#1f2937",
+            fontproperties=FONT_EN,
+            color=INK,
         )
 
     legend_handles = [
-        Patch(facecolor=GROUP_COLORS["tri_layer"], label="Tri-layer semantic"),
+        Patch(facecolor=GROUP_COLORS["tri_layer"], label="Tri-layer"),
         Patch(facecolor=GROUP_COLORS["native_webview"], label="Native-WebView"),
         Patch(facecolor=GROUP_COLORS["native_web"], label="Native-Web"),
         Patch(facecolor=GROUP_COLORS["webview_web"], label="WebView-Web"),
     ]
-    ax.legend(handles=legend_handles, loc="lower right")
+    legend = ax.legend(handles=legend_handles, loc="lower right", prop=FONT_EN)
+    set_en_legend(legend)
 
+    ax.set_xlabel("Feature importance", fontproperties=FONT_EN)
+    fig.suptitle("跨层一致性特征重要性", y=0.97, fontproperties=FONT_CN_BOLD, color=INK)
+    fig.text(
+        0.5,
+        0.88,
+        "重要信号主要来自跨层完整性与 Native-WebView 对齐关系。",
+        ha="center",
+        va="center",
+        color=MUTED,
+        fontproperties=FONT_CN,
+    )
+    fig.subplots_adjust(left=0.40, right=0.96, top=0.78, bottom=0.12)
     return save(fig, "figure_05_consistency_feature_importance.png")
 
 
