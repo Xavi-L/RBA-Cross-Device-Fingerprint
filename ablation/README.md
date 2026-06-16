@@ -37,7 +37,7 @@ conda run -n cross-device-fingerprint python ablation/make_figures.py
 
 其中 `run_grouped_ablation.py` 是更推荐用于论文主实验的版本。它使用分组交叉验证，避免同一设备或同一攻击模板的近似样本同时出现在训练集和测试集中。前两个脚本是快速 holdout 版本，适合作为开发期检查和对照。
 
-`make_figures.py` 会根据已有实验 CSV 生成论文和答辩用的五张主图，输出到 `figures/` 目录。每张图的用途、数据来源和讲解口径见 `figure_guide.md`。
+`make_figures.py` 会根据已有实验 CSV 生成论文和答辩用的五张主图，输出到 `figures/` 目录。每张图的用途、数据来源和讲解口径见 `figures/figure_guide.md`。
 
 ## 实验一：粗粒度三端消融
 
