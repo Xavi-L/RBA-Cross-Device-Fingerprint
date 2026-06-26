@@ -39,6 +39,8 @@ curl http://localhost:8000/health
 
 当前后端模型使用分层结构。一次会话可以分多次上报，只要 `session_id` 相同，后端会合并到 `merged_sessions.json`；当 Native 和 Web 数据都存在时，会追加扁平化记录到 `collected_data.jsonl`。
 
+新增的 `featureapp` 扩充采集模块会在上报中带上 `collector_app=featureapp` 和 `schema_version=expanded-v1`。后端会把这类扩充采集单独写入 `expanded_merged_sessions.json` 和 `expanded_collected_data.jsonl`，不改动旧采集文件。
+
 ```bash
 curl -X POST http://localhost:8000/api/collect/fingerprint \
   -H "Content-Type: application/json" \
@@ -161,8 +163,22 @@ curl -X POST http://localhost:8000/api/risk/local-score \
 
 ## 本地输出文件
 
+所有 JSON/JSONL 输出路径都以 `backend_server/main.py` 所在目录为基准。即使从仓库根目录启动服务，数据文件也会写入 `backend_server/` 下。
+
 - `merged_sessions.json`：按 `session_id` 保存最新合并后的嵌套三端数据。
 - `collected_data.jsonl`：追加保存扁平化后的三端采集记录，供标注、训练和消融实验使用。
+- `expanded_merged_sessions.json`：按 `session_id` 保存 `featureapp` 扩充采集的嵌套三端数据。
+- `expanded_collected_data.jsonl`：追加保存 `featureapp` 扩充采集的扁平化实验记录。
 - `local_score_results.jsonl`：追加保存端侧评分摘要。
+
+## `featureapp` 扩充特征维度
+
+按固定字段键名统计，`featureapp` 当前扩充采集共 `154` 维：
+
+- Android Native：`79` 维。
+- WebView 容器：`26` 维，异常情况下会额外上报 `exception_layer.error_msg`。
+- Web 运行时：`49` 维。
+
+App 界面里的 `Expanded feature count` 会把数组字段按元素个数计数，因此实机显示值可能随 `supported_abis`、`sensor_type_list`、`active_transport_types`、`languages` 的长度变化。
 
 公开共享或投稿附录前，需要先评估这些 JSON/JSONL 文件中的原始指纹字段是否需要脱敏或抽样发布。

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HybridGuard Expanded Probe</title>
+    <style>
+        :root {
+            --bg: #f5f7fa;
+            --panel: #ffffff;
+            --text: #101828;
+            --muted: #667085;
+            --accent: #1a73e8;
+            --good: #12805c;
+            --bad: #c5221f;
+            --border: #d0d5dd;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: max(56px, calc(env(safe-area-inset-top) + 28px)) 18px 28px;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .pulse {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.35);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            to { box-shadow: 0 0 0 12px rgba(26, 115, 232, 0); }
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.25;
+        }
+
+        .sub {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .status {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .canvas-box {
+            display: none;
+            margin-top: 12px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+        }
+
+        .log {
+            height: 320px;
+            overflow-y: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .line {
+            margin: 0 0 7px;
+            color: var(--text);
+        }
+
+        .line.good { color: var(--good); }
+        .line.bad { color: var(--bad); }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="pulse"></div>
+    <div>
+        <h1>Expanded Feature Probe</h1>
+        <div id="subtitle" class="sub">Collecting raw signals for offline grouped-fusion experiments.</div>
+    </div>
+</div>
+
+<div class="panel">
+    <div id="status" class="status">Starting expanded probe...</div>
+    <div id="canvasBox" class="canvas-box"></div>
+</div>
+
+<div class="panel log" id="log"></div>
+
+<script>
+    const statusEl = document.getElementById("status");
+    const subtitleEl = document.getElementById("subtitle");
+    const logEl = document.getElementById("log");
+    const canvasBox = document.getElementById("canvasBox");
+
+    function setStatus(text) {
+        statusEl.textContent = text;
+    }
+
+    function log(text, cls) {
+        const p = document.createElement("p");
+        p.className = "line" + (cls ? " " + cls : "");
+        p.textContent = text;
+        logEl.appendChild(p);
+        logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    window.HybridGuardProbe = {
+        updateResult(status, detail, cls) {
+            setStatus(status);
+            if (detail) {
+                subtitleEl.textContent = detail;
+                log(detail, cls);
+            }
+        }
+    };
+
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    function storageAvailable(type) {
+        try {
+            const storage = window[type];
+            const key = "__hybridguard_probe__";
+            storage.setItem(key, key);
+            storage.removeItem(key);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function getWebGLInfo() {
+        const canvas = document.createElement("canvas");
+        const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        const gl2 = canvas.getContext("webgl2");
+        const info = {
+            vendor: "Unknown",
+            renderer: "Unknown",
+            webgl2_supported: !!gl2,
+            webgl_extensions_count: 0,
+            max_texture_size: -1,
+            max_viewport_dims: "",
+            aliased_line_width_range: ""
+        };
+        if (gl) {
+            const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+            if (debugInfo) {
+                info.vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                info.renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            }
+            const extensions = gl.getSupportedExtensions();
+            info.webgl_extensions_count = extensions ? extensions.length : 0;
+            info.max_texture_size = gl.getParameter(gl.MAX_TEXTURE_SIZE) || -1;
+            info.max_viewport_dims = Array.from(gl.getParameter(gl.MAX_VIEWPORT_DIMS) || []).join("x");
+            info.aliased_line_width_range = Array.from(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE) || []).join("-");
+        }
+        return info;
+    }
+
+    function getNavigatorFeatures() {
+        const nav = navigator;
+        return {
+            user_agent: nav.userAgent,
+            language: nav.language || "",
+            languages: Array.from(nav.languages || []),
+            platform: nav.platform || "",
+            vendor: nav.vendor || "",
+            product: nav.product || "",
+            product_sub: nav.productSub || "",
+            hardware_concurrency: nav.hardwareConcurrency || 0,
+            device_memory: nav.deviceMemory || 0,
+            max_touch_points: nav.maxTouchPoints || 0,
+            cookie_enabled: !!nav.cookieEnabled,
+            do_not_track: nav.doNotTrack || "",
+            online: !!nav.onLine
+        };
+    }
+
+    function getScreenFeatures() {
+        const vv = window.visualViewport;
+        const orientation = screen.orientation || {};
+        return {
+            screen_resolution_logical: window.screen.width + "x" + window.screen.height,
+            device_pixel_ratio: window.devicePixelRatio || 1,
+            color_depth: screen.colorDepth || 0,
+            pixel_depth: screen.pixelDepth || 0,
+            avail_width: screen.availWidth || 0,
+            avail_height: screen.availHeight || 0,
+            inner_width: window.innerWidth || 0,
+            inner_height: window.innerHeight || 0,
+            outer_width: window.outerWidth || 0,
+            outer_height: window.outerHeight || 0,
+            visual_viewport_width: vv ? vv.width : -1,
+            visual_viewport_height: vv ? vv.height : -1,
+            visual_viewport_scale: vv ? vv.scale : -1,
+            orientation_type: orientation.type || "",
+            orientation_angle: Number.isFinite(orientation.angle) ? orientation.angle : -1
+        };
+    }
+
+    function getExecutionFeatures() {
+        const timeZone = (Intl.DateTimeFormat().resolvedOptions() || {}).timeZone || "";
+        return {
+            compute_task_time_ms: runComputeChallenge().time_ms,
+            timezone_offset: new Date().getTimezoneOffset(),
+            timezone_id: timeZone,
+            performance_time_origin: performance.timeOrigin || 0,
+            local_storage_available: storageAvailable("localStorage"),
+            session_storage_available: storageAvailable("sessionStorage")
+        };
+    }
+
+    function getConnectionFeatures() {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+        return {
+            effective_type: connection.effectiveType || "",
+            downlink_mbps: Number.isFinite(connection.downlink) ? connection.downlink : -1,
+            rtt_ms: Number.isFinite(connection.rtt) ? connection.rtt : -1,
+            save_data: !!connection.saveData
+        };
+    }
+
+    function getAutomationFeatures() {
+        return {
+            webdriver: navigator.webdriver === true,
+            plugins_count: navigator.plugins ? navigator.plugins.length : 0,
+            mime_types_count: navigator.mimeTypes ? navigator.mimeTypes.length : 0
+        };
+    }
+
+    function runComputeChallenge() {
+        const startTime = performance.now();
+        let result = 0;
+        for (let i = 0; i < 5000000; i++) {
+            result += Math.sin(i) * Math.cos(i) + Math.tan(i % 100);
+        }
+        return { time_ms: parseFloat((performance.now() - startTime).toFixed(2)), guard: result };
+    }
+
+    function getCanvasFingerprint() {
+        const canvas = document.createElement("canvas");
+        canvas.width = 250;
+        canvas.height = 50;
+        const ctx = canvas.getContext("2d");
+
+        ctx.textBaseline = "top";
+        ctx.font = "14px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif";
+        ctx.fillStyle = "rgba(0, 113, 227, 0.2)";
+        ctx.fillRect(125, 1, 62, 20);
+        ctx.fillStyle = "rgba(29, 29, 31, 0.8)";
+        ctx.fillText("HybridGuard 2026", 2, 15);
+        ctx.fillStyle = "rgba(52, 199, 89, 0.5)";
+        ctx.fillText("HybridGuard 2026", 4, 17);
+        ctx.font = "20px -apple-system";
+        ctx.fillText("HG", 180, 10);
+
+        canvasBox.style.display = "block";
+        canvasBox.appendChild(canvas);
+
+        const dataURL = canvas.toDataURL();
+        if (window.AndroidBridge && window.AndroidBridge.sha256) {
+            return window.AndroidBridge.sha256(dataURL);
+        }
+        return String(dataURL.length);
+    }
+
+    async function collectExpandedSignals() {
+        setStatus("Establishing JSBridge connection...");
+        await sleep(250);
+
+        if (!window.AndroidBridge || !window.AndroidBridge.getSessionId) {
+            log("Android bridge missing", "bad");
+            setStatus("Android bridge missing");
+            return;
+        }
+
+        const t0 = performance.now();
+        const currentSessionId = window.AndroidBridge.getSessionId();
+        const t1 = performance.now();
+        const bridgeLatencyMs = parseFloat((t1 - t0).toFixed(3));
+        log("JSBridge connected in " + bridgeLatencyMs + " ms", "good");
+
+        let hostData = {};
+        if (window.AndroidBridge.getWebViewHostFeatures) {
+            hostData = JSON.parse(window.AndroidBridge.getWebViewHostFeatures());
+            log("Expanded WebView host signals collected");
+        }
+
+        const webviewDataNested = {
+            bridge_routing_layer: {
+                jsbridge_injected: true,
+                bridge_latency_ms: bridgeLatencyMs
+            },
+            kernel_container_layer: {
+                webview_provider_package: hostData.webview_provider_package,
+                webview_provider_version: hostData.webview_provider_version,
+                webview_provider_version_code: hostData.webview_provider_version_code,
+                webview_provider_major: hostData.webview_provider_major,
+                system_http_agent: hostData.system_http_agent,
+                default_ua_native: hostData.default_ua_native
+            },
+            host_security_layer: {
+                is_debuggable: hostData.is_debuggable,
+                app_package_name: hostData.app_package_name,
+                app_version_name: hostData.app_version_name,
+                app_version_code: hostData.app_version_code,
+                installer_package: hostData.installer_package,
+                is_cleartext_traffic_permitted: hostData.is_cleartext_traffic_permitted
+            },
+            temporal_build_layer: {
+                first_install_time: hostData.first_install_time,
+                last_update_time: hostData.last_update_time,
+                target_sdk_version: hostData.target_sdk_version,
+                min_sdk_version: hostData.min_sdk_version
+            },
+            webview_settings_layer: {
+                java_script_enabled: hostData.java_script_enabled,
+                dom_storage_enabled: hostData.dom_storage_enabled,
+                database_enabled: hostData.database_enabled,
+                allow_file_access: hostData.allow_file_access,
+                allow_content_access: hostData.allow_content_access,
+                mixed_content_mode: hostData.mixed_content_mode,
+                safe_browsing_enabled: hostData.safe_browsing_enabled,
+                settings_user_agent: hostData.settings_user_agent
+            }
+        };
+
+        if (hostData.error_msg) {
+            webviewDataNested.exception_layer = { error_msg: hostData.error_msg };
+        }
+
+        setStatus("Collecting expanded browser runtime signals...");
+        await sleep(250);
+
+        const webglInfo = getWebGLInfo();
+        const navigatorInfo = getNavigatorFeatures();
+        const screenInfo = getScreenFeatures();
+        const executionInfo = getExecutionFeatures();
+        const connectionInfo = getConnectionFeatures();
+        const automationInfo = getAutomationFeatures();
+        const canvasHash = getCanvasFingerprint();
+
+        log("UA: " + navigator.userAgent.substring(0, 68));
+        log("Logical screen: " + screenInfo.screen_resolution_logical + " DPR " + screenInfo.device_pixel_ratio);
+        log("WebGL renderer: " + webglInfo.renderer);
+        log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
+        log("Canvas hash: " + canvasHash.substring(0, 16));
+
+        const webDataNested = {
+            navigator_layer: navigatorInfo,
+            screen_layer: screenInfo,
+            graphics_layer: {
+                webgl_vendor: webglInfo.vendor,
+                webgl_renderer: webglInfo.renderer,
+                webgl_extensions_count: webglInfo.webgl_extensions_count,
+                webgl2_supported: webglInfo.webgl2_supported,
+                webgl_max_texture_size: webglInfo.max_texture_size,
+                webgl_max_viewport_dims: webglInfo.max_viewport_dims,
+                webgl_aliased_line_width_range: webglInfo.aliased_line_width_range,
+                canvas_hash: canvasHash
+            },
+            execution_layer: executionInfo,
+            network_api_layer: connectionInfo,
+            automation_surface_layer: automationInfo
+        };
+
+        const payload = {
+            session_id: currentSessionId,
+            timestamp: Math.floor(Date.now() / 1000),
+            webview_data: webviewDataNested,
+            web_data: webDataNested
+        };
+
+        setStatus("Handing expanded payload to Android uploader...");
+        window.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
+        log("Expanded payload handed to uploader", "good");
+    }
+
+    window.onload = collectExpandedSignals;
+</script>
+</body>
+</html>

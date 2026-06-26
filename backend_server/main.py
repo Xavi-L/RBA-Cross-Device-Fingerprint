@@ -2,6 +2,7 @@ import json
 import logging
 from datetime import datetime
 import os
+from pathlib import Path
 from typing import Optional
 import copy
 
@@ -18,9 +19,22 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+class FlexibleBaseModel(BaseModel):
+    """Keep collector experiment fields even when the schema evolves."""
+
+    class Config:
+        extra = "allow"
+
+
+def model_to_dict(model: BaseModel, **kwargs) -> dict:
+    if hasattr(model, "model_dump"):
+        return model.model_dump(**kwargs)
+    return model.dict(**kwargs)
+
+
 # Pydantic 模型定义
 # 👇 1. 先定义 Android 原生特征的 6 个子层级 Model
-class BuildFingerprintLayer(BaseModel):
+class BuildFingerprintLayer(FlexibleBaseModel):
     device_model: Optional[str] = None
     device_brand: Optional[str] = None
     device_manufacturer: Optional[str] = None
@@ -35,25 +49,25 @@ class BuildFingerprintLayer(BaseModel):
     build_type: Optional[str] = None
     uptime_ms: Optional[int] = None
 
-class NativeMemoryLayer(BaseModel):
+class NativeMemoryLayer(FlexibleBaseModel):
     total_memory_gb: Optional[float] = None
     avail_memory_gb: Optional[float] = None
     is_low_memory: Optional[bool] = None
 
-class NativeScreenLayer(BaseModel):
+class NativeScreenLayer(FlexibleBaseModel):
     screen_resolution_physical: Optional[str] = None
     screen_density_dpi: Optional[int] = None
     screen_xdpi: Optional[float] = None
     screen_ydpi: Optional[float] = None
     screen_scaled_density: Optional[float] = None
 
-class BatteryDynamicsLayer(BaseModel):
+class BatteryDynamicsLayer(FlexibleBaseModel):
     battery_level_pct: Optional[float] = None
     battery_temp_celsius: Optional[float] = None
     battery_voltage_mv: Optional[int] = None
     is_charging: Optional[bool] = None
 
-class SensorMatrixLayer(BaseModel):
+class SensorMatrixLayer(FlexibleBaseModel):
     sensor_total_count: Optional[int] = None
     has_gyroscope: Optional[bool] = None
     has_accelerometer: Optional[bool] = None
@@ -62,11 +76,11 @@ class SensorMatrixLayer(BaseModel):
     has_proximity_sensor: Optional[bool] = None
     has_pressure_sensor: Optional[bool] = None
 
-class SecurityConfigLayer(BaseModel):
+class SecurityConfigLayer(FlexibleBaseModel):
     is_adb_enabled: Optional[bool] = None
 
 # 👇 2. 将它们组合进最终的原生模型中
-class AndroidNativeData(BaseModel):
+class AndroidNativeData(FlexibleBaseModel):
     """Android 原生数据模型 (工业级分层版)"""
     build_fingerprint_layer: Optional[BuildFingerprintLayer] = Field(None, description="构建指纹层")
     memory_layer: Optional[NativeMemoryLayer] = Field(None, description="物理内存层")
@@ -76,34 +90,34 @@ class AndroidNativeData(BaseModel):
     security_config_layer: Optional[SecurityConfigLayer] = Field(None, description="安全配置层")
 
 # 👇 1. 先定义 WebView 容器的子层级 Model
-class BridgeRoutingLayer(BaseModel):
+class BridgeRoutingLayer(FlexibleBaseModel):
     jsbridge_injected: Optional[bool] = None
     bridge_latency_ms: Optional[float] = None
 
-class KernelContainerLayer(BaseModel):
+class KernelContainerLayer(FlexibleBaseModel):
     webview_provider_package: Optional[str] = None
     webview_provider_version: Optional[str] = None
     webview_provider_version_code: Optional[int] = None
     system_http_agent: Optional[str] = None
     default_ua_native: Optional[str] = None
 
-class HostSecurityLayer(BaseModel):
+class HostSecurityLayer(FlexibleBaseModel):
     is_debuggable: Optional[bool] = None
     app_package_name: Optional[str] = None
     installer_package: Optional[str] = None
     is_cleartext_traffic_permitted: Optional[bool] = None
 
-class TemporalBuildLayer(BaseModel):
+class TemporalBuildLayer(FlexibleBaseModel):
     first_install_time: Optional[int] = None
     last_update_time: Optional[int] = None
     target_sdk_version: Optional[int] = None
     min_sdk_version: Optional[int] = None
 
-class ExceptionLayer(BaseModel):
+class ExceptionLayer(FlexibleBaseModel):
     error_msg: Optional[str] = None
 
 # 👇 2. 将它们组合进最终的容器模型中
-class WebViewData(BaseModel):
+class WebViewData(FlexibleBaseModel):
     """WebView 容器与宿主环境特征 (工业级分层版)"""
     bridge_routing_layer: Optional[BridgeRoutingLayer] = Field(None, description="通信桥接层")
     kernel_container_layer: Optional[KernelContainerLayer] = Field(None, description="内核容器层")
@@ -112,7 +126,7 @@ class WebViewData(BaseModel):
     exception_layer: Optional[ExceptionLayer] = Field(None, description="异常记录层")
     
 # 👇 1. 先定义子层级的 Model
-class NavigatorLayer(BaseModel):
+class NavigatorLayer(FlexibleBaseModel):
     user_agent: Optional[str] = None
     language: Optional[str] = None
     platform: Optional[str] = None
@@ -120,7 +134,7 @@ class NavigatorLayer(BaseModel):
     device_memory: Optional[float] = None
     max_touch_points: Optional[int] = None
 
-class ScreenLayer(BaseModel):
+class ScreenLayer(FlexibleBaseModel):
     screen_resolution_logical: Optional[str] = None
     device_pixel_ratio: Optional[float] = None
     color_depth: Optional[int] = None
@@ -128,25 +142,25 @@ class ScreenLayer(BaseModel):
     avail_width: Optional[int] = None
     avail_height: Optional[int] = None
 
-class GraphicsLayer(BaseModel):
+class GraphicsLayer(FlexibleBaseModel):
     webgl_vendor: Optional[str] = None
     webgl_renderer: Optional[str] = None
     webgl_extensions_count: Optional[int] = None
     canvas_hash: Optional[str] = None
 
-class ExecutionLayer(BaseModel):
+class ExecutionLayer(FlexibleBaseModel):
     compute_task_time_ms: Optional[float] = None
     timezone_offset: Optional[int] = None
 
 # 👇 2. 再将它们组合进最终的 WebData 模型中
-class WebData(BaseModel):
+class WebData(FlexibleBaseModel):
     """Web 数据模型 (工业级分层版)"""
     navigator_layer: Optional[NavigatorLayer] = Field(None, description="导航器环境层")
     screen_layer: Optional[ScreenLayer] = Field(None, description="屏幕显示层")
     graphics_layer: Optional[GraphicsLayer] = Field(None, description="图形渲染层")
     execution_layer: Optional[ExecutionLayer] = Field(None, description="执行算力层")
 
-class FingerprintPayload(BaseModel):
+class FingerprintPayload(FlexibleBaseModel):
     """设备指纹数据载荷"""
     session_id: str = Field(..., description="会话ID")
     timestamp: int = Field(..., description="时间戳(Unix)")
@@ -155,7 +169,7 @@ class FingerprintPayload(BaseModel):
     webview_data: Optional[WebViewData] = Field(None, description="WebView 数据")
     web_data: Optional[WebData] = Field(None, description="Web 数据")
 
-class LocalRiskScorePayload(BaseModel):
+class LocalRiskScorePayload(FlexibleBaseModel):
     """App 端本地评分结果载荷，不包含三端原始指纹数据"""
     session_id: str = Field(..., description="会话ID")
     timestamp: int = Field(..., description="App 端评分时间戳(Unix)")
@@ -184,12 +198,32 @@ app.add_middleware(
 
 # 模拟一个内存数据库，用于根据 session_id 暂存和合并数据
 sessions_db = {}
+expanded_sessions_db = {}
 
 # 如果本地已有数据文件，启动时先加载进来（防止重启服务器丢数据）
-DB_FILE = "merged_sessions.json"
-if os.path.exists(DB_FILE):
-    with open(DB_FILE, "r", encoding="utf-8") as f:
-        sessions_db = json.load(f)
+# 所有采集数据固定写在 backend_server/ 下，避免从不同目录启动时散落到项目根目录。
+BACKEND_DIR = Path(__file__).resolve().parent
+DB_FILE = BACKEND_DIR / "merged_sessions.json"
+EXPANDED_DB_FILE = BACKEND_DIR / "expanded_merged_sessions.json"
+COLLECTED_JSONL_FILE = BACKEND_DIR / "collected_data.jsonl"
+EXPANDED_COLLECTED_JSONL_FILE = BACKEND_DIR / "expanded_collected_data.jsonl"
+LOCAL_SCORE_JSONL_FILE = BACKEND_DIR / "local_score_results.jsonl"
+
+
+def load_session_db(path: str) -> dict:
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def is_expanded_collector_payload(data: dict) -> bool:
+    schema_version = str(data.get("schema_version", ""))
+    return data.get("collector_app") == "featureapp" or schema_version.startswith("expanded-")
+
+
+sessions_db = load_session_db(DB_FILE)
+expanded_sessions_db = load_session_db(EXPANDED_DB_FILE)
 
 @app.get("/")
 async def serve_frontend():
@@ -222,10 +256,15 @@ async def collect_fingerprint(payload: FingerprintPayload):
         #     json.dump(data_dict, f, ensure_ascii=False)
         #     f.write("\n")
         session_id = payload.session_id
+        incoming_data = model_to_dict(payload, exclude_unset=True, exclude_none=True)
+        is_expanded_collector = is_expanded_collector_payload(incoming_data)
+        target_sessions_db = expanded_sessions_db if is_expanded_collector else sessions_db
+        target_db_file = EXPANDED_DB_FILE if is_expanded_collector else DB_FILE
+        target_jsonl_file = EXPANDED_COLLECTED_JSONL_FILE if is_expanded_collector else COLLECTED_JSONL_FILE
     
         # 1. 检查是否是新会话。如果是，初始化一条空记录
-        if session_id not in sessions_db:
-            sessions_db[session_id] = {
+        if session_id not in target_sessions_db:
+            target_sessions_db[session_id] = {
                 "session_id": session_id,
                 "timestamp": payload.timestamp,
                 "client_ip": payload.client_ip,
@@ -239,26 +278,37 @@ async def collect_fingerprint(payload: FingerprintPayload):
 
         # 2. 提取前端真正传过来的非空数据 (排除掉为 None 的默认字段)
         # 这一步是合并的魔法所在：只有前端传了的数据才会去覆盖现有的库
-        incoming_data = payload.dict(exclude_unset=True, exclude_none=True)
 
         # 3. 将新数据合并到数据库记录中
         if "android_native_data" in incoming_data:
-            sessions_db[session_id]["android_native_data"] = incoming_data["android_native_data"]
+            target_sessions_db[session_id]["android_native_data"] = incoming_data["android_native_data"]
         if "webview_data" in incoming_data:
-            sessions_db[session_id]["webview_data"] = incoming_data["webview_data"]
+            target_sessions_db[session_id]["webview_data"] = incoming_data["webview_data"]
         if "web_data" in incoming_data:
-            sessions_db[session_id]["web_data"] = incoming_data["web_data"]
+            target_sessions_db[session_id]["web_data"] = incoming_data["web_data"]
+
+        preserved_top_level_keys = {
+            "session_id",
+            "timestamp",
+            "client_ip",
+            "android_native_data",
+            "webview_data",
+            "web_data",
+        }
+        for key, value in incoming_data.items():
+            if key not in preserved_top_level_keys:
+                target_sessions_db[session_id][key] = value
         
         # 更新最新时间戳和 IP（如果有变化的话）
         if "client_ip" in incoming_data:
-            sessions_db[session_id]["client_ip"] = incoming_data["client_ip"]
-        sessions_db[session_id]["timestamp"] = incoming_data["timestamp"]
+            target_sessions_db[session_id]["client_ip"] = incoming_data["client_ip"]
+        target_sessions_db[session_id]["timestamp"] = incoming_data["timestamp"]
 
         # 4. 将合并后的全量数据持久化保存到本地 JSON 文件 (这里保存的是原始嵌套结构)
-        with open(DB_FILE, "w", encoding="utf-8") as f:
-            json.dump(sessions_db, f, ensure_ascii=False, indent=4)
+        with open(target_db_file, "w", encoding="utf-8") as f:
+            json.dump(target_sessions_db, f, ensure_ascii=False, indent=4)
 
-        current_session = sessions_db[session_id]
+        current_session = target_sessions_db[session_id]
         
         # 👇 核心新增：数据降维 (Flatten) 逻辑
         if current_session.get("android_native_data") and current_session.get("web_data"):
@@ -290,7 +340,7 @@ async def collect_fingerprint(payload: FingerprintPayload):
                 llm_session_data["webview_data"] = flat_webview_data
             
             # 把彻底扁平化的大模型特供版数据追加到 jsonl 中
-            save_to_jsonl(llm_session_data)
+            save_to_jsonl(llm_session_data, target_jsonl_file)
 
         # 返回成功响应
         return {
@@ -313,7 +363,7 @@ async def health_check():
 async def collect_local_score(payload: LocalRiskScorePayload):
     """接收新 App 在端侧完成的随机森林评分结果"""
     try:
-        result = payload.dict(exclude_none=True)
+        result = model_to_dict(payload, exclude_none=True)
         result["server_received_at"] = datetime.utcnow().isoformat() + "Z"
         save_local_score_to_jsonl(result)
         return {
@@ -325,25 +375,23 @@ async def collect_local_score(payload: LocalRiskScorePayload):
         logger.error(f"处理端侧评分结果时出错: {str(e)}")
         raise HTTPException(status_code=500, detail="内部服务器错误")
 
-def save_to_jsonl(merged_data: dict):
-    jsonl_file_path = "collected_data.jsonl"
-    
+def save_to_jsonl(merged_data: dict, jsonl_file_path: str = COLLECTED_JSONL_FILE):
     # 以 "a" (append 追加) 模式打开文件
     with open(jsonl_file_path, "a", encoding="utf-8") as f:
         # 把字典转成单行 JSON 字符串，并加上换行符
         json_line = json.dumps(merged_data, ensure_ascii=False)
         f.write(json_line + "\n")
         
-    print(f"会话 {merged_data.get('session_id')} 已追加到 collected_data.jsonl")
+    print(f"会话 {merged_data.get('session_id')} 已追加到 {jsonl_file_path}")
 
 def save_local_score_to_jsonl(score_data: dict):
-    jsonl_file_path = "local_score_results.jsonl"
+    jsonl_file_path = LOCAL_SCORE_JSONL_FILE
 
     with open(jsonl_file_path, "a", encoding="utf-8") as f:
         json_line = json.dumps(score_data, ensure_ascii=False)
         f.write(json_line + "\n")
 
-    print(f"会话 {score_data.get('session_id')} 端侧评分已追加到 local_score_results.jsonl")
+    print(f"会话 {score_data.get('session_id')} 端侧评分已追加到 {jsonl_file_path}")
 
 
 if __name__ == "__main__":

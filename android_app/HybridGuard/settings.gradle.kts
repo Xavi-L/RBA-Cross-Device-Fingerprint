@@ -29,4 +29,5 @@ dependencyResolutionManagement {
 rootProject.name = "Hybrid(Guard"
 include(":app")
 include(":riskapp")
+include(":featureapp")
  
