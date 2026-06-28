@@ -106,7 +106,25 @@
 
 容错规则是知识库的重要组成部分。它防止模型把开发阶段、厂商差异、浏览器 API 近似值和 UI 布局差异误判为攻击。
 
-## 九、输出要求
+## 九、Google 官方文档外挂知识库整合
+
+本版已将 `google_official_kb/feature_risk_cards.json` 中与当前规则强相关的卡片合入结构化知识库 `scoring/rule_knowledge_base.json`。合入方式是给规则条目增加 `official_knowledge` 元数据，包括：
+
+- `card_refs`：对应的 Google 官方知识卡片 ID。
+- `source_refs`：对应的官方文档来源 ID。
+- `inference_level`：区分直接官方安全依据、派生字段语义依据或混合依据。
+- `evidence_strength`：该官方依据对当前规则的支撑强度。
+- `official_basis`：一句话说明官方文档如何支撑该规则。
+
+合入原则如下。
+
+1. 只合入能支撑当前已采集字段或现有规则的卡片。
+2. 只包含 `FUTURE-*` 目标的卡片暂不参与当前评分，避免把尚未采集的 Play Integrity、Key Attestation 或 WebView URL 校验结果误当成已有证据。
+3. 官方文档主要支撑字段语义、安全背景和容错边界；风险阈值和分数区间仍来自本项目攻击模板、真实采集样本和实验结果。
+
+本次共处理 20 张卡片，其中 15 张合入当前规则，5 张暂不选择。详细选择/未选择理由见 `google_official_kb/integration_report.md`。
+
+## 十、输出要求
 
 大模型评分时应输出两个字段。
 

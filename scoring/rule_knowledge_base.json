@@ -1,5 +1,5 @@
 {
-  "version": "2026-05-10",
+  "version": "2026-06-28-google-official-kb",
   "name": "HybridGuard 综合规则知识库",
   "description": "用于离线大模型风险标签生成的跨层语义规则集合。规则覆盖 Native、WebView、Web 三端一致性、物理可信性、宿主真实性、自动化/重放、云机房/测试机架和容错策略。",
   "source_basis": [
@@ -8,7 +8,10 @@
     "scoring/sorting.py",
     "scoring/generate_bad_data.py",
     "backend_server/rba_engine.py",
-    "training/scored_data.jsonl"
+    "training/scored_data.jsonl",
+    "google_official_kb/official_sources.jsonl",
+    "google_official_kb/feature_risk_cards.json",
+    "google_official_kb/integration_report.md"
   ],
   "field_conventions": {
     "missing_numeric": "关键数值字段缺失时视为无法判断；仅在规则明确声明时将缺失视为高风险。",
@@ -20,27 +23,42 @@
   },
   "score_bands": [
     {
-      "range": [0, 20],
+      "range": [
+        0,
+        20
+      ],
       "label": "low",
       "meaning": "三端身份链条基本自洽，安装来源合理，未触发高危规则。"
     },
     {
-      "range": [21, 34],
+      "range": [
+        21,
+        34
+      ],
       "label": "low_medium",
       "meaning": "存在轻微信号缺失或单项弱异常，但不足以判定攻击。"
     },
     {
-      "range": [35, 49],
+      "range": [
+        35,
+        49
+      ],
       "label": "medium_cloud_or_test",
       "meaning": "更像云真机、测试机架或自动化调试设备，但核心设备链条仍可能完整。"
     },
     {
-      "range": [50, 79],
+      "range": [
+        50,
+        79
+      ],
       "label": "suspicious",
       "meaning": "多项跨层不一致或明显环境异常并存，需要判为可疑。"
     },
     {
-      "range": [80, 100],
+      "range": [
+        80,
+        100
+      ],
       "label": "high",
       "meaning": "命中一票否决、高危模拟器、无头浏览器、接口重放或严重跨层撕裂。"
     }
@@ -58,7 +76,10 @@
       "category": "核心完整性",
       "priority": 100,
       "risk_level": "critical",
-      "score_range": [90, 100],
+      "score_range": [
+        90,
+        100
+      ],
       "short_circuit": true,
       "fields": [
         "android_native_data.*",
@@ -67,7 +88,23 @@
       ],
       "trigger": "Native 关键字段整体缺失或大量为 null，同时 JSBridge 未注入，或 Web UA 明确为 python-requests 等脚本客户端。",
       "risk_reason_template": "Native 容器链路缺失且 Web 请求不像来自 App WebView，疑似接口重放或脱离宿主的脚本请求。",
-      "tolerance": "仅个别 Native 字段缺失不直接触发本规则。"
+      "tolerance": "仅个别 Native 字段缺失不直接触发本规则。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-UA-001",
+          "GOKB-WEBVIEW-002",
+          "GOKB-WEBVIEW-003"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "android-webview-api",
+          "android-webview-native-bridges-risk",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "WebView/JSBridge 官方机制和 UA 语义用于支撑宿主链路缺失、非浏览器请求与接口重放判断；风险阈值仍来自本项目攻击样本。"
+      }
     },
     {
       "id": "CORE-002",
@@ -75,7 +112,10 @@
       "category": "核心完整性",
       "priority": 98,
       "risk_level": "critical",
-      "score_range": [90, 100],
+      "score_range": [
+        90,
+        100
+      ],
       "short_circuit": true,
       "fields": [
         "android_native_data.sensor_total_count",
@@ -83,7 +123,23 @@
       ],
       "trigger": "sensor_total_count < 10，或 jsbridge_injected 为 false。",
       "risk_reason_template": "核心传感器矩阵严重缺失或 JSBridge 未注入，底层设备与 App 宿主真实性不足。",
-      "tolerance": "低端真机可能缺少少数传感器，但传感器总数极低或桥接缺失仍属于强异常。"
+      "tolerance": "低端真机可能缺少少数传感器，但传感器总数极低或桥接缺失仍属于强异常。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-SENSOR-001",
+          "GOKB-WEBVIEW-002",
+          "GOKB-WEBVIEW-003"
+        ],
+        "source_refs": [
+          "android-sensormanager-api",
+          "android-sensors-overview",
+          "android-webview-api",
+          "android-webview-native-bridges-risk"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android 传感器框架和 WebView bridge 文档支撑传感器矩阵与 JSBridge 作为核心完整性证据。"
+      }
     },
     {
       "id": "CORE-003",
@@ -91,7 +147,10 @@
       "category": "核心完整性",
       "priority": 88,
       "risk_level": "high",
-      "score_range": [80, 95],
+      "score_range": [
+        80,
+        95
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.sensor_total_count",
@@ -103,7 +162,19 @@
       ],
       "trigger": "sensor_total_count 明显偏低，且陀螺仪、加速度计、磁力计、光线或距离传感器中多项缺失。",
       "risk_reason_template": "设备传感器矩阵不像真实移动终端，疑似模拟器或精简虚拟环境。",
-      "tolerance": "压力传感器缺失较常见，不应单独扣高分。"
+      "tolerance": "压力传感器缺失较常见，不应单独扣高分。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-SENSOR-001"
+        ],
+        "source_refs": [
+          "android-sensormanager-api",
+          "android-sensors-overview"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android 传感器官方 API 支撑核心传感器矩阵的物理设备语义；具体缺失阈值来自本项目规则。"
+      }
     },
     {
       "id": "NW-001",
@@ -111,7 +182,10 @@
       "category": "Native-Web 一致性",
       "priority": 80,
       "risk_level": "medium",
-      "score_range": [45, 75],
+      "score_range": [
+        45,
+        75
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.device_model",
@@ -123,7 +197,22 @@
       ],
       "trigger": "Native 型号、产品、主板、品牌或厂商无法在 Android Web UA 中得到合理印证，或 UA 不像移动 Android 环境。",
       "risk_reason_template": "Native 设备身份与 Web UA 不自洽，可能存在 UA 改写、模板伪造或代理采集。",
-      "tolerance": "UA 只包含 Android 但缺少具体型号时只作为弱异常；不同厂商 UA 表达存在差异。"
+      "tolerance": "UA 只包含 Android 但缺少具体型号时只作为弱异常；不同厂商 UA 表达存在差异。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-UA-001"
+        ],
+        "source_refs": [
+          "android-build-api",
+          "android-build-version-api",
+          "android-websettings-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android Build 字段和 Chrome UA 文档共同支撑 Native 设备身份与 Web UA 的软一致性校验。"
+      }
     },
     {
       "id": "NW-002",
@@ -131,7 +220,10 @@
       "category": "Native-Web 一致性",
       "priority": 78,
       "risk_level": "medium",
-      "score_range": [40, 70],
+      "score_range": [
+        40,
+        70
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.os_version",
@@ -140,7 +232,22 @@
       ],
       "trigger": "Native Android 主版本与 Web UA 中声明的 Android 主版本不一致。",
       "risk_reason_template": "Native OS 版本与 Web UA 版本不一致，说明 Web 运行环境可能被替换或模板化。",
-      "tolerance": "Android 16/API 36 是合法版本；无法解析版本时记为未知，不单独高危。"
+      "tolerance": "Android 16/API 36 是合法版本；无法解析版本时记为未知，不单独高危。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-UA-001"
+        ],
+        "source_refs": [
+          "android-build-api",
+          "android-build-version-api",
+          "android-websettings-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android Build.VERSION 与 Chrome UA 语义支撑 Android 主版本跨层一致性校验。"
+      }
     },
     {
       "id": "NW-003",
@@ -148,7 +255,10 @@
       "category": "Native-Web 一致性",
       "priority": 74,
       "risk_level": "medium",
-      "score_range": [35, 65],
+      "score_range": [
+        35,
+        65
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.screen_resolution_physical",
@@ -157,7 +267,22 @@
       ],
       "trigger": "Native 物理分辨率与 Web 逻辑分辨率 x DPR 的最大相对误差超过 10%，且无法由横竖屏或可用高度差解释。",
       "risk_reason_template": "Native 屏幕与 Web 屏幕/DPR 无法对应，可能存在 Web 环境伪造或脱离宿主。",
-      "tolerance": "允许状态栏、导航栏、安全区导致的高度误差；优先按横竖屏两种方向选择较小误差。"
+      "tolerance": "允许状态栏、导航栏、安全区导致的高度误差；优先按横竖屏两种方向选择较小误差。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-AUTOMATION-001",
+          "GOKB-DISPLAY-001"
+        ],
+        "source_refs": [
+          "android-displaymetrics-api",
+          "chrome-chromedriver-capabilities",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android DisplayMetrics、Web DPR/viewport 和 Chrome 移动模拟文档支撑屏幕/DPR 软一致性和模拟器容错。"
+      }
     },
     {
       "id": "NW-004",
@@ -165,7 +290,10 @@
       "category": "Native-Web 一致性",
       "priority": 72,
       "risk_level": "medium",
-      "score_range": [35, 65],
+      "score_range": [
+        35,
+        65
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.cpu_abi",
@@ -173,7 +301,22 @@
       ],
       "trigger": "Native CPU ABI 显示 ARM/ARM64，而 Web platform 暴露 Win32、Win64、x86 等不一致平台，或反向出现明显矛盾。",
       "risk_reason_template": "Native CPU 架构与 Web platform 不一致，说明 Web 运行环境不像来自同一移动设备。",
-      "tolerance": "某些浏览器 platform 字段较粗糙；无法识别时只作为未知。"
+      "tolerance": "某些浏览器 platform 字段较粗糙；无法识别时只作为未知。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-UA-001"
+        ],
+        "source_refs": [
+          "android-build-api",
+          "android-build-version-api",
+          "android-websettings-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android ABI/Build 字段与 Chrome UA/platform 语义支撑 CPU 架构和 Web platform 的跨层比较。"
+      }
     },
     {
       "id": "NW-005",
@@ -181,7 +324,10 @@
       "category": "Native-Web 一致性",
       "priority": 82,
       "risk_level": "high",
-      "score_range": [55, 90],
+      "score_range": [
+        55,
+        90
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.device_hardware",
@@ -193,7 +339,22 @@
       ],
       "trigger": "Native 硬件族与 WebGL renderer/GPU 族不匹配，尤其是真机硬件族对应 SwiftShader、Headless、Apple ANGLE 或桌面 GPU。",
       "risk_reason_template": "底层 SoC 与 WebGL 渲染器生态不匹配，疑似模拟器、无头浏览器或桌面环境伪装。",
-      "tolerance": "MediaTek、Huawei、Samsung 等可宽松匹配 Mali 或 PowerVR；仅未知 GPU 不直接高危。"
+      "tolerance": "MediaTek、Huawei、Samsung 等可宽松匹配 Mali 或 PowerVR；仅未知 GPU 不直接高危。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-EMULATOR-001"
+        ],
+        "source_refs": [
+          "android-avd-manager",
+          "android-build-api",
+          "android-build-version-api",
+          "android-emulator-overview"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android Build 硬件字段和 Emulator/AVD 文档支撑硬件族证据；GPU/WebGL 关键词仍需结合项目样本解释。"
+      }
     },
     {
       "id": "NW-006",
@@ -201,7 +362,10 @@
       "category": "Native-Web 一致性",
       "priority": 90,
       "risk_level": "high",
-      "score_range": [80, 100],
+      "score_range": [
+        80,
+        100
+      ],
       "short_circuit": false,
       "fields": [
         "web_data.user_agent",
@@ -209,7 +373,22 @@
       ],
       "trigger": "Web UA 或 platform 包含 Windows NT、Win64、Headless、python-requests 等桌面/自动化痕迹。",
       "risk_reason_template": "Web 层暴露桌面浏览器、无头浏览器或脚本客户端痕迹，与移动 App 场景冲突。",
-      "tolerance": "仅缺少具体型号不等同于桌面 UA；必须结合明确关键词判断。"
+      "tolerance": "仅缺少具体型号不等同于桌面 UA；必须结合明确关键词判断。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-AUTOMATION-001",
+          "GOKB-UA-001"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "chrome-chromedriver-capabilities",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Chrome UA、DevTools 移动模拟和 ChromeDriver 能力文档支撑桌面/自动化 Web 表面的风险解释。"
+      }
     },
     {
       "id": "NW-007",
@@ -217,7 +396,10 @@
       "category": "Native-Web 一致性",
       "priority": 64,
       "risk_level": "medium",
-      "score_range": [30, 60],
+      "score_range": [
+        30,
+        60
+      ],
       "short_circuit": false,
       "fields": [
         "web_data.user_agent",
@@ -225,7 +407,19 @@
       ],
       "trigger": "UA 声称 Android Mobile，但 max_touch_points 为 0 或缺失。",
       "risk_reason_template": "Web UA 声称移动设备但触控能力缺失，可能是桌面浏览器伪装移动 UA。",
-      "tolerance": "触点数量具体值不要求一致，只要求移动环境具备基本触控能力。"
+      "tolerance": "触点数量具体值不要求一致，只要求移动环境具备基本触控能力。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-UA-001"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "Chrome UA 和 navigator 语义支撑移动 UA 与触控能力的软一致性检查。"
+      }
     },
     {
       "id": "NW-008",
@@ -233,7 +427,10 @@
       "category": "Native-Web 一致性",
       "priority": 50,
       "risk_level": "low_medium",
-      "score_range": [20, 45],
+      "score_range": [
+        20,
+        45
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.total_memory_gb",
@@ -241,7 +438,19 @@
       ],
       "trigger": "Native 总内存与 Web deviceMemory 差异过大，并与其他身份不一致信号同时出现。",
       "risk_reason_template": "Native 与 Web 层内存规模差异较大，作为跨层身份不一致的辅助证据。",
-      "tolerance": "Web deviceMemory 粗粒度取整，3GB 到 4GB 内的差异不扣高分。"
+      "tolerance": "Web deviceMemory 粗粒度取整，3GB 到 4GB 内的差异不扣高分。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-MEMORY-001"
+        ],
+        "source_refs": [
+          "android-activitymanager-memoryinfo-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "low",
+        "official_basis": "Android MemoryInfo 与 Web 运行时内存语义支撑 Native/Web 内存粗粒度一致性，但只作为辅助证据。"
+      }
     },
     {
       "id": "NVW-001",
@@ -249,7 +458,10 @@
       "category": "Native-WebView 一致性",
       "priority": 76,
       "risk_level": "medium",
-      "score_range": [35, 65],
+      "score_range": [
+        35,
+        65
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.device_model",
@@ -257,7 +469,22 @@
       ],
       "trigger": "Native device_model 无法在 WebView system_http_agent 中得到印证。",
       "risk_reason_template": "App 宿主层 system HTTP agent 与 Native 型号不一致，身份链条可能被改写。",
-      "tolerance": "system_http_agent 缺少型号时为弱异常，需要结合 UA 和版本规则判断。"
+      "tolerance": "system_http_agent 缺少型号时为弱异常，需要结合 UA 和版本规则判断。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-WEBVIEW-001"
+        ],
+        "source_refs": [
+          "android-build-api",
+          "android-build-version-api",
+          "android-websettings-api",
+          "android-webview-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android Build 设备身份与 WebView provider/default UA 文档支撑 Native 型号和 WebView 宿主 agent 的一致性。"
+      }
     },
     {
       "id": "NVW-002",
@@ -265,7 +492,10 @@
       "category": "Native-WebView 一致性",
       "priority": 76,
       "risk_level": "medium",
-      "score_range": [35, 65],
+      "score_range": [
+        35,
+        65
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.os_version",
@@ -273,7 +503,22 @@
       ],
       "trigger": "Native Android 主版本与 WebView system_http_agent 中的 Android 主版本不一致。",
       "risk_reason_template": "Native OS 与 WebView 宿主 agent 版本不一致，可能存在宿主信息替换或模板化。",
-      "tolerance": "无法解析版本时不单独高危。"
+      "tolerance": "无法解析版本时不单独高危。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-WEBVIEW-001"
+        ],
+        "source_refs": [
+          "android-build-api",
+          "android-build-version-api",
+          "android-websettings-api",
+          "android-webview-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android Build.VERSION 与 WebView/default UA 语义支撑 Native 系统版本和宿主 agent 的一致性。"
+      }
     },
     {
       "id": "NVW-003",
@@ -281,14 +526,28 @@
       "category": "Native-WebView 一致性",
       "priority": 70,
       "risk_level": "medium",
-      "score_range": [40, 70],
+      "score_range": [
+        40,
+        70
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.app_package_name"
       ],
       "trigger": "app_package_name 不以 com.example.hybridguard 开头。",
       "risk_reason_template": "数据来源包名不是预期 App 宿主，采集链路可信度下降。",
-      "tolerance": "调试包名或模块包名只要保留 com.example.hybridguard 前缀即可接受。"
+      "tolerance": "调试包名或模块包名只要保留 com.example.hybridguard 前缀即可接受。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-PACKAGE-001"
+        ],
+        "source_refs": [
+          "android-packagemanager-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "Android PackageManager 文档支撑 App 包名作为宿主身份来源。"
+      }
     },
     {
       "id": "NVW-004",
@@ -296,14 +555,28 @@
       "category": "Native-WebView 一致性",
       "priority": 62,
       "risk_level": "low_medium",
-      "score_range": [20, 45],
+      "score_range": [
+        20,
+        45
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.installer_package"
       ],
       "trigger": "installer_package 为 manual 时作为可疑部署线索；包含 packageinstaller、browser、vending 时作为正常来源线索。",
       "risk_reason_template": "安装来源显示手动部署，需要结合 ADB、时区、电量等判断是否为云机房或测试机架。",
-      "tolerance": "manual 不单独高危；官方安装器、系统安装器、浏览器下载和应用市场可视为合理来源。"
+      "tolerance": "manual 不单独高危；官方安装器、系统安装器、浏览器下载和应用市场可视为合理来源。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-PACKAGE-001"
+        ],
+        "source_refs": [
+          "android-packagemanager-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "Android PackageManager 文档支撑安装来源语义；manual 仍只作为组合风险线索。"
+      }
     },
     {
       "id": "NVW-005",
@@ -311,7 +584,10 @@
       "category": "Native-WebView 一致性",
       "priority": 40,
       "risk_level": "low_medium",
-      "score_range": [10, 35],
+      "score_range": [
+        10,
+        35
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.is_debuggable",
@@ -319,7 +595,23 @@
       ],
       "trigger": "is_debuggable 为 true 且 is_cleartext_traffic_permitted 为 true。",
       "risk_reason_template": "宿主呈现开发/测试配置，可作为辅助环境信号。",
-      "tolerance": "开发灰度阶段允许该组合，不应单独判定中高风险。"
+      "tolerance": "开发灰度阶段允许该组合，不应单独判定中高风险。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-DEVCONFIG-001",
+          "GOKB-DEVCONFIG-002"
+        ],
+        "source_refs": [
+          "android-cleartext-communications-risk",
+          "android-debuggable-risk",
+          "android-network-security-config",
+          "android-network-security-policy-api",
+          "android-settings-global-api"
+        ],
+        "inference_level": "mixed_direct_and_derived",
+        "evidence_strength": "medium",
+        "official_basis": "Android debuggable、cleartext 和 Network Security Config 官方风险文档支撑开发/网络安全姿态判断。"
+      }
     },
     {
       "id": "WVWEB-001",
@@ -327,7 +619,10 @@
       "category": "WebView-Web 一致性",
       "priority": 78,
       "risk_level": "medium",
-      "score_range": [35, 65],
+      "score_range": [
+        35,
+        65
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.webview_provider_version",
@@ -335,7 +630,19 @@
       ],
       "trigger": "WebView provider 主版本与 Web UA 中 Chrome/Chromium 主版本不一致。",
       "risk_reason_template": "WebView provider 版本与 Web UA Chrome 主版本不一致，UA 可能被改写或不是该 WebView 产生。",
-      "tolerance": "只比较主版本；小版本差异不单独扣分。"
+      "tolerance": "只比较主版本；小版本差异不单独扣分。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-WEBVIEW-001"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "android-webview-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "WebView provider 与 WebSettings/default UA 文档支撑 WebView provider 和 Web UA 主版本一致性。"
+      }
     },
     {
       "id": "WVWEB-002",
@@ -343,14 +650,31 @@
       "category": "WebView-Web 一致性",
       "priority": 54,
       "risk_level": "low_medium",
-      "score_range": [20, 45],
+      "score_range": [
+        20,
+        45
+      ],
       "short_circuit": false,
       "fields": [
         "web_data.user_agent"
       ],
       "trigger": "Web UA 缺少 ; wv 或 Version/4.0 等 Android WebView 标记。",
       "risk_reason_template": "Web UA 缺少典型 WebView token，宿主容器一致性减弱。",
-      "tolerance": "部分系统或厂商 UA 可能省略 token，因此该规则只作辅助。"
+      "tolerance": "部分系统或厂商 UA 可能省略 token，因此该规则只作辅助。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-UA-001",
+          "GOKB-WEBVIEW-001"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "android-webview-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "WebView/WebSettings 与 Chrome UA 文档支撑 Android WebView token 作为辅助宿主线索。"
+      }
     },
     {
       "id": "WVWEB-003",
@@ -358,7 +682,10 @@
       "category": "WebView-Web 一致性",
       "priority": 82,
       "risk_level": "medium",
-      "score_range": [35, 70],
+      "score_range": [
+        35,
+        70
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.jsbridge_injected",
@@ -366,7 +693,22 @@
       ],
       "trigger": "JSBridge 已注入、UA 为 Android Mobile、UA 包含 WebView token 时视为强一致；任一关键条件缺失则降低宿主一致性。",
       "risk_reason_template": "JSBridge、移动 UA 与 WebView token 未能共同成立，WebView-Web 运行时自洽度不足。",
-      "tolerance": "仅缺少 WebView token 时不直接高危，应结合桥接和 UA 类型。"
+      "tolerance": "仅缺少 WebView token 时不直接高危，应结合桥接和 UA 类型。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-WEBVIEW-001",
+          "GOKB-WEBVIEW-002",
+          "GOKB-WEBVIEW-003"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "android-webview-api",
+          "android-webview-native-bridges-risk"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "WebView JavaScript bridge 机制和 native bridge 风险文档支撑 JSBridge、移动 UA 与 WebView token 的链路一致性。"
+      }
     },
     {
       "id": "WVWEB-004",
@@ -374,14 +716,29 @@
       "category": "WebView-Web 一致性",
       "priority": 96,
       "risk_level": "critical",
-      "score_range": [90, 100],
+      "score_range": [
+        90,
+        100
+      ],
       "short_circuit": true,
       "fields": [
         "web_data.user_agent"
       ],
       "trigger": "UA 包含 python-requests、curl、okhttp 脚本化直连痕迹，且无法解释为 App WebView 正常页面。",
       "risk_reason_template": "Web 层 UA 暴露非浏览器 HTTP 客户端，疑似脚本直连或接口重放。",
-      "tolerance": "App 内正常 WebView 不应出现该类 UA。"
+      "tolerance": "App 内正常 WebView 不应出现该类 UA。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-UA-001"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "Chrome UA 文档支撑浏览器 UA 语义；python/curl/okhttp 等非浏览器关键词仍属于项目侧攻击规则。"
+      }
     },
     {
       "id": "PHYS-001",
@@ -389,7 +746,10 @@
       "category": "物理与运行环境",
       "priority": 92,
       "risk_level": "high",
-      "score_range": [80, 100],
+      "score_range": [
+        80,
+        100
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.device_board",
@@ -399,7 +759,23 @@
       ],
       "trigger": "device_board/device_hardware 包含 goldfish、ranchu、emulator，或 cpu_abi 为 x86，且 WebGL renderer 出现 SwiftShader 等软渲染线索。",
       "risk_reason_template": "Native 硬件和 WebGL 渲染同时暴露模拟器特征。",
-      "tolerance": "单独 x86 需要结合硬件和渲染证据判断。"
+      "tolerance": "单独 x86 需要结合硬件和渲染证据判断。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-EMULATOR-001",
+          "GOKB-SENSOR-001"
+        ],
+        "source_refs": [
+          "android-avd-manager",
+          "android-build-api",
+          "android-emulator-overview",
+          "android-sensormanager-api",
+          "android-sensors-overview"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android 传感器、Emulator/AVD 和 Build 文档支撑模拟器硬件与传感器组合证据。"
+      }
     },
     {
       "id": "PHYS-002",
@@ -407,7 +783,10 @@
       "category": "物理与运行环境",
       "priority": 88,
       "risk_level": "high",
-      "score_range": [70, 95],
+      "score_range": [
+        70,
+        95
+      ],
       "short_circuit": false,
       "fields": [
         "web_data.webgl_vendor",
@@ -415,7 +794,24 @@
       ],
       "trigger": "WebGL renderer 包含 SwiftShader、Headless、ANGLE Apple、VMware、VirtualBox 或明显桌面 GPU 线索。",
       "risk_reason_template": "WebGL 渲染器不像移动端硬件路径，疑似模拟器、无头浏览器或桌面环境。",
-      "tolerance": "厂商 GPU 名称差异较大，需优先识别软件/桌面关键词。"
+      "tolerance": "厂商 GPU 名称差异较大，需优先识别软件/桌面关键词。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-AUTOMATION-001",
+          "GOKB-EMULATOR-001"
+        ],
+        "source_refs": [
+          "android-avd-manager",
+          "android-build-api",
+          "android-emulator-overview",
+          "chrome-chromedriver-capabilities",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Chrome 自动化/移动模拟和 Android Emulator 文档支撑桌面/模拟环境背景；WebGL 软件渲染阈值仍来自项目样本。"
+      }
     },
     {
       "id": "PHYS-003",
@@ -423,7 +819,10 @@
       "category": "物理与运行环境",
       "priority": 66,
       "risk_level": "medium",
-      "score_range": [30, 65],
+      "score_range": [
+        30,
+        65
+      ],
       "short_circuit": false,
       "fields": [
         "web_data.compute_task_time_ms",
@@ -432,7 +831,20 @@
       ],
       "trigger": "compute_task_time_ms < 50 且伴随桌面/无头 UA 或传感器缺失，或 compute_task_time_ms > 800 且伴随 manual、ADB、UTC 时区等机房线索。",
       "risk_reason_template": "Web 执行耗时与移动端运行环境不匹配，可作为 PC 伪装或资源受限群控环境的辅助证据。",
-      "tolerance": "算力挑战受 JIT 预热、设备性能和负载影响，不应单独判高危。"
+      "tolerance": "算力挑战受 JIT 预热、设备性能和负载影响，不应单独判高危。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-AUTOMATION-001"
+        ],
+        "source_refs": [
+          "chrome-chromedriver-capabilities",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Chrome DevTools 支持 CPU/network throttling，说明算力耗时可被开发工具影响，因此本规则只能作为组合辅助证据。"
+      }
     },
     {
       "id": "PHYS-004",
@@ -440,7 +852,10 @@
       "category": "物理与运行环境",
       "priority": 68,
       "risk_level": "medium",
-      "score_range": [35, 70],
+      "score_range": [
+        35,
+        70
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.battery_temp_celsius",
@@ -449,7 +864,18 @@
       ],
       "trigger": "battery_temp_celsius 长期为 0、20.0、25.0 等模板值，并伴随传感器缺失、软渲染或模拟器硬件关键词。",
       "risk_reason_template": "电池温度呈现模板化死值，并与其他虚拟环境特征同时出现。",
-      "tolerance": "单条样本中的常见温度值不直接高危，需要结合其他异常。"
+      "tolerance": "单条样本中的常见温度值不直接高危，需要结合其他异常。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BATTERY-001"
+        ],
+        "source_refs": [
+          "android-batterymanager-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "BatteryManager 官方字段支撑电池温度语义；模板值判断需与模拟器或传感器异常组合。"
+      }
     },
     {
       "id": "PHYS-005",
@@ -457,7 +883,10 @@
       "category": "物理与运行环境",
       "priority": 76,
       "risk_level": "medium",
-      "score_range": [35, 45],
+      "score_range": [
+        35,
+        45
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.is_adb_enabled",
@@ -466,7 +895,21 @@
       ],
       "trigger": "is_adb_enabled 为 true 且 battery_level_pct >= 97，尤其是长期接电或电量满载。",
       "risk_reason_template": "ADB 常开且电量接近满载，符合测试机架、云真机或自动化群控设备特征。",
-      "tolerance": "ADB 单独开启在开发灰度阶段可容忍，不应超过低风险或轻中风险。"
+      "tolerance": "ADB 单独开启在开发灰度阶段可容忍，不应超过低风险或轻中风险。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BATTERY-001",
+          "GOKB-DEVCONFIG-001"
+        ],
+        "source_refs": [
+          "android-batterymanager-api",
+          "android-network-security-policy-api",
+          "android-settings-global-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "BatteryManager、Settings.Global 和开发配置风险文档支撑 ADB 与满电的测试机架语义。"
+      }
     },
     {
       "id": "PHYS-006",
@@ -474,7 +917,10 @@
       "category": "物理与运行环境",
       "priority": 72,
       "risk_level": "medium",
-      "score_range": [40, 75],
+      "score_range": [
+        40,
+        75
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.build_fingerprint",
@@ -483,7 +929,22 @@
       ],
       "trigger": "build_fingerprint 或 build_tags 出现 test-keys、dev-keys、generic、sdk_gphone、emulator、userdebug 等调试或模拟器痕迹。",
       "risk_reason_template": "系统构建指纹暴露调试或模拟器环境特征。",
-      "tolerance": "仅 user/release-keys 属于正常发布构建信号。"
+      "tolerance": "仅 user/release-keys 属于正常发布构建信号。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BOOT-001",
+          "GOKB-BUILD-001"
+        ],
+        "source_refs": [
+          "android-build-api",
+          "android-build-version-api",
+          "aosp-key-id-attestation",
+          "aosp-verified-boot"
+        ],
+        "inference_level": "mixed_direct_and_derived",
+        "evidence_strength": "high",
+        "official_basis": "Android Build、Verified Boot 和 Key Attestation 背景支撑构建/启动完整性线索；当前 verified boot 为未来强证据。"
+      }
     },
     {
       "id": "SCENE-001",
@@ -491,7 +952,10 @@
       "category": "攻击场景聚合",
       "priority": 86,
       "risk_level": "medium",
-      "score_range": [35, 45],
+      "score_range": [
+        35,
+        45
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.installer_package",
@@ -501,7 +965,27 @@
       ],
       "trigger": "未命中一票否决时，installer_package 严格等于 manual 且 timezone_offset 为 0 或 ADB 开启；或 ADB 开启且电量 >= 97。",
       "risk_reason_template": "核心设备链条基本存在，但 manual 安装、ADB、UTC 时区或满电组合更像云机房或测试机架。",
-      "tolerance": "该场景不应与模拟器/重放混淆；若传感器和 Bridge 正常，通常给 35-45 分。"
+      "tolerance": "该场景不应与模拟器/重放混淆；若传感器和 Bridge 正常，通常给 35-45 分。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-BATTERY-001",
+          "GOKB-DEVCONFIG-001",
+          "GOKB-DEVCONFIG-002",
+          "GOKB-PACKAGE-001"
+        ],
+        "source_refs": [
+          "android-batterymanager-api",
+          "android-cleartext-communications-risk",
+          "android-debuggable-risk",
+          "android-network-security-config",
+          "android-network-security-policy-api",
+          "android-packagemanager-api",
+          "android-settings-global-api"
+        ],
+        "inference_level": "mixed_direct_and_derived",
+        "evidence_strength": "medium",
+        "official_basis": "BatteryManager、PackageManager、Settings.Global、debuggable/cleartext 官方风险文档共同支撑云机房/测试机架组合语义。"
+      }
     },
     {
       "id": "SCENE-002",
@@ -509,7 +993,10 @@
       "category": "攻击场景聚合",
       "priority": 94,
       "risk_level": "critical",
-      "score_range": [90, 100],
+      "score_range": [
+        90,
+        100
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.device_board",
@@ -521,7 +1008,23 @@
       ],
       "trigger": "goldfish/ranchu/x86/SwiftShader/UTC 时区/极少传感器等典型模拟器特征组合出现。",
       "risk_reason_template": "硬件、传感器、渲染和时区同时呈现廉价模拟器模板特征。",
-      "tolerance": "需要多项模拟器证据共同出现。"
+      "tolerance": "需要多项模拟器证据共同出现。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-EMULATOR-001",
+          "GOKB-SENSOR-001"
+        ],
+        "source_refs": [
+          "android-avd-manager",
+          "android-build-api",
+          "android-emulator-overview",
+          "android-sensormanager-api",
+          "android-sensors-overview"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Android 传感器、Emulator/AVD 和 Build 文档支撑廉价模拟器场景组合解释。"
+      }
     },
     {
       "id": "SCENE-003",
@@ -529,7 +1032,10 @@
       "category": "攻击场景聚合",
       "priority": 94,
       "risk_level": "critical",
-      "score_range": [90, 100],
+      "score_range": [
+        90,
+        100
+      ],
       "short_circuit": false,
       "fields": [
         "web_data.user_agent",
@@ -541,7 +1047,20 @@
       ],
       "trigger": "UA 或 platform 暴露 Windows/Headless，max_touch_points 为 0，compute_task_time_ms 异常偏快，或传感器缺失。",
       "risk_reason_template": "Web 层呈现无头 PC 或桌面自动化环境，与移动 App 指纹严重冲突。",
-      "tolerance": "单个算力偏快不充分，需要与桌面/无头/触控缺失等证据组合。"
+      "tolerance": "单个算力偏快不充分，需要与桌面/无头/触控缺失等证据组合。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-AUTOMATION-001"
+        ],
+        "source_refs": [
+          "chrome-chromedriver-capabilities",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "Chrome DevTools Device Mode 和 ChromeDriver capabilities 支撑无头/自动化浏览器伪装移动 Web 表面的场景解释。"
+      }
     },
     {
       "id": "SCENE-004",
@@ -549,7 +1068,10 @@
       "category": "低风险确认",
       "priority": 30,
       "risk_level": "low",
-      "score_range": [0, 20],
+      "score_range": [
+        0,
+        20
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.installer_package",
@@ -558,7 +1080,23 @@
       ],
       "trigger": "installer_package 包含 packageinstaller、browser、vending 等合理来源，sensor_total_count >= 10，且 JSBridge 注入成功，并且未触发高危规则。",
       "risk_reason_template": "安装来源合理，核心传感器和 JSBridge 完整，三端身份链条基本可信。",
-      "tolerance": "低风险规则只能在未命中高危规则时使用，不能覆盖一票否决。"
+      "tolerance": "低风险规则只能在未命中高危规则时使用，不能覆盖一票否决。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-PACKAGE-001",
+          "GOKB-SENSOR-001",
+          "GOKB-WEBVIEW-002"
+        ],
+        "source_refs": [
+          "android-packagemanager-api",
+          "android-sensormanager-api",
+          "android-sensors-overview",
+          "android-webview-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "PackageManager、传感器和 WebView bridge 官方语义支撑低风险样本的宿主、物理设备和来源链条完整性。"
+      }
     },
     {
       "id": "AGG-001",
@@ -566,7 +1104,10 @@
       "category": "聚合规则",
       "priority": 58,
       "risk_level": "medium",
-      "score_range": [30, 75],
+      "score_range": [
+        30,
+        75
+      ],
       "short_circuit": false,
       "fields": [
         "consistency_tri_layer_mean_match_score",
@@ -582,7 +1123,10 @@
       "category": "容错规则",
       "priority": 10,
       "risk_level": "tolerance",
-      "score_range": [0, 20],
+      "score_range": [
+        0,
+        20
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.is_adb_enabled",
@@ -591,7 +1135,23 @@
       ],
       "trigger": "ADB、debuggable 或 cleartext 单独出现。",
       "risk_reason_template": "开发灰度阶段允许调试配置单独存在，不应作为高危依据。",
-      "tolerance": "若与 manual 安装、满电、UTC 时区或其他异常组合出现，则转交云机房/测试机架规则判断。"
+      "tolerance": "若与 manual 安装、满电、UTC 时区或其他异常组合出现，则转交云机房/测试机架规则判断。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-DEVCONFIG-001",
+          "GOKB-DEVCONFIG-002"
+        ],
+        "source_refs": [
+          "android-cleartext-communications-risk",
+          "android-debuggable-risk",
+          "android-network-security-config",
+          "android-network-security-policy-api",
+          "android-settings-global-api"
+        ],
+        "inference_level": "mixed_direct_and_derived",
+        "evidence_strength": "medium",
+        "official_basis": "Android debuggable、cleartext、Network Security Config 和 Settings.Global 文档支撑开发配置是安全姿态信号，但需组合判断。"
+      }
     },
     {
       "id": "TOL-002",
@@ -599,7 +1159,10 @@
       "category": "容错规则",
       "priority": 10,
       "risk_level": "tolerance",
-      "score_range": [0, 20],
+      "score_range": [
+        0,
+        20
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.screen_resolution_physical",
@@ -609,7 +1172,18 @@
       ],
       "trigger": "仅 Web 高度或可用高度与 Native 物理高度存在状态栏/导航栏级差异。",
       "risk_reason_template": "移动 WebView 的可用高度会受系统 UI 影响，不能单独作为攻击证据。",
-      "tolerance": "宽度和 DPR 严重不一致、横竖屏均无法解释时才提高风险。"
+      "tolerance": "宽度和 DPR 严重不一致、横竖屏均无法解释时才提高风险。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-DISPLAY-001"
+        ],
+        "source_refs": [
+          "android-displaymetrics-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "medium",
+        "official_basis": "Android DisplayMetrics 和 Web viewport/DPR 语义支撑屏幕高度误差容错。"
+      }
     },
     {
       "id": "TOL-003",
@@ -617,7 +1191,10 @@
       "category": "容错规则",
       "priority": 10,
       "risk_level": "tolerance",
-      "score_range": [0, 20],
+      "score_range": [
+        0,
+        20
+      ],
       "short_circuit": false,
       "fields": [
         "android_native_data.total_memory_gb",
@@ -625,7 +1202,19 @@
       ],
       "trigger": "Web deviceMemory 与 Native 总内存存在 3GB 到 4GB 以内差异。",
       "risk_reason_template": "Web deviceMemory 本身是粗粒度近似，不应严格等值比较。",
-      "tolerance": "内存差异只有在与 UA、GPU、平台等多项矛盾并存时才作为辅助风险信号。"
+      "tolerance": "内存差异只有在与 UA、GPU、平台等多项矛盾并存时才作为辅助风险信号。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-MEMORY-001"
+        ],
+        "source_refs": [
+          "android-activitymanager-memoryinfo-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "low",
+        "official_basis": "Android MemoryInfo 与 Web deviceMemory 粗粒度语义支撑内存差异容错。"
+      }
     },
     {
       "id": "TOL-004",
@@ -633,7 +1222,10 @@
       "category": "容错规则",
       "priority": 10,
       "risk_level": "tolerance",
-      "score_range": [0, 20],
+      "score_range": [
+        0,
+        20
+      ],
       "short_circuit": false,
       "fields": [
         "webview_data.webview_provider_version",
@@ -641,7 +1233,19 @@
       ],
       "trigger": "WebView provider 与 UA 的 Chrome 主版本一致但小版本不同。",
       "risk_reason_template": "WebView/Chrome 小版本差异可由系统更新、厂商定制或 UA 格式差异造成。",
-      "tolerance": "仅主版本明显不一致时才作为跨层异常。"
+      "tolerance": "仅主版本明显不一致时才作为跨层异常。",
+      "official_knowledge": {
+        "card_refs": [
+          "GOKB-WEBVIEW-001"
+        ],
+        "source_refs": [
+          "android-websettings-api",
+          "android-webview-api"
+        ],
+        "inference_level": "derived",
+        "evidence_strength": "high",
+        "official_basis": "WebView provider 和 WebSettings/default UA 文档支撑只比较 Chrome 主版本的小版本容错。"
+      }
     }
   ],
   "output_contract": {
@@ -652,5 +1256,44 @@
     "risk_score_type": "integer from 0 to 100",
     "risk_reason_style": "一句中文短理由，指出命中的主要规则或说明低风险自洽原因。",
     "json_constraints": "risk_reason 内不要包含英文双引号、反斜杠或换行符。"
+  },
+  "external_knowledge_base": {
+    "name": "Google 官方技术文档外挂知识库",
+    "path": "google_official_kb/",
+    "card_version": "2026-06-28-batch2",
+    "integration_date": "2026-06-28",
+    "official_source_count": 30,
+    "card_count": 20,
+    "selected_card_count": 15,
+    "unselected_card_count": 5,
+    "selected_cards": [
+      "GOKB-AUTOMATION-001",
+      "GOKB-BATTERY-001",
+      "GOKB-BOOT-001",
+      "GOKB-BUILD-001",
+      "GOKB-DEVCONFIG-001",
+      "GOKB-DEVCONFIG-002",
+      "GOKB-DISPLAY-001",
+      "GOKB-EMULATOR-001",
+      "GOKB-MEMORY-001",
+      "GOKB-PACKAGE-001",
+      "GOKB-SENSOR-001",
+      "GOKB-UA-001",
+      "GOKB-WEBVIEW-001",
+      "GOKB-WEBVIEW-002",
+      "GOKB-WEBVIEW-003"
+    ],
+    "unselected_cards": [
+      "GOKB-KEY-001",
+      "GOKB-NET-001",
+      "GOKB-PLAY-001",
+      "GOKB-PLAY-002",
+      "GOKB-WEBVIEW-004"
+    ],
+    "integration_policy": [
+      "只合入能支撑当前已采集字段或现有规则的卡片。",
+      "只包含 FUTURE-* 目标的卡片暂不参与当前评分。",
+      "官方文档主要支撑字段语义、安全背景和容错边界；风险阈值仍来自本项目规则、攻击模板和实验数据。"
+    ]
   }
 }
