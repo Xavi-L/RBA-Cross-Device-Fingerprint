@@ -39,7 +39,7 @@ curl http://localhost:8000/health
 
 当前后端模型使用分层结构。一次会话可以分多次上报，只要 `session_id` 相同，后端会合并到 `merged_sessions.json`；当 Native 和 Web 数据都存在时，会追加扁平化记录到 `collected_data.jsonl`。
 
-新增的 `featureapp` 扩充采集模块会在上报中带上 `collector_app=featureapp` 和 `schema_version=expanded-v1`。后端会把这类扩充采集单独写入 `expanded_merged_sessions.json` 和 `expanded_collected_data.jsonl`，不改动旧采集文件。
+新增的 `featureapp` 扩充采集模块会在上报中带上 `collector_app=featureapp` 和 `schema_version=expanded-v2`。后端会把这类扩充采集单独写入 `expanded_merged_sessions.json` 和 `expanded_collected_data.jsonl`，不改动旧采集文件。
 
 ```bash
 curl -X POST http://localhost:8000/api/collect/fingerprint \
@@ -173,11 +173,11 @@ curl -X POST http://localhost:8000/api/risk/local-score \
 
 ## `featureapp` 扩充特征维度
 
-按固定字段键名统计，`featureapp` 当前扩充采集共 `154` 维：
+按固定字段键名统计，`featureapp` 当前扩充采集共 `177` 维：
 
-- Android Native：`79` 维。
+- Android Native：`84` 维，新增 EGL/OpenGL ES 原生 GPU 佐证字段，异常情况下会额外上报 `graphics_layer.graphics_probe_error`。
 - WebView 容器：`26` 维，异常情况下会额外上报 `exception_layer.error_msg`。
-- Web 运行时：`49` 维。
+- Web 运行时：`67` 维，新增 AudioContext、字体 hash、Permissions API 状态和 plugin/MIME hash 字段。
 
 App 界面里的 `Expanded feature count` 会把数组字段按元素个数计数，因此实机显示值可能随 `supported_abis`、`sensor_type_list`、`active_transport_types`、`languages` 的长度变化。
 

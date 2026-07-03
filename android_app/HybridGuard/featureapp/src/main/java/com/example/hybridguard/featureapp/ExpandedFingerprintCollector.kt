@@ -13,6 +13,12 @@ import android.os.Build
 import android.os.Environment
 import android.os.StatFs
 import android.os.SystemClock
+import android.opengl.EGL14
+import android.opengl.EGLConfig
+import android.opengl.EGLContext
+import android.opengl.EGLDisplay
+import android.opengl.EGLSurface
+import android.opengl.GLES20
 import android.provider.Settings
 import android.security.NetworkSecurityPolicy
 import android.webkit.WebSettings
@@ -152,6 +158,7 @@ class ExpandedFingerprintCollector(private val context: Context) {
         }
 
         val networkLayer = collectNetworkLayer()
+        val graphicsLayer = collectNativeGraphicsLayer()
 
         return JSONObject().apply {
             put("build_fingerprint_layer", buildLayer)
@@ -163,6 +170,7 @@ class ExpandedFingerprintCollector(private val context: Context) {
             put("storage_layer", storageLayer)
             put("locale_timezone_layer", localeLayer)
             put("network_state_layer", networkLayer)
+            put("graphics_layer", graphicsLayer)
         }
     }
 
@@ -241,6 +249,114 @@ class ExpandedFingerprintCollector(private val context: Context) {
         }
     }
 
+    private fun collectNativeGraphicsLayer(): JSONObject {
+        val result = JSONObject().apply {
+            put("native_gpu_vendor", JSONObject.NULL)
+            put("native_gpu_renderer", JSONObject.NULL)
+            put("egl_vendor", JSONObject.NULL)
+            put("egl_renderer", JSONObject.NULL)
+            put("gles_version", JSONObject.NULL)
+        }
+
+        var display: EGLDisplay? = null
+        var context: EGLContext? = null
+        var surface: EGLSurface? = null
+
+        try {
+            display = EGL14.eglGetDisplay(EGL14.EGL_DEFAULT_DISPLAY)
+            if (display == EGL14.EGL_NO_DISPLAY) {
+                throw IllegalStateException("EGL display unavailable")
+            }
+
+            val version = IntArray(2)
+            if (!EGL14.eglInitialize(display, version, 0, version, 1)) {
+                throw IllegalStateException("EGL initialize failed")
+            }
+
+            result.put("egl_vendor", EGL14.eglQueryString(display, EGL14.EGL_VENDOR) ?: JSONObject.NULL)
+
+            val configAttribs = intArrayOf(
+                EGL14.EGL_RENDERABLE_TYPE, EGL14.EGL_OPENGL_ES2_BIT,
+                EGL14.EGL_RED_SIZE, 8,
+                EGL14.EGL_GREEN_SIZE, 8,
+                EGL14.EGL_BLUE_SIZE, 8,
+                EGL14.EGL_ALPHA_SIZE, 8,
+                EGL14.EGL_NONE
+            )
+            val configs = arrayOfNulls<EGLConfig>(1)
+            val configCount = IntArray(1)
+            val hasConfig = EGL14.eglChooseConfig(
+                display,
+                configAttribs,
+                0,
+                configs,
+                0,
+                configs.size,
+                configCount,
+                0
+            )
+            val config = configs.firstOrNull()
+            if (!hasConfig || configCount[0] == 0 || config == null) {
+                throw IllegalStateException("EGL config unavailable")
+            }
+
+            context = EGL14.eglCreateContext(
+                display,
+                config,
+                EGL14.EGL_NO_CONTEXT,
+                intArrayOf(EGL14.EGL_CONTEXT_CLIENT_VERSION, 2, EGL14.EGL_NONE),
+                0
+            )
+            if (context == EGL14.EGL_NO_CONTEXT) {
+                throw IllegalStateException("EGL context unavailable")
+            }
+
+            surface = EGL14.eglCreatePbufferSurface(
+                display,
+                config,
+                intArrayOf(EGL14.EGL_WIDTH, 1, EGL14.EGL_HEIGHT, 1, EGL14.EGL_NONE),
+                0
+            )
+            if (surface == EGL14.EGL_NO_SURFACE) {
+                throw IllegalStateException("EGL surface unavailable")
+            }
+
+            if (!EGL14.eglMakeCurrent(display, surface, surface, context)) {
+                throw IllegalStateException("EGL makeCurrent failed")
+            }
+
+            val glVendor = GLES20.glGetString(GLES20.GL_VENDOR)
+            val glRenderer = GLES20.glGetString(GLES20.GL_RENDERER)
+            result.put("native_gpu_vendor", glVendor ?: JSONObject.NULL)
+            result.put("native_gpu_renderer", glRenderer ?: JSONObject.NULL)
+            result.put("egl_renderer", glRenderer ?: JSONObject.NULL)
+            result.put("gles_version", GLES20.glGetString(GLES20.GL_VERSION) ?: JSONObject.NULL)
+        } catch (e: Exception) {
+            result.put("graphics_probe_error", e.message ?: e.javaClass.simpleName)
+        } finally {
+            val eglDisplay = display
+            if (eglDisplay != null && eglDisplay != EGL14.EGL_NO_DISPLAY) {
+                EGL14.eglMakeCurrent(
+                    eglDisplay,
+                    EGL14.EGL_NO_SURFACE,
+                    EGL14.EGL_NO_SURFACE,
+                    EGL14.EGL_NO_CONTEXT
+                )
+                val eglSurface = surface
+                if (eglSurface != null && eglSurface != EGL14.EGL_NO_SURFACE) {
+                    EGL14.eglDestroySurface(eglDisplay, eglSurface)
+                }
+                val eglContext = context
+                if (eglContext != null && eglContext != EGL14.EGL_NO_CONTEXT) {
+                    EGL14.eglDestroyContext(eglDisplay, eglContext)
+                }
+                EGL14.eglTerminate(eglDisplay)
+            }
+        }
+
+        return result
+    }
+
     private fun globalInt(name: String): Int {
         return try {
             Settings.Global.getInt(context.contentResolver, name, 0)
@@ -283,4 +399,3 @@ class ExpandedFingerprintCollector(private val context: Context) {
         }
     }
 }
-

@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
                     put("session_id", sessionId)
                     put("timestamp", System.currentTimeMillis() / 1000)
                     put("collector_app", "featureapp")
-                    put("schema_version", "expanded-v1")
+                    put("schema_version", "expanded-v2")
                     put("android_native_data", nativeDataLayered)
                     put("webview_data", webPayload.optJSONObject("webview_data") ?: JSONObject())
                     put("web_data", webPayload.optJSONObject("web_data") ?: JSONObject())

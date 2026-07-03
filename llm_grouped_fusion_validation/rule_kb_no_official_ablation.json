@@ -1,0 +1,780 @@
+{
+  "version": "2026-06-28-google-official-kb-no-official-ablation",
+  "name": "HybridGuard 综合规则知识库",
+  "description": "用于离线大模型风险标签生成的跨层语义规则集合。规则覆盖 Native、WebView、Web 三端一致性、物理可信性、宿主真实性、自动化/重放、云机房/测试机架和容错策略。",
+  "source_basis": [
+    "ablation/consistency_feature_rules.md",
+    "ablation/run_consistency_ablation.py",
+    "scoring/sorting.py",
+    "scoring/generate_bad_data.py",
+    "backend_server/rba_engine.py",
+    "training/scored_data.jsonl",
+    "google_official_kb/official_sources.jsonl",
+    "google_official_kb/feature_risk_cards.json",
+    "google_official_kb/integration_report.md"
+  ],
+  "field_conventions": {
+    "missing_numeric": "关键数值字段缺失时视为无法判断；仅在规则明确声明时将缺失视为高风险。",
+    "missing_boolean": "布尔字段缺失时视为未知；JSBridge 注入状态缺失或 false 在 App WebView 场景下属于强异常。",
+    "screen_rule": "Native 物理像素应近似等于 Web 逻辑像素 x DPR，并允许状态栏、导航栏、安全区和横竖屏造成的误差。",
+    "memory_rule": "Web deviceMemory 是粗粒度近似值，和 Native 总内存允许数 GB 级差异。",
+    "development_context": "开发灰度阶段允许 ADB、debuggable、cleartext 单独出现；它们只在与 manual 安装、满电、UTC 时区或其他异常组合时提高风险。",
+    "android_version_context": "Android 16 和 API Level 36 属于合法版本，不应仅因版本较新而判定异常。"
+  },
+  "score_bands": [
+    {
+      "range": [
+        0,
+        20
+      ],
+      "label": "low",
+      "meaning": "三端身份链条基本自洽，安装来源合理，未触发高危规则。"
+    },
+    {
+      "range": [
+        21,
+        34
+      ],
+      "label": "low_medium",
+      "meaning": "存在轻微信号缺失或单项弱异常，但不足以判定攻击。"
+    },
+    {
+      "range": [
+        35,
+        49
+      ],
+      "label": "medium_cloud_or_test",
+      "meaning": "更像云真机、测试机架或自动化调试设备，但核心设备链条仍可能完整。"
+    },
+    {
+      "range": [
+        50,
+        79
+      ],
+      "label": "suspicious",
+      "meaning": "多项跨层不一致或明显环境异常并存，需要判为可疑。"
+    },
+    {
+      "range": [
+        80,
+        100
+      ],
+      "label": "high",
+      "meaning": "命中一票否决、高危模拟器、无头浏览器、接口重放或严重跨层撕裂。"
+    }
+  ],
+  "evaluation_order": [
+    "先检查 short_circuit=true 的一票否决规则，命中后不得被低风险规则降级。",
+    "再检查云机房、测试机架、模拟器、无头浏览器、接口重放等场景组合规则。",
+    "随后检查 Native-Web、Native-WebView、WebView-Web 的跨层一致性规则，按失败数量和严重程度综合调整。",
+    "最后应用低风险白名单和容错规则，避免把开发配置、屏幕高度误差、内存近似差异等单独判为高危。"
+  ],
+  "rules": [
+    {
+      "id": "CORE-001",
+      "name": "Native 缺失与接口重放",
+      "category": "核心完整性",
+      "priority": 100,
+      "risk_level": "critical",
+      "score_range": [
+        90,
+        100
+      ],
+      "short_circuit": true,
+      "fields": [
+        "android_native_data.*",
+        "webview_data.jsbridge_injected",
+        "web_data.user_agent"
+      ],
+      "trigger": "Native 关键字段整体缺失或大量为 null，同时 JSBridge 未注入，或 Web UA 明确为 python-requests 等脚本客户端。",
+      "risk_reason_template": "Native 容器链路缺失且 Web 请求不像来自 App WebView，疑似接口重放或脱离宿主的脚本请求。",
+      "tolerance": "仅个别 Native 字段缺失不直接触发本规则。"
+    },
+    {
+      "id": "CORE-002",
+      "name": "传感器或 JSBridge 一票否决",
+      "category": "核心完整性",
+      "priority": 98,
+      "risk_level": "critical",
+      "score_range": [
+        90,
+        100
+      ],
+      "short_circuit": true,
+      "fields": [
+        "android_native_data.sensor_total_count",
+        "webview_data.jsbridge_injected"
+      ],
+      "trigger": "sensor_total_count < 10，或 jsbridge_injected 为 false。",
+      "risk_reason_template": "核心传感器矩阵严重缺失或 JSBridge 未注入，底层设备与 App 宿主真实性不足。",
+      "tolerance": "低端真机可能缺少少数传感器，但传感器总数极低或桥接缺失仍属于强异常。"
+    },
+    {
+      "id": "CORE-003",
+      "name": "关键传感器矩阵异常",
+      "category": "核心完整性",
+      "priority": 88,
+      "risk_level": "high",
+      "score_range": [
+        80,
+        95
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.sensor_total_count",
+        "android_native_data.has_gyroscope",
+        "android_native_data.has_accelerometer",
+        "android_native_data.has_magnetic_field",
+        "android_native_data.has_light_sensor",
+        "android_native_data.has_proximity_sensor"
+      ],
+      "trigger": "sensor_total_count 明显偏低，且陀螺仪、加速度计、磁力计、光线或距离传感器中多项缺失。",
+      "risk_reason_template": "设备传感器矩阵不像真实移动终端，疑似模拟器或精简虚拟环境。",
+      "tolerance": "压力传感器缺失较常见，不应单独扣高分。"
+    },
+    {
+      "id": "NW-001",
+      "name": "Native 型号与 Web UA 宽松匹配",
+      "category": "Native-Web 一致性",
+      "priority": 80,
+      "risk_level": "medium",
+      "score_range": [
+        45,
+        75
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.device_model",
+        "android_native_data.device_product",
+        "android_native_data.device_board",
+        "android_native_data.device_brand",
+        "android_native_data.device_manufacturer",
+        "web_data.user_agent"
+      ],
+      "trigger": "Native 型号、产品、主板、品牌或厂商无法在 Android Web UA 中得到合理印证，或 UA 不像移动 Android 环境。",
+      "risk_reason_template": "Native 设备身份与 Web UA 不自洽，可能存在 UA 改写、模板伪造或代理采集。",
+      "tolerance": "UA 只包含 Android 但缺少具体型号时只作为弱异常；不同厂商 UA 表达存在差异。"
+    },
+    {
+      "id": "NW-002",
+      "name": "Android 版本一致性",
+      "category": "Native-Web 一致性",
+      "priority": 78,
+      "risk_level": "medium",
+      "score_range": [
+        40,
+        70
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.os_version",
+        "android_native_data.os_api_level",
+        "web_data.user_agent"
+      ],
+      "trigger": "Native Android 主版本与 Web UA 中声明的 Android 主版本不一致。",
+      "risk_reason_template": "Native OS 版本与 Web UA 版本不一致，说明 Web 运行环境可能被替换或模板化。",
+      "tolerance": "Android 16/API 36 是合法版本；无法解析版本时记为未知，不单独高危。"
+    },
+    {
+      "id": "NW-003",
+      "name": "屏幕与 DPR 软一致性",
+      "category": "Native-Web 一致性",
+      "priority": 74,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        65
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.screen_resolution_physical",
+        "web_data.screen_resolution_logical",
+        "web_data.device_pixel_ratio"
+      ],
+      "trigger": "Native 物理分辨率与 Web 逻辑分辨率 x DPR 的最大相对误差超过 10%，且无法由横竖屏或可用高度差解释。",
+      "risk_reason_template": "Native 屏幕与 Web 屏幕/DPR 无法对应，可能存在 Web 环境伪造或脱离宿主。",
+      "tolerance": "允许状态栏、导航栏、安全区导致的高度误差；优先按横竖屏两种方向选择较小误差。"
+    },
+    {
+      "id": "NW-004",
+      "name": "CPU ABI 与 Web platform 一致性",
+      "category": "Native-Web 一致性",
+      "priority": 72,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        65
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.cpu_abi",
+        "web_data.platform"
+      ],
+      "trigger": "Native CPU ABI 显示 ARM/ARM64，而 Web platform 暴露 Win32、Win64、x86 等不一致平台，或反向出现明显矛盾。",
+      "risk_reason_template": "Native CPU 架构与 Web platform 不一致，说明 Web 运行环境不像来自同一移动设备。",
+      "tolerance": "某些浏览器 platform 字段较粗糙；无法识别时只作为未知。"
+    },
+    {
+      "id": "NW-005",
+      "name": "硬件族与 WebGL GPU 一致性",
+      "category": "Native-Web 一致性",
+      "priority": 82,
+      "risk_level": "high",
+      "score_range": [
+        55,
+        90
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.device_hardware",
+        "android_native_data.device_board",
+        "android_native_data.device_product",
+        "android_native_data.device_manufacturer",
+        "web_data.webgl_vendor",
+        "web_data.webgl_renderer"
+      ],
+      "trigger": "Native 硬件族与 WebGL renderer/GPU 族不匹配，尤其是真机硬件族对应 SwiftShader、Headless、Apple ANGLE 或桌面 GPU。",
+      "risk_reason_template": "底层 SoC 与 WebGL 渲染器生态不匹配，疑似模拟器、无头浏览器或桌面环境伪装。",
+      "tolerance": "MediaTek、Huawei、Samsung 等可宽松匹配 Mali 或 PowerVR；仅未知 GPU 不直接高危。"
+    },
+    {
+      "id": "NW-006",
+      "name": "桌面或自动化 UA 痕迹",
+      "category": "Native-Web 一致性",
+      "priority": 90,
+      "risk_level": "high",
+      "score_range": [
+        80,
+        100
+      ],
+      "short_circuit": false,
+      "fields": [
+        "web_data.user_agent",
+        "web_data.platform"
+      ],
+      "trigger": "Web UA 或 platform 包含 Windows NT、Win64、Headless、python-requests 等桌面/自动化痕迹。",
+      "risk_reason_template": "Web 层暴露桌面浏览器、无头浏览器或脚本客户端痕迹，与移动 App 场景冲突。",
+      "tolerance": "仅缺少具体型号不等同于桌面 UA；必须结合明确关键词判断。"
+    },
+    {
+      "id": "NW-007",
+      "name": "触控能力与移动 UA 一致性",
+      "category": "Native-Web 一致性",
+      "priority": 64,
+      "risk_level": "medium",
+      "score_range": [
+        30,
+        60
+      ],
+      "short_circuit": false,
+      "fields": [
+        "web_data.user_agent",
+        "web_data.max_touch_points"
+      ],
+      "trigger": "UA 声称 Android Mobile，但 max_touch_points 为 0 或缺失。",
+      "risk_reason_template": "Web UA 声称移动设备但触控能力缺失，可能是桌面浏览器伪装移动 UA。",
+      "tolerance": "触点数量具体值不要求一致，只要求移动环境具备基本触控能力。"
+    },
+    {
+      "id": "NW-008",
+      "name": "内存容量软一致性",
+      "category": "Native-Web 一致性",
+      "priority": 50,
+      "risk_level": "low_medium",
+      "score_range": [
+        20,
+        45
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.total_memory_gb",
+        "web_data.device_memory"
+      ],
+      "trigger": "Native 总内存与 Web deviceMemory 差异过大，并与其他身份不一致信号同时出现。",
+      "risk_reason_template": "Native 与 Web 层内存规模差异较大，作为跨层身份不一致的辅助证据。",
+      "tolerance": "Web deviceMemory 粗粒度取整，3GB 到 4GB 内的差异不扣高分。"
+    },
+    {
+      "id": "NVW-001",
+      "name": "WebView system HTTP agent 与 Native 型号一致性",
+      "category": "Native-WebView 一致性",
+      "priority": 76,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        65
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.device_model",
+        "webview_data.system_http_agent"
+      ],
+      "trigger": "Native device_model 无法在 WebView system_http_agent 中得到印证。",
+      "risk_reason_template": "App 宿主层 system HTTP agent 与 Native 型号不一致，身份链条可能被改写。",
+      "tolerance": "system_http_agent 缺少型号时为弱异常，需要结合 UA 和版本规则判断。"
+    },
+    {
+      "id": "NVW-002",
+      "name": "WebView system HTTP agent 与 Native Android 版本一致性",
+      "category": "Native-WebView 一致性",
+      "priority": 76,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        65
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.os_version",
+        "webview_data.system_http_agent"
+      ],
+      "trigger": "Native Android 主版本与 WebView system_http_agent 中的 Android 主版本不一致。",
+      "risk_reason_template": "Native OS 与 WebView 宿主 agent 版本不一致，可能存在宿主信息替换或模板化。",
+      "tolerance": "无法解析版本时不单独高危。"
+    },
+    {
+      "id": "NVW-003",
+      "name": "预期 App 包名一致性",
+      "category": "Native-WebView 一致性",
+      "priority": 70,
+      "risk_level": "medium",
+      "score_range": [
+        40,
+        70
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.app_package_name"
+      ],
+      "trigger": "app_package_name 不以 com.example.hybridguard 开头。",
+      "risk_reason_template": "数据来源包名不是预期 App 宿主，采集链路可信度下降。",
+      "tolerance": "调试包名或模块包名只要保留 com.example.hybridguard 前缀即可接受。"
+    },
+    {
+      "id": "NVW-004",
+      "name": "安装来源语义",
+      "category": "Native-WebView 一致性",
+      "priority": 62,
+      "risk_level": "low_medium",
+      "score_range": [
+        20,
+        45
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.installer_package"
+      ],
+      "trigger": "installer_package 为 manual 时作为可疑部署线索；包含 packageinstaller、browser、vending 时作为正常来源线索。",
+      "risk_reason_template": "安装来源显示手动部署，需要结合 ADB、时区、电量等判断是否为云机房或测试机架。",
+      "tolerance": "manual 不单独高危；官方安装器、系统安装器、浏览器下载和应用市场可视为合理来源。"
+    },
+    {
+      "id": "NVW-005",
+      "name": "Debug 与明文流量张力",
+      "category": "Native-WebView 一致性",
+      "priority": 40,
+      "risk_level": "low_medium",
+      "score_range": [
+        10,
+        35
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.is_debuggable",
+        "webview_data.is_cleartext_traffic_permitted"
+      ],
+      "trigger": "is_debuggable 为 true 且 is_cleartext_traffic_permitted 为 true。",
+      "risk_reason_template": "宿主呈现开发/测试配置，可作为辅助环境信号。",
+      "tolerance": "开发灰度阶段允许该组合，不应单独判定中高风险。"
+    },
+    {
+      "id": "WVWEB-001",
+      "name": "WebView provider 与 Web UA Chrome 主版本一致性",
+      "category": "WebView-Web 一致性",
+      "priority": 78,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        65
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.webview_provider_version",
+        "web_data.user_agent"
+      ],
+      "trigger": "WebView provider 主版本与 Web UA 中 Chrome/Chromium 主版本不一致。",
+      "risk_reason_template": "WebView provider 版本与 Web UA Chrome 主版本不一致，UA 可能被改写或不是该 WebView 产生。",
+      "tolerance": "只比较主版本；小版本差异不单独扣分。"
+    },
+    {
+      "id": "WVWEB-002",
+      "name": "Android WebView UA token",
+      "category": "WebView-Web 一致性",
+      "priority": 54,
+      "risk_level": "low_medium",
+      "score_range": [
+        20,
+        45
+      ],
+      "short_circuit": false,
+      "fields": [
+        "web_data.user_agent"
+      ],
+      "trigger": "Web UA 缺少 ; wv 或 Version/4.0 等 Android WebView 标记。",
+      "risk_reason_template": "Web UA 缺少典型 WebView token，宿主容器一致性减弱。",
+      "tolerance": "部分系统或厂商 UA 可能省略 token，因此该规则只作辅助。"
+    },
+    {
+      "id": "WVWEB-003",
+      "name": "JSBridge 与移动 WebView 运行时一致性",
+      "category": "WebView-Web 一致性",
+      "priority": 82,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        70
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.jsbridge_injected",
+        "web_data.user_agent"
+      ],
+      "trigger": "JSBridge 已注入、UA 为 Android Mobile、UA 包含 WebView token 时视为强一致；任一关键条件缺失则降低宿主一致性。",
+      "risk_reason_template": "JSBridge、移动 UA 与 WebView token 未能共同成立，WebView-Web 运行时自洽度不足。",
+      "tolerance": "仅缺少 WebView token 时不直接高危，应结合桥接和 UA 类型。"
+    },
+    {
+      "id": "WVWEB-004",
+      "name": "非浏览器 UA",
+      "category": "WebView-Web 一致性",
+      "priority": 96,
+      "risk_level": "critical",
+      "score_range": [
+        90,
+        100
+      ],
+      "short_circuit": true,
+      "fields": [
+        "web_data.user_agent"
+      ],
+      "trigger": "UA 包含 python-requests、curl、okhttp 脚本化直连痕迹，且无法解释为 App WebView 正常页面。",
+      "risk_reason_template": "Web 层 UA 暴露非浏览器 HTTP 客户端，疑似脚本直连或接口重放。",
+      "tolerance": "App 内正常 WebView 不应出现该类 UA。"
+    },
+    {
+      "id": "PHYS-001",
+      "name": "模拟器硬件关键词",
+      "category": "物理与运行环境",
+      "priority": 92,
+      "risk_level": "high",
+      "score_range": [
+        80,
+        100
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.device_board",
+        "android_native_data.device_hardware",
+        "android_native_data.cpu_abi",
+        "web_data.webgl_renderer"
+      ],
+      "trigger": "device_board/device_hardware 包含 goldfish、ranchu、emulator，或 cpu_abi 为 x86，且 WebGL renderer 出现 SwiftShader 等软渲染线索。",
+      "risk_reason_template": "Native 硬件和 WebGL 渲染同时暴露模拟器特征。",
+      "tolerance": "单独 x86 需要结合硬件和渲染证据判断。"
+    },
+    {
+      "id": "PHYS-002",
+      "name": "WebGL 软件渲染或桌面渲染",
+      "category": "物理与运行环境",
+      "priority": 88,
+      "risk_level": "high",
+      "score_range": [
+        70,
+        95
+      ],
+      "short_circuit": false,
+      "fields": [
+        "web_data.webgl_vendor",
+        "web_data.webgl_renderer"
+      ],
+      "trigger": "WebGL renderer 包含 SwiftShader、Headless、ANGLE Apple、VMware、VirtualBox 或明显桌面 GPU 线索。",
+      "risk_reason_template": "WebGL 渲染器不像移动端硬件路径，疑似模拟器、无头浏览器或桌面环境。",
+      "tolerance": "厂商 GPU 名称差异较大，需优先识别软件/桌面关键词。"
+    },
+    {
+      "id": "PHYS-003",
+      "name": "算力耗时异常",
+      "category": "物理与运行环境",
+      "priority": 66,
+      "risk_level": "medium",
+      "score_range": [
+        30,
+        65
+      ],
+      "short_circuit": false,
+      "fields": [
+        "web_data.compute_task_time_ms",
+        "android_native_data.sensor_total_count",
+        "web_data.user_agent"
+      ],
+      "trigger": "compute_task_time_ms < 50 且伴随桌面/无头 UA 或传感器缺失，或 compute_task_time_ms > 800 且伴随 manual、ADB、UTC 时区等机房线索。",
+      "risk_reason_template": "Web 执行耗时与移动端运行环境不匹配，可作为 PC 伪装或资源受限群控环境的辅助证据。",
+      "tolerance": "算力挑战受 JIT 预热、设备性能和负载影响，不应单独判高危。"
+    },
+    {
+      "id": "PHYS-004",
+      "name": "电池温度死值",
+      "category": "物理与运行环境",
+      "priority": 68,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        70
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.battery_temp_celsius",
+        "android_native_data.sensor_total_count",
+        "web_data.webgl_renderer"
+      ],
+      "trigger": "battery_temp_celsius 长期为 0、20.0、25.0 等模板值，并伴随传感器缺失、软渲染或模拟器硬件关键词。",
+      "risk_reason_template": "电池温度呈现模板化死值，并与其他虚拟环境特征同时出现。",
+      "tolerance": "单条样本中的常见温度值不直接高危，需要结合其他异常。"
+    },
+    {
+      "id": "PHYS-005",
+      "name": "ADB 与满电组合",
+      "category": "物理与运行环境",
+      "priority": 76,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        45
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.is_adb_enabled",
+        "android_native_data.battery_level_pct",
+        "android_native_data.is_charging"
+      ],
+      "trigger": "is_adb_enabled 为 true 且 battery_level_pct >= 97，尤其是长期接电或电量满载。",
+      "risk_reason_template": "ADB 常开且电量接近满载，符合测试机架、云真机或自动化群控设备特征。",
+      "tolerance": "ADB 单独开启在开发灰度阶段可容忍，不应超过低风险或轻中风险。"
+    },
+    {
+      "id": "PHYS-006",
+      "name": "构建指纹调试/模拟器痕迹",
+      "category": "物理与运行环境",
+      "priority": 72,
+      "risk_level": "medium",
+      "score_range": [
+        40,
+        75
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.build_fingerprint",
+        "android_native_data.build_tags",
+        "android_native_data.build_type"
+      ],
+      "trigger": "build_fingerprint 或 build_tags 出现 test-keys、dev-keys、generic、sdk_gphone、emulator、userdebug 等调试或模拟器痕迹。",
+      "risk_reason_template": "系统构建指纹暴露调试或模拟器环境特征。",
+      "tolerance": "仅 user/release-keys 属于正常发布构建信号。"
+    },
+    {
+      "id": "SCENE-001",
+      "name": "云机房或测试机架",
+      "category": "攻击场景聚合",
+      "priority": 86,
+      "risk_level": "medium",
+      "score_range": [
+        35,
+        45
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.installer_package",
+        "web_data.timezone_offset",
+        "android_native_data.is_adb_enabled",
+        "android_native_data.battery_level_pct"
+      ],
+      "trigger": "未命中一票否决时，installer_package 严格等于 manual 且 timezone_offset 为 0 或 ADB 开启；或 ADB 开启且电量 >= 97。",
+      "risk_reason_template": "核心设备链条基本存在，但 manual 安装、ADB、UTC 时区或满电组合更像云机房或测试机架。",
+      "tolerance": "该场景不应与模拟器/重放混淆；若传感器和 Bridge 正常，通常给 35-45 分。"
+    },
+    {
+      "id": "SCENE-002",
+      "name": "廉价模拟器",
+      "category": "攻击场景聚合",
+      "priority": 94,
+      "risk_level": "critical",
+      "score_range": [
+        90,
+        100
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.device_board",
+        "android_native_data.device_hardware",
+        "android_native_data.cpu_abi",
+        "android_native_data.sensor_total_count",
+        "web_data.webgl_renderer",
+        "web_data.timezone_offset"
+      ],
+      "trigger": "goldfish/ranchu/x86/SwiftShader/UTC 时区/极少传感器等典型模拟器特征组合出现。",
+      "risk_reason_template": "硬件、传感器、渲染和时区同时呈现廉价模拟器模板特征。",
+      "tolerance": "需要多项模拟器证据共同出现。"
+    },
+    {
+      "id": "SCENE-003",
+      "name": "无头 PC 浏览器伪装",
+      "category": "攻击场景聚合",
+      "priority": 94,
+      "risk_level": "critical",
+      "score_range": [
+        90,
+        100
+      ],
+      "short_circuit": false,
+      "fields": [
+        "web_data.user_agent",
+        "web_data.platform",
+        "web_data.max_touch_points",
+        "web_data.compute_task_time_ms",
+        "web_data.webgl_renderer",
+        "android_native_data.sensor_total_count"
+      ],
+      "trigger": "UA 或 platform 暴露 Windows/Headless，max_touch_points 为 0，compute_task_time_ms 异常偏快，或传感器缺失。",
+      "risk_reason_template": "Web 层呈现无头 PC 或桌面自动化环境，与移动 App 指纹严重冲突。",
+      "tolerance": "单个算力偏快不充分，需要与桌面/无头/触控缺失等证据组合。"
+    },
+    {
+      "id": "SCENE-004",
+      "name": "官方来源与核心完整性通过",
+      "category": "低风险确认",
+      "priority": 30,
+      "risk_level": "low",
+      "score_range": [
+        0,
+        20
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.installer_package",
+        "android_native_data.sensor_total_count",
+        "webview_data.jsbridge_injected"
+      ],
+      "trigger": "installer_package 包含 packageinstaller、browser、vending 等合理来源，sensor_total_count >= 10，且 JSBridge 注入成功，并且未触发高危规则。",
+      "risk_reason_template": "安装来源合理，核心传感器和 JSBridge 完整，三端身份链条基本可信。",
+      "tolerance": "低风险规则只能在未命中高危规则时使用，不能覆盖一票否决。"
+    },
+    {
+      "id": "AGG-001",
+      "name": "三端平均一致性与失败计数",
+      "category": "聚合规则",
+      "priority": 58,
+      "risk_level": "medium",
+      "score_range": [
+        30,
+        75
+      ],
+      "short_circuit": false,
+      "fields": [
+        "consistency_tri_layer_mean_match_score",
+        "consistency_tri_layer_failure_count"
+      ],
+      "trigger": "多个以 match、pass、consistent_10pct 结尾的一致性检查同时失败，或平均一致性分明显偏低。",
+      "risk_reason_template": "单项差异可能来自采集误差，但多项跨层一致性同时失败说明设备身份链条存在系统性矛盾。",
+      "tolerance": "聚合规则用于综合加权，不替代具体高危规则。"
+    },
+    {
+      "id": "TOL-001",
+      "name": "开发配置容错",
+      "category": "容错规则",
+      "priority": 10,
+      "risk_level": "tolerance",
+      "score_range": [
+        0,
+        20
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.is_adb_enabled",
+        "webview_data.is_debuggable",
+        "webview_data.is_cleartext_traffic_permitted"
+      ],
+      "trigger": "ADB、debuggable 或 cleartext 单独出现。",
+      "risk_reason_template": "开发灰度阶段允许调试配置单独存在，不应作为高危依据。",
+      "tolerance": "若与 manual 安装、满电、UTC 时区或其他异常组合出现，则转交云机房/测试机架规则判断。"
+    },
+    {
+      "id": "TOL-002",
+      "name": "屏幕高度误差容错",
+      "category": "容错规则",
+      "priority": 10,
+      "risk_level": "tolerance",
+      "score_range": [
+        0,
+        20
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.screen_resolution_physical",
+        "web_data.screen_resolution_logical",
+        "web_data.device_pixel_ratio",
+        "web_data.avail_height"
+      ],
+      "trigger": "仅 Web 高度或可用高度与 Native 物理高度存在状态栏/导航栏级差异。",
+      "risk_reason_template": "移动 WebView 的可用高度会受系统 UI 影响，不能单独作为攻击证据。",
+      "tolerance": "宽度和 DPR 严重不一致、横竖屏均无法解释时才提高风险。"
+    },
+    {
+      "id": "TOL-003",
+      "name": "内存粗粒度容错",
+      "category": "容错规则",
+      "priority": 10,
+      "risk_level": "tolerance",
+      "score_range": [
+        0,
+        20
+      ],
+      "short_circuit": false,
+      "fields": [
+        "android_native_data.total_memory_gb",
+        "web_data.device_memory"
+      ],
+      "trigger": "Web deviceMemory 与 Native 总内存存在 3GB 到 4GB 以内差异。",
+      "risk_reason_template": "Web deviceMemory 本身是粗粒度近似，不应严格等值比较。",
+      "tolerance": "内存差异只有在与 UA、GPU、平台等多项矛盾并存时才作为辅助风险信号。"
+    },
+    {
+      "id": "TOL-004",
+      "name": "WebView Chrome 小版本容错",
+      "category": "容错规则",
+      "priority": 10,
+      "risk_level": "tolerance",
+      "score_range": [
+        0,
+        20
+      ],
+      "short_circuit": false,
+      "fields": [
+        "webview_data.webview_provider_version",
+        "web_data.user_agent"
+      ],
+      "trigger": "WebView provider 与 UA 的 Chrome 主版本一致但小版本不同。",
+      "risk_reason_template": "WebView/Chrome 小版本差异可由系统更新、厂商定制或 UA 格式差异造成。",
+      "tolerance": "仅主版本明显不一致时才作为跨层异常。"
+    }
+  ],
+  "output_contract": {
+    "required_fields": [
+      "risk_score",
+      "risk_reason"
+    ],
+    "risk_score_type": "integer from 0 to 100",
+    "risk_reason_style": "一句中文短理由，指出命中的主要规则或说明低风险自洽原因。",
+    "json_constraints": "risk_reason 内不要包含英文双引号、反斜杠或换行符。"
+  },
+  "ablation_note": "Generated for K0 ablation: official_knowledge and external_knowledge_base metadata removed; scoring rules, score ranges, and evaluation order are kept."
+}

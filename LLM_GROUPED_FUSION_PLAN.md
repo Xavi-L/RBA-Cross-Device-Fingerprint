@@ -177,6 +177,39 @@ alpha    = [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0]
 - grouped CV 均值和标准差
 - 学到的组权重稳定性
 
+## 设备画像重复与分组权重
+
+云测平台和 BrowserStack 这类真实设备池通常会提供大量会话，但可用设备型号和稳定设备画像数量有限。后续采集几千条训练样本时，很可能出现多条样本来自同一台设备，或来自同一套高度相似的设备画像。实验设计必须区分两个问题：
+
+- 评估泄漏：同一稳定设备画像同时出现在训练 fold 和测试 fold，导致测试指标虚高。
+- 训练偏置：某个设备画像重复采样很多次，即使不泄漏到测试 fold，也会在训练损失中被过度放大。
+
+因此 grouped CV 的 `group_id` 不能只按 `source_type`、攻击类型或粗粒度模板划分。真实设备和云测设备应额外生成 `stable_device_key`，再用它作为分组边界：
+
+```text
+group_id = source_type + "::" + stable_device_key
+```
+
+`stable_device_key` 只使用稳定身份字段，例如：
+
+- Native：`build_fingerprint`、`device_model`、`device_product`、`device_board`、`device_hardware`、`os_api_level`、`build_id`、`supported_abis`。
+- 屏幕和硬件：物理分辨率、DPI、DPR、刷新率、`total_memory_gb`、传感器数量和传感器类型集合。
+- WebView/Web：WebView/Chrome 主版本、解析后的 Android/Chrome 版本、`webgl_renderer`、GPU 族、`canvas_hash`、`hardware_concurrency`、`device_memory`。
+
+不要把会话状态字段放进 `stable_device_key`，例如 `uptime_ms`、`avail_memory_gb`、电量、电池温度、电压、安装时间、运行耗时、语言、时区、网络状态等。这些字段可作为证据或扰动对象，但不能决定分组身份。
+
+权重学习时还需要降低重复设备画像对训练目标的支配。推荐对训练 fold 使用组内样本权重：
+
+```text
+sample_weight_i = 1 / group_size(group_id_i)
+```
+
+这样每个稳定设备画像在训练损失中的总权重近似为 1，避免 100 条同设备会话比 3 条同设备会话影响大几十倍。若不同 `source_type` 的样本量差异很大，可以先在 `source_type` 内做组权重，再按实验目标决定是否做类别/来源级归一化。
+
+LLM 组分数也应支持缓存去重。对稳定身份和分组证据摘要完全一致或高度一致的样本，可以生成 `evidence_hash`，只让 LLM 评分一次，再把同一组分数映射回对应会话。缓存去重只减少成本和随机波动，不能改变 grouped CV 的分组边界。
+
+如果要做随机扰动，只能作为训练 fold 内的数据增强，并且只扰动会话运行时字段。测试 fold 必须保留原始采集数据。论文表述应写成“会话级运行时扰动增强”，不要表述为“增加真实设备数量”。
+
 ## 数据泄漏注意事项
 
 权重学习和 `alpha/l1_ratio` 选择都不能在最终测试 fold 上完成。否则会把测试集信息泄漏进模型选择。
@@ -193,6 +226,9 @@ alpha    = [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0]
 - `session_id`
 - `source_type`
 - `group_id`
+- `stable_device_key`
+- `evidence_hash`
+- `sample_weight`
 - 各组 score
 - 各组 reason
 - 使用的模型名
@@ -209,6 +245,7 @@ alpha    = [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0]
 - 可解释：能映射到设备、宿主、运行时或攻击场景证据。
 - 可跨层比对：最好能和另一层字段形成一致性关系。
 - 可稳定采集：不同 Android/WebView 版本下缺失率可控。
+- 可分组审计：能判断该字段属于稳定设备身份、半稳定场景配置，还是会话运行时状态。
 
 不建议直接把高基数字符串原样喂给融合模型，例如完整 `user_agent`、完整 `build_fingerprint`、完整 `canvas_hash`。更好的做法是解析为语义变量：
 
@@ -223,21 +260,28 @@ alpha    = [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0]
 ## 推荐实现步骤
 
 1. 新增脚本生成分组证据摘要，例如 `ablation/run_llm_grouped_fusion.py`。
-2. 复用现有 `group_id` 划分逻辑，保证 grouped CV 一致。
-3. 为每条样本生成 LLM 分组子分数，并缓存为 `ablation/llm_group_scores.csv`。
-4. 在缓存的组分数上实现 ElasticNet nested grouped CV。
-5. 导出：
+2. 为每条样本生成 `source_type`、`stable_device_key`、`group_id`、`group_size` 和 `sample_weight`。
+3. 用 `stable_device_key` 作为外层和内层 grouped CV 的分组边界，避免同设备画像跨 fold 泄漏。
+4. 为每条样本生成 LLM 分组子分数，并缓存为 `ablation/llm_group_scores.csv`；缓存中保留 `evidence_hash`，支持相同证据摘要去重。
+5. 在缓存的组分数上实现带 `sample_weight` 的 ElasticNet nested grouped CV。
+6. 导出：
    - `llm_grouped_fusion_summary.csv`
    - `llm_grouped_fusion_fold_metrics.csv`
    - `llm_grouped_fusion_weights.csv`
    - `llm_grouped_fusion_predictions.csv`
-6. 和现有 `Raw all`、`Raw all + Consistency`、`Tri-layer semantic` 结果横向比较。
+   - `llm_grouped_fusion_group_audit.csv`
+   - `llm_grouped_fusion_score_cache.jsonl`
+7. 和现有 `Raw all`、`Raw all + Consistency`、`Tri-layer semantic` 结果横向比较。
 
 ## 论文表达口径
 
 可以这样概括：
 
 > 在随机森林消融中，简单增加一致性特征并不必然提升分组泛化性能，说明跨层设备指纹中存在显著冗余和组间相关性。为进一步利用大语言模型的语义判断能力，本文将三端字段整理为若干跨层证据组，由大语言模型分别生成组级风险分数，再通过带非负约束的 ElasticNet 学习组级融合权重。该设计既避免了 prompt 内部隐式加权，也保留了各证据组对最终风险评分的可解释贡献。
+
+关于云测设备重复采样，可以这样补充：
+
+> 针对云测平台中同一设备或同一稳定设备画像可能被重复采样的问题，本文使用由设备构建指纹、屏幕硬件、WebView 内核和 WebGL 等稳定字段生成的设备画像键作为 grouped CV 边界，确保同一设备画像不会同时出现在训练集和测试集。同时，在训练阶段按设备画像组大小设置样本权重，降低重复会话对融合权重学习的偏置。该处理避免了随机划分下的同设备泄漏，并将实验结论限定为未见设备画像上的泛化能力。
 
 如果最终 ElasticNet 权重主要集中在 `tri_layer_score`，这不是失败，而可以解释为：
 

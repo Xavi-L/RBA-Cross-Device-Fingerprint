@@ -2,7 +2,7 @@
 
 ## 目标
 
-导师提出的要求可以拆成两步：
+要求可以拆成两步：
 
 1. 尽可能收集 Google 官方技术文档中与设备、WebView、Chrome 运行时和完整性鉴定相关的信息。
 2. 把其中可用于 feature 风险鉴定的内容，整理成可审阅、可引用、可合入现有规则知识库的外挂知识库。
@@ -56,7 +56,7 @@
 
 官方文档能直接支撑的不是某个固定风险分，而是字段语义和合理容错边界。更稳的表达是：
 
-- Google 官方文档定义了 Build、WebView、WebSettings、SensorManager、BatteryManager、PackageManager、Play Integrity 等信号的语义。
+- Google 官方文档定义了 Build、WebView、WebSettings、SensorManager、BatteryManager、PackageManager、Play Integrity 等信号的语义。	
 - 本项目基于这些官方语义和安全风险文档，把三端采集字段组织成跨层一致性、物理运行时、WebView 宿主安全和攻击场景证据。
 - 风险阈值和分数区间仍来自本项目攻击模板、真实采集样本和已有实验，不应伪装成 Google 官方阈值。
 
