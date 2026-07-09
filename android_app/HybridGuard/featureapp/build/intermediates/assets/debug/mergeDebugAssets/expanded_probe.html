@@ -154,6 +154,33 @@
         }
     }
 
+    function describeError(error) {
+        const name = error && error.name ? error.name : "Error";
+        const message = error && error.message ? ": " + error.message : "";
+        return name + message;
+    }
+
+    function hashProbeValues(values) {
+        const text = Array.isArray(values) ? values.join("|") : String(values || "");
+        if (!text) {
+            return "";
+        }
+        if (window.AndroidBridge && window.AndroidBridge.sha256) {
+            return window.AndroidBridge.sha256(text);
+        }
+
+        let hash = 2166136261;
+        for (let i = 0; i < text.length; i++) {
+            hash ^= text.charCodeAt(i);
+            hash = Math.imul(hash, 16777619);
+        }
+        return ("00000000" + (hash >>> 0).toString(16)).slice(-8);
+    }
+
+    function quoteCssFontName(fontName) {
+        return "\"" + String(fontName).replace(/\\/g, "\\\\").replace(/"/g, "\\\"") + "\"";
+    }
+
     function getWebGLInfo() {
         const canvas = document.createElement("canvas");
         const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
@@ -245,11 +272,216 @@
         };
     }
 
+    async function getAudioFeatures() {
+        const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        const OfflineAudioContextCtor = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+        const result = {
+            audio_context_supported: !!(AudioContextCtor || OfflineAudioContextCtor),
+            audio_sample_rate: -1,
+            audio_output_latency: -1,
+            audio_hash: "",
+            audio_error: ""
+        };
+        const errors = [];
+
+        if (AudioContextCtor) {
+            try {
+                const audioContext = new AudioContextCtor();
+                result.audio_sample_rate = Number.isFinite(audioContext.sampleRate) ? audioContext.sampleRate : -1;
+                if (Number.isFinite(audioContext.outputLatency)) {
+                    result.audio_output_latency = audioContext.outputLatency;
+                } else if (Number.isFinite(audioContext.baseLatency)) {
+                    result.audio_output_latency = audioContext.baseLatency;
+                }
+                if (audioContext.close) {
+                    audioContext.close().catch(() => {});
+                }
+            } catch (e) {
+                errors.push("context:" + describeError(e));
+            }
+        }
+
+        if (OfflineAudioContextCtor) {
+            try {
+                const sampleRate = result.audio_sample_rate > 0 ? Math.round(result.audio_sample_rate) : 44100;
+                const offlineContext = new OfflineAudioContextCtor(1, 4096, sampleRate);
+                const oscillator = offlineContext.createOscillator();
+                const compressor = offlineContext.createDynamicsCompressor();
+
+                oscillator.type = "triangle";
+                oscillator.frequency.value = 10000;
+                compressor.threshold.value = -50;
+                compressor.knee.value = 40;
+                compressor.ratio.value = 12;
+                compressor.attack.value = 0;
+                compressor.release.value = 0.25;
+
+                oscillator.connect(compressor);
+                compressor.connect(offlineContext.destination);
+                oscillator.start(0);
+
+                const renderedBuffer = await offlineContext.startRendering();
+                const channelData = renderedBuffer.getChannelData(0);
+                const samples = [];
+                for (let i = 0; i < channelData.length; i += 128) {
+                    samples.push(channelData[i].toFixed(8));
+                }
+                result.audio_hash = hashProbeValues(samples);
+            } catch (e) {
+                errors.push("offline:" + describeError(e));
+            }
+        } else {
+            errors.push("offline:unavailable");
+        }
+
+        result.audio_error = errors.join("; ");
+        return result;
+    }
+
+    function getFontFeatures() {
+        const result = {
+            font_probe_count: 0,
+            available_font_hash: "",
+            font_probe_error: ""
+        };
+        try {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            if (!ctx) {
+                throw new Error("canvas_2d_unavailable");
+            }
+
+            const baseFonts = ["monospace", "sans-serif", "serif"];
+            const testText = "mmmmmmmmmmlliMW@#12345";
+            const testSize = "72px";
+            const baseWidths = {};
+            baseFonts.forEach(baseFont => {
+                ctx.font = testSize + " " + baseFont;
+                baseWidths[baseFont] = ctx.measureText(testText).width;
+            });
+
+            const candidateFonts = [
+                "Arial",
+                "Arial Black",
+                "Courier New",
+                "Droid Sans",
+                "Droid Serif",
+                "Droid Sans Mono",
+                "Roboto",
+                "Roboto Condensed",
+                "Noto Sans",
+                "Noto Serif",
+                "Noto Color Emoji",
+                "Noto Sans CJK SC",
+                "Noto Sans CJK TC",
+                "Noto Sans CJK JP",
+                "SamsungOne",
+                "MiSans",
+                "HarmonyOS Sans",
+                "Oppo Sans",
+                "Source Han Sans",
+                "sans-serif-light",
+                "sans-serif-medium",
+                "serif-monospace"
+            ];
+            const detectedFonts = candidateFonts.filter(fontName => {
+                return baseFonts.some(baseFont => {
+                    ctx.font = testSize + " " + quoteCssFontName(fontName) + ", " + baseFont;
+                    const width = ctx.measureText(testText).width;
+                    return Math.abs(width - baseWidths[baseFont]) > 0.01;
+                });
+            }).sort();
+
+            result.font_probe_count = detectedFonts.length;
+            result.available_font_hash = hashProbeValues(detectedFonts);
+        } catch (e) {
+            result.font_probe_error = describeError(e);
+        }
+        return result;
+    }
+
+    async function getPermissionsFeatures() {
+        const result = {
+            permissions_api_supported: !!(navigator.permissions && navigator.permissions.query),
+            notification_permission_state: typeof Notification !== "undefined" ? Notification.permission : "unsupported",
+            geolocation_permission_state: "unsupported",
+            camera_permission_state: "unsupported",
+            microphone_permission_state: "unsupported",
+            clipboard_read_state: "unsupported",
+            permission_query_errors: []
+        };
+
+        if (!result.permissions_api_supported) {
+            return result;
+        }
+
+        const queries = [
+            ["notifications", "notification_permission_state"],
+            ["geolocation", "geolocation_permission_state"],
+            ["camera", "camera_permission_state"],
+            ["microphone", "microphone_permission_state"],
+            ["clipboard-read", "clipboard_read_state"]
+        ];
+
+        await Promise.all(queries.map(async ([name, field]) => {
+            try {
+                const status = await navigator.permissions.query({ name });
+                result[field] = status && status.state ? status.state : "unknown";
+            } catch (e) {
+                result.permission_query_errors.push(name + ":" + describeError(e));
+            }
+        }));
+        result.permission_query_errors.sort();
+        return result;
+    }
+
     function getAutomationFeatures() {
-        return {
+        const result = {
             webdriver: navigator.webdriver === true,
             plugins_count: navigator.plugins ? navigator.plugins.length : 0,
-            mime_types_count: navigator.mimeTypes ? navigator.mimeTypes.length : 0
+            mime_types_count: navigator.mimeTypes ? navigator.mimeTypes.length : 0,
+            plugins_hash: "",
+            mime_types_hash: "",
+            plugin_probe_error: ""
+        };
+
+        try {
+            const pluginSummaries = Array.from(navigator.plugins || []).map(plugin => {
+                const pluginMimeTypes = [];
+                for (let i = 0; i < plugin.length; i++) {
+                    const mime = plugin[i];
+                    pluginMimeTypes.push([mime.type || "", mime.suffixes || ""].join(":"));
+                }
+                return [
+                    plugin.name || "",
+                    plugin.filename || "",
+                    plugin.description || "",
+                    pluginMimeTypes.sort().join(",")
+                ].join("~");
+            }).sort();
+            const mimeTypeSummaries = Array.from(navigator.mimeTypes || []).map(mime => {
+                const pluginName = mime.enabledPlugin ? mime.enabledPlugin.name : "";
+                return [
+                    mime.type || "",
+                    mime.suffixes || "",
+                    mime.description || "",
+                    pluginName || ""
+                ].join("~");
+            }).sort();
+
+            result.plugins_hash = hashProbeValues(pluginSummaries);
+            result.mime_types_hash = hashProbeValues(mimeTypeSummaries);
+        } catch (e) {
+            result.plugin_probe_error = describeError(e);
+        }
+
+        return {
+            webdriver: result.webdriver,
+            plugins_count: result.plugins_count,
+            mime_types_count: result.mime_types_count,
+            plugins_hash: result.plugins_hash,
+            mime_types_hash: result.mime_types_hash,
+            plugin_probe_error: result.plugin_probe_error
         };
     }
 
@@ -362,12 +594,16 @@
         const screenInfo = getScreenFeatures();
         const executionInfo = getExecutionFeatures();
         const connectionInfo = getConnectionFeatures();
+        const audioInfo = await getAudioFeatures();
+        const fontInfo = getFontFeatures();
+        const permissionsInfo = await getPermissionsFeatures();
         const automationInfo = getAutomationFeatures();
         const canvasHash = getCanvasFingerprint();
 
         log("UA: " + navigator.userAgent.substring(0, 68));
         log("Logical screen: " + screenInfo.screen_resolution_logical + " DPR " + screenInfo.device_pixel_ratio);
         log("WebGL renderer: " + webglInfo.renderer);
+        log("Audio supported: " + audioInfo.audio_context_supported + ", fonts: " + fontInfo.font_probe_count);
         log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
         log("Canvas hash: " + canvasHash.substring(0, 16));
 
@@ -386,6 +622,9 @@
             },
             execution_layer: executionInfo,
             network_api_layer: connectionInfo,
+            audio_layer: audioInfo,
+            font_layer: fontInfo,
+            permissions_layer: permissionsInfo,
             automation_surface_layer: automationInfo
         };
 

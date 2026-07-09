@@ -164,6 +164,6 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
 
     companion object {
         private const val COLLECT_ENDPOINT =
-            "http://10.0.2.2:8000/api/collect/fingerprint"
+            "https://hemispheric-overmoist-candance.ngrok-free.dev/api/collect/fingerprint"
     }
 }
