@@ -261,6 +261,11 @@ async def collect_fingerprint(payload: FingerprintPayload):
         target_sessions_db = expanded_sessions_db if is_expanded_collector else sessions_db
         target_db_file = EXPANDED_DB_FILE if is_expanded_collector else DB_FILE
         target_jsonl_file = EXPANDED_COLLECTED_JSONL_FILE if is_expanded_collector else COLLECTED_JSONL_FILE
+        existing_session = target_sessions_db.get(session_id)
+        is_duplicate_payload = bool(existing_session) and all(
+            existing_session.get(key) == value
+            for key, value in incoming_data.items()
+        )
     
         # 1. 检查是否是新会话。如果是，初始化一条空记录
         if session_id not in target_sessions_db:
@@ -340,7 +345,8 @@ async def collect_fingerprint(payload: FingerprintPayload):
                 llm_session_data["webview_data"] = flat_webview_data
             
             # 把彻底扁平化的大模型特供版数据追加到 jsonl 中
-            save_to_jsonl(llm_session_data, target_jsonl_file)
+            if not is_duplicate_payload:
+                save_to_jsonl(llm_session_data, target_jsonl_file)
 
         # 返回成功响应
         return {

@@ -7,18 +7,15 @@ import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.UUID
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
 
     private val sessionId = UUID.randomUUID().toString()
-    private val httpClient = OkHttpClient()
+    private val payloadAccepted = AtomicBoolean(false)
     private lateinit var collector: ExpandedFingerprintCollector
     private lateinit var nativeDataLayered: JSONObject
     private lateinit var sessionText: TextView
@@ -58,6 +55,10 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
     }
 
     override fun onExpandedPayload(payloadJson: String) {
+        if (!payloadAccepted.compareAndSet(false, true)) {
+            return
+        }
+
         runOnUiThread {
             uploadText.text = "Uploading"
             statusText.text = "Expanded three-layer payload collected. Uploading raw features."
@@ -68,24 +69,34 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
             )
         }
 
-        thread {
+        try {
+            val webPayload = JSONObject(payloadJson)
+            val featurePayload = JSONObject().apply {
+                put("session_id", sessionId)
+                put("timestamp", System.currentTimeMillis() / 1000)
+                put("collector_app", "featureapp")
+                put("schema_version", "expanded-v2")
+                put("android_native_data", nativeDataLayered)
+                put("webview_data", webPayload.optJSONObject("webview_data") ?: JSONObject())
+                put("web_data", webPayload.optJSONObject("web_data") ?: JSONObject())
+            }
+            val featureCount = countLeafValues(featurePayload.optJSONObject("android_native_data")) +
+                countLeafValues(featurePayload.optJSONObject("webview_data")) +
+                countLeafValues(featurePayload.optJSONObject("web_data"))
+            val serializedPayload = featurePayload.toString()
+
             try {
-                val webPayload = JSONObject(payloadJson)
-                val featurePayload = JSONObject().apply {
-                    put("session_id", sessionId)
-                    put("timestamp", System.currentTimeMillis() / 1000)
-                    put("collector_app", "featureapp")
-                    put("schema_version", "expanded-v2")
-                    put("android_native_data", nativeDataLayered)
-                    put("webview_data", webPayload.optJSONObject("webview_data") ?: JSONObject())
-                    put("web_data", webPayload.optJSONObject("web_data") ?: JSONObject())
-                }
+                ExpandedUploadWorker.persistAndEnqueue(
+                    applicationContext,
+                    sessionId,
+                    serializedPayload
+                )
+            } catch (_: Exception) {
+                // The immediate upload below remains available even if background scheduling fails.
+            }
 
-                val featureCount = countLeafValues(featurePayload.optJSONObject("android_native_data")) +
-                    countLeafValues(featurePayload.optJSONObject("webview_data")) +
-                    countLeafValues(featurePayload.optJSONObject("web_data"))
-
-                val uploadStatus = uploadExpandedFeatures(featurePayload, featureCount)
+            thread {
+                val uploadStatus = uploadExpandedFeatures(serializedPayload, featureCount)
                 runOnUiThread {
                     uploadText.text = if (uploadStatus.uploaded) "Uploaded" else "Upload failed"
                     statusText.text = uploadStatus.message
@@ -95,42 +106,53 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
                         if (uploadStatus.uploaded) "good" else "bad"
                     )
                 }
-            } catch (e: Exception) {
-                runOnUiThread {
-                    uploadText.text = "Upload failed"
-                    statusText.text = e.message ?: "Expanded collection failed"
-                    updateProbeUi(
-                        "Expanded collection failed",
-                        e.message ?: "Collector did not produce a payload.",
-                        "bad"
-                    )
-                }
+            }
+        } catch (e: Exception) {
+            payloadAccepted.set(false)
+            runOnUiThread {
+                uploadText.text = "Upload failed"
+                statusText.text = e.message ?: "Expanded collection failed"
+                updateProbeUi(
+                    "Expanded collection failed",
+                    e.message ?: "Collector did not produce a payload.",
+                    "bad"
+                )
             }
         }
     }
 
-    private fun uploadExpandedFeatures(payload: JSONObject, featureCount: Int): UploadStatus {
-        val body = payload
-            .toString()
-            .toRequestBody("application/json; charset=utf-8".toMediaType())
-
-        val request = Request.Builder()
-            .url(COLLECT_ENDPOINT)
-            .addHeader("ngrok-skip-browser-warning", "true")
-            .post(body)
-            .build()
-
-        return try {
-            httpClient.newCall(request).execute().use { response ->
-                if (response.isSuccessful) {
-                    UploadStatus(true, "Expanded payload uploaded. Feature count: $featureCount.")
-                } else {
-                    UploadStatus(false, "Upload failed with HTTP ${response.code}.")
+    private fun uploadExpandedFeatures(payloadJson: String, featureCount: Int): UploadStatus {
+        var lastAttempt = ExpandedUploadTransport.Attempt(
+            uploaded = false,
+            retryable = true,
+            detail = "not attempted"
+        )
+        for (attemptNumber in 1..IMMEDIATE_UPLOAD_ATTEMPTS) {
+            lastAttempt = ExpandedUploadTransport.upload(payloadJson)
+            if (lastAttempt.uploaded) {
+                ExpandedUploadWorker.markUploaded(applicationContext, sessionId)
+                return UploadStatus(
+                    true,
+                    "Expanded payload uploaded. Feature count: $featureCount."
+                )
+            }
+            if (!lastAttempt.retryable) {
+                break
+            }
+            if (attemptNumber < IMMEDIATE_UPLOAD_ATTEMPTS) {
+                try {
+                    Thread.sleep(IMMEDIATE_RETRY_DELAYS_MS[attemptNumber - 1])
+                } catch (_: InterruptedException) {
+                    Thread.currentThread().interrupt()
+                    break
                 }
             }
-        } catch (e: Exception) {
-            UploadStatus(false, "Upload failed: ${e.message}")
         }
+
+        return UploadStatus(
+            false,
+            "Upload deferred for background retry: ${lastAttempt.detail}."
+        )
     }
 
     private fun updateProbeUi(status: String, detail: String, style: String) {
@@ -163,7 +185,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
     private data class UploadStatus(val uploaded: Boolean, val message: String)
 
     companion object {
-        private const val COLLECT_ENDPOINT =
-            "https://hemispheric-overmoist-candance.ngrok-free.dev/api/collect/fingerprint"
+        private const val IMMEDIATE_UPLOAD_ATTEMPTS = 3
+        private val IMMEDIATE_RETRY_DELAYS_MS = longArrayOf(250, 750)
     }
 }

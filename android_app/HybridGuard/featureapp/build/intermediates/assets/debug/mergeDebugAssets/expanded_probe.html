@@ -160,6 +160,161 @@
         return name + message;
     }
 
+    function safeSyncProbe(name, probe, fallbackFactory) {
+        try {
+            return probe();
+        } catch (e) {
+            log(name + " probe degraded: " + describeError(e), "bad");
+            return fallbackFactory();
+        }
+    }
+
+    async function safeAsyncProbe(name, probe, fallbackFactory, timeoutMs) {
+        let timeoutId;
+        try {
+            const timeout = new Promise((_, reject) => {
+                timeoutId = setTimeout(() => reject(new Error(name + " timeout")), timeoutMs);
+            });
+            return await Promise.race([Promise.resolve().then(probe), timeout]);
+        } catch (e) {
+            log(name + " probe degraded: " + describeError(e), "bad");
+            return fallbackFactory();
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    function defaultHostData() {
+        return {
+            webview_provider_package: "",
+            webview_provider_version: "",
+            webview_provider_version_code: -1,
+            webview_provider_major: -1,
+            system_http_agent: "",
+            default_ua_native: "",
+            is_debuggable: false,
+            app_package_name: "",
+            app_version_name: "",
+            app_version_code: -1,
+            installer_package: "unknown",
+            is_cleartext_traffic_permitted: false,
+            first_install_time: -1,
+            last_update_time: -1,
+            target_sdk_version: -1,
+            min_sdk_version: -1,
+            java_script_enabled: true,
+            dom_storage_enabled: true,
+            database_enabled: false,
+            allow_file_access: false,
+            allow_content_access: false,
+            mixed_content_mode: -1,
+            safe_browsing_enabled: false,
+            settings_user_agent: ""
+        };
+    }
+
+    function defaultWebGLInfo() {
+        return {
+            vendor: "Unknown",
+            renderer: "Unknown",
+            webgl2_supported: false,
+            webgl_extensions_count: 0,
+            max_texture_size: -1,
+            max_viewport_dims: "",
+            aliased_line_width_range: ""
+        };
+    }
+
+    function defaultNavigatorFeatures() {
+        return {
+            user_agent: "",
+            language: "",
+            languages: [],
+            platform: "",
+            vendor: "",
+            product: "",
+            product_sub: "",
+            hardware_concurrency: 0,
+            device_memory: 0,
+            max_touch_points: 0,
+            cookie_enabled: false,
+            do_not_track: "",
+            online: false
+        };
+    }
+
+    function defaultScreenFeatures() {
+        return {
+            screen_resolution_logical: "",
+            device_pixel_ratio: -1,
+            color_depth: -1,
+            pixel_depth: -1,
+            avail_width: -1,
+            avail_height: -1,
+            inner_width: -1,
+            inner_height: -1,
+            outer_width: -1,
+            outer_height: -1,
+            visual_viewport_width: -1,
+            visual_viewport_height: -1,
+            visual_viewport_scale: -1,
+            orientation_type: "",
+            orientation_angle: -1
+        };
+    }
+
+    function defaultExecutionFeatures() {
+        return {
+            compute_task_time_ms: -1,
+            timezone_offset: 0,
+            timezone_id: "",
+            performance_time_origin: 0,
+            local_storage_available: false,
+            session_storage_available: false
+        };
+    }
+
+    function defaultConnectionFeatures() {
+        return { effective_type: "", downlink_mbps: -1, rtt_ms: -1, save_data: false };
+    }
+
+    function defaultAudioFeatures() {
+        return {
+            audio_context_supported: false,
+            audio_sample_rate: -1,
+            audio_output_latency: -1,
+            audio_hash: "",
+            audio_error: ""
+        };
+    }
+
+    function defaultFontFeatures() {
+        return { font_probe_count: 0, available_font_hash: "", font_probe_error: "" };
+    }
+
+    function defaultPermissionsFeatures() {
+        return {
+            permissions_api_supported: false,
+            notification_permission_state: "unsupported",
+            geolocation_permission_state: "unsupported",
+            camera_permission_state: "unsupported",
+            microphone_permission_state: "unsupported",
+            clipboard_read_state: "unsupported",
+            permission_query_errors: []
+        };
+    }
+
+    function defaultAutomationFeatures() {
+        return {
+            webdriver: false,
+            plugins_count: 0,
+            mime_types_count: 0,
+            plugins_hash: "",
+            mime_types_hash: "",
+            plugin_probe_error: ""
+        };
+    }
+
     function hashProbeValues(values) {
         const text = Array.isArray(values) ? values.join("|") : String(values || "");
         if (!text) {
@@ -185,15 +340,8 @@
         const canvas = document.createElement("canvas");
         const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
         const gl2 = canvas.getContext("webgl2");
-        const info = {
-            vendor: "Unknown",
-            renderer: "Unknown",
-            webgl2_supported: !!gl2,
-            webgl_extensions_count: 0,
-            max_texture_size: -1,
-            max_viewport_dims: "",
-            aliased_line_width_range: ""
-        };
+        const info = defaultWebGLInfo();
+        info.webgl2_supported = !!gl2;
         if (gl) {
             const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
             if (debugInfo) {
@@ -521,29 +669,8 @@
         return String(dataURL.length);
     }
 
-    async function collectExpandedSignals() {
-        setStatus("Establishing JSBridge connection...");
-        await sleep(250);
-
-        if (!window.AndroidBridge || !window.AndroidBridge.getSessionId) {
-            log("Android bridge missing", "bad");
-            setStatus("Android bridge missing");
-            return;
-        }
-
-        const t0 = performance.now();
-        const currentSessionId = window.AndroidBridge.getSessionId();
-        const t1 = performance.now();
-        const bridgeLatencyMs = parseFloat((t1 - t0).toFixed(3));
-        log("JSBridge connected in " + bridgeLatencyMs + " ms", "good");
-
-        let hostData = {};
-        if (window.AndroidBridge.getWebViewHostFeatures) {
-            hostData = JSON.parse(window.AndroidBridge.getWebViewHostFeatures());
-            log("Expanded WebView host signals collected");
-        }
-
-        const webviewDataNested = {
+    function buildWebViewData(hostData, bridgeLatencyMs) {
+        return {
             bridge_routing_layer: {
                 jsbridge_injected: true,
                 bridge_latency_ms: bridgeLatencyMs
@@ -581,52 +708,134 @@
                 settings_user_agent: hostData.settings_user_agent
             }
         };
+    }
 
-        if (hostData.error_msg) {
-            webviewDataNested.exception_layer = { error_msg: hostData.error_msg };
+    function buildWebData(parts) {
+        return {
+            navigator_layer: parts.navigatorInfo,
+            screen_layer: parts.screenInfo,
+            graphics_layer: {
+                webgl_vendor: parts.webglInfo.vendor,
+                webgl_renderer: parts.webglInfo.renderer,
+                webgl_extensions_count: parts.webglInfo.webgl_extensions_count,
+                webgl2_supported: parts.webglInfo.webgl2_supported,
+                webgl_max_texture_size: parts.webglInfo.max_texture_size,
+                webgl_max_viewport_dims: parts.webglInfo.max_viewport_dims,
+                webgl_aliased_line_width_range: parts.webglInfo.aliased_line_width_range,
+                canvas_hash: parts.canvasHash
+            },
+            execution_layer: parts.executionInfo,
+            network_api_layer: parts.connectionInfo,
+            audio_layer: parts.audioInfo,
+            font_layer: parts.fontInfo,
+            permissions_layer: parts.permissionsInfo,
+            automation_surface_layer: parts.automationInfo
+        };
+    }
+
+    async function collectExpandedSignals() {
+        let currentSessionId = "";
+        let bridgeLatencyMs = -1;
+        let webviewDataNested = buildWebViewData(defaultHostData(), bridgeLatencyMs);
+        let webDataNested = buildWebData({
+            navigatorInfo: defaultNavigatorFeatures(),
+            screenInfo: defaultScreenFeatures(),
+            webglInfo: defaultWebGLInfo(),
+            executionInfo: defaultExecutionFeatures(),
+            connectionInfo: defaultConnectionFeatures(),
+            audioInfo: defaultAudioFeatures(),
+            fontInfo: defaultFontFeatures(),
+            permissionsInfo: defaultPermissionsFeatures(),
+            automationInfo: defaultAutomationFeatures(),
+            canvasHash: ""
+        });
+
+        try {
+            setStatus("Establishing JSBridge connection...");
+            await sleep(100);
+
+            if (!window.AndroidBridge ||
+                !window.AndroidBridge.getSessionId ||
+                !window.AndroidBridge.submitExpandedPayload) {
+                log("Android bridge missing", "bad");
+                setStatus("Android bridge missing");
+                return;
+            }
+
+            const t0 = performance.now();
+            currentSessionId = window.AndroidBridge.getSessionId();
+            const t1 = performance.now();
+            bridgeLatencyMs = parseFloat((t1 - t0).toFixed(3));
+            log("JSBridge connected in " + bridgeLatencyMs + " ms", "good");
+
+            const hostData = safeSyncProbe("WebView host", () => {
+                if (!window.AndroidBridge.getWebViewHostFeatures) {
+                    return defaultHostData();
+                }
+                return Object.assign(
+                    defaultHostData(),
+                    JSON.parse(window.AndroidBridge.getWebViewHostFeatures())
+                );
+            }, defaultHostData);
+            webviewDataNested = buildWebViewData(hostData, bridgeLatencyMs);
+            log("Expanded WebView host signals collected");
+
+            setStatus("Collecting expanded browser runtime signals...");
+            await sleep(100);
+
+            const webglInfo = safeSyncProbe("WebGL", getWebGLInfo, defaultWebGLInfo);
+            const navigatorInfo = safeSyncProbe("Navigator", getNavigatorFeatures, defaultNavigatorFeatures);
+            const screenInfo = safeSyncProbe("Screen", getScreenFeatures, defaultScreenFeatures);
+            const executionInfo = safeSyncProbe("Execution", getExecutionFeatures, defaultExecutionFeatures);
+            const connectionInfo = safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
+            const audioInfo = await safeAsyncProbe("Audio", getAudioFeatures, () => {
+                const fallback = defaultAudioFeatures();
+                fallback.audio_error = "probe_timeout_or_error";
+                return fallback;
+            }, 2500);
+            const fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
+            const permissionsInfo = await safeAsyncProbe(
+                "Permissions",
+                getPermissionsFeatures,
+                defaultPermissionsFeatures,
+                1500
+            );
+            const automationInfo = safeSyncProbe(
+                "Automation",
+                getAutomationFeatures,
+                defaultAutomationFeatures
+            );
+            const canvasHash = safeSyncProbe("Canvas", getCanvasFingerprint, () => "");
+
+            webDataNested = buildWebData({
+                navigatorInfo,
+                screenInfo,
+                webglInfo,
+                executionInfo,
+                connectionInfo,
+                audioInfo,
+                fontInfo,
+                permissionsInfo,
+                automationInfo,
+                canvasHash
+            });
+
+            log("UA: " + navigatorInfo.user_agent.substring(0, 68));
+            log("Logical screen: " + screenInfo.screen_resolution_logical + " DPR " + screenInfo.device_pixel_ratio);
+            log("WebGL renderer: " + webglInfo.renderer);
+            log("Audio supported: " + audioInfo.audio_context_supported + ", fonts: " + fontInfo.font_probe_count);
+            log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
+            log("Canvas hash: " + canvasHash.substring(0, 16));
+        } catch (e) {
+            log("Expanded probe degraded: " + describeError(e), "bad");
         }
 
-        setStatus("Collecting expanded browser runtime signals...");
-        await sleep(250);
-
-        const webglInfo = getWebGLInfo();
-        const navigatorInfo = getNavigatorFeatures();
-        const screenInfo = getScreenFeatures();
-        const executionInfo = getExecutionFeatures();
-        const connectionInfo = getConnectionFeatures();
-        const audioInfo = await getAudioFeatures();
-        const fontInfo = getFontFeatures();
-        const permissionsInfo = await getPermissionsFeatures();
-        const automationInfo = getAutomationFeatures();
-        const canvasHash = getCanvasFingerprint();
-
-        log("UA: " + navigator.userAgent.substring(0, 68));
-        log("Logical screen: " + screenInfo.screen_resolution_logical + " DPR " + screenInfo.device_pixel_ratio);
-        log("WebGL renderer: " + webglInfo.renderer);
-        log("Audio supported: " + audioInfo.audio_context_supported + ", fonts: " + fontInfo.font_probe_count);
-        log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
-        log("Canvas hash: " + canvasHash.substring(0, 16));
-
-        const webDataNested = {
-            navigator_layer: navigatorInfo,
-            screen_layer: screenInfo,
-            graphics_layer: {
-                webgl_vendor: webglInfo.vendor,
-                webgl_renderer: webglInfo.renderer,
-                webgl_extensions_count: webglInfo.webgl_extensions_count,
-                webgl2_supported: webglInfo.webgl2_supported,
-                webgl_max_texture_size: webglInfo.max_texture_size,
-                webgl_max_viewport_dims: webglInfo.max_viewport_dims,
-                webgl_aliased_line_width_range: webglInfo.aliased_line_width_range,
-                canvas_hash: canvasHash
-            },
-            execution_layer: executionInfo,
-            network_api_layer: connectionInfo,
-            audio_layer: audioInfo,
-            font_layer: fontInfo,
-            permissions_layer: permissionsInfo,
-            automation_surface_layer: automationInfo
-        };
+        if (!currentSessionId ||
+            !window.AndroidBridge ||
+            !window.AndroidBridge.submitExpandedPayload) {
+            setStatus("Unable to hand payload to Android uploader");
+            return;
+        }
 
         const payload = {
             session_id: currentSessionId,
@@ -635,9 +844,14 @@
             web_data: webDataNested
         };
 
-        setStatus("Handing expanded payload to Android uploader...");
-        window.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
-        log("Expanded payload handed to uploader", "good");
+        try {
+            setStatus("Handing expanded payload to Android uploader...");
+            window.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
+            log("Expanded payload handed to uploader", "good");
+        } catch (e) {
+            log("Android uploader handoff failed: " + describeError(e), "bad");
+            setStatus("Android uploader handoff failed");
+        }
     }
 
     window.onload = collectExpandedSignals;
