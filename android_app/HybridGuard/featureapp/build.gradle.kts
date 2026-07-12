@@ -12,10 +12,10 @@ android {
 
     defaultConfig {
         applicationId = "com.example.hybridguard.featureapp"
-        minSdk = 30
+        minSdk = 29
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0-expanded-collector"
+        versionName = "1.1-expanded-v2.1-status"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

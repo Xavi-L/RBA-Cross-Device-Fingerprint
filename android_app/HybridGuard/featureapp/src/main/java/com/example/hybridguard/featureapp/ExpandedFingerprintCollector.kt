@@ -23,6 +23,7 @@ import android.provider.Settings
 import android.security.NetworkSecurityPolicy
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.view.WindowManager
 import java.io.File
 import java.util.Locale
 import java.util.TimeZone
@@ -38,7 +39,12 @@ class ExpandedFingerprintCollector(private val context: Context) {
 
         val metrics = context.resources.displayMetrics
         val config = context.resources.configuration
-        val display = context.display
+        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            context.display
+        } else {
+            @Suppress("DEPRECATION")
+            (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+        }
         val displayMode = display?.mode
 
         val batteryStatus = context.registerReceiver(
