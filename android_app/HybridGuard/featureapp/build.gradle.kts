@@ -12,10 +12,17 @@ android {
 
     defaultConfig {
         applicationId = "com.example.hybridguard.featureapp"
-        minSdk = 30
+        minSdk = 21
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0-expanded-collector"
+        versionCode = 2
+        versionName = "1.2-expanded-v2.2-status"
+
+        val configuredEndpoint = providers.gradleProperty("hybridguardCollectEndpoint")
+            .orElse("http://10.0.2.2:8000/api/collect/fingerprint")
+            .get()
+            .replace("\\", "\\\\")
+            .replace("\"", "\\\"")
+        buildConfigField("String", "COLLECT_ENDPOINT", "\"$configuredEndpoint\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,6 +40,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 

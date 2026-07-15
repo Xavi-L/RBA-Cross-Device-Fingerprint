@@ -4,7 +4,7 @@
 
 - `:app`：旧三端原始采集 App。
 - `:riskapp`：端侧随机森林评分 App。
-- `:featureapp`：扩充特征采集 App，当前为 `expanded-v2`。
+- `:featureapp`：扩充特征采集 App，当前为 `expanded-v2.2-status`，支持 API 21+。
 
 以下路径默认相对仓库根目录。Android 工程实际位于：
 
@@ -20,7 +20,7 @@ android_app/HybridGuard
 | --- | --- | --- | --- | --- | --- |
 | `:app` | `Hybrid Guard` | `com.example.hybridguard` | 旧版 Native / WebView / Web 三端原始采集 | 是 | `backend_server/merged_sessions.json`、`backend_server/collected_data.jsonl` |
 | `:riskapp` | `HybridGuard Local Risk` | `com.example.hybridguard.riskapp` | 在手机端本地采集、编码并执行随机森林评分 | 否，只上传评分摘要 | `backend_server/local_score_results.jsonl` |
-| `:featureapp` | `HybridGuard Feature Collector` | `com.example.hybridguard.featureapp` | 扩充版三端原始特征采集，当前固定 schema 为 177 维 | 是 | `backend_server/expanded_merged_sessions.json`、`backend_server/expanded_collected_data.jsonl` |
+| `:featureapp` | `HybridGuard Feature Collector` | `com.example.hybridguard.featureapp` | 扩充版三端原始特征采集，固定 177 维并带采集状态 | 是 | `backend_server/expanded_merged_sessions.json`、`backend_server/expanded_collected_data.jsonl`、`backend_server/collection_receipts.jsonl` |
 
 三个 App 的 `applicationId` 不同，可以同时安装在同一台模拟器或真机上。
 
@@ -43,7 +43,7 @@ android_app/HybridGuard
 - Android Gradle Plugin：`9.1.0`
 - Kotlin Compose plugin：`2.2.10`
 - `compileSdk`：Android `36.1`
-- `minSdk`：`30`
+- `minSdk`：`:app` / `:riskapp` 为 `30`；`:featureapp` 为 `21`
 - `targetSdk`：`36`
 - Gradle toolchain：JDK `21`
 
@@ -103,7 +103,7 @@ http://10.0.2.2:8000/api/collect/fingerprint
 http://10.0.2.2:8000/api/risk/local-score
 ```
 
-`:featureapp` 当前默认已经使用 `http://10.0.2.2:8000/api/collect/fingerprint`，模拟器场景通常无需修改。
+`:featureapp` debug APK 默认使用 `http://10.0.2.2:8000/api/collect/fingerprint`，模拟器场景通常无需修改。真机云 APK 建议用 `-PhybridguardCollectEndpoint=...` 在构建时固化最终地址，不要在付费任务前临时改源码。
 
 ### 4.2 真机同一局域网
 
@@ -288,11 +288,11 @@ backend_server/local_score_results.jsonl
 
 ### 8.1 适用场景
 
-`:featureapp` 是当前推荐用于扩充原始特征采集的 App，不做端侧评分。当前上报：
+`:featureapp` 是当前推荐用于扩充原始特征采集的 App，不做端侧评分，支持 Android API 21+。当前上报：
 
 ```text
 collector_app=featureapp
-schema_version=expanded-v2
+schema_version=expanded-v2.2-status
 ```
 
 固定字段键名统计为 177 维：
@@ -301,24 +301,24 @@ schema_version=expanded-v2
 - WebView 容器：26 维。
 - Web 运行时：67 维。
 
-App 界面里的 `Expanded feature count` 是运行时动态计数，会把数组字段按元素数量展开，因此可能和 177 不完全一致。论文或实验表格建议使用固定 schema 的 177 维口径。
+每条记录同时带 `collection_manifest`、逐字段 `collection_status` 和探针级 `collection_diagnostics`。旧系统不支持的新 API 会记为 `unsupported_by_os`，不是强行填成“成功”；Web 探针超时也会保底上传 Native 和状态信息。
 
 ### 8.2 当前代码中的地址
 
-需要关注：
+默认 endpoint 由 `featureapp/build.gradle.kts` 的 BuildConfig 生成。模拟器默认地址是：
 
 ```text
-featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt
+http://10.0.2.2:8000/api/collect/fingerprint
 ```
 
-当前默认：
+真机或云平台构建：
 
-```kotlin
-private const val COLLECT_ENDPOINT =
-    "http://10.0.2.2:8000/api/collect/fingerprint"
+```bash
+./gradlew :featureapp:assembleDebug \
+  -PhybridguardCollectEndpoint=https://example.test/api/collect/fingerprint
 ```
 
-这适合 Android Studio 模拟器 + 本机后端。真机时按第 4 节替换。
+App 上传前会检查 `/api/collect/readiness`，POST 后会验证后端 collection receipt；仅收到 HTTP 200 不再等于采集成功。
 
 ### 8.3 运行后如何判断成功
 
@@ -327,16 +327,17 @@ private const val COLLECT_ENDPOINT =
 - Session ID。
 - `Expanded Native layer collected...`
 - `Uploading expanded feature payload...`
-- 上传成功后显示 `Expanded payload uploaded. Feature count: ...`
+- 上传成功后显示 `Expanded payload uploaded. Field status: ...`
 
 成功后查看：
 
 ```text
 backend_server/expanded_merged_sessions.json
 backend_server/expanded_collected_data.jsonl
+backend_server/collection_receipts.jsonl
 ```
 
-`expanded_merged_sessions.json` 保存嵌套三端结构，适合检查字段是否采齐；`expanded_collected_data.jsonl` 保存扁平化记录，适合后续实验脚本读取。
+`expanded_merged_sessions.json` 保存嵌套三端结构；`expanded_collected_data.jsonl` 保存完整或部分记录；`collection_receipts.jsonl` 用于核对服务器收到的 payload hash、重复抑制和状态警告。完整采集与付费前验收见 `featureapp/COLLECTION_METADATA.md`。
 
 ## 9. 推荐使用顺序
 

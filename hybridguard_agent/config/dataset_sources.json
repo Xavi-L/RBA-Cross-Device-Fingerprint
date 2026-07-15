@@ -1,0 +1,54 @@
+{
+  "config_version": "dataset-sources-v1",
+  "notes": [
+    "Source metadata is never model input.",
+    "Current cloud records have known collection context but no per-sample historical Attack Manifest, so they are schema_qc_only.",
+    "The Week 6 attack release CSV is evidence-only because it intentionally omits raw 177-field payloads and joinable session IDs.",
+    "The Week 7 experiment annotation registry is a label-only sidecar. It is joined after raw-payload QC and never copied into normalized model inputs."
+  ],
+  "sources": [
+    {
+      "source_id": "cloud_real_device_historical_20260709_10",
+      "input_kind": "raw_jsonl",
+      "path": "backend_server/expanded_collected_data.jsonl",
+      "collector_app": "featureapp",
+      "source_type": "cloud_real_device",
+      "provider": "unrecorded_historical_cloud_batch",
+      "capture_batch_id": "cloud_historical_20260709_10",
+      "default_label_status": "pending",
+      "default_environment_class": "cloud_real_device",
+      "default_manipulation_present": "unknown",
+      "model_eligibility": "schema_qc_only",
+      "manifest_path": null,
+      "optional": false
+    },
+    {
+      "source_id": "attack_week6_release_metadata_20260711",
+      "input_kind": "evidence_csv",
+      "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/week6_featureapp_release_dataset.csv",
+      "source_type": "attack_side_mixed_evidence",
+      "provider": "local_attack_research_workspace",
+      "model_eligibility": "evidence_only",
+      "optional": true,
+      "notes": "393 redacted rows: 178 complete attack-capable/abnormal, 184 partial attack-capable/abnormal, 31 complete benign isolation controls. Not joinable to raw payloads."
+    },
+    {
+      "source_id": "attack_week7_manifest_preliminary_20260713",
+      "input_kind": "manifest_dataset_jsonl",
+      "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/week7-manifest-v1_preliminary.jsonl",
+      "collector_app": "featureapp",
+      "source_type": "local_attack_research",
+      "provider": "local_attack_research_workspace",
+      "capture_batch_id": "week7-manifest-v1",
+      "default_label_status": "pending",
+      "default_environment_class": "manifest_bearing_local_research_context",
+      "default_manipulation_present": "unknown",
+      "model_eligibility": "registry_labeled_pilot",
+      "annotation_registry_kind": "experiment_session_annotation_v1",
+      "annotation_registry_path": "hybridguard-browser-fingerprint-research/execution_log/evidence/experiment_session_annotation_registry_v1.csv",
+      "annotation_evidence_root": "hybridguard-browser-fingerprint-research",
+      "optional": true,
+      "notes": "Week 7 rows include collection_manifest, field-status-v1 and a verified label-only registry. Complete CDP triplets form a fingerprint-field-effect pilot task; complete mitmproxy triplets remain a separate transport-path task. Incomplete attempts are failure-analysis only."
+    }
+  ]
+}

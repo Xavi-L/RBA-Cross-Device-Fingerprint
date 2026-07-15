@@ -1,5 +1,6 @@
 import json
 import logging
+import hashlib
 from datetime import datetime
 import os
 from pathlib import Path
@@ -207,7 +208,14 @@ DB_FILE = BACKEND_DIR / "merged_sessions.json"
 EXPANDED_DB_FILE = BACKEND_DIR / "expanded_merged_sessions.json"
 COLLECTED_JSONL_FILE = BACKEND_DIR / "collected_data.jsonl"
 EXPANDED_COLLECTED_JSONL_FILE = BACKEND_DIR / "expanded_collected_data.jsonl"
+COLLECTION_RECEIPTS_JSONL_FILE = BACKEND_DIR / "collection_receipts.jsonl"
 LOCAL_SCORE_JSONL_FILE = BACKEND_DIR / "local_score_results.jsonl"
+EXPECTED_EXPANDED_SIGNAL_COUNT = 177
+SUPPORTED_EXPANDED_SCHEMA_VERSIONS = {
+    "expanded-v2",
+    "expanded-v2.1-status",
+    "expanded-v2.2-status",
+}
 
 
 def load_session_db(path: str) -> dict:
@@ -220,6 +228,73 @@ def load_session_db(path: str) -> dict:
 def is_expanded_collector_payload(data: dict) -> bool:
     schema_version = str(data.get("schema_version", ""))
     return data.get("collector_app") == "featureapp" or schema_version.startswith("expanded-")
+
+
+def canonical_payload_sha256(data: dict) -> str:
+    encoded = json.dumps(
+        data,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def expanded_payload_warnings(data: dict) -> list[str]:
+    """Return non-destructive validation warnings for an expanded collector upload.
+
+    A paid cloud run must not lose a partial payload merely because one optional API or
+    Web probe failed. The server stores it first, reports warnings in the receipt, and
+    leaves formal schema eligibility to the offline snapshot pipeline.
+    """
+    warnings = []
+    schema_version = str(data.get("schema_version", ""))
+    if schema_version not in SUPPORTED_EXPANDED_SCHEMA_VERSIONS:
+        warnings.append("W_SCHEMA_VERSION_UNRECOGNIZED")
+    for layer in ("android_native_data", "webview_data", "web_data"):
+        if not isinstance(data.get(layer), dict) or not data[layer]:
+            warnings.append(f"W_LAYER_EMPTY:{layer}")
+
+    manifest = data.get("collection_manifest")
+    if not isinstance(manifest, dict):
+        warnings.append("W_COLLECTION_MANIFEST_MISSING")
+    else:
+        if manifest.get("schema_version") != schema_version:
+            warnings.append("W_MANIFEST_SCHEMA_MISMATCH")
+        if not manifest.get("device_manifest_id"):
+            warnings.append("W_DEVICE_MANIFEST_ID_MISSING")
+
+    status = data.get("collection_status")
+    if not isinstance(status, dict):
+        warnings.append("W_COLLECTION_STATUS_MISSING")
+    else:
+        counts = status.get("counts")
+        field_states = status.get("fields")
+        fixed_count = status.get("fixed_signal_count")
+        status_names = (
+            "observed",
+            "unsupported_by_os",
+            "permission_denied",
+            "runtime_error",
+            "timeout",
+            "not_applicable",
+        )
+        if fixed_count != EXPECTED_EXPANDED_SIGNAL_COUNT or not isinstance(counts, dict):
+            warnings.append("W_COLLECTION_STATUS_INVALID")
+        elif any(not isinstance(counts.get(name), int) for name in status_names):
+            warnings.append("W_COLLECTION_STATUS_INVALID")
+        elif sum(counts[name] for name in status_names) != EXPECTED_EXPANDED_SIGNAL_COUNT:
+            warnings.append("W_COLLECTION_STATUS_INVALID")
+        elif (
+            not isinstance(field_states, dict)
+            or len(field_states) != EXPECTED_EXPANDED_SIGNAL_COUNT
+            or any(value not in status_names for value in field_states.values())
+            or any(sum(value == name for value in field_states.values()) != counts[name] for name in status_names)
+        ):
+            warnings.append("W_COLLECTION_STATUS_INVALID")
+        elif any(counts[name] > 0 for name in ("runtime_error", "timeout", "permission_denied")):
+            warnings.append("W_COLLECTION_PARTIAL")
+    return warnings
 
 
 sessions_db = load_session_db(DB_FILE)
@@ -261,6 +336,9 @@ async def collect_fingerprint(payload: FingerprintPayload):
         target_sessions_db = expanded_sessions_db if is_expanded_collector else sessions_db
         target_db_file = EXPANDED_DB_FILE if is_expanded_collector else DB_FILE
         target_jsonl_file = EXPANDED_COLLECTED_JSONL_FILE if is_expanded_collector else COLLECTED_JSONL_FILE
+        payload_sha256 = canonical_payload_sha256(incoming_data)
+        server_received_at = datetime.utcnow().isoformat() + "Z"
+        validation_warnings = expanded_payload_warnings(incoming_data) if is_expanded_collector else []
         existing_session = target_sessions_db.get(session_id)
         is_duplicate_payload = bool(existing_session) and all(
             existing_session.get(key) == value
@@ -315,8 +393,12 @@ async def collect_fingerprint(payload: FingerprintPayload):
 
         current_session = target_sessions_db[session_id]
         
-        # 👇 核心新增：数据降维 (Flatten) 逻辑
-        if current_session.get("android_native_data") and current_session.get("web_data"):
+        # Expanded payload 即使缺一层也必须落入 JSONL，避免一次性付费采集因局部探针失败而整条丢失。
+        # 旧采集链路仍保留原来的三端齐备条件。
+        should_persist_jsonl = is_expanded_collector or (
+            current_session.get("android_native_data") and current_session.get("web_data")
+        )
+        if should_persist_jsonl:
             import copy
             llm_session_data = copy.deepcopy(current_session)
             
@@ -348,11 +430,30 @@ async def collect_fingerprint(payload: FingerprintPayload):
             if not is_duplicate_payload:
                 save_to_jsonl(llm_session_data, target_jsonl_file)
 
+        receipt = {
+            "receipt_schema_version": "collection-receipt-v1",
+            "receipt_id": hashlib.sha256(
+                f"{session_id}:{payload_sha256}:{server_received_at}".encode("utf-8")
+            ).hexdigest()[:24],
+            "server_received_at": server_received_at,
+            "session_id": session_id,
+            "payload_sha256": payload_sha256,
+            "collector_app": incoming_data.get("collector_app"),
+            "schema_version": incoming_data.get("schema_version"),
+            "storage_target": target_jsonl_file.name,
+            "duplicate_payload": is_duplicate_payload,
+            "stored_new_jsonl_row": not is_duplicate_payload,
+            "validation_status": "accepted_with_warnings" if validation_warnings else "accepted",
+            "validation_warnings": validation_warnings,
+        }
+        save_to_jsonl(receipt, COLLECTION_RECEIPTS_JSONL_FILE)
+
         # 返回成功响应
         return {
             "status": "success",
             "session_id": payload.session_id,
-            "message": "设备指纹数据已成功收集"
+            "message": "设备指纹数据已成功收集",
+            "receipt": receipt,
         }
 
     except Exception as e:
@@ -364,6 +465,22 @@ async def collect_fingerprint(payload: FingerprintPayload):
 async def health_check():
     """健康检查接口"""
     return {"status": "healthy"}
+
+
+@app.get("/api/collect/readiness")
+async def collection_readiness():
+    """Cloud-run preflight: confirm contract, partial-payload policy and output files."""
+    return {
+        "status": "ready",
+        "readiness_schema_version": "featureapp-readiness-v1",
+        "server_time_utc": datetime.utcnow().isoformat() + "Z",
+        "supported_expanded_schema_versions": sorted(SUPPORTED_EXPANDED_SCHEMA_VERSIONS),
+        "expected_expanded_signal_count": EXPECTED_EXPANDED_SIGNAL_COUNT,
+        "accepts_partial_expanded_payloads": True,
+        "duplicate_payload_suppression": True,
+        "collection_receipts_enabled": True,
+        "storage_concurrency_mode": "single_process_json_files",
+    }
 
 @app.post("/api/risk/local-score")
 async def collect_local_score(payload: LocalRiskScorePayload):

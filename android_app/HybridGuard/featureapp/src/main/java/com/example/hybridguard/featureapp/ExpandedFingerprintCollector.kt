@@ -23,6 +23,7 @@ import android.provider.Settings
 import android.security.NetworkSecurityPolicy
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.view.WindowManager
 import java.io.File
 import java.util.Locale
 import java.util.TimeZone
@@ -38,8 +39,27 @@ class ExpandedFingerprintCollector(private val context: Context) {
 
         val metrics = context.resources.displayMetrics
         val config = context.resources.configuration
-        val display = context.display
-        val displayMode = display?.mode
+        val display = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            context.display
+        } else {
+            @Suppress("DEPRECATION")
+            (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+        }
+        val modePhysicalWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            display?.mode?.physicalWidth
+        } else {
+            null
+        }
+        val modePhysicalHeight = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            display?.mode?.physicalHeight
+        } else {
+            null
+        }
+        val modeRefreshRate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            display?.mode?.refreshRate?.toDouble()
+        } else {
+            null
+        }
 
         val batteryStatus = context.registerReceiver(
             null,
@@ -65,7 +85,10 @@ class ExpandedFingerprintCollector(private val context: Context) {
             put("device_hardware", Build.HARDWARE)
             put("os_version", "Android ${Build.VERSION.RELEASE}")
             put("os_api_level", Build.VERSION.SDK_INT)
-            put("security_patch", Build.VERSION.SECURITY_PATCH)
+            put(
+                "security_patch",
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) Build.VERSION.SECURITY_PATCH else JSONObject.NULL
+            )
             put("cpu_abi", Build.SUPPORTED_ABIS.firstOrNull() ?: "unknown")
             put("supported_abis", JSONArray(Build.SUPPORTED_ABIS.toList()))
             put("build_fingerprint", Build.FINGERPRINT)
@@ -94,9 +117,9 @@ class ExpandedFingerprintCollector(private val context: Context) {
             put("screen_ydpi", metrics.ydpi.toDouble())
             put("screen_scaled_density", metrics.scaledDensity.toDouble())
             put("screen_refresh_rate_hz", display?.refreshRate?.toDouble() ?: -1.0)
-            put("screen_mode_physical_width", displayMode?.physicalWidth ?: -1)
-            put("screen_mode_physical_height", displayMode?.physicalHeight ?: -1)
-            put("screen_mode_refresh_rate_hz", displayMode?.refreshRate?.toDouble() ?: -1.0)
+            put("screen_mode_physical_width", modePhysicalWidth ?: JSONObject.NULL)
+            put("screen_mode_physical_height", modePhysicalHeight ?: JSONObject.NULL)
+            put("screen_mode_refresh_rate_hz", modeRefreshRate ?: JSONObject.NULL)
             put("font_scale", config.fontScale.toDouble())
             put("orientation_code", config.orientation)
         }
@@ -184,7 +207,7 @@ class ExpandedFingerprintCollector(private val context: Context) {
 
             val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
             features.put("app_version_name", packageInfo.versionName ?: "")
-            features.put("app_version_code", packageInfo.longVersionCode)
+            features.put("app_version_code", packageVersionCode(packageInfo))
 
             val installerName = try {
                 context.packageManager.getInstallerPackageName(context.packageName) ?: "manual"
@@ -193,24 +216,39 @@ class ExpandedFingerprintCollector(private val context: Context) {
             }
             features.put("installer_package", installerName)
 
-            WebView.getCurrentWebViewPackage()?.let { webViewPackage ->
+            val webViewPackage = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                WebView.getCurrentWebViewPackage()
+            } else {
+                null
+            }
+            webViewPackage?.let {
                 features.put("webview_provider_package", webViewPackage.packageName)
                 features.put("webview_provider_version", webViewPackage.versionName)
-                features.put("webview_provider_version_code", webViewPackage.longVersionCode)
+                features.put("webview_provider_version_code", packageVersionCode(webViewPackage))
                 features.put("webview_provider_major", parseMajor(webViewPackage.versionName))
+            }
+            if (webViewPackage == null) {
+                features.put("webview_provider_package", JSONObject.NULL)
+                features.put("webview_provider_version", JSONObject.NULL)
+                features.put("webview_provider_version_code", JSONObject.NULL)
+                features.put("webview_provider_major", JSONObject.NULL)
             }
 
             features.put("default_ua_native", WebSettings.getDefaultUserAgent(context))
             features.put("system_http_agent", System.getProperty("http.agent") ?: "unknown")
             features.put(
                 "is_cleartext_traffic_permitted",
-                NetworkSecurityPolicy.getInstance().isCleartextTrafficPermitted
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    NetworkSecurityPolicy.getInstance().isCleartextTrafficPermitted
+                } else {
+                    JSONObject.NULL
+                }
             )
 
             features.put("first_install_time", packageInfo.firstInstallTime)
             features.put("last_update_time", packageInfo.lastUpdateTime)
             features.put("target_sdk_version", context.applicationInfo.targetSdkVersion)
-            features.put("min_sdk_version", context.applicationInfo.minSdkVersion)
+            features.put("min_sdk_version", CollectionManifestBuilder.MINIMUM_SUPPORTED_ANDROID_API)
 
             val keys = settingsSnapshot.keys()
             while (keys.hasNext()) {
@@ -225,8 +263,14 @@ class ExpandedFingerprintCollector(private val context: Context) {
 
     private fun collectNetworkLayer(): JSONObject {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = cm.activeNetwork
-        val caps = network?.let { cm.getNetworkCapabilities(it) }
+        val network = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) cm.activeNetwork else null
+        val caps = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            network?.let { cm.getNetworkCapabilities(it) }
+        } else {
+            null
+        }
+        @Suppress("DEPRECATION")
+        val legacyInfo = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) cm.activeNetworkInfo else null
 
         val transports = mutableListOf<String>()
         if (caps != null) {
@@ -235,17 +279,32 @@ class ExpandedFingerprintCollector(private val context: Context) {
             if (caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) transports.add("vpn")
             if (caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) transports.add("ethernet")
             if (caps.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH)) transports.add("bluetooth")
+        } else if (legacyInfo?.isConnected == true) {
+            @Suppress("DEPRECATION")
+            when (legacyInfo.type) {
+                ConnectivityManager.TYPE_WIFI -> transports.add("wifi")
+                ConnectivityManager.TYPE_MOBILE -> transports.add("cellular")
+                ConnectivityManager.TYPE_ETHERNET -> transports.add("ethernet")
+                ConnectivityManager.TYPE_BLUETOOTH -> transports.add("bluetooth")
+                else -> transports.add("other")
+            }
         }
 
         return JSONObject().apply {
-            put("active_network_present", network != null)
+            put("active_network_present", network != null || legacyInfo?.isConnected == true)
             put("active_transport_types", JSONArray(transports))
             put("network_metered", cm.isActiveNetworkMetered)
             put("has_vpn_transport", caps?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) ?: false)
             put("has_wifi_transport", caps?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ?: false)
             put("has_cellular_transport", caps?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ?: false)
-            put("link_downstream_kbps", caps?.linkDownstreamBandwidthKbps ?: -1)
-            put("link_upstream_kbps", caps?.linkUpstreamBandwidthKbps ?: -1)
+            put(
+                "link_downstream_kbps",
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) caps?.linkDownstreamBandwidthKbps ?: -1 else JSONObject.NULL
+            )
+            put(
+                "link_upstream_kbps",
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) caps?.linkUpstreamBandwidthKbps ?: -1 else JSONObject.NULL
+            )
         }
     }
 
@@ -375,6 +434,15 @@ class ExpandedFingerprintCollector(private val context: Context) {
         return prefix.toIntOrNull() ?: -1
     }
 
+    private fun packageVersionCode(packageInfo: android.content.pm.PackageInfo): Long {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo.longVersionCode
+        } else {
+            @Suppress("DEPRECATION")
+            packageInfo.versionCode.toLong()
+        }
+    }
+
     companion object {
         private const val GB = 1024.0 * 1024.0 * 1024.0
         private val SU_PATHS = listOf(
@@ -393,7 +461,10 @@ class ExpandedFingerprintCollector(private val context: Context) {
                 put("allow_file_access", settings.allowFileAccess)
                 put("allow_content_access", settings.allowContentAccess)
                 put("mixed_content_mode", settings.mixedContentMode)
-                put("safe_browsing_enabled", settings.safeBrowsingEnabled)
+                put(
+                    "safe_browsing_enabled",
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) settings.safeBrowsingEnabled else JSONObject.NULL
+                )
                 put("settings_user_agent", settings.userAgentString ?: "")
             }
         }

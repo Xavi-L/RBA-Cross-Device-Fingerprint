@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/evidence-bundle-v1",
+  "title": "HybridGuard Evidence Bundle v1",
+  "type": "object",
+  "required": [
+    "evidence_bundle_version",
+    "sample_id",
+    "schema_version",
+    "evidence_groups"
+  ],
+  "properties": {
+    "evidence_bundle_version": {
+      "const": "evidence-bundle-v1"
+    },
+    "sample_id": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "expanded-v2"
+    },
+    "evidence_groups": {
+      "type": "object",
+      "required": [
+        "cross_layer",
+        "runtime_context"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,51 @@
+{
+  "manifest_version": "sample-manifest-v1",
+  "session_id": "replace-with-raw-session-id",
+  "sample_id": "optional-stable-sample-id",
+  "capture": {
+    "capture_batch_id": "attack_batch_YYYYMMDD",
+    "source_type": "physical_local",
+    "provider": "provider-name-or-local-lab",
+    "provider_run_id": "provider-run-id-or-null"
+  },
+  "pair": {
+    "pair_id": "same-for-clean-pre-attack-clean-post",
+    "pair_role": "attack",
+    "sequence_index": 1
+  },
+  "label": {
+    "environment_class": "physical_device_with_attack",
+    "manipulation_present": true,
+    "violation_types": [
+      "cross_layer_spoofing"
+    ],
+    "label_status": "verified",
+    "label_provenance": "operator_log_and_tool_evidence"
+  },
+  "attack": {
+    "attack_run_id": "uuid-or-lab-run-id",
+    "attack_family": "cross_layer_spoofing",
+    "attack_type": "user_agent_spoofing",
+    "tool_name": "tool-name",
+    "tool_version": "version",
+    "tool_sha256": "sha256-or-null",
+    "config_id": "config-id",
+    "config_sha256": "sha256-or-null",
+    "target_layers": [
+      "web"
+    ],
+    "expected_mutations": [
+      "web_data.user_agent"
+    ],
+    "execution_status": "verified_success",
+    "feature_effect_status": "observed",
+    "success_evidence": [
+      "relative/path/to/tool-log-or-evidence"
+    ],
+    "rollback_status": "verified"
+  },
+  "device": {
+    "provider_device_id_hash": "hash-or-null",
+    "stable_device_key_hash": "optional-clean-baseline-key"
+  }
+}

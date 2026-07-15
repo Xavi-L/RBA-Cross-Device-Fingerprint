@@ -195,7 +195,7 @@ cd android_app/HybridGuard
 - Android Gradle Plugin：9.1.0
 - Kotlin Compose Plugin：2.2.10
 - `compileSdk`：36.1
-- `minSdk`：30
+- `minSdk`：`:app` / `:riskapp` 为 30；面向大规模云真机采集的 `:featureapp` 为 21
 - Gradle toolchain：JDK 21
 
 ## 7. 配置 App 访问后端

@@ -113,17 +113,18 @@
 <div class="panel log" id="log"></div>
 
 <script>
-    const statusEl = document.getElementById("status");
-    const subtitleEl = document.getElementById("subtitle");
-    const logEl = document.getElementById("log");
-    const canvasBox = document.getElementById("canvasBox");
+    var statusEl = document.getElementById("status");
+    var subtitleEl = document.getElementById("subtitle");
+    var logEl = document.getElementById("log");
+    var canvasBox = document.getElementById("canvasBox");
+    var probeStatuses = {};
 
     function setStatus(text) {
         statusEl.textContent = text;
     }
 
     function log(text, cls) {
-        const p = document.createElement("p");
+        var p = document.createElement("p");
         p.className = "line" + (cls ? " " + cls : "");
         p.textContent = text;
         logEl.appendChild(p);
@@ -131,7 +132,7 @@
     }
 
     window.HybridGuardProbe = {
-        updateResult(status, detail, cls) {
+        updateResult: function (status, detail, cls) {
             setStatus(status);
             if (detail) {
                 subtitleEl.textContent = detail;
@@ -140,12 +141,35 @@
         }
     };
 
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+    function sleep(ms) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, ms);
+        });
+    }
+
+    function probeKey(name) {
+        return String(name || "unknown").toLowerCase().replace(/\s+/g, "_");
+    }
+
+    function arrayFrom(value) {
+        return Array.prototype.slice.call(value || []);
+    }
+
+    function isFiniteNumber(value) {
+        return typeof value === "number" && isFinite(value);
+    }
+
+    function assignObject(target, source) {
+        Object.keys(source || {}).forEach(function (key) {
+            target[key] = source[key];
+        });
+        return target;
+    }
 
     function storageAvailable(type) {
         try {
-            const storage = window[type];
-            const key = "__hybridguard_probe__";
+            var storage = window[type];
+            var key = "__hybridguard_probe__";
             storage.setItem(key, key);
             storage.removeItem(key);
             return true;
@@ -155,33 +179,40 @@
     }
 
     function describeError(error) {
-        const name = error && error.name ? error.name : "Error";
-        const message = error && error.message ? ": " + error.message : "";
+        var name = error && error.name ? error.name : "Error";
+        var message = error && error.message ? ": " + error.message : "";
         return name + message;
     }
 
     function safeSyncProbe(name, probe, fallbackFactory) {
         try {
-            return probe();
+            var result = probe();
+            probeStatuses[probeKey(name)] = "observed";
+            return result;
         } catch (e) {
+            probeStatuses[probeKey(name)] = "runtime_error";
             log(name + " probe degraded: " + describeError(e), "bad");
             return fallbackFactory();
         }
     }
 
-    async function safeAsyncProbe(name, probe, fallbackFactory, timeoutMs) {
-        let timeoutId;
-        try {
-            const timeout = new Promise((_, reject) => {
-                timeoutId = setTimeout(() => reject(new Error(name + " timeout")), timeoutMs);
-            });
-            return await Promise.race([Promise.resolve().then(probe), timeout]);
-        } catch (e) {
-            log(name + " probe degraded: " + describeError(e), "bad");
-            return fallbackFactory();
-        } finally {
+    function safeAsyncProbe(name, probe, fallbackFactory, timeoutMs) {
+        var timeoutId;
+        var timeout = new Promise(function (_, reject) {
+            timeoutId = setTimeout(function () {
+                reject(new Error(name + " timeout"));
+            }, timeoutMs);
+        });
+        return Promise.race([Promise.resolve().then(probe), timeout]).then(function (value) {
             clearTimeout(timeoutId);
-        }
+            probeStatuses[probeKey(name)] = "observed";
+            return value;
+        }, function (error) {
+            clearTimeout(timeoutId);
+            probeStatuses[probeKey(name)] = /timeout/i.test(describeError(error)) ? "timeout" : "runtime_error";
+            log(name + " probe degraded: " + describeError(error), "bad");
+            return fallbackFactory();
+        });
     }
 
     function defaultHostData() {
@@ -316,7 +347,7 @@
     }
 
     function hashProbeValues(values) {
-        const text = Array.isArray(values) ? values.join("|") : String(values || "");
+        var text = Array.isArray(values) ? values.join("|") : String(values || "");
         if (!text) {
             return "";
         }
@@ -324,8 +355,8 @@
             return window.AndroidBridge.sha256(text);
         }
 
-        let hash = 2166136261;
-        for (let i = 0; i < text.length; i++) {
+        var hash = 2166136261;
+        for (var i = 0; i < text.length; i++) {
             hash ^= text.charCodeAt(i);
             hash = Math.imul(hash, 16777619);
         }
@@ -337,32 +368,32 @@
     }
 
     function getWebGLInfo() {
-        const canvas = document.createElement("canvas");
-        const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-        const gl2 = canvas.getContext("webgl2");
-        const info = defaultWebGLInfo();
+        var canvas = document.createElement("canvas");
+        var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        var gl2 = canvas.getContext("webgl2");
+        var info = defaultWebGLInfo();
         info.webgl2_supported = !!gl2;
         if (gl) {
-            const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+            var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
             if (debugInfo) {
                 info.vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
                 info.renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
             }
-            const extensions = gl.getSupportedExtensions();
+            var extensions = gl.getSupportedExtensions();
             info.webgl_extensions_count = extensions ? extensions.length : 0;
             info.max_texture_size = gl.getParameter(gl.MAX_TEXTURE_SIZE) || -1;
-            info.max_viewport_dims = Array.from(gl.getParameter(gl.MAX_VIEWPORT_DIMS) || []).join("x");
-            info.aliased_line_width_range = Array.from(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE) || []).join("-");
+            info.max_viewport_dims = arrayFrom(gl.getParameter(gl.MAX_VIEWPORT_DIMS) || []).join("x");
+            info.aliased_line_width_range = arrayFrom(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE) || []).join("-");
         }
         return info;
     }
 
     function getNavigatorFeatures() {
-        const nav = navigator;
+        var nav = navigator;
         return {
             user_agent: nav.userAgent,
             language: nav.language || "",
-            languages: Array.from(nav.languages || []),
+            languages: arrayFrom(nav.languages || []),
             platform: nav.platform || "",
             vendor: nav.vendor || "",
             product: nav.product || "",
@@ -377,8 +408,8 @@
     }
 
     function getScreenFeatures() {
-        const vv = window.visualViewport;
-        const orientation = screen.orientation || {};
+        var vv = window.visualViewport;
+        var orientation = screen.orientation || {};
         return {
             screen_resolution_logical: window.screen.width + "x" + window.screen.height,
             device_pixel_ratio: window.devicePixelRatio || 1,
@@ -394,12 +425,12 @@
             visual_viewport_height: vv ? vv.height : -1,
             visual_viewport_scale: vv ? vv.scale : -1,
             orientation_type: orientation.type || "",
-            orientation_angle: Number.isFinite(orientation.angle) ? orientation.angle : -1
+            orientation_angle: isFiniteNumber(orientation.angle) ? orientation.angle : -1
         };
     }
 
     function getExecutionFeatures() {
-        const timeZone = (Intl.DateTimeFormat().resolvedOptions() || {}).timeZone || "";
+        var timeZone = (Intl.DateTimeFormat().resolvedOptions() || {}).timeZone || "";
         return {
             compute_task_time_ms: runComputeChallenge().time_ms,
             timezone_offset: new Date().getTimezoneOffset(),
@@ -411,50 +442,51 @@
     }
 
     function getConnectionFeatures() {
-        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+        var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
         return {
             effective_type: connection.effectiveType || "",
-            downlink_mbps: Number.isFinite(connection.downlink) ? connection.downlink : -1,
-            rtt_ms: Number.isFinite(connection.rtt) ? connection.rtt : -1,
+            downlink_mbps: isFiniteNumber(connection.downlink) ? connection.downlink : -1,
+            rtt_ms: isFiniteNumber(connection.rtt) ? connection.rtt : -1,
             save_data: !!connection.saveData
         };
     }
 
-    async function getAudioFeatures() {
-        const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
-        const OfflineAudioContextCtor = window.OfflineAudioContext || window.webkitOfflineAudioContext;
-        const result = {
+    function getAudioFeatures() {
+        var AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        var OfflineAudioContextCtor = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+        var result = {
             audio_context_supported: !!(AudioContextCtor || OfflineAudioContextCtor),
             audio_sample_rate: -1,
             audio_output_latency: -1,
             audio_hash: "",
             audio_error: ""
         };
-        const errors = [];
+        var errors = [];
 
         if (AudioContextCtor) {
             try {
-                const audioContext = new AudioContextCtor();
-                result.audio_sample_rate = Number.isFinite(audioContext.sampleRate) ? audioContext.sampleRate : -1;
-                if (Number.isFinite(audioContext.outputLatency)) {
+                var audioContext = new AudioContextCtor();
+                result.audio_sample_rate = isFiniteNumber(audioContext.sampleRate) ? audioContext.sampleRate : -1;
+                if (isFiniteNumber(audioContext.outputLatency)) {
                     result.audio_output_latency = audioContext.outputLatency;
-                } else if (Number.isFinite(audioContext.baseLatency)) {
+                } else if (isFiniteNumber(audioContext.baseLatency)) {
                     result.audio_output_latency = audioContext.baseLatency;
                 }
                 if (audioContext.close) {
-                    audioContext.close().catch(() => {});
+                    audioContext.close().catch(function () {});
                 }
             } catch (e) {
                 errors.push("context:" + describeError(e));
             }
         }
 
+        var renderPromise = Promise.resolve();
         if (OfflineAudioContextCtor) {
             try {
-                const sampleRate = result.audio_sample_rate > 0 ? Math.round(result.audio_sample_rate) : 44100;
-                const offlineContext = new OfflineAudioContextCtor(1, 4096, sampleRate);
-                const oscillator = offlineContext.createOscillator();
-                const compressor = offlineContext.createDynamicsCompressor();
+                var sampleRate = result.audio_sample_rate > 0 ? Math.round(result.audio_sample_rate) : 44100;
+                var offlineContext = new OfflineAudioContextCtor(1, 4096, sampleRate);
+                var oscillator = offlineContext.createOscillator();
+                var compressor = offlineContext.createDynamicsCompressor();
 
                 oscillator.type = "triangle";
                 oscillator.frequency.value = 10000;
@@ -468,13 +500,16 @@
                 compressor.connect(offlineContext.destination);
                 oscillator.start(0);
 
-                const renderedBuffer = await offlineContext.startRendering();
-                const channelData = renderedBuffer.getChannelData(0);
-                const samples = [];
-                for (let i = 0; i < channelData.length; i += 128) {
-                    samples.push(channelData[i].toFixed(8));
-                }
-                result.audio_hash = hashProbeValues(samples);
+                renderPromise = Promise.resolve(offlineContext.startRendering()).then(function (renderedBuffer) {
+                    var channelData = renderedBuffer.getChannelData(0);
+                    var samples = [];
+                    for (var i = 0; i < channelData.length; i += 128) {
+                        samples.push(channelData[i].toFixed(8));
+                    }
+                    result.audio_hash = hashProbeValues(samples);
+                }, function (error) {
+                    errors.push("offline:" + describeError(error));
+                });
             } catch (e) {
                 errors.push("offline:" + describeError(e));
             }
@@ -482,33 +517,35 @@
             errors.push("offline:unavailable");
         }
 
-        result.audio_error = errors.join("; ");
-        return result;
+        return renderPromise.then(function () {
+            result.audio_error = errors.join("; ");
+            return result;
+        });
     }
 
     function getFontFeatures() {
-        const result = {
+        var result = {
             font_probe_count: 0,
             available_font_hash: "",
             font_probe_error: ""
         };
         try {
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d");
             if (!ctx) {
                 throw new Error("canvas_2d_unavailable");
             }
 
-            const baseFonts = ["monospace", "sans-serif", "serif"];
-            const testText = "mmmmmmmmmmlliMW@#12345";
-            const testSize = "72px";
-            const baseWidths = {};
-            baseFonts.forEach(baseFont => {
+            var baseFonts = ["monospace", "sans-serif", "serif"];
+            var testText = "mmmmmmmmmmlliMW@#12345";
+            var testSize = "72px";
+            var baseWidths = {};
+            baseFonts.forEach(function (baseFont) {
                 ctx.font = testSize + " " + baseFont;
                 baseWidths[baseFont] = ctx.measureText(testText).width;
             });
 
-            const candidateFonts = [
+            var candidateFonts = [
                 "Arial",
                 "Arial Black",
                 "Courier New",
@@ -532,10 +569,10 @@
                 "sans-serif-medium",
                 "serif-monospace"
             ];
-            const detectedFonts = candidateFonts.filter(fontName => {
-                return baseFonts.some(baseFont => {
+            var detectedFonts = candidateFonts.filter(function (fontName) {
+                return baseFonts.some(function (baseFont) {
                     ctx.font = testSize + " " + quoteCssFontName(fontName) + ", " + baseFont;
-                    const width = ctx.measureText(testText).width;
+                    var width = ctx.measureText(testText).width;
                     return Math.abs(width - baseWidths[baseFont]) > 0.01;
                 });
             }).sort();
@@ -548,8 +585,8 @@
         return result;
     }
 
-    async function getPermissionsFeatures() {
-        const result = {
+    function getPermissionsFeatures() {
+        var result = {
             permissions_api_supported: !!(navigator.permissions && navigator.permissions.query),
             notification_permission_state: typeof Notification !== "undefined" ? Notification.permission : "unsupported",
             geolocation_permission_state: "unsupported",
@@ -560,10 +597,10 @@
         };
 
         if (!result.permissions_api_supported) {
-            return result;
+            return Promise.resolve(result);
         }
 
-        const queries = [
+        var queries = [
             ["notifications", "notification_permission_state"],
             ["geolocation", "geolocation_permission_state"],
             ["camera", "camera_permission_state"],
@@ -571,20 +608,22 @@
             ["clipboard-read", "clipboard_read_state"]
         ];
 
-        await Promise.all(queries.map(async ([name, field]) => {
-            try {
-                const status = await navigator.permissions.query({ name });
+        return Promise.all(queries.map(function (query) {
+            var name = query[0];
+            var field = query[1];
+            return Promise.resolve(navigator.permissions.query({ name: name })).then(function (status) {
                 result[field] = status && status.state ? status.state : "unknown";
-            } catch (e) {
-                result.permission_query_errors.push(name + ":" + describeError(e));
-            }
-        }));
-        result.permission_query_errors.sort();
-        return result;
+            }, function (error) {
+                result.permission_query_errors.push(name + ":" + describeError(error));
+            });
+        })).then(function () {
+            result.permission_query_errors.sort();
+            return result;
+        });
     }
 
     function getAutomationFeatures() {
-        const result = {
+        var result = {
             webdriver: navigator.webdriver === true,
             plugins_count: navigator.plugins ? navigator.plugins.length : 0,
             mime_types_count: navigator.mimeTypes ? navigator.mimeTypes.length : 0,
@@ -594,10 +633,10 @@
         };
 
         try {
-            const pluginSummaries = Array.from(navigator.plugins || []).map(plugin => {
-                const pluginMimeTypes = [];
-                for (let i = 0; i < plugin.length; i++) {
-                    const mime = plugin[i];
+            var pluginSummaries = arrayFrom(navigator.plugins || []).map(function (plugin) {
+                var pluginMimeTypes = [];
+                for (var i = 0; i < plugin.length; i++) {
+                    var mime = plugin[i];
                     pluginMimeTypes.push([mime.type || "", mime.suffixes || ""].join(":"));
                 }
                 return [
@@ -607,8 +646,8 @@
                     pluginMimeTypes.sort().join(",")
                 ].join("~");
             }).sort();
-            const mimeTypeSummaries = Array.from(navigator.mimeTypes || []).map(mime => {
-                const pluginName = mime.enabledPlugin ? mime.enabledPlugin.name : "";
+            var mimeTypeSummaries = arrayFrom(navigator.mimeTypes || []).map(function (mime) {
+                var pluginName = mime.enabledPlugin ? mime.enabledPlugin.name : "";
                 return [
                     mime.type || "",
                     mime.suffixes || "",
@@ -634,19 +673,19 @@
     }
 
     function runComputeChallenge() {
-        const startTime = performance.now();
-        let result = 0;
-        for (let i = 0; i < 5000000; i++) {
+        var startTime = performance.now();
+        var result = 0;
+        for (var i = 0; i < 5000000; i++) {
             result += Math.sin(i) * Math.cos(i) + Math.tan(i % 100);
         }
         return { time_ms: parseFloat((performance.now() - startTime).toFixed(2)), guard: result };
     }
 
     function getCanvasFingerprint() {
-        const canvas = document.createElement("canvas");
+        var canvas = document.createElement("canvas");
         canvas.width = 250;
         canvas.height = 50;
-        const ctx = canvas.getContext("2d");
+        var ctx = canvas.getContext("2d");
 
         ctx.textBaseline = "top";
         ctx.font = "14px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif";
@@ -662,7 +701,7 @@
         canvasBox.style.display = "block";
         canvasBox.appendChild(canvas);
 
-        const dataURL = canvas.toDataURL();
+        var dataURL = canvas.toDataURL();
         if (window.AndroidBridge && window.AndroidBridge.sha256) {
             return window.AndroidBridge.sha256(dataURL);
         }
@@ -733,11 +772,11 @@
         };
     }
 
-    async function collectExpandedSignals() {
-        let currentSessionId = "";
-        let bridgeLatencyMs = -1;
-        let webviewDataNested = buildWebViewData(defaultHostData(), bridgeLatencyMs);
-        let webDataNested = buildWebData({
+    function collectExpandedSignals() {
+        var currentSessionId = "";
+        var bridgeLatencyMs = -1;
+        var webviewDataNested = buildWebViewData(defaultHostData(), bridgeLatencyMs);
+        var webDataNested = buildWebData({
             navigatorInfo: defaultNavigatorFeatures(),
             screenInfo: defaultScreenFeatures(),
             webglInfo: defaultWebGLInfo(),
@@ -750,108 +789,109 @@
             canvasHash: ""
         });
 
-        try {
-            setStatus("Establishing JSBridge connection...");
-            await sleep(100);
+        function handoffPayload() {
+            if (!window.AndroidBridge ||
+                !window.AndroidBridge.submitExpandedPayload ||
+                !currentSessionId) {
+                setStatus("Unable to hand payload to Android uploader");
+                return;
+            }
+            var payload = {
+                session_id: currentSessionId,
+                timestamp: Math.floor(Date.now() / 1000),
+                webview_data: webviewDataNested,
+                web_data: webDataNested,
+                collection_diagnostics: {
+                    diagnostics_schema_version: "web-probe-diagnostics-v1",
+                    probe_statuses: probeStatuses
+                }
+            };
+            try {
+                setStatus("Handing expanded payload to Android uploader...");
+                window.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
+                log("Expanded payload handed to uploader", "good");
+            } catch (error) {
+                log("Android uploader handoff failed: " + describeError(error), "bad");
+                setStatus("Android uploader handoff failed");
+            }
+        }
 
+        setStatus("Establishing JSBridge connection...");
+        return sleep(100).then(function () {
             if (!window.AndroidBridge ||
                 !window.AndroidBridge.getSessionId ||
                 !window.AndroidBridge.submitExpandedPayload) {
-                log("Android bridge missing", "bad");
-                setStatus("Android bridge missing");
-                return;
+                probeStatuses.jsbridge = "runtime_error";
+                throw new Error("Android bridge missing");
             }
-
-            const t0 = performance.now();
+            var t0 = performance.now();
             currentSessionId = window.AndroidBridge.getSessionId();
-            const t1 = performance.now();
+            var t1 = performance.now();
             bridgeLatencyMs = parseFloat((t1 - t0).toFixed(3));
+            probeStatuses.jsbridge = "observed";
             log("JSBridge connected in " + bridgeLatencyMs + " ms", "good");
 
-            const hostData = safeSyncProbe("WebView host", () => {
+            var hostData = safeSyncProbe("WebView host", function () {
                 if (!window.AndroidBridge.getWebViewHostFeatures) {
-                    return defaultHostData();
+                    throw new Error("WebView host bridge missing");
                 }
-                return Object.assign(
+                return assignObject(
                     defaultHostData(),
                     JSON.parse(window.AndroidBridge.getWebViewHostFeatures())
                 );
             }, defaultHostData);
             webviewDataNested = buildWebViewData(hostData, bridgeLatencyMs);
             log("Expanded WebView host signals collected");
-
             setStatus("Collecting expanded browser runtime signals...");
-            await sleep(100);
-
-            const webglInfo = safeSyncProbe("WebGL", getWebGLInfo, defaultWebGLInfo);
-            const navigatorInfo = safeSyncProbe("Navigator", getNavigatorFeatures, defaultNavigatorFeatures);
-            const screenInfo = safeSyncProbe("Screen", getScreenFeatures, defaultScreenFeatures);
-            const executionInfo = safeSyncProbe("Execution", getExecutionFeatures, defaultExecutionFeatures);
-            const connectionInfo = safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
-            const audioInfo = await safeAsyncProbe("Audio", getAudioFeatures, () => {
-                const fallback = defaultAudioFeatures();
+            return sleep(100);
+        }).then(function () {
+            var webglInfo = safeSyncProbe("WebGL", getWebGLInfo, defaultWebGLInfo);
+            var navigatorInfo = safeSyncProbe("Navigator", getNavigatorFeatures, defaultNavigatorFeatures);
+            var screenInfo = safeSyncProbe("Screen", getScreenFeatures, defaultScreenFeatures);
+            var executionInfo = safeSyncProbe("Execution", getExecutionFeatures, defaultExecutionFeatures);
+            var connectionInfo = safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
+            var fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
+            var automationInfo = safeSyncProbe("Automation", getAutomationFeatures, defaultAutomationFeatures);
+            var canvasHash = safeSyncProbe("Canvas", getCanvasFingerprint, function () { return ""; });
+            var audioPromise = safeAsyncProbe("Audio", getAudioFeatures, function () {
+                var fallback = defaultAudioFeatures();
                 fallback.audio_error = "probe_timeout_or_error";
                 return fallback;
             }, 2500);
-            const fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
-            const permissionsInfo = await safeAsyncProbe(
+            var permissionsPromise = safeAsyncProbe(
                 "Permissions",
                 getPermissionsFeatures,
                 defaultPermissionsFeatures,
                 1500
             );
-            const automationInfo = safeSyncProbe(
-                "Automation",
-                getAutomationFeatures,
-                defaultAutomationFeatures
-            );
-            const canvasHash = safeSyncProbe("Canvas", getCanvasFingerprint, () => "");
-
-            webDataNested = buildWebData({
-                navigatorInfo,
-                screenInfo,
-                webglInfo,
-                executionInfo,
-                connectionInfo,
-                audioInfo,
-                fontInfo,
-                permissionsInfo,
-                automationInfo,
-                canvasHash
+            return Promise.all([audioPromise, permissionsPromise]).then(function (asyncValues) {
+                var audioInfo = asyncValues[0];
+                var permissionsInfo = asyncValues[1];
+                webDataNested = buildWebData({
+                    navigatorInfo: navigatorInfo,
+                    screenInfo: screenInfo,
+                    webglInfo: webglInfo,
+                    executionInfo: executionInfo,
+                    connectionInfo: connectionInfo,
+                    audioInfo: audioInfo,
+                    fontInfo: fontInfo,
+                    permissionsInfo: permissionsInfo,
+                    automationInfo: automationInfo,
+                    canvasHash: canvasHash
+                });
+                log("UA: " + navigatorInfo.user_agent.substring(0, 68));
+                log("Logical screen: " + screenInfo.screen_resolution_logical + " DPR " + screenInfo.device_pixel_ratio);
+                log("WebGL renderer: " + webglInfo.renderer);
+                log("Audio supported: " + audioInfo.audio_context_supported + ", fonts: " + fontInfo.font_probe_count);
+                log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
+                log("Canvas hash: " + canvasHash.substring(0, 16));
             });
-
-            log("UA: " + navigatorInfo.user_agent.substring(0, 68));
-            log("Logical screen: " + screenInfo.screen_resolution_logical + " DPR " + screenInfo.device_pixel_ratio);
-            log("WebGL renderer: " + webglInfo.renderer);
-            log("Audio supported: " + audioInfo.audio_context_supported + ", fonts: " + fontInfo.font_probe_count);
-            log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
-            log("Canvas hash: " + canvasHash.substring(0, 16));
-        } catch (e) {
-            log("Expanded probe degraded: " + describeError(e), "bad");
-        }
-
-        if (!currentSessionId ||
-            !window.AndroidBridge ||
-            !window.AndroidBridge.submitExpandedPayload) {
-            setStatus("Unable to hand payload to Android uploader");
-            return;
-        }
-
-        const payload = {
-            session_id: currentSessionId,
-            timestamp: Math.floor(Date.now() / 1000),
-            webview_data: webviewDataNested,
-            web_data: webDataNested
-        };
-
-        try {
-            setStatus("Handing expanded payload to Android uploader...");
-            window.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
-            log("Expanded payload handed to uploader", "good");
-        } catch (e) {
-            log("Android uploader handoff failed: " + describeError(e), "bad");
-            setStatus("Android uploader handoff failed");
-        }
+        }).then(function () {
+            handoffPayload();
+        }, function (error) {
+            log("Expanded probe degraded: " + describeError(error), "bad");
+            handoffPayload();
+        });
     }
 
     window.onload = collectExpandedSignals;
