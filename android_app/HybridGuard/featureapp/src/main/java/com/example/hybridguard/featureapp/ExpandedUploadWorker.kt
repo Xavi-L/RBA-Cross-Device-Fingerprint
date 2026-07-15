@@ -30,10 +30,10 @@ internal object ExpandedUploadTransport {
         val detail: String
     )
 
-    fun upload(payloadJson: String): Attempt {
+    fun upload(payloadJson: String, collectEndpoint: String = DEFAULT_COLLECT_ENDPOINT): Attempt {
         val body = payloadJson.toRequestBody(JSON_MEDIA_TYPE)
         val request = Request.Builder()
-            .url(COLLECT_ENDPOINT)
+            .url(collectEndpoint)
             .addHeader("ngrok-skip-browser-warning", "true")
             .post(body)
             .build()
@@ -54,7 +54,7 @@ internal object ExpandedUploadTransport {
 
     private val JSON_MEDIA_TYPE = "application/json; charset=utf-8".toMediaType()
 
-    private const val COLLECT_ENDPOINT =
+    const val DEFAULT_COLLECT_ENDPOINT =
         "https://hemispheric-overmoist-candance.ngrok-free.dev/api/collect/fingerprint"
 }
 
@@ -66,7 +66,9 @@ class ExpandedUploadWorker(
     override fun doWork(): Result {
         val sessionId = inputData.getString(INPUT_SESSION_ID) ?: return Result.failure()
         val payload = pendingPayload(applicationContext, sessionId) ?: return Result.success()
-        val attempt = ExpandedUploadTransport.upload(payload)
+        val collectEndpoint = inputData.getString(INPUT_COLLECT_ENDPOINT)
+            ?: ExpandedUploadTransport.DEFAULT_COLLECT_ENDPOINT
+        val attempt = ExpandedUploadTransport.upload(payload, collectEndpoint)
 
         return when {
             attempt.uploaded -> {
@@ -81,10 +83,16 @@ class ExpandedUploadWorker(
     companion object {
         private const val PREFS_NAME = "expanded_pending_uploads"
         private const val INPUT_SESSION_ID = "session_id"
+        private const val INPUT_COLLECT_ENDPOINT = "collect_endpoint"
         private const val WORK_PREFIX = "expanded-upload-"
         private const val MAX_BACKGROUND_ATTEMPTS = 5
 
-        fun persistAndEnqueue(context: Context, sessionId: String, payloadJson: String) {
+        fun persistAndEnqueue(
+            context: Context,
+            sessionId: String,
+            payloadJson: String,
+            collectEndpoint: String = ExpandedUploadTransport.DEFAULT_COLLECT_ENDPOINT
+        ) {
             context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
                 .edit()
                 .putString(sessionId, payloadJson)
@@ -94,7 +102,12 @@ class ExpandedUploadWorker(
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
             val request = OneTimeWorkRequestBuilder<ExpandedUploadWorker>()
-                .setInputData(androidx.work.workDataOf(INPUT_SESSION_ID to sessionId))
+                .setInputData(
+                    androidx.work.workDataOf(
+                        INPUT_SESSION_ID to sessionId,
+                        INPUT_COLLECT_ENDPOINT to collectEndpoint
+                    )
+                )
                 .setConstraints(constraints)
                 .setInitialDelay(10, TimeUnit.SECONDS)
                 .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 10, TimeUnit.SECONDS)
