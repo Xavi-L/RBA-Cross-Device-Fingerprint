@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Process
 import android.os.UserManager
 import android.webkit.WebView
+import java.util.Locale
 import java.util.UUID
 import org.json.JSONObject
 
@@ -55,6 +56,7 @@ class CollectionManifestBuilder(private val context: Context) {
             ?.trim()
             ?.takeIf { it.matches(DEVICE_MANIFEST_ID_PATTERN) }
             ?: installId
+        val resolvedRuntimeContext = resolveRuntimeContext(runtimeContext)
 
         return JSONObject().apply {
             put("manifest_schema_version", MANIFEST_SCHEMA_VERSION)
@@ -62,7 +64,8 @@ class CollectionManifestBuilder(private val context: Context) {
             put("collection_started_at_ms", System.currentTimeMillis())
             put("device_manifest_id", manifestId)
             put("collector_install_id", installId)
-            put("runtime_context", runtimeContext.trim().ifBlank { "unspecified" })
+            put("runtime_context", resolvedRuntimeContext.value)
+            put("runtime_context_source", resolvedRuntimeContext.source)
             put("collection_round", collectionRound.coerceAtLeast(1))
             put("manufacturer", Build.MANUFACTURER)
             put("brand", Build.BRAND)
@@ -96,6 +99,44 @@ class CollectionManifestBuilder(private val context: Context) {
             )
         }
     }
+
+    private fun resolveRuntimeContext(requestedContext: String): RuntimeContext {
+        val requested = requestedContext.trim()
+        if (requested.isNotEmpty()) {
+            return RuntimeContext(requested, "intent")
+        }
+        return if (isLikelyEmulator()) {
+            RuntimeContext("emulator", "heuristic")
+        } else {
+            RuntimeContext("unspecified", "default")
+        }
+    }
+
+    private fun isLikelyEmulator(): Boolean {
+        val fingerprint = Build.FINGERPRINT.lowercase(Locale.ROOT)
+        val model = Build.MODEL.lowercase(Locale.ROOT)
+        val product = Build.PRODUCT.lowercase(Locale.ROOT)
+        val hardware = Build.HARDWARE.lowercase(Locale.ROOT)
+        val brand = Build.BRAND.lowercase(Locale.ROOT)
+        val manufacturer = Build.MANUFACTURER.lowercase(Locale.ROOT)
+
+        return fingerprint.startsWith("generic") ||
+            fingerprint.startsWith("unknown") ||
+            fingerprint.contains("/generic") ||
+            fingerprint.contains("/emulator") ||
+            hardware.contains("goldfish") ||
+            hardware.contains("ranchu") ||
+            hardware.contains("vbox") ||
+            model.contains("google_sdk") ||
+            model.contains("emulator") ||
+            model.contains("android sdk built for") ||
+            product.contains("sdk") ||
+            product.contains("emulator") ||
+            brand.startsWith("generic") ||
+            manufacturer.contains("genymotion")
+    }
+
+    private data class RuntimeContext(val value: String, val source: String)
 
     companion object {
         const val MANIFEST_SCHEMA_VERSION = "device-profile-manifest-v1"

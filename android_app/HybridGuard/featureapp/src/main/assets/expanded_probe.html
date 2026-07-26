@@ -246,6 +246,7 @@
 
     function defaultWebGLInfo() {
         return {
+            context_available: false,
             vendor: "Unknown",
             renderer: "Unknown",
             webgl2_supported: false,
@@ -372,6 +373,7 @@
         var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
         var gl2 = canvas.getContext("webgl2");
         var info = defaultWebGLInfo();
+        info.context_available = !!gl;
         info.webgl2_supported = !!gl2;
         if (gl) {
             var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
@@ -846,6 +848,12 @@
             return sleep(100);
         }).then(function () {
             var webglInfo = safeSyncProbe("WebGL", getWebGLInfo, defaultWebGLInfo);
+            if (!webglInfo.context_available) {
+                // The default WebGL values are sent for schema stability, but they are not
+                // observations. Preserve that distinction for the native field-status sidecar.
+                probeStatuses.webgl = "not_applicable";
+                log("WebGL context unavailable; emitted canonical fallback values", "bad");
+            }
             var navigatorInfo = safeSyncProbe("Navigator", getNavigatorFeatures, defaultNavigatorFeatures);
             var screenInfo = safeSyncProbe("Screen", getScreenFeatures, defaultScreenFeatures);
             var executionInfo = safeSyncProbe("Execution", getExecutionFeatures, defaultExecutionFeatures);

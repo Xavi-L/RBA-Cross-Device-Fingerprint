@@ -228,10 +228,14 @@ class ExpandedFingerprintCollector(private val context: Context) {
                 features.put("webview_provider_major", parseMajor(webViewPackage.versionName))
             }
             if (webViewPackage == null) {
-                features.put("webview_provider_package", JSONObject.NULL)
-                features.put("webview_provider_version", JSONObject.NULL)
-                features.put("webview_provider_version_code", JSONObject.NULL)
-                features.put("webview_provider_major", JSONObject.NULL)
+                // Keep all four fields materialized. JSONObject.NULL is removed by some
+                // JSON-to-map paths, which made API 24/25 payloads shorter than the fixed
+                // 177-signal contract. FieldStatusReporter marks these values unsupported
+                // before interpreting them on API levels below O.
+                features.put("webview_provider_package", "")
+                features.put("webview_provider_version", "")
+                features.put("webview_provider_version_code", -1)
+                features.put("webview_provider_major", -1)
             }
 
             features.put("default_ua_native", WebSettings.getDefaultUserAgent(context))

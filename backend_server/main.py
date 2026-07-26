@@ -4,7 +4,9 @@ import hashlib
 from datetime import datetime
 import os
 from pathlib import Path
+import tempfile
 from typing import Optional
+import uuid
 import copy
 
 from fastapi import FastAPI, HTTPException
@@ -209,8 +211,15 @@ EXPANDED_DB_FILE = BACKEND_DIR / "expanded_merged_sessions.json"
 COLLECTED_JSONL_FILE = BACKEND_DIR / "collected_data.jsonl"
 EXPANDED_COLLECTED_JSONL_FILE = BACKEND_DIR / "expanded_collected_data.jsonl"
 COLLECTION_RECEIPTS_JSONL_FILE = BACKEND_DIR / "collection_receipts.jsonl"
+RAW_EXPANDED_PAYLOADS_JSONL_FILE = BACKEND_DIR / "raw_expanded_payloads.jsonl"
+COLLECTION_BATCHES_JSONL_FILE = BACKEND_DIR / "collection_batches.jsonl"
+ACTIVE_COLLECTION_BATCH_STATE_FILE = BACKEND_DIR / "active_collection_batch.json"
 LOCAL_SCORE_JSONL_FILE = BACKEND_DIR / "local_score_results.jsonl"
 EXPECTED_EXPANDED_SIGNAL_COUNT = 177
+COLLECTION_BATCH_SCHEMA_VERSION = "backend-collection-batch-v1"
+COLLECTION_BATCH_STATE_SCHEMA_VERSION = "backend-collection-batch-state-v1"
+COLLECTION_BATCH_ID_SOURCE = "backend_process_lifecycle"
+STORAGE_CONCURRENCY_MODE = "single_process_json_files"
 SUPPORTED_EXPANDED_SCHEMA_VERSIONS = {
     "expanded-v2",
     "expanded-v2.1-status",
@@ -300,6 +309,302 @@ def expanded_payload_warnings(data: dict) -> list[str]:
 sessions_db = load_session_db(DB_FILE)
 expanded_sessions_db = load_session_db(EXPANDED_DB_FILE)
 
+
+class CollectionBatchError(RuntimeError):
+    """Raised when a request cannot be attached to one server-lifecycle batch."""
+
+
+# This stays process-local by design. The durable audit trail is the append-only
+# ledger plus the active-state marker below; do not create a batch at import time.
+active_collection_batch: Optional[dict] = None
+
+
+def utc_now_iso() -> str:
+    return datetime.utcnow().isoformat(timespec="microseconds") + "Z"
+
+
+def append_jsonl_durably(record: dict, path: Path) -> None:
+    """Append a small lifecycle record and flush it before serving requests."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True))
+        handle.write("\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def write_json_atomically(record: dict, path: Path) -> None:
+    """Replace the active-batch marker without exposing a partial JSON document."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        mode="w",
+        encoding="utf-8",
+        dir=path.parent,
+        delete=False,
+    ) as handle:
+        temporary_path = Path(handle.name)
+        json.dump(record, handle, ensure_ascii=False, sort_keys=True)
+        handle.write("\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    temporary_path.replace(path)
+
+
+def read_jsonl_records(path: Path, description: str) -> list[dict]:
+    if not path.exists():
+        return []
+    records: list[dict] = []
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, start=1):
+                if not line.strip():
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError as error:
+                    raise CollectionBatchError(
+                        f"Invalid JSON in {description} at {path}:{line_number}"
+                    ) from error
+                if not isinstance(record, dict):
+                    raise CollectionBatchError(
+                        f"Expected an object in {description} at {path}:{line_number}"
+                    )
+                records.append(record)
+    except OSError as error:
+        raise CollectionBatchError(f"Cannot read {description}: {path}") from error
+    return records
+
+
+def read_active_collection_batch_state() -> Optional[dict]:
+    if not ACTIVE_COLLECTION_BATCH_STATE_FILE.exists():
+        return None
+    try:
+        with ACTIVE_COLLECTION_BATCH_STATE_FILE.open("r", encoding="utf-8") as handle:
+            state = json.load(handle)
+    except (OSError, json.JSONDecodeError) as error:
+        raise CollectionBatchError(
+            f"Cannot read active collection batch state: {ACTIVE_COLLECTION_BATCH_STATE_FILE}"
+        ) from error
+    if not isinstance(state, dict) or not state.get("collection_batch_id"):
+        raise CollectionBatchError(
+            f"Invalid active collection batch state: {ACTIVE_COLLECTION_BATCH_STATE_FILE}"
+        )
+    return state
+
+
+def clear_active_collection_batch_state() -> None:
+    try:
+        ACTIVE_COLLECTION_BATCH_STATE_FILE.unlink()
+    except FileNotFoundError:
+        pass
+
+
+def process_is_running(process_id: object) -> bool:
+    """Best-effort guard against two backend processes using one JSONL directory."""
+    if not isinstance(process_id, int) or process_id <= 0:
+        return False
+    try:
+        os.kill(process_id, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def collection_batch_receipt_summary(collection_batch_id: str) -> dict:
+    summary = {
+        "receipt_count": 0,
+        "stored_new_jsonl_row_count": 0,
+        "duplicate_payload_count": 0,
+        "last_receipt_at": None,
+        "last_stored_receipt_at": None,
+    }
+    for receipt in read_jsonl_records(COLLECTION_RECEIPTS_JSONL_FILE, "collection receipts"):
+        if receipt.get("collection_batch_id") != collection_batch_id:
+            continue
+        summary["receipt_count"] += 1
+        received_at = receipt.get("server_received_at")
+        if isinstance(received_at, str) and (
+            summary["last_receipt_at"] is None or received_at > summary["last_receipt_at"]
+        ):
+            summary["last_receipt_at"] = received_at
+        if receipt.get("stored_new_jsonl_row") is True:
+            summary["stored_new_jsonl_row_count"] += 1
+            if isinstance(received_at, str) and (
+                summary["last_stored_receipt_at"] is None
+                or received_at > summary["last_stored_receipt_at"]
+            ):
+                summary["last_stored_receipt_at"] = received_at
+        if receipt.get("duplicate_payload") is True:
+            summary["duplicate_payload_count"] += 1
+    return summary
+
+
+def open_collection_batch_starts() -> dict[str, dict]:
+    starts: dict[str, dict] = {}
+    closed_ids: set[str] = set()
+    for event in read_jsonl_records(COLLECTION_BATCHES_JSONL_FILE, "collection batch ledger"):
+        if event.get("collection_batch_schema_version") != COLLECTION_BATCH_SCHEMA_VERSION:
+            continue
+        batch_id = event.get("collection_batch_id")
+        event_name = event.get("event")
+        if not isinstance(batch_id, str) or not batch_id:
+            raise CollectionBatchError("Collection batch ledger contains an event without collection_batch_id")
+        if event_name == "started":
+            if batch_id in starts:
+                raise CollectionBatchError(
+                    f"Collection batch ledger contains duplicate start events for {batch_id}"
+                )
+            starts[batch_id] = event
+        elif event_name == "closed":
+            if batch_id not in starts:
+                raise CollectionBatchError(
+                    f"Collection batch ledger closes unknown batch {batch_id}"
+                )
+            closed_ids.add(batch_id)
+    return {
+        batch_id: event
+        for batch_id, event in starts.items()
+        if batch_id not in closed_ids
+    }
+
+
+def recover_unclosed_collection_batches() -> None:
+    """Close a previous process's open batch using only observable receipt time.
+
+    A SIGKILL or host crash cannot provide a true shutdown timestamp. The next
+    process therefore records the last server receipt as an upper-bound evidence
+    point and labels the lifecycle as recovered rather than cleanly closed.
+    """
+    open_batches = open_collection_batch_starts()
+    active_state = read_active_collection_batch_state()
+    if active_state is not None:
+        state_batch_id = active_state["collection_batch_id"]
+        if state_batch_id in open_batches and process_is_running(
+            active_state.get("backend_process_id")
+        ):
+            raise CollectionBatchError(
+                f"Collection batch {state_batch_id} is still owned by backend process "
+                f"{active_state.get('backend_process_id')}; do not start a second backend "
+                "against the same JSON/JSONL directory."
+            )
+        open_batches.setdefault(state_batch_id, active_state)
+
+    for batch_id, started_event in open_batches.items():
+        summary = collection_batch_receipt_summary(batch_id)
+        last_receipt_at = summary["last_receipt_at"]
+        recovery_event = {
+            "collection_batch_schema_version": COLLECTION_BATCH_SCHEMA_VERSION,
+            "event": "closed",
+            "collection_batch_id": batch_id,
+            "started_at": started_event.get("started_at"),
+            "ended_at": last_receipt_at,
+            "ended_at_source": (
+                "last_receipt_at" if last_receipt_at is not None else "not_observed"
+            ),
+            "recovery_detected_at": utc_now_iso(),
+            "recovery_detection_source": "next_backend_start",
+            "lifecycle_status": "unclean_shutdown_recovered",
+            "boundary_rule": COLLECTION_BATCH_ID_SOURCE,
+            **summary,
+        }
+        append_jsonl_durably(recovery_event, COLLECTION_BATCHES_JSONL_FILE)
+        logger.warning(
+            "Recovered unclean collection batch %s; last observable receipt=%s",
+            batch_id,
+            last_receipt_at,
+        )
+    if active_state is not None:
+        clear_active_collection_batch_state()
+
+
+def start_collection_batch() -> dict:
+    """Create exactly one batch for the current ASGI server process lifecycle."""
+    global active_collection_batch
+    if active_collection_batch is not None:
+        raise CollectionBatchError(
+            f"Collection batch is already active: {active_collection_batch['collection_batch_id']}"
+        )
+
+    recover_unclosed_collection_batches()
+    started_at = utc_now_iso()
+    collection_batch_id = (
+        f"hgbatch-v1-{datetime.utcnow().strftime('%Y%m%dT%H%M%S%fZ')}-"
+        f"{uuid.uuid4().hex[:10]}"
+    )
+    started_event = {
+        "collection_batch_schema_version": COLLECTION_BATCH_SCHEMA_VERSION,
+        "event": "started",
+        "collection_batch_id": collection_batch_id,
+        "started_at": started_at,
+        "lifecycle_status": "open",
+        "boundary_rule": COLLECTION_BATCH_ID_SOURCE,
+        "storage_concurrency_mode": STORAGE_CONCURRENCY_MODE,
+        "backend_process_id": os.getpid(),
+    }
+    append_jsonl_durably(started_event, COLLECTION_BATCHES_JSONL_FILE)
+    write_json_atomically(
+        {
+            "collection_batch_state_schema_version": COLLECTION_BATCH_STATE_SCHEMA_VERSION,
+            "collection_batch_id": collection_batch_id,
+            "started_at": started_at,
+            "backend_process_id": os.getpid(),
+        },
+        ACTIVE_COLLECTION_BATCH_STATE_FILE,
+    )
+    active_collection_batch = started_event
+    logger.info("Started collection batch %s", collection_batch_id)
+    return dict(started_event)
+
+
+def get_active_collection_batch() -> dict:
+    if active_collection_batch is None:
+        raise CollectionBatchError(
+            "No active collection batch. Start the FastAPI server lifecycle before accepting uploads."
+        )
+    return dict(active_collection_batch)
+
+
+def close_active_collection_batch() -> Optional[dict]:
+    """Record a graceful lifecycle end after uvicorn stops accepting requests."""
+    global active_collection_batch
+    if active_collection_batch is None:
+        return None
+    active_batch = active_collection_batch
+    summary = collection_batch_receipt_summary(active_batch["collection_batch_id"])
+    closed_event = {
+        "collection_batch_schema_version": COLLECTION_BATCH_SCHEMA_VERSION,
+        "event": "closed",
+        "collection_batch_id": active_batch["collection_batch_id"],
+        "started_at": active_batch["started_at"],
+        "ended_at": utc_now_iso(),
+        "ended_at_source": "graceful_shutdown_hook",
+        "lifecycle_status": "closed_cleanly",
+        "boundary_rule": COLLECTION_BATCH_ID_SOURCE,
+        "storage_concurrency_mode": STORAGE_CONCURRENCY_MODE,
+        **summary,
+    }
+    append_jsonl_durably(closed_event, COLLECTION_BATCHES_JSONL_FILE)
+    clear_active_collection_batch_state()
+    active_collection_batch = None
+    logger.info("Closed collection batch %s", closed_event["collection_batch_id"])
+    return closed_event
+
+
+@app.on_event("startup")
+def start_collection_batch_for_server_lifecycle() -> None:
+    start_collection_batch()
+
+
+@app.on_event("shutdown")
+def close_collection_batch_for_server_lifecycle() -> None:
+    try:
+        close_active_collection_batch()
+    except Exception:
+        # Leave the active marker behind so a later start can recover the boundary.
+        logger.exception("Failed to record graceful collection batch shutdown")
+
 @app.get("/")
 async def serve_frontend():
     """直接用 FastAPI 托管前端网页"""
@@ -316,6 +621,11 @@ async def collect_fingerprint(payload: FingerprintPayload):
     Returns:
         成功响应
     """
+    try:
+        active_batch = get_active_collection_batch()
+    except CollectionBatchError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
     try:
         # # 打印接收日志
         # dt = datetime.fromtimestamp(payload.timestamp)
@@ -344,6 +654,47 @@ async def collect_fingerprint(payload: FingerprintPayload):
             existing_session.get(key) == value
             for key, value in incoming_data.items()
         )
+
+        receipt = {
+            "receipt_schema_version": "collection-receipt-v1",
+            "receipt_id": hashlib.sha256(
+                f"{session_id}:{payload_sha256}:{server_received_at}".encode("utf-8")
+            ).hexdigest()[:24],
+            "server_received_at": server_received_at,
+            "session_id": session_id,
+            "payload_sha256": payload_sha256,
+            "collector_app": incoming_data.get("collector_app"),
+            "schema_version": incoming_data.get("schema_version"),
+            "storage_target": target_jsonl_file.name,
+            "duplicate_payload": is_duplicate_payload,
+            "stored_new_jsonl_row": not is_duplicate_payload,
+            "validation_status": "accepted_with_warnings" if validation_warnings else "accepted",
+            "validation_warnings": validation_warnings,
+            "collection_batch_id": active_batch["collection_batch_id"],
+            "collection_batch_id_source": COLLECTION_BATCH_ID_SOURCE,
+            "collection_batch_started_at": active_batch["started_at"],
+        }
+        # Preserve the canonical request before session merging and analysis
+        # flattening can alter its structure. Identical retries remain receipt-only.
+        if is_expanded_collector and not is_duplicate_payload:
+            raw_payload_archive = {
+                "raw_payload_archive_schema_version": "expanded-raw-payload-v1",
+                "server_received_at": server_received_at,
+                "session_id": session_id,
+                "receipt_id": receipt["receipt_id"],
+                "payload_sha256": payload_sha256,
+                "duplicate_payload": is_duplicate_payload,
+                "stored_new_jsonl_row": True,
+                "collection_batch_id": active_batch["collection_batch_id"],
+                "collection_batch_id_source": COLLECTION_BATCH_ID_SOURCE,
+                "collection_batch_started_at": active_batch["started_at"],
+                "canonical_received_payload": incoming_data,
+            }
+            save_to_jsonl(raw_payload_archive, RAW_EXPANDED_PAYLOADS_JSONL_FILE)
+            receipt["raw_payload_archived"] = True
+            receipt["raw_payload_archive"] = RAW_EXPANDED_PAYLOADS_JSONL_FILE.name
+        else:
+            receipt["raw_payload_archived"] = False
     
         # 1. 检查是否是新会话。如果是，初始化一条空记录
         if session_id not in target_sessions_db:
@@ -430,22 +781,6 @@ async def collect_fingerprint(payload: FingerprintPayload):
             if not is_duplicate_payload:
                 save_to_jsonl(llm_session_data, target_jsonl_file)
 
-        receipt = {
-            "receipt_schema_version": "collection-receipt-v1",
-            "receipt_id": hashlib.sha256(
-                f"{session_id}:{payload_sha256}:{server_received_at}".encode("utf-8")
-            ).hexdigest()[:24],
-            "server_received_at": server_received_at,
-            "session_id": session_id,
-            "payload_sha256": payload_sha256,
-            "collector_app": incoming_data.get("collector_app"),
-            "schema_version": incoming_data.get("schema_version"),
-            "storage_target": target_jsonl_file.name,
-            "duplicate_payload": is_duplicate_payload,
-            "stored_new_jsonl_row": not is_duplicate_payload,
-            "validation_status": "accepted_with_warnings" if validation_warnings else "accepted",
-            "validation_warnings": validation_warnings,
-        }
         save_to_jsonl(receipt, COLLECTION_RECEIPTS_JSONL_FILE)
 
         # 返回成功响应
@@ -470,6 +805,7 @@ async def health_check():
 @app.get("/api/collect/readiness")
 async def collection_readiness():
     """Cloud-run preflight: confirm contract, partial-payload policy and output files."""
+    active_batch = active_collection_batch
     return {
         "status": "ready",
         "readiness_schema_version": "featureapp-readiness-v1",
@@ -479,7 +815,16 @@ async def collection_readiness():
         "accepts_partial_expanded_payloads": True,
         "duplicate_payload_suppression": True,
         "collection_receipts_enabled": True,
-        "storage_concurrency_mode": "single_process_json_files",
+        "raw_expanded_payload_archive_enabled": True,
+        "storage_concurrency_mode": STORAGE_CONCURRENCY_MODE,
+        "collection_batch_lifecycle_enabled": True,
+        "collection_batch_id": (
+            active_batch.get("collection_batch_id") if active_batch is not None else None
+        ),
+        "collection_batch_status": "open" if active_batch is not None else "not_initialized",
+        "collection_batch_id_source": (
+            COLLECTION_BATCH_ID_SOURCE if active_batch is not None else None
+        ),
     }
 
 @app.post("/api/risk/local-score")

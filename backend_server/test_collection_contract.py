@@ -61,7 +61,11 @@ class CollectionContractTests(unittest.TestCase):
             expanded_db = temp / "expanded_merged_sessions.json"
             expanded_jsonl = temp / "expanded_collected_data.jsonl"
             receipts_jsonl = temp / "collection_receipts.jsonl"
+            raw_payloads_jsonl = temp / "raw_expanded_payloads.jsonl"
+            batches_jsonl = temp / "collection_batches.jsonl"
+            active_batch_state = temp / "active_collection_batch.json"
             original_db = main.expanded_sessions_db
+            original_batch = main.active_collection_batch
             main.expanded_sessions_db = {}
             try:
                 with mock.patch.multiple(
@@ -69,14 +73,20 @@ class CollectionContractTests(unittest.TestCase):
                     EXPANDED_DB_FILE=expanded_db,
                     EXPANDED_COLLECTED_JSONL_FILE=expanded_jsonl,
                     COLLECTION_RECEIPTS_JSONL_FILE=receipts_jsonl,
+                    RAW_EXPANDED_PAYLOADS_JSONL_FILE=raw_payloads_jsonl,
+                    COLLECTION_BATCHES_JSONL_FILE=batches_jsonl,
+                    ACTIVE_COLLECTION_BATCH_STATE_FILE=active_batch_state,
                 ):
+                    batch = main.start_collection_batch()
                     payload = expanded_payload(runtime_error_count=1)
                     payload["web_data"] = {}
                     model = main.FingerprintPayload(**payload)
                     first = asyncio.run(main.collect_fingerprint(model))
                     second = asyncio.run(main.collect_fingerprint(model))
+                    closed_batch = main.close_active_collection_batch()
             finally:
                 main.expanded_sessions_db = original_db
+                main.active_collection_batch = original_batch
 
             self.assertEqual(first["status"], "success")
             self.assertEqual(first["receipt"]["validation_status"], "accepted_with_warnings")
@@ -87,6 +97,34 @@ class CollectionContractTests(unittest.TestCase):
             receipt_rows = [json.loads(line) for line in receipts_jsonl.read_text(encoding="utf-8").splitlines()]
             self.assertEqual(len(receipt_rows), 2)
             self.assertEqual(receipt_rows[0]["session_id"], "contract-test-session")
+            self.assertTrue(receipt_rows[0]["raw_payload_archived"])
+            self.assertFalse(receipt_rows[1]["raw_payload_archived"])
+            self.assertEqual(receipt_rows[0]["collection_batch_id"], batch["collection_batch_id"])
+            self.assertEqual(receipt_rows[1]["collection_batch_id"], batch["collection_batch_id"])
+            self.assertEqual(
+                receipt_rows[0]["collection_batch_id_source"],
+                main.COLLECTION_BATCH_ID_SOURCE,
+            )
+
+            raw_rows = [json.loads(line) for line in raw_payloads_jsonl.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual(len(raw_rows), 1)
+            self.assertEqual(raw_rows[0]["session_id"], "contract-test-session")
+            self.assertEqual(raw_rows[0]["receipt_id"], receipt_rows[0]["receipt_id"])
+            self.assertEqual(raw_rows[0]["payload_sha256"], receipt_rows[0]["payload_sha256"])
+            self.assertEqual(raw_rows[0]["collection_batch_id"], batch["collection_batch_id"])
+            self.assertEqual(
+                main.canonical_payload_sha256(raw_rows[0]["canonical_received_payload"]),
+                receipt_rows[0]["payload_sha256"],
+            )
+
+            batch_events = [
+                json.loads(line)
+                for line in batches_jsonl.read_text(encoding="utf-8").splitlines()
+            ]
+            self.assertEqual([event["event"] for event in batch_events], ["started", "closed"])
+            self.assertEqual(closed_batch["lifecycle_status"], "closed_cleanly")
+            self.assertEqual(closed_batch["receipt_count"], 2)
+            self.assertEqual(closed_batch["stored_new_jsonl_row_count"], 1)
 
 
 if __name__ == "__main__":
