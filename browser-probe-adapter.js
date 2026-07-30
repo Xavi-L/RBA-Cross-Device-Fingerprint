@@ -2,6 +2,7 @@
   "use strict";
 
   var STORAGE_KEY = "hybridguard-browser-probe-v1";
+  var UPLOAD_TIMEOUT_MS = 12000;
   var statusEl = document.getElementById("status");
   var logEl = document.getElementById("log");
   var canvasBox = document.getElementById("canvasBox");
@@ -47,7 +48,14 @@
 
   function isAllowedUploadUrl(value) {
     try {
-      var parsed = new URL(value);
+      if (
+        !/^(https?):\/\//i.test(value) ||
+        /^[a-z]+:\/\/[^/?#]*@/i.test(value)
+      ) {
+        return false;
+      }
+      var parsed = document.createElement("a");
+      parsed.href = value;
       return (
         parsed.protocol === "https:" ||
         (
@@ -60,12 +68,41 @@
     }
   }
 
+  function parseFragment(value) {
+    var result = {};
+    String(value || "")
+      .replace(/^#/, "")
+      .split("&")
+      .forEach(function (entry) {
+        if (!entry) {
+          return;
+        }
+        var separator = entry.indexOf("=");
+        var encodedKey = separator >= 0 ? entry.slice(0, separator) : entry;
+        var encodedValue = separator >= 0 ? entry.slice(separator + 1) : "";
+        var key;
+        var decodedValue;
+        try {
+          key = decodeURIComponent(encodedKey.replace(/\+/g, " "));
+          decodedValue = decodeURIComponent(encodedValue.replace(/\+/g, " "));
+        } catch (_error) {
+          return;
+        }
+        if (!Object.prototype.hasOwnProperty.call(result, key)) {
+          result[key] = decodedValue;
+        }
+      });
+    return result;
+  }
+
   function readLaunchContext() {
-    var fragment = new URLSearchParams(global.location.hash.replace(/^#/, ""));
+    // URLSearchParams is absent from the Chromium generation used by some
+    // Android 5.x system browsers. Keep ticket parsing ES5-only.
+    var fragment = parseFragment(global.location.hash);
     var fromFragment = {
-      pair_id: fragment.get("pair_id") || "",
-      browser_ticket: fragment.get("browser_ticket") || "",
-      browser_upload_url: fragment.get("browser_upload_url") || "",
+      pair_id: fragment.pair_id || "",
+      browser_ticket: fragment.browser_ticket || "",
+      browser_upload_url: fragment.browser_upload_url || "",
     };
     if (
       fromFragment.pair_id &&
@@ -91,14 +128,86 @@
     throw new Error("missing_or_invalid_launch_context");
   }
 
+  function xhrJsonRequest(url, method, headers, body, timeoutMs) {
+    return new Promise(function (resolve, reject) {
+      if (typeof global.XMLHttpRequest !== "function") {
+        reject(new Error("no_supported_http_transport"));
+        return;
+      }
+      var xhr = new global.XMLHttpRequest();
+      var settled = false;
+
+      function rejectOnce(error) {
+        if (!settled) {
+          settled = true;
+          reject(error);
+        }
+      }
+
+      try {
+        xhr.open(method, url, true);
+        xhr.timeout = timeoutMs;
+        Object.keys(headers || {}).forEach(function (name) {
+          xhr.setRequestHeader(name, headers[name]);
+        });
+      } catch (error) {
+        rejectOnce(error);
+        return;
+      }
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4 || settled) {
+          return;
+        }
+        var responseText = xhr.responseText || "";
+        var responseBody = {};
+        try {
+          responseBody = responseText ? JSON.parse(responseText) : {};
+        } catch (_error) {}
+        if (xhr.status < 200 || xhr.status >= 300) {
+          var detail =
+            responseBody.detail || responseBody.status || ("http_" + xhr.status);
+          rejectOnce(new Error(detail));
+          return;
+        }
+        settled = true;
+        resolve(responseBody);
+      };
+      xhr.onerror = function () {
+        rejectOnce(new Error("xhr_network_error"));
+      };
+      xhr.ontimeout = function () {
+        rejectOnce(new Error("xhr_timeout"));
+      };
+      xhr.onabort = function () {
+        rejectOnce(new Error("xhr_aborted"));
+      };
+      try {
+        xhr.send(body || null);
+      } catch (error) {
+        rejectOnce(error);
+      }
+    });
+  }
+
   function loadBundleMetadata() {
-    return fetch("probe/manifest.json", {
-      cache: "no-store",
-      credentials: "omit",
-      referrerPolicy: "no-referrer",
-    }).then(
-      function (response) {
-        return response.ok ? response.json() : {};
+    if (typeof global.fetch === "function") {
+      return global.fetch("probe/manifest.json", {
+        cache: "no-store",
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
+      }).then(
+        function (response) {
+          return response.ok ? response.json() : {};
+        },
+        function () {
+          return {};
+        },
+      );
+    }
+    return xhrJsonRequest("probe/manifest.json", "GET", {}, null, 5000).then(
+      function (metadata) {
+        return metadata;
       },
       function () {
         return {};
@@ -135,31 +244,71 @@
 
   function upload(launchContext, serializedPayload, attempt) {
     setStatus("Uploading verified browser feature payload…", false);
-    return fetch(launchContext.browser_upload_url, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-store",
-      credentials: "omit",
-      referrerPolicy: "no-referrer",
-      headers: {
-        "Authorization": "Bearer " + launchContext.browser_ticket,
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "1",
-      },
-      body: serializedPayload,
-    }).then(function (response) {
-      return response.text().then(function (text) {
-        var body = {};
-        try {
-          body = text ? JSON.parse(text) : {};
-        } catch (_error) {}
-        if (!response.ok) {
-          var detail = body.detail || body.status || ("http_" + response.status);
-          throw new Error(detail);
+    var controller = null;
+    var timeoutId = null;
+    var requestHeaders = {
+      "Authorization": "Bearer " + launchContext.browser_ticket,
+      "Content-Type": "application/json",
+      "ngrok-skip-browser-warning": "1",
+    };
+    var requestPromise;
+    if (typeof global.fetch === "function") {
+      var requestOptions = {
+        method: "POST",
+        mode: "cors",
+        cache: "no-store",
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
+        headers: requestHeaders,
+        body: serializedPayload,
+      };
+      if (typeof global.AbortController === "function") {
+        controller = new global.AbortController();
+        requestOptions.signal = controller.signal;
+        timeoutId = global.setTimeout(function () {
+          controller.abort();
+        }, UPLOAD_TIMEOUT_MS);
+      }
+      requestPromise = global.fetch(
+        launchContext.browser_upload_url,
+        requestOptions,
+      ).then(function (response) {
+        return response.text().then(function (text) {
+          var body = {};
+          try {
+            body = text ? JSON.parse(text) : {};
+          } catch (_error) {}
+          if (!response.ok) {
+            var detail = body.detail || body.status || ("http_" + response.status);
+            throw new Error(detail);
+          }
+          return body;
+        });
+      });
+    } else {
+      requestPromise = xhrJsonRequest(
+        launchContext.browser_upload_url,
+        "POST",
+        requestHeaders,
+        serializedPayload,
+        UPLOAD_TIMEOUT_MS,
+      );
+    }
+
+    return requestPromise.then(
+      function (body) {
+        if (timeoutId !== null) {
+          global.clearTimeout(timeoutId);
         }
         return body;
-      });
-    }).catch(function (error) {
+      },
+      function (error) {
+        if (timeoutId !== null) {
+          global.clearTimeout(timeoutId);
+        }
+        throw error;
+      },
+    ).catch(function (error) {
       if (attempt >= 3) {
         throw error;
       }
@@ -192,6 +341,17 @@
         sessionStorage.removeItem(STORAGE_KEY + ":payload");
       } catch (_error) {}
       var receiptId = receipt.receipt_id ? " Receipt " + receipt.receipt_id + "." : "";
+      if (
+        receipt.pair_status === "awaiting_app" ||
+        receipt.pair_status === "awaiting_app_receipt"
+      ) {
+        setStatus(
+          "Browser payload saved, waiting for app binding." + receiptId,
+          false,
+        );
+        log("Backend saved the browser payload; app binding is still pending.", "good");
+        return;
+      }
       setStatus("Browser collection complete." + receiptId + " You may close this tab.", false);
       log("Backend receipt verified", "good");
     }
