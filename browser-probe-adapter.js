@@ -96,18 +96,32 @@
   }
 
   function readLaunchContext() {
+    if (
+      global.HybridGuardBrowserLaunchContext &&
+      global.HybridGuardBrowserLaunchContext.pair_id &&
+      global.HybridGuardBrowserLaunchContext.browser_ticket &&
+      isAllowedUploadUrl(global.HybridGuardBrowserLaunchContext.browser_upload_url) &&
+      isAllowedUploadUrl(global.HybridGuardBrowserLaunchContext.browser_stage_url)
+    ) {
+      global.history.replaceState(null, "", global.location.pathname + global.location.search);
+      return global.HybridGuardBrowserLaunchContext;
+    }
     // URLSearchParams is absent from the Chromium generation used by some
     // Android 5.x system browsers. Keep ticket parsing ES5-only.
     var fragment = parseFragment(global.location.hash);
+    var launchAttempt = parseInt(fragment.launch_attempt || "1", 10);
     var fromFragment = {
       pair_id: fragment.pair_id || "",
       browser_ticket: fragment.browser_ticket || "",
       browser_upload_url: fragment.browser_upload_url || "",
+      browser_stage_url: fragment.browser_stage_url || "",
+      launch_attempt: launchAttempt === 2 ? 2 : 1
     };
     if (
       fromFragment.pair_id &&
       fromFragment.browser_ticket &&
-      isAllowedUploadUrl(fromFragment.browser_upload_url)
+      isAllowedUploadUrl(fromFragment.browser_upload_url) &&
+      isAllowedUploadUrl(fromFragment.browser_stage_url)
     ) {
       try {
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify(fromFragment));
@@ -120,7 +134,8 @@
       if (
         stored.pair_id &&
         stored.browser_ticket &&
-        isAllowedUploadUrl(stored.browser_upload_url)
+        isAllowedUploadUrl(stored.browser_upload_url) &&
+        isAllowedUploadUrl(stored.browser_stage_url)
       ) {
         return stored;
       }
@@ -190,19 +205,44 @@
     });
   }
 
+  function reportStage(launchContext, stage) {
+    if (!launchContext || !launchContext.browser_stage_url) {
+      return;
+    }
+    xhrJsonRequest(
+      launchContext.browser_stage_url,
+      "POST",
+      {
+        "Authorization": "Bearer " + launchContext.browser_ticket,
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "1"
+      },
+      JSON.stringify({
+        pair_id: launchContext.pair_id,
+        stage: stage,
+        launch_attempt: launchContext.launch_attempt || 1,
+        client_stage_at_ms: Date.now()
+      }),
+      5000
+    ).then(
+      function () {},
+      function () {}
+    );
+  }
+
   function loadBundleMetadata() {
     if (typeof global.fetch === "function") {
       return global.fetch("probe/manifest.json", {
         cache: "no-store",
         credentials: "omit",
-        referrerPolicy: "no-referrer",
+        referrerPolicy: "no-referrer"
       }).then(
         function (response) {
           return response.ok ? response.json() : {};
         },
         function () {
           return {};
-        },
+        }
       );
     }
     return xhrJsonRequest("probe/manifest.json", "GET", {}, null, 5000).then(
@@ -211,7 +251,7 @@
       },
       function () {
         return {};
-      },
+      }
     );
   }
 
@@ -260,7 +300,7 @@
         credentials: "omit",
         referrerPolicy: "no-referrer",
         headers: requestHeaders,
-        body: serializedPayload,
+        body: serializedPayload
       };
       if (typeof global.AbortController === "function") {
         controller = new global.AbortController();
@@ -271,7 +311,7 @@
       }
       requestPromise = global.fetch(
         launchContext.browser_upload_url,
-        requestOptions,
+        requestOptions
       ).then(function (response) {
         return response.text().then(function (text) {
           var body = {};
@@ -291,7 +331,7 @@
         "POST",
         requestHeaders,
         serializedPayload,
-        UPLOAD_TIMEOUT_MS,
+        UPLOAD_TIMEOUT_MS
       );
     }
 
@@ -307,7 +347,7 @@
           global.clearTimeout(timeoutId);
         }
         throw error;
-      },
+      }
     ).catch(function (error) {
       if (attempt >= 3) {
         throw error;
@@ -334,6 +374,7 @@
       setStatus("No valid one-time collection ticket. Please launch this page from the app.", true);
       return;
     }
+    reportStage(launchContext, "adapter_started");
 
     function finishUpload(receipt) {
       try {
@@ -347,7 +388,7 @@
       ) {
         setStatus(
           "Browser payload saved, waiting for app binding." + receiptId,
-          false,
+          false
         );
         log("Backend saved the browser payload; app binding is still pending.", "good");
         return;
@@ -357,10 +398,11 @@
     }
 
     function failUpload(error) {
+      reportStage(launchContext, "upload_failed");
       setStatus(
         "Browser collection could not be uploaded: " +
           global.HybridGuardWebProbe.describeError(error),
-        true,
+        true
       );
       log("The Android app can keep its own completed collection.", "bad");
     }
@@ -379,13 +421,15 @@
     } catch (_error) {}
 
     setStatus("Collecting 67 browser environment features…", false);
+    reportStage(launchContext, "collection_started");
     Promise.all([
       global.HybridGuardWebProbe.collect({
         canvasContainer: canvasBox,
-        onLog: log,
+        onLog: log
       }),
-      loadBundleMetadata(),
+      loadBundleMetadata()
     ]).then(function (values) {
+      reportStage(launchContext, "collection_finished");
       var payload = createPayload(launchContext, values[0], values[1]);
       var serializedPayload = JSON.stringify(payload);
       try {
@@ -395,8 +439,9 @@
         values[0].collection_status.counts.observed +
           "/" +
           values[0].collection_status.fixed_signal_count +
-          " fields observed",
+          " fields observed"
       );
+      reportStage(launchContext, "upload_started");
       return upload(launchContext, serializedPayload, 1);
     }).then(finishUpload).catch(failUpload);
   }
