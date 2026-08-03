@@ -26,6 +26,10 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 - `GET /health`：健康检查。
 - `GET /api/collect/readiness`：付费采集前检查 expanded schema、部分 payload 保存和回执能力，并显示当前打开的 `collection_batch_id`。
 - `POST /api/collect/fingerprint`：接收 Native、WebView、Web 三端指纹分层 payload。
+- `POST /api/collect/browser-ticket`：支持 payload 落盘后的 provisional ticket，也兼容 receipt-first ticket。
+- `POST /api/collect/browser-stage`：以短期 token 接收启动、页面加载、采集和上传阶段回执。
+- `POST /api/collect/browser-fingerprint`：以 Bearer ticket 接收独立的可用浏览器 67 维 Web payload。
+- `GET /api/collect/browser-pairs/{pair_id}`：以 Bearer poll token 查询 App/browser 两端到达和最终绑定状态。
 - `POST /api/risk/local-score`：接收 Android 端侧随机森林评分摘要。
 
 ## 健康检查
@@ -198,6 +202,10 @@ curl -X POST http://localhost:8000/api/risk/local-score \
 - `collection_batches.jsonl`：后端生命周期批次账本，记录 `started`、正常 `closed_cleanly` 或下次启动恢复的 `unclean_shutdown_recovered`。它不是平台 run ID。
 - `active_collection_batch.json`：仅在服务运行期间存在的本地恢复标记；正常停止时删除，异常停止后由下一次启动处理。
 - `session_provenance.jsonl`：由 `export_session_provenance.py` 生成的 Profile、轮次与 receipt 关联 sidecar，不包含或替代 177 维原始 payload。
+- `raw_browser_payloads.jsonl`：通过 token、origin、core hash 和 67 字段合同验证后的 browser canonical payload。
+- `browser_provisional_payloads.jsonl`：browser 先到、App receipt 未到时的隔离暂存；不能按正式 browser 样本计数。
+- `browser_collected_data.jsonl`：App receipt/hash 延迟绑定完成后的正式 browser 分析行。
+- `browser_pair_provenance.jsonl`：完成配对后 App receipt/hash 与 browser receipt/hash 的一一关联。
 - `local_score_results.jsonl`：追加保存端侧评分摘要。
 
 ## `featureapp` 扩充特征维度

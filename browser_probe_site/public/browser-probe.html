@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src https: http://127.0.0.1:* http://localhost:*; img-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  >
+  <title>HybridGuard Browser Collection</title>
+  <style>
+    :root {
+      --ink: #17211b;
+      --muted: #5f6e65;
+      --paper: #f5f7f2;
+      --card: #ffffff;
+      --line: #d9e0d8;
+      --accent: #176b47;
+      --accent-soft: #e7f3ec;
+      --danger: #a23b32;
+      color-scheme: light;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: max(24px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(23, 107, 71, 0.1), transparent 34rem),
+        var(--paper);
+    }
+
+    main {
+      width: min(660px, 100%);
+      padding: clamp(26px, 6vw, 48px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: 0 24px 80px rgba(23, 33, 27, 0.09);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 750;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      margin: 16px 0 0;
+      font-size: clamp(2rem, 8vw, 3.7rem);
+      font-weight: 640;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    p {
+      margin: 20px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    #status {
+      margin-top: 28px;
+      padding: 16px 18px;
+      border: 1px solid #c5ddcf;
+      border-radius: 14px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 680;
+    }
+
+    #status.bad {
+      border-color: #ead0cd;
+      color: var(--danger);
+      background: #fbefee;
+    }
+
+    #log {
+      max-height: 150px;
+      margin-top: 18px;
+      overflow: auto;
+      color: var(--muted);
+      font: 0.76rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    #log p { margin: 0 0 5px; font: inherit; }
+    #log p.bad { color: var(--danger); }
+    #canvasBox { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">HYBRIDGUARD · WEB 67</div>
+    <h1>Browser environment collection</h1>
+    <p>
+      The Android compatibility collector opened this page to measure the
+      selected available browser environment with the same Web feature definitions used
+      inside the app.
+    </p>
+    <div id="status" role="status" aria-live="polite">Validating one-time collection ticket…</div>
+    <div id="log" aria-label="Collection progress"></div>
+    <div id="canvasBox" aria-hidden="true"></div>
+  </main>
+  <script src="browser-probe-bootstrap.js" defer></script>
+  <script src="probe/canonical_web_probe.js" defer></script>
+  <script src="browser-probe-adapter.js" defer></script>
+</body>
+</html>

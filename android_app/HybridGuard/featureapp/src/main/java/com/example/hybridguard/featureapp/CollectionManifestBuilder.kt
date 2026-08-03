@@ -140,7 +140,7 @@ class CollectionManifestBuilder(private val context: Context) {
 
     companion object {
         const val MANIFEST_SCHEMA_VERSION = "device-profile-manifest-v1"
-        const val COLLECTION_PROTOCOL_VERSION = "featureapp-collection-protocol-v2"
+        const val COLLECTION_PROTOCOL_VERSION = "featureapp-collection-protocol-v3"
         const val FEATURE_SCHEMA_VERSION = "expanded-v2.2-status"
         const val MINIMUM_SUPPORTED_ANDROID_API = 21
         const val EXTRA_DEVICE_MANIFEST_ID =

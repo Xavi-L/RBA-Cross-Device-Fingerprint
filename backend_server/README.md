@@ -14,6 +14,11 @@ physical-device identity.
 | `collection_receipts.jsonl` | Server receipt per HTTP request: session, receipt ID, canonical payload hash, validation and duplicate status. | It authenticates the canonical payload only when joined to `raw_expanded_payloads.jsonl`. |
 | `collection_batches.jsonl` | Append-only backend lifecycle ledger: batch start, clean close, or next-start recovery of an unclean close. | It establishes the server-process batch boundary; it is not a platform run ID. |
 | `session_provenance.jsonl` | Derived, per-session handoff sidecar made by `export_session_provenance.py`. | Reports whether its source was a verified raw archive or a legacy flattened record. |
+| `raw_browser_payloads.jsonl` | Canonical available-browser request before normalization. | Yes. Its `browser_payload_sha256` hashes `canonical_received_payload`. |
+| `browser_provisional_payloads.jsonl` | Browser payload received before the matching App receipt. This is quarantine/staging evidence only. | Yes, but it is not a formal paired sample until delayed binding completes. |
+| `browser_collected_data.jsonl` | Validated 67-Web-signal browser analysis row. | The linked raw browser archive remains the hash authority. |
+| `browser_pair_events.jsonl` | Ticket issuance, expiry, acceptance, duplicate and replay-conflict audit events. | Tokens are deliberately never persisted. |
+| `browser_pair_provenance.jsonl` | One completed App-receipt ↔ browser-receipt linkage per pair. | Joins both canonical hashes within one backend lifecycle batch. |
 
 `raw_expanded_payloads.jsonl` starts only after this backend version is deployed.
 It preserves the parsed, canonical `incoming_data` used for hashing; it is not a
@@ -107,6 +112,55 @@ Do not describe this value as a platform device ID or physical-device hash.
 
 App 不需要修改，也不需要为此设置 Intent extra。`GET /api/collect/readiness` 会显示
 当前打开的 `collection_batch_id`，可用于采集开始前确认后端已就绪。
+
+## 可用浏览器 67 维配对协议
+
+浏览器行使用独立的 `collector_app=browserprobe` 和
+`schema_version=browser-web-v1-status`，不能伪装成 App 的 177 维 expanded 行。它以
+`web_probe_revision=expanded-web-67-v1` 和完整的 67 项
+`collection_status.fields` 固定字段集证明采集合同与 App 的 Web 子集一致。
+
+1. App 完成 177 项 payload 并持久化后，立即并行执行 App 上传和
+   `POST /api/collect/browser-ticket`。同一个高熵 `ticket_request_id` 同时写入 App
+   payload 与 provisional ticket 请求；此时不伪造尚不存在的 receipt/hash。
+   App 不要求设备已设置默认浏览器：它显式选择一个合格的可用浏览器包，并随 ticket
+   请求记录 package、Activity、候选 package、选择状态和策略版本。
+2. 后端先以 `provisional_session` 模式签发 `pair_id`、一次性 10 分钟
+   `browser_ticket` 和 1 小时 `poll_token`。相同 `ticket_request_id` 与相同请求内容
+   返回完全相同的 pair/token；内容变化则以
+   `409 TICKET_REQUEST_REPLAY_CONFLICT` 拒绝。旧 App 仍可在 receipt 到达后使用
+   `receipt_bound` 模式。
+3. `probe_url` 只在 URL fragment 中携带 `pair_id`、`browser_ticket`、
+   `browser_upload_url`、`browser_stage_url` 和启动次数，避免它们进入静态站访问日志
+   和 HTTP Referrer。
+4. App 与静态页以各自 token 调用 `POST /api/collect/browser-stage`，记录
+   `launch_attempted`、`page_loaded`、`adapter_started`、`collection_started`、
+   `collection_finished`、`upload_started` 和 `upload_failed`。这些是传输诊断，不增加
+   或改变 Web67 特征。
+5. 静态页以 `Authorization: Bearer <browser_ticket>` 调用
+   `POST /api/collect/browser-fingerprint`；跨 ngrok 时同时发送
+   `ngrok-skip-browser-warning: 1`。若 App receipt 尚未到达，浏览器 payload 只进入
+   `browser_provisional_payloads.jsonl` 隔离区，状态为 `awaiting_app`；只有后端将
+   receipt、session、batch、request ID 和 canonical App hash 全部绑定后，才写入正式
+   `browser_collected_data.jsonl` 与 `browser_pair_provenance.jsonl`。完全相同的重试
+   只返回幂等 receipt；同 ticket 的不同 payload 返回 `409`。
+6. App 以 `Authorization: Bearer <poll_token>` 调用
+   `GET /api/collect/browser-pairs/{pair_id}`，状态为
+   `awaiting_app_and_browser`、`awaiting_app`、`awaiting_browser`、`completed`
+   或 `expired`。
+
+后端还会把 ticket 指定的静态页 origin 与 payload 的
+`probe_metadata.page_origin` 配对，并验证 `core_revision`、67 字段计数和
+canonical bundle SHA-256。默认只允许 `https://xavi-l.github.io` 签发 ticket；
+迁移静态站时用逗号分隔的 `HYBRIDGUARD_BROWSER_PROBE_ORIGINS` 显式配置允许
+origin，不能接受任意 HTTPS 页。
+
+两个 HMAC token 都绑定 `pair_id`、当前 `collection_batch_id`、App session、
+`ticket_request_id` 和 binding mode；receipt-bound token 还绑定 App receipt。
+provisional token 的不可变 claims 不会因随后补入 receipt 而失效。签名错误、用途错误、
+过期、request ID 不一致或跨 batch token 均 fail closed。默认 HMAC key 在进程启动时
+安全随机生成，正好服从“一次后端进程一个 batch”的边界；如需由部署环境显式管理，
+可设置 `HYBRIDGUARD_BROWSER_TOKEN_HMAC_KEY`，但不得写入仓库、日志或采集文件。
 
 ## Session and collection-round rule
 
