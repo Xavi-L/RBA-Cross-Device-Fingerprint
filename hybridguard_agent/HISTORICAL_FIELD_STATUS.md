@@ -16,3 +16,12 @@
 不能补造 `collection_manifest`：旧数据没有持久 `collector_install_id`、`android_user_id`、受管 Profile 状态、provider run ID 或 collection round。管线仍会生成启发式稳定画像键供 QC/分组使用，但它不是 `device_manifest_id`，不能伪装成采集时记录的设备画像。
 
 新版本 featureapp 会直接上报 `collection_manifest` 和 `collection_status`（内部版本 `field-status-v1`）。新记录应优先使用采集端状态，而不是这个历史补标 sidecar。
+
+## 运行时统一 sidecar
+
+同一次 snapshot 还会生成 `artifacts/<run_id>/field_status.jsonl`。它以每个 accepted `sample_id` 为唯一键，因而覆盖快照中的**所有**运行时样本：
+
+- 有有效 `collection_status` 的样本写为 `status_origin: collector_emitted`；
+- 没有采集端状态的历史样本写为 `status_origin: historical_inferred`，其 `field_status` 正是上面的保守补标。
+
+`normalized_expanded_v2.jsonl` 仍然不含状态对象，避免状态本身进入特征/模型输入。EvidenceBundle v2 只读取 `normalized` payload 和统一 sidecar，遇到 `unsupported_by_os`、`permission_denied`、`runtime_error`、`timeout` 或 `not_applicable` 时必须输出 `unavailable` 或 `unknown`，不能把空值解释成异常命中。

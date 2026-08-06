@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/runtime-decision-v1",
+  "type": "object",
+  "required": ["decision_version", "sample_id", "decision_status", "conclusion", "calibrated_risk_score", "calibration_status", "evidence_hash", "claim_boundary"],
+  "properties": {
+    "decision_version": {"const": "runtime-decision-v1"},
+    "sample_id": {"type": "string"},
+    "decision_status": {"type": "string"},
+    "conclusion": {"type": "string"},
+    "calibrated_risk_score": {"type": "null"},
+    "calibration_status": {"const": "not_available"},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "claim_boundary": {"type": "string"}
+  },
+  "additionalProperties": true
+}

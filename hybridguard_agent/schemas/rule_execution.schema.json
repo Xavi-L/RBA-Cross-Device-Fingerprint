@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/rule-execution-v1",
+  "type": "object",
+  "required": ["rule_execution_version", "sample_id", "evidence_hash", "rule_results", "matched_rule_ids", "unevaluated_rule_ids", "short_circuit_status"],
+  "properties": {
+    "rule_execution_version": {"const": "rule-execution-v1"},
+    "sample_id": {"type": "string"},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rule_results": {"type": "array"},
+    "matched_rule_ids": {"type": "array", "items": {"type": "string"}},
+    "unevaluated_rule_ids": {"type": "array", "items": {"type": "string"}},
+    "short_circuit_status": {"type": "object"}
+  },
+  "additionalProperties": true
+}

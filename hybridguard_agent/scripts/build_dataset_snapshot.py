@@ -490,6 +490,41 @@ def infer_historical_field_status(row: dict[str, Any], contract: dict[str, Any])
     }
 
 
+def runtime_field_status_sidecar(
+    row: dict[str, Any],
+    contract: dict[str, Any],
+    *,
+    sample_id: str,
+) -> dict[str, Any]:
+    """Make the one runtime-facing availability sidecar for an accepted sample.
+
+    The normalized feature payload intentionally excludes collection-status metadata so
+    it cannot be accidentally treated as a model feature.  The runtime still needs to
+    distinguish an absent value from a probe that was unsupported, denied, timed out,
+    or failed.  Preserve that information in a separate, sample-keyed view.
+    """
+    emitted = row.get("collection_status")
+    if isinstance(emitted, dict) and not collection_status_errors(emitted):
+        field_status = {
+            "status_schema_version": emitted.get("status_schema_version"),
+            "fixed_signal_count": emitted.get("fixed_signal_count"),
+            "counts": dict(emitted.get("counts", {})),
+            "fields": dict(emitted.get("fields", {})),
+            "path_convention": "expanded-v2-flat-contract",
+            "collector_emitted": True,
+        }
+        return {
+            "sample_id": sample_id,
+            "status_origin": "collector_emitted",
+            "field_status": field_status,
+        }
+    return {
+        "sample_id": sample_id,
+        "status_origin": "historical_inferred",
+        "field_status": infer_historical_field_status(row, contract),
+    }
+
+
 def embedded_manifest_to_sample_manifest(
     record: dict[str, Any], source: dict[str, Any]
 ) -> tuple[dict[str, Any] | None, list[str]]:
@@ -862,6 +897,7 @@ def build_snapshot(args: argparse.Namespace) -> Path:
     normalized_payloads: list[dict[str, Any]] = []
     quality_events: list[dict[str, Any]] = []
     historical_field_status_rows: list[dict[str, Any]] = []
+    field_status_rows: list[dict[str, Any]] = []
     source_inventory: list[dict[str, Any]] = []
     annotation_audits: list[dict[str, Any]] = []
     field_stats: dict[str, dict[str, Any]] = {
@@ -1065,6 +1101,13 @@ def build_snapshot(args: argparse.Namespace) -> Path:
                     },
                 }
             )
+            field_status_rows.append(
+                runtime_field_status_sidecar(
+                    row,
+                    contract,
+                    sample_id=manifest["sample_id"],
+                )
+            )
             if kind == "raw_jsonl" and not isinstance(source_payload.get("collection_status"), dict):
                 historical_field_status_rows.append(
                     {
@@ -1115,6 +1158,10 @@ def build_snapshot(args: argparse.Namespace) -> Path:
     normalized_payloads.sort(key=lambda item: item["sample_id"])
     write_jsonl(artifact_dir / "sample_manifest.jsonl", manifests)
     write_jsonl(artifact_dir / "normalized_expanded_v2.jsonl", normalized_payloads)
+    write_jsonl(
+        artifact_dir / "field_status.jsonl",
+        sorted(field_status_rows, key=lambda item: item["sample_id"]),
+    )
     write_jsonl(artifact_dir / "quality_failures.jsonl", quality_events)
     write_jsonl(
         artifact_dir / "historical_field_status_backfill.jsonl",
@@ -1357,6 +1404,7 @@ def build_snapshot(args: argparse.Namespace) -> Path:
         "schema_audit": schema_audit,
         "source_inventory": source_inventory,
         "accepted_session_count": len(manifests),
+        "field_status_sidecar_count": len(field_status_rows),
         "historical_field_status_backfill_count": len(historical_field_status_rows),
         "stable_device_group_count": len(grouped),
         "formal_supervised_eligible_count": len(supervised_eligible),
@@ -1390,6 +1438,7 @@ def build_snapshot(args: argparse.Namespace) -> Path:
         f"- Transport-path-effect pilot rows: {task_counts.get('transport_path_effect_pilot', 0)}",
         f"- Held-out attack-evaluation rows: {held_out_attack_eligible}",
         f"- Active rows containing the normalized intervention name in raw fields: {exact_shortcut_count}",
+        f"- Runtime field-status sidecars: {len(field_status_rows)}",
         f"- Historical inferred field-status sidecars: {len(historical_field_status_rows)}",
         "",
         "## Gate status",

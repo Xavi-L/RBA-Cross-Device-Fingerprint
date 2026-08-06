@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the repeatable P0 HybridGuard research pipeline with one command."""
+"""Run the repeatable P0 snapshot and bounded deterministic runtime preparation."""
 
 from __future__ import annotations
 
@@ -32,9 +32,12 @@ def main() -> None:
     if args.bootstrap_contract:
         command.append("--bootstrap-contract")
     run(command)
+    # Keep the historical v1 artifact for prior P0 consumers while emitting the
+    # status-aware, redacted v2 bundle used by the new runtime.
     run([sys.executable, str(SCRIPT_DIR / "build_evidence_bundles.py"), "--snapshot-dir", str(snapshot_dir)])
+    run([sys.executable, str(SCRIPT_DIR / "build_evidence_bundles_v2.py"), "--snapshot-dir", str(snapshot_dir)])
     run([sys.executable, str(SCRIPT_DIR / "build_knowledge_manifest.py"), "--snapshot-dir", str(snapshot_dir)])
-    print(f"P0 research pipeline completed: {snapshot_dir}")
+    print(f"P0 snapshot and deterministic-runtime inputs completed: {snapshot_dir}")
 
 
 if __name__ == "__main__":

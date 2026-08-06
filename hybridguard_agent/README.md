@@ -1,6 +1,6 @@
 # HybridGuard 研究数据管线
 
-这个目录把现有的采集、规则、官方知识和后续 Agent/RAG 研究组织成一条**可冻结、可重跑、不会把来源元数据泄漏进模型**的离线管线。
+这个目录把现有的采集、规则、官方知识和后续 Agent/RAG 研究组织成一条**可冻结、可重跑、不会把来源元数据泄漏进模型**的离线管线，并提供一条可选的、只读的确定性运行时。
 
 它不替代现有目录：
 
@@ -9,7 +9,7 @@
 - `hybridguard-browser-fingerprint-research/` 仍是攻击侧同学维护的执行日志和证据仓库；
 - 本目录只生成契约、样本 manifest、QC、稳定分组、冻结快照和后续推理所需的中间产物。
 
-历史云真机的 `field-status` 补标规则见 [HISTORICAL_FIELD_STATUS.md](HISTORICAL_FIELD_STATUS.md)。它只生成不可混淆的 sidecar，不会改写原始 JSONL，也不会伪造缺失的 `collection_manifest`。
+历史云真机的 `field-status` 补标规则见 [HISTORICAL_FIELD_STATUS.md](HISTORICAL_FIELD_STATUS.md)。每个新快照都会同时生成统一的 `field_status.jsonl` sidecar：采集端已上报状态的样本保留该状态，历史样本才使用明确标注为 inferred 的补标。它不会改写原始 JSONL，也不会伪造缺失的 `collection_manifest`。
 
 ## 当前可复核快照
 
@@ -24,13 +24,21 @@
 ```text
 hybridguard_agent/
 ├── config/dataset_sources.json        # 输入来源、事实边界与模型资格
+├── config/deterministic_rule_predicates.v1.json # 已审阅的可执行规则及 KB hash
 ├── ANNOTATION_REGISTRY_INTEGRATION.md # Week 7 标签接入、任务分流与结论边界
-├── schemas/                           # 冻结的 expanded-v2 和 SampleManifest 契约
+├── schemas/                           # 冻结的 expanded-v2、Evidence/Trace 契约
+├── evidence/extractor.py              # 脱敏的 EvidenceBundle v2
+├── rules/executor.py                  # 确定性 predicate（不产生风险分）
+├── retrieval/exact_retriever.py       # 精确规则/字段知识卡检索
+├── verification/verifier.py           # 引用、字段与无校准分边界核验
+├── runtime/                           # 组合运行时和冻结快照加载器
 ├── templates/attack_manifest.template.json
 ├── scripts/build_dataset_snapshot.py  # Schema/QC/manifest/stable-group 冻结
 ├── scripts/build_evidence_bundles.py  # 无标签的确定性跨层证据
+├── scripts/build_evidence_bundles_v2.py # 状态感知的脱敏 v2 证据
 ├── scripts/build_knowledge_manifest.py# 规则/官方知识版本边界
-├── scripts/run_pipeline.py            # 后续批次的一键 P0 重跑入口
+├── scripts/run_pipeline.py            # P0 快照与 v2 运行时输入的一键重跑入口
+├── scripts/run_agent_runtime.py       # 离线只读分析入口
 └── artifacts/<run_id>/                # 每次运行独立输出；默认不提交
 ```
 
@@ -42,12 +50,28 @@ raw JSONL + source config
   -> canonical field profile / stable-device grouping
   -> SampleManifest（元数据与特征分离）
   -> 标签登记表双键 join / task sidecar / pair audit
-  -> 无标签 EvidenceBundle
+  -> field_status（与特征分离的可用性 sidecar）
+  -> v1 EvidenceBundle（兼容旧 P0 消费者）+ v2 EvidenceBundle（运行时）
   -> 冻结知识输入版本
   -> QC、来源-标签交叉表、build manifest、状态报告
 ```
 
-当前已实现的是这条链路的 P0 数据层和确定性 EvidenceBundle。Retriever、Reasoner、Verifier、Fusion 和 DecisionTrace 将只读取冻结 snapshot；它们不会重新解释来源工具名或把 attack 标签塞进特征输入。
+## 第一版确定性运行时（当前可用）
+
+运行时把一条三层 payload 处理成下面的闭环：
+
+```text
+payload + field_status
+  -> EvidenceBundle v2（只保留派生事实和字段路径）
+  -> 已审阅的确定性规则
+  -> 当前规则/官方知识卡的精确检索
+  -> Verification + DecisionTrace
+  -> 未校准的结构化结论
+```
+
+第一版只真正评估两组证据：`cross_layer` 和 `runtime_context`。`browser_pair`、`attack_scenario`、经验案例检索和校准融合都会显式返回 `not_assessed`，而不是假装有结论。输出中的 `calibrated_risk_score` 固定为 `null`；“不匹配”只表示需要复核的观察，不等于攻击、欺诈或跨设备泛化能力。
+
+规则库原本是自然语言知识库。只有写入 `deterministic_rule_predicates.v1.json`、并且与冻结规则库 SHA-256 完全一致的少量规则才会执行；其余规则被记录为 `unevaluated_rule_ids`。命中 short-circuit 规则后，后续 predicate 会明确标为 `not_evaluated`，不会悄悄继续计算或给出低风险结论。
 
 ## 首次与日常运行
 
@@ -67,6 +91,23 @@ python3 hybridguard_agent/scripts/run_pipeline.py \
 ```
 
 不要覆盖旧 `artifacts/<run_id>/`。实验只引用某个明确的 run ID 与其 `dataset_build_manifest.json`。
+
+用冻结快照分析一个样本（结果写到新的输出文件，不回写快照）：
+
+```bash
+python3 hybridguard_agent/scripts/run_agent_runtime.py \
+  --snapshot-dir hybridguard_agent/artifacts/snapshot_YYYYMMDD \
+  --sample-id YOUR_SAMPLE_ID \
+  --output /private/tmp/hybridguard_runtime_result.jsonl
+```
+
+如果需要 HTTP 服务，可从 `backend_server/` 启动独立的只读应用：
+
+```bash
+uvicorn agent_runtime_app:app --host 127.0.0.1 --port 8001
+```
+
+它只提供 `GET /api/agent/readiness` 和 `POST /api/agent/analyze`。默认 `trace_detail: "summary"` 不返回完整证据包或知识卡；`"full"` 用于本地审计。不要用 `main:app` 来替代这个独立应用：主采集服务的既有启动生命周期会维护 collection batch，而独立运行时不会。
 
 ## 接入真实攻击数据
 
@@ -92,5 +133,6 @@ python3 hybridguard_agent/scripts/run_pipeline.py \
 - 一条 session 不等于一台独立设备；所有报告同时查看 session 数和 stable-device group 数。
 - 当前攻击 release view 的 393 条不能和主仓库 155 条按行拼接：两边没有共享的可审计 `session_id`，且 release view 不含完整字段。
 - 数据冻结后，再按 stable group/pair 切分训练、开发和测试；不得用测试集生成经验规则、案例索引、阈值或 Prompt。
+- 运行时不会接收或返回 label、attack tool、provider、pair role、原始 UA、完整 build fingerprint、原始 session ID 或客户端 IP；知识卡也不会成为校准模型。
 
 详细研究契约见 `hybridguard_agent_rag_guide/02_TARGET_ARCHITECTURE_AND_CONTRACTS.md`、`03_DATA_SCHEMA_GROUPING_AND_QC.md` 与 `04_ATTACK_COLLECTION_AND_PROVENANCE.md`。

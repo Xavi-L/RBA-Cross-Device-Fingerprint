@@ -19,6 +19,13 @@ from pydantic import BaseModel, Field
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
+try:
+    # Supports both ``cd backend_server && uvicorn main:app`` and imports as
+    # ``backend_server.main`` from the repository root.
+    from agent_runtime_api import router as agent_runtime_router
+except ModuleNotFoundError:
+    from backend_server.agent_runtime_api import router as agent_runtime_router
+
 # 配置日志
 logging.basicConfig(
     level=logging.INFO,
@@ -245,6 +252,7 @@ app = FastAPI(
     description="用于收集和验证跨设备指纹数据",
     version="1.0.0"
 )
+app.include_router(agent_runtime_router)
 
 # 允许跨域资源共享（CORS）
 app.add_middleware(

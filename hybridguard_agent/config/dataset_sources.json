@@ -4,7 +4,9 @@
     "Source metadata is never model input.",
     "Current cloud records have known collection context but no per-sample historical Attack Manifest, so they are schema_qc_only.",
     "The Week 6 attack release CSV is evidence-only because it intentionally omits raw 177-field payloads and joinable session IDs.",
-    "The Week 7 experiment annotation registry is a label-only sidecar. It is joined after raw-payload QC and never copied into normalized model inputs."
+    "The Week 7 experiment annotation registry is a label-only sidecar. It is joined after raw-payload QC and never copied into normalized model inputs.",
+    "The canonical Week 7 complete manifest is historical expanded-v2.1-status data accepted only through the frozen v2 compatibility normalizer; new attack runs must use expanded-v2.2-status.",
+    "The Week 7 partial manifest has no collection_manifest for its 466 legacy rows and remains quarantined rather than being treated as model-ready data."
   ],
   "sources": [
     {
@@ -33,9 +35,9 @@
       "notes": "393 redacted rows: 178 complete attack-capable/abnormal, 184 partial attack-capable/abnormal, 31 complete benign isolation controls. Not joinable to raw payloads."
     },
     {
-      "source_id": "attack_week7_manifest_preliminary_20260713",
+      "source_id": "attack_week7_manifest_complete_v1_20260713",
       "input_kind": "manifest_dataset_jsonl",
-      "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/week7-manifest-v1_preliminary.jsonl",
+      "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/manifest_dataset_v1_complete.jsonl",
       "collector_app": "featureapp",
       "source_type": "local_attack_research",
       "provider": "local_attack_research_workspace",
@@ -48,7 +50,7 @@
       "annotation_registry_path": "hybridguard-browser-fingerprint-research/execution_log/evidence/experiment_session_annotation_registry_v1.csv",
       "annotation_evidence_root": "hybridguard-browser-fingerprint-research",
       "optional": true,
-      "notes": "Week 7 rows include collection_manifest, field-status-v1 and a verified label-only registry. Complete CDP triplets form a fingerprint-field-effect pilot task; complete mitmproxy triplets remain a separate transport-path task. Incomplete attempts are failure-analysis only."
+      "notes": "Canonical 51-row complete manifest. Rows include collection_manifest, field-status-v1 and a verified label-only registry. They are historical expanded-v2.1-status compatibility data, not a v2.2 experiment. Complete CDP triplets form a fingerprint-field-effect pilot task; complete mitmproxy triplets remain a separate transport-path task. The distinct 466-row partial manifest remains failure-analysis-only."
     }
   ]
 }
