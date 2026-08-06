@@ -52,6 +52,8 @@ raw JSONL + source config
   -> 标签登记表双键 join / task sidecar / pair audit
   -> field_status（与特征分离的可用性 sidecar）
   -> v1 EvidenceBundle（兼容旧 P0 消费者）+ v2 EvidenceBundle（运行时）
+  -> controlled_scenario_input_v1（无标签、无工具名的配对安全投影）
+  -> controlled_scenario_sidecar_v1（离线 clean/active/post 对照）
   -> 冻结知识输入版本
   -> QC、来源-标签交叉表、build manifest、状态报告
 ```
@@ -70,6 +72,8 @@ payload + field_status
 ```
 
 第一版只真正评估两组证据：`cross_layer` 和 `runtime_context`。`browser_pair`、`attack_scenario`、经验案例检索和校准融合都会显式返回 `not_assessed`，而不是假装有结论。输出中的 `calibrated_risk_score` 固定为 `null`；“不匹配”只表示需要复核的观察，不等于攻击、欺诈或跨设备泛化能力。
+
+`attack_scenario v1` 是一条**独立的离线实验支路**，并不改变上面的单样本运行时：它只读取 `controlled_scenario_input_v1.jsonl`、归一化 payload、field-status 与冻结比较策略，把同一受控实验的 `clean_pre -> attack_active -> clean_post` 三次采集进行对照。当前 v1 只检查 5 个已验证的 CDP 目标字段是否“中间改变、结束后恢复”；标签、工具名、攻击类型和登记表不进入该 builder。它的结果是“受控字段变化是否被观察到”，不是恶意判定、在线攻击告警或风险分数。
 
 规则库原本是自然语言知识库。只有写入 `deterministic_rule_predicates.v1.json`、并且与冻结规则库 SHA-256 完全一致的少量规则才会执行；其余规则被记录为 `unevaluated_rule_ids`。命中 short-circuit 规则后，后续 predicate 会明确标为 `not_evaluated`，不会悄悄继续计算或给出低风险结论。
 
@@ -108,6 +112,15 @@ uvicorn agent_runtime_app:app --host 127.0.0.1 --port 8001
 ```
 
 它只提供 `GET /api/agent/readiness` 和 `POST /api/agent/analyze`。默认 `trace_detail: "summary"` 不返回完整证据包或知识卡；`"full"` 用于本地审计。不要用 `main:app` 来替代这个独立应用：主采集服务的既有启动生命周期会维护 collection batch，而独立运行时不会。
+
+构建或复核某个冻结快照的受控场景 sidecar：
+
+```bash
+python3 hybridguard_agent/scripts/build_attack_scenario_sidecar.py \
+  --snapshot-dir hybridguard_agent/artifacts/snapshot_YYYYMMDD
+```
+
+生成的 `controlled_scenario_sidecar_v1.json` 只保存 sample ID、配对键哈希、字段状态和字段值哈希。当前完整 pair 全在 train split，所以它只能作为受控回放和回归验证，不能产出准确率、阈值或跨设备泛化结论。
 
 ## 接入真实攻击数据
 

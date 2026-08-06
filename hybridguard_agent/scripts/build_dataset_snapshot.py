@@ -898,6 +898,7 @@ def build_snapshot(args: argparse.Namespace) -> Path:
     quality_events: list[dict[str, Any]] = []
     historical_field_status_rows: list[dict[str, Any]] = []
     field_status_rows: list[dict[str, Any]] = []
+    controlled_scenario_input_rows: list[dict[str, Any]] = []
     source_inventory: list[dict[str, Any]] = []
     annotation_audits: list[dict[str, Any]] = []
     field_stats: dict[str, dict[str, Any]] = {
@@ -1090,23 +1091,58 @@ def build_snapshot(args: argparse.Namespace) -> Path:
                 quarantined += 1
                 continue
             manifests.append(manifest)
+            runtime_payload = {
+                "collector_app": row.get("collector_app"),
+                "schema_version": row.get("schema_version"),
+                **{layer: row.get(layer) for layer in LAYER_NAMES},
+            }
             normalized_payloads.append(
                 {
                     "sample_id": manifest["sample_id"],
                     "schema_version": "expanded-v2",
-                    "payload": {
-                        "collector_app": row.get("collector_app"),
-                        "schema_version": row.get("schema_version"),
-                        **{layer: row.get(layer) for layer in LAYER_NAMES},
-                    },
+                    "payload": runtime_payload,
                 }
             )
-            field_status_rows.append(
-                runtime_field_status_sidecar(
-                    row,
-                    contract,
-                    sample_id=manifest["sample_id"],
-                )
+            field_status_row = runtime_field_status_sidecar(
+                row,
+                contract,
+                sample_id=manifest["sample_id"],
+            )
+            field_status_rows.append(field_status_row)
+            pair = manifest.get("pair")
+            safe_pair: dict[str, Any] | None = None
+            if isinstance(pair, dict) and pair.get("pair_id") is not None:
+                pair_id = pair.get("pair_id")
+                pair_role = pair.get("pair_role")
+                sequence_index = pair.get("sequence_index")
+                if (
+                    not isinstance(pair_id, str)
+                    or not pair_id
+                    or not isinstance(pair_role, str)
+                    or not pair_role
+                    or not isinstance(sequence_index, int)
+                ):
+                    raise ValueError(
+                        "Accepted paired manifest has invalid pair metadata for "
+                        f"{manifest['sample_id']}"
+                    )
+                safe_pair = {
+                    "pair_key_sha256": sha256_value(pair_id),
+                    "pair_role": pair_role,
+                    "sequence_index": sequence_index,
+                }
+            # This projection is the only snapshot input the controlled
+            # scenario builder may consume.  Do not put labels, attack/tool
+            # metadata, session identifiers, source/provider data, or raw
+            # feature values here.
+            controlled_scenario_input_rows.append(
+                {
+                    "controlled_scenario_input_version": "controlled-scenario-input-v1",
+                    "sample_id": manifest["sample_id"],
+                    "normalized_payload_sha256": sha256_value(runtime_payload),
+                    "stable_device_key_hash": manifest["device"]["stable_device_key_hash"],
+                    "pair": safe_pair,
+                }
             )
             if kind == "raw_jsonl" and not isinstance(source_payload.get("collection_status"), dict):
                 historical_field_status_rows.append(
@@ -1161,6 +1197,10 @@ def build_snapshot(args: argparse.Namespace) -> Path:
     write_jsonl(
         artifact_dir / "field_status.jsonl",
         sorted(field_status_rows, key=lambda item: item["sample_id"]),
+    )
+    write_jsonl(
+        artifact_dir / "controlled_scenario_input_v1.jsonl",
+        sorted(controlled_scenario_input_rows, key=lambda item: item["sample_id"]),
     )
     write_jsonl(artifact_dir / "quality_failures.jsonl", quality_events)
     write_jsonl(
@@ -1405,6 +1445,7 @@ def build_snapshot(args: argparse.Namespace) -> Path:
         "source_inventory": source_inventory,
         "accepted_session_count": len(manifests),
         "field_status_sidecar_count": len(field_status_rows),
+        "controlled_scenario_input_count": len(controlled_scenario_input_rows),
         "historical_field_status_backfill_count": len(historical_field_status_rows),
         "stable_device_group_count": len(grouped),
         "formal_supervised_eligible_count": len(supervised_eligible),
@@ -1439,6 +1480,7 @@ def build_snapshot(args: argparse.Namespace) -> Path:
         f"- Held-out attack-evaluation rows: {held_out_attack_eligible}",
         f"- Active rows containing the normalized intervention name in raw fields: {exact_shortcut_count}",
         f"- Runtime field-status sidecars: {len(field_status_rows)}",
+        f"- Controlled-scenario safe input rows: {len(controlled_scenario_input_rows)}",
         f"- Historical inferred field-status sidecars: {len(historical_field_status_rows)}",
         "",
         "## Gate status",

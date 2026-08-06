@@ -37,6 +37,7 @@ def main() -> None:
     run([sys.executable, str(SCRIPT_DIR / "build_evidence_bundles.py"), "--snapshot-dir", str(snapshot_dir)])
     run([sys.executable, str(SCRIPT_DIR / "build_evidence_bundles_v2.py"), "--snapshot-dir", str(snapshot_dir)])
     run([sys.executable, str(SCRIPT_DIR / "build_knowledge_manifest.py"), "--snapshot-dir", str(snapshot_dir)])
+    run([sys.executable, str(SCRIPT_DIR / "build_attack_scenario_sidecar.py"), "--snapshot-dir", str(snapshot_dir)])
     print(f"P0 snapshot and deterministic-runtime inputs completed: {snapshot_dir}")
 
 

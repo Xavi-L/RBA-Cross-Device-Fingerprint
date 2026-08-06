@@ -1,0 +1,24 @@
+{
+  "policy_version": "controlled-scenario-policy-v1",
+  "controlled_scenario_input_version": "controlled-scenario-input-v1",
+  "controlled_scenario_sidecar_version": "controlled-scenario-sidecar-v1",
+  "required_roles": [
+    {"pair_role": "clean_pre", "sequence_index": 0},
+    {"pair_role": "attack_active", "sequence_index": 1},
+    {"pair_role": "clean_post", "sequence_index": 2}
+  ],
+  "require_same_stable_device_key": true,
+  "require_all_target_fields_observed": true,
+  "minimum_changed_and_restored_fields": 1,
+  "target_field_paths": [
+    "web_data.webdriver",
+    "web_data.platform",
+    "web_data.hardware_concurrency",
+    "web_data.device_memory",
+    "web_data.user_agent"
+  ],
+  "comparison_policy": "clean_pre_eq_clean_post_and_attack_active_ne_clean_pre",
+  "metric_eligible": false,
+  "metric_eligibility_reason": "All currently complete scenarios are registry-train pilot data; no held-out or cross-device metric is available.",
+  "claim_boundary": "This offline controlled comparison reports whether configured fields changed during a paired experiment and returned to baseline. It is not an online attack verdict, maliciousness label, calibrated risk score, or evidence of generalization."
+}
