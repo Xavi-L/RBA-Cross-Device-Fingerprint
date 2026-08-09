@@ -1,19 +1,19 @@
 # HybridGuard 研究数据管线
 
-这个目录把现有的采集、规则、官方知识和后续 Agent/RAG 研究组织成可冻结、可重跑的离线管线。当前默认入口只处理最新版 FeatureApp 的 App177 与独立 Browser67；下面保留的旧云数据、历史攻击 pilot 和确定性运行时属于逻辑归档，不进入最新 paired244 主视图。
+这个目录把现有的采集、规则、官方知识和后续 Agent/RAG 研究组织成可冻结、可重跑的离线管线。当前默认入口只处理最新版 FeatureApp 的 App177 与独立 Browser67，并可把最新快照安全接到既有确定性离线运行时；下面保留的旧云数据和历史攻击 pilot 属于逻辑归档，不进入最新 paired244 主视图。
 
 它不替代现有目录：
 
 - `backend_server/raw_expanded_payloads.jsonl` 与 receipt 是 App canonical 权威输入；`expanded_collected_data.jsonl` 只是配套的 analysis/projection 视图；
 - `scoring/rule_knowledge_base.json` 和 `google_official_kb/` 仍是规则与官方知识的权威来源；
 - `hybridguard-browser-fingerprint-research/` 仍是攻击侧同学维护的执行日志和证据仓库；
-- 本目录只生成契约、样本 manifest、QC、稳定分组、冻结快照和后续推理所需的中间产物。
+- 本目录只生成契约、样本 manifest、QC、冻结快照和离线运行所需的派生产物。
 
 历史云真机的 `field-status` 补标规则见 [HISTORICAL_FIELD_STATUS.md](HISTORICAL_FIELD_STATUS.md)。旧 snapshot 管线使用独立的 `field_status.jsonl` sidecar；当前 paired244 入口直接保留 App177/Browser67 已上报的逐字段状态，并与特征值分栏存放。两条管线都不会改写原始 JSONL，也不会给 Browser 失败样本补造67项。
 
-## 当前活跃入口：最新版 paired244 快照
+## 当前活跃入口：最新版 paired244 快照与离线运行桥接
 
-第一批施工只负责数据选择、配对和 QC，不接入 Agent、Evidence、模型或评分。当前发布锁为：
+第一批施工已经完成数据选择、配对和 QC；第二批只把其中的 App177 接到既有 EvidenceBundle v2 与确定性离线运行时，并为完成配对的样本生成独立 Browser 对比 sidecar。Browser sidecar 不进入规则、检索或决策，也不产生模型分数。当前发布锁为：
 
 - FeatureApp `1.6.1-expanded-v2.2-browser-recovery` / versionCode 8；
 - App `expanded-v2.2-status`，固定177项；
@@ -38,6 +38,23 @@ python3 hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
 
 Browser 缺失值绝不填零。当前数据实跑结果为 26 条锁定 release 的 App177，其中17条进入 paired244，9条进入 App-only 留存，0条最新 App 被隔离；同文件内其他 FeatureApp release 和旧 Schema 仅计入 `excluded_legacy`。这些数据全部是 `development_qc_only`、`unlabeled`，不能据此报告攻击检测效果。
 
+基于上述快照构建第二批离线运行输入：
+
+```bash
+python3 hybridguard_agent/scripts/build_latest_runtime_inputs.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --output-dir /private/tmp/hybridguard_latest_runtime_inputs
+```
+
+该命令不回写快照，并分别生成：
+
+- 26 条 App EvidenceBundle v2，覆盖17条 paired244 与9条 App-only；
+- 17 条脱敏的 `browser-pair-evidence-v1` sidecar，每条固定比较67个同名 Web 字段；
+- 26 条不含 session、receipt、pair、batch 或设备标识的运行时索引；
+- 一份记录输入版本、数量和运行边界的 manifest。
+
+Browser 对比采用冻结策略：39项做严格字面比较，28项因时序、权限域、网络或容器界面影响而只记为 `not_comparable`。`same`、`different`、`unavailable` 都只是采集观察，不是异常、攻击或设备身份结论。App-only 样本不会生成虚假的 Browser sidecar。
+
 ## 历史研究资产（逻辑归档）
 
 以下内容记录旧快照和研究 pilot，保留用于复核，不再作为默认数据入口。截至 2026-07-14 的旧快照曾记录155条 expanded 数据；其历史采集没有逐条 provider run ID、配对关系或攻击事实标签，因此不进入最新版 paired244 主视图、有监督攻击检测训练或最终效果评估。
@@ -51,17 +68,20 @@ Browser 缺失值绝不填零。当前数据实跑结果为 26 条锁定 release
 ```text
 hybridguard_agent/
 ├── config/latest_paired244_sources.json # 当前 FeatureApp/Browser 发布锁与输入
+├── config/browser_pair_comparison.v1.json # 39项严格比较/28项不比较的冻结策略
 ├── config/dataset_sources.json        # 输入来源、事实边界与模型资格
 ├── config/deterministic_rule_predicates.v1.json # 已审阅的可执行规则及 KB hash
 ├── ANNOTATION_REGISTRY_INTEGRATION.md # Week 7 标签接入、任务分流与结论边界
 ├── schemas/                           # 冻结的 expanded-v2、Evidence/Trace 契约
 ├── evidence/extractor.py              # 脱敏的 EvidenceBundle v2
+├── evidence/browser_pair.py           # 独立 Browser 配对观察 sidecar
 ├── rules/executor.py                  # 确定性 predicate（不产生风险分）
 ├── retrieval/exact_retriever.py       # 精确规则/字段知识卡检索
 ├── verification/verifier.py           # 引用、字段与无校准分边界核验
 ├── runtime/                           # 组合运行时和冻结快照加载器
 ├── templates/attack_manifest.template.json
 ├── scripts/build_latest_paired244_snapshot.py # 当前177+67配对、留存与QC入口
+├── scripts/build_latest_runtime_inputs.py # 最新快照到离线运行输入的桥接
 ├── scripts/build_dataset_snapshot.py  # Schema/QC/manifest/stable-group 冻结
 ├── scripts/build_evidence_bundles.py  # 无标签的确定性跨层证据
 ├── scripts/build_evidence_bundles_v2.py # 状态感知的脱敏 v2 证据
@@ -87,9 +107,9 @@ raw JSONL + source config
   -> QC、来源-标签交叉表、build manifest、状态报告
 ```
 
-## 历史第一版确定性运行时
+## 确定性运行时与当前第二批桥接
 
-该运行时目前只消费历史 `normalized_expanded_v2.jsonl`，尚未接入 `paired_244.jsonl` 或 `app_only_177.jsonl`；第一批不会修改 Evidence、runtime 或 DecisionTrace。
+运行时现在可以读取历史 `normalized_expanded_v2.jsonl`，也可以读取当前 `paired_244.jsonl` / `app_only_177.jsonl`。最新分支只从视图中重建 App177 payload 与 field status，再生成既有 EvidenceBundle v2；sample index 中的 session、receipt、pair、batch 等控制面字段不会进入推理。
 
 运行时把一条三层 payload 处理成下面的闭环：
 
@@ -102,7 +122,16 @@ payload + field_status
   -> 未校准的结构化结论
 ```
 
-第一版只真正评估两组证据：`cross_layer` 和 `runtime_context`。`browser_pair`、`attack_scenario`、经验案例检索和校准融合都会显式返回 `not_assessed`，而不是假装有结论。输出中的 `calibrated_risk_score` 固定为 `null`；“不匹配”只表示需要复核的观察，不等于攻击、欺诈或跨设备泛化能力。
+当前运行时仍只真正评估两组 App 证据：`cross_layer` 和 `runtime_context`。`browser_pair`、`attack_scenario`、经验案例检索和校准融合都会显式返回 `not_assessed`，而不是假装有结论。第二批没有修改 EvidenceBundle v2、规则库或 DecisionTrace；运行结果只附 Browser sidecar 的状态、哈希与汇总，并固定标记 `used_by_rule_execution=false`。输出中的 `calibrated_risk_score` 固定为 `null`，`external_model_called=false`。
+
+直接用最新快照运行一条样本：
+
+```bash
+python3 hybridguard_agent/scripts/run_agent_runtime.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --sample-id YOUR_SAMPLE_ID \
+  --output /private/tmp/hybridguard_runtime_result.jsonl
+```
 
 `attack_scenario v1` 是一条**独立的离线实验支路**，并不改变上面的单样本运行时：它只读取 `controlled_scenario_input_v1.jsonl`、归一化 payload、field-status 与冻结比较策略，把同一受控实验的 `clean_pre -> attack_active -> clean_post` 三次采集进行对照。当前 v1 只检查 5 个已验证的 CDP 目标字段是否“中间改变、结束后恢复”；标签、工具名、攻击类型和登记表不进入该 builder。它的结果是“受控字段变化是否被观察到”，不是恶意判定、在线攻击告警或风险分数。
 
@@ -153,7 +182,7 @@ python3 hybridguard_agent/scripts/build_attack_scenario_sidecar.py \
 
 生成的 `controlled_scenario_sidecar_v1.json` 只保存 sample ID、配对键哈希、字段状态和字段值哈希。当前完整 pair 全在 train split，所以它只能作为受控回放和回归验证，不能产出准确率、阈值或跨设备泛化结论。
 
-## 历史管线接入真实攻击数据（非 paired244 第一批）
+## 历史管线接入真实攻击数据（非当前 paired244/第二批）
 
 每个攻击样本必须同时具备：
 

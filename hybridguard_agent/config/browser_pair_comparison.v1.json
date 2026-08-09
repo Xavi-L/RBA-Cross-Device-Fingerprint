@@ -1,0 +1,106 @@
+{
+  "policy_version": "browser-pair-comparison-policy-v1",
+  "browser_pair_evidence_version": "browser-pair-evidence-v1",
+  "required_input_contract": {
+    "dataset_manifest_version": "latest-featureapp-paired244-snapshot-v1",
+    "paired_record_schema_version": "hybridguard-paired244-view-v1",
+    "feature_catalog_version": "latest-paired244-feature-catalog-v1",
+    "browser_probe_revision": "expanded-web-67-v1",
+    "dataset_view": "paired_244",
+    "dataset_role": "development_qc_only",
+    "label_status": "unlabeled",
+    "paired_feature_count": 244,
+    "browser_field_count": 67
+  },
+  "comparison_mode": "typed_exact_json_value_v1",
+  "unavailable_statuses": [
+    "unsupported_by_os",
+    "permission_denied",
+    "runtime_error",
+    "timeout",
+    "not_applicable"
+  ],
+  "exact_fields": [
+    "web_data.audio_layer.audio_context_supported",
+    "web_data.audio_layer.audio_hash",
+    "web_data.audio_layer.audio_sample_rate",
+    "web_data.automation_surface_layer.mime_types_count",
+    "web_data.automation_surface_layer.mime_types_hash",
+    "web_data.automation_surface_layer.plugins_count",
+    "web_data.automation_surface_layer.plugins_hash",
+    "web_data.automation_surface_layer.webdriver",
+    "web_data.execution_layer.timezone_id",
+    "web_data.execution_layer.timezone_offset",
+    "web_data.font_layer.available_font_hash",
+    "web_data.font_layer.font_probe_count",
+    "web_data.graphics_layer.canvas_hash",
+    "web_data.graphics_layer.webgl_aliased_line_width_range",
+    "web_data.graphics_layer.webgl_extensions_count",
+    "web_data.graphics_layer.webgl_max_texture_size",
+    "web_data.graphics_layer.webgl_max_viewport_dims",
+    "web_data.graphics_layer.webgl_renderer",
+    "web_data.graphics_layer.webgl_vendor",
+    "web_data.graphics_layer.webgl2_supported",
+    "web_data.navigator_layer.device_memory",
+    "web_data.navigator_layer.do_not_track",
+    "web_data.navigator_layer.hardware_concurrency",
+    "web_data.navigator_layer.language",
+    "web_data.navigator_layer.languages",
+    "web_data.navigator_layer.max_touch_points",
+    "web_data.navigator_layer.platform",
+    "web_data.navigator_layer.product",
+    "web_data.navigator_layer.product_sub",
+    "web_data.navigator_layer.user_agent",
+    "web_data.navigator_layer.vendor",
+    "web_data.screen_layer.avail_height",
+    "web_data.screen_layer.avail_width",
+    "web_data.screen_layer.color_depth",
+    "web_data.screen_layer.device_pixel_ratio",
+    "web_data.screen_layer.orientation_angle",
+    "web_data.screen_layer.orientation_type",
+    "web_data.screen_layer.pixel_depth",
+    "web_data.screen_layer.screen_resolution_logical"
+  ],
+  "not_comparable_field_groups": {
+    "diagnostic_only": [
+      "web_data.audio_layer.audio_error",
+      "web_data.automation_surface_layer.plugin_probe_error",
+      "web_data.font_layer.font_probe_error"
+    ],
+    "runtime_timing": [
+      "web_data.audio_layer.audio_output_latency",
+      "web_data.execution_layer.compute_task_time_ms",
+      "web_data.execution_layer.performance_time_origin"
+    ],
+    "origin_or_permission_scope": [
+      "web_data.execution_layer.local_storage_available",
+      "web_data.execution_layer.session_storage_available",
+      "web_data.navigator_layer.cookie_enabled",
+      "web_data.permissions_layer.camera_permission_state",
+      "web_data.permissions_layer.clipboard_read_state",
+      "web_data.permissions_layer.geolocation_permission_state",
+      "web_data.permissions_layer.microphone_permission_state",
+      "web_data.permissions_layer.notification_permission_state",
+      "web_data.permissions_layer.permission_query_errors",
+      "web_data.permissions_layer.permissions_api_supported"
+    ],
+    "transient_network": [
+      "web_data.navigator_layer.online",
+      "web_data.network_api_layer.downlink_mbps",
+      "web_data.network_api_layer.effective_type",
+      "web_data.network_api_layer.rtt_ms",
+      "web_data.network_api_layer.save_data"
+    ],
+    "container_viewport": [
+      "web_data.screen_layer.inner_height",
+      "web_data.screen_layer.inner_width",
+      "web_data.screen_layer.outer_height",
+      "web_data.screen_layer.outer_width",
+      "web_data.screen_layer.visual_viewport_height",
+      "web_data.screen_layer.visual_viewport_scale",
+      "web_data.screen_layer.visual_viewport_width"
+    ]
+  },
+  "metric_eligible": false,
+  "claim_boundary": "This sidecar reports deterministic literal equality between selected same-named WebView and standalone-browser fields for a provenance-validated pair. A different result means only that two runtime/container observations differed. It is not an attack, maliciousness or fraud label, device-identity proof, calibrated risk score, or evidence of generalization."
+}

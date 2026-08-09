@@ -20,7 +20,7 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
 
 项目的核心贡献不是提出一个新的分类器，而是建立“三端采集 → 会话对齐 → 跨层语义互证 → 风险解释 → 端侧轻量评分”的完整系统链路。随机森林、MLP 和 Positive ElasticNet 是工程基线或外部融合组件，不应被表述为算法创新。
 
-项目的长期目标仍是“采集 → 配对 → 跨层互证 → 风险解释”。但第一批施工只把最新数据的选择、配对、留存与 QC 框架跑起来，不接入 Agent、Evidence、模型或评分。
+项目的长期目标仍是“采集 → 配对 → 跨层互证 → 风险解释”。第一批已完成最新数据的选择、配对、留存与 QC；第二批现已将 App177 适配到既有 EvidenceBundle v2 与确定性离线 runtime，但仍不接入外部模型或产生校准风险分。
 
 ### 当前实现状态
 
@@ -32,7 +32,9 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
 
 当前工作树的第一批快照基线为：26 条最新 App177，其中 17 条进入 paired244、9 条进入 App-only 留存、0 条最新 App 被隔离。这些数据当前只用于开发与 QC，且无攻击标签，不能用来报告检测效果。
 
-仓库中仍保留旧采集应用、风险规则、RF/MLP/GLM、消融和 Agentic/RAG 试验资产，但它们属于历史复核材料，不进入当前 paired244 第一批管线。
+第二批为这 26 条 App177 各生成一份 App EvidenceBundle v2，并为 17 条 paired244 另外生成 Browser evidence sidecar。Browser sidecar 只供审计，不进入规则、检索或决策；9 条 App-only 不补造 Browser evidence。确定性 runtime 不调用外部模型，`calibrated_risk_score` 仍为 `null`，输出不是攻击标签或正式风险分。
+
+仓库中的旧采集应用、RF/MLP/GLM、消融和完整 Agentic/RAG 试验资产仍属于历史或后期材料；当前只复用既有确定性离线 runtime。
 
 ### 系统链路
 
@@ -41,6 +43,10 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
                               ├─> provenance 配对完成 ─> paired244 主视图
 独立 Browser 探针 ─> Browser67 ─┘
                               └─> Browser 未完成 ─> 保留 App-only 177
+
+26 条 App177 ─> App EvidenceBundle v2 ─> 确定性离线 runtime
+17 条 paired244 ─> Browser evidence sidecar（仅审计）
+ 9 条 App-only ─> 无 Browser sidecar（不补造）
 ```
 
 当前与历史运行链路的边界：
@@ -52,7 +58,7 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
 | `:app` | 历史/逻辑归档 | 旧版 Native/WebView/Web payload | 仅用于历史复核 |
 | `:riskapp` | 历史/逻辑归档 | 端侧随机森林评分摘要 | 仅用于历史复核 |
 
-App 与 Browser 原始数据分开保存，由快照构建器依据 receipt、已关闭 batch 和 pair provenance 派生 244 维视图；不在采集端伪造或拼接缺失的 Browser 值。
+App 与 Browser 原始数据分开保存，由快照构建器依据 receipt、已关闭 batch 和 pair provenance 派生 244 维视图。runtime 的规则、检索和决策只消费 App EvidenceBundle；Browser sidecar 与该决策链隔离。
 
 ### 仓库结构
 
@@ -71,8 +77,8 @@ App 与 Browser 原始数据分开保存，由快照构建器依据 receipt、�
 ├── rf_grouped_fusion_validation/     # RF 代理的低成本分组融合预验证
 ├── llm_grouped_fusion_validation/    # GLM 分组融合、知识消融与重复画像验证
 ├── device_cloud_catalog/             # 国内外真机云设备目录与统计口径
-├── hybridguard_agent/                # 当前 paired244/App-only 快照、QC 与历史管线
-├── hybridguard_agent_rag_guide/      # 后期 Agentic/RAG 路线（非第一批）
+├── hybridguard_agent/                # 当前快照、runtime 输入、审计 sidecar 与确定性运行时
+├── hybridguard_agent_rag_guide/      # 后期完整 Agentic/RAG 路线
 ├── thesis_materials/                 # 论文成品、章节、参考文献和期刊风格图
 ├── presentation/                     # 答辩稿、模板与讲稿
 ├── archive/                          # 学校提交件与历史材料归档
@@ -129,7 +135,22 @@ python hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
   --run-id latest_paired244_YYYYMMDD
 ```
 
-该命令仅做发布版选择、契约校验、配对、App-only 留存和 QC。旧消融、RF/MLP/GLM 与 Agent 管线的脚本仍在仓库中，但不应对当前小样本快照直接运行或作为默认验收。
+该命令仅做发布版选择、契约校验、配对、App-only 留存和 QC。旧消融与 RF/MLP/GLM 脚本仍不是当前默认验收入口。
+
+#### 4. 构建并检查第二批离线 runtime 输入
+
+```bash
+python hybridguard_agent/scripts/build_latest_runtime_inputs.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --output-dir hybridguard_agent/artifacts/latest_runtime/latest_runtime_YYYYMMDD
+
+python hybridguard_agent/scripts/run_agent_runtime.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --sample-id YOUR_SAMPLE_ID \
+  --output /private/tmp/hybridguard_runtime_result.jsonl
+```
+
+`build_latest_runtime_inputs.py` 生成 26 份 App EvidenceBundle v2 和 17 份独立 Browser evidence sidecar。`run_agent_runtime.py` 对单样本执行只读的确定性分析；Browser sidecar 只附在输出中供审计，不影响规则、检索或决策。该链路不调用模型，不产生校准风险分。
 
 ### 历史实验结论与边界（非当前 paired244 结果）
 
@@ -153,6 +174,7 @@ python hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
 | 用 Android Studio 启动当前 FeatureApp | [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md) |
 | 后端接口与 payload 示例 | [`backend_server/start_server.md`](backend_server/start_server.md) |
 | 构建最新 paired244/App-only 快照 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| 构建 runtime 输入并运行确定性离线分析 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
 | 历史消融与 grouped CV | [`ablation/README.md`](ablation/README.md) |
 | Google 官方知识库 | [`google_official_kb/README.md`](google_official_kb/README.md) |
 | 历史 LLM 分组融合方案 | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
@@ -167,7 +189,7 @@ python hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
 - 不要提交 API Key、BrowserStack/Sauce Labs 凭证、长期可用的隧道 URL 或本机绝对路径；
 - 原始设备指纹可能包含隐私或可关联信息，公开共享前应脱敏、抽样并审查用途；
 - 当前部分 Android endpoint 仍为硬编码配置，运行和公开发布前必须检查；
-- 当前数据任务从 `hybridguard_agent/README.md` 进入；Agentic/RAG 分册属于后期路线。
+- 当前数据与确定性离线 runtime 任务从 `hybridguard_agent/README.md` 进入；完整 Agentic/RAG 分册属于后期路线。
 
 ---
 
@@ -183,7 +205,7 @@ HybridGuard targets frictionless mobile risk control and risk-based authenticati
 
 If browser collection fails, a valid App177 record is retained in the App-only view; browser values are never fabricated or zero-filled. The legacy `:app`, `:riskapp`, older datasets, and older model pipelines remain as logically archived historical assets rather than active entry points.
 
-The long-term goal remains collection, pairing, cross-layer corroboration, and risk explanation. This first construction batch only establishes release selection, pairing, retention, and QC for the latest data. It does not connect the Agent, Evidence, models, or scoring pipeline.
+The long-term goal remains collection, pairing, cross-layer corroboration, and risk explanation. Batch one completed release selection, pairing, retention, and QC. Batch two now adapts App177 to the existing EvidenceBundle v2 and deterministic offline runtime, while still calling no external model and producing no calibrated risk score.
 
 ### Current Status
 
@@ -195,7 +217,9 @@ The active entry point is [`hybridguard_agent/scripts/build_latest_paired244_sna
 
 The current working-tree baseline contains 26 latest-release App177 records: 17 enter paired244, 9 enter App-only retention, and 0 latest App records are quarantined. This data is unlabeled and for development/QC only; it does not support detection-performance claims.
 
-Legacy collection apps, risk rules, RF/MLP/GLM experiments, ablations, and Agentic/RAG prototypes remain in the repository for historical review. They are not part of this first paired244 pipeline.
+Batch two generates one App EvidenceBundle v2 for each of the 26 App177 records and a separate browser evidence sidecar for each of the 17 paired244 records. Browser sidecars are audit-only and never enter rules, retrieval, or decisions; the 9 App-only records receive no fabricated browser evidence. The deterministic runtime calls no external model, keeps `calibrated_risk_score` at `null`, and does not produce attack labels or formal risk scores.
+
+Legacy collection apps, RF/MLP/GLM experiments, ablations, and full Agentic/RAG prototypes remain historical or later-stage assets. The current path only reuses the existing deterministic offline runtime.
 
 ### Pipeline
 
@@ -204,6 +228,10 @@ Latest FeatureApp ─> App177 ─┐
                               ├─> provenance-complete pairing ─> paired244 main view
 Independent browser ─> Browser67 ─┘
                               └─> browser incomplete ─> retain App-only 177
+
+26 App177 records ─> App EvidenceBundle v2 ─> deterministic offline runtime
+17 paired244 records ─> browser evidence sidecars (audit-only)
+ 9 App-only records ─> no browser sidecar (never fabricated)
 ```
 
 Current and historical runtime boundaries:
@@ -215,7 +243,7 @@ Current and historical runtime boundaries:
 | `:app` | Historical/logically archived | Legacy Native/WebView/Web payload | Historical review only |
 | `:riskapp` | Historical/logically archived | On-device RandomForest score summary | Historical review only |
 
-App and browser raw inputs remain separate. The snapshot builder derives the 244-dimensional view from receipts, closed batches, and pair provenance; missing browser values are not fabricated at collection time.
+App and browser raw inputs remain separate. The snapshot builder derives the 244-dimensional view from receipts, closed batches, and pair provenance. Runtime rules, retrieval, and decisions consume only App EvidenceBundles; browser sidecars remain outside that decision path.
 
 ### Repository Layout
 
@@ -234,8 +262,8 @@ App and browser raw inputs remain separate. The snapshot builder derives the 244
 ├── rf_grouped_fusion_validation/     # Low-cost RF proxy for grouped fusion
 ├── llm_grouped_fusion_validation/    # GLM fusion, knowledge ablation, profile weighting
 ├── device_cloud_catalog/             # Domestic/international real-device cloud catalogs
-├── hybridguard_agent/                # Active paired244/App-only snapshots, QC, and historical pipelines
-├── hybridguard_agent_rag_guide/      # Later Agentic/RAG roadmap (not part of batch one)
+├── hybridguard_agent/                # Active snapshots, runtime inputs, audit sidecars, and deterministic runtime
+├── hybridguard_agent_rag_guide/      # Later full Agentic/RAG roadmap
 ├── thesis_materials/                 # Thesis, chapters, references, journal-style figures
 ├── presentation/                     # Defense deck, template, and speaker notes
 ├── archive/                          # Archived submission and historical artifacts
@@ -292,7 +320,22 @@ python hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
   --run-id latest_paired244_YYYYMMDD
 ```
 
-This command only performs release selection, contract validation, pairing, App-only retention, and QC. Legacy ablation, RF/MLP/GLM, and Agent scripts remain available, but they should not be run directly against the current small snapshot or treated as the default acceptance path.
+This command only performs release selection, contract validation, pairing, App-only retention, and QC. Legacy ablation and RF/MLP/GLM scripts are still not part of the current default acceptance path.
+
+#### 4. Build and inspect batch-two offline runtime inputs
+
+```bash
+python hybridguard_agent/scripts/build_latest_runtime_inputs.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --output-dir hybridguard_agent/artifacts/latest_runtime/latest_runtime_YYYYMMDD
+
+python hybridguard_agent/scripts/run_agent_runtime.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --sample-id YOUR_SAMPLE_ID \
+  --output /private/tmp/hybridguard_runtime_result.jsonl
+```
+
+`build_latest_runtime_inputs.py` writes 26 App EvidenceBundle v2 records and 17 separate browser evidence sidecars. `run_agent_runtime.py` performs read-only deterministic analysis for one sample. The browser sidecar is attached for audit only and cannot affect rules, retrieval, or the decision. This path calls no model and emits no calibrated risk score.
 
 ### Historical Findings and Claim Boundaries (Not Current paired244 Results)
 
@@ -316,6 +359,7 @@ Key boundaries: structural prevalidation is not full LLM validation; preventing 
 | Launch the active FeatureApp in Android Studio | [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md) |
 | Inspect backend APIs and payload examples | [`backend_server/start_server.md`](backend_server/start_server.md) |
 | Build the latest paired244/App-only snapshot | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| Build runtime inputs and run deterministic offline analysis | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
 | Review historical ablations and grouped CV | [`ablation/README.md`](ablation/README.md) |
 | Inspect the Google-official knowledge base | [`google_official_kb/README.md`](google_official_kb/README.md) |
 | Review the historical LLM grouped-fusion design | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
@@ -330,4 +374,4 @@ Key boundaries: structural prevalidation is not full LLM validation; preventing 
 - Do not commit API keys, BrowserStack/Sauce Labs credentials, long-lived tunnel URLs, or machine-specific absolute paths.
 - Raw device fingerprints may contain private or linkable information; sanitize, sample, and review them before sharing.
 - Some Android endpoints remain hardcoded and must be checked before running or publishing the project.
-- Current data tasks begin at `hybridguard_agent/README.md`; Agentic/RAG workbooks belong to the later roadmap.
+- Current data and deterministic offline-runtime tasks begin at `hybridguard_agent/README.md`; full Agentic/RAG workbooks belong to the later roadmap.

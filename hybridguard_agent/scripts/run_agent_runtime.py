@@ -59,20 +59,49 @@ def main() -> None:
             raise ValueError("--sample-id is required with --snapshot-dir")
         runtime_sample = load_runtime_sample(args.snapshot_dir, args.sample_id)
         evidence = runtime_sample.evidence_bundle or build_evidence_bundle_v2(
-            {"sample_id": runtime_sample.sample_id, "payload": runtime_sample.normalized_payload, "field_status": runtime_sample.field_status}
+            {
+                "sample_id": runtime_sample.sample_id,
+                "payload": runtime_sample.normalized_payload,
+                "field_status": runtime_sample.field_status,
+            }
         )
-        results = [
-            analyze_evidence_bundle(
-                evidence,
-                {
-                    "payload_sha256": None,
-                    "session_id_hash": None,
-                    "snapshot_run_id": runtime_sample.snapshot.get("run_id"),
-                },
+        result = analyze_evidence_bundle(
+            evidence,
+            {
+                "payload_sha256": None,
+                "session_id_hash": None,
+                "snapshot_run_id": runtime_sample.snapshot.get("run_id"),
+            },
+        )
+        if runtime_sample.snapshot.get("snapshot_kind") == "latest-paired244-v1":
+            pair_evidence = runtime_sample.browser_pair_evidence
+            result["browser_pair_evidence"] = {
+                "status": runtime_sample.browser_pair_status,
+                "browser_pair_evidence_version": (
+                    pair_evidence.get("browser_pair_evidence_version")
+                    if pair_evidence
+                    else None
+                ),
+                "evidence_hash": (
+                    pair_evidence.get("evidence_hash") if pair_evidence else None
+                ),
+                "summary": pair_evidence.get("summary") if pair_evidence else None,
+                "used_by_rule_execution": False,
+                "claim_boundary": (
+                    pair_evidence.get("claim_boundary")
+                    if pair_evidence
+                    else "No completed Browser67 pair is available for this App177 sample."
+                ),
+            }
+            result["warnings"].append(
+                "Browser-pair evidence is audit-only and was not used by rules, retrieval, or the decision."
             )
-        ]
+        results = [result]
     else:
-        results = [analyze_payload(row, sample_id=args.sample_id) for row in read_json_or_jsonl(args.input)]
+        results = [
+            analyze_payload(row, sample_id=args.sample_id)
+            for row in read_json_or_jsonl(args.input)
+        ]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as handle:
         for result in results:
