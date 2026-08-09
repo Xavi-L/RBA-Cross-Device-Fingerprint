@@ -2,7 +2,7 @@
 
 [中文](#中文说明) | [English](#english)
 
-HybridGuard is a research prototype for risk-based authentication (RBA) that aligns Android Native, WebView host, and Web runtime fingerprints within one session. The repository contains the complete graduation-project system, experiment artifacts, and an ongoing roadmap toward a knowledge-grounded agentic risk-analysis system.
+HybridGuard is a research prototype for risk-based authentication (RBA). The current implementation scope is deliberately narrow: the latest FeatureApp release produces App177, an independent browser probe produces Browser67, and provenance-complete pairs form the formal paired244 unit. The repository also retains earlier apps, datasets, and model experiments as historical assets.
 
 ---
 
@@ -10,80 +10,69 @@ HybridGuard is a research prototype for risk-based authentication (RBA) that ali
 
 ### 项目简介
 
-HybridGuard 面向移动端无感风控与风险认证场景，在同一 `session_id` 下采集并对齐三类原本割裂的设备证据：
+HybridGuard 面向移动端无感风控与风险认证场景。当前施工范围只包含：
 
-- Android Native：设备构建、物理运行、传感器、安全配置、网络与存储等信号；
-- WebView Host：宿主 App、WebView provider、JSBridge、WebSettings 与安装信息；
-- Web Runtime：Navigator、屏幕、WebGL、Canvas、Audio、字体、权限与自动化表面信号。
+- 最新 `:featureapp` 发布版（versionCode 8）采集的固定 App177；
+- 独立 Browser 探针采集的固定 Browser67；
+- 具有完整配对来源的 App177 + Browser67，作为正式 `paired244` 数据单元。
+
+如果 Browser 采集失败，有效的 App177 不会被丢弃或填零，而是进入 App-only 留存视图。旧 `:app`、`:riskapp`、旧版数据与旧模型实验管线只作为历史资产保留，属于逻辑归档，不再是当前默认入口。
 
 项目的核心贡献不是提出一个新的分类器，而是建立“三端采集 → 会话对齐 → 跨层语义互证 → 风险解释 → 端侧轻量评分”的完整系统链路。随机森林、MLP 和 Positive ElasticNet 是工程基线或外部融合组件，不应被表述为算法创新。
 
-当前研究主线正从传统“规则知识库 + 单模型评分”继续推进到知识支撑的 Agentic/RAG 架构：让 LLM 对分组证据进行语义判断，由 Verifier 检查证据引用与结论边界，再由可复现的外部模型完成总分融合。该 Agentic/RAG 架构目前是目标设计与分阶段实施路线，尚未全部落地。
+项目的长期目标仍是“采集 → 配对 → 跨层互证 → 风险解释”。但第一批施工只把最新数据的选择、配对、留存与 QC 框架跑起来，不接入 Agent、Evidence、模型或评分。
 
 ### 当前实现状态
 
-已实现：
+当前活跃入口为 [`hybridguard_agent/scripts/build_latest_paired244_snapshot.py`](hybridguard_agent/scripts/build_latest_paired244_snapshot.py)，它只处理 FeatureApp `1.6.1-expanded-v2.2-browser-recovery` / versionCode 8 与对应的独立 Browser67，并产生：
 
-- 三个相互隔离的 Android App：旧三端采集 `:app`、端侧评分 `:riskapp`、扩充采集 `:featureapp`；
-- FastAPI 后端：Web 探针托管、三端会话合并、扩充数据分流、端侧评分摘要接收与 JSON/JSONL 持久化；
-- `featureapp` 面向 API 21+ 的 expanded-v2.2-status 固定结构：Native 84 + WebView 26 + Web 67，共 177 个结构化字段，并上报 collection manifest、逐字段状态和探针诊断；
-- `featureapp` readiness 预检、Web 超时保底、立即/后台重试、后端部分 payload 保存、collection receipt 与重复抑制；
-- 35 条综合风险规则，以及 30 条 Google 官方来源、20 张知识卡片；其中 15 张已作为解释性元数据合入主规则库；
-- 本地 LLM 标签生成、随机森林/MLP 训练、端侧 Java 随机森林推理和评分摘要上报闭环；
-- 三端粗粒度消融、跨层一致性消融、按设备/模板分组的交叉验证；
-- GLM-5.2 直接评分、Google 官方知识 K0/K1 消融、六组证据融合与重复画像降权的 targeted pilot；
-- 真机云平台设备目录与可用性统计、毕业论文/答辩材料、投稿复用图表。
+- `paired_244.jsonl`：完成配对且通过契约校验的 244 维主视图；
+- `app_only_177.jsonl`：Browser 未完成时保留的有效 App177；
+- `quarantine.jsonl`、`sample_index.jsonl`、`selection_audit.jsonl` 以及 QC/manifest 文件。
 
-当前工作重点：
+当前工作树的第一批快照基线为：26 条最新 App177，其中 17 条进入 paired244、9 条进入 App-only 留存、0 条最新 App 被隔离。这些数据当前只用于开发与 QC，且无攻击标签，不能用来报告检测效果。
 
-- 冻结 expanded-v2 的权威 JSON Schema、canonical field registry 和历史样本 manifest；
-- 将 session 数与独立 `stable_device_key` / 稳定画像数分开统计，避免重复设备画像造成评估偏差；
-- 补充带独立来源与攻击事实标签的 clean/attack/post 配对样本；
-- 完成 K1.1 容错规则消融，以及完整 original/augmented GLM 分组分数缓存；
-- 在严格 grouped CV、OOD 和泄漏审计下验证 Retriever、Verifier 与外部融合，而不是只在旧教师标签上追求更低误差。
-
-截至 `2026-07-10` 的数据审计快照为 155 个 session：154 条 expanded-v2、1 条需要隔离的 expanded-v1；保守估计约 80 个稳定画像组。session 数、稳定画像数和已验证物理设备数不是同一口径。
+仓库中仍保留旧采集应用、风险规则、RF/MLP/GLM、消融和 Agentic/RAG 试验资产，但它们属于历史复核材料，不进入当前 paired244 第一批管线。
 
 ### 系统链路
 
 ```text
-Android Native ─┐
-WebView Host ───┼─> session_id 对齐 ─> FastAPI 分流与持久化
-Web Runtime ────┘                         │
-                                         ├─> 规则/LLM 离线标注
-                                         ├─> 跨层一致性与 grouped CV
-                                         ├─> 六组语义评分 + 外部融合
-                                         └─> 轻量模型导出 -> Android 端侧评分
+最新 FeatureApp ─> App177 ─┐
+                              ├─> provenance 配对完成 ─> paired244 主视图
+独立 Browser 探针 ─> Browser67 ─┘
+                              └─> Browser 未完成 ─> 保留 App-only 177
 ```
 
-三类运行链路彼此独立：
+当前与历史运行链路的边界：
 
-| App | 作用 | 上传内容 | 后端输出 |
+| 组件 | 当前定位 | 采集/上传内容 | 主要去向 |
 |---|---|---|---|
-| `:app` | 旧版三端采集 | 原始 Native/WebView/Web payload | `merged_sessions.json`、`collected_data.jsonl` |
-| `:riskapp` | 端侧随机森林评分 | 风险分、等级、理由和引擎摘要 | `local_score_results.jsonl` |
-| `:featureapp` | expanded-v2 扩充采集 | 177 字段三端原始 payload | `expanded_merged_sessions.json`、`expanded_collected_data.jsonl` |
+| `:featureapp` versionCode 8 | **当前活跃** | App177 + 采集状态与 receipt | paired244 或 App-only 177 |
+| 独立 Browser 探针 | **当前活跃** | Browser67 + pair provenance | 完成配对时进入 paired244 |
+| `:app` | 历史/逻辑归档 | 旧版 Native/WebView/Web payload | 仅用于历史复核 |
+| `:riskapp` | 历史/逻辑归档 | 端侧随机森林评分摘要 | 仅用于历史复核 |
 
-`riskapp` 的 Web 探针和随机森林推理都在本地执行，后端只接收评分摘要。`featureapp` 不包含端侧评分逻辑；它的原始数据始终与旧采集和评分摘要文件分开保存。
+App 与 Browser 原始数据分开保存，由快照构建器依据 receipt、已关闭 batch 和 pair provenance 派生 244 维视图；不在采集端伪造或拼接缺失的 Browser 值。
 
 ### 仓库结构
 
 ```text
 .
 ├── android_app/
-│   ├── HybridGuard/                  # Android Studio 工程：app/riskapp/featureapp
-│   └── ANDROID_STUDIO_APP_USAGE.md   # 三个 App 的启动、联网与验收说明
-├── backend_server/                   # FastAPI、Web 探针与本地 JSON/JSONL 输出
-├── scoring/                          # 数据扩充、攻击样本、规则库和 LLM 批量评分
-├── training/                         # MLP/RF 训练、评估与 Java 模型导出
-├── ablation/                         # 消融、grouped CV、结果表和论文图
+│   ├── HybridGuard/                  # Android Studio 工程；当前只以 featureapp 为入口
+│   └── ANDROID_STUDIO_APP_USAGE.md   # Android 启动、联网与验收说明
+├── browser_probe_site/               # 当前独立 Browser67 探针
+├── backend_server/                   # App/Browser 原始数据、receipt、batch 与 pair provenance
+├── scoring/                          # 历史规则、攻击样本与 LLM 评分资产
+├── training/                         # 历史 MLP/RF 训练与模型导出
+├── ablation/                         # 历史消融、grouped CV 与论文结果
 ├── google_official_kb/               # Google 官方来源、风险卡与合并报告
 ├── zhipu_glm_eval/                   # GLM-5.2 直接风险评分评估
 ├── rf_grouped_fusion_validation/     # RF 代理的低成本分组融合预验证
 ├── llm_grouped_fusion_validation/    # GLM 分组融合、知识消融与重复画像验证
 ├── device_cloud_catalog/             # 国内外真机云设备目录与统计口径
-├── hybridguard_agent/                # 可重跑的数据冻结、标签 sidecar、QC 与无标签 EvidenceBundle 管线
-├── hybridguard_agent_rag_guide/      # Agentic/RAG 目标架构、任务路由和实施分册
+├── hybridguard_agent/                # 当前 paired244/App-only 快照、QC 与历史管线
+├── hybridguard_agent_rag_guide/      # 后期 Agentic/RAG 路线（非第一批）
 ├── thesis_materials/                 # 论文成品、章节、参考文献和期刊风格图
 ├── presentation/                     # 答辩稿、模板与讲稿
 ├── archive/                          # 学校提交件与历史材料归档
@@ -119,8 +108,7 @@ curl http://localhost:8000/health
 
 - `GET /`：Web 指纹探针；
 - `GET /health`：健康检查；
-- `POST /api/collect/fingerprint`：旧版与 expanded-v2 三端采集；
-- `POST /api/risk/local-score`：端侧评分摘要。
+- `POST /api/collect/fingerprint`：FeatureApp App177 上报（同一后端仍保留历史兼容路径）。
 
 #### 2. 构建 Android App
 
@@ -128,38 +116,26 @@ curl http://localhost:8000/health
 
 ```bash
 cd android_app/HybridGuard
-./gradlew :app:assembleDebug
-./gradlew :riskapp:assembleDebug
 ./gradlew :featureapp:assembleDebug
 ```
 
-三个模块都需要按运行环境检查后端地址。旧 `:app` 与 `:riskapp` 主要在各自的 `MainActivity.kt` 中配置；`:featureapp` 用 `-PhybridguardCollectEndpoint=...` 在构建时生成 endpoint。模拟器通常使用 `10.0.2.2`，真机可使用局域网 IP、`adb reverse` 或临时隧道。详细步骤见 [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md)。
+当前只验收 `:featureapp`。它用 `-PhybridguardCollectEndpoint=...` 在构建时生成 endpoint。模拟器通常使用 `10.0.2.2`，真机可使用局域网 IP、`adb reverse` 或临时隧道。详细步骤见 [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md)。`:app` 与 `:riskapp` 的构建说明仅供历史复核。
 
-#### 3. 运行核心离线实验
+#### 3. 构建当前 paired244 数据视图
 
 ```bash
 conda activate cross-device-fingerprint
-
-python ablation/run_randomforest_ablation.py
-python ablation/run_consistency_ablation.py
-python ablation/run_grouped_ablation.py
-python rf_grouped_fusion_validation/run_rf_grouped_fusion_validation.py
-python llm_grouped_fusion_validation/prepare_validation_assets.py
+python hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
+  --run-id latest_paired244_YYYYMMDD
 ```
 
-训练脚本使用相对输入路径，需从 `training/` 目录运行：
+该命令仅做发布版选择、契约校验、配对、App-only 留存和 QC。旧消融、RF/MLP/GLM 与 Agent 管线的脚本仍在仓库中，但不应对当前小样本快照直接运行或作为默认验收。
 
-```bash
-cd training
-python train_randomforest.py
-python train_mlp.py
-```
+### 历史实验结论与边界（非当前 paired244 结果）
 
-GLM-5.2 脚本支持 `ZHIPU_API_KEY`、`--api-key-file` 或 `--api-key-stdin`，不会主动把 API Key 写入仓库。在线调用和详细命令见 [`zhipu_glm_eval/README.md`](zhipu_glm_eval/README.md) 与 [`llm_grouped_fusion_validation/README.md`](llm_grouped_fusion_validation/README.md)。
+下表只记录旧数据与旧模型管线的历史实验，不能作为当前 26 条最新 App 快照的评估结论。
 
-### 当前实验结论与边界
-
-| 验证项 | 当前结果 | 可以说明 | 不能说明 |
+| 验证项 | 历史结果 | 可以说明 | 不能说明 |
 |---|---|---|---|
 | grouped CV 三端语义特征 | 7 个特征，MAE 2.281、RMSE 3.358 | 跨层语义互证比简单堆叠原始字段更有价值 | 已具备真实攻击检测准确率 |
 | RF 代理六组 + Positive ElasticNet | MAE 2.968，高风险 F1 1.000 | 分组子分数与外部融合框架可复现 | 已超过最强 Tri-layer baseline，或 RF 等价于 LLM |
@@ -174,14 +150,15 @@ GLM-5.2 脚本支持 `ZHIPU_API_KEY`、`--api-key-file` 或 `--api-key-stdin`，
 | 目标 | 入口 |
 |---|---|
 | 从新克隆到本地运行 | [`ENVIRONMENT_SETUP.md`](ENVIRONMENT_SETUP.md) |
-| 用 Android Studio 启动三个 App | [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md) |
+| 用 Android Studio 启动当前 FeatureApp | [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md) |
 | 后端接口与 payload 示例 | [`backend_server/start_server.md`](backend_server/start_server.md) |
-| 消融与 grouped CV | [`ablation/README.md`](ablation/README.md) |
+| 构建最新 paired244/App-only 快照 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| 历史消融与 grouped CV | [`ablation/README.md`](ablation/README.md) |
 | Google 官方知识库 | [`google_official_kb/README.md`](google_official_kb/README.md) |
-| LLM 分组融合方案 | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
-| GLM targeted pilot | [`llm_grouped_fusion_validation/PILOT_REPORT.md`](llm_grouped_fusion_validation/PILOT_REPORT.md) |
-| 数据冻结与 Week 7 标签接入 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
-| Agentic/RAG 后续行动 | [`hybridguard_agent_rag_guide/README.md`](hybridguard_agent_rag_guide/README.md) |
+| 历史 LLM 分组融合方案 | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
+| 历史 GLM targeted pilot | [`llm_grouped_fusion_validation/PILOT_REPORT.md`](llm_grouped_fusion_validation/PILOT_REPORT.md) |
+| 历史数据冻结与标签接入 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| 后期 Agentic/RAG 行动 | [`hybridguard_agent_rag_guide/README.md`](hybridguard_agent_rag_guide/README.md) |
 | 论文和投稿材料 | [`thesis_materials/README.md`](thesis_materials/README.md) |
 | 真机云调研 | [`device_cloud_catalog/`](device_cloud_catalog/) |
 
@@ -190,7 +167,7 @@ GLM-5.2 脚本支持 `ZHIPU_API_KEY`、`--api-key-file` 或 `--api-key-stdin`，
 - 不要提交 API Key、BrowserStack/Sauce Labs 凭证、长期可用的隧道 URL 或本机绝对路径；
 - 原始设备指纹可能包含隐私或可关联信息，公开共享前应脱敏、抽样并审查用途；
 - 当前部分 Android endpoint 仍为硬编码配置，运行和公开发布前必须检查；
-- 面向 Agent 的任务请从 `hybridguard_agent_rag_guide/README.md` 路由，只读取与当前任务相关的 1–2 份分册。
+- 当前数据任务从 `hybridguard_agent/README.md` 进入；Agentic/RAG 分册属于后期路线。
 
 ---
 
@@ -198,80 +175,67 @@ GLM-5.2 脚本支持 `ZHIPU_API_KEY`、`--api-key-file` 或 `--api-key-stdin`，
 
 ### Overview
 
-HybridGuard targets frictionless mobile risk control and risk-based authentication. It collects and aligns three previously isolated evidence sources under one `session_id`:
+HybridGuard targets frictionless mobile risk control and risk-based authentication. The current construction scope contains only:
 
-- Android Native signals: build identity, physical runtime, sensors, security settings, network, and storage;
-- WebView Host signals: host app, WebView provider, JSBridge, WebSettings, and installation metadata;
-- Web Runtime signals: Navigator, display, WebGL, Canvas, Audio, fonts, permissions, and automation surfaces.
+- fixed App177 records from the latest `:featureapp` release (versionCode 8);
+- fixed Browser67 records from the independent browser probe;
+- App177 + Browser67 records with complete pairing provenance as the formal `paired244` unit.
 
-The primary contribution is not a new classifier. It is an end-to-end pipeline covering tri-layer collection, session alignment, cross-layer semantic corroboration, risk explanation, and lightweight on-device scoring. RandomForest, MLP, and Positive ElasticNet are engineering baselines or fusion components rather than algorithmic contributions.
+If browser collection fails, a valid App177 record is retained in the App-only view; browser values are never fabricated or zero-filled. The legacy `:app`, `:riskapp`, older datasets, and older model pipelines remain as logically archived historical assets rather than active entry points.
 
-The active research direction extends the conventional rule-base and single-model pipeline into a knowledge-grounded agentic/RAG architecture. An LLM reasons over grouped evidence, a Verifier checks evidence use and claim boundaries, and a reproducible external model fuses group scores. This architecture is currently a target design with staged validation; it is not yet fully implemented.
+The long-term goal remains collection, pairing, cross-layer corroboration, and risk explanation. This first construction batch only establishes release selection, pairing, retention, and QC for the latest data. It does not connect the Agent, Evidence, models, or scoring pipeline.
 
 ### Current Status
 
-Implemented:
+The active entry point is [`hybridguard_agent/scripts/build_latest_paired244_snapshot.py`](hybridguard_agent/scripts/build_latest_paired244_snapshot.py). It only processes FeatureApp `1.6.1-expanded-v2.2-browser-recovery` / versionCode 8 and the corresponding independent Browser67 records. It produces:
 
-- Three isolated Android apps: legacy tri-layer collection (`:app`), on-device scoring (`:riskapp`), and expanded collection (`:featureapp`);
-- A FastAPI backend for probe hosting, session merging, expanded-data routing, local-score ingestion, and JSON/JSONL persistence;
-- An API-21+ expanded-v2.2-status structure with 177 fields (84 Native, 26 WebView, and 67 Web), plus a collection manifest, per-field status, and probe diagnostics;
-- Readiness preflight, Web-timeout fallback, immediate/background retries, partial-payload persistence, collection receipts, and duplicate suppression for `featureapp`;
-- 35 risk rules plus 30 Google-official sources and 20 knowledge cards, 15 of which are attached to the main rule base as explanatory metadata;
-- Local-LLM label generation, RandomForest/MLP training, Java model export, and an on-device scoring loop that uploads summaries only;
-- Endpoint ablation, consistency ablation, and device/template-grouped cross-validation;
-- GLM-5.2 direct scoring, K0/K1 official-knowledge ablation, six-group fusion, and a targeted repeated-profile weighting pilot;
-- Device-cloud catalogs, thesis and defense artifacts, and publication-oriented figures.
+- `paired_244.jsonl` for provenance-complete 244-dimensional records that pass contract checks;
+- `app_only_177.jsonl` for valid App177 records whose browser side did not complete;
+- `quarantine.jsonl`, `sample_index.jsonl`, `selection_audit.jsonl`, plus QC and manifest files.
 
-Active work:
+The current working-tree baseline contains 26 latest-release App177 records: 17 enter paired244, 9 enter App-only retention, and 0 latest App records are quarantined. This data is unlabeled and for development/QC only; it does not support detection-performance claims.
 
-- Freeze the authoritative expanded-v2 JSON Schema, canonical field registry, and historical sample manifest;
-- Report sessions separately from independent `stable_device_key` / stable-profile counts;
-- Collect paired clean/attack/post samples with independent provenance and attack ground truth;
-- Run a K1.1 tolerance-rule ablation and cache full original/augmented GLM group scores;
-- Evaluate retrieval, verification, fusion, OOD behavior, and leakage under strict grouped splits instead of optimizing only against legacy teacher labels.
-
-The data-audit snapshot dated `2026-07-10` contains 155 sessions: 154 expanded-v2 rows and one expanded-v1 row that must be isolated. The conservative estimate is approximately 80 stable-profile groups. Sessions, stable profiles, and verified physical devices are different quantities.
+Legacy collection apps, risk rules, RF/MLP/GLM experiments, ablations, and Agentic/RAG prototypes remain in the repository for historical review. They are not part of this first paired244 pipeline.
 
 ### Pipeline
 
 ```text
-Android Native ─┐
-WebView Host ───┼─> session_id alignment ─> FastAPI routing and persistence
-Web Runtime ────┘                              │
-                                              ├─> rule/LLM offline labeling
-                                              ├─> consistency features and grouped CV
-                                              ├─> six semantic scores + external fusion
-                                              └─> lightweight export -> on-device scoring
+Latest FeatureApp ─> App177 ─┐
+                              ├─> provenance-complete pairing ─> paired244 main view
+Independent browser ─> Browser67 ─┘
+                              └─> browser incomplete ─> retain App-only 177
 ```
 
-The three runtime paths remain isolated:
+Current and historical runtime boundaries:
 
-| App | Purpose | Uploaded data | Backend output |
+| Component | Current role | Collected/uploaded data | Main destination |
 |---|---|---|---|
-| `:app` | Legacy tri-layer collection | Raw Native/WebView/Web payload | `merged_sessions.json`, `collected_data.jsonl` |
-| `:riskapp` | On-device RandomForest scoring | Score, level, reason, and engine summary | `local_score_results.jsonl` |
-| `:featureapp` | Expanded-v2 collection | Raw 177-field tri-layer payload | `expanded_merged_sessions.json`, `expanded_collected_data.jsonl` |
+| `:featureapp` versionCode 8 | **Active** | App177 plus collection status and receipt | paired244 or App-only 177 |
+| Independent browser probe | **Active** | Browser67 plus pair provenance | paired244 when pairing completes |
+| `:app` | Historical/logically archived | Legacy Native/WebView/Web payload | Historical review only |
+| `:riskapp` | Historical/logically archived | On-device RandomForest score summary | Historical review only |
 
-`riskapp` runs its Web probe and RandomForest inference locally; the backend receives only a scoring summary. `featureapp` does not contain on-device scoring, and its raw data remains separate from legacy collection data and score summaries.
+App and browser raw inputs remain separate. The snapshot builder derives the 244-dimensional view from receipts, closed batches, and pair provenance; missing browser values are not fabricated at collection time.
 
 ### Repository Layout
 
 ```text
 .
 ├── android_app/
-│   ├── HybridGuard/                  # Android Studio project: app/riskapp/featureapp
+│   ├── HybridGuard/                  # Android Studio project; featureapp is the active entry point
 │   └── ANDROID_STUDIO_APP_USAGE.md   # Launch, networking, and acceptance guide
-├── backend_server/                   # FastAPI, Web probe, and local JSON/JSONL outputs
-├── scoring/                          # Augmentation, attack samples, rule base, LLM labeling
-├── training/                         # MLP/RF training, evaluation, and Java export
-├── ablation/                         # Ablations, grouped CV, tables, and paper figures
+├── browser_probe_site/               # Active independent Browser67 probe
+├── backend_server/                   # App/browser raw data, receipts, batches, and pair provenance
+├── scoring/                          # Historical rules, attack samples, and LLM assets
+├── training/                         # Historical MLP/RF training and model export
+├── ablation/                         # Historical ablations, grouped CV, and paper results
 ├── google_official_kb/               # Official sources, knowledge cards, merge reports
 ├── zhipu_glm_eval/                   # Direct GLM-5.2 risk-scoring evaluation
 ├── rf_grouped_fusion_validation/     # Low-cost RF proxy for grouped fusion
 ├── llm_grouped_fusion_validation/    # GLM fusion, knowledge ablation, profile weighting
 ├── device_cloud_catalog/             # Domestic/international real-device cloud catalogs
-├── hybridguard_agent/                # Re-runnable snapshots, label sidecars, QC, and label-free evidence bundles
-├── hybridguard_agent_rag_guide/      # Agentic/RAG architecture and routed workbooks
+├── hybridguard_agent/                # Active paired244/App-only snapshots, QC, and historical pipelines
+├── hybridguard_agent_rag_guide/      # Later Agentic/RAG roadmap (not part of batch one)
 ├── thesis_materials/                 # Thesis, chapters, references, journal-style figures
 ├── presentation/                     # Defense deck, template, and speaker notes
 ├── archive/                          # Archived submission and historical artifacts
@@ -307,47 +271,34 @@ Primary endpoints:
 
 - `GET /`: Web fingerprint probe;
 - `GET /health`: health check;
-- `POST /api/collect/fingerprint`: legacy and expanded-v2 collection;
-- `POST /api/risk/local-score`: on-device score summaries.
+- `POST /api/collect/fingerprint`: FeatureApp App177 upload (the backend still retains historical compatibility paths).
 
-#### 2. Build the Android apps
+#### 2. Build the active Android app
 
 Open `android_app/HybridGuard` in Android Studio, not the repository root. Command-line builds:
 
 ```bash
 cd android_app/HybridGuard
-./gradlew :app:assembleDebug
-./gradlew :riskapp:assembleDebug
 ./gradlew :featureapp:assembleDebug
 ```
 
-All three modules require a backend address appropriate for the target environment. The legacy `:app` and `:riskapp` primarily configure endpoints in their `MainActivity.kt` files; `:featureapp` accepts `-PhybridguardCollectEndpoint=...` at build time. Android emulators normally reach the host through `10.0.2.2`; physical devices can use a LAN address, `adb reverse`, or a temporary tunnel. See [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md).
+Only `:featureapp` is part of the current acceptance scope. It accepts `-PhybridguardCollectEndpoint=...` at build time. Android emulators normally reach the host through `10.0.2.2`; physical devices can use a LAN address, `adb reverse`, or a temporary tunnel. See [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md). Instructions for `:app` and `:riskapp` are retained for historical review only.
 
-#### 3. Run core offline experiments
+#### 3. Build the current paired244 data view
 
 ```bash
 conda activate cross-device-fingerprint
-
-python ablation/run_randomforest_ablation.py
-python ablation/run_consistency_ablation.py
-python ablation/run_grouped_ablation.py
-python rf_grouped_fusion_validation/run_rf_grouped_fusion_validation.py
-python llm_grouped_fusion_validation/prepare_validation_assets.py
+python hybridguard_agent/scripts/build_latest_paired244_snapshot.py \
+  --run-id latest_paired244_YYYYMMDD
 ```
 
-The training scripts use relative input paths and should be run from `training/`:
+This command only performs release selection, contract validation, pairing, App-only retention, and QC. Legacy ablation, RF/MLP/GLM, and Agent scripts remain available, but they should not be run directly against the current small snapshot or treated as the default acceptance path.
 
-```bash
-cd training
-python train_randomforest.py
-python train_mlp.py
-```
+### Historical Findings and Claim Boundaries (Not Current paired244 Results)
 
-GLM-5.2 scripts accept `ZHIPU_API_KEY`, `--api-key-file`, or `--api-key-stdin` and do not intentionally persist API keys. See [`zhipu_glm_eval/README.md`](zhipu_glm_eval/README.md) and [`llm_grouped_fusion_validation/README.md`](llm_grouped_fusion_validation/README.md) for online runs.
+The table below records experiments from older datasets and model pipelines. It is not an evaluation of the current 26-App snapshot.
 
-### Findings and Claim Boundaries
-
-| Validation | Current result | Supported claim | Unsupported claim |
+| Validation | Historical result | Supported claim | Unsupported claim |
 |---|---|---|---|
 | Tri-layer semantic features under grouped CV | 7 features, MAE 2.281, RMSE 3.358 | Semantic corroboration is more useful than merely stacking raw fields | Proven real-attack detection accuracy |
 | RF-proxy six groups + Positive ElasticNet | MAE 2.968, high-risk F1 1.000 | Group scores and external fusion are reproducible | It beats the strongest tri-layer baseline, or RF is equivalent to an LLM |
@@ -362,14 +313,15 @@ Key boundaries: structural prevalidation is not full LLM validation; preventing 
 | Goal | Entry point |
 |---|---|
 | Run a fresh clone locally | [`ENVIRONMENT_SETUP.md`](ENVIRONMENT_SETUP.md) |
-| Launch the three apps in Android Studio | [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md) |
+| Launch the active FeatureApp in Android Studio | [`android_app/ANDROID_STUDIO_APP_USAGE.md`](android_app/ANDROID_STUDIO_APP_USAGE.md) |
 | Inspect backend APIs and payload examples | [`backend_server/start_server.md`](backend_server/start_server.md) |
-| Review ablations and grouped CV | [`ablation/README.md`](ablation/README.md) |
+| Build the latest paired244/App-only snapshot | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| Review historical ablations and grouped CV | [`ablation/README.md`](ablation/README.md) |
 | Inspect the Google-official knowledge base | [`google_official_kb/README.md`](google_official_kb/README.md) |
-| Review the LLM grouped-fusion design | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
-| Read the GLM targeted pilot | [`llm_grouped_fusion_validation/PILOT_REPORT.md`](llm_grouped_fusion_validation/PILOT_REPORT.md) |
-| Freeze data and inspect the Week 7 label join | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
-| Continue the Agentic/RAG roadmap | [`hybridguard_agent_rag_guide/README.md`](hybridguard_agent_rag_guide/README.md) |
+| Review the historical LLM grouped-fusion design | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
+| Read the historical GLM targeted pilot | [`llm_grouped_fusion_validation/PILOT_REPORT.md`](llm_grouped_fusion_validation/PILOT_REPORT.md) |
+| Review historical snapshots and label integration | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| Continue the later Agentic/RAG roadmap | [`hybridguard_agent_rag_guide/README.md`](hybridguard_agent_rag_guide/README.md) |
 | Reuse thesis/publication materials | [`thesis_materials/README.md`](thesis_materials/README.md) |
 | Review device-cloud research | [`device_cloud_catalog/`](device_cloud_catalog/) |
 
@@ -378,4 +330,4 @@ Key boundaries: structural prevalidation is not full LLM validation; preventing 
 - Do not commit API keys, BrowserStack/Sauce Labs credentials, long-lived tunnel URLs, or machine-specific absolute paths.
 - Raw device fingerprints may contain private or linkable information; sanitize, sample, and review them before sharing.
 - Some Android endpoints remain hardcoded and must be checked before running or publishing the project.
-- Agent tasks should begin at `hybridguard_agent_rag_guide/README.md` and read only the one or two routed workbooks relevant to the current task.
+- Current data tasks begin at `hybridguard_agent/README.md`; Agentic/RAG workbooks belong to the later roadmap.
