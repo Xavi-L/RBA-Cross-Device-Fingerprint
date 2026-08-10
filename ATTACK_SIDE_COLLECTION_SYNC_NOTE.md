@@ -8,7 +8,7 @@
 - 正式新采集默认目标为 `paired244`：同一实验阶段分别取得 App177 和独立 Browser67，并由 backend provenance 配成一个样本单位。主侧在通过 QC 后生成 244 维派生视图，供给侧不改变两份原始 payload 的独立 Schema。
 - 每个 `clean_pre | attack_active | clean_post` 阶段都必须尝试 Browser67；Browser 失败时保留有效 App177，并记录失败状态与原因，不能补造或填零。
 - 新实验必须使用双方确认并冻结的最新版 FeatureApp、主仓 FastAPI backend 和 Web Probe，不能继续使用旧轻量 receiver 或旧 APK lock。
-- 攻击侧负责交付可追溯的 App/Browser 原始采集、身份与实验事实；主侧第一批只负责 QC 和244维派生视图，Evidence、切分/标签实验、Agent/RAG 与模型属于后续阶段。
+- 攻击侧负责交付可追溯的 App/Browser 原始采集、身份与实验事实；主侧负责 QC、244维派生视图、实验准入和分组切分。Agent/RAG、模型训练、阈值和指标评估仍属于后期。
 - 历史 `expanded-v2.1-status`、旧 APK lock 和旧实验结果保持原样，不重标为新版本。
 
 ## 为什么需要同步
@@ -104,13 +104,20 @@ Browser 失败只阻断该 phase 的 paired244/Browser-pair 实验资格，不�
 
 ### 攻击事实 sidecar
 
+攻击侧仍交付下面的完整实验事实；不要为了迎合主仓而丢掉工具、归因、回滚或 mutation 证据。此外每个 App session 再提供一条 [`latest-experiment-fact-v1`](hybridguard_agent/schemas/latest_experiment_fact_v1.schema.json) **最小准入投影**，或交由主侧 adapter 从完整 sidecar 确定性生成。该投影以 `app_session_id + app_payload_sha256` 绑定 App canonical payload，只供主仓做任务分流、准入和分组，不替代完整证据 sidecar。
+`evidence_refs` 只保存指向完整 sidecar/日志的稳定引用；只有引用内容已在上游完成人工或协议核验时，才能把 `label_status` 写为 `verified`。
+
+完整 sidecar 至少包含：
+
 - scenario group/phase/repetition；
 - attack run、工具和固定配置的 ID/版本/hash；
 - execution、observable effect、field effect、attribution、rollback、label status；
+- `evaluation_task` 必须区分 `paired244_fingerprint_effect`、`transport_path_effect` 和 `collection_reference`；只有经核验的指纹字段效果任务才可进入 paired244 主实验，transport-only 不混为正例；
+- 提供 `stable_group_key_hash`、`identity_scope` 和 `identity_stability`，并保证分组键不使用标签、攻击类型、Browser 差异或会话动态字段派生；
 - expected/observed mutation；
 - 可定位的工具日志、截图或配置证据。
 
-工具名、攻击标签和实验角色不得写入 App177 或 Browser67 原始信号。
+工具名、攻击标签和实验角色不得写入 App177 或 Browser67 原始信号。Browser 对比中的 `different` 也不会自动生成攻击标签。
 
 ### Delivery manifest
 

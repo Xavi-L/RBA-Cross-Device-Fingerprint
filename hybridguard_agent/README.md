@@ -11,7 +11,7 @@
 
 历史云真机的 `field-status` 补标规则见 [HISTORICAL_FIELD_STATUS.md](HISTORICAL_FIELD_STATUS.md)。旧 snapshot 管线使用独立的 `field_status.jsonl` sidecar；当前 paired244 入口直接保留 App177/Browser67 已上报的逐字段状态，并与特征值分栏存放。两条管线都不会改写原始 JSONL，也不会给 Browser 失败样本补造67项。
 
-## 当前活跃入口：最新版 paired244 快照与离线运行桥接
+## 当前活跃入口：最新版 paired244 快照、离线运行与实验准入
 
 第一批施工已经完成数据选择、配对和 QC；第二批只把其中的 App177 接到既有 EvidenceBundle v2 与确定性离线运行时，并为完成配对的样本生成独立 Browser 对比 sidecar。Browser sidecar 不进入规则、检索或决策，也不产生模型分数。当前发布锁为：
 
@@ -55,6 +55,19 @@ python3 hybridguard_agent/scripts/build_latest_runtime_inputs.py \
 
 Browser 对比采用冻结策略：39项做严格字面比较，28项因时序、权限域、网络或容器界面影响而只记为 `not_comparable`。`same`、`different`、`unavailable` 都只是采集观察，不是异常、攻击或设备身份结论。App-only 样本不会生成虚假的 Browser sidecar。
 
+第三批只搭建实验控制面，不训练模型。它把外部核验的标签、指纹效果事实和可跨 run 的匿名稳定分组与 `sample_index.jsonl` 绑定，再按整组做确定性 train/development/test 切分。运行：
+
+```bash
+python3 hybridguard_agent/scripts/build_latest_experiment_plan.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --output-dir /private/tmp/hybridguard_latest_experiment_plan \
+  --facts /path/to/latest_experiment_facts.jsonl
+```
+
+`--facts` 可以暂时不传。对当前小数据实跑时，命令会正常生成26条 inventory（17条 paired244 候选 + 9条 App177 reserve），但因为 verified label 和可信 stable group 都是0，`split_manifest.jsonl` 为空，`structural_ready=false`、`grouped_data_prerequisites_met=false`。这是预期的准入阻断，不是构建失败，也不会把 unlabeled 样本猜成正常类。
+
+以后大批量数据到达后，只需提供 `latest-experiment-fact-v1` sidecar 并重跑该命令。事实必须用 `app_session_id + app_payload_sha256` 双重绑定；主任务只接收经核验的 `paired244_fingerprint_effect`，transport-only 与 Browser `different` 不会变成攻击正例。同一 stable group 和 scenario 始终在同一 split；App-only 仍保留在 inventory，不进入244维主指标。当前冻结协议要求每个 split 至少5个独立组、每类至少来自2个组，才会将 `grouped_data_prerequisites_met` 打开。这只表示分组数据骨架可交给后续实验器；第三批仍不授权训练、调阈值、查看最终测试集或报告性能指标。
+
 ## 历史研究资产（逻辑归档）
 
 以下内容记录旧快照和研究 pilot，保留用于复核，不再作为默认数据入口。截至 2026-07-14 的旧快照曾记录155条 expanded 数据；其历史采集没有逐条 provider run ID、配对关系或攻击事实标签，因此不进入最新版 paired244 主视图、有监督攻击检测训练或最终效果评估。
@@ -69,6 +82,7 @@ Browser 对比采用冻结策略：39项做严格字面比较，28项因时序�
 hybridguard_agent/
 ├── config/latest_paired244_sources.json # 当前 FeatureApp/Browser 发布锁与输入
 ├── config/browser_pair_comparison.v1.json # 39项严格比较/28项不比较的冻结策略
+├── config/latest_experiment_protocol.v1.json # 准入、可信分组和确定性切分协议
 ├── config/dataset_sources.json        # 输入来源、事实边界与模型资格
 ├── config/deterministic_rule_predicates.v1.json # 已审阅的可执行规则及 KB hash
 ├── ANNOTATION_REGISTRY_INTEGRATION.md # Week 7 标签接入、任务分流与结论边界
@@ -82,6 +96,7 @@ hybridguard_agent/
 ├── templates/attack_manifest.template.json
 ├── scripts/build_latest_paired244_snapshot.py # 当前177+67配对、留存与QC入口
 ├── scripts/build_latest_runtime_inputs.py # 最新快照到离线运行输入的桥接
+├── scripts/build_latest_experiment_plan.py # 标签/分组准入与无泄漏 split 骨架
 ├── scripts/build_dataset_snapshot.py  # Schema/QC/manifest/stable-group 冻结
 ├── scripts/build_evidence_bundles.py  # 无标签的确定性跨层证据
 ├── scripts/build_evidence_bundles_v2.py # 状态感知的脱敏 v2 证据

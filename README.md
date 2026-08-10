@@ -20,7 +20,7 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
 
 项目的核心贡献不是提出一个新的分类器，而是建立“三端采集 → 会话对齐 → 跨层语义互证 → 风险解释 → 端侧轻量评分”的完整系统链路。随机森林、MLP 和 Positive ElasticNet 是工程基线或外部融合组件，不应被表述为算法创新。
 
-项目的长期目标仍是“采集 → 配对 → 跨层互证 → 风险解释”。第一批已完成最新数据的选择、配对、留存与 QC；第二批现已将 App177 适配到既有 EvidenceBundle v2 与确定性离线 runtime，但仍不接入外部模型或产生校准风险分。
+项目的长期目标仍是“采集 → 配对 → 跨层互证 → 风险解释”。第一批已完成最新数据的选择、配对、留存与 QC；第二批已将 App177 适配到既有 EvidenceBundle v2 与确定性离线 runtime；第三批增加了标签/可信分组准入和确定性切分骨架。当前仍不训练外部模型，也不产生校准风险分。
 
 ### 当前实现状态
 
@@ -33,6 +33,8 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
 当前工作树的第一批快照基线为：26 条最新 App177，其中 17 条进入 paired244、9 条进入 App-only 留存、0 条最新 App 被隔离。这些数据当前只用于开发与 QC，且无攻击标签，不能用来报告检测效果。
 
 第二批为这 26 条 App177 各生成一份 App EvidenceBundle v2，并为 17 条 paired244 另外生成 Browser evidence sidecar。Browser sidecar 只供审计，不进入规则、检索或决策；9 条 App-only 不补造 Browser evidence。确定性 runtime 不调用外部模型，`calibrated_risk_score` 仍为 `null`，输出不是攻击标签或正式风险分。
+
+第三批的实验准入命令会保留 17 条 paired244 候选和 9 条 App177 reserve，但当前 verified label、可信 stable group 和可切分样本都是0，因此明确输出 `structural_ready=false` 与 `grouped_data_prerequisites_met=false`。它不会把无标签数据猜成正常类，也不会因为 Browser 字段不同就自动生成攻击标签。
 
 仓库中的旧采集应用、RF/MLP/GLM、消融和完整 Agentic/RAG 试验资产仍属于历史或后期材料；当前只复用既有确定性离线 runtime。
 
@@ -47,6 +49,8 @@ HybridGuard 面向移动端无感风控与风险认证场景。当前施工范�
 26 条 App177 ─> App EvidenceBundle v2 ─> 确定性离线 runtime
 17 条 paired244 ─> Browser evidence sidecar（仅审计）
  9 条 App-only ─> 无 Browser sidecar（不补造）
+
+latest snapshot + 外部实验事实 ─> 准入闸门 ─> 整组 train/development/test split
 ```
 
 当前与历史运行链路的边界：
@@ -152,6 +156,16 @@ python hybridguard_agent/scripts/run_agent_runtime.py \
 
 `build_latest_runtime_inputs.py` 生成 26 份 App EvidenceBundle v2 和 17 份独立 Browser evidence sidecar。`run_agent_runtime.py` 对单样本执行只读的确定性分析；Browser sidecar 只附在输出中供审计，不影响规则、检索或决策。该链路不调用模型，不产生校准风险分。
 
+#### 5. 构建第三批实验准入与分组切分骨架
+
+```bash
+python hybridguard_agent/scripts/build_latest_experiment_plan.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --output-dir /private/tmp/hybridguard_latest_experiment_plan
+```
+
+当前没有外部事实 sidecar 时，命令仍会成功生成 inventory 和阻断报告，切分文件为空。未来传入 `--facts /path/to/latest_experiment_facts.jsonl` 后，只有与 App payload 精确绑定、标签已核验且具有可信 stable group 的 paired244 样本才会按整组分配到 train/development/test。
+
 ### 历史实验结论与边界（非当前 paired244 结果）
 
 下表只记录旧数据与旧模型管线的历史实验，不能作为当前 26 条最新 App 快照的评估结论。
@@ -175,6 +189,7 @@ python hybridguard_agent/scripts/run_agent_runtime.py \
 | 后端接口与 payload 示例 | [`backend_server/start_server.md`](backend_server/start_server.md) |
 | 构建最新 paired244/App-only 快照 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
 | 构建 runtime 输入并运行确定性离线分析 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| 构建实验准入报告与无泄漏分组切分 | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
 | 历史消融与 grouped CV | [`ablation/README.md`](ablation/README.md) |
 | Google 官方知识库 | [`google_official_kb/README.md`](google_official_kb/README.md) |
 | 历史 LLM 分组融合方案 | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |
@@ -205,7 +220,7 @@ HybridGuard targets frictionless mobile risk control and risk-based authenticati
 
 If browser collection fails, a valid App177 record is retained in the App-only view; browser values are never fabricated or zero-filled. The legacy `:app`, `:riskapp`, older datasets, and older model pipelines remain as logically archived historical assets rather than active entry points.
 
-The long-term goal remains collection, pairing, cross-layer corroboration, and risk explanation. Batch one completed release selection, pairing, retention, and QC. Batch two now adapts App177 to the existing EvidenceBundle v2 and deterministic offline runtime, while still calling no external model and producing no calibrated risk score.
+The long-term goal remains collection, pairing, cross-layer corroboration, and risk explanation. Batch one completed release selection, pairing, retention, and QC. Batch two adapted App177 to the existing EvidenceBundle v2 and deterministic offline runtime. Batch three adds label/trusted-group admission and deterministic grouped-split scaffolding. The current path still trains no external model and produces no calibrated risk score.
 
 ### Current Status
 
@@ -218,6 +233,8 @@ The active entry point is [`hybridguard_agent/scripts/build_latest_paired244_sna
 The current working-tree baseline contains 26 latest-release App177 records: 17 enter paired244, 9 enter App-only retention, and 0 latest App records are quarantined. This data is unlabeled and for development/QC only; it does not support detection-performance claims.
 
 Batch two generates one App EvidenceBundle v2 for each of the 26 App177 records and a separate browser evidence sidecar for each of the 17 paired244 records. Browser sidecars are audit-only and never enter rules, retrieval, or decisions; the 9 App-only records receive no fabricated browser evidence. The deterministic runtime calls no external model, keeps `calibrated_risk_score` at `null`, and does not produce attack labels or formal risk scores.
+
+The batch-three admission command retains 17 paired244 candidates and 9 App177 reserves, but the current verified-label, trusted-stable-group, and split-assigned counts are all zero. It therefore reports `structural_ready=false` and `grouped_data_prerequisites_met=false`. It never guesses that unlabeled data is benign and never converts a browser-field difference into an attack label.
 
 Legacy collection apps, RF/MLP/GLM experiments, ablations, and full Agentic/RAG prototypes remain historical or later-stage assets. The current path only reuses the existing deterministic offline runtime.
 
@@ -232,6 +249,8 @@ Independent browser ─> Browser67 ─┘
 26 App177 records ─> App EvidenceBundle v2 ─> deterministic offline runtime
 17 paired244 records ─> browser evidence sidecars (audit-only)
  9 App-only records ─> no browser sidecar (never fabricated)
+
+latest snapshot + external experiment facts ─> admission gate ─> grouped train/development/test split
 ```
 
 Current and historical runtime boundaries:
@@ -337,6 +356,16 @@ python hybridguard_agent/scripts/run_agent_runtime.py \
 
 `build_latest_runtime_inputs.py` writes 26 App EvidenceBundle v2 records and 17 separate browser evidence sidecars. `run_agent_runtime.py` performs read-only deterministic analysis for one sample. The browser sidecar is attached for audit only and cannot affect rules, retrieval, or the decision. This path calls no model and emits no calibrated risk score.
 
+#### 5. Build the batch-three experiment-admission and grouped-split scaffold
+
+```bash
+python hybridguard_agent/scripts/build_latest_experiment_plan.py \
+  --snapshot-dir hybridguard_agent/artifacts/latest_paired244/latest_paired244_YYYYMMDD \
+  --output-dir /private/tmp/hybridguard_latest_experiment_plan
+```
+
+Without an external fact sidecar, the command still succeeds and writes the inventory plus a blocked readiness report; the split file remains empty. Later, pass `--facts /path/to/latest_experiment_facts.jsonl`. Only paired244 samples with exact App-payload binding, verified labels, and trusted stable groups can be assigned as whole groups to train/development/test.
+
 ### Historical Findings and Claim Boundaries (Not Current paired244 Results)
 
 The table below records experiments from older datasets and model pipelines. It is not an evaluation of the current 26-App snapshot.
@@ -360,6 +389,7 @@ Key boundaries: structural prevalidation is not full LLM validation; preventing 
 | Inspect backend APIs and payload examples | [`backend_server/start_server.md`](backend_server/start_server.md) |
 | Build the latest paired244/App-only snapshot | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
 | Build runtime inputs and run deterministic offline analysis | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
+| Build the experiment-admission report and leakage-safe grouped split | [`hybridguard_agent/README.md`](hybridguard_agent/README.md) |
 | Review historical ablations and grouped CV | [`ablation/README.md`](ablation/README.md) |
 | Inspect the Google-official knowledge base | [`google_official_kb/README.md`](google_official_kb/README.md) |
 | Review the historical LLM grouped-fusion design | [`LLM_GROUPED_FUSION_PLAN.md`](LLM_GROUPED_FUSION_PLAN.md) |

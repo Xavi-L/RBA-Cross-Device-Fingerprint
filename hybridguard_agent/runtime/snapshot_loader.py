@@ -219,6 +219,11 @@ def _load_latest_views(directory: Path) -> dict[str, Any]:
     }
 
 
+def validate_latest_snapshot_views(snapshot_dir: Path) -> None:
+    """Validate the frozen App177/Browser67 views without constructing runtime evidence."""
+    _load_latest_views(snapshot_dir.resolve())
+
+
 def _set_path(target: dict[str, Any], path: str, value: Any) -> None:
     current = target
     segments = path.split(".")

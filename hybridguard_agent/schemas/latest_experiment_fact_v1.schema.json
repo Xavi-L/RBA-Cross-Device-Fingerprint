@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/latest-experiment-fact-v1",
+  "title": "HybridGuard Latest Experiment Admission Projection v1",
+  "description": "Minimal control-plane projection derived from a richer externally reviewed experiment sidecar; it does not replace tool, attribution, rollback, or mutation evidence.",
+  "type": "object",
+  "required": [
+    "experiment_fact_version",
+    "app_session_id",
+    "app_payload_sha256",
+    "label_status",
+    "manipulation_present",
+    "evaluation_task",
+    "execution_status",
+    "field_effect_status",
+    "stable_group_key_hash",
+    "identity_scope",
+    "identity_stability",
+    "scenario_group_id",
+    "scenario_phase",
+    "scenario_repetition",
+    "attack_family",
+    "evidence_refs"
+  ],
+  "properties": {
+    "experiment_fact_version": {
+      "const": "latest-experiment-fact-v1"
+    },
+    "app_session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app_payload_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "label_status": {
+      "enum": [
+        "verified",
+        "candidate",
+        "rejected"
+      ]
+    },
+    "manipulation_present": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "evaluation_task": {
+      "enum": [
+        "paired244_fingerprint_effect",
+        "transport_path_effect",
+        "collection_reference"
+      ]
+    },
+    "execution_status": {
+      "enum": [
+        "succeeded",
+        "failed",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "field_effect_status": {
+      "enum": [
+        "observed",
+        "no_configured_change",
+        "not_observed",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "stable_group_key_hash": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "identity_scope": {
+      "enum": [
+        "physical_device",
+        "device_profile",
+        "provider_device_profile",
+        "collector_install_profile_not_physical_device",
+        "run_profile",
+        "unknown"
+      ]
+    },
+    "identity_stability": {
+      "enum": [
+        "cross_run_verified",
+        "provider_verified",
+        "run_scoped_unverified",
+        "unknown"
+      ]
+    },
+    "scenario_group_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "scenario_phase": {
+      "enum": [
+        "clean_pre",
+        "attack_active",
+        "clean_post",
+        null
+      ]
+    },
+    "scenario_repetition": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "attack_family": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "evidence_refs": {
+      "type": "array",
+      "description": "Opaque stable references whose existence and content were reviewed upstream before label_status is set to verified.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "label_status": {
+            "const": "verified"
+          }
+        },
+        "required": [
+          "label_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "manipulation_present": {
+            "type": "boolean"
+          },
+          "evidence_refs": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

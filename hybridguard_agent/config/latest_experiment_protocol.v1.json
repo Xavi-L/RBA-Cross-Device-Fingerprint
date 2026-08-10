@@ -1,0 +1,59 @@
+{
+  "protocol_version": "latest-experiment-protocol-v1",
+  "source_contract": {
+    "dataset_manifest_version": "latest-featureapp-paired244-snapshot-v1",
+    "sample_index_version": "latest-paired244-sample-index-v1",
+    "experiment_fact_version": "latest-experiment-fact-v1",
+    "fact_join_key": "app_session_id"
+  },
+  "eligibility": {
+    "primary_evaluation_task": "paired244_fingerprint_effect",
+    "required_label_status": "verified",
+    "required_evidence_reference_count": 1,
+    "trusted_identity_scopes": [
+      "physical_device",
+      "device_profile",
+      "provider_device_profile"
+    ],
+    "trusted_identity_stabilities": [
+      "cross_run_verified",
+      "provider_verified"
+    ]
+  },
+  "group_split": {
+    "seed": "hybridguard-latest-paired244-split-v1",
+    "hash_input_prefix": "latest-split-v1",
+    "hash_input_separator": "\u0000",
+    "digest_hex_prefix_length": 16,
+    "bucket_modulus": 100,
+    "thresholds": [
+      {
+        "split": "train",
+        "start_inclusive": 0,
+        "end_exclusive": 70
+      },
+      {
+        "split": "development",
+        "start_inclusive": 70,
+        "end_exclusive": 85
+      },
+      {
+        "split": "test",
+        "start_inclusive": 85,
+        "end_exclusive": 100
+      }
+    ]
+  },
+  "readiness": {
+    "structural": {
+      "minimum_independent_groups_per_split": 1,
+      "require_both_manipulation_classes_per_split": true
+    },
+    "grouped_data": {
+      "minimum_independent_groups_per_split": 5,
+      "minimum_groups_per_manipulation_class_per_split": 2,
+      "necessary_not_sufficient": true
+    }
+  },
+  "claim_boundary": "This protocol only controls experiment admission and deterministic grouped splitting. It does not create labels, impute Browser67, train a model, select a threshold, or support a performance or generalization claim."
+}
