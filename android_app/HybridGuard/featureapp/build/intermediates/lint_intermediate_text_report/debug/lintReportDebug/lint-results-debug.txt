@@ -12,16 +12,7 @@
 
    https://developer.android.com/reference/androidx/webkit/package-summary
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:215: Warning: Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background [ApplySharedPref]
-                .commit()
-                 ~~~~~~~~
-
-   Explanation for issues of type "ApplySharedPref":
-   Consider using apply() instead of commit on shared preferences. Whereas
-   commit blocks and writes its data to persistent storage immediately, apply
-   will handle it in the background.
-
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:12: Warning: Attribute usesCleartextTraffic is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:26: Warning: Attribute usesCleartextTraffic is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
         android:usesCleartextTraffic="true">
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -42,7 +33,7 @@
    can be unused too, such as the new <tag> element in layouts introduced in
    API 21.
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:16: Warning: Redundant label can be removed [RedundantLabel]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:30: Warning: Redundant label can be removed [RedundantLabel]
             android:label="@string/app_name">
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -51,13 +42,13 @@
    the application tag. Since the application has already specified the same
    label, the label on this activity can be omitted.
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:52: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1 [GradleDependency]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:191: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1 [GradleDependency]
     implementation("androidx.appcompat:appcompat:1.6.1")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:53: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.14.0 [GradleDependency]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:192: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.14.0 [GradleDependency]
     implementation("com.google.android.material:material:1.11.0")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:55: Warning: A newer version of androidx.work:work-runtime-ktx than 2.9.1 is available: 2.11.2 [GradleDependency]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:194: Warning: A newer version of androidx.work:work-runtime-ktx than 2.9.1 is available: 2.11.2 [GradleDependency]
     implementation("androidx.work:work-runtime-ktx:2.9.1")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -68,9 +59,12 @@
    However, you may simply not be aware that a more recent version is
    available, and that is what this lint check helps find.
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:54: Warning: A newer version of com.squareup.okhttp3:okhttp than 4.12.0 is available: 5.4.0 [NewerVersionAvailable]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:193: Warning: A newer version of com.squareup.okhttp3:okhttp than 4.12.0 is available: 5.4.0 [NewerVersionAvailable]
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:196: Warning: A newer version of org.json:json than 20240303 is available: 20260719 [NewerVersionAvailable]
+    testImplementation("org.json:json:20240303")
+                       ~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "NewerVersionAvailable":
    This detector checks with a central repository to see if there are newer
@@ -80,7 +74,7 @@
    MavenCentral dependency, and connects to the library every time, which
    makes it more flexible but also much slower.
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:8: Warning: The attribute android:allowBackup is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute android:dataExtractionRules specifying an @xml resource which configures cloud backups and device transfers on Android 12 and higher. [DataExtractionRules]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:22: Warning: The attribute android:allowBackup is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute android:dataExtractionRules specifying an @xml resource which configures cloud backups and device transfers on Android 12 and higher. [DataExtractionRules]
         android:allowBackup="false"
                              ~~~~~
 
@@ -125,7 +119,7 @@
    performance if you pre-mix the background with your drawable and use that
    resulting image or color as a custom theme background instead.
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:7: Warning: Should explicitly set android:icon, there is no default [MissingApplicationIcon]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml:21: Warning: Should explicitly set android:icon, there is no default [MissingApplicationIcon]
     <application
      ~~~~~~~~~~~
 
@@ -139,20 +133,26 @@
 /Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/CollectionManifestBuilder.kt:29: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                 preferences.edit().putString(INSTALL_ID_KEY, it).apply()
                 ~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:96: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:99: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
             val parsed = Uri.parse(candidate)
                          ~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:112: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:115: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
         val parsed = Uri.parse(resolveEndpoint(endpoint))
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:124: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:169: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
         val endpointUri = Uri.parse(endpoint)
                           ~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:211: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:334: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
             context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             ^
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:255: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:370: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+            return preferences.edit().remove(claim.storageKey).commit()
+                   ~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:422: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
             context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            ^
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt:446: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+            preferences
             ^
 
    Explanation for issues of type "UseKtx":
@@ -211,18 +211,21 @@
    </lint>
    ```
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:52: Warning: Use version catalog instead [UseTomlInstead]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:191: Warning: Use version catalog instead [UseTomlInstead]
     implementation("androidx.appcompat:appcompat:1.6.1")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:53: Warning: Use version catalog instead [UseTomlInstead]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:192: Warning: Use version catalog instead [UseTomlInstead]
     implementation("com.google.android.material:material:1.11.0")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:54: Warning: Use version catalog instead [UseTomlInstead]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:193: Warning: Use version catalog instead [UseTomlInstead]
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:55: Warning: Use version catalog instead [UseTomlInstead]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:194: Warning: Use version catalog instead [UseTomlInstead]
     implementation("androidx.work:work-runtime-ktx:2.9.1")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts:196: Warning: Use version catalog instead [UseTomlInstead]
+    testImplementation("org.json:json:20240303")
+                       ~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "UseTomlInstead":
    If your project is using a libs.versions.toml file, you should place all
@@ -230,27 +233,51 @@
    declarations outside of the TOML file and suggests moving them (and in the
    IDE, provides a quickfix to performing the operation automatically).
 
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:49: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:89: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
         sessionText.text = "Session: $sessionId"
                            ~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:49: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:89: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
         sessionText.text = "Session: $sessionId"
                             ~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:136: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:196: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
             uploadText.text = "Uploading"
                                ~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:137: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:197: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
             statusText.text = "Expanded three-layer payload collected. Uploading raw features."
                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:258: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:343: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                             uploadText.text = "Uploaded partial"
                                                ~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:259: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:344: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                             statusText.text = "Emergency partial payload uploaded with validation warnings."
                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:267: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:358: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 uploadText.text = "Upload failed"
                                    ~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:451: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                            "App upload continues; ${preparation.detail}"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:451: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                            "App upload continues; ${preparation.detail}"
+                             ~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:460: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                            "App upload continues; provisional browser ticket failed."
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:529: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                            "App payload uploaded and verified. ${preparation.detail}"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:529: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                            "App payload uploaded and verified. ${preparation.detail}"
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:540: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                            "App payload uploaded and verified. ${preparation.detail}"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:540: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                            "App payload uploaded and verified. ${preparation.detail}"
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:611: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            statusText.text = "$detail $appStateDetail"
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "SetTextI18n":
    When calling TextView#setText
@@ -289,4 +316,4 @@
    There are quickfixes to automatically extract this hardcoded string into a
    resource lookup.
 
-0 errors, 32 warnings
+0 errors, 43 warnings

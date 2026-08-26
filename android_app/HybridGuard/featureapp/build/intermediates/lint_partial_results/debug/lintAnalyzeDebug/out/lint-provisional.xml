@@ -8,12 +8,12 @@
         <fix-data minSdk="21-∞" requiresApi="23-∞"/>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*manifest*0}"
-            line="12"
+            line="26"
             column="9"
-            startOffset="459"
-            endLine="12"
+            startOffset="1042"
+            endLine="26"
             endColumn="44"
-            endOffset="494"/>
+            endOffset="1077"/>
         <map>
             <entry
                 name="message"
@@ -22,6 +22,44 @@
                 value="21-∞"/>
             <api-levels id="requiresApi"
                 value="23-∞"/>
+        </map>
+    </incident>
+
+    <incident
+        id="QueryPermissionsNeeded"
+        severity="warning"
+        message="Consider adding a `&lt;queries>` declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/AvailableBrowserResolver.kt"
+            line="78"
+            column="24"
+            startOffset="3288"
+            endLine="78"
+            endColumn="45"
+            endOffset="3309"/>
+        <map>
+            <entry
+                name="queryAll"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="QueryPermissionsNeeded"
+        severity="warning"
+        message="Consider adding a `&lt;queries>` declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/AvailableBrowserResolver.kt"
+            line="83"
+            column="24"
+            startOffset="3428"
+            endLine="83"
+            endColumn="45"
+            endOffset="3449"/>
+        <map>
+            <entry
+                name="queryAll"
+                boolean="false"/>
         </map>
     </incident>
 

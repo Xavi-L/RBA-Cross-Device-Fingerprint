@@ -38,22 +38,6 @@
     </issue>
 
     <issue
-        id="ApplySharedPref"
-        severity="Warning"
-        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
-        category="Correctness"
-        priority="6"
-        summary="Use `apply()` on `SharedPreferences`"
-        explanation="Consider using `apply()` instead of `commit` on shared preferences. Whereas `commit` blocks and writes its data to persistent storage immediately, `apply` will handle it in the background."
-        errorLine1="                .commit()"
-        errorLine2="                 ~~~~~~~~">
-        <location
-            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="215"
-            column="18"/>
-    </issue>
-
-    <issue
         id="UnusedAttribute"
         severity="Warning"
         message="Attribute `usesCleartextTraffic` is only used in API level 23 and higher (current min is 21)"
@@ -65,7 +49,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml"
-            line="12"
+            line="26"
             column="9"/>
     </issue>
 
@@ -81,7 +65,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml"
-            line="16"
+            line="30"
             column="13"/>
     </issue>
 
@@ -97,7 +81,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="52"
+            line="191"
             column="20"/>
     </issue>
 
@@ -113,7 +97,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="53"
+            line="192"
             column="20"/>
     </issue>
 
@@ -129,7 +113,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="55"
+            line="194"
             column="20"/>
     </issue>
 
@@ -145,8 +129,24 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="54"
+            line="193"
             column="20"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
+        message="A newer version of org.json:json than 20240303 is available: 20260719"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="    testImplementation(&quot;org.json:json:20240303&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
+            line="196"
+            column="24"/>
     </issue>
 
     <issue
@@ -163,7 +163,7 @@
         errorLine2="                             ~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml"
-            line="8"
+            line="22"
             column="30"/>
     </issue>
 
@@ -197,7 +197,7 @@
         errorLine2="     ~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/AndroidManifest.xml"
-            line="7"
+            line="21"
             column="6"/>
     </issue>
 
@@ -229,7 +229,7 @@
         errorLine2="                         ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="96"
+            line="99"
             column="26"/>
     </issue>
 
@@ -245,7 +245,7 @@
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="112"
+            line="115"
             column="22"/>
     </issue>
 
@@ -261,7 +261,7 @@
         errorLine2="                          ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="124"
+            line="169"
             column="27"/>
     </issue>
 
@@ -277,8 +277,24 @@
         errorLine2="            ^">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="211"
+            line="334"
             column="13"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        severity="Warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        category="Productivity"
+        priority="6"
+        summary="Use KTX extension function"
+        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
+        errorLine1="            return preferences.edit().remove(claim.storageKey).commit()"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+            line="370"
+            column="20"/>
     </issue>
 
     <issue
@@ -293,7 +309,23 @@
         errorLine2="            ^">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="255"
+            line="422"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        severity="Warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        category="Productivity"
+        priority="6"
+        summary="Use KTX extension function"
+        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
+        errorLine1="            preferences"
+        errorLine2="            ^">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+            line="446"
             column="13"/>
     </issue>
 
@@ -309,7 +341,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="52"
+            line="191"
             column="20"/>
     </issue>
 
@@ -325,7 +357,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="53"
+            line="192"
             column="20"/>
     </issue>
 
@@ -341,7 +373,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="54"
+            line="193"
             column="20"/>
     </issue>
 
@@ -357,8 +389,24 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
-            line="55"
+            line="194"
             column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    testImplementation(&quot;org.json:json:20240303&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build.gradle.kts"
+            line="196"
+            column="24"/>
     </issue>
 
     <issue
@@ -375,7 +423,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="49"
+            line="89"
             column="28"/>
     </issue>
 
@@ -393,7 +441,7 @@
         errorLine2="                            ~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="49"
+            line="89"
             column="29"/>
     </issue>
 
@@ -411,7 +459,7 @@
         errorLine2="                               ~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="136"
+            line="196"
             column="32"/>
     </issue>
 
@@ -429,7 +477,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="137"
+            line="197"
             column="32"/>
     </issue>
 
@@ -447,7 +495,7 @@
         errorLine2="                                               ~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="258"
+            line="343"
             column="48"/>
     </issue>
 
@@ -465,7 +513,7 @@
         errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="259"
+            line="344"
             column="48"/>
     </issue>
 
@@ -483,8 +531,152 @@
         errorLine2="                                   ~~~~~~~~~~~~~">
         <location
             file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="267"
+            line="358"
             column="36"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App upload continues; ${preparation.detail}&quot;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="451"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App upload continues; ${preparation.detail}&quot;"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="451"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App upload continues; provisional browser ticket failed.&quot;"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="460"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App payload uploaded and verified. ${preparation.detail}&quot;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="529"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App payload uploaded and verified. ${preparation.detail}&quot;"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="529"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App payload uploaded and verified. ${preparation.detail}&quot;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="540"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                            &quot;App payload uploaded and verified. ${preparation.detail}&quot;"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="540"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="            statusText.text = &quot;$detail $appStateDetail&quot;"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="611"
+            column="31"/>
     </issue>
 
     <issue

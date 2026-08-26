@@ -30,25 +30,6 @@
     </incident>
 
     <incident
-        id="ApplySharedPref"
-        severity="warning"
-        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background">
-        <fix-replace
-            description="Replace commit() with apply()"
-            oldPattern="(commit)\s*\("
-            replacement="apply"
-            priority="0"/>
-        <location
-            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="215"
-            column="18"
-            startOffset="8865"
-            endLine="215"
-            endColumn="26"
-            endOffset="8873"/>
-    </incident>
-
-    <incident
         id="RedundantLabel"
         severity="warning"
         message="Redundant label can be removed">
@@ -58,12 +39,12 @@
             attribute="label"/>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*manifest*0}"
-            line="16"
+            line="30"
             column="13"
-            startOffset="603"
-            endLine="16"
+            startOffset="1186"
+            endLine="30"
             endColumn="45"
-            endOffset="635"/>
+            endOffset="1218"/>
     </incident>
 
     <incident
@@ -78,12 +59,12 @@
             priority="0"/>
         <location
             file="${:featureapp*projectDir}/build.gradle.kts"
-            line="52"
+            line="191"
             column="20"
-            startOffset="1335"
-            endLine="52"
+            startOffset="6686"
+            endLine="191"
             endColumn="56"
-            endOffset="1371"/>
+            endOffset="6722"/>
     </incident>
 
     <incident
@@ -98,12 +79,12 @@
             priority="0"/>
         <location
             file="${:featureapp*projectDir}/build.gradle.kts"
-            line="53"
+            line="192"
             column="20"
-            startOffset="1392"
-            endLine="53"
+            startOffset="6743"
+            endLine="192"
             endColumn="65"
-            endOffset="1437"/>
+            endOffset="6788"/>
     </incident>
 
     <incident
@@ -118,12 +99,12 @@
             priority="0"/>
         <location
             file="${:featureapp*projectDir}/build.gradle.kts"
-            line="55"
+            line="194"
             column="20"
-            startOffset="1515"
-            endLine="55"
+            startOffset="6866"
+            endLine="194"
             endColumn="58"
-            endOffset="1553"/>
+            endOffset="6904"/>
     </incident>
 
     <incident
@@ -138,12 +119,32 @@
             priority="0"/>
         <location
             file="${:featureapp*projectDir}/build.gradle.kts"
-            line="54"
+            line="193"
             column="20"
-            startOffset="1458"
-            endLine="54"
+            startOffset="6809"
+            endLine="193"
             endColumn="56"
-            endOffset="1494"/>
+            endOffset="6845"/>
+    </incident>
+
+    <incident
+        id="NewerVersionAvailable"
+        severity="warning"
+        message="A newer version of org.json:json than 20240303 is available: 20260719">
+        <fix-replace
+            description="Change to 20260719"
+            family="Update versions"
+            oldString="20240303"
+            replacement="20260719"
+            priority="0"/>
+        <location
+            file="${:featureapp*projectDir}/build.gradle.kts"
+            line="196"
+            column="24"
+            startOffset="6964"
+            endLine="196"
+            endColumn="48"
+            endOffset="6988"/>
     </incident>
 
     <incident
@@ -246,17 +247,17 @@
             priority="0">
             <range
                 file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                startOffset="4059"
-                endOffset="4079"/>
+                startOffset="4057"
+                endOffset="4077"/>
         </fix-replace>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="96"
+            line="99"
             column="26"
-            startOffset="4059"
-            endLine="96"
+            startOffset="4057"
+            endLine="99"
             endColumn="46"
-            endOffset="4079"/>
+            endOffset="4077"/>
     </incident>
 
     <incident
@@ -275,17 +276,17 @@
             priority="0">
             <range
                 file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                startOffset="4537"
-                endOffset="4573"/>
+                startOffset="4535"
+                endOffset="4571"/>
         </fix-replace>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="112"
+            line="115"
             column="22"
-            startOffset="4537"
-            endLine="112"
+            startOffset="4535"
+            endLine="115"
             endColumn="58"
-            endOffset="4573"/>
+            endOffset="4571"/>
     </incident>
 
     <incident
@@ -304,17 +305,17 @@
             priority="0">
             <range
                 file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                startOffset="5087"
-                endOffset="5106"/>
+                startOffset="7232"
+                endOffset="7251"/>
         </fix-replace>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="124"
+            line="169"
             column="27"
-            startOffset="5087"
-            endLine="124"
+            startOffset="7232"
+            endLine="169"
             endColumn="46"
-            endOffset="5106"/>
+            endOffset="7251"/>
     </incident>
 
     <incident
@@ -337,8 +338,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="8683"
-                    endOffset="8688"/>
+                    startOffset="14286"
+                    endOffset="14291"/>
             </fix-replace>
             <fix-replace
                 description="Replace with (commit = true) {"
@@ -349,8 +350,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="8688"
-                    endOffset="8689"/>
+                    startOffset="14291"
+                    endOffset="14292"/>
             </fix-replace>
             <fix-replace
                 description="Delete &quot;.&quot;"
@@ -361,8 +362,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="8706"
-                    endOffset="8707"/>
+                    startOffset="14309"
+                    endOffset="14310"/>
             </fix-replace>
             <fix-replace
                 description="Replace with }"
@@ -373,8 +374,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="8864"
-                    endOffset="8873"/>
+                    startOffset="14447"
+                    endOffset="14456"/>
             </fix-replace>
             <fix-replace
                 description="Replace with     "
@@ -385,8 +386,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="8690"
-                    endOffset="8690"/>
+                    startOffset="14293"
+                    endOffset="14293"/>
             </fix-replace>
             <fix-replace
                 description="Replace with     "
@@ -397,18 +398,18 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="8741"
-                    endOffset="8741"/>
+                    startOffset="14371"
+                    endOffset="14371"/>
             </fix-replace>
         </fix-composite>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="211"
+            line="334"
             column="13"
-            startOffset="8603"
-            endLine="212"
+            startOffset="14206"
+            endLine="335"
             endColumn="24"
-            endOffset="8689"/>
+            endOffset="14292"/>
     </incident>
 
     <incident
@@ -431,20 +432,20 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="10583"
-                    endOffset="10588"/>
+                    startOffset="15679"
+                    endOffset="15684"/>
             </fix-replace>
             <fix-replace
-                description="Replace with  {"
+                description="Replace with (commit = true) {"
                 robot="true"
                 independent="true"
                 oldString=")"
-                replacement=" {"
+                replacement="(commit = true) {"
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="10588"
-                    endOffset="10589"/>
+                    startOffset="15684"
+                    endOffset="15685"/>
             </fix-replace>
             <fix-replace
                 description="Delete &quot;.&quot;"
@@ -455,8 +456,78 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="10606"
-                    endOffset="10607"/>
+                    startOffset="15685"
+                    endOffset="15686"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with }"
+                robot="true"
+                independent="true"
+                oldString=".commit()"
+                replacement="}"
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="15710"
+                    endOffset="15719"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+            line="370"
+            column="20"
+            startOffset="15667"
+            endLine="370"
+            endColumn="38"
+            endOffset="15685"/>
+    </incident>
+
+    <incident
+        id="UseKtx"
+        severity="warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?">
+        <fix-composite
+            description="Replace with the edit extension function"
+            family="Replace with the edit extension function"
+            robot="true"
+            independent="true">
+            <fix-replace
+                description="Replace with edit"
+                robot="true"
+                independent="true"
+                oldString="edit("
+                replacement="edit"
+                reformat="value"
+                imports="androidx.core.content.edit"
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="17954"
+                    endOffset="17959"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with  {"
+                robot="true"
+                independent="true"
+                oldString=")"
+                replacement=" {"
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="17959"
+                    endOffset="17960"/>
+            </fix-replace>
+            <fix-replace
+                description="Delete &quot;.&quot;"
+                robot="true"
+                independent="true"
+                oldString="."
+                replacement=""
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="17977"
+                    endOffset="17978"/>
             </fix-replace>
             <fix-replace
                 description="Replace with }"
@@ -467,8 +538,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="10694"
-                    endOffset="10702"/>
+                    startOffset="18065"
+                    endOffset="18073"/>
             </fix-replace>
             <fix-replace
                 description="Replace with     "
@@ -479,8 +550,8 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="10590"
-                    endOffset="10590"/>
+                    startOffset="17961"
+                    endOffset="17961"/>
             </fix-replace>
             <fix-replace
                 description="Replace with     "
@@ -491,18 +562,136 @@
                 priority="0">
                 <range
                     file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-                    startOffset="10625"
-                    endOffset="10625"/>
+                    startOffset="17996"
+                    endOffset="17996"/>
             </fix-replace>
         </fix-composite>
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
-            line="255"
+            line="422"
             column="13"
-            startOffset="10503"
-            endLine="256"
+            startOffset="17874"
+            endLine="423"
             endColumn="24"
-            endOffset="10589"/>
+            endOffset="17960"/>
+    </incident>
+
+    <incident
+        id="UseKtx"
+        severity="warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?">
+        <fix-composite
+            description="Replace with the edit extension function"
+            family="Replace with the edit extension function"
+            robot="true"
+            independent="true">
+            <fix-replace
+                description="Replace with edit"
+                robot="true"
+                independent="true"
+                oldString="edit("
+                replacement="edit"
+                reformat="value"
+                imports="androidx.core.content.edit"
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18811"
+                    endOffset="18816"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with (commit = true) {"
+                robot="true"
+                independent="true"
+                oldString=")"
+                replacement="(commit = true) {"
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18816"
+                    endOffset="18817"/>
+            </fix-replace>
+            <fix-replace
+                description="Delete &quot;.&quot;"
+                robot="true"
+                independent="true"
+                oldString="."
+                replacement=""
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18834"
+                    endOffset="18835"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with }"
+                robot="true"
+                independent="true"
+                oldString=".commit()"
+                replacement="}"
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="19000"
+                    endOffset="19009"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with     "
+                robot="true"
+                independent="true"
+                oldString=""
+                replacement="    "
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18818"
+                    endOffset="18818"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with     "
+                robot="true"
+                independent="true"
+                oldString=""
+                replacement="    "
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18846"
+                    endOffset="18846"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with     "
+                robot="true"
+                independent="true"
+                oldString=""
+                replacement="    "
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18918"
+                    endOffset="18918"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with     "
+                robot="true"
+                independent="true"
+                oldString=""
+                replacement="    "
+                priority="0">
+                <range
+                    file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+                    startOffset="18966"
+                    endOffset="18966"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt"
+            line="446"
+            column="13"
+            startOffset="18782"
+            endLine="447"
+            endColumn="24"
+            endOffset="18817"/>
     </incident>
 
     <incident
@@ -510,13 +699,13 @@
         severity="warning"
         message="Use version catalog instead">
         <fix-composite
-            description="Replace with new library catalog declaration for androidx-appcompat"
+            description="Replace with new library catalog declaration for appcompat"
             robot="true">
             <fix-replace
-                description="Replace with appcompat = &quot;1.6.1&quot;..."
+                description="Replace with appcompatVersion = &quot;1.6.1&quot;..."
                 robot="true"
                 oldString="_lint_insert_begin_"
-                replacement="appcompat = &quot;1.6.1&quot;&#xA;"
+                replacement="appcompatVersion = &quot;1.6.1&quot;&#xA;"
                 priority="0">
                 <range
                     file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
@@ -524,160 +713,10 @@
                     endOffset="25"/>
             </fix-replace>
             <fix-replace
-                description="Replace with androidx-appcompat = { module = &quot;androidx.appcompat:appcompat&quot;, version.ref = &quot;appcompat&quot; }..."
+                description="Replace with appcompat = { module = &quot;androidx.appcompat:appcompat&quot;, version.ref = &quot;appcompatVersion&quot; }..."
                 robot="true"
                 oldString="_lint_insert_begin_"
-                replacement="androidx-appcompat = { module = &quot;androidx.appcompat:appcompat&quot;, version.ref = &quot;appcompat&quot; }&#xA;"
-                priority="0">
-                <range
-                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
-                    startOffset="220"
-                    endOffset="220"/>
-            </fix-replace>
-            <fix-replace
-                description="Replace with libs.androidx.appcompat"
-                robot="true"
-                replacement="libs.androidx.appcompat"
-                priority="0">
-                <range
-                    file="${:featureapp*projectDir}/build.gradle.kts"
-                    startOffset="1335"
-                    endOffset="1371"/>
-            </fix-replace>
-        </fix-composite>
-        <location
-            file="${:featureapp*projectDir}/build.gradle.kts"
-            line="52"
-            column="20"
-            startOffset="1335"
-            endLine="52"
-            endColumn="56"
-            endOffset="1371"/>
-    </incident>
-
-    <incident
-        id="UseTomlInstead"
-        severity="warning"
-        message="Use version catalog instead">
-        <fix-composite
-            description="Replace with new library catalog declaration for material"
-            robot="true">
-            <fix-replace
-                description="Replace with material = &quot;1.11.0&quot;..."
-                robot="true"
-                oldString="_lint_insert_begin_"
-                replacement="material = &quot;1.11.0&quot;&#xA;"
-                priority="0">
-                <range
-                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
-                    startOffset="207"
-                    endOffset="207"/>
-            </fix-replace>
-            <fix-replace
-                description="Replace with material = { module = &quot;com.google.android.material:material&quot;, version.ref = &quot;material&quot; }..."
-                robot="true"
-                oldString="_lint_insert_begin_"
-                replacement="material = { module = &quot;com.google.android.material:material&quot;, version.ref = &quot;material&quot; }&#xA;"
-                priority="0">
-                <range
-                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
-                    startOffset="1571"
-                    endOffset="1571"/>
-            </fix-replace>
-            <fix-replace
-                description="Replace with libs.material"
-                robot="true"
-                replacement="libs.material"
-                priority="0">
-                <range
-                    file="${:featureapp*projectDir}/build.gradle.kts"
-                    startOffset="1392"
-                    endOffset="1437"/>
-            </fix-replace>
-        </fix-composite>
-        <location
-            file="${:featureapp*projectDir}/build.gradle.kts"
-            line="53"
-            column="20"
-            startOffset="1392"
-            endLine="53"
-            endColumn="65"
-            endOffset="1437"/>
-    </incident>
-
-    <incident
-        id="UseTomlInstead"
-        severity="warning"
-        message="Use version catalog instead">
-        <fix-composite
-            description="Replace with new library catalog declaration for okhttp"
-            robot="true">
-            <fix-replace
-                description="Replace with okhttp = &quot;4.12.0&quot;..."
-                robot="true"
-                oldString="_lint_insert_begin_"
-                replacement="okhttp = &quot;4.12.0&quot;&#xA;"
-                priority="0">
-                <range
-                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
-                    startOffset="207"
-                    endOffset="207"/>
-            </fix-replace>
-            <fix-replace
-                description="Replace with okhttp = { module = &quot;com.squareup.okhttp3:okhttp&quot;, version.ref = &quot;okhttp&quot; }..."
-                robot="true"
-                oldString="_lint_insert_begin_"
-                replacement="okhttp = { module = &quot;com.squareup.okhttp3:okhttp&quot;, version.ref = &quot;okhttp&quot; }&#xA;"
-                priority="0">
-                <range
-                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
-                    startOffset="1571"
-                    endOffset="1571"/>
-            </fix-replace>
-            <fix-replace
-                description="Replace with libs.okhttp"
-                robot="true"
-                replacement="libs.okhttp"
-                priority="0">
-                <range
-                    file="${:featureapp*projectDir}/build.gradle.kts"
-                    startOffset="1458"
-                    endOffset="1494"/>
-            </fix-replace>
-        </fix-composite>
-        <location
-            file="${:featureapp*projectDir}/build.gradle.kts"
-            line="54"
-            column="20"
-            startOffset="1458"
-            endLine="54"
-            endColumn="56"
-            endOffset="1494"/>
-    </incident>
-
-    <incident
-        id="UseTomlInstead"
-        severity="warning"
-        message="Use version catalog instead">
-        <fix-composite
-            description="Replace with new library catalog declaration for androidx-work-runtime-ktx"
-            robot="true">
-            <fix-replace
-                description="Replace with workRuntimeKtx = &quot;2.9.1&quot;..."
-                robot="true"
-                oldString="_lint_insert_begin_"
-                replacement="workRuntimeKtx = &quot;2.9.1&quot;&#xA;"
-                priority="0">
-                <range
-                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
-                    startOffset="207"
-                    endOffset="207"/>
-            </fix-replace>
-            <fix-replace
-                description="Replace with androidx-work-runtime-ktx = { module = &quot;androidx.work:work-runtime-ktx&quot;, version.ref = &quot;workRuntimeKtx&quot; }..."
-                robot="true"
-                oldString="_lint_insert_begin_"
-                replacement="androidx-work-runtime-ktx = { module = &quot;androidx.work:work-runtime-ktx&quot;, version.ref = &quot;workRuntimeKtx&quot; }&#xA;"
+                replacement="appcompat = { module = &quot;androidx.appcompat:appcompat&quot;, version.ref = &quot;appcompatVersion&quot; }&#xA;"
                 priority="0">
                 <range
                     file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
@@ -685,24 +724,224 @@
                     endOffset="312"/>
             </fix-replace>
             <fix-replace
-                description="Replace with libs.androidx.work.runtime.ktx"
+                description="Replace with libs.appcompat"
                 robot="true"
-                replacement="libs.androidx.work.runtime.ktx"
+                replacement="libs.appcompat"
                 priority="0">
                 <range
                     file="${:featureapp*projectDir}/build.gradle.kts"
-                    startOffset="1515"
-                    endOffset="1553"/>
+                    startOffset="6686"
+                    endOffset="6722"/>
             </fix-replace>
         </fix-composite>
         <location
             file="${:featureapp*projectDir}/build.gradle.kts"
-            line="55"
+            line="191"
             column="20"
-            startOffset="1515"
-            endLine="55"
+            startOffset="6686"
+            endLine="191"
+            endColumn="56"
+            endOffset="6722"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use version catalog instead">
+        <fix-composite
+            description="Replace with new library catalog declaration for google-material"
+            robot="true">
+            <fix-replace
+                description="Replace with materialVersion = &quot;1.11.0&quot;..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="materialVersion = &quot;1.11.0&quot;&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="207"
+                    endOffset="207"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with google-material = { module = &quot;com.google.android.material:material&quot;, version.ref = &quot;materialVersion&quot; }..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="google-material = { module = &quot;com.google.android.material:material&quot;, version.ref = &quot;materialVersion&quot; }&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="312"
+                    endOffset="312"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with libs.google.material"
+                robot="true"
+                replacement="libs.google.material"
+                priority="0">
+                <range
+                    file="${:featureapp*projectDir}/build.gradle.kts"
+                    startOffset="6743"
+                    endOffset="6788"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:featureapp*projectDir}/build.gradle.kts"
+            line="192"
+            column="20"
+            startOffset="6743"
+            endLine="192"
+            endColumn="65"
+            endOffset="6788"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use version catalog instead">
+        <fix-composite
+            description="Replace with new library catalog declaration for okhttp3-okhttp"
+            robot="true">
+            <fix-replace
+                description="Replace with okhttpVersion = &quot;4.12.0&quot;..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="okhttpVersion = &quot;4.12.0&quot;&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="207"
+                    endOffset="207"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with okhttp3-okhttp = { module = &quot;com.squareup.okhttp3:okhttp&quot;, version.ref = &quot;okhttpVersion&quot; }..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="okhttp3-okhttp = { module = &quot;com.squareup.okhttp3:okhttp&quot;, version.ref = &quot;okhttpVersion&quot; }&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="1571"
+                    endOffset="1571"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with libs.okhttp3.okhttp"
+                robot="true"
+                replacement="libs.okhttp3.okhttp"
+                priority="0">
+                <range
+                    file="${:featureapp*projectDir}/build.gradle.kts"
+                    startOffset="6809"
+                    endOffset="6845"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:featureapp*projectDir}/build.gradle.kts"
+            line="193"
+            column="20"
+            startOffset="6809"
+            endLine="193"
+            endColumn="56"
+            endOffset="6845"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use version catalog instead">
+        <fix-composite
+            description="Replace with new library catalog declaration for work-runtime-ktx"
+            robot="true">
+            <fix-replace
+                description="Replace with workRuntimeKtxVersion = &quot;2.9.1&quot;..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="workRuntimeKtxVersion = &quot;2.9.1&quot;&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="207"
+                    endOffset="207"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with work-runtime-ktx = { module = &quot;androidx.work:work-runtime-ktx&quot;, version.ref = &quot;workRuntimeKtxVersion&quot; }..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="work-runtime-ktx = { module = &quot;androidx.work:work-runtime-ktx&quot;, version.ref = &quot;workRuntimeKtxVersion&quot; }&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="1571"
+                    endOffset="1571"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with libs.work.runtime.ktx"
+                robot="true"
+                replacement="libs.work.runtime.ktx"
+                priority="0">
+                <range
+                    file="${:featureapp*projectDir}/build.gradle.kts"
+                    startOffset="6866"
+                    endOffset="6904"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:featureapp*projectDir}/build.gradle.kts"
+            line="194"
+            column="20"
+            startOffset="6866"
+            endLine="194"
             endColumn="58"
-            endOffset="1553"/>
+            endOffset="6904"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use version catalog instead">
+        <fix-composite
+            description="Replace with new library catalog declaration for json-json"
+            robot="true">
+            <fix-replace
+                description="Replace with jsonVersion = &quot;20240303&quot;..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="jsonVersion = &quot;20240303&quot;&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="44"
+                    endOffset="44"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with json-json = { module = &quot;org.json:json&quot;, version.ref = &quot;jsonVersion&quot; }..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="json-json = { module = &quot;org.json:json&quot;, version.ref = &quot;jsonVersion&quot; }&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/gradle/libs.versions.toml"
+                    startOffset="312"
+                    endOffset="312"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with libs.json.json"
+                robot="true"
+                replacement="libs.json.json"
+                priority="0">
+                <range
+                    file="${:featureapp*projectDir}/build.gradle.kts"
+                    startOffset="6964"
+                    endOffset="6988"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:featureapp*projectDir}/build.gradle.kts"
+            line="196"
+            column="24"
+            startOffset="6964"
+            endLine="196"
+            endColumn="48"
+            endOffset="6988"/>
     </incident>
 
     <incident
@@ -711,12 +950,12 @@
         message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="49"
+            line="89"
             column="28"
-            startOffset="1867"
-            endLine="49"
+            startOffset="3644"
+            endLine="89"
             endColumn="49"
-            endOffset="1888"/>
+            endOffset="3665"/>
     </incident>
 
     <incident
@@ -725,12 +964,12 @@
         message="String literal in `setText` can not be translated. Use Android resources instead.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="49"
+            line="89"
             column="29"
-            startOffset="1868"
-            endLine="49"
+            startOffset="3645"
+            endLine="89"
             endColumn="38"
-            endOffset="1877"/>
+            endOffset="3654"/>
     </incident>
 
     <incident
@@ -739,12 +978,12 @@
         message="String literal in `setText` can not be translated. Use Android resources instead.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="136"
+            line="196"
             column="32"
-            startOffset="5668"
-            endLine="136"
+            startOffset="8213"
+            endLine="196"
             endColumn="41"
-            endOffset="5677"/>
+            endOffset="8222"/>
     </incident>
 
     <incident
@@ -753,12 +992,12 @@
         message="String literal in `setText` can not be translated. Use Android resources instead.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="137"
+            line="197"
             column="32"
-            startOffset="5710"
-            endLine="137"
+            startOffset="8255"
+            endLine="197"
             endColumn="95"
-            endOffset="5773"/>
+            endOffset="8318"/>
     </incident>
 
     <incident
@@ -767,12 +1006,12 @@
         message="String literal in `setText` can not be translated. Use Android resources instead.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="258"
+            line="343"
             column="48"
-            startOffset="11189"
-            endLine="258"
+            startOffset="15004"
+            endLine="343"
             endColumn="64"
-            endOffset="11205"/>
+            endOffset="15020"/>
     </incident>
 
     <incident
@@ -781,12 +1020,12 @@
         message="String literal in `setText` can not be translated. Use Android resources instead.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="259"
+            line="344"
             column="48"
-            startOffset="11254"
-            endLine="259"
+            startOffset="15069"
+            endLine="344"
             endColumn="108"
-            endOffset="11314"/>
+            endOffset="15129"/>
     </incident>
 
     <incident
@@ -795,12 +1034,124 @@
         message="String literal in `setText` can not be translated. Use Android resources instead.">
         <location
             file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
-            line="267"
+            line="358"
             column="36"
-            startOffset="11589"
-            endLine="267"
+            startOffset="15679"
+            endLine="358"
             endColumn="49"
-            endOffset="11602"/>
+            endOffset="15692"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="451"
+            column="29"
+            startOffset="19435"
+            endLine="451"
+            endColumn="74"
+            endOffset="19480"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="451"
+            column="30"
+            startOffset="19436"
+            endLine="451"
+            endColumn="52"
+            endOffset="19458"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="460"
+            column="30"
+            startOffset="19866"
+            endLine="460"
+            endColumn="86"
+            endOffset="19922"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="529"
+            column="29"
+            startOffset="22756"
+            endLine="529"
+            endColumn="87"
+            endOffset="22814"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="529"
+            column="30"
+            startOffset="22757"
+            endLine="529"
+            endColumn="65"
+            endOffset="22792"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="540"
+            column="29"
+            startOffset="23389"
+            endLine="540"
+            endColumn="87"
+            endOffset="23447"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="540"
+            column="30"
+            startOffset="23390"
+            endLine="540"
+            endColumn="65"
+            endOffset="23425"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:featureapp*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/hybridguard/featureapp/MainActivity.kt"
+            line="611"
+            column="31"
+            startOffset="26329"
+            endLine="611"
+            endColumn="56"
+            endOffset="26354"/>
     </incident>
 
     <incident
