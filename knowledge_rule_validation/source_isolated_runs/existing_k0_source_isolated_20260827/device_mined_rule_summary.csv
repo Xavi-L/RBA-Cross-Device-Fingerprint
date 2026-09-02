@@ -1,0 +1,36 @@
+rule_id,rule_name,execution_status,normal_outcome_counts,attack_baseline_outcome_counts,attack_active_outcome_counts,attack_baseline_match_count,attack_active_match_count,baseline_to_active_match_count
+CORE-001,Native 缺失与接口重放,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+CORE-002,传感器或 JSBridge 一票否决,compiled,"{""not_matched"":229}","{""not_matched"":15}","{""not_matched"":15}",0,0,0
+CORE-003,关键传感器矩阵异常,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NW-001,Native 型号与 Web UA 宽松匹配,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NW-002,Android 版本一致性,compiled,"{""not_matched"":229}","{""not_matched"":15}","{""not_matched"":6,""unknown"":9}",0,0,0
+NW-003,屏幕与 DPR 软一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NW-004,CPU ABI 与 Web platform 一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NW-005,硬件族与 WebGL GPU 一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NW-006,桌面或自动化 UA 痕迹,compiled,"{""not_matched"":229}","{""not_matched"":15}","{""matched"":9,""not_matched"":6}",0,9,9
+NW-007,触控能力与移动 UA 一致性,compiled,"{""not_matched"":229}","{""not_matched"":15}","{""not_matched"":15}",0,0,0
+NW-008,内存容量软一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NVW-001,WebView system HTTP agent 与 Native 型号一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NVW-002,WebView system HTTP agent 与 Native Android 版本一致性,compiled,"{""not_matched"":229}","{""not_matched"":15}","{""not_matched"":15}",0,0,0
+NVW-003,预期 App 包名一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NVW-004,安装来源语义,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+NVW-005,Debug 与明文流量张力,compiled,"{""context_observed"":229}","{""context_observed"":15}","{""context_observed"":15}",0,0,0
+WVWEB-001,WebView provider 与 Web UA Chrome 主版本一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+WVWEB-002,Android WebView UA token,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+WVWEB-003,JSBridge 与移动 WebView 运行时一致性,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+WVWEB-004,非浏览器 UA,compiled,"{""not_matched"":229}","{""not_matched"":15}","{""not_matched"":15}",0,0,0
+PHYS-001,模拟器硬件关键词,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+PHYS-002,WebGL 软件渲染或桌面渲染,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+PHYS-003,算力耗时异常,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+PHYS-004,电池温度死值,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+PHYS-005,ADB 与满电组合,compiled,"{""context_observed"":224,""not_matched"":5}","{""context_observed"":15}","{""context_observed"":15}",0,0,0
+PHYS-006,构建指纹调试/模拟器痕迹,compiled,"{""context_observed"":23,""not_matched"":206}","{""context_observed"":15}","{""context_observed"":15}",0,0,0
+SCENE-001,云机房或测试机架,compiled,"{""context_observed"":226,""not_matched"":3}","{""context_observed"":15}","{""context_observed"":15}",0,0,0
+SCENE-002,廉价模拟器,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+SCENE-003,无头 PC 浏览器伪装,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+SCENE-004,官方来源与核心完整性通过,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+AGG-001,三端平均一致性与失败计数,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+TOL-001,开发配置容错,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+TOL-002,屏幕高度误差容错,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+TOL-003,内存粗粒度容错,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable
+TOL-004,WebView Chrome 小版本容错,retrieval_only_not_compiled,"{""not_compiled"":229}","{""not_compiled"":15}","{""not_compiled"":15}",,,not_applicable

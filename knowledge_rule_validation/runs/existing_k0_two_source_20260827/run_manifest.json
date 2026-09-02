@@ -1,0 +1,58 @@
+{
+  "claim_boundary": "A deterministic classification and controlled two-state comparison only; no calibrated risk probability, recall, false-positive rate, fraud label, or cross-tool generalization claim.",
+  "classification_run_version": "two-source-rule-classification-v1",
+  "created_at_utc": "2026-08-27T14:48:39+00:00",
+  "feature_comparison_boundary": "Feature deltas directly compare normalized values on the frozen 177-field contract. Raw values are represented by hashes; unannotated deltas are not attributed to the attack.",
+  "inputs": {
+    "attack": {
+      "eligible_two_state_pair_count": 15,
+      "ignored_historical_post_count": 15,
+      "manifest_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api30_formal_v4/attack_sample_manifest_v1.jsonl",
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api36_formal_v1/attack_sample_manifest_v1.jsonl",
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api36_formal_v2/attack_sample_manifest_v1.jsonl"
+      ],
+      "pair_count": 15
+    },
+    "normal": {
+      "path": "backend_server/expanded_collected_data.jsonl",
+      "record_count": 229,
+      "schema_versions": {
+        "expanded-v2": 113,
+        "expanded-v2.2-status": 116
+      }
+    }
+  },
+  "knowledge": {
+    "compiled_rule_count": 10,
+    "official_card_count": 20,
+    "official_cards_path": "google_official_kb/feature_risk_cards.json",
+    "official_document_independent_alarm_predicate_count": 0,
+    "rule_count": 35,
+    "rule_kb_path": "scoring/rule_knowledge_base.json",
+    "rule_kb_sha256": "bd64876a301eaa063b7793fd7fb471ffe64bab4478970f7f3a6476ff0a4a7884",
+    "rule_kb_version": "2026-06-28-google-official-kb",
+    "source_boundary": "Official cards are semantic/tolerance support only in the current KB. Existing project predicates are reported as device_mined_rule with official support retained."
+  },
+  "outputs": {
+    "advisor_summary": "ADVISOR_SUMMARY.md",
+    "attack_pair_results": "attack_pair_results.jsonl",
+    "classification_records": "classification_records.jsonl",
+    "feature_delta_summary": "feature_delta_summary.csv",
+    "official_knowledge_summary": "official_knowledge_summary.csv",
+    "rule_source_catalog": "rule_source_catalog.csv",
+    "rule_summary": "rule_summary.csv",
+    "sample_rule_results": "sample_rule_results.jsonl"
+  },
+  "protocol": {
+    "historical_clean_post": "ignored_not_used_for_current_classification",
+    "states_compared": [
+      "baseline",
+      "attack_active"
+    ],
+    "version": "baseline-attack-v1"
+  },
+  "run_id": "existing_k0_two_source_20260827"
+}

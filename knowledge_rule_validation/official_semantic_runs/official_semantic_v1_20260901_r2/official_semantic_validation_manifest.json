@@ -1,0 +1,71 @@
+{
+  "claim_boundary": "Official documents establish field semantics and capabilities. Each relation below is a project inference with explicit provenance; it is not an official risk verdict. Strong semantic inconsistencies are research alerts only, not calibrated attack or fraud decisions.",
+  "created_at_utc": "2026-09-01T07:21:02+00:00",
+  "inputs": {
+    "attack_manifest_paths": [
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api30_formal_v4/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api36_formal_v1/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api36_formal_v2/attack_sample_manifest_v1.jsonl"
+    ],
+    "attack_pair_count": 15,
+    "eligible_attack_pair_count": 15,
+    "ignored_historical_post_count": 15,
+    "normal_path": "backend_server/expanded_collected_data.jsonl",
+    "normal_record_count": 229
+  },
+  "observed_results": {
+    "alert_transition_with_direct_changed_premise_count": 15,
+    "attack_active_research_semantic_alert_count": 15,
+    "attack_baseline_research_semantic_alert_count": 0,
+    "baseline_no_alert_to_attack_active_alert_count": 15,
+    "normal_research_semantic_alert_count": 0
+  },
+  "official_derived_semantic_lane": {
+    "compiled_relation_count": 9,
+    "decision_inputs": [
+      "collected_payload",
+      "reviewed_official_semantic_catalog"
+    ],
+    "forbidden_decision_inputs": [
+      "attack_tool_name",
+      "attack_label",
+      "attack_manifest_mutation_annotation",
+      "device_mined_rule_registry",
+      "calibrated_score"
+    ],
+    "knowledge_source_type": "official_derived_semantic_rule",
+    "not_executed_relation_count": 13,
+    "official_card_count": 20,
+    "official_cards_path": "google_official_kb/feature_risk_cards.json",
+    "official_cards_sha256": "5fcdc592f5095121f99cd9e4391a5e073d641c105d6235a6b8d0b0b835b7dcfd",
+    "official_cards_version": "2026-06-28-batch2",
+    "semantic_catalog_path": "hybridguard_agent/config/official_semantic_relations.v1.json",
+    "semantic_catalog_sha256": "a5e024b904d568a38157e91ff31d8676a7937acf9a34dc083271b746556b5ddb",
+    "semantic_catalog_version": "official-semantic-relations-v1",
+    "semantic_relation_count": 22,
+    "validation_design": {
+      "independent_held_out_attack_validation": false,
+      "reason": "The semantic catalog was reviewed with knowledge of the current field contract and existing attack feature patterns; OFFDER-GPU-001 was specifically informed by the observed Direct3D stealth pattern.",
+      "role": "retrospective_same_corpus_execution_check"
+    }
+  },
+  "outputs": {
+    "attack_results": "attack_semantic_pair_results.jsonl",
+    "catalog_snapshot": "semantic_relation_catalog_snapshot.json",
+    "normal_results": "normal_semantic_results.jsonl",
+    "relation_summary": "semantic_relation_summary.csv",
+    "report": "官方知识语义关联规则验证报告.md"
+  },
+  "protocol": {
+    "historical_clean_post": "ignored_not_used_for_current_validation",
+    "states_compared": [
+      "baseline",
+      "attack_active"
+    ],
+    "version": "baseline-attack-v1"
+  },
+  "run_id": "official_semantic_v1_20260901_r2",
+  "semantic_validation_version": "official-semantic-validation-v1"
+}

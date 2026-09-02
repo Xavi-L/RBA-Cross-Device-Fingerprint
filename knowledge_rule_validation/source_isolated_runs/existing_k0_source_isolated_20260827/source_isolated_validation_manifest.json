@@ -1,0 +1,60 @@
+{
+  "created_at_utc": "2026-08-27T15:13:52+00:00",
+  "device_mined_rule_lane": {
+    "compiled_predicate_count": 10,
+    "forbidden_inputs": [
+      "official_card_retrieval",
+      "attack_tool_labels",
+      "calibrated_score"
+    ],
+    "output_mode": "deterministic_predicate_execution_only",
+    "rule_kb_path": "scoring/rule_knowledge_base.json",
+    "rule_kb_sha256": "bd64876a301eaa063b7793fd7fb471ffe64bab4478970f7f3a6476ff0a4a7884",
+    "rule_kb_version": "2026-06-28-google-official-kb"
+  },
+  "inputs": {
+    "attack_manifest_paths": [
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api30_formal_v4/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api36_formal_v1/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api36_formal_v2/attack_sample_manifest_v1.jsonl"
+    ],
+    "attack_pair_count": 15,
+    "ignored_historical_post_count": 15,
+    "normal_path": "backend_server/expanded_collected_data.jsonl",
+    "normal_record_count": 229
+  },
+  "official_document_lane": {
+    "card_count": 20,
+    "cards_path": "google_official_kb/feature_risk_cards.json",
+    "cards_sha256": "5fcdc592f5095121f99cd9e4391a5e073d641c105d6235a6b8d0b0b835b7dcfd",
+    "cards_version": "2026-06-28-batch2",
+    "forbidden_inputs": [
+      "device_mined_rule_thresholds",
+      "attack_tool_labels",
+      "calibrated_score"
+    ],
+    "independent_executable_predicate_count": 0,
+    "output_mode": "field_coverage_and_changed_field_overlap_only"
+  },
+  "outputs": {
+    "device_attack": "device_mined_attack_pair_results.jsonl",
+    "device_normal": "device_mined_normal_results.jsonl",
+    "device_rule_summary": "device_mined_rule_summary.csv",
+    "official_attack": "official_document_attack_pair_results.jsonl",
+    "official_normal": "official_document_normal_results.jsonl",
+    "official_summary": "official_document_card_summary.csv",
+    "report": "两类知识独立验证报告.md"
+  },
+  "protocol": {
+    "historical_clean_post": "ignored_not_used_for_current_validation",
+    "states_compared": [
+      "baseline",
+      "attack_active"
+    ],
+    "version": "baseline-attack-v1"
+  },
+  "run_id": "existing_k0_source_isolated_20260827",
+  "source_isolated_validation_version": "source-isolated-validation-v1"
+}
