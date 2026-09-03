@@ -1,0 +1,69 @@
+name: Rebuild two-track paper artifacts
+
+on:
+  push:
+    branches:
+      - docs/paper-two-track-evaluation-20260903
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[two-track-built]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/paper-two-track-evaluation-20260903
+          fetch-depth: 0
+
+      - name: Reconstruct and verify Overleaf ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="thesis_materials/paper_working_package_20260903"
+          ZIP="$ROOT/draft/HybridGuard_ACM_Draft_Flattened_Overleaf_20260903.zip"
+          BUILD=".paper_twotrack_build"
+          cat "$ROOT"/.zip_rebuild/zip.part* | base64 --decode > "$ZIP"
+          echo "6971539f0a911ff0b2e082ece30c96ba20ef5b90b7db22942bdf848a095cf83e  $ZIP" | sha256sum -c -
+          unzip -t "$ZIP"
+          rm -rf "$BUILD"
+          mkdir -p "$BUILD"
+          unzip -q "$ZIP" -d "$BUILD"
+          echo "815c8728a8b35a000b94bb831d7d43e09ece6f1641feda8d78a17d6e0797237a  $BUILD/hybridguard_draft.tex" | sha256sum -c -
+          echo "3e65177f9dc7b8962ca5dda1a74ac6e1cef9db4f358485af451263ce1f16658d  $BUILD/references.bib" | sha256sum -c -
+
+      - name: Compile revised ACM draft
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: hybridguard_draft.tex
+          working_directory: .paper_twotrack_build
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Commit verified artifacts and remove staging files
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="thesis_materials/paper_working_package_20260903"
+          ZIP="$ROOT/draft/HybridGuard_ACM_Draft_Flattened_Overleaf_20260903.zip"
+          PDF="$ROOT/draft/HybridGuard_ACM_Draft_TwoTrack_20260903.pdf"
+          cp .paper_twotrack_build/hybridguard_draft.pdf "$PDF"
+          test -s "$PDF"
+          {
+            echo "# Two-track draft artifact hashes"
+            echo
+            echo "- ZIP SHA-256: \`$(sha256sum "$ZIP" | awk '{print $1}')\`"
+            echo "- ZIP size: \`$(stat -c%s "$ZIP")\` bytes"
+            echo "- PDF SHA-256: \`$(sha256sum "$PDF" | awk '{print $1}')\`"
+            echo "- PDF size: \`$(stat -c%s "$PDF")\` bytes"
+          } > "$ROOT/draft/artifact_hashes.md"
+          rm -rf "$ROOT/.zip_rebuild" "$ROOT/.twotrack_patch" "$ROOT/.twotrack_update_chunks" .paper_twotrack_build
+          rm -f .github/workflows/rebuild-two-track-paper.yml .github/workflows/build-two-track-paper-artifacts.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "docs(paper): add verified two-track draft artifacts [two-track-built]"
+          git push origin HEAD:docs/paper-two-track-evaluation-20260903
