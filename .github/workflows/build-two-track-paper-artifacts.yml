@@ -30,6 +30,13 @@ jobs:
           rm -rf "$BUILD"
           mkdir -p "$BUILD"
           unzip -q "$ZIP" -d "$BUILD"
+          if [ ! -f "$BUILD/hybridguard_draft.tex" ]; then
+            INNER="$(find "$BUILD" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+            test -n "$INNER"
+            cp -a "$INNER"/. "$BUILD"/
+            rm -rf "$INNER"
+          fi
+          test -f "$BUILD/hybridguard_draft.tex"
           cat "$ROOT"/.twotrack_patch/patch.part* | base64 --decode | gzip -dc > /tmp/twotrack.patch
           (cd "$BUILD" && patch --batch -p0 < /tmp/twotrack.patch)
           cp "$ROOT/.twotrack_patch/README.md" "$BUILD/README.md"
@@ -71,5 +78,3 @@ jobs:
           git add -A
           git commit -m "docs(paper): rebuild two-track draft artifacts [two-track-built]"
           git push origin HEAD:docs/paper-two-track-evaluation-20260903
-
-# Triggered after all patch chunks were staged.
