@@ -1,47 +1,61 @@
 # ACM 草稿编译与版式验证记录
 
-## 主草稿来源
+## 当前修订范围
 
-本工作包以此前完成的“Full Prose”版本为主：所有提纲式章节已经改写为连续英文正文，图片和最终结果表暂不处理。为便于在 GitHub 中保存和重新导入 Overleaf，归档版本将所有 section 和 appendix 内联到单一 `hybridguard_draft.tex`，并保留独立 `references.bib`。
+本版本在此前 Full Prose 草稿基础上完成 evaluation 口径校正，明确拆分两条当前 App177 controlled evaluation track：
 
-## 原完整工程验证
+- attack-side 100-run stability campaign；
+- main-repository 69-pair baseline -> attack-active re-evaluation。
 
-完整模板依赖版本曾使用 `latexmk` 和 Biber 成功编译，得到 16 页 review PDF。验证结果包括：
+摘要、Introduction、Evaluation Methodology、Current App177 Results、Discussion、Conclusion 和内部 evidence ledger 均已同步更新。Browser67/paired244 检测增量仍保持未来工作边界。
 
-- 未解析 citation：0；
-- 未定义 cross-reference：0；
-- LaTeX/package error：0；
-- overfull horizontal box：0；
-- overfull vertical box：0；
-- 正文 TODO：0；
-- 全部页面均完成渲染检查；
-- PDF 可打开，未加密，不是扫描件；
-- 标题、摘要、双栏正文、表格、参考文献和附录未观察到裁切、重叠或乱码。
+## 编译结果
 
-## 仓库中的精简 ZIP
+- Main source：`hybridguard_draft.tex`
+- Document class：`acmart`, `sigconf, anonymous, review`
+- Output PDF：`HybridGuard_ACM_Draft_TwoTrack_20260903.pdf`
+- Page count：18
+- Undefined citations：0
+- Undefined cross-references：0
+- Overfull horizontal boxes：0
+- 检测到 1 个约 1.47 pt 的 overfull vertical box；逐页渲染未观察到文字裁切、重叠或越界。
+- Ghostscript null-device parse：status 0
+- PDF：可打开、未加密、非扫描件
 
-`HybridGuard_ACM_Draft_Flattened_Overleaf_20260903.zip` 仅包含：
+## PDF 视觉检查
+
+PDF 按 150 dpi 全页渲染。重点检查了：
+
+- 标题与摘要中的 two-track 定义；
+- Evaluation Methodology 的双轨对照表；
+- attack-side 100-run 结果表；
+- main-repository 69-pair 结果表；
+- cross-track coverage difference 解释；
+- Discussion 中 evaluator versioning；
+- Conclusion；
+- evidence ledger。
+
+未观察到破损 glyph、裁切、表格越界或列间重叠。
+
+## 当前 Overleaf ZIP
+
+`HybridGuard_ACM_Draft_Flattened_Overleaf_20260903.zip` 包含：
 
 - `hybridguard_draft.tex`；
 - `references.bib`；
 - `README.md`。
 
-它不包含：
+章节与附录均已内联，不依赖外部 `\\input{...}` 文件；`acmart.cls` 与 `ACM-Reference-Format.bst` 由 Overleaf/TeX Live 提供。
 
-- 编译 PDF；
-- `.aux`、`.bbl`、`.bcf`、`.blg`、`.fdb_latexmk`、`.fls`、`.log`、`.out`、`.run.xml` 等构建产物；
-- `acmart.cls`；
-- `ACM-Reference-Format.bst`。
-
-Overleaf/TeX Live 已提供 ACM 类文件和 bibliography style，因此这些文件无需在项目 ZIP 中重复保存。将 ZIP 导入 Overleaf 后，把 `hybridguard_draft.tex` 设置为 Main document。
+该 ZIP 已重新解压并使用 pdfLaTeX + BibTeX 编译验证，得到 18 页 PDF，未解析 citation/reference 为 0。
 
 ## 完整性信息
 
-- 文件：`HybridGuard_ACM_Draft_Flattened_Overleaf_20260903.zip`
-- 大小：37,482 bytes
-- SHA-256：`9940c0b0f2d1dd786e294a82513f5977dd086212c5ab01d2602ac533b6404744`
-- ZIP 内未保留外部 `\\input{...}` 依赖；章节和附录均已内联。
+- ZIP size：39,656 bytes
+- ZIP SHA-256：`6971539f0a911ff0b2e082ece30c96ba20ef5b90b7db22942bdf848a095cf83e`
+- PDF size：546,380 bytes
+- PDF SHA-256：`378c6ee166b6d8d26aee1047b6752cc2383e8a2b077bbbd1a3b4ffa4c847e838`
 
 ## 当前研究边界
 
-编译通过只证明 LaTeX 工程和版式可用，不提升实验结论等级。草稿仍遵循：当前受控攻击验证对象为 App177；协议为 `baseline -> attack_active`；51/69 和 33/69 是关系转换计数而非 recall；Browser67/paired244 检测增量属于未来实验；历史 ML/LLM 内容为暂时保留的预验证材料。
+编译通过只证明 LaTeX 工程和版式可用，不提升实验结论等级。当前统一口径为：100-run 与 69-pair 是两个不可互换的 controlled track；它们使用不同统计单位和 evaluator 版本；headline counts 分别报告，不合并为 recall。229-record normal screen 不是 release-matched benign cohort；Browser67/paired244 detection gain 仍属于未来实验。
