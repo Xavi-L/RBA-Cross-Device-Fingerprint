@@ -20,32 +20,20 @@ jobs:
           ref: docs/paper-two-track-evaluation-20260903
           fetch-depth: 0
 
-      - name: Patch and verify flattened Overleaf source
+      - name: Verify revised Overleaf archive
         shell: bash
         run: |
           set -euo pipefail
           ROOT="thesis_materials/paper_working_package_20260903"
           ZIP="$ROOT/draft/HybridGuard_ACM_Draft_Flattened_Overleaf_20260903.zip"
           BUILD=".paper_twotrack_build"
+          echo "6971539f0a911ff0b2e082ece30c96ba20ef5b90b7db22942bdf848a095cf83e  $ZIP" | sha256sum -c -
+          unzip -t "$ZIP"
           rm -rf "$BUILD"
           mkdir -p "$BUILD"
           unzip -q "$ZIP" -d "$BUILD"
-          if [ ! -f "$BUILD/hybridguard_draft.tex" ]; then
-            INNER="$(find "$BUILD" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
-            test -n "$INNER"
-            cp -a "$INNER"/. "$BUILD"/
-            rm -rf "$INNER"
-          fi
-          test -f "$BUILD/hybridguard_draft.tex"
-          cat "$ROOT"/.twotrack_patch/patch.part* | base64 --decode | gzip -dc > /tmp/twotrack.patch
-          (cd "$BUILD" && patch --batch -p0 < /tmp/twotrack.patch)
-          cp "$ROOT/.twotrack_patch/README.md" "$BUILD/README.md"
           echo "815c8728a8b35a000b94bb831d7d43e09ece6f1641feda8d78a17d6e0797237a  $BUILD/hybridguard_draft.tex" | sha256sum -c -
           echo "3e65177f9dc7b8962ca5dda1a74ac6e1cef9db4f358485af451263ce1f16658d  $BUILD/references.bib" | sha256sum -c -
-          echo "7a0677e055694f006c05c65ea8ed25b620c2f1b7cab192a412f1c91848a2c394  $BUILD/README.md" | sha256sum -c -
-          rm -f "$ZIP"
-          (cd "$BUILD" && zip -X -q -9 "$GITHUB_WORKSPACE/$ZIP" hybridguard_draft.tex references.bib README.md)
-          unzip -t "$ZIP"
 
       - name: Compile revised ACM draft
         uses: xu-cheng/latex-action@v3
@@ -54,7 +42,7 @@ jobs:
           working_directory: .paper_twotrack_build
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
-      - name: Commit revised PDF and ZIP
+      - name: Commit revised PDF and clean staging files
         shell: bash
         run: |
           set -euo pipefail
@@ -76,5 +64,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "docs(paper): rebuild two-track draft artifacts [two-track-built]"
+          git commit -m "docs(paper): build two-track PDF from verified source [two-track-built]"
           git push origin HEAD:docs/paper-two-track-evaluation-20260903
