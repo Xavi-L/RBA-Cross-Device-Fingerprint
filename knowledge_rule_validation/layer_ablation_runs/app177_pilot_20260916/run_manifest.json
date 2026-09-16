@@ -1,0 +1,185 @@
+{
+  "attack_inputs": {
+    "cohorts": [
+      {
+        "acceptance_reference": "knowledge_rule_validation/official_semantic_runs/official_semantic_v1_20260901_r2/official_semantic_validation_manifest.json",
+        "cohort_id": "legacy_design_seen",
+        "label": "旧版已查看攻击配置",
+        "manifest_paths": [
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api30_formal_v4/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_cdp_api36_formal_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api35_formal_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260812_stealth_api36_formal_v2/attack_sample_manifest_v1.jsonl"
+        ],
+        "relation_design_exposure": "inspected_before_semantic_catalog_freeze",
+        "selected_manifest_count": 5
+      },
+      {
+        "acceptance_reference": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_controlled_attack_tool_runtime_provenance_ledger_v1.json",
+        "cohort_id": "new_runtime_clients",
+        "label": "新增运行时客户端/API bundle",
+        "manifest_paths": [
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v2/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api35_controlled_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api36_controlled_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v2/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_puppeteer_api30_controlled_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api30_controlled_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api35_controlled_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api36_controlled_v1/attack_sample_manifest_v1.jsonl"
+        ],
+        "relation_design_exposure": "not_inspected_before_semantic_catalog_freeze",
+        "selected_manifest_count": 8
+      },
+      {
+        "acceptance_reference": "hybridguard-browser-fingerprint-research/execution_log/config/controlled_attack_expansion_analysis_v3.json",
+        "cohort_id": "new_cdp_rule_boundary_v3",
+        "label": "新增 CDP 单项/组合字段边界 V3",
+        "manifest_paths": [
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_only_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_resource_pair_v1/attack_sample_manifest_v1.jsonl"
+        ],
+        "relation_design_exposure": "not_inspected_before_semantic_catalog_freeze",
+        "selected_manifest_count": 5
+      },
+      {
+        "acceptance_reference": "hybridguard-browser-fingerprint-research/execution_log/config/teacher_stealth_rule_boundary_campaign_v4.json",
+        "cohort_id": "new_stealth_boundary_v4",
+        "label": "新增 Stealth 单一 evasion 边界 V4",
+        "manifest_paths": [
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_webgl_pair_v1_rerun1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_plugins_mime_v1/attack_sample_manifest_v1.jsonl"
+        ],
+        "relation_design_exposure": "not_inspected_before_semantic_catalog_freeze",
+        "selected_manifest_count": 3
+      },
+      {
+        "acceptance_reference": "hybridguard-browser-fingerprint-research/execution_log/config/teacher_cdp_emulation_rule_boundary_campaign_v5.json",
+        "cohort_id": "new_cdp_emulation_v5",
+        "label": "新增 CDP 时区/屏幕仿真 V5",
+        "manifest_paths": [
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1/attack_sample_manifest_v1.jsonl",
+          "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1/attack_sample_manifest_v1.jsonl"
+        ],
+        "relation_design_exposure": "not_inspected_before_semantic_catalog_freeze",
+        "selected_manifest_count": 2
+      }
+    ],
+    "description": "Reuse the accepted 23-manifest App177 controlled attack selection for frozen-rule input-layer ablation. This is not new attack data or a new independent holdout.",
+    "excluded_manifests": [
+      {
+        "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v1/attack_sample_manifest_v1.jsonl",
+        "reason": "incomplete_pair_expected_one_attack_active_found_0"
+      },
+      {
+        "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v1/attack_sample_manifest_v1.jsonl",
+        "reason": "empty_exploratory_manifest_no_pairs"
+      }
+    ],
+    "expected_counts": {
+      "eligible_pair_count": 69,
+      "ignored_historical_post_count": 69,
+      "legacy_pair_count": 15,
+      "new_pair_count": 54,
+      "selected_manifest_count": 23,
+      "total_pair_count": 69,
+      "unique_config_id_count": 14,
+      "unique_tool_name_count": 4
+    },
+    "input_set_id": "layer-ablation-controlled-configs-20260916",
+    "input_set_path": "knowledge_rule_validation/config/layer_ablation_attack_input_set.v1.json",
+    "input_set_schema_version": "official-semantic-attack-input-set-v1",
+    "input_set_sha256": "5ff3c8d19cfa04173540bfdee81e41495b3b167bcf8c64094c39c580c6c18653",
+    "observed_counts": {
+      "eligible_pair_count": 69,
+      "ignored_historical_post_count": 69,
+      "legacy_pair_count": 15,
+      "new_pair_count": 54,
+      "selected_manifest_count": 23,
+      "total_pair_count": 69,
+      "unique_config_id_count": 14,
+      "unique_tool_name_count": 4
+    },
+    "protocol": {
+      "historical_clean_post": "counted_then_ignored",
+      "states_compared": [
+        "baseline",
+        "attack_active"
+      ]
+    },
+    "selected_manifest_count": 23,
+    "selection_mode": "frozen_input_set",
+    "selection_policy": {
+      "exclude": "Empty manifests, incomplete pairs, exploratory probes, and configurations outside an accepted campaign are not validation inputs.",
+      "include": "A manifest must contain complete baseline/attack_active pairs whose execution_status is verified_success and feature_effect_status is observed. Newly pulled bundles must also appear in an accepted runtime ledger or a strictly accepted V3/V4/V5 campaign.",
+      "relation_design_boundary": "The legacy cohort was inspected before official-semantic-relations-v1 was frozen. Newly pulled cohorts were not inspected during that catalog design, but they are not a formally preregistered independent real-device holdout."
+    },
+    "source_repository": {
+      "expected_revision": "4de5fa625e67887667f28f2c072aac464a7c2cb8",
+      "observed_revision": "4de5fa625e67887667f28f2c072aac464a7c2cb8",
+      "path": "hybridguard-browser-fingerprint-research"
+    }
+  },
+  "compiled_rule_counts": {
+    "device_mined": 10,
+    "official_derived": 9
+  },
+  "excluded_pairs": [],
+  "execution": {
+    "browser_evidence_used_for_decisions": false,
+    "external_model_called": false,
+    "formal_evaluation": false,
+    "thresholds_tuned": false,
+    "trained_model": false
+  },
+  "frozen_catalog_version": "official-semantic-relations-v1",
+  "frozen_predicate_registry_version": "deterministic-rule-predicates-v1",
+  "groups": {
+    "app177": [
+      "android_native_data",
+      "webview_data",
+      "web_data"
+    ],
+    "app_web67": [
+      "web_data"
+    ],
+    "host_appweb93": [
+      "webview_data",
+      "web_data"
+    ],
+    "native84": [
+      "android_native_data"
+    ],
+    "native_appweb151": [
+      "android_native_data",
+      "web_data"
+    ],
+    "native_host110": [
+      "android_native_data",
+      "webview_data"
+    ],
+    "webview_host26": [
+      "webview_data"
+    ]
+  },
+  "latest_qc": {
+    "labels_used": false,
+    "sample_count": 26,
+    "source_snapshot": "/private/tmp/hg_ablation_feasibility_20260916",
+    "status": "UNLABELED_QC_ONLY",
+    "view_counts": {
+      "app_only_177": 9,
+      "paired_244": 17
+    }
+  },
+  "not_evaluated_groups": {
+    "browser67": "No frozen standalone Browser67 detector or attack-paired Browser67 input in this pilot.",
+    "full244": "Attack cohort is App177 only; current Browser pairing sidecar is observation-only, not rule-assessed."
+  },
+  "pilot_version": "layer-input-ablation-pilot-v1"
+}
