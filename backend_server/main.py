@@ -17,7 +17,7 @@ import copy
 from fastapi import FastAPI, Header, HTTPException, Request
 from pydantic import BaseModel, Field
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 try:
     # Supports both ``cd backend_server && uvicorn main:app`` and imports as
@@ -2310,6 +2310,28 @@ async def collect_browser_fingerprint(
     """Accept one canonical 67-field available-browser payload."""
     browser_ticket = require_bearer_token(authorization)
     return store_browser_fingerprint(payload, browser_ticket)
+
+
+@app.get("/api/collect/browser-fingerprint/{pair_id}/status")
+async def get_browser_page_status(
+    pair_id: str,
+    authorization: Optional[str] = Header(None),
+):
+    """Expose only this browser ticket's completion state to the probe page."""
+    pair, _ = authorize_browser_pair(
+        require_bearer_token(authorization),
+        "browser_upload",
+        expected_pair_id=pair_id,
+    )
+    return JSONResponse(
+        {
+            "status": "success",
+            "pair_id": pair["pair_id"],
+            "pair_status": current_browser_pair_status(pair),
+            "browser_receipt_id": pair.get("browser_receipt_id"),
+        },
+        headers={"Cache-Control": "no-store"},
+    )
 
 
 @app.get("/api/collect/browser-pairs/{pair_id}")

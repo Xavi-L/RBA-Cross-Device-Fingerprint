@@ -700,6 +700,79 @@ class BrowserPairingContractTests(unittest.TestCase):
                 "BROWSER_TOKEN_INVALID",
             )
 
+    def test_browser_page_status_tracks_both_upload_orders(self):
+        for app_first in (True, False):
+            with self.subTest(app_first=app_first), self.isolated_backend():
+                ticket = self.issue(self.provisional_ticket_request())
+                client = TestClient(main.app)
+                headers = {
+                    "Authorization": "Bearer " + ticket["browser_ticket"],
+                    "Origin": "https://probe.example.test",
+                }
+                status_url = (
+                    "/api/collect/browser-fingerprint/"
+                    + ticket["pair_id"] + "/status"
+                )
+                if app_first:
+                    self.collect_provisional_app()
+                uploaded = client.post(
+                    "/api/collect/browser-fingerprint",
+                    headers=headers,
+                    json=browser_payload(ticket["pair_id"]),
+                )
+                self.assertEqual(uploaded.status_code, 200)
+                pending = client.get(status_url, headers=headers)
+                self.assertEqual(pending.status_code, 200)
+                self.assertEqual(
+                    pending.json()["pair_status"],
+                    "completed" if app_first else "awaiting_app",
+                )
+                if not app_first:
+                    self.collect_provisional_app()
+                completed = client.get(status_url, headers=headers)
+                self.assertEqual(completed.json(), {
+                    "status": "success",
+                    "pair_id": ticket["pair_id"],
+                    "pair_status": "completed",
+                    "browser_receipt_id": uploaded.json()["receipt_id"],
+                })
+                self.assertEqual(completed.headers["cache-control"], "no-store")
+                self.assertIn("access-control-allow-origin", completed.headers)
+                preflight = client.options(status_url, headers={
+                    "Origin": "https://probe.example.test",
+                    "Access-Control-Request-Method": "GET",
+                    "Access-Control-Request-Headers":
+                        "authorization,ngrok-skip-browser-warning",
+                })
+                self.assertEqual(preflight.status_code, 200)
+                client.close()
+
+    def test_browser_page_status_rejects_wrong_pair_token_and_expiry(self):
+        with self.isolated_backend():
+            ticket = self.issue(self.provisional_ticket_request())
+            other = self.issue(self.provisional_ticket_request(
+                app_session_id="another-session",
+                ticket_request_id="another-request",
+            ))
+            client = TestClient(main.app)
+            status_url = "/api/collect/browser-fingerprint/" + ticket["pair_id"] + "/status"
+            self.assertEqual(client.get(status_url).status_code, 401)
+            for token, code in (
+                (other["browser_ticket"], "BROWSER_TOKEN_PAIR_MISMATCH"),
+                (ticket["poll_token"], "BROWSER_TOKEN_WRONG_USE"),
+            ):
+                result = client.get(status_url, headers={"Authorization": "Bearer " + token})
+                self.assertEqual(result.status_code, 403)
+                self.assertEqual(result.json()["detail"]["code"], code)
+            pair = main.browser_pairs_db[ticket["pair_id"]]
+            with mock.patch.object(main, "browser_token_now", return_value=pair["ticket_expires_at_unix"] + 1):
+                expired = client.get(status_url, headers={
+                    "Authorization": "Bearer " + ticket["browser_ticket"],
+                })
+                self.assertEqual(expired.status_code, 410)
+                self.assertEqual(expired.json()["detail"]["code"], "BROWSER_TOKEN_EXPIRED")
+            client.close()
+
     def test_status_alias_and_cors_custom_headers_contract(self):
         with self.isolated_backend():
             ticket = self.issue()

@@ -1,0 +1,132 @@
+百度 MTC 云真机参考采集脚本
+Python 风格伪代码  非可直接执行脚本
+
+业务范围：按 10 元每部采购全部合格真机，预计 600+ 部，不设 600 部上限。
+此脚本只编排核定清单中的设备，不执行购买动作。
+MTC.* 为平台适配；RESULT.* 为我方待实现的授权只读结果通道；
+POLICY.* 为双方冻结的环境与字段质检规则。辅助函数同样需要实际实现。
+read_round 中的判定字段为适配层派生结果，不是现有 HTTP 响应字段。
+已有 GET /api/collect/browser-pairs/{pair_id} 需要专用 poll token，
+不能匿名调用，不得读取 App 私有 token 或记录含凭据的完整探针 URL。
+正式单价所含时长与重跑费用需另行明确；文中超时值仅为调度建议。
+先导与正式批次共用 attempt_count，自动新增轮次上限共两轮。
+所有失败和晚到数据保留，重传不增加设备数和样本数。
+
+CONFIG = {
+  apk: FINAL_APK,
+  package: "com.example.hybridguard.featureapp",
+  activity: ".MainActivity",
+  backend: BACKEND_ORIGIN,
+  probe: PROBE_ORIGIN,
+  run_id: MTC_PLATFORM_RUN_ID,
+  min_api: 21,
+  round_timeout_s: 180,
+  device_timeout_s: 600,
+  max_attempts: 2,       # 首轮加最多一次新增轮次
+  poll_interval_s: 5,
+  parallelism: CONFIRMED_CONCURRENCY
+}
+
+def run_batch():
+  require_all_adapters_ready()
+  manifest = MTC.confirmed_device_manifest()
+  require_unique_platform_device_ids(manifest)
+  require_all_eligible_devices_are_listed(manifest)
+  RESULT.register_manifest(CONFIG.run_id, manifest)
+  # 不在脚本中截取前 600 部，也不执行任何购买动作。
+  ready = RESULT.readiness(CONFIG.backend)
+  require_expected_contract(ready, app=177, browser=67)
+  require_open_single_worker_batch(ready)
+  batch_id = ready.collection_batch_id
+
+  pilot = select_representative_devices(manifest, 20, 30)
+  pilot_results = run_group(pilot, parallelism=5,
+                            expected_batch=batch_id)
+  if not POLICY.pilot_accepted(pilot_results):
+    RESULT.mark_remaining_not_run("PILOT_NOT_ACCEPTED")
+    return RESULT.export_all_results()
+
+  # 已有合格先导数据不强制重复；失败先导项保留待补采。
+  remaining = unpaired_devices_with_retry_budget(manifest)
+  run_group(remaining, CONFIG.parallelism, batch_id)
+  RESULT.reconcile_late_arrivals_without_overwriting()
+  RESULT.export_all_results()
+
+def collect_device(device, expected_batch):
+  deadline = monotonic_now() + CONFIG.device_timeout_s
+  try:
+    MTC.acquire(device)
+    env = MTC.inspect_device(device)
+    RESULT.save_environment(device.id, env)
+    if not POLICY.environment_eligible(env):
+      return RESULT.fail(device.id, "ENVIRONMENT_MISMATCH")
+    MTC.unlock_and_keep_screen_on()
+    MTC.verify_device_network(CONFIG.backend, CONFIG.probe)
+    MTC.install_apk(CONFIG.apk, auto_launch=False)
+    MTC.prepare_qualified_browser(POLICY.browser_rules)
+    used = RESULT.attempt_count(CONFIG.run_id, device.id)
+    for attempt in range(used, CONFIG.max_attempts):
+      if monotonic_now() >= deadline:
+        break
+      require_same_open_batch(expected_batch)
+      round_id = RESULT.next_round(CONFIG.run_id, device.id)
+      MTC.stop_previous_collector_and_probe_if_any()
+      started_at = utc_now()
+      MTC.launch_activity(CONFIG.package, CONFIG.activity,
+        extras=make_extras(device.id, CONFIG.run_id, round_id))
+      round_end = min(deadline,
+        monotonic_now() + CONFIG.round_timeout_s)
+      while monotonic_now() < round_end:
+        require_same_open_batch(expected_batch)
+        MTC.handle_only_agreed_dialogs()
+        r = RESULT.read_round(CONFIG.run_id, device.id,
+                              round_id, started_at)
+        if r.identity_conflict:
+          RESULT.record_attempt(r, "IDENTITY_CONFLICT")
+          break
+        if is_valid_pair(r, expected_batch):
+          return RESULT.record_attempt(r, "PAIRED_VALID")
+        if r.terminal_failure_or_qc_rejection:
+          RESULT.record_attempt(r, classify(r))
+          break
+        sleep(CONFIG.poll_interval_s)
+      RESULT.close_attempt_preserving_partial_data(round_id)
+      MTC.capture_failure_evidence_without_credentials()
+      if not POLICY.recoverable_before(deadline):
+        break
+      MTC.recover_known_browser_or_network_blocker()
+    return RESULT.final_device_result(device.id)
+  except Exception as error:
+    return RESULT.save_error_and_partial(device.id, error)
+  finally:
+    RESULT.flush_execution_log()
+    MTC.release_if_acquired_after_result_saved()
+
+def is_valid_pair(r, expected_batch):
+  if r.identity_conflict or not r.exact_run_device_round_match:
+    return False
+  if not r.app_receipt_valid or not r.browser_receipt_valid:
+    return False
+  if r.pair_status != "completed":
+    return False
+  if r.collection_batch_id != expected_batch:
+    return False
+  if not r.pair_links_exact_app_and_browser_receipts:
+    return False
+  if not r.app_catalog_and_statuses_match_177:
+    return False
+  if not r.browser_catalog_and_statuses_match_67:
+    return False
+  if not r.web_core_revisions_match_frozen_contract:
+    return False
+  return POLICY.accept_field_quality(r)
+
+def make_extras(device_id, run_id, round_id):
+  prefix = "com.example.hybridguard.featureapp."
+  stable_id = approved_device_id_mapping(device_id)
+  require_full_match("[A-Za-z0-9._:-]{1,96}", stable_id)
+  return {
+    prefix + "DEVICE_MANIFEST_ID": stable_id,
+    prefix + "RUNTIME_CONTEXT": "mtc:" + run_id,
+    prefix + "COLLECTION_ROUND": round_id
+  }

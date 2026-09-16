@@ -3,6 +3,9 @@
 
   var STORAGE_KEY = "hybridguard-browser-probe-v1";
   var UPLOAD_TIMEOUT_MS = 12000;
+  var PAIR_POLL_INTERVAL_MS = 2000;
+  var PAIR_WAIT_TIMEOUT_MS = 120000;
+  var MAX_POLL_ERRORS = 3;
   var statusEl = document.getElementById("status");
   var logEl = document.getElementById("log");
   var canvasBox = document.getElementById("canvasBox");
@@ -180,9 +183,13 @@
           responseBody = responseText ? JSON.parse(responseText) : {};
         } catch (_error) {}
         if (xhr.status < 200 || xhr.status >= 300) {
-          var detail =
-            responseBody.detail || responseBody.status || ("http_" + xhr.status);
-          rejectOnce(new Error(detail));
+          var detail = responseBody.detail;
+          var error = new Error(
+            (detail && (detail.code || detail.message || detail)) ||
+            responseBody.status || ("http_" + xhr.status)
+          );
+          error.statusCode = xhr.status;
+          rejectOnce(error);
           return;
         }
         settled = true;
@@ -362,45 +369,155 @@
     });
   }
 
+  function waitForPair(launchContext, receipt, onComplete, onFailure) {
+    var finished = false;
+    var pollTimer = null;
+    var errors = 0;
+    var deadline = Date.now() + PAIR_WAIT_TIMEOUT_MS;
+    var statusUrl = launchContext.browser_upload_url
+      .replace(/[?#].*$/, "")
+      .replace(/\/$/, "") + "/" + encodeURIComponent(launchContext.pair_id) + "/status";
+    var deadlineTimer = global.setTimeout(function () {
+      finish("等待 App 上传并配对超过 120 秒，请记录本轮结果后重试", true);
+    }, PAIR_WAIT_TIMEOUT_MS);
+
+    function finish(reason, timedOut) {
+      if (finished) {
+        return;
+      }
+      finished = true;
+      global.clearTimeout(pollTimer);
+      global.clearTimeout(deadlineTimer);
+      if (reason) {
+        onFailure(reason, timedOut);
+      } else {
+        onComplete();
+      }
+    }
+
+    function schedulePoll() {
+      if (!finished) {
+        pollTimer = global.setTimeout(poll, PAIR_POLL_INTERVAL_MS);
+      }
+    }
+
+    function poll() {
+      var remaining = deadline - Date.now();
+      if (finished) {
+        return;
+      }
+      if (remaining <= 0) {
+        finish("等待 App 上传并配对超过 120 秒，请记录本轮结果后重试", true);
+        return;
+      }
+      // XHR has a native timeout even on browsers without AbortController.
+      xhrJsonRequest(statusUrl, "GET", {
+        "Authorization": "Bearer " + launchContext.browser_ticket,
+        "ngrok-skip-browser-warning": "1"
+      }, null, Math.min(UPLOAD_TIMEOUT_MS, remaining)).then(function (state) {
+        if (finished) {
+          return;
+        }
+        if (Date.now() >= deadline) {
+          finish("等待 App 上传并配对超过 120 秒，请记录本轮结果后重试", true);
+          return;
+        }
+        if (
+          !state || state.status !== "success" ||
+          state.pair_id !== launchContext.pair_id ||
+          state.browser_receipt_id !== receipt.receipt_id
+        ) {
+          finish("后台返回的配对结果与本轮采集不一致", false);
+          return;
+        }
+        errors = 0;
+        if (state.pair_status === "completed") {
+          finish();
+        } else if (
+          state.pair_status === "awaiting_app" ||
+          state.pair_status === "awaiting_app_receipt"
+        ) {
+          schedulePoll();
+        } else if (state.pair_status === "expired") {
+          finish("本轮配对已过期，请重新发起采集", true);
+        } else {
+          finish("后台返回异常配对状态", false);
+        }
+      }, function (error) {
+        if (finished) {
+          return;
+        }
+        errors += 1;
+        if (error.statusCode === 410) {
+          finish("本轮采集凭证已过期，请重新发起采集", true);
+        } else if (
+          (error.statusCode >= 400 && error.statusCode < 500) ||
+          errors >= MAX_POLL_ERRORS
+        ) {
+          finish("无法确认配对状态（" + error.message + "）", false);
+        } else {
+          schedulePoll();
+        }
+      });
+    }
+
+    schedulePoll();
+  }
+
   function run() {
     var launchContext;
     if (!global.HybridGuardWebProbe) {
-      setStatus("Canonical Web probe failed to load.", true);
+      setStatus("采集失败：网页采集模块加载失败", true);
       return;
     }
     try {
       launchContext = readLaunchContext();
     } catch (_error) {
-      setStatus("No valid one-time collection ticket. Please launch this page from the app.", true);
+      setStatus("采集失败：采集链接无效，请从 App 重新发起本轮采集", true);
       return;
     }
     reportStage(launchContext, "adapter_started");
 
-    function finishUpload(receipt) {
+    function completePair() {
       try {
         sessionStorage.removeItem(STORAGE_KEY);
         sessionStorage.removeItem(STORAGE_KEY + ":payload");
       } catch (_error) {}
-      var receiptId = receipt.receipt_id ? " Receipt " + receipt.receipt_id + "." : "";
+      setStatus("本机采集完成", false);
+      log("App and browser uploads are paired for this collection round.", "good");
+    }
+
+    function finishUpload(receipt) {
+      if (
+        !receipt || receipt.status !== "success" ||
+        receipt.pair_id !== launchContext.pair_id ||
+        typeof receipt.receipt_id !== "string" || !receipt.receipt_id
+      ) {
+        throw new Error("后台上传回执与本轮采集不一致");
+      }
       if (
         receipt.pair_status === "awaiting_app" ||
         receipt.pair_status === "awaiting_app_receipt"
       ) {
         setStatus(
-          "Browser payload saved, waiting for app binding." + receiptId,
+          "Browser payload saved, waiting for app binding.",
           false
         );
-        log("Backend saved the browser payload; app binding is still pending.", "good");
+        waitForPair(launchContext, receipt, completePair, function (reason, timedOut) {
+          setStatus((timedOut ? "配对超时：" : "采集失败：") + reason, true);
+        });
         return;
       }
-      setStatus("Browser collection complete." + receiptId + " You may close this tab.", false);
-      log("Backend receipt verified", "good");
+      if (receipt.pair_status !== "completed") {
+        throw new Error("后台尚未确认本轮配对完成");
+      }
+      completePair();
     }
 
     function failUpload(error) {
       reportStage(launchContext, "upload_failed");
       setStatus(
-        "Browser collection could not be uploaded: " +
+        "采集失败：" +
           global.HybridGuardWebProbe.describeError(error),
         true
       );

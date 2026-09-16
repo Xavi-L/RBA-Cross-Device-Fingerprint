@@ -30,6 +30,8 @@ function createAdapterHarness({
   abortUploads = false,
   useXhr = false,
 } = {}) {
+  uploadResponse = { status: "success", pair_id: "hgpair-v1-test", ...uploadResponse };
+  const timers = new Set();
   const elements = {
     status: { textContent: "", className: "" },
     log: {
@@ -121,10 +123,9 @@ function createAdapterHarness({
       },
     },
     setTimeout(callback, delay) {
-      if (abortUploads || delay < 12000) {
-        return setTimeout(callback, 0);
-      }
-      return setTimeout(callback, delay);
+      const timer = setTimeout(callback, abortUploads || delay < 12000 ? 0 : delay);
+      timers.add(timer);
+      return timer;
     },
   };
 
@@ -149,7 +150,8 @@ function createAdapterHarness({
         text: async () => JSON.stringify(uploadResponse),
       };
     };
-  } else {
+  }
+  {
     window.XMLHttpRequest = class FakeXMLHttpRequest {
       constructor() {
         this.headers = {};
@@ -176,6 +178,11 @@ function createAdapterHarness({
             uploadBodies.push(body);
           }
           this.responseText = JSON.stringify(uploadResponse);
+        } else if (this.url.endsWith("/status")) {
+          this.responseText = JSON.stringify({
+            ...uploadResponse,
+            browser_receipt_id: uploadResponse.receipt_id,
+          });
         } else {
           this.responseText = JSON.stringify({ sha256: "a".repeat(64) });
         }
@@ -223,6 +230,7 @@ function createAdapterHarness({
       for (let index = 0; index < 20; index += 1) {
         await new Promise((resolve) => setTimeout(resolve, 0));
       }
+      for (const timer of timers) clearTimeout(timer);
     },
     runBootstrap: async (source) => {
       vm.runInContext(source, context);
@@ -334,7 +342,7 @@ test("awaiting app statuses are reported as saved, not fully paired", async (t) 
         harness.elements.status.textContent,
         /Browser payload saved, waiting for app binding\./,
       );
-      assert.doesNotMatch(harness.elements.status.textContent, /collection complete/i);
+      assert.doesNotMatch(harness.elements.status.textContent, /本机采集完成/);
       assert.equal(harness.uploadBodies.length, 1);
     });
   }
@@ -354,7 +362,7 @@ test("upload timeout retries the exact same serialized payload three times", asy
   assert.equal(harness.abortedUploadCount(), 3);
   assert.match(
     harness.elements.status.textContent,
-    /Browser collection could not be uploaded/,
+    /^采集失败：/,
   );
 });
 
