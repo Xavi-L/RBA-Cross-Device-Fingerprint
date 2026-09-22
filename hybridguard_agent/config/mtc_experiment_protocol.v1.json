@@ -1,0 +1,115 @@
+{
+  "protocol_version": "mtc-experiment-protocol-v1",
+  "source_snapshot": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final",
+  "source_manifest_version": "mtc-paired244-snapshot-v2",
+  "source_record_version": "hybridguard-mtc-observation-v2",
+  "grouping": {
+    "algorithm": "transitive_union",
+    "keys": [
+      "exact_manufacturer_model_across_android_versions",
+      "collector_install_id",
+      "app_session_id",
+      "declared_scenario_id",
+      "verified_identity_key"
+    ],
+    "manufacturer_model_normalization": "none_preserve_exact_source_strings",
+    "physical_device_identity_inferred": false,
+    "unknown_identity_policy": "conservative_observed_profile_group_not_physical_device_proof"
+  },
+  "split": {
+    "algorithm": "sha256_bucket_100",
+    "seed": "mtc-p2-reference-split-v1-20260922",
+    "thresholds": [
+      [
+        "discovery",
+        0,
+        70
+      ],
+      [
+        "development",
+        70,
+        85
+      ],
+      [
+        "reserved_validation",
+        85,
+        100
+      ]
+    ],
+    "seed_selection_policy": "single_predeclared_seed_no_reroll_for_coverage_or_outcomes",
+    "unit": "whole_transitive_leakage_group"
+  },
+  "primary_cohort": {
+    "view": "paired_244",
+    "representative_unit": "exact_manufacturer_model_android_release",
+    "representative_selection": "smallest_app_raw_source_line_then_sample_id",
+    "all_other_observations": "retain_in_same_split_for_repeatability_and_missingness_only",
+    "support_unit": "unique_leakage_group_never_session_count"
+  },
+  "admission": {
+    "minimum_groups_for_rule_discovery": 5,
+    "minimum_groups_per_detection_split": 5,
+    "minimum_groups_per_detection_class_per_split": 2,
+    "group_count_floor_is_statistical_sufficiency": false,
+    "reference_requires": "independent_record_of_no_active_intervention",
+    "detection_requires": [
+      "verified_independent_labels",
+      "verified_cross_run_or_provider_identity",
+      "complete_baseline_attack_active_scenario",
+      "observed_target_field_effect",
+      "frozen_rules_and_runtime",
+      "predeclared_evaluation_protocol"
+    ],
+    "legacy_labels_imported": false
+  },
+  "pre_split_exposure": {
+    "all_data_qc_seen": true,
+    "all_data_numeric_and_literal_difference_diagnostics_seen": true,
+    "new_rules_mined": false,
+    "new_attack_metrics_seen": false,
+    "pristine_blind_holdout": false,
+    "reserved_validation_role": "prospectively_reserved_after_global_QC; not a never-inspected external test",
+    "source_documents": [
+      "deliverables/paired244_reassessment_20260922/AUDIT.json",
+      "deliverables/mtc_p1_20260922/P1_REPORT.md",
+      "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/field_quality.json"
+    ]
+  },
+  "stage_capabilities": {
+    "rule_discovery_input_selection": true,
+    "development_input_selection": true,
+    "reserved_validation_input_release": false,
+    "model_training": false,
+    "threshold_optimization": false,
+    "detection_metrics": false,
+    "rule_execution": false
+  },
+  "future_data_policy": "Never append to this frozen split. New verified links or attack data require a new version and explicit cross-split conflict audit; never move existing reserved groups to repair leakage after viewing results.",
+  "research_principle": "旧实验只参考设计思路，不继承旧结论，不以达到旧效果为目标；全部负结果、未知状态及失败保留。",
+  "collection_policy": "Local backend and ngrok retired. Offline inputs only; no procurement reconciliation.",
+  "candidate_support_floor": {
+    "global_empirical": {
+      "discovery_groups": 30,
+      "development_groups": 10,
+      "discovery_manufacturers": 3,
+      "development_manufacturers": 2
+    },
+    "scoped_empirical": {
+      "discovery_groups": 10,
+      "development_groups": 5,
+      "discovery_manufacturers": 1,
+      "development_manufacturers": 1
+    },
+    "counting_unit": "applicable_unique_leakage_groups; never session totals",
+    "below_floor_action": "descriptive_candidate_only_no_empirical_rule_promotion",
+    "passing_floor_is_sufficient": false,
+    "other_requirements": [
+      "predeclared_semantic_scope",
+      "source_and_field_availability_evidence",
+      "all_counterexamples_retained",
+      "frozen_expression_and_tolerance_before_reserved_validation"
+    ],
+    "legacy_effect_or_rule_count_target": false,
+    "official_only_boundary": "Pure official semantic constraints are source-governed separately; applying this dataset to calibrate them creates an empirical component subject to these floors."
+  }
+}

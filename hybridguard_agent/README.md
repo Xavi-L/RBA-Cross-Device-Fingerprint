@@ -1,17 +1,58 @@
 # HybridGuard 研究数据管线
 
-这个目录把现有的采集、规则、官方知识和后续 Agent/RAG 研究组织成可冻结、可重跑的离线管线。当前默认入口只处理最新版 FeatureApp 的 App177 与独立 Browser67，并可把最新快照安全接到既有确定性离线运行时；下面保留的旧云数据和历史攻击 pilot 属于逻辑归档，不进入最新 paired244 主视图。
+这个目录把现有的采集、规则、官方知识和后续 Agent/RAG 研究组织成可冻结、可重跑的离线管线。当前研究入口是下方 MTC v2 离线 QC 快照，接纳 v9 与 v11；v1 运行时适配属于 P4。旧 v8 管线、旧云数据和历史攻击 pilot 仅保留为历史材料，不混入 MTC 主视图。
 
 它不替代现有目录：
 
-- `backend_server/raw_expanded_payloads.jsonl` 与 receipt 是 App canonical 权威输入；`expanded_collected_data.jsonl` 只是配套的 analysis/projection 视图；
+- 当前权威输入是 `backend_server/collection_backups/mtc_final_20260922/sources/` 内的 App／Browser raw、receipt 与 provenance；后端根目录旧文件不进入 MTC 分析；
 - `scoring/rule_knowledge_base.json` 和 `google_official_kb/` 仍是规则与官方知识的权威来源；
 - `hybridguard-browser-fingerprint-research/` 仍是攻击侧同学维护的执行日志和证据仓库；
 - 本目录只生成契约、样本 manifest、QC、冻结快照和离线运行所需的派生产物。
 
 历史云真机的 `field-status` 补标规则见 [HISTORICAL_FIELD_STATUS.md](HISTORICAL_FIELD_STATUS.md)。旧 snapshot 管线使用独立的 `field_status.jsonl` sidecar；当前 paired244 入口直接保留 App177/Browser67 已上报的逐字段状态，并与特征值分栏存放。两条管线都不会改写原始 JSONL，也不会给 Browser 失败样本补造67项。
 
-## 当前活跃入口：最新版 paired244 快照、离线运行与实验准入
+## 当前入口：MTC snapshot v2（2026-09-22）
+
+本机后端与 ngrok 已退役，后续离线分析不再启动采集服务。统计以自有数据为准，采购对账已取消。研究遵循：旧实验只提供设计参考，不继承旧结论，也不以复现旧效果为验收目标。
+
+P0、P1 已完成：接收 1,029 条完成配对、891 个厂商／型号／系统组合；QC 主视图保留 1,028 条配对，仍覆盖 891 个组合。另 1 条配对保留为部分数据，原始记录不删除。v2 区分采集状态、已知默认哨兵和数值表示；P2 已冻结分组／切分和任务准入；P3 已完成旧规则基线与有限候选研究目录。独立事实标签仍缺失，检测指标未准入，v1 决策运行时适配留在 P4。
+
+```bash
+python3 hybridguard_agent/scripts/build_mtc_paired244_snapshot.py \
+  --config hybridguard_agent/config/mtc_paired244_sources.v2.json \
+  --output-dir hybridguard_agent/artifacts/mtc_v2_NEW_RUN
+```
+
+输出目录必须不存在。正式 P1 产物是 `artifacts/mtc_paired244_v2_20260922_final/`；详细报告与验证见 [P1 报告](../deliverables/mtc_p1_20260922/P1_REPORT.md)、[阶段计划](../deliverables/paired244_reassessment_20260922/PLAN.md)。以下 v8 命令及“最新”命名保留历史语义，不适用于本次 MTC 主研究。
+
+## MTC P2：分组、切分与任务准入（已完成）
+
+正式产物：`artifacts/mtc_p2_frozen_20260922/`。P1 的 891 个型号／系统统计口径不变；用于防泄漏时，同一厂商＋型号跨系统整组分配，合格配对涉及 868 个分组。发现／开发／保留验证各有 630／144／117 个代表记录，组数分别是 610／142／116。
+
+```bash
+python3 hybridguard_agent/scripts/build_mtc_experiment_plan.py \
+  --output-dir hybridguard_agent/artifacts/mtc_p2_NEW_RUN
+```
+
+P3 规则发现从 `discovery_inputs.jsonl` 进入，开发检查从 `development_inputs.jsonl` 进入；两者仅包含样本和源数据引用，不含标签、scenario 或阶段信息。保留验证集未导出执行输入，直到规则和评价协议冻结后再按新阶段合同解锁。P2 只建立准入控制，不运行规则或检测指标。
+
+主代表记录按每型号／系统的最早合格配对固定，不按告警、分数、字段完整率选择。全部重复、App-only 和部分数据保留在同组；支持度按组计。全量 QC 已暴露的事实明确保留，不能把保留集称为从未查看的外部盲测集。详见 [P2 报告](../deliverables/mtc_p2_20260922/P2_REPORT.md)、[事实标准](../deliverables/mtc_p2_20260922/FACT_STANDARD.md)。
+
+## MTC P3：旧规则重验与研究目录 v2（已完成）
+
+权威输出：`artifacts/mtc_p3_legacy_20260922/` 与 `artifacts/mtc_p3_discovery_20260922_r2/`。发现／开发仅使用冻结的 630／144 个代表记录；保留验证继续锁定。45 个有限模板筛选后，30 项进入离线研究目录：10 经验关系、14 语义约束、6 采集器自洽项；15 项落选或仅描述，全部结果与反例保留。它们不是 30 条独立的新攻击规则，没有风险权重或检测效果结论。
+
+旧基线发现 provider 包版本首段不能无条件当作 Chromium major；低传感器数量也不能直接当作攻击。处置与后续运行时边界见 [P3 报告](../deliverables/mtc_p3_20260922/P3_REPORT.md)、[候选清单](../deliverables/mtc_p3_20260922/CANDIDATES.md)、[旧规则基线](../deliverables/mtc_p3_20260922/LEGACY_BASELINE.md)。首次运行的 Native OS 前缀解析缺陷已修复，初次输出保留作废标记；修正版披露开发集先前暴露，不更改模板或筛选阈值。
+
+```bash
+python3 hybridguard_agent/scripts/run_mtc_p3_discovery.py \
+  --config-dir hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2 \
+  --out-dir hybridguard_agent/artifacts/mtc_p3_NEW_RUN
+```
+
+输出目录必须不存在。执行器只接收字段值、状态和质量，分组／画像仅用于外部统计；不向模型或规则输入标签。44 项重点测试与完整反例核验已通过，P4 的生产运行时接入尚未开展。
+
+## 历史 v8 入口：paired244 快照、离线运行与实验准入
 
 第一批施工已经完成数据选择、配对和 QC；第二批只把其中的 App177 接到既有 EvidenceBundle v2 与确定性离线运行时，并为完成配对的样本生成独立 Browser 对比 sidecar。Browser sidecar 不进入规则、检索或决策，也不产生模型分数。当前发布锁为：
 

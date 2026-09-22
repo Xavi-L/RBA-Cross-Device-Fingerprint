@@ -1,3 +1,5 @@
+> **2026-09-22：本机采集链已退役。** 用户明确停止使用本机后端与 ngrok。以下启动／运维说明仅作历史记录，不再执行；后续分析使用 `backend_server/collection_backups/mtc_final_20260922/`。停机与冻结证据见 `deliverables/mtc_p0_20260922/`。
+
 # 后端服务启动与接口测试
 
 本目录下的 FastAPI 服务负责托管 Web 探针、接收三端设备指纹、按 `session_id` 合并会话，并接收 `riskapp` 端侧评分摘要。
@@ -7,14 +9,18 @@
 正式云测采集时，在 `backend_server/` 目录下启动一个后端进程：
 
 ```bash
-python3 main.py
+HYBRIDGUARD_DATA_DIR="$PWD/collection_runs/mtc_20260917" python3 main.py
 ```
 
 也可以直接使用单 worker 的 uvicorn：
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
+HYBRIDGUARD_DATA_DIR="$PWD/collection_runs/mtc_20260917" uvicorn main:app --host 0.0.0.0 --port 8000
 ```
+
+全部 JSON／JSONL（含会话、回执、App 原始数据、浏览器数据、配对记录和批次台账）均写入指定目录，只加载该目录已有会话，不再读取或追加后端根目录的旧文件。未设置 `HYBRIDGUARD_DATA_DIR` 时，每次启动自动创建 `collection_runs/run_<UTC时间>_<随机后缀>/`；相对目录以 `backend_server/` 为基准。恢复同一次提测时明确指定原目录，新一次独立实验换一个目录名。
+
+`GET /api/collect/readiness` 的 `collection_storage_name` 和 `collection_storage_isolated` 可用于核对目录隔离是否生效。数据文件在首次上报时创建，独立目录与备份目录已排除出 Git。
 
 一次后端进程从启动到停止就是一个自动生成的 `collection_batch_id`。多台云设备可以同时安装、打开 App 并上传；它们会并发连接到同一个后端，但在单 worker 内依次落盘，仍属于同一批次。App 不需要设置任何 batch Intent 参数。
 
@@ -49,10 +55,11 @@ curl http://localhost:8000/api/collect/readiness
 
 在云测平台开始前启动服务并记录 `/api/collect/readiness` 返回的
 `collection_batch_id`（仅用于核对，不需要填入 App）。平台完成后用 `Ctrl+C` 正常停止
-后端；这会关闭该批次。随后运行：
+后端；这会关闭该批次。随后进入本次数据目录运行导出：
 
 ```bash
-python3 export_session_provenance.py \
+cd collection_runs/mtc_20260917
+python3 ../../export_session_provenance.py \
   --platform-provider '<platform-name>' \
   --input raw_expanded_payloads.jsonl \
   --receipts collection_receipts.jsonl \

@@ -1,0 +1,157 @@
+{
+  "schema_version": "mtc-p3-semantic-sources-v1",
+  "reviewed_on": "2026-09-22",
+  "review_method": "Collector and field-contract review plus current primary official documentation; no MTC fingerprint observations or held-out values inspected by this semantic review.",
+  "provenance_policy": {
+    "official_document": "Direct source semantics only; not a project relation or risk verdict.",
+    "official_derived_semantic_rule": "Project inference using official semantics and explicit collector/context assumptions.",
+    "device_mined_rule": "Relation or tolerance learned or empirically selected using discovery/development observations; official citations do not remove data dependence.",
+    "collector_implementation_invariant": "Constraint caused by the collector's own assignments; not independent cross-surface evidence."
+  },
+  "sources": [
+    {
+      "id": "android-webview-ua-reduction",
+      "title": "User-Agent Reduction on Android WebView",
+      "url": "https://android-developers.googleblog.com/2024/12/user-agent-reduction-on-android-webview.html",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getNavigatorFeatures", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:collectWebViewHostFlat"],
+      "scope": "Current page says default WebView UA reduction begins in Android 17; Chrome desktop/Android UA reduced since Chrome 107. Reduced OS/CPU/build token is not the actual device OS.",
+      "limitations": "Page publication date is 2024 but content has changed; custom UA remains possible. Do not use an old Android 16 threshold or require Browser and WebView UA equality."
+    },
+    {
+      "id": "android-websettings-api",
+      "title": "WebSettings user agent APIs",
+      "url": "https://developer.android.com/reference/android/webkit/WebSettings#setUserAgentString(java.lang.String)",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:configureWebView", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:webViewSettingsSnapshot"],
+      "scope": "Settings user agent identifies the specific WebView configuration; applications may override it.",
+      "limitations": "Default UA, settings UA, runtime JS UA and external Browser UA are distinct observations. Equality needs instance and timing assumptions."
+    },
+    {
+      "id": "android-webview-provider-api",
+      "title": "WebView getCurrentWebViewPackage",
+      "url": "https://developer.android.com/reference/android/webkit/WebView#getCurrentWebViewPackage()",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:collectWebViewHostFlat", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt:minimumApi"],
+      "scope": "Current provider package API exists from API 26; collector parses version prefix into provider_major.",
+      "limitations": "Package version convention is not a universal proof of renderer Chrome version; unavailable provider data is not a conflict."
+    },
+    {
+      "id": "android-display-metrics",
+      "title": "DisplayMetrics available display dimensions and density",
+      "url": "https://developer.android.com/reference/android/util/DisplayMetrics",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:40", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:113"],
+      "scope": "widthPixels/heightPixels describe available display dimensions. The field named screen_resolution_physical is collected from resources.displayMetrics and must be interpreted as App reported display size. scaledDensity deprecated at API 34 because adaptive nonlinear font scaling invalidates simple scale assumptions.",
+      "limitations": "Do not call this field native physical panel resolution or equate it with Display.Mode, Browser viewport, xdpi/ydpi or devicePixelRatio."
+    },
+    {
+      "id": "android-display-mode",
+      "title": "Display.Mode physical dimensions",
+      "url": "https://developer.android.com/reference/android/view/Display.Mode#getPhysicalWidth()",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:48"],
+      "scope": "Current mode width/height in pixels; methods added API 23. Application UI scaling can produce different App available dimensions.",
+      "limitations": "Current mode dimensions are not a guarantee of native panel resolution or CSS viewport dimensions."
+    },
+    {
+      "id": "cssom-view-dpr",
+      "title": "CSSOM View Module devicePixelRatio and screen geometry",
+      "url": "https://drafts.csswg.org/cssom-view/#dom-window-devicepixelratio",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getScreenFeatures"],
+      "scope": "CSS pixels, reported screen area and devicePixelRatio; DPR uses current page zoom with scale factor 1.0.",
+      "limitations": "Editor's draft as inspected 2026-09-22. Page zoom and visual viewport scale are distinct; reported screen, available screen, client and visual viewport sizes are not interchangeable. No universal Native panel equality follows."
+    },
+    {
+      "id": "khronos-webgl-renderer-info",
+      "title": "WEBGL_debug_renderer_info extension",
+      "url": "https://registry.khronos.org/webgl/extensions/WEBGL_debug_renderer_info/",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getWebGLInfo", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:collectNativeGraphicsLayer"],
+      "scope": "Underlying graphics vendor/renderer strings may be privacy masked; this optional extension exposes unmasked strings.",
+      "limitations": "Probe only reads strings when extension exists. Unknown or masked strings cannot become GPU-family contradictions; ANGLE/driver wrappers need explicit normalization. native_gpu_renderer and egl_renderer are assigned the same local value."
+    },
+    {
+      "id": "html-canvas-context-mode",
+      "title": "HTML canvas getContext context mode",
+      "url": "https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext-dev",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:321", "web_probe/canonical_web_probe.js:323", "web_probe/canonical_web_probe.js:324"],
+      "scope": "Requesting a different context type on a canvas already bound to one returns null. Probe requests WebGL1 then WebGL2 on the same canvas.",
+      "limitations": "webgl2_supported=false can be a probe artifact when WebGL1 succeeds; exclude it from real capability inference. Do not retroactively alter observations or repair the collector within a rule experiment."
+    },
+    {
+      "id": "whatwg-hardware-concurrency",
+      "title": "Navigator hardwareConcurrency",
+      "url": "https://html.spec.whatwg.org/multipage/workers.html#dom-navigator-hardwareconcurrency",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getNavigatorFeatures"],
+      "scope": "Potentially available logical processors, with user-agent limits/privacy lowering allowed. Standard value is at least 1; probe fallback is 0.",
+      "limitations": "Cross-container equality and equality to actual CPU cores do not follow. Zero is ambiguous fallback; one remains valid."
+    },
+    {
+      "id": "w3c-device-memory",
+      "title": "Device Memory API, Working Draft 2026-03-30",
+      "url": "https://www.w3.org/TR/2026/WD-device-memory-1-20260330/",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getNavigatorFeatures", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:memoryLayer"],
+      "scope": "Approximate quantized memory in GiB, secure context, implementation-defined lower/upper bounds that may change over time and device type.",
+      "limitations": "Working draft, not universal implementation attestation. Do not hardcode 8 GiB as permanent maximum. Probe zero fallback is not real RAM; Native totalMem/1024^3 is not directly equal to Web memory."
+    },
+    {
+      "id": "android-sensor-manager",
+      "title": "SensorManager getSensorList and getDefaultSensor",
+      "url": "https://developer.android.com/reference/android/hardware/SensorManager#getDefaultSensor(int)",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:141", "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:hasSensor"],
+      "scope": "Default sensor requires existence and permissions; list includes wake-up and non-wake-up sensors. Counts and distinct type/name/vendor lists are generated from one collector list.",
+      "limitations": "Do not require has_sensor iff type membership; only positive implication is a conservative project candidate. Count bounds are collector self-consistency, not new independent device relations."
+    },
+    {
+      "id": "android-timezone-raw-offset",
+      "title": "TimeZone getRawOffset",
+      "url": "https://developer.android.com/reference/java/util/TimeZone#getRawOffset()",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:localeLayer"],
+      "scope": "Native offset is standard-time raw offset excluding daylight saving, converted from milliseconds to minutes.",
+      "limitations": "Not directly the negative of current JavaScript timezoneOffset when DST applies; identical zone IDs are not required for aliases."
+    },
+    {
+      "id": "ecmascript-timezone-offset",
+      "title": "ECMAScript Date.prototype.getTimezoneOffset",
+      "url": "https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date.prototype.gettimezoneoffset",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getExecutionFeatures"],
+      "scope": "Current Date timezone offset in minutes, with UTC-minus-local convention.",
+      "limitations": "Compare timestamps/settings when relating observations; Native rawOffset excludes DST and has opposite sign."
+    },
+    {
+      "id": "w3c-web-audio-privacy",
+      "title": "Web Audio API privacy considerations",
+      "url": "https://www.w3.org/TR/webaudio/#privacy-security",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getAudioFeatures"],
+      "scope": "Rendering differences arise from DSP architecture, resampling, rounding, compiler and CPU implementation. Probe task sample rate derives from real-time context or 44100 fallback.",
+      "limitations": "Cross-container audio hash equality is not a universal invariant. Probe audio_output_latency mixes outputLatency and baseLatency; no direct hardware latency equality."
+    },
+    {
+      "id": "whatwg-navigator-plugins",
+      "title": "HTML NavigatorPlugins PDF compatibility surface",
+      "url": "https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-plugins",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["web_probe/canonical_web_probe.js:getAutomationFeatures"],
+      "scope": "Modern plugin/mime arrays are a PDF compatibility surface, including standard lists when supported and empty lists otherwise.",
+      "limitations": "Not an installed-plugin inventory or independent device identity. Older engines and per-browser PDF settings differ; zero may be valid or fallback."
+    },
+    {
+      "id": "android-memory-info",
+      "title": "ActivityManager.MemoryInfo",
+      "url": "https://developer.android.com/reference/android/app/ActivityManager.MemoryInfo",
+      "knowledge_source_type": "official_document",
+      "local_evidence": ["android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:collectNativeLayered"],
+      "scope": "Collector reads availMem and totalMem from the same MemoryInfo and divides both by 1024^3; nonnegative available-memory versus total-memory bound is a semantic/collector consistency candidate.",
+      "limitations": "MemoryInfo is runtime usable-memory information, not retail memory capacity. This does not justify exact alignment with browser deviceMemory or an attack conclusion."
+    }
+  ]
+}

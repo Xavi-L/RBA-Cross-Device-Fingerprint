@@ -1,0 +1,145 @@
+{
+  "plan_version": "mtc-experiment-plan-v1",
+  "created_at_utc": "2026-09-22T11:31:36.478375+00:00",
+  "p2_status": "COMPLETE",
+  "source_snapshot": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final",
+  "source_cutoff_utc": "2026-09-22T08:39:43.167513Z",
+  "protocol_version": "mtc-experiment-protocol-v1",
+  "split_seed": "mtc-p2-reference-split-v1-20260922",
+  "research_principle": "旧实验只参考设计思路，不继承旧结论，不以达到旧效果为目标；全部负结果、未知状态及失败保留。",
+  "statistical_basis": "own_frozen_MTC_inventory",
+  "observations": 1699,
+  "app_sessions": 1693,
+  "observed_installations": 1118,
+  "model_families": 882,
+  "model_os_profiles": 906,
+  "leakage_groups": 882,
+  "multi_model_groups": 0,
+  "primary_paired_observations": 1028,
+  "primary_model_os_representatives": 891,
+  "paired_leakage_groups": 868,
+  "split_counts": {
+    "discovery": {
+      "all_groups": 619,
+      "paired_groups": 610,
+      "all_observations": 1185,
+      "paired_observations": 714,
+      "representative_groups": 610,
+      "model_os_representatives": 630,
+      "view_counts": {
+        "app_only_177": 456,
+        "repeated_observations": 6,
+        "partial": 9,
+        "paired_244": 714
+      }
+    },
+    "development": {
+      "all_groups": 145,
+      "paired_groups": 142,
+      "all_observations": 274,
+      "paired_observations": 179,
+      "representative_groups": 142,
+      "model_os_representatives": 144,
+      "view_counts": {
+        "app_only_177": 95,
+        "paired_244": 179
+      }
+    },
+    "reserved_validation": {
+      "all_groups": 118,
+      "paired_groups": 116,
+      "all_observations": 240,
+      "paired_observations": 135,
+      "representative_groups": 116,
+      "model_os_representatives": 117,
+      "view_counts": {
+        "app_only_177": 103,
+        "partial": 2,
+        "paired_244": 135
+      }
+    }
+  },
+  "cross_split_known_link_violations": 0,
+  "fact_sidecar_rows": 0,
+  "verified_label_rows": 0,
+  "verified_identity_rows": 0,
+  "reference_fact_rows": 0,
+  "declared_scenario_repetitions": 0,
+  "qualified_two_state_scenarios": 0,
+  "detection_class_group_counts": {
+    "discovery": {
+      "false": 0,
+      "true": 0
+    },
+    "development": {
+      "false": 0,
+      "true": 0
+    },
+    "reserved_validation": {
+      "false": 0,
+      "true": 0
+    }
+  },
+  "detection_data_group_totals": {
+    "discovery": 0,
+    "development": 0,
+    "reserved_validation": 0
+  },
+  "detection_data_prerequisites_met": false,
+  "task_gates": {
+    "rule_discovery": "READY_FOR_P3",
+    "rule_development": "REFERENCE_COUNTEREXAMPLES_ONLY_NO_DETECTION_METRICS",
+    "reserved_rule_validation": "LOCKED_PENDING_FROZEN_RULES_AND_P6_PROTOCOL",
+    "verified_reference_validation": "NOT_EVALUATED_NO_INDEPENDENT_REFERENCE_RECORDS",
+    "paired244_detection_metrics": "NOT_EVALUATED_REQUIRES_LABELS_IDENTITIES_SCENARIOS_P4_P5_P6"
+  },
+  "pre_split_exposure": {
+    "all_data_qc_seen": true,
+    "all_data_numeric_and_literal_difference_diagnostics_seen": true,
+    "new_rules_mined": false,
+    "new_attack_metrics_seen": false,
+    "pristine_blind_holdout": false,
+    "reserved_validation_role": "prospectively_reserved_after_global_QC; not a never-inspected external test",
+    "source_documents": [
+      "deliverables/paired244_reassessment_20260922/AUDIT.json",
+      "deliverables/mtc_p1_20260922/P1_REPORT.md",
+      "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/field_quality.json"
+    ]
+  },
+  "stage_capabilities": {
+    "rule_discovery_input_selection": true,
+    "development_input_selection": true,
+    "reserved_validation_input_release": false,
+    "model_training": false,
+    "threshold_optimization": false,
+    "detection_metrics": false,
+    "rule_execution": false
+  },
+  "candidate_support_floor": {
+    "global_empirical": {
+      "discovery_groups": 30,
+      "development_groups": 10,
+      "discovery_manufacturers": 3,
+      "development_manufacturers": 2
+    },
+    "scoped_empirical": {
+      "discovery_groups": 10,
+      "development_groups": 5,
+      "discovery_manufacturers": 1,
+      "development_manufacturers": 1
+    },
+    "counting_unit": "applicable_unique_leakage_groups; never session totals",
+    "below_floor_action": "descriptive_candidate_only_no_empirical_rule_promotion",
+    "passing_floor_is_sufficient": false,
+    "other_requirements": [
+      "predeclared_semantic_scope",
+      "source_and_field_availability_evidence",
+      "all_counterexamples_retained",
+      "frozen_expression_and_tolerance_before_reserved_validation"
+    ],
+    "legacy_effect_or_rule_count_target": false,
+    "official_only_boundary": "Pure official semantic constraints are source-governed separately; applying this dataset to calibrate them creates an empirical component subject to these floors."
+  },
+  "sampling_boundary": "One earliest QC-paired representative per exact model/OS for the primary reference cohort; support and uncertainty must aggregate by leakage group. No physical independence claim.",
+  "annotation_boundary": "No facts inferred from MTC origin, legacy labels, model scores, rule alerts or browser differences. Supplied verified assertions require upstream evidence review; file existence is only a join contract check."
+}

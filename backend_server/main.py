@@ -267,25 +267,43 @@ app.add_middleware(
 sessions_db = {}
 expanded_sessions_db = {}
 
-# 如果本地已有数据文件，启动时先加载进来（防止重启服务器丢数据）
-# 所有采集数据固定写在 backend_server/ 下，避免从不同目录启动时散落到项目根目录。
+# 每次默认启动使用独立目录；只有明确指定目录时才恢复该目录中的历史会话。
 BACKEND_DIR = Path(__file__).resolve().parent
-DB_FILE = BACKEND_DIR / "merged_sessions.json"
-EXPANDED_DB_FILE = BACKEND_DIR / "expanded_merged_sessions.json"
-COLLECTED_JSONL_FILE = BACKEND_DIR / "collected_data.jsonl"
-EXPANDED_COLLECTED_JSONL_FILE = BACKEND_DIR / "expanded_collected_data.jsonl"
-COLLECTION_RECEIPTS_JSONL_FILE = BACKEND_DIR / "collection_receipts.jsonl"
-RAW_EXPANDED_PAYLOADS_JSONL_FILE = BACKEND_DIR / "raw_expanded_payloads.jsonl"
-COLLECTION_BATCHES_JSONL_FILE = BACKEND_DIR / "collection_batches.jsonl"
-ACTIVE_COLLECTION_BATCH_STATE_FILE = BACKEND_DIR / "active_collection_batch.json"
-LOCAL_SCORE_JSONL_FILE = BACKEND_DIR / "local_score_results.jsonl"
-RAW_BROWSER_PAYLOADS_JSONL_FILE = BACKEND_DIR / "raw_browser_payloads.jsonl"
+
+
+def resolve_collection_data_dir() -> Path:
+    configured = os.getenv("HYBRIDGUARD_DATA_DIR", "").strip()
+    if configured:
+        selected = Path(configured).expanduser()
+        if not selected.is_absolute():
+            selected = BACKEND_DIR / selected
+    else:
+        run_name = datetime.utcnow().strftime("run_%Y%m%dT%H%M%S") + "_" + uuid.uuid4().hex[:8]
+        selected = BACKEND_DIR / "collection_runs" / run_name
+    selected = selected.resolve()
+    if selected == BACKEND_DIR:
+        raise ValueError("HYBRIDGUARD_DATA_DIR must be a dedicated collection directory, not backend_server")
+    selected.mkdir(parents=True, exist_ok=True)
+    return selected
+
+
+DATA_DIR = resolve_collection_data_dir()
+DB_FILE = DATA_DIR / "merged_sessions.json"
+EXPANDED_DB_FILE = DATA_DIR / "expanded_merged_sessions.json"
+COLLECTED_JSONL_FILE = DATA_DIR / "collected_data.jsonl"
+EXPANDED_COLLECTED_JSONL_FILE = DATA_DIR / "expanded_collected_data.jsonl"
+COLLECTION_RECEIPTS_JSONL_FILE = DATA_DIR / "collection_receipts.jsonl"
+RAW_EXPANDED_PAYLOADS_JSONL_FILE = DATA_DIR / "raw_expanded_payloads.jsonl"
+COLLECTION_BATCHES_JSONL_FILE = DATA_DIR / "collection_batches.jsonl"
+ACTIVE_COLLECTION_BATCH_STATE_FILE = DATA_DIR / "active_collection_batch.json"
+LOCAL_SCORE_JSONL_FILE = DATA_DIR / "local_score_results.jsonl"
+RAW_BROWSER_PAYLOADS_JSONL_FILE = DATA_DIR / "raw_browser_payloads.jsonl"
 BROWSER_PROVISIONAL_PAYLOADS_JSONL_FILE = (
-    BACKEND_DIR / "browser_provisional_payloads.jsonl"
+    DATA_DIR / "browser_provisional_payloads.jsonl"
 )
-BROWSER_COLLECTED_DATA_JSONL_FILE = BACKEND_DIR / "browser_collected_data.jsonl"
-BROWSER_PAIR_EVENTS_JSONL_FILE = BACKEND_DIR / "browser_pair_events.jsonl"
-BROWSER_PAIR_PROVENANCE_JSONL_FILE = BACKEND_DIR / "browser_pair_provenance.jsonl"
+BROWSER_COLLECTED_DATA_JSONL_FILE = DATA_DIR / "browser_collected_data.jsonl"
+BROWSER_PAIR_EVENTS_JSONL_FILE = DATA_DIR / "browser_pair_events.jsonl"
+BROWSER_PAIR_PROVENANCE_JSONL_FILE = DATA_DIR / "browser_pair_provenance.jsonl"
 EXPECTED_EXPANDED_SIGNAL_COUNT = 177
 EXPECTED_BROWSER_SIGNAL_COUNT = 67
 COLLECTION_BATCH_SCHEMA_VERSION = "backend-collection-batch-v1"
@@ -2063,6 +2081,7 @@ def browser_pair_status_response(pair: dict[str, Any]) -> dict[str, Any]:
 
 @app.on_event("startup")
 def start_collection_batch_for_server_lifecycle() -> None:
+    logger.info("Collection storage directory: %s", DATA_DIR)
     start_collection_batch()
 
 
@@ -2392,6 +2411,8 @@ async def collection_readiness():
             BROWSER_PAIR_PROVENANCE_JSONL_FILE.name,
         ],
         "storage_concurrency_mode": STORAGE_CONCURRENCY_MODE,
+        "collection_storage_name": DATA_DIR.name,
+        "collection_storage_isolated": DATA_DIR != BACKEND_DIR,
         "collection_batch_lifecycle_enabled": True,
         "collection_batch_id": (
             active_batch.get("collection_batch_id") if active_batch is not None else None

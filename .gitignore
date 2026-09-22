@@ -1,2 +1,10 @@
 # Local provenance pseudonymization key. Keep outside version control and handoff bundles.
 .hybridguard_profile_hmac_key
+
+# Per-run collection data, including local preflight backups.
+backend_server/collection_runs/
+backend_server/collection_backups/
+
+# Persistent local collection runtime (never use a temporary directory in production).
+backend_server/.venv-collection/
+backend_server/runtime/
