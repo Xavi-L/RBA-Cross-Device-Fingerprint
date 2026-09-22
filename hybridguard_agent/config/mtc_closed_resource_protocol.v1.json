@@ -1,0 +1,64 @@
+{
+  "protocol_version": "mtc-closed-resource-study-v1",
+  "declared_at_utc": "2026-09-22T15:31:54.338900+00:00",
+  "user_constraint": "现有数据是全部资源；不再补采；无法用现有证据验证的条目明确关闭，不继续等待。",
+  "permitted_feature_splits": [
+    "discovery",
+    "development"
+  ],
+  "reserved_validation": "LOCKED",
+  "prior_development_exposure": true,
+  "candidate_universe": "Exactly four named restricted candidates. No expansion, alias mining, new tolerance or whitelist after this declaration.",
+  "candidate_support_floor": {
+    "global_empirical": {
+      "discovery_groups": 30,
+      "development_groups": 10,
+      "discovery_manufacturers": 3,
+      "development_manufacturers": 2
+    },
+    "scoped_empirical": {
+      "discovery_groups": 10,
+      "development_groups": 5,
+      "discovery_manufacturers": 1,
+      "development_manufacturers": 1
+    },
+    "counting_unit": "applicable_unique_leakage_groups; never session totals",
+    "below_floor_action": "descriptive_candidate_only_no_empirical_rule_promotion",
+    "passing_floor_is_sufficient": false,
+    "other_requirements": [
+      "predeclared_semantic_scope",
+      "source_and_field_availability_evidence",
+      "all_counterexamples_retained",
+      "frozen_expression_and_tolerance_before_reserved_validation"
+    ],
+    "legacy_effect_or_rule_count_target": false,
+    "official_only_boundary": "Pure official semantic constraints are source-governed separately; applying this dataset to calibrate them creates an empirical component subject to these floors."
+  },
+  "engineering_screening_min_group_agreement": 0.95,
+  "gate_origin": "Reuse pre-existing P2/P3 support floors and engineering screen, not prior effects; these are research admission criteria and not statistical validation or detection metrics.",
+  "group_aggregation": "Any counterexample -> COUNTEREXAMPLE; otherwise any UNKNOWN -> UNKNOWN; otherwise any MATCH -> MATCH; otherwise NOT_APPLICABLE. Agreement denominator MATCH + COUNTEREXAMPLE. UNKNOWN and NOT_APPLICABLE never positive support.",
+  "selection_order": "Freeze discovery shortlist before opening development rows; development cannot rescue discovery rejection.",
+  "fixed_conditions": {
+    "model": "Exact normalized model token with explicit Build marker; optional explicit locale only. No alias table or substring matching.",
+    "gpu": "Five literal hardware renderer families; software fallback excluded, unknown families never match each other.",
+    "screen": "Sorted two-dimensional residual <=1 CSS pixel, fixed arithmetic candidate. No post-hoc status-bar correction, 10% threshold or learned tolerance."
+  },
+  "descriptive_only_families": [
+    "ABI/platform reported pairs",
+    "Native-kernel/Web-memory exposure",
+    "sensor capability distributions",
+    "hardware/software keywords",
+    "plugin/MIME exposure"
+  ],
+  "not_identifiable": [
+    "replay or attack status from native-field absence",
+    "virtual environment identity without independent ground truth",
+    "longitudinal stability",
+    "new integrity/attestation/origin fields"
+  ],
+  "closure_policy": "Every outstanding NEEDS_RESEARCH/NEEDS_DATA item becomes ACTIVE, DESCRIPTIVE_ONLY or CLOSED_UNVERIFIABLE; no collection request and no pending loop.",
+  "detection_metrics": "NOT_EVALUATED",
+  "model_training": false,
+  "synthetic_tests_are_device_evidence": false,
+  "raw_source_editing": false
+}

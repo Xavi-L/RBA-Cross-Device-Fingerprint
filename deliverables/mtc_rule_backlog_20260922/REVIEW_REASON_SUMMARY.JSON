@@ -1,0 +1,1204 @@
+[
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "AGG-001",
+    "reasons": {
+      "旧平均分依赖未校准权重及重复规则；只保留当前执行结果的透明汇总。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "CORE-001",
+    "reasons": {
+      "采集缺失、宿主不完整与接口重放没有等价关系；旧描述的“大量缺失”也没有定义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "CORE-003",
+    "reasons": {
+      "传感器少或缺少某类型不能沿用旧异常阈值；P3 的存在性自洽检查不等于设备完整性。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NVW-001",
+    "reasons": {
+      "system_http_agent 是系统属性而非当前网页 UA；型号缺省不能直接判异常。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NVW-003",
+    "reasons": {
+      "package_matches_deployment_policy_not_attestation": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NVW-004",
+    "reasons": {
+      "installer_identifier_present_not_proof_of_trust": 34,
+      "installer_null_fallback_not_proof_of_manual_install": 110
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NW-001",
+    "reasons": {
+      "型号别名、简化及自定义 UA 使“合理印证”缺少确定定义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NW-003",
+    "reasons": {
+      "Native 实际采的是 App DisplayMetrics，旧 10% 不能直接沿用；P3 短边规则不能替代二维假设。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NW-004",
+    "reasons": {
+      "platform 字符串不能直接等同 CPU ABI，旧 x86/ARM 对比缺少兼容语义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NW-005",
+    "reasons": {
+      "硬件别名、ANGLE 包装、软件回退与 GPU 屏蔽不能用旧关键词映射判冲突。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "NW-008",
+    "reasons": {
+      "deviceMemory 粗粒度/上限与 Native 可用 RAM 口径不同，旧 3–4GB 容差无新版依据。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-BATTERY-001",
+    "reasons": {
+      "长期稳定是时间关系，单条快照不能检验。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-BOOT-001",
+    "reasons": {
+      "构建标签和 su 观察不能替代经过验证的 boot/locked 证明。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-DISPLAY-001",
+    "reasons": {
+      "官方字段语义不提供项目通用数值容差；不同显示区域不能直接等同。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-EMULATOR-001",
+    "reasons": {
+      "官方 AVD 文档不提供关键词/传感器组合的攻击阈值。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-KEY-001",
+    "reasons": {
+      "244 没有可信的证书链、挑战及撤销验证事实。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-MEMORY-001",
+    "reasons": {
+      "官方粗粒度语义不提供 Native RAM 的通用差值阈值。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-NET-001",
+    "reasons": {
+      "network_snapshot_observed_not_identity_evidence": 142,
+      "vpn_transport_observed_not_attack_evidence": 1,
+      "collector_legacy_network_flags_are_fallbacks": 1
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PACKAGE-001",
+    "reasons": {
+      "release_matches_deployment_policy_not_attestation": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PLAY-001",
+    "reasons": {
+      "244 未采集服务端验证的 Play Integrity verdict。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PLAY-002",
+    "reasons": {
+      "244 未包含完整性请求 token 与请求绑定验证事实。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PLUGIN-001",
+    "reasons": {
+      "非零插件计数不是跨版本通用异常；P3 空 hash 也不能证明空枚举。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-SENSOR-001",
+    "reasons": {
+      "官方 API 没有规定真实设备必须达到的传感器数量。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "OFFDER-WEBSEC-001",
+    "reasons": {
+      "已有设置未包含实际加载 scheme/host/信任策略判定。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "PHYS-001",
+    "reasons": {
+      "硬件关键词或 x86/软件渲染不能自动推出攻击或非法虚拟环境。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "PHYS-002",
+    "reasons": {
+      "软件渲染可能是正常回退，ANGLE 不是统一桌面标签。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "PHYS-003",
+    "reasons": {
+      "单次算力耗时缺少预热、负载和重复观测，旧 50/800ms 阈值不能沿用。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "PHYS-004",
+    "reasons": {
+      "单次常见温度不能证明长期死值；现有代表记录没有合格时间序列。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "SCENE-002",
+    "reasons": {
+      "多个未经验证的模拟器线索相加不会自动成为有效规则。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "SCENE-003",
+    "reasons": {
+      "缺触摸/缺传感器/耗时快可能合法，旧组合与或关系及阈值需重定义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "SCENE-004",
+    "reasons": {
+      "合理安装器、传感器>=10 与桥接不能支持“安全/低风险”确认；停用旧安全推断。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "TOL-001",
+    "reasons": {
+      "development_flags_adb_debuggable_cleartext_not_attack_evidence": 142,
+      "development_flags_debuggable_cleartext_not_attack_evidence": 1,
+      "required_evidence_unavailable": 1
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "TOL-002",
+    "reasons": {
+      "高度容错应属于屏幕关系适用性，不另算一条风险规则。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "TOL-003",
+    "reasons": {
+      "内存容错应属于内存兼容关系，旧固定差值不直接启用。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "TOL-004",
+    "reasons": {
+      "仍依赖 provider 包版本与 UA Chromium 版本同一命名空间；P3 已证明该通用前提不成立。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "WVWEB-002",
+    "reasons": {
+      "ua_markers_both_not_container_proof": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "App177",
+    "rule_id": "WVWEB-003",
+    "reasons": {
+      "桥接、UA 表面和 token 已分别留痕；取消“共同成立即强可信”的复合结论。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "AGG-001",
+    "reasons": {
+      "旧平均分依赖未校准权重及重复规则；只保留当前执行结果的透明汇总。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "CORE-001",
+    "reasons": {
+      "采集缺失、宿主不完整与接口重放没有等价关系；旧描述的“大量缺失”也没有定义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "CORE-003",
+    "reasons": {
+      "传感器少或缺少某类型不能沿用旧异常阈值；P3 的存在性自洽检查不等于设备完整性。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NVW-001",
+    "reasons": {
+      "system_http_agent 是系统属性而非当前网页 UA；型号缺省不能直接判异常。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NVW-003",
+    "reasons": {
+      "package_matches_deployment_policy_not_attestation": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NVW-004",
+    "reasons": {
+      "installer_identifier_present_not_proof_of_trust": 34,
+      "installer_null_fallback_not_proof_of_manual_install": 110
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NW-001",
+    "reasons": {
+      "型号别名、简化及自定义 UA 使“合理印证”缺少确定定义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NW-003",
+    "reasons": {
+      "Native 实际采的是 App DisplayMetrics，旧 10% 不能直接沿用；P3 短边规则不能替代二维假设。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NW-004",
+    "reasons": {
+      "platform 字符串不能直接等同 CPU ABI，旧 x86/ARM 对比缺少兼容语义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NW-005",
+    "reasons": {
+      "硬件别名、ANGLE 包装、软件回退与 GPU 屏蔽不能用旧关键词映射判冲突。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "NW-008",
+    "reasons": {
+      "deviceMemory 粗粒度/上限与 Native 可用 RAM 口径不同，旧 3–4GB 容差无新版依据。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-BATTERY-001",
+    "reasons": {
+      "长期稳定是时间关系，单条快照不能检验。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-BOOT-001",
+    "reasons": {
+      "构建标签和 su 观察不能替代经过验证的 boot/locked 证明。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-DISPLAY-001",
+    "reasons": {
+      "官方字段语义不提供项目通用数值容差；不同显示区域不能直接等同。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-EMULATOR-001",
+    "reasons": {
+      "官方 AVD 文档不提供关键词/传感器组合的攻击阈值。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-KEY-001",
+    "reasons": {
+      "244 没有可信的证书链、挑战及撤销验证事实。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-MEMORY-001",
+    "reasons": {
+      "官方粗粒度语义不提供 Native RAM 的通用差值阈值。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-NET-001",
+    "reasons": {
+      "network_snapshot_observed_not_identity_evidence": 142,
+      "vpn_transport_observed_not_attack_evidence": 1,
+      "collector_legacy_network_flags_are_fallbacks": 1
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PACKAGE-001",
+    "reasons": {
+      "release_matches_deployment_policy_not_attestation": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PLAY-001",
+    "reasons": {
+      "244 未采集服务端验证的 Play Integrity verdict。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PLAY-002",
+    "reasons": {
+      "244 未包含完整性请求 token 与请求绑定验证事实。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PLUGIN-001",
+    "reasons": {
+      "非零插件计数不是跨版本通用异常；P3 空 hash 也不能证明空枚举。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-SENSOR-001",
+    "reasons": {
+      "官方 API 没有规定真实设备必须达到的传感器数量。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-WEBSEC-001",
+    "reasons": {
+      "已有设置未包含实际加载 scheme/host/信任策略判定。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "PHYS-001",
+    "reasons": {
+      "硬件关键词或 x86/软件渲染不能自动推出攻击或非法虚拟环境。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "PHYS-002",
+    "reasons": {
+      "软件渲染可能是正常回退，ANGLE 不是统一桌面标签。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "PHYS-003",
+    "reasons": {
+      "单次算力耗时缺少预热、负载和重复观测，旧 50/800ms 阈值不能沿用。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "PHYS-004",
+    "reasons": {
+      "单次常见温度不能证明长期死值；现有代表记录没有合格时间序列。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "SCENE-002",
+    "reasons": {
+      "多个未经验证的模拟器线索相加不会自动成为有效规则。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "SCENE-003",
+    "reasons": {
+      "缺触摸/缺传感器/耗时快可能合法，旧组合与或关系及阈值需重定义。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "SCENE-004",
+    "reasons": {
+      "合理安装器、传感器>=10 与桥接不能支持“安全/低风险”确认；停用旧安全推断。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "TOL-001",
+    "reasons": {
+      "development_flags_adb_debuggable_cleartext_not_attack_evidence": 142,
+      "development_flags_debuggable_cleartext_not_attack_evidence": 1,
+      "required_evidence_unavailable": 1
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "TOL-002",
+    "reasons": {
+      "高度容错应属于屏幕关系适用性，不另算一条风险规则。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "TOL-003",
+    "reasons": {
+      "内存容错应属于内存兼容关系，旧固定差值不直接启用。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "TOL-004",
+    "reasons": {
+      "仍依赖 provider 包版本与 UA Chromium 版本同一命名空间；P3 已证明该通用前提不成立。": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "WVWEB-002",
+    "reasons": {
+      "ua_markers_both_not_container_proof": 144
+    }
+  },
+  {
+    "split": "development",
+    "input_view": "Full244",
+    "rule_id": "WVWEB-003",
+    "reasons": {
+      "桥接、UA 表面和 token 已分别留痕；取消“共同成立即强可信”的复合结论。": 144
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "AGG-001",
+    "reasons": {
+      "旧平均分依赖未校准权重及重复规则；只保留当前执行结果的透明汇总。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "CORE-001",
+    "reasons": {
+      "采集缺失、宿主不完整与接口重放没有等价关系；旧描述的“大量缺失”也没有定义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "CORE-003",
+    "reasons": {
+      "传感器少或缺少某类型不能沿用旧异常阈值；P3 的存在性自洽检查不等于设备完整性。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NVW-001",
+    "reasons": {
+      "system_http_agent 是系统属性而非当前网页 UA；型号缺省不能直接判异常。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NVW-003",
+    "reasons": {
+      "package_matches_deployment_policy_not_attestation": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NVW-004",
+    "reasons": {
+      "installer_null_fallback_not_proof_of_manual_install": 516,
+      "installer_identifier_present_not_proof_of_trust": 114
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NW-001",
+    "reasons": {
+      "型号别名、简化及自定义 UA 使“合理印证”缺少确定定义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NW-003",
+    "reasons": {
+      "Native 实际采的是 App DisplayMetrics，旧 10% 不能直接沿用；P3 短边规则不能替代二维假设。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NW-004",
+    "reasons": {
+      "platform 字符串不能直接等同 CPU ABI，旧 x86/ARM 对比缺少兼容语义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NW-005",
+    "reasons": {
+      "硬件别名、ANGLE 包装、软件回退与 GPU 屏蔽不能用旧关键词映射判冲突。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "NW-008",
+    "reasons": {
+      "deviceMemory 粗粒度/上限与 Native 可用 RAM 口径不同，旧 3–4GB 容差无新版依据。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-BATTERY-001",
+    "reasons": {
+      "长期稳定是时间关系，单条快照不能检验。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-BOOT-001",
+    "reasons": {
+      "构建标签和 su 观察不能替代经过验证的 boot/locked 证明。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-DISPLAY-001",
+    "reasons": {
+      "官方字段语义不提供项目通用数值容差；不同显示区域不能直接等同。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-EMULATOR-001",
+    "reasons": {
+      "官方 AVD 文档不提供关键词/传感器组合的攻击阈值。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-KEY-001",
+    "reasons": {
+      "244 没有可信的证书链、挑战及撤销验证事实。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-MEMORY-001",
+    "reasons": {
+      "官方粗粒度语义不提供 Native RAM 的通用差值阈值。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-NET-001",
+    "reasons": {
+      "network_snapshot_observed_not_identity_evidence": 618,
+      "collector_legacy_network_flags_are_fallbacks": 2,
+      "no_active_network_observed_not_proof_of_no_vpn": 10
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PACKAGE-001",
+    "reasons": {
+      "release_matches_deployment_policy_not_attestation": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PLAY-001",
+    "reasons": {
+      "244 未采集服务端验证的 Play Integrity verdict。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PLAY-002",
+    "reasons": {
+      "244 未包含完整性请求 token 与请求绑定验证事实。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-PLUGIN-001",
+    "reasons": {
+      "非零插件计数不是跨版本通用异常；P3 空 hash 也不能证明空枚举。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-SENSOR-001",
+    "reasons": {
+      "官方 API 没有规定真实设备必须达到的传感器数量。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "OFFDER-WEBSEC-001",
+    "reasons": {
+      "已有设置未包含实际加载 scheme/host/信任策略判定。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "PHYS-001",
+    "reasons": {
+      "硬件关键词或 x86/软件渲染不能自动推出攻击或非法虚拟环境。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "PHYS-002",
+    "reasons": {
+      "软件渲染可能是正常回退，ANGLE 不是统一桌面标签。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "PHYS-003",
+    "reasons": {
+      "单次算力耗时缺少预热、负载和重复观测，旧 50/800ms 阈值不能沿用。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "PHYS-004",
+    "reasons": {
+      "单次常见温度不能证明长期死值；现有代表记录没有合格时间序列。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "SCENE-002",
+    "reasons": {
+      "多个未经验证的模拟器线索相加不会自动成为有效规则。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "SCENE-003",
+    "reasons": {
+      "缺触摸/缺传感器/耗时快可能合法，旧组合与或关系及阈值需重定义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "SCENE-004",
+    "reasons": {
+      "合理安装器、传感器>=10 与桥接不能支持“安全/低风险”确认；停用旧安全推断。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "TOL-001",
+    "reasons": {
+      "development_flags_adb_debuggable_cleartext_not_attack_evidence": 628,
+      "required_evidence_unavailable": 2
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "TOL-002",
+    "reasons": {
+      "高度容错应属于屏幕关系适用性，不另算一条风险规则。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "TOL-003",
+    "reasons": {
+      "内存容错应属于内存兼容关系，旧固定差值不直接启用。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "TOL-004",
+    "reasons": {
+      "仍依赖 provider 包版本与 UA Chromium 版本同一命名空间；P3 已证明该通用前提不成立。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "WVWEB-002",
+    "reasons": {
+      "ua_markers_both_not_container_proof": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "App177",
+    "rule_id": "WVWEB-003",
+    "reasons": {
+      "桥接、UA 表面和 token 已分别留痕；取消“共同成立即强可信”的复合结论。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "AGG-001",
+    "reasons": {
+      "旧平均分依赖未校准权重及重复规则；只保留当前执行结果的透明汇总。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "CORE-001",
+    "reasons": {
+      "采集缺失、宿主不完整与接口重放没有等价关系；旧描述的“大量缺失”也没有定义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "CORE-003",
+    "reasons": {
+      "传感器少或缺少某类型不能沿用旧异常阈值；P3 的存在性自洽检查不等于设备完整性。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NVW-001",
+    "reasons": {
+      "system_http_agent 是系统属性而非当前网页 UA；型号缺省不能直接判异常。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NVW-003",
+    "reasons": {
+      "package_matches_deployment_policy_not_attestation": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NVW-004",
+    "reasons": {
+      "installer_null_fallback_not_proof_of_manual_install": 516,
+      "installer_identifier_present_not_proof_of_trust": 114
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NW-001",
+    "reasons": {
+      "型号别名、简化及自定义 UA 使“合理印证”缺少确定定义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NW-003",
+    "reasons": {
+      "Native 实际采的是 App DisplayMetrics，旧 10% 不能直接沿用；P3 短边规则不能替代二维假设。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NW-004",
+    "reasons": {
+      "platform 字符串不能直接等同 CPU ABI，旧 x86/ARM 对比缺少兼容语义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NW-005",
+    "reasons": {
+      "硬件别名、ANGLE 包装、软件回退与 GPU 屏蔽不能用旧关键词映射判冲突。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "NW-008",
+    "reasons": {
+      "deviceMemory 粗粒度/上限与 Native 可用 RAM 口径不同，旧 3–4GB 容差无新版依据。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-BATTERY-001",
+    "reasons": {
+      "长期稳定是时间关系，单条快照不能检验。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-BOOT-001",
+    "reasons": {
+      "构建标签和 su 观察不能替代经过验证的 boot/locked 证明。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-DISPLAY-001",
+    "reasons": {
+      "官方字段语义不提供项目通用数值容差；不同显示区域不能直接等同。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-EMULATOR-001",
+    "reasons": {
+      "官方 AVD 文档不提供关键词/传感器组合的攻击阈值。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-KEY-001",
+    "reasons": {
+      "244 没有可信的证书链、挑战及撤销验证事实。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-MEMORY-001",
+    "reasons": {
+      "官方粗粒度语义不提供 Native RAM 的通用差值阈值。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-NET-001",
+    "reasons": {
+      "network_snapshot_observed_not_identity_evidence": 618,
+      "collector_legacy_network_flags_are_fallbacks": 2,
+      "no_active_network_observed_not_proof_of_no_vpn": 10
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PACKAGE-001",
+    "reasons": {
+      "release_matches_deployment_policy_not_attestation": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PLAY-001",
+    "reasons": {
+      "244 未采集服务端验证的 Play Integrity verdict。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PLAY-002",
+    "reasons": {
+      "244 未包含完整性请求 token 与请求绑定验证事实。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-PLUGIN-001",
+    "reasons": {
+      "非零插件计数不是跨版本通用异常；P3 空 hash 也不能证明空枚举。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-SENSOR-001",
+    "reasons": {
+      "官方 API 没有规定真实设备必须达到的传感器数量。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "OFFDER-WEBSEC-001",
+    "reasons": {
+      "已有设置未包含实际加载 scheme/host/信任策略判定。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "PHYS-001",
+    "reasons": {
+      "硬件关键词或 x86/软件渲染不能自动推出攻击或非法虚拟环境。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "PHYS-002",
+    "reasons": {
+      "软件渲染可能是正常回退，ANGLE 不是统一桌面标签。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "PHYS-003",
+    "reasons": {
+      "单次算力耗时缺少预热、负载和重复观测，旧 50/800ms 阈值不能沿用。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "PHYS-004",
+    "reasons": {
+      "单次常见温度不能证明长期死值；现有代表记录没有合格时间序列。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "SCENE-002",
+    "reasons": {
+      "多个未经验证的模拟器线索相加不会自动成为有效规则。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "SCENE-003",
+    "reasons": {
+      "缺触摸/缺传感器/耗时快可能合法，旧组合与或关系及阈值需重定义。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "SCENE-004",
+    "reasons": {
+      "合理安装器、传感器>=10 与桥接不能支持“安全/低风险”确认；停用旧安全推断。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "TOL-001",
+    "reasons": {
+      "development_flags_adb_debuggable_cleartext_not_attack_evidence": 628,
+      "required_evidence_unavailable": 2
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "TOL-002",
+    "reasons": {
+      "高度容错应属于屏幕关系适用性，不另算一条风险规则。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "TOL-003",
+    "reasons": {
+      "内存容错应属于内存兼容关系，旧固定差值不直接启用。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "TOL-004",
+    "reasons": {
+      "仍依赖 provider 包版本与 UA Chromium 版本同一命名空间；P3 已证明该通用前提不成立。": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "WVWEB-002",
+    "reasons": {
+      "ua_markers_both_not_container_proof": 630
+    }
+  },
+  {
+    "split": "discovery",
+    "input_view": "Full244",
+    "rule_id": "WVWEB-003",
+    "reasons": {
+      "桥接、UA 表面和 token 已分别留痕；取消“共同成立即强可信”的复合结论。": 630
+    }
+  }
+]

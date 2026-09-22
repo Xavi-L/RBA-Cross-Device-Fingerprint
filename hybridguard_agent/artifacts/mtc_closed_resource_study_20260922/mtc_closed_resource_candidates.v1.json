@@ -1,0 +1,108 @@
+{
+  "version": "closed-resource-candidates-v1",
+  "candidates": [
+    {
+      "candidate_id": "NW-001",
+      "rule_id": "NW-001",
+      "title": "Native 型号与 App UA 中显式 Build 型号的一致性",
+      "predicate": "model_build_token",
+      "implementation": "mtc-closed-resource-predicates-v1",
+      "version": "closed-resource-v1",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "parameters": {
+        "require_dalvik": false
+      },
+      "evidence_family": "model_app_ua",
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "limitations": "Only unambiguous Android model-before-Build tokens; no inferred aliases, substring matching or recovery of reduced model. Custom UA may disagree.",
+      "official_source_ids": [
+        "closed-ua-reduction",
+        "android-websettings-api"
+      ]
+    },
+    {
+      "candidate_id": "NVW-001",
+      "rule_id": "NVW-001",
+      "title": "Native 型号与 Dalvik system HTTP agent 中显式型号的一致性",
+      "predicate": "model_build_token",
+      "implementation": "mtc-closed-resource-predicates-v1",
+      "version": "closed-resource-v1",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "parameters": {
+        "require_dalvik": true
+      },
+      "evidence_family": "model_system_agent",
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "limitations": "System http.agent is a mutable process property, not current WebView JS UA. AOSP default and Native fields share Build.MODEL; not independent identity evidence.",
+      "official_source_ids": [
+        "closed-aosp-http-agent"
+      ]
+    },
+    {
+      "candidate_id": "NW-003",
+      "rule_id": "NW-003",
+      "title": "App 显示尺寸与 App Web 尺寸的双边残差检查",
+      "predicate": "screen_two_dimensions",
+      "implementation": "mtc-closed-resource-predicates-v1",
+      "version": "closed-resource-v1",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      },
+      "evidence_family": "screen_geometry",
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "limitations": "Sorted dimensions, fixed 1 CSS pixel arithmetic screen; Native is App DisplayMetrics, not panel size. Window/zoom/system UI may invalidate equality. No 10% threshold reuse.",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ]
+    },
+    {
+      "candidate_id": "NW-005",
+      "rule_id": "NW-005",
+      "title": "Native GLES 与 App WebGL 的已识别 GPU 家族一致性",
+      "predicate": "gpu_family",
+      "implementation": "mtc-closed-resource-predicates-v1",
+      "version": "closed-resource-v1",
+      "dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "parameters": {
+        "families": [
+          "adreno",
+          "mali",
+          "powervr",
+          "tegra",
+          "vivante"
+        ],
+        "software_tokens": [
+          "swiftshader",
+          "llvmpipe",
+          "softpipe",
+          "swrast"
+        ]
+      },
+      "evidence_family": "native_app_gpu_family",
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "limitations": "Narrow renderer-family relation replaces the unverified SoC/board lookup. Software fallback is not applicable; unknown/masked/ambiguous families remain unknown. Same family does not establish same GPU/device.",
+      "official_source_ids": [
+        "closed-webgl-renderer"
+      ]
+    }
+  ]
+}

@@ -215,6 +215,11 @@ def analyze_evidence_bundle(
 def analyze_payload(payload: dict[str, Any], sample_id: str | None = None) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise RuntimeContractError("Runtime payload must be a JSON object")
+    if payload.get("record_schema_version") == "hybridguard-mtc-observation-v2":
+        from hybridguard_agent.runtime.paired244 import analyze_paired244_record
+        # The public ID is content-derived. Experiment identifiers remain outside
+        # the P4 decision even when a legacy caller supplied sample_id.
+        return analyze_paired244_record(payload)
     normalized, _ = normalize_payload(payload)
     has_any_layer = any(normalized[layer] for layer in ("android_native_data", "webview_data", "web_data"))
     if not has_any_layer:
@@ -230,6 +235,7 @@ def analyze_payload(payload: dict[str, Any], sample_id: str | None = None) -> di
 
 
 def runtime_readiness() -> dict[str, Any]:
+    from hybridguard_agent.runtime.paired244 import paired_runtime_readiness
     registry = load_predicate_registry()
     rule_kb_hash = assert_pinned_rule_kb(registry)
     kb = load_rule_knowledge_base()
@@ -243,6 +249,7 @@ def runtime_readiness() -> dict[str, Any]:
         "external_model_called": False,
         "decision_persistence": False,
         "calibration_status": "not_available",
+        "paired244": paired_runtime_readiness(),
         "rule_kb_version": kb.get("version"),
         "rule_kb_sha256": rule_kb_hash,
         "official_cards_sha256": official_sha256(DEFAULT_OFFICIAL_CARDS),

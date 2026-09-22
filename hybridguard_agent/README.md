@@ -5,7 +5,7 @@
 它不替代现有目录：
 
 - 当前权威输入是 `backend_server/collection_backups/mtc_final_20260922/sources/` 内的 App／Browser raw、receipt 与 provenance；后端根目录旧文件不进入 MTC 分析；
-- `scoring/rule_knowledge_base.json` 和 `google_official_kb/` 仍是规则与官方知识的权威来源；
+- `scoring/rule_knowledge_base.json` 和 `google_official_kb/` 保留历史 v1 规则与官方知识来源；当前 paired244 新链使用 `config/paired244_rule_catalog.v3.json`，历史验收保留 v1、v2 目录；
 - `hybridguard-browser-fingerprint-research/` 仍是攻击侧同学维护的执行日志和证据仓库；
 - 本目录只生成契约、样本 manifest、QC、冻结快照和离线运行所需的派生产物。
 
@@ -15,7 +15,11 @@
 
 本机后端与 ngrok 已退役，后续离线分析不再启动采集服务。统计以自有数据为准，采购对账已取消。研究遵循：旧实验只提供设计参考，不继承旧结论，也不以复现旧效果为验收目标。
 
-P0、P1 已完成：接收 1,029 条完成配对、891 个厂商／型号／系统组合；QC 主视图保留 1,028 条配对，仍覆盖 891 个组合。另 1 条配对保留为部分数据，原始记录不删除。v2 区分采集状态、已知默认哨兵和数值表示；P2 已冻结分组／切分和任务准入；P3 已完成旧规则基线与有限候选研究目录。独立事实标签仍缺失，检测指标未准入，v1 决策运行时适配留在 P4。
+用户已明确没有补采机会，现有数据就是全部资源。剩余规则研究已收尾：无法验证的条目关闭，描述性结果不升级成攻击规则；P5 补采取消，后续实验仅报告现有证据能支持的结论。当前结果见下方 v3 章节。
+
+2026-09-23 按用户明确要求，将 MTC 最终原始冻结、P1 QC 快照和 P2 分组清单一并纳入 Git；数据入口与计数见 [数据交付说明](../deliverables/mtc_closed_resource_20260922/DATA_DELIVERY.md)。保留验证集的锁定状态不因数据提交而改变。
+
+P0、P1 已完成：接收 1,029 条完成配对、891 个厂商／型号／系统组合；QC 主视图保留 1,028 条配对，仍覆盖 891 个组合。另 1 条配对保留为部分数据，原始记录不删除。v2 区分采集状态、已知默认哨兵和数值表示；P2 已冻结分组／切分和任务准入；P3 已完成旧规则基线与有限候选研究目录；P4 已接入 244 执行链。独立事实标签仍缺失，检测指标未准入，保留验证集继续锁定。
 
 ```bash
 python3 hybridguard_agent/scripts/build_mtc_paired244_snapshot.py \
@@ -50,7 +54,59 @@ python3 hybridguard_agent/scripts/run_mtc_p3_discovery.py \
   --out-dir hybridguard_agent/artifacts/mtc_p3_NEW_RUN
 ```
 
-输出目录必须不存在。执行器只接收字段值、状态和质量，分组／画像仅用于外部统计；不向模型或规则输入标签。44 项重点测试与完整反例核验已通过，P4 的生产运行时接入尚未开展。
+输出目录必须不存在。执行器只接收字段值、状态和质量，分组／画像仅用于外部统计；不向模型或规则输入标签。P3 的 44 项重点测试与完整反例核验已通过，后续 P4 执行链见下节。
+
+## MTC P4：paired244 执行链（已完成）
+
+`evidence-bundle-v3-paired244` 区分 Native、宿主、App Web 和 Browser 字段，Browser 真正进入规则、精确检索、Verifier 和 trace。P4 首轮验收固定的 `config/paired244_rule_catalog.v1.json` 有 87 个台账条目：48 项可执行检查、2 项停用、37 项未实现。48 项包含来源重叠和 6 项采集器自检，不代表 48 条独立攻击规律。默认入口现已升级到下方的 v3；历史验收命令仍固定 v1。
+
+新链的 CORE-002 只检查 bridge，低传感器数量不再否决或短路；旧 provider 包版本＝Chromium 版本关系停用。旧 raw App177 入口仍保留 v1 历史语义用于重放，P1 v2 record 会自动路由新链；显式视图入口：
+
+```python
+from hybridguard_agent.runtime import analyze_paired244_record
+result = analyze_paired244_record(p1_record, input_view="Full244")  # 或 App177
+```
+
+通过冻结 P2 清单重现工程验收：
+
+```bash
+python3 hybridguard_agent/scripts/run_mtc_p4_runtime.py \
+  --out-dir hybridguard_agent/artifacts/mtc_p4_NEW_RUN
+```
+
+权威产物：`artifacts/mtc_p4_runtime_20260922_release/`。1,548 次执行无失败，23,220 次 P3 结果对照无变化；去掉 Browser 的 6,966 次相关检查均 NOT_EVALUATED。48 项新旧边界与兼容测试通过。模型、分数融合和攻击分类均关闭，不把输入比较当作检测收益。见 [P4 报告](../deliverables/mtc_p4_20260922/P4_REPORT.md)、[执行台账](../deliverables/mtc_p4_20260922/RULE_INVENTORY.md)。
+
+## 37 项旧条目的处置与首批实现（v2）
+
+首批当时逐项复核 37 项：6 项接入部署/上下文检查、4 项合并处置、2 项停用、17 项待研究、8 项待补数据。v2 目录仍为 87 项，其中 **54 项可执行**，不意味着 54 条独立攻击规则或全部旧规则已完成。剩余 25 项现已按下一节收尾，不再保留待研究／补采任务。
+
+首批时默认入口采用 `paired244-runtime-catalog-v2`，当前已改为 v3；下面的历史首批命令固定使用 v2。旧 raw App177 行为保持历史版本。要显式重放 P4 v1 或首批 v2，可传入 `catalog=load_catalog(LEGACY_CATALOG)` 或 `catalog=load_catalog(V2_CATALOG)`，这些符号从 `hybridguard_agent.rules.paired244` 导入。
+
+新增包名与版本检查依据已经声明的 MTC 部署清单，差异单列 `POLICY_MISMATCH`；安装来源、UA 标记、开发配置和网络仅报告上下文。`manual` 是采集器的 null 回退，不能证明实际手动安装；旧 API 网络回退明确不适用。`TOL-004` 的版本容错与 `SCENE-004` 的低风险确认停用。待研究、待补数据、合并和停用项保留在 trace 中，并排除于活跃检索卡。
+
+```bash
+python3 hybridguard_agent/scripts/run_mtc_rule_backlog.py \
+  --out-dir hybridguard_agent/artifacts/mtc_rule_backlog_NEW_RUN
+```
+
+首批结果：1,548 次运行无失败、74,304 次原检查对照无变化、6,966 次 Browser 遮蔽检查通过；62 项重点及兼容测试通过。保留集未解锁，未调阈值或执行检测效果实验。详见 [历史首批报告](../deliverables/mtc_rule_backlog_20260922/REPORT.md)、[37 项初次处置](../deliverables/mtc_rule_backlog_20260922/REVIEW.md)。
+
+## 现有资源内研究收尾与默认运行时（v3）
+
+剩余 25 项已全部处置：**3 项新增限定检查、11 项仅保留描述、11 项无法验证关闭**。默认目录仍为 87 项：**57 可执行、11 描述性、11 无法验证关闭、4 合并、4 停用**，没有待研究或待补采条目。关闭不代表验证通过，57 项也不是独立的攻击检测规律。
+
+新增 `NW-001`、`NVW-001`、`NW-005` 分别比较 Native 型号与 App UA 显式型号、Native 型号与 Dalvik 系统 HTTP agent 显式型号、Native GLES 与 App WebGL 的可识别 GPU 家族。型号缩减、模糊格式和未知 GPU 保留不适用／未知。四个候选和边界在统计前冻结；双边屏幕尺寸候选发现／开发均有大量反例，未启用，也未放宽容差。其余条目完成字段语义核对、描述汇总或缺证据关闭。
+
+```bash
+python3 hybridguard_agent/scripts/run_mtc_closed_resource_study.py \
+  --out-dir hybridguard_agent/artifacts/mtc_closed_resource_study_NEW_RUN
+python3 hybridguard_agent/scripts/run_mtc_closed_resource_runtime.py \
+  --out-dir hybridguard_agent/artifacts/mtc_closed_resource_runtime_NEW_RUN
+```
+
+权威产物分别为 `artifacts/mtc_closed_resource_study_20260922/`、`artifacts/mtc_closed_resource_runtime_20260922/`。79 项重点和兼容测试通过；1,548 次运行无失败，83,592 次原 54 项结果对照无变化，2,322 次新增研究／运行时对照一致，6,966 次 Browser 遮蔽检查通过。当前 `analyze_paired244_record`、P1 record 的 `analyze_payload` 及 readiness 均使用 v3；历史 v1／v2 重放入口保留。
+
+保留验证集继续锁定，攻击分类为 `NOT_EVALUATED`，不训练模型、不拟合阈值。P6／P7 尚未执行；后续仅开展现有数据支持的固定规则输入、规则版本、知识来源及覆盖／冲突／未知比较，缺少标签的检测指标不进入本轮任务。详见 [研究收尾报告](../deliverables/mtc_closed_resource_20260922/REPORT.md)、[25 项最终处置](../deliverables/mtc_closed_resource_20260922/RESOLUTIONS.md)。
 
 ## 历史 v8 入口：paired244 快照、离线运行与实验准入
 

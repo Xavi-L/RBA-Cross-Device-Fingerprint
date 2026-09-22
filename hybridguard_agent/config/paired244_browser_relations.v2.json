@@ -1,0 +1,90 @@
+{
+  "policy_version": "paired244-browser-relation-policy-v2",
+  "evidence_contract": "evidence-bundle-v3-paired244",
+  "catalog_version": "paired244-runtime-catalog-v2",
+  "namespace_policy": "app.android_native_data.*, app.webview_data.*, app.web_data.*, browser.web_data.* are disjoint; never flatten App Web and Browser into one web_data mapping",
+  "pair_policy": "Only P1 completed pairs with App and Browser receipt/session/payload bindings can provide Browser evidence. P2 loader verifies bindings before runtime. Arbitrary inline records are not receipt verification.",
+  "masking_policy": "Choose input surfaces before reading field values/status/quality or Browser pair metadata. Missing/blocked dependencies => NOT_EVALUATED, source parse ambiguity => UNKNOWN, false implication antecedent/reduced OS token => NOT_APPLICABLE.",
+  "active_browser_relations": [
+    {
+      "rule_id": "P3-X-TIMEZONE-OFFSET",
+      "dependencies": [
+        "app.web_data.execution_layer.timezone_offset",
+        "browser.web_data.execution_layer.timezone_offset"
+      ],
+      "limitations": "DST boundary or time/settings changes between captures"
+    },
+    {
+      "rule_id": "P3-X-LANGUAGE",
+      "dependencies": [
+        "app.web_data.navigator_layer.language",
+        "browser.web_data.navigator_layer.language"
+      ],
+      "limitations": "per-app and browser language preferences"
+    },
+    {
+      "rule_id": "P3-X-TOUCH",
+      "dependencies": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "browser.web_data.navigator_layer.max_touch_points"
+      ],
+      "limitations": "browser exposure/privacy/input device differences"
+    },
+    {
+      "rule_id": "P3-X-CORES",
+      "dependencies": [
+        "app.web_data.navigator_layer.hardware_concurrency",
+        "browser.web_data.navigator_layer.hardware_concurrency"
+      ],
+      "limitations": "privacy caps and logical processor availability; 0 is sentinel"
+    },
+    {
+      "rule_id": "P3-X-DPR",
+      "dependencies": [
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "limitations": "zoom, density and per-container window configuration"
+    },
+    {
+      "rule_id": "P3-X-SCREEN-SIZE",
+      "dependencies": [
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "limitations": "orientation normalized only; multiwindow and screen exposure can differ"
+    },
+    {
+      "rule_id": "P3-SCREEN-BROWSER",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "browser.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "limitations": "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom"
+    },
+    {
+      "rule_id": "P3-COLOR-BROWSER",
+      "dependencies": [
+        "browser.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.pixel_depth"
+      ],
+      "limitations": "CSSOM screen exposure relation, not independent hardware evidence"
+    },
+    {
+      "rule_id": "P3-UA-REDUCED-BROWSER",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "limitations": "Chrome Android >=107 reduced Android 10 token is compatible, not actual OS recovery; customized UA can still violate"
+    }
+  ],
+  "exclusions": [
+    "Do not activate P3 rejected/descriptive-only rules",
+    "No literal GPU/hash invariance assumption",
+    "No WebGL2 capability inference from shared-canvas probe",
+    "No threshold fitting, source data edits, labels or model calls"
+  ],
+  "claim_boundary": "Runtime observations do not classify attack/benign or validate detection performance."
+}

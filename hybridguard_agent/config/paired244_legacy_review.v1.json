@@ -1,0 +1,989 @@
+{
+  "review_version": "paired244-legacy-review-v1",
+  "reviewed_on": "2026-09-22",
+  "baseline_catalog": "paired244-runtime-catalog-v1",
+  "protocol": {
+    "allowed_splits": [
+      "discovery",
+      "development"
+    ],
+    "reserved_validation": "LOCKED",
+    "first_batch": "Explicit dispositions and six deployment/context observations; remaining research/collection is not completed.",
+    "prior_development_exposure": true,
+    "threshold_fitting": false,
+    "new_attack_labels": false,
+    "model_calls": false,
+    "acceptance": "Reproduce unchanged 48 checks; exercise every new predicate boundary; retain every runtime failure and all unknown states."
+  },
+  "entries": [
+    {
+      "rule_id": "CORE-001",
+      "original_title": "Native 缺失与接口重放",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "采集缺失、宿主不完整与接口重放没有等价关系；旧描述的“大量缺失”也没有定义。",
+      "next_action_and_acceptance": "分别定义采集完整性和请求来源检查，保留超时/权限失败；重放结论需独立受控证据。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.*",
+        "webview_data.jsbridge_injected",
+        "web_data.user_agent"
+      ],
+      "required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_health_code",
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.battery_plugged_code",
+        "app.android_native_data.battery_dynamics_layer.battery_status_code",
+        "app.android_native_data.battery_dynamics_layer.battery_technology",
+        "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+        "app.android_native_data.battery_dynamics_layer.battery_voltage_mv",
+        "app.android_native_data.battery_dynamics_layer.is_charging",
+        "app.android_native_data.build_fingerprint_layer.build_bootloader",
+        "app.android_native_data.build_fingerprint_layer.build_display",
+        "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+        "app.android_native_data.build_fingerprint_layer.build_id",
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_time_ms",
+        "app.android_native_data.build_fingerprint_layer.build_type",
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_brand",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.android_native_data.build_fingerprint_layer.elapsed_realtime_ms",
+        "app.android_native_data.build_fingerprint_layer.kernel_arch",
+        "app.android_native_data.build_fingerprint_layer.os_api_level",
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.android_native_data.build_fingerprint_layer.security_patch",
+        "app.android_native_data.build_fingerprint_layer.supported_abis",
+        "app.android_native_data.build_fingerprint_layer.uptime_ms",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.android_native_data.graphics_layer.egl_vendor",
+        "app.android_native_data.graphics_layer.gles_version",
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.native_gpu_vendor",
+        "app.android_native_data.locale_timezone_layer.native_country",
+        "app.android_native_data.locale_timezone_layer.native_language",
+        "app.android_native_data.locale_timezone_layer.native_locale",
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.is_low_memory",
+        "app.android_native_data.memory_layer.memory_threshold_gb",
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.android_native_data.network_state_layer.active_network_present",
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_cellular_transport",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport",
+        "app.android_native_data.network_state_layer.link_downstream_kbps",
+        "app.android_native_data.network_state_layer.link_upstream_kbps",
+        "app.android_native_data.network_state_layer.network_metered",
+        "app.android_native_data.screen_display_layer.font_scale",
+        "app.android_native_data.screen_display_layer.orientation_code",
+        "app.android_native_data.screen_display_layer.screen_density_dpi",
+        "app.android_native_data.screen_display_layer.screen_mode_physical_height",
+        "app.android_native_data.screen_display_layer.screen_mode_physical_width",
+        "app.android_native_data.screen_display_layer.screen_mode_refresh_rate_hz",
+        "app.android_native_data.screen_display_layer.screen_refresh_rate_hz",
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.android_native_data.screen_display_layer.screen_scaled_density",
+        "app.android_native_data.screen_display_layer.screen_xdpi",
+        "app.android_native_data.screen_display_layer.screen_ydpi",
+        "app.android_native_data.security_config_layer.developer_options_enabled",
+        "app.android_native_data.security_config_layer.http_proxy_setting",
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.android_native_data.security_config_layer.java_http_proxy_host",
+        "app.android_native_data.security_config_layer.java_http_proxy_port",
+        "app.android_native_data.security_config_layer.su_binary_present",
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+        "app.android_native_data.storage_layer.data_storage_free_gb",
+        "app.android_native_data.storage_layer.data_storage_total_gb",
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "CORE-003",
+      "original_title": "关键传感器矩阵异常",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "传感器少或缺少某类型不能沿用旧异常阈值；P3 的存在性自洽检查不等于设备完整性。",
+      "next_action_and_acceptance": "按设备能力研究适用范围；仅能力描述不能晋级为攻击检查。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.sensor_total_count",
+        "android_native_data.has_gyroscope",
+        "android_native_data.has_accelerometer",
+        "android_native_data.has_magnetic_field",
+        "android_native_data.has_light_sensor",
+        "android_native_data.has_proximity_sensor"
+      ],
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NW-001",
+      "original_title": "Native 型号与 Web UA 宽松匹配",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "型号别名、简化及自定义 UA 使“合理印证”缺少确定定义。",
+      "next_action_and_acceptance": "冻结明确型号解析与别名依据；缺型号不判冲突，按发现/开发组报告反例与不可评估。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.device_model",
+        "android_native_data.device_product",
+        "android_native_data.device_board",
+        "android_native_data.device_brand",
+        "android_native_data.device_manufacturer",
+        "web_data.user_agent"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_brand",
+        "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NW-003",
+      "original_title": "屏幕与 DPR 软一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "Native 实际采的是 App DisplayMetrics，旧 10% 不能直接沿用；P3 短边规则不能替代二维假设。",
+      "next_action_and_acceptance": "区分 App 显示区域/面板/viewport；研究方向、窗口和缩放，冻结容差并保留全部残差。",
+      "related_or_replacement_ids": [
+        "P3-SCREEN-APP",
+        "P3-SCREEN-BROWSER"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.screen_resolution_physical",
+        "web_data.screen_resolution_logical",
+        "web_data.device_pixel_ratio"
+      ],
+      "required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NW-004",
+      "original_title": "CPU ABI 与 Web platform 一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "platform 字符串不能直接等同 CPU ABI，旧 x86/ARM 对比缺少兼容语义。",
+      "next_action_and_acceptance": "建立有来源的架构可比性表，未知/粗粒度/隐私化 platform 不比较；先报告分组反例。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.cpu_abi",
+        "web_data.platform"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.web_data.navigator_layer.platform"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NW-005",
+      "original_title": "硬件族与 WebGL GPU 一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "硬件别名、ANGLE 包装、软件回退与 GPU 屏蔽不能用旧关键词映射判冲突。",
+      "next_action_and_acceptance": "审计渲染后端归一和硬件族来源；仅在可比且有独立支持的子集验证。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.device_hardware",
+        "android_native_data.device_board",
+        "android_native_data.device_product",
+        "android_native_data.device_manufacturer",
+        "web_data.webgl_vendor",
+        "web_data.webgl_renderer"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NW-008",
+      "original_title": "内存容量软一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "deviceMemory 粗粒度/上限与 Native 可用 RAM 口径不同，旧 3–4GB 容差无新版依据。",
+      "next_action_and_acceptance": "建立分桶兼容候选；识别哨兵和不可比 API，不以覆盖全部旧样本为阈值目标。",
+      "related_or_replacement_ids": [
+        "OFFDER-MEMORY-001"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.total_memory_gb",
+        "web_data.device_memory"
+      ],
+      "required_fields": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NVW-001",
+      "original_title": "WebView system HTTP agent 与 Native 型号一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "system_http_agent 是系统属性而非当前网页 UA；型号缺省不能直接判异常。",
+      "next_action_and_acceptance": "从采集实现确认 system agent 格式与适用性，型号存在才比较，别名必须有依据。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.device_model",
+        "webview_data.system_http_agent"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NVW-003",
+      "original_title": "预期 App 包名一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "ACTIVE",
+      "reason": "改为精确匹配本项目已声明的包名；不沿用宽泛前缀或可信设备结论。",
+      "next_action_and_acceptance": "精确匹配、相似前缀拒绝、空值未知、缺字段未评估；输出部署策略差异。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "webview_data.app_package_name"
+      ],
+      "required_fields": [
+        "app.webview_data.host_security_layer.app_package_name"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "NVW-004",
+      "original_title": "安装来源语义",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "ACTIVE",
+      "reason": "改为安装来源上下文；源码把安装器 null 写为 manual，不能推断实际安装方式。",
+      "next_action_and_acceptance": "manual 回退、unknown、具名安装器均独立测试，任何来源都不产生攻击/安全标签。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "webview_data.installer_package"
+      ],
+      "required_fields": [
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "WVWEB-002",
+      "original_title": "Android WebView UA token",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "ACTIVE",
+      "reason": "仅报告 UA 中 wv/Version 标记的出现情况；标记缺失不再构成风险。",
+      "next_action_and_acceptance": "含标记/无标记/自定义 UA/空值，均不将标记作为容器真值。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "web_data.user_agent"
+      ],
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "WVWEB-003",
+      "original_title": "JSBridge 与移动 WebView 运行时一致性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "MERGED",
+      "reason": "桥接、UA 表面和 token 已分别留痕；取消“共同成立即强可信”的复合结论。",
+      "next_action_and_acceptance": "通过所列检查查看各事实，不追加独立票；这是改写后的组合去向，不宣称旧逻辑已验证。",
+      "related_or_replacement_ids": [
+        "CORE-002",
+        "NW-006",
+        "WVWEB-002"
+      ],
+      "declared_legacy_fields": [
+        "webview_data.jsbridge_injected",
+        "web_data.user_agent"
+      ],
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "PHYS-001",
+      "original_title": "模拟器硬件关键词",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "硬件关键词或 x86/软件渲染不能自动推出攻击或非法虚拟环境。",
+      "next_action_and_acceptance": "与 AVD 设备族研究联合；冻结词表与适用范围，区分环境观察和攻击事实。",
+      "related_or_replacement_ids": [
+        "OFFDER-EMULATOR-001"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.device_board",
+        "android_native_data.device_hardware",
+        "android_native_data.cpu_abi",
+        "web_data.webgl_renderer"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "PHYS-002",
+      "original_title": "WebGL 软件渲染或桌面渲染",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "软件渲染可能是正常回退，ANGLE 不是统一桌面标签。",
+      "next_action_and_acceptance": "有来源地解析渲染后端；先做上下文候选及反例审计，再决定是否存在可用约束。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "web_data.webgl_vendor",
+        "web_data.webgl_renderer"
+      ],
+      "required_fields": [
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "PHYS-003",
+      "original_title": "算力耗时异常",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "单次算力耗时缺少预热、负载和重复观测，旧 50/800ms 阈值不能沿用。",
+      "next_action_and_acceptance": "同一实例带时间、预热和负载记录的重复测试；先冻结采样协议。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "web_data.compute_task_time_ms",
+        "android_native_data.sensor_total_count",
+        "web_data.user_agent"
+      ],
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.execution_layer.compute_task_time_ms",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "PHYS-004",
+      "original_title": "电池温度死值",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "单次常见温度不能证明长期死值；现有代表记录没有合格时间序列。",
+      "next_action_and_acceptance": "可靠同实例标识、时间戳、间隔和设备状态的重复温度观测；不把同型号多条当序列。",
+      "related_or_replacement_ids": [
+        "OFFDER-BATTERY-001"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.battery_temp_celsius",
+        "android_native_data.sensor_total_count",
+        "web_data.webgl_renderer"
+      ],
+      "required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "SCENE-002",
+      "original_title": "廉价模拟器",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "多个未经验证的模拟器线索相加不会自动成为有效规则。",
+      "next_action_and_acceptance": "先验证组成关系并去除共享来源的重复票；环境与攻击标签分别取证。",
+      "related_or_replacement_ids": [
+        "PHYS-001",
+        "PHYS-002",
+        "OFFDER-EMULATOR-001"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.device_board",
+        "android_native_data.device_hardware",
+        "android_native_data.cpu_abi",
+        "android_native_data.sensor_total_count",
+        "web_data.webgl_renderer",
+        "web_data.timezone_offset"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.execution_layer.timezone_offset",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "SCENE-003",
+      "original_title": "无头 PC 浏览器伪装",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "缺触摸/缺传感器/耗时快可能合法，旧组合与或关系及阈值需重定义。",
+      "next_action_and_acceptance": "冻结非矛盾的组成条件；缺失与不可用分开，耗时部分需先完成重复采样。",
+      "related_or_replacement_ids": [
+        "PHYS-003"
+      ],
+      "declared_legacy_fields": [
+        "web_data.user_agent",
+        "web_data.platform",
+        "web_data.max_touch_points",
+        "web_data.compute_task_time_ms",
+        "web_data.webgl_renderer",
+        "android_native_data.sensor_total_count"
+      ],
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.execution_layer.compute_task_time_ms",
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "SCENE-004",
+      "original_title": "官方来源与核心完整性通过",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "RETIRED",
+      "reason": "合理安装器、传感器>=10 与桥接不能支持“安全/低风险”确认；停用旧安全推断。",
+      "next_action_and_acceptance": "保留独立上下文，不以没有冲突或安装来源确认安全。",
+      "related_or_replacement_ids": [
+        "CORE-002",
+        "NVW-004"
+      ],
+      "declared_legacy_fields": [
+        "webview_data.installer_package",
+        "android_native_data.sensor_total_count",
+        "webview_data.jsbridge_injected"
+      ],
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.webview_data.bridge_routing_layer.jsbridge_injected",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "AGG-001",
+      "original_title": "三端平均一致性与失败计数",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "MERGED",
+      "reason": "旧平均分依赖未校准权重及重复规则；只保留当前执行结果的透明汇总。",
+      "next_action_and_acceptance": "使用 decision 中逐条偏差与去重 evidence_family；不输出旧平均分或聚合风险阈值。",
+      "related_or_replacement_ids": [
+        "runtime:paired_decision"
+      ],
+      "declared_legacy_fields": [
+        "consistency_tri_layer_mean_match_score",
+        "consistency_tri_layer_failure_count"
+      ],
+      "required_fields": [
+        "consistency_tri_layer_failure_count",
+        "consistency_tri_layer_mean_match_score"
+      ],
+      "uncollected_or_derived_fields": [
+        "consistency_tri_layer_failure_count",
+        "consistency_tri_layer_mean_match_score"
+      ],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "TOL-001",
+      "original_title": "开发配置容错",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "ACTIVE",
+      "reason": "将 ADB/debuggable/cleartext 作为开发配置事实，避免单项或组合自动判攻击。",
+      "next_action_and_acceptance": "真假、权限不可用与遮蔽边界；加入 ADB 事实，标明与原 debug/cleartext 检查共享证据。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.is_adb_enabled",
+        "webview_data.is_debuggable",
+        "webview_data.is_cleartext_traffic_permitted"
+      ],
+      "required_fields": [
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "TOL-002",
+      "original_title": "屏幕高度误差容错",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "MERGED",
+      "reason": "高度容错应属于屏幕关系适用性，不另算一条风险规则。",
+      "next_action_and_acceptance": "并入 NW-003 的研究规范；父规则仍待研究，当前不宣称已实现系统栏修正。",
+      "related_or_replacement_ids": [
+        "NW-003"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.screen_resolution_physical",
+        "web_data.screen_resolution_logical",
+        "web_data.device_pixel_ratio",
+        "web_data.avail_height"
+      ],
+      "required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.avail_height",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "TOL-003",
+      "original_title": "内存粗粒度容错",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "MERGED",
+      "reason": "内存容错应属于内存兼容关系，旧固定差值不直接启用。",
+      "next_action_and_acceptance": "并入 NW-008 的研究规范；父规则仍待研究，不增加可执行数量。",
+      "related_or_replacement_ids": [
+        "NW-008"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.total_memory_gb",
+        "web_data.device_memory"
+      ],
+      "required_fields": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "TOL-004",
+      "original_title": "WebView Chrome 小版本容错",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "RETIRED",
+      "reason": "仍依赖 provider 包版本与 UA Chromium 版本同一命名空间；P3 已证明该通用前提不成立。",
+      "next_action_and_acceptance": "连同旧主版本规则停止引用；保留 P3-PROVIDER-PARSE 仅作采集器解析自检。",
+      "related_or_replacement_ids": [
+        "WVWEB-001",
+        "OFFDER-WEBVIEW-001",
+        "P3-PROVIDER-PARSE"
+      ],
+      "declared_legacy_fields": [
+        "webview_data.webview_provider_version",
+        "web_data.user_agent"
+      ],
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.webview_provider_version"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-DISPLAY-001",
+      "original_title": "Native 物理分辨率与 Web 逻辑尺寸乘 DPR 近似一致",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "官方字段语义不提供项目通用数值容差；不同显示区域不能直接等同。",
+      "next_action_and_acceptance": "与 NW-003 共用比较研究但保留来源；不得复用旧 10% 作为验收线。",
+      "related_or_replacement_ids": [
+        "NW-003"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.screen_resolution_physical",
+        "web_data.screen_resolution_logical",
+        "web_data.device_pixel_ratio",
+        "web_data.visual_viewport_width",
+        "web_data.visual_viewport_height"
+      ],
+      "required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.visual_viewport_height",
+        "app.web_data.screen_layer.visual_viewport_width"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-MEMORY-001",
+      "original_title": "Native 总内存与 Web deviceMemory 粗粒度兼容",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "官方粗粒度语义不提供 Native RAM 的通用差值阈值。",
+      "next_action_and_acceptance": "与 NW-008 研究分桶兼容；缺失、上限、浏览器差异单独报告。",
+      "related_or_replacement_ids": [
+        "NW-008"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.total_memory_gb",
+        "web_data.device_memory"
+      ],
+      "required_fields": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-SENSOR-001",
+      "original_title": "移动设备传感器矩阵完整性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "官方 API 没有规定真实设备必须达到的传感器数量。",
+      "next_action_and_acceptance": "只先保留 P3 自洽检查；设备能力画像要有分组支持，攻击判定另需标签。",
+      "related_or_replacement_ids": [
+        "CORE-003"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.sensor_total_count",
+        "android_native_data.sensor_type_list",
+        "android_native_data.has_accelerometer",
+        "android_native_data.has_gyroscope",
+        "android_native_data.has_magnetic_field",
+        "android_native_data.has_light_sensor",
+        "android_native_data.has_proximity_sensor"
+      ],
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-BATTERY-001",
+      "original_title": "电池死值或长期接电需要时间序列验证",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "长期稳定是时间关系，单条快照不能检验。",
+      "next_action_and_acceptance": "补可靠同实例电量/温度/电压/充电状态序列，冻结时间窗和最少观测标准。",
+      "related_or_replacement_ids": [
+        "PHYS-004"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.battery_level_pct",
+        "android_native_data.battery_temp_celsius",
+        "android_native_data.battery_voltage_mv",
+        "android_native_data.is_charging"
+      ],
+      "required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+        "app.android_native_data.battery_dynamics_layer.battery_voltage_mv",
+        "app.android_native_data.battery_dynamics_layer.is_charging"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-PACKAGE-001",
+      "original_title": "App 包名、版本与安装来源符合部署策略",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "ACTIVE",
+      "reason": "将已冻结 MTC v9/v11 部署清单变成包名与版本配对检查；安装来源单列上下文。",
+      "next_action_and_acceptance": "版本 code/name 必须来自同一清单项；缺失未评估，未知版本仅策略差异，不证明攻击。",
+      "related_or_replacement_ids": [
+        "NVW-003",
+        "NVW-004"
+      ],
+      "declared_legacy_fields": [
+        "webview_data.app_package_name",
+        "webview_data.app_version_name",
+        "webview_data.app_version_code",
+        "webview_data.installer_package"
+      ],
+      "required_fields": [
+        "app.webview_data.host_security_layer.app_package_name",
+        "app.webview_data.host_security_layer.app_version_code",
+        "app.webview_data.host_security_layer.app_version_name",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-NET-001",
+      "original_title": "网络传输与 VPN 仅作为动态上下文",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "ACTIVE",
+      "reason": "网络/VPN 仅作瞬时上下文；按采集器 API 路径限制回退字段。",
+      "next_action_and_acceptance": "旧 API 返回不适用；字段缺失未评估；VPN、无网络、网络切换均不判攻击。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "android_native_data.active_transport_types",
+        "android_native_data.has_vpn_transport",
+        "android_native_data.has_wifi_transport",
+        "android_native_data.has_cellular_transport"
+      ],
+      "required_fields": [
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_cellular_transport",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-PLAY-001",
+      "original_title": "服务端 Play Integrity Verdict 直接完整性关系",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "244 未采集服务端验证的 Play Integrity verdict。",
+      "next_action_and_acceptance": "设计单独版本的真实采集与服务端验证绑定；服务失败/不支持不能当攻击或正常。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "future.play_integrity.server_verdict",
+        "future.play_integrity.device_integrity",
+        "future.play_integrity.app_integrity"
+      ],
+      "required_fields": [
+        "future.play_integrity.app_integrity",
+        "future.play_integrity.device_integrity",
+        "future.play_integrity.server_verdict"
+      ],
+      "uncollected_or_derived_fields": [
+        "future.play_integrity.app_integrity",
+        "future.play_integrity.device_integrity",
+        "future.play_integrity.server_verdict"
+      ],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-PLAY-002",
+      "original_title": "Play Integrity 请求绑定与防重放关系",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "244 未包含完整性请求 token 与请求绑定验证事实。",
+      "next_action_and_acceptance": "补服务端验证的请求绑定/时效与防重放事实，不能依靠客户端字符串代替。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "future.play_integrity.request_hash",
+        "future.play_integrity.integrity_token",
+        "future.play_integrity.request_details"
+      ],
+      "required_fields": [
+        "future.play_integrity.integrity_token",
+        "future.play_integrity.request_details",
+        "future.play_integrity.request_hash"
+      ],
+      "uncollected_or_derived_fields": [
+        "future.play_integrity.integrity_token",
+        "future.play_integrity.request_details",
+        "future.play_integrity.request_hash"
+      ],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-KEY-001",
+      "original_title": "硬件 Key Attestation 证书链与挑战绑定",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "244 没有可信的证书链、挑战及撤销验证事实。",
+      "next_action_and_acceptance": "单独采集挑战绑定与服务端证书验证结果；保留无硬件支持状态。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "future.key_attestation.attestation_challenge",
+        "future.key_attestation.verified_certificate_chain",
+        "future.key_attestation.google_root_trusted",
+        "future.key_attestation.revocation_status_ok"
+      ],
+      "required_fields": [
+        "future.key_attestation.attestation_challenge",
+        "future.key_attestation.google_root_trusted",
+        "future.key_attestation.revocation_status_ok",
+        "future.key_attestation.verified_certificate_chain"
+      ],
+      "uncollected_or_derived_fields": [
+        "future.key_attestation.attestation_challenge",
+        "future.key_attestation.google_root_trusted",
+        "future.key_attestation.revocation_status_ok",
+        "future.key_attestation.verified_certificate_chain"
+      ],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-BOOT-001",
+      "original_title": "Verified Boot 状态与弱构建线索联合关系",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "构建标签和 su 观察不能替代经过验证的 boot/locked 证明。",
+      "next_action_and_acceptance": "与硬件证明采集联动；区分授权开发构建、不支持及验证失败。",
+      "related_or_replacement_ids": [
+        "OFFDER-KEY-001"
+      ],
+      "declared_legacy_fields": [
+        "future.key_attestation.verified_boot_state",
+        "future.key_attestation.device_locked",
+        "android_native_data.build_tags",
+        "android_native_data.build_type",
+        "android_native_data.su_binary_present"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_type",
+        "app.android_native_data.security_config_layer.su_binary_present",
+        "future.key_attestation.device_locked",
+        "future.key_attestation.verified_boot_state"
+      ],
+      "uncollected_or_derived_fields": [
+        "future.key_attestation.device_locked",
+        "future.key_attestation.verified_boot_state"
+      ],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-WEBSEC-001",
+      "original_title": "WebView 文件访问设置需要与已加载 Origin 联合判断",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_DATA",
+      "reason": "已有设置未包含实际加载 scheme/host/信任策略判定。",
+      "next_action_and_acceptance": "补与同次导航关联的 Origin 和版本化信任策略；不因 file access 开启直接判危险。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "webview_data.allow_file_access",
+        "webview_data.allow_content_access",
+        "webview_data.java_script_enabled",
+        "future.webview_navigation.loaded_scheme",
+        "future.webview_navigation.loaded_host",
+        "future.webview_navigation.uri_trusted"
+      ],
+      "required_fields": [
+        "app.webview_data.webview_settings_layer.allow_content_access",
+        "app.webview_data.webview_settings_layer.allow_file_access",
+        "app.webview_data.webview_settings_layer.java_script_enabled",
+        "future.webview_navigation.loaded_host",
+        "future.webview_navigation.loaded_scheme",
+        "future.webview_navigation.uri_trusted"
+      ],
+      "uncollected_or_derived_fields": [
+        "future.webview_navigation.loaded_host",
+        "future.webview_navigation.loaded_scheme",
+        "future.webview_navigation.uri_trusted"
+      ],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-PLUGIN-001",
+      "original_title": "Android WebView 与非零插件表面的兼容性",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "非零插件计数不是跨版本通用异常；P3 空 hash 也不能证明空枚举。",
+      "next_action_and_acceptance": "先审计 API 可用性和默认回退，再按实现/版本验证可比较范围。",
+      "related_or_replacement_ids": [],
+      "declared_legacy_fields": [
+        "webview_data.webview_provider_package",
+        "web_data.plugins_count",
+        "web_data.mime_types_count"
+      ],
+      "required_fields": [
+        "app.web_data.automation_surface_layer.mime_types_count",
+        "app.web_data.automation_surface_layer.plugins_count",
+        "app.webview_data.kernel_container_layer.webview_provider_package"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    },
+    {
+      "rule_id": "OFFDER-EMULATOR-001",
+      "original_title": "AVD 构建、传感器和软件渲染组合关系",
+      "previous_status": "NOT_IMPLEMENTED",
+      "status": "NEEDS_RESEARCH",
+      "reason": "官方 AVD 文档不提供关键词/传感器组合的攻击阈值。",
+      "next_action_and_acceptance": "分清真实虚拟设备环境证据与攻击标签；构建有验证身份的设备族研究。",
+      "related_or_replacement_ids": [
+        "PHYS-001",
+        "SCENE-002"
+      ],
+      "declared_legacy_fields": [
+        "android_native_data.device_product",
+        "android_native_data.device_hardware",
+        "android_native_data.cpu_abi",
+        "android_native_data.sensor_total_count",
+        "web_data.webgl_renderer"
+      ],
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "uncollected_or_derived_fields": [],
+      "scope_note": "Original field declarations are for availability audit only; they are not approved executable semantics."
+    }
+  ]
+}

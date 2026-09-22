@@ -1,0 +1,41 @@
+{
+  "reviewed_on": "2026-09-22",
+  "sources": [
+    {
+      "id": "closed-aosp-http-agent",
+      "title": "AOSP RuntimeInit default HTTP agent",
+      "url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/master/core/java/com/android/internal/os/RuntimeInit.java",
+      "scope": "Default http.agent appends Build.MODEL in release builds; current source is grammar evidence, not proof every OEM/version uses the unmodified default. Property is not the WebView JS user agent."
+    },
+    {
+      "id": "closed-ua-reduction",
+      "title": "Chrome user-agent reduction: Android model and version",
+      "url": "https://privacysandbox.google.com/blog/user-agent-reduction-android-model-and-version",
+      "scope": "Model may be omitted/reduced. Restrict parsing to explicit unambiguous model-before-Build tokens; no recovery of missing model."
+    },
+    {
+      "id": "closed-webgl-renderer",
+      "title": "Khronos WEBGL_debug_renderer_info",
+      "url": "https://registry.khronos.org/webgl/extensions/WEBGL_debug_renderer_info/",
+      "scope": "Renderer identifies aspects of underlying driver; optional exposure/privacy and alternative rendering paths prevent universal SoC mapping. Literal-family normalization is project logic."
+    },
+    {
+      "id": "closed-device-memory",
+      "title": "W3C Device Memory API draft",
+      "url": "https://www.w3.org/TR/device-memory/",
+      "scope": "Approximate physical memory with implementation-defined bounds, which may change; no universal Native-kernel RAM equality or fixed difference follows."
+    },
+    {
+      "id": "closed-native-memory",
+      "title": "Android ActivityManager.MemoryInfo",
+      "url": "https://developer.android.com/reference/android/app/ActivityManager.MemoryInfo",
+      "scope": "totalMem is kernel-accessible memory excluding fixed below-kernel allocations; not necessarily advertised physical capacity."
+    },
+    {
+      "id": "closed-navigator",
+      "title": "HTML Navigator platform and plugin compatibility surfaces",
+      "url": "https://html.spec.whatwg.org/multipage/system-state.html",
+      "scope": "Legacy navigator exposure is not independently verified hardware architecture or a general installed-plugin inventory."
+    }
+  ]
+}

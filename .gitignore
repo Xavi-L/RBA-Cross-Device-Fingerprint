@@ -2,8 +2,10 @@
 .hybridguard_profile_hmac_key
 
 # Per-run collection data, including local preflight backups.
+# The final MTC freeze is included at the user's explicit request on 2026-09-23.
 backend_server/collection_runs/
-backend_server/collection_backups/
+backend_server/collection_backups/*
+!backend_server/collection_backups/mtc_final_20260922/
 
 # Persistent local collection runtime (never use a temporary directory in production).
 backend_server/.venv-collection/

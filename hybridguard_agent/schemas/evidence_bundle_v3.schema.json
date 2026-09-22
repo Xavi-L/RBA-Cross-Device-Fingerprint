@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/evidence-bundle-v3-paired244",
+  "title": "Paired244 local offline evidence contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_bundle_version",
+    "extractor_version",
+    "input_view",
+    "selected_surfaces",
+    "present_surfaces",
+    "pair_admitted",
+    "projection",
+    "fields",
+    "derived_facts",
+    "boundary",
+    "evidence_hash",
+    "sample_id"
+  ],
+  "properties": {
+    "evidence_bundle_version": {
+      "const": "evidence-bundle-v3-paired244"
+    },
+    "extractor_version": {
+      "const": "paired244-extractor-v1"
+    },
+    "input_view": {
+      "enum": [
+        "Full244",
+        "App177",
+        "Native84",
+        "Host26",
+        "AppWeb67",
+        "Browser67"
+      ]
+    },
+    "selected_surfaces": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "present_surfaces": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "pair_admitted": {
+      "type": "boolean"
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "features",
+        "field_status",
+        "field_quality"
+      ],
+      "properties": {
+        "features": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(app\\.(android_native_data|webview_data|web_data)|browser\\.web_data)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+          }
+        },
+        "field_status": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(app\\.(android_native_data|webview_data|web_data)|browser\\.web_data)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+          }
+        },
+        "field_quality": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(app\\.(android_native_data|webview_data|web_data)|browser\\.web_data)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+          }
+        }
+      }
+    },
+    "fields": {
+      "type": "object"
+    },
+    "derived_facts": {
+      "type": "object"
+    },
+    "boundary": {
+      "type": "string"
+    },
+    "evidence_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sample_id": {
+      "type": "string",
+      "pattern": "^evidence-[a-f0-9]{24}$"
+    }
+  }
+}
