@@ -1,0 +1,150 @@
+{
+  "status": "DESIGN_ONLY_NOT_NEW_DETECTION_RESULTS",
+  "date": "2026-09-23",
+  "repo_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
+  "archive_sha256": "fc0b1aaec61bbcde929105f064230f2b2713f5056682135e25db2dafe55c92af",
+  "constraints": {
+    "preserve_P0_P6": true,
+    "no_new_procurement_required": true,
+    "do_not_relabel_MTC_as_benign_by_source": true,
+    "do_not_synthesize_real_paired244_attacks": true,
+    "reserved_P6_already_accessed": true
+  },
+  "cohorts": [
+    {
+      "id": "mtc_paired244",
+      "qualified_observations": 1028,
+      "representatives": 891,
+      "leakage_control_groups": 868,
+      "repeats": 137,
+      "physical_device_count": null,
+      "label_status": "UNVERIFIED",
+      "task": "coverage_counterexamples_not_FPR"
+    },
+    {
+      "id": "attack_bundle_validator_pass",
+      "bundles": 18,
+      "triplets": 54,
+      "stages": 162,
+      "positive_label_status": "CANDIDATE_REQUIRES_EVIDENCE_ADJUDICATION",
+      "view": "App177"
+    },
+    {
+      "id": "attack_bundle_validator_fail",
+      "bundles": 5,
+      "triplets": 15,
+      "stages": 45,
+      "task": "lower_evidence_descriptive_only",
+      "reason": "missing_referenced_execution_logs"
+    },
+    {
+      "id": "no_attack_temporal_controls",
+      "bundles": 6,
+      "triplets": 18,
+      "stages": 54,
+      "validator_pass": 6,
+      "view": "App177",
+      "label_status": "REPOSITORY_CONTROL_ANNOTATION_REQUIRES_ADJUDICATION"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "E1",
+      "question": "intervention_detection_recovery_and_same_domain_controls",
+      "primary_outputs": [
+        "attack_alert_k_n",
+        "pre_alert_k_n",
+        "post_alert_k_n",
+        "control_alert_k_n",
+        "triplet_010_k_n",
+        "abstentions"
+      ]
+    },
+    {
+      "id": "E2",
+      "question": "source_group_incremental_contributions",
+      "arms": [
+        "C",
+        "C+E",
+        "C+O",
+        "C+E+O"
+      ],
+      "mixed_source_followup": "2^3 arms over Ou/H/E; C fixed",
+      "requirement": "provenance_group_ablation_not_complete_knowledge_removal"
+    },
+    {
+      "id": "E3",
+      "question": "input_and_cross_context_relations",
+      "mtc_arms": [
+        "App177",
+        "Full244_without_cross_relations",
+        "Full244"
+      ],
+      "attack_arms": [
+        "Native84",
+        "Host26",
+        "AppWeb67",
+        "NativePlusAppWeb151",
+        "App177"
+      ]
+    },
+    {
+      "id": "E4",
+      "question": "semantic_applicability_quality_and_evidence_deduplication",
+      "note": "one-factor diagnostic ablations; not straw-man SOTA"
+    },
+    {
+      "id": "E5",
+      "question": "boundary_missingness_and_conditional_transfer",
+      "note": "no claim of unseen physical devices or independent holdout"
+    },
+    {
+      "id": "E6",
+      "question": "runtime_and_explanation_faithfulness",
+      "LLM_RAG": "optional_separate_experiment_only_if_implemented"
+    }
+  ],
+  "inference_boundary": {
+    "single_current_session": true,
+    "forbidden_inputs": [
+      "tool_name",
+      "config_id",
+      "phase",
+      "ground_truth",
+      "execution_logs",
+      "expected_mutation_fields",
+      "future_clean_post"
+    ],
+    "evaluation_join": "after_prediction"
+  },
+  "metrics": {
+    "primary": [
+      "TPR_all_eligible_positives",
+      "FPR_verified_no_intervention_controls",
+      "triplet_010_rate",
+      "abstention_rate",
+      "coverage",
+      "macro_by_configuration"
+    ],
+    "do_not_claim": [
+      "universal_zero_FPR",
+      "full244_real_attack_recall_from_App177",
+      "independent_physical_device_count_from_model_groups"
+    ]
+  },
+  "figures": [
+    "architecture_and_label_boundary",
+    "triplet_and_control_trajectories",
+    "configuration_method_heatmap",
+    "source_complementarity_and_increment",
+    "layer_coverage_and_deviations",
+    "FPR_TPR_coverage_tradeoff"
+  ],
+  "unimplemented_before_execution": [
+    "fact_adjudication",
+    "new_versioned_decision_policy",
+    "source_registry_audit",
+    "frozen_run_manifest",
+    "evaluation_and_plotting_pipeline"
+  ]
+}

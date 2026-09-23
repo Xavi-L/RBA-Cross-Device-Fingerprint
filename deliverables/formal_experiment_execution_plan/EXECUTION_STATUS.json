@@ -1,0 +1,979 @@
+{
+  "schema_version": "formal-experiment-execution-status-v1",
+  "plan_version": "formal-experiment-execution-plan-v1-20260923",
+  "created_at": "2026-09-23T16:18:16.723745+08:00",
+  "plan_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_PLAN.md",
+  "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
+  "planning_only": true,
+  "plan_preparation_status": "COMPLETE",
+  "experiment_execution_status": "NOT_STARTED",
+  "scope": {
+    "only_authorized_step_may_execute": true,
+    "auto_advance": false,
+    "auto_git_commit_or_push": false,
+    "preserve_P0_P6": true,
+    "no_new_collection_required": true,
+    "external_model_calls_this_turn": 0,
+    "detector_runs_this_turn": 0,
+    "material_validator_runs_this_turn": 0
+  },
+  "repositories": {
+    "main": {
+      "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
+      "branch": "main",
+      "current_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
+      "design_baseline_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
+      "baseline_match": true,
+      "git_head_changed_this_turn": false,
+      "working_tree_clean": false,
+      "status_before_plan": [
+        " M .DS_Store",
+        " M android_app/HybridGuard/.idea/deploymentTargetSelector.xml",
+        " M android_app/HybridGuard/featureapp/COLLECTION_METADATA.md",
+        " M android_app/HybridGuard/featureapp/build.gradle.kts",
+        " M android_app/HybridGuard/featureapp/build/generated/source/buildConfig/debug/com/example/hybridguard/featureapp/BuildConfig.java",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserCollectionCoordinator.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport$PollResult$Failed.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport$PollResult$Received.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport$PollResult.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport$TicketResult$Failed.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport$TicketResult$Issued.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport$TicketResult.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/BrowserPairTransport.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/ExpandedUploadTransport$Attempt.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/ExpandedUploadTransport.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/ExpandedUploadWorker$Companion$selectPendingBrowserHandoff$$inlined$sortedBy$1.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/ExpandedUploadWorker$Companion.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/ExpandedUploadWorker.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/MainActivity$BrowserRetryState.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/MainActivity$Companion.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/MainActivity$ProvisionalTicketState.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/MainActivity$UploadStatus.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/MainActivity.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/compile_app_classes_jar/debug/bundleDebugClassesToCompileJar/classes.jar",
+        " M android_app/HybridGuard/featureapp/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_0/graph.bin",
+        " M android_app/HybridGuard/featureapp/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_1/graph.bin",
+        " M android_app/HybridGuard/featureapp/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_3/graph.bin",
+        " M android_app/HybridGuard/featureapp/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_4/graph.bin",
+        " M android_app/HybridGuard/featureapp/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/incremental/debug-mergeJavaRes/merge-state",
+        " M android_app/HybridGuard/featureapp/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt",
+        " M android_app/HybridGuard/featureapp/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/androidResources",
+        " M android_app/HybridGuard/featureapp/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/javaResources0",
+        " M android_app/HybridGuard/featureapp/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/example/hybridguard/featureapp/BuildConfig.class",
+        " M android_app/HybridGuard/featureapp/build/intermediates/linked_resources_binary_format/debug/processDebugResources/linked-resources-binary-format-debug.ap_",
+        " M android_app/HybridGuard/featureapp/build/intermediates/linked_resources_binary_format/debug/processDebugResources/output-metadata.json",
+        " M android_app/HybridGuard/featureapp/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt",
+        " M android_app/HybridGuard/featureapp/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/base.jar",
+        " M android_app/HybridGuard/featureapp/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml",
+        " M android_app/HybridGuard/featureapp/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml",
+        " M android_app/HybridGuard/featureapp/build/intermediates/merged_manifests/debug/processDebugManifest/output-metadata.json",
+        " M android_app/HybridGuard/featureapp/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml",
+        " M android_app/HybridGuard/featureapp/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/output-metadata.json",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserCollectionCoordinator.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport$PollResult$Failed.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport$PollResult$Received.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport$PollResult.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport$TicketResult$Failed.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport$TicketResult$Issued.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport$TicketResult.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BrowserPairTransport.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/BuildConfig.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/ExpandedUploadTransport$Attempt.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/ExpandedUploadTransport.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/ExpandedUploadWorker$Companion$selectPendingBrowserHandoff$$inlined$sortedBy$1.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/ExpandedUploadWorker$Companion.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/ExpandedUploadWorker.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/MainActivity$BrowserRetryState.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/MainActivity$Companion.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/MainActivity$ProvisionalTicketState.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/MainActivity$UploadStatus.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/MainActivity.dex",
+        " M android_app/HybridGuard/featureapp/build/intermediates/runtime_app_classes_jar/debug/bundleDebugClassesToRuntimeJar/classes.jar",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/constants.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.s",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.s",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/last-build.bin",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/counters.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/lookups.tab",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.len",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/caches-jvm/lookups/lookups.tab_i",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/cacheable/last-build.bin",
+        " M android_app/HybridGuard/featureapp/build/kotlin/compileDebugUnitTestKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin",
+        " M android_app/HybridGuard/featureapp/build/outputs/apk/debug/featureapp-debug.apk",
+        " M android_app/HybridGuard/featureapp/build/outputs/apk/debug/output-metadata.json",
+        " M android_app/HybridGuard/featureapp/build/reports/tests/testDebugUnitTest/com.example.hybridguard.featureapp.BrowserLaunchDecisionTest/index.html",
+        " M android_app/HybridGuard/featureapp/build/reports/tests/testDebugUnitTest/com.example.hybridguard.featureapp.BrowserPairContractTest/index.html",
+        " M android_app/HybridGuard/featureapp/build/reports/tests/testDebugUnitTest/com.example.hybridguard.featureapp.ExpandedUploadReceiptTest/index.html",
+        " M android_app/HybridGuard/featureapp/build/reports/tests/testDebugUnitTest/index.html",
+        " M android_app/HybridGuard/featureapp/build/test-results/testDebugUnitTest/TEST-com.example.hybridguard.featureapp.BrowserLaunchDecisionTest.xml",
+        " M android_app/HybridGuard/featureapp/build/test-results/testDebugUnitTest/TEST-com.example.hybridguard.featureapp.BrowserPairContractTest.xml",
+        " M android_app/HybridGuard/featureapp/build/test-results/testDebugUnitTest/TEST-com.example.hybridguard.featureapp.ExpandedUploadReceiptTest.xml",
+        " M android_app/HybridGuard/featureapp/build/test-results/testDebugUnitTest/binary/results-generic.bin",
+        " D android_app/HybridGuard/featureapp/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/BuildConfig.class.uniqueId0",
+        " M android_app/HybridGuard/featureapp/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin",
+        " M android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/BrowserPairTransport.kt",
+        " M android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedUploadWorker.kt",
+        " M android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+        " M android_app/HybridGuard/gradle.properties",
+        " M deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        " M hybridguard-browser-fingerprint-research",
+        "?? HybridGuard_Experiment_Design/",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/CollectionNetworkFailure$Companion.class",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/CollectionNetworkFailure.class",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/CollectionTls.class",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes/com/example/hybridguard/featureapp/SupplementalRootTrustManager.class",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/built_in_kotlinc/debugUnitTest/compileDebugUnitTestKotlin/classes/com/example/hybridguard/featureapp/CollectionTlsTest.class",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/java_res/debug/processDebugJavaRes/out/tls/",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/CollectionNetworkFailure$Companion.dex",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/CollectionNetworkFailure.dex",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/CollectionTls.dex",
+        "?? android_app/HybridGuard/featureapp/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/com/example/hybridguard/featureapp/SupplementalRootTrustManager.dex",
+        "?? android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values",
+        "?? android_app/HybridGuard/featureapp/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.s",
+        "?? android_app/HybridGuard/featureapp/build/reports/tests/testDebugUnitTest/com.example.hybridguard.featureapp.CollectionTlsTest/",
+        "?? android_app/HybridGuard/featureapp/build/test-results/testDebugUnitTest/TEST-com.example.hybridguard.featureapp.CollectionTlsTest.xml",
+        "?? android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/CollectionNetworkFailure.kt",
+        "?? android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/CollectionTls.kt",
+        "?? android_app/HybridGuard/featureapp/src/main/resources/",
+        "?? android_app/HybridGuard/featureapp/src/test/java/com/example/hybridguard/featureapp/CollectionTlsTest.kt",
+        "?? backend_server/.DS_Store",
+        "?? backend_server/__pycache__/agent_runtime_api.cpython-314.pyc",
+        "?? backend_server/__pycache__/agent_runtime_service.cpython-314.pyc",
+        "?? backend_server/__pycache__/main.cpython-314.pyc",
+        "?? backend_server/__pycache__/test_browser_pairing_contract.cpython-314.pyc",
+        "?? backend_server/__pycache__/test_collection_batch_lifecycle.cpython-314.pyc",
+        "?? backend_server/__pycache__/test_collection_contract.cpython-314.pyc",
+        "?? backend_server/ngrok-mtc-policy.json",
+        "?? backend_server/requirements-collection.txt",
+        "?? deliverables/.DS_Store",
+        "?? deliverables/mtc_20260916/.DS_Store",
+        "?? deliverables/mtc_20260917/",
+        "?? deliverables/mtc_20260918_tls/",
+        "?? deliverables/mtc_20260921_https/",
+        "?? deliverables/云端部署架构评审_20260920.md",
+        "?? deployment/",
+        "?? knowledge_rule_validation/.DS_Store",
+        "?? knowledge_rule_validation/layer_ablation_runs/.DS_Store",
+        "?? knowledge_rule_validation/runs/.DS_Store",
+        "?? knowledge_rule_validation/source_isolated_runs/.DS_Store",
+        "?? \"红米 Note 4系统：android 6.0.txt\"",
+        "?? \"荣耀 Note8系统：android 7.0.txt\""
+      ],
+      "status_count_before_plan": {
+        "modified_entries": 212,
+        "deleted_entries": 1,
+        "untracked_entries": 41
+      },
+      "relevant_research_tracked_changes": [],
+      "note": "Preserved existing Android/TLS/build/deployment and other user files. Counts are porcelain entries, not recursively counted files."
+    },
+    "attack": {
+      "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research",
+      "branch": "main",
+      "commit_before_update": "4de5fa625e67887667f28f2c072aac464a7c2cb8",
+      "current_commit": "9698e8dfeb450094d99c46bdcff15283c995e3b3",
+      "origin_main_commit": "9698e8dfeb450094d99c46bdcff15283c995e3b3",
+      "updated_to_fetched_origin_main": true,
+      "working_tree_clean": true,
+      "update_method": "git fetch origin; git merge --ff-only origin/main",
+      "explicitly_authorized_by_user": true,
+      "checkout_reset_clean_commit_push_executed": false,
+      "design_baseline_commit": null,
+      "design_archive_sha256": "fc0b1aaec61bbcde929105f064230f2b2713f5056682135e25db2dafe55c92af",
+      "archive_byte_identity_verified": false,
+      "difference_summary": "One commit: sanitized ACM draft, claim ledger, aggregate release, week10 source ledger; no raw attack/validator changes in incoming diff."
+    }
+  },
+  "design_package": {
+    "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/HybridGuard_Experiment_Design",
+    "required_files_fully_read": true,
+    "files": [
+      {
+        "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/HybridGuard_Experiment_Design/HybridGuard_Formal_Experiment_Design_CN.md",
+        "sha256": "8d5e88b326e88ecd6188cf632b6b28d2dba98af2dcd8c790c5b4695077ff5669",
+        "bytes": 27917
+      },
+      {
+        "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/HybridGuard_Experiment_Design/attack_bundle_audit.json",
+        "sha256": "28f104d2da52bba3e077fec3bc0f4955299d40b0f18f23a0c3a539c957a99c9d",
+        "bytes": 47016
+      },
+      {
+        "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/HybridGuard_Experiment_Design/attack_bundle_audit.md",
+        "sha256": "4dcd335174e0ec63e0bdb6d70b4f65c805bfa82d06e6db10656b6a3ee10792f9",
+        "bytes": 3973
+      },
+      {
+        "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/HybridGuard_Experiment_Design/experiment_plan.json",
+        "sha256": "6b02b83e80170b3fc228c04cd4cc78d32a4beb78d09eda188c85b40256d33f76",
+        "bytes": 4085
+      }
+    ],
+    "external_audit_paths_are_local_paths": false,
+    "archive_not_substituted_for_raw_input": true
+  },
+  "existing_stage_status": {
+    "P0": "COMPLETED_FINAL_CLOSED_SNAPSHOT_PROCUREMENT_RECONCILIATION_CANCELLED",
+    "P1": "COMPLETED",
+    "P2": "COMPLETED",
+    "P3": "COMPLETED_R2",
+    "P4": "COMPLETED_CURRENT_CATALOG_V3",
+    "P5": "CANCELLED_NO_RECOLLECTION",
+    "P6": "COMPLETED_SAVED_RESULTS_RESERVED_CONSUMED",
+    "P7": "NOT_EXECUTED"
+  },
+  "verified_current_inventory": {
+    "catalog_entries": 87,
+    "active_rules": 57,
+    "E": 23,
+    "O": 23,
+    "O_u": 9,
+    "H": 14,
+    "C": 11,
+    "mtc_qualified_pairs": 1028,
+    "mtc_representatives": 891,
+    "mtc_groups": 868,
+    "mtc_physical_devices": null,
+    "p6_main_saved_rows": 13365,
+    "p6_reserved_primary_consumed": 117,
+    "p6_reserved_repeat_consumed": 18,
+    "attack_complete_bundles": 23,
+    "attack_complete_triplets": 69,
+    "attack_complete_stages": 207,
+    "attack_incomplete_bundles": 2,
+    "control_bundles": 6,
+    "control_triplets": 18,
+    "control_stages": 54,
+    "raw_rows_including_incomplete": 262,
+    "raw_field_status_keys": 177,
+    "attack_install_clusters_observed": 3,
+    "attack_independent_physical_devices": null,
+    "primary_admitted_attack_triplets": null,
+    "primary_verified_control_triplets": null
+  },
+  "audit_provenance": {
+    "design_report_attack_pass": 18,
+    "design_report_attack_fail": 5,
+    "design_report_control_pass": 6,
+    "local_validator_replayed_this_turn": false,
+    "static_missing_direct_success_logs": 15,
+    "receipt_count": 54,
+    "receipts_without_raw_log_path": 48,
+    "receipts_with_missing_raw_log_path": 6,
+    "independent_attestation_status": "NOT_INDEPENDENTLY_ATTESTED",
+    "S01_admission_status": "NOT_EXECUTED"
+  },
+  "material_and_method_gaps": [
+    {
+      "id": "G01",
+      "type": "MATERIAL",
+      "detail": "5 legacy bundles miss 15 directly referenced automation logs; lower-evidence branch only until resolved.",
+      "affected_steps": [
+        "S01",
+        "S06",
+        "S07",
+        "S10"
+      ],
+      "blocks_whole_study": false
+    },
+    {
+      "id": "G02",
+      "type": "FACT_EVIDENCE",
+      "detail": "Receipt-supported intervention/control facts still require independent-of-detector adjudication; no automatic truth upgrade from PASS.",
+      "affected_steps": [
+        "S01",
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "blocks_whole_study": false
+    },
+    {
+      "id": "G03",
+      "type": "IMPLEMENTATION",
+      "detail": "Need triplet/control loader, leakage-proof input wrapper, source/role/gate registry, decision policy and evaluation pipeline.",
+      "affected_steps": [
+        "S02",
+        "S03",
+        "S04",
+        "S05"
+      ],
+      "blocks_whole_study": false
+    },
+    {
+      "id": "G04",
+      "type": "LIMITATION",
+      "detail": "No real paired244 attack benchmark and no verified MTC benign labels; Full244 real attack TPR/FPR remains NOT_EVALUATED.",
+      "affected_steps": [
+        "S08",
+        "S10",
+        "S12"
+      ],
+      "blocks_whole_study": false
+    },
+    {
+      "id": "G05",
+      "type": "EXPOSURE",
+      "detail": "P6 reserved and historical attacks have known exposure; no new blind-test claim.",
+      "affected_steps": [
+        "S05",
+        "S12"
+      ],
+      "blocks_whole_study": false
+    },
+    {
+      "id": "G06",
+      "type": "ARCHIVE_BINDING",
+      "detail": "Original ZIP commit not provided; compare repository material structure, do not claim byte-identical archive.",
+      "affected_steps": [
+        "S01"
+      ],
+      "blocks_whole_study": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "S01",
+      "name": "最小材料核验、事实准入与环境分组",
+      "experiments": [
+        "E1",
+        "E2",
+        "E5"
+      ],
+      "dependencies": [],
+      "dependency_details": "无。当前A原材料存在，可开始。缺15日志只阻断相应较低证据包晋级；无需等待它们完成全部工作。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission",
+        "planned_description": "`material_inventory.jsonl`、`validator_results.jsonl`、`facts_and_eligibility.jsonl`、`environment_group_registry.json`、`exclusions.jsonl`、`missing_materials.jsonl`、`manual_fact_queue.json`、`VALIDATION.json`、`STEP_REPORT.md`，均在`R/01_admission/`。",
+        "produced": []
+      },
+      "acceptance_summary": "全部29完整候选包与2不完整包均有去向；manifest/raw引用可审计，不能默丢行；每个准入样本有独立事实理由和环境组；等级/准入完全不依赖检测器；验证器结果与D差异有解释。聚焦测试仅合成：缺引用、重复session、错payload、恢复失败、control被误标positive、同install跨alias合组；不跑性能。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S01"
+        }
+      ],
+      "failure_policy": "校验器实现错误保留异常并停相应核验；缺材料降档/阻断该事实；无可观测效应或恢复失败按真实状态登记，不视为检测漏报。没有可核验对照时FPR分支阻断，适配/来源和P6复用可继续。",
+      "stop_after_step": true,
+      "invocation": "执行 S01"
+    },
+    {
+      "id": "S02",
+      "name": "三态App177与无攻击对照兼容适配",
+      "experiments": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [
+        "S01"
+      ],
+      "dependency_details": "S01材料定位/结构部分完成；个别标签仍UNKNOWN不阻止适配，但不能提前计算性能。原始字段无法绑定只阻断对应样本。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs",
+        "planned_description": "`inference_inputs.jsonl`、`input_manifest.jsonl`、`evaluation_index.jsonl`、`adapter_rejections.jsonl`、`field_mapping.json`、`VALIDATION.json`、`STEP_REPORT.md`。",
+        "produced": []
+      },
+      "acceptance_summary": "S01每个候选阶段恰好转换或明确拒绝；三态/control索引不丢post；盲化payload只含allowlist。合成测试验证隐藏层值/状态/quality/派生摘要清除；元数据置换不改投影；真假/0/空列表/无状态的边界正确。真实材料此步没有任何新预测。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S02"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S01"
+          ]
+        }
+      ],
+      "failure_policy": "适配bug修复合成夹具后再转换；源状态缺失保留拒绝，不猜值；历史P6结果不因新适配失败被重写。",
+      "stop_after_step": true,
+      "invocation": "执行 S02",
+      "dependency_policy": "S01 material inventory/structure branch must be accepted; unresolved label facts do not block adaptation."
+    },
+    {
+      "id": "S03",
+      "name": "来源、混合来源、语义门控与证据家族",
+      "experiments": [
+        "E2",
+        "E4"
+      ],
+      "dependencies": [],
+      "dependency_details": "无，可独立执行；不需要攻击预测或补日志。若来源证据无法核实，标UNKNOWN，只限制相关归因/角色。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry",
+        "planned_description": "完整source/family/applicability/roles四表、`source_overlap_matrix.csv`、`source_uncertainties.jsonl`、`SEMANTIC_DECISIONS.md`、`VALIDATION.json`、`STEP_REPORT.md`。",
+        "produced": []
+      },
+      "acceptance_summary": "57ACTIVE恰好分组一次，E=23、O_u=9、H=14、C=11或明确解释任何真实版本变化；每条角色有理由/反例/适用字段；同源家族不会因来源不同重复计数；未知来源版本未造假。测试只查ID闭合、字段已注册、来源八组合和家族合并边界；无真实预测。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S03"
+        }
+      ],
+      "failure_policy": "台账不一致阻断该来源比较；必要门控不可实现则降角色并披露结构性覆盖损失，不以扩大警报集合凑结果。其余来源可继续，缺官方文档不引入LLM替代事实。",
+      "stop_after_step": true,
+      "invocation": "执行 S03"
+    },
+    {
+      "id": "S04",
+      "name": "决策策略、评估合同与防泄漏实现",
+      "experiments": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6"
+      ],
+      "dependencies": [
+        "S02",
+        "S03"
+      ],
+      "dependency_details": "S02、S03完成；报警候选、门控和family可执行。标签尚不足可以用合成夹具开发，不能借正式样本调参。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract",
+        "planned_description": "`R/04_contract/`下schema、policy、variant/figure spec、合成夹具预期与真实测试输出、`LEAKAGE_VALIDATION.json`、`METRIC_VALIDATION.json`、`STEP_REPORT.md`。此步不得产生正式样本predictions。",
+        "produced": []
+      },
+      "acceptance_summary": "合成单线索报警、同家族双规则不加票、合法缩减UA/软件GPU/来源不足处理正确；篡改结果/字段引用失败；全部5.4泄漏测试通过；手算分母与汇总一致；故意失败仍保留预定单元；图表接口能消费合成测试输出，但测试图不得当论文结果交付。不扩展为全项目测试。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S04"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S02",
+            "S03"
+          ]
+        }
+      ],
+      "failure_policy": "实现/指标错先修夹具与源码；必要字段不足按UNKNOWN/observation处理。无足够报警角色也如实保留策略边界，不临时改阈值或查看正式效果选方案。",
+      "stop_after_step": true,
+      "invocation": "执行 S04"
+    },
+    {
+      "id": "S05",
+      "name": "运行前协议、版本、输入、比较与指标冻结",
+      "experiments": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6"
+      ],
+      "dependencies": [
+        "S01",
+        "S02",
+        "S03",
+        "S04"
+      ],
+      "dependency_details": "S01–S04完成其相关分支；每个拟报告TPR/FPR的样本有独立事实与准入。缺标签的支线可标NOT_EVALUATED并从性能矩阵声明关闭，不能自动补标签。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze",
+        "planned_description": "`protocol.json/.md`、`FREEZE_MANIFEST.json`、`expected_units.jsonl`、`variant_registry.json`、`metric_spec.json`、`figure_spec.json`、`exposure_history.json`、`evaluation_access_policy.json`、`VALIDATION.json`、`STEP_REPORT.md`。",
+        "produced": []
+      },
+      "acceptance_summary": "每条件有精确ID/角色/门控/阈值；唯一单元数可重建；所有任务分母可由S01侧表生成；冻结源码和配置可追溯工作区差异；prediction产物仍不存在；没有未经说明的可调参数。冻结验证只查manifest/schema/集合一致性，不运行正式规则。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S05"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S01",
+            "S02",
+            "S03",
+            "S04"
+          ]
+        }
+      ],
+      "failure_policy": "缺事实只关闭对应性能项；结构/版本不一致阻断该run。冻结后新增候选/阈值/门控/指标主定义必须另版本，不能覆盖。",
+      "stop_after_step": true,
+      "invocation": "执行 S05"
+    },
+    {
+      "id": "S06",
+      "name": "E1三态与无攻击时间对照主运行",
+      "experiments": [
+        "E1"
+      ],
+      "dependencies": [
+        "S05"
+      ],
+      "dependency_details": "S05有效，相关检测/三态/对照标签分母非空且事实已冻结。无control标签只能报告该项不可评估，不把MTC补成负例。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/06_e1",
+        "planned_description": "predictions、rule_events、failures、abstentions、evaluation_joined、metrics JSON/CSV、`triplet_results.jsonl`、`configuration_summary.csv`、run_manifest、VALIDATION、STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "expected units全部落盘且唯一，成功或失败可对账；labels join发生在预测完成后；每条010可回溯三个独立决策；指标分母与freeze一致；无性能阈值验收。运行后只做保存结果一致性检查，不重复执行一轮验证效果。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S06"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S05"
+          ]
+        },
+        {
+          "type": "FACT_ADMISSION_PENDING",
+          "detail": "S01 has not adjudicated detection/triplet/control eligibility; only the relevant metric branch is blocked if its facts remain UNKNOWN."
+        }
+      ],
+      "failure_policy": "实现异常保留FAILED并报PARTIAL，必要修复另技术run记录；缺材料只影响对应单元；低召回、高误报、不恢复均保存并继续后续分析，不回调策略。",
+      "stop_after_step": true,
+      "invocation": "执行 S06"
+    },
+    {
+      "id": "S07",
+      "name": "E2目录来源与混合来源消融",
+      "experiments": [
+        "E2"
+      ],
+      "dependencies": [
+        "S05"
+      ],
+      "dependency_details": "S05；推荐S06后执行以复用同版本E+O结果，但S06不是调整方法依据。若S06因基础实现缺陷不可信，先报告该具体阻塞，不能绕过。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/07_e2",
+        "planned_description": "标准长表与metrics；上述互补/增量/结构等同表；`SOURCE_ABLATION_REPORT.md`、VALIDATION、STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "全部组合使用同一准入/opaque ID集合；不改剩余规则容差/归一化/阈值；汇总可从保存预测重建；弃判和失败纳入；四组/八组映射无重复计数；负增量照样输出。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S07"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S05"
+          ]
+        }
+      ],
+      "failure_policy": "来源映射错属于实现错误并阻断受影响比较；缺标签不生成该性能指标；各组相同、联合下降均为可交付科学结果。",
+      "stop_after_step": true,
+      "invocation": "执行 S07",
+      "reuse_if_available": [
+        "S06 exact matching frozen joint-policy predictions; absence does not authorize running S06."
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "E3多层输入比较与P6保存结果复用",
+      "experiments": [
+        "E3"
+      ],
+      "dependencies": [],
+      "dependency_details": "App分支需S05；P6保存结果导出可独立授权执行。只要一分支缺依赖，完成可执行分支并标PARTIAL，不擅自补跑上游。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/08_e3",
+        "planned_description": "App标准长表；`p6_reuse_manifest.json`、`p6_outcomes_long.jsonl`、`p6_figure_source.csv`、`p6_comparisons.csv`、`P6_REUSE_BOUNDARY.md`；两分支VALIDATION/STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "P6输入文件未被写入；来源版本/访问史随导出保存；Fig.5每值能追到保存结果；App共同分母和mask一致；没有把缺详情填为实际观察，没有MTC TPR/FPR。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S08"
+        }
+      ],
+      "failure_policy": "本地逐行结果丢失时用仍存在的冻结汇总出受限图并标限制，缺失项目阻断而不是重跑P6；App失败照留。无输入增益不阻断。",
+      "stop_after_step": true,
+      "invocation": "执行 S08",
+      "branch_dependencies": {
+        "app_input_comparison": [
+          "S05"
+        ],
+        "p6_saved_output_export": []
+      },
+      "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
+    },
+    {
+      "id": "S09",
+      "name": "E4语义适用性、未知与证据去重诊断",
+      "experiments": [
+        "E4"
+      ],
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "dependency_details": "S05已冻结精确变体，S06同版本参考可用；无独立阴性标签不能计算误报减少。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/09_e4",
+        "planned_description": "标准长表、gate/dedup变化表、`synthetic_semantic_cases.jsonl`、`SEMANTIC_EFFECT_REPORT.md`、VALIDATION、STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "只变指定因素；相同样本/版本/分母；每项变化有保存证据；真假标签来源可追溯；合成与真实分表；零/负收益都呈现。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S09"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S05",
+            "S06"
+          ]
+        }
+      ],
+      "failure_policy": "变体意外改变多因素视实现错误；样本不能覆盖机制则NOT_EXERCISED；精度召回变差是科学结果，不能调门控覆盖首轮。",
+      "stop_after_step": true,
+      "invocation": "执行 S09"
+    },
+    {
+      "id": "S10",
+      "name": "E5边界、自然缺失与重复观测",
+      "experiments": [
+        "E5"
+      ],
+      "dependencies": [
+        "S05"
+      ],
+      "dependency_details": "S05；App基于已完成S06–S09结果（未做的条件明确缺项），自然MTC分支依赖既有P1/P2/P6而非新标签。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/10_e5",
+        "planned_description": "上述表、`BOUNDARY_REPORT.md`、failure/abstention明细、VALIDATION、STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "全部配置/失败/较低证据有去向；自然与合成分母独立；P6重复不算新增独立设备；无相关标签就没有检测指标。只跑协议内掩码/缺失条件，不扩展随机大规模扰动搜索。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S10"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S05"
+          ]
+        }
+      ],
+      "failure_policy": "缺自然输入只阻断该可用性子表；缺标签照留描述。大量弃判、同输入不可区分、不恢复都作为边界交付。",
+      "stop_after_step": true,
+      "invocation": "执行 S10",
+      "branch_dependencies": {
+        "saved_attack_boundary": [
+          "S05",
+          "S06"
+        ],
+        "source_diagnostics_if_cited": [
+          "S07"
+        ],
+        "semantic_diagnostics_if_cited": [
+          "S09"
+        ],
+        "natural_missingness": [
+          "S05"
+        ],
+        "p6_repeat_reuse": []
+      },
+      "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
+    },
+    {
+      "id": "S11",
+      "name": "E6离线成本与解释忠实性",
+      "experiments": [
+        "E6"
+      ],
+      "dependencies": [
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "dependency_details": "S05计时协议和已保存S06/S07预测；解释只核对保存事件/卡片，不能借审阅调方法。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/11_e6",
+        "planned_description": "`timing_samples.jsonl`、`timing_summary.csv`、`runtime_environment.json`、`explanation_audit.jsonl`、`semantic_review_queue.json`、VALIDATION、STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "每计时重复有原值/状态，sum与total差异可解释，冷暖分开；使用相同已冻结输入、输出与原正式预测一致（不含timing）；解释引用只能指向真实used_fields/当前rule/card，不引用缺失字段；LLM调用0。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S11"
+        },
+        {
+          "type": "DEPENDENCY_NOT_EXECUTED",
+          "steps": [
+            "S05",
+            "S06",
+            "S07"
+          ]
+        }
+      ],
+      "failure_policy": "环境计时噪声如实报告，不选最好次；输出不一致属实现错误，保留该run并阻断成本结论；人工未评保留未知；无成本优势是可接受结果。",
+      "stop_after_step": true,
+      "invocation": "执行 S11"
+    },
+    {
+      "id": "S12",
+      "name": "图表、论文结果与复现包",
+      "experiments": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6"
+      ],
+      "dependencies": [],
+      "dependency_details": "所引用步骤的真实产物和验证记录。支线缺失允许交付标缺的部分版本；没有E1/E2真值结果不能把论文主检测结论标完成。",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "execution_started": false,
+      "completed_at": null,
+      "artifacts": {
+        "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/12_release",
+        "planned_description": "`figures/fig1..fig6.{svg,pdf}`（无数据项列缺失原因）、`tables/table1..table3.{csv,md}`、`figure_data/`、`FIGURE_MANIFEST.json`、`claim_ledger.csv`、`RESULTS_DRAFT_CN.md`、`LIMITATIONS.md`、`REPRODUCE.md`、`REPRODUCTION_MANIFEST.json`、VALIDATION、STEP_REPORT。",
+        "produced": []
+      },
+      "acceptance_summary": "每性能数值可从冻结预测+独立facts重算；正文/表/图同分母同版本；图例区分0/未知/弃判/失败；视觉检查字号、布局、色彩和区间说明；图表生成离线重复输出数据一致且模型/检测调用为0。缺支线不伪造图片；复现包不包含无授权公开的原始日志。",
+      "acceptance_status": "NOT_RUN",
+      "blocking_reasons": [
+        {
+          "type": "AUTHORIZATION",
+          "detail": "等待用户明确发送 执行 S12"
+        }
+      ],
+      "failure_policy": "绘图/汇总bug从保存结果修正并记版本；结果不理想仍完成分析图表；真值缺失明确限制而非写好看结论；复现依赖缺失列具体文件，不隐式调用新服务。",
+      "stop_after_step": true,
+      "invocation": "执行 S12",
+      "dependency_policy": "Every cited S-step requires its saved artifacts and verification. Missing branches are explicitly NOT_EVALUATED; no detector run or upstream execution is authorized by S12. E1/E2 claims require S06/S07.",
+      "required_for_full_delivery": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11"
+      ],
+      "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
+    }
+  ],
+  "next_authorization_step": "S01",
+  "next_authorization_instruction": "执行 S01",
+  "next_step_scope": "Only material validators, independent fact/eligibility ledger and conservative environment grouping; no detector/performance experiment, attack execution, collection, model call or automatic S02.",
+  "plan_validation": {
+    "step_count": 12,
+    "all_required_step_fields_present": true,
+    "step_ids_unique": true,
+    "all_steps_unexecuted": true,
+    "independent_review": "Read-only review of P0-P6 boundaries, dependencies and denominators; two clarifications incorporated.",
+    "formal_tests_or_experiments_run": false,
+    "working_tree_boundary_verified": true,
+    "only_new_main_repository_directory": "deliverables/formal_experiment_execution_plan/",
+    "existing_main_status_entries_unchanged": true,
+    "main_head_unchanged": true,
+    "attack_HEAD_matches_fetched_origin_main": true,
+    "attack_working_tree_clean": true,
+    "no_S_step_artifact_directories_created": true,
+    "validation_type": "STATIC_PLAN_AND_STATUS_CHECKS_ONLY"
+  },
+  "history": [
+    {
+      "event": "PLAN_CREATED_ONLY",
+      "detail": "Four design documents and targeted repositories/materials inspected; attack repository updated by authorized fast-forward; no S-step executed."
+    }
+  ]
+}
