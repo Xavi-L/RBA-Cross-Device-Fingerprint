@@ -1,0 +1,33 @@
+{
+  "policy_version": "formal-manipulation-family-or-v2",
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "role_gate_config_ref": "hybridguard_agent/config/formal_manipulation_role_gate_v2",
+  "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+  "study_version": "formal-manipulation-v1",
+  "threshold": 1,
+  "aggregation": "distinct_family_OR",
+  "candidate_requirements": [
+    "decision_role=alert_candidate",
+    "A=SUPPORTED",
+    "B=ELIGIBLE",
+    "original_verifier_valid",
+    "original_outcome=MATCH|COUNTEREXAMPLE"
+  ],
+  "decisions": [
+    "MANIPULATION_ALERT",
+    "NO_ALERT",
+    "INSUFFICIENT_EVIDENCE",
+    "FAILED"
+  ],
+  "calibrated_attack_probability": null,
+  "attribution_certainty": "UNKNOWN",
+  "alert_meaning": "Suspected manipulation/risk warning within declared research scope; not confirmed attack, unauthorized origin, malicious intent, calibrated probability, or a safety claim.",
+  "source_limits": {
+    "H": "No risk candidates; binary zero is structural.",
+    "C": "No risk candidates; B0 abstains.",
+    "O_u": "Two candidates share app_os/host_os with E and add no family when E retained; zero incremental binary effect is structurally constrained."
+  },
+  "no_alert_meaning": "At least one candidate family assessed without a qualifying conflict; report coverage, never infer safety.",
+  "failed_precedence": "Any parsing/runtime/verification failure fails the unit; no partial successful prediction.",
+  "gate_authority": "Only reviewed v2 scopes; v1 registry is provenance, never role or attribution authority."
+}

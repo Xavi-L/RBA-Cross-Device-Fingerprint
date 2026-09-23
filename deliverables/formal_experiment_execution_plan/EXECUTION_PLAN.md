@@ -1,6 +1,6 @@
 # HybridGuard 正式实验逐步实施计划
 
-计划版本：`formal-experiment-execution-plan-v1-20260923`。编制日期：2026-09-23。当前进度：**S01、S02、S03 已完成；独立 S03-R v2 已完成工程验证、等待审查；S04–S12 未执行。** 原始编制快照保留在第 2 节；最新执行事实见 `EXECUTION_STATUS.json`。
+计划版本：`formal-experiment-execution-plan-v1-20260923`。编制日期：2026-09-23。当前进度：**S01、S02、S03 已完成；S03-R v2 外部审查通过；S04 已完成实现及合成工程验证；S05–S12 未执行。** 原始编制快照保留在第 2 节；最新执行事实见 `EXECUTION_STATUS.json`。
 
 本计划依据 `HybridGuard_Experiment_Design/` 四份文件的完整内容，并核对两个本地仓库的源码、原始材料、保存结果和访问记录。工程验收是合同、实现、隔离和结果完整性；论文结论由真实结果决定。高检出、零误报、联合最优或每个模块有收益均不是验收条件。
 
@@ -157,6 +157,8 @@ MTC全部保持未标注参考。不得拼接无关Browser制造攻击paired244�
 ### 5.2 版本化最小策略：推荐policy-v1
 
 **S03-R v2 修订说明：**以下 policy-v1 为原设计记录。后续单独授权的 S04 应采用 `formal-manipulation-relation-risk-attribution-v2` 的 A/B/C 分离合同及统一研究范围；修订理由、候选与不可评估主张见 [版本化修订说明](S03_R_CONTRACT_REVISION_v2.md)。S03 v1 产物和原零候选验收保留；本修订不启动 S04。
+
+**S04 实现记录：**已按外审通过的 v2 接入完整原链和独立风险层。接口与比较定义见 [S04 v2 实现说明](S04_CONTRACT_IMPLEMENTATION_v2.md)。当前 v3 的去门控角色投影仅为关系诊断；其合法风险视图与 final 共用 v2，不作为第三个独立检测器。原 policy-v1 条文及旧执行记录保留为历史记录。
 
 保留所有关系检查及其原outcome，另设 `ManipulationDecision`。`source_lane`、目录ACTIVE和`COUNTEREXAMPLE`都不自动授予报警资格。
 
@@ -655,3 +657,16 @@ S02 全量接收 262 条原始阶段：262 成功，0 拒绝；其中准入攻�
 独立产物位于 `hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/`，配置位于 `hybridguard_agent/config/formal_manipulation_role_gate_v2/`。两者在命令中同时显式指定；只换 output、旧配置目的地或非空/重叠目录现在会在写入前拒绝。原 S03 语义函数、配置、产物及测试保留。
 
 本地 S03-R 为 DONE/PASS、AWAITING_USER_REVIEW；[合同修订说明](S03_R_CONTRACT_REVISION_v2.md) 明确后续 S04 的版本绑定和仍不可评估的主张。S01/S02 不重跑，时间对照标签限制不变。完成后停止等待审查，不进入 S04，不提交或推送。
+
+
+### S04 执行更新（2026-09-24，北京时间）
+
+审查 HEAD 为 `8d2e8d55e34fcd75a4d6f3f5b9f0834862316554`，与执行开始及完成核对一致。S03-R 外审通过单独登记；旧报告中的“未推送”“待审查”为原记录时点，不覆盖或重跑历史产物。
+
+采用 `formal-manipulation-relation-risk-attribution-v2` 与独立 `formal-manipulation-family-or-v2`：7 条候选、5 个家族，固定家族 OR 和阈值 1。完整原 v3 的 87 项目录结果、57 项 ACTIVE、原卡片和 Verifier 保持；旧 19 项原谓词作为单独版本基线，使用相同 v2 风险门控。全部来源条件保留公共 C 与相同门控，O_u/E 重叠、H/C 无候选的结构限制不变。
+
+预测、全部规则事件、原 runtime、失败及弃判先保存关闭；之后独立连接评估侧标签、三态和时间对照。指标保留固定分母中的弃判/失败，报告覆盖、失败区间、精确 010、配置/环境宏平均；绘图入口只导出保存结果的来源表。类型/版本/配置混用失败均不会自动变成 NO_ALERT。
+
+35 项最终聚焦测试通过，保存 5 个合成策略边界、14 个候选/原谓词共同有效域对照，以及 14 条合成评估预测与 1,218 条完整目录事件；合成手算分母和防泄漏验收通过。初始夹具路径故障及末轮异常路径修复有独立记录。产物：`hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/`。
+
+S04 DONE/PASS 只代表实现及合成工程验收。真实样本预测、真实 TPR/FPR、阈值搜索、采集和 LLM 调用均未执行；S01 时间对照仍 UNKNOWN、不取得 FPR 资格。S05 未开始，等待单独授权；本次不提交或推送。

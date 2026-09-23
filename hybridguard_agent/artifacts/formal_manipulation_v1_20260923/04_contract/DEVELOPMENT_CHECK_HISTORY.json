@@ -1,0 +1,22 @@
+{
+  "initial_test_attempt": {
+    "tests": 31,
+    "failures": 1,
+    "log": "FOCUSED_TESTS_INITIAL_FAILURE.txt",
+    "reason": "The synthetic deny-read guard compared a resolved /private path to its unresolved macOS temp-directory alias, so its self-check failed. No evidence of a worker facts/log read.",
+    "repair": "Resolve the deny-root before testing ancestry."
+  },
+  "generation_attempt": {
+    "tests": 34,
+    "passed": 34,
+    "log": "FOCUSED_TESTS_GENERATION.txt"
+  },
+  "final_review": {
+    "tests": 35,
+    "passed": 35,
+    "log": "FOCUSED_TESTS.txt",
+    "repair": "Gate/verifier exceptions no longer re-enter failing gates during FAILED record creation; unreadable encodings retain scheduled FAILED units.",
+    "saved_generated_cases_affected": false
+  },
+  "S03_R_old_tests_and_records": "unchanged; not rerun as a step"
+}

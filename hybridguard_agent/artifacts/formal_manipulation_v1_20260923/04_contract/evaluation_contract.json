@@ -1,0 +1,44 @@
+{
+  "schema_version": "formal-evaluation-contract-v2",
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "join_key": [
+    "opaque_id",
+    "variant_id"
+  ],
+  "prediction_stage_closed_required": true,
+  "no_detector_import_or_execution_required": true,
+  "S02_index_required": [
+    "opaque_id",
+    "bundle_id",
+    "triplet_id",
+    "phase",
+    "environment_group_id",
+    "admission_fact"
+  ],
+  "S01_truth_authority": [
+    "eligible_detection",
+    "eligible_triplet",
+    "eligible_pre_control",
+    "eligible_post_control",
+    "eligible_temporal_control",
+    "execution",
+    "observable_effect",
+    "rollback",
+    "no_intervention",
+    "evidence_grade"
+  ],
+  "no_labels_in_worker": true,
+  "strict_negative_truth": "no_intervention=SUPPORTED; UNKNOWN never joins FPR",
+  "zero_or_failure": "FAILED and INSUFFICIENT_EVIDENCE never counted as NO_ALERT/TN",
+  "triplet_phases": [
+    "clean_pre",
+    "attack",
+    "clean_post"
+  ],
+  "control_phases": [
+    "clean_pre",
+    "control_mid",
+    "clean_post"
+  ],
+  "plot_interface": "saved evaluation only"
+}

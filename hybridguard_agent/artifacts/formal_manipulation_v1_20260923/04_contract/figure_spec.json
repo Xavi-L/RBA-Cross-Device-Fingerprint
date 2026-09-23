@@ -1,0 +1,102 @@
+{
+  "figure_spec_version": "formal-figure-spec-v2",
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "primary_formats": [
+    "svg",
+    "pdf"
+  ],
+  "source_formats": [
+    "csv",
+    "json"
+  ],
+  "preview_format": "png",
+  "font": "DejaVu Sans / Noto Sans CJK SC when available",
+  "single_column_width_mm": 85,
+  "double_column_width_mm": 178,
+  "minimum_font_pt": 8,
+  "palette": [
+    "#0072B2",
+    "#D55E00",
+    "#009E73",
+    "#CC79A7",
+    "#E69F00",
+    "#56B4E9"
+  ],
+  "line_styles": [
+    "solid",
+    "dashed",
+    "dotted"
+  ],
+  "interval_units": "Rates 0..1; differences in percentage points; no population CI for related groups",
+  "status_markers": {
+    "NO_ELIGIBLE_LABELS": "NA",
+    "FAILED": "x",
+    "INSUFFICIENT_EVIDENCE": "open triangle",
+    "ZERO_OBSERVED": "0/n"
+  },
+  "figures": [
+    {
+      "id": "Fig.1",
+      "scope": "method and inference/evaluation boundary",
+      "required_sources": [
+        "schemas",
+        "policy"
+      ],
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "id": "Fig.2",
+      "scope": "all configurations triplet trajectories",
+      "required_sources": [
+        "triplet_results",
+        "evaluation_joined"
+      ],
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "id": "Fig.3",
+      "scope": "fixed denominator rates and coverage",
+      "required_sources": [
+        "metrics"
+      ],
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "id": "Fig.4",
+      "scope": "positive and verified-negative source overlaps",
+      "required_sources": [
+        "source_overlap",
+        "metrics"
+      ],
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "id": "Fig.5",
+      "scope": "App view and P6 coverage-only comparison",
+      "required_sources": [
+        "metrics",
+        "P6_SAVED_OUTPUT"
+      ],
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "id": "Fig.6",
+      "scope": "boundary, missingness, costs and fidelity",
+      "required_sources": [
+        "metrics",
+        "timings_ms",
+        "verification"
+      ],
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    }
+  ],
+  "manifest_required": [
+    "source_tables",
+    "source_prediction_rows",
+    "filters",
+    "run_id",
+    "protocol_digest",
+    "execution_scope"
+  ],
+  "synthetic_policy": "S04 tables validate interfaces; no paper figures or real sample metrics."
+}
