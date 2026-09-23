@@ -1,0 +1,60 @@
+{
+  "predicate_registry_version": "deterministic-rule-predicates-v1",
+  "rule_knowledge_base": {
+    "path": "scoring/rule_knowledge_base.json",
+    "sha256": "bd64876a301eaa063b7793fd7fb471ffe64bab4478970f7f3a6476ff0a4a7884"
+  },
+  "compiled_rules": {
+    "CORE-002": {
+      "predicate_id": "sensor_or_jsbridge_absent_v1",
+      "short_circuit": true,
+      "fact_ids": ["native.sensor_total_count", "webview.jsbridge_state"]
+    },
+    "NW-002": {
+      "predicate_id": "native_web_android_major_neq_v1",
+      "short_circuit": false,
+      "fact_ids": ["native.android_major", "web.ua_android_major"]
+    },
+    "NW-006": {
+      "predicate_id": "desktop_or_script_ua_surface_v1",
+      "short_circuit": false,
+      "fact_ids": ["web.ua_class", "web.platform_class"]
+    },
+    "NW-007": {
+      "predicate_id": "mobile_ua_zero_touch_v1",
+      "short_circuit": false,
+      "fact_ids": ["web.ua_class", "web.max_touch_points"]
+    },
+    "NVW-002": {
+      "predicate_id": "native_webview_android_major_neq_v1",
+      "short_circuit": false,
+      "fact_ids": ["native.android_major", "webview.http_android_major"]
+    },
+    "NVW-005": {
+      "predicate_id": "debug_and_cleartext_context_v1",
+      "short_circuit": false,
+      "fact_ids": ["webview.is_debuggable", "webview.cleartext_permitted"]
+    },
+    "PHYS-005": {
+      "predicate_id": "adb_and_high_battery_context_v1",
+      "short_circuit": false,
+      "fact_ids": ["native.adb_enabled", "native.battery_level_pct", "native.is_charging"]
+    },
+    "PHYS-006": {
+      "predicate_id": "normalized_build_marker_context_v1",
+      "short_circuit": false,
+      "fact_ids": ["native.build_marker_categories"]
+    },
+    "SCENE-001": {
+      "predicate_id": "test_rig_context_v1",
+      "short_circuit": false,
+      "fact_ids": ["webview.installer_class", "web.timezone_offset", "native.adb_enabled", "native.battery_level_pct"]
+    },
+    "WVWEB-004": {
+      "predicate_id": "script_user_agent_surface_v1",
+      "short_circuit": true,
+      "fact_ids": ["web.ua_class"]
+    }
+  },
+  "boundary": "Only rules with explicit deterministic predicates are compiled. All other rule-knowledge-base entries remain retrieval-only until their natural-language conditions are reviewed and implemented with tests. A matched context is not a calibrated attack or fraud label."
+}

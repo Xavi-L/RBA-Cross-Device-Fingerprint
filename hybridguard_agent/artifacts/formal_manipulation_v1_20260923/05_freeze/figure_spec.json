@@ -1,0 +1,166 @@
+{
+  "configuration_order": [
+    "CONTROL:20260823_api30_no_attack_temporal_v6",
+    "CONTROL:20260823_api35_no_attack_temporal_v1",
+    "CONTROL:20260823_api36_no_attack_temporal_v1",
+    "CONTROL:20260823_api36_rule_boundary_no_attack_v2",
+    "CONTROL:20260824_api36_cdp_emulation_v5_no_attack_v1",
+    "CONTROL:20260824_api36_stealth_boundary_no_attack_v1",
+    "cdp_platform_only_v1",
+    "cdp_resource_pair_v1",
+    "cdp_screen_metrics_only_v1",
+    "cdp_timezone_only_v1",
+    "cdp_ua_only_v1",
+    "cdp_ua_platform_desktop_v1",
+    "cdp_webdriver_only_v1",
+    "stealth_languages_only_v1",
+    "stealth_plugins_mime_v1",
+    "stealth_webgl_pair_v1",
+    "w6-tool-054-legacy-default-v1",
+    "w6-tool-055-legacy-default-v1",
+    "w6-tool-056-legacy-default-v1",
+    "w6-tool-058-legacy-default-v1"
+  ],
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "double_column_width_mm": 178,
+  "figure_spec_version": "formal-figure-spec-freeze-v2",
+  "figures": [
+    {
+      "denominator_ref": "evaluation/task_denominators.json",
+      "id": "Fig.1",
+      "required_sources": [
+        "schemas",
+        "policy"
+      ],
+      "scope": "method and inference/evaluation boundary",
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "denominator_ref": "evaluation/task_denominators.json",
+      "id": "Fig.2",
+      "required_sources": [
+        "triplet_results",
+        "evaluation_joined"
+      ],
+      "scope": "all configurations triplet trajectories",
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "denominator_ref": "evaluation/task_denominators.json",
+      "id": "Fig.3",
+      "required_sources": [
+        "metrics"
+      ],
+      "scope": "fixed denominator rates and coverage",
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "denominator_ref": "evaluation/task_denominators.json",
+      "id": "Fig.4",
+      "required_sources": [
+        "source_overlap",
+        "metrics"
+      ],
+      "scope": "positive and verified-negative source overlaps",
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "denominator_ref": "evaluation/task_denominators.json",
+      "id": "Fig.5",
+      "required_sources": [
+        "metrics",
+        "P6_SAVED_OUTPUT"
+      ],
+      "scope": "App view and P6 coverage-only comparison",
+      "status": "NOT_EVALUATED_UNTIL_AUTHORIZED_SAVED_RESULTS"
+    },
+    {
+      "denominator_ref": "evaluation/task_denominators.json",
+      "fallback": "Do not replace x-axis with clean_pre/post or unlabeled MTC. A separately labeled clean_pre/post table is allowed; no curve/ROC/smoothing/calibration.",
+      "id": "Fig.6",
+      "operating_variant_ids": [
+        "final_v3_v2:App177:SRC-000",
+        "final_v3_v2:App177:SRC-001",
+        "final_v3_v2:App177:SRC-010",
+        "final_v3_v2:App177:SRC-011",
+        "final_v3_v2:App177:SRC-100",
+        "final_v3_v2:App177:SRC-101",
+        "final_v3_v2:App177:SRC-110",
+        "final_v3_v2:App177:SRC-111"
+      ],
+      "required_sources": [
+        "metrics"
+      ],
+      "scope": "Discrete predeclared risk operating points: temporal control_mid FPR x eligible attack TPR; coverage and n annotated",
+      "status": "NOT_EVALUATED_NO_ELIGIBLE_TEMPORAL_CONTROL_LABELS"
+    }
+  ],
+  "font": "DejaVu Sans / Noto Sans CJK SC when available",
+  "interval_units": "Rates 0..1; differences in percentage points; no population CI for related groups",
+  "line_styles": [
+    "solid",
+    "dashed",
+    "dotted"
+  ],
+  "manifest_required": [
+    "source_tables",
+    "source_prediction_rows",
+    "filters",
+    "run_id",
+    "protocol_digest",
+    "execution_scope"
+  ],
+  "minimum_font_pt": 8,
+  "palette": [
+    "#0072B2",
+    "#D55E00",
+    "#009E73",
+    "#CC79A7",
+    "#E69F00",
+    "#56B4E9"
+  ],
+  "phase_order": [
+    "clean_pre",
+    "attack",
+    "clean_post"
+  ],
+  "preview_format": "png",
+  "primary_formats": [
+    "svg",
+    "pdf"
+  ],
+  "reason": "S04 Fig.6 placeholder differs from the execution plan. Freeze Fig.6 as discrete operating points; move missingness/cost/fidelity to Table.2/3 and appendices. No S04 history overwritten.",
+  "result_selection": "All configurations in frozen order; no selection by alert, success, effect, or statistical significance.",
+  "single_column_width_mm": 85,
+  "source_formats": [
+    "csv",
+    "json"
+  ],
+  "status_markers": {
+    "FAILED": "x",
+    "INSUFFICIENT_EVIDENCE": "open triangle",
+    "NO_ELIGIBLE_LABELS": "NA",
+    "ZERO_OBSERVED": "0/n"
+  },
+  "supersedes_for_future_figures": "formal-figure-spec-v2",
+  "synthetic_policy": "S04 tables validate interfaces; no paper figures or real sample metrics.",
+  "tables": [
+    {
+      "id": "Table.1",
+      "scope": "Candidate/material/admission flow, all cohorts/bundles/groups and unresolved facts"
+    },
+    {
+      "id": "Table.2",
+      "scope": "Fixed-denominator attack/recovery/coverage and separate MTC reuse block; E5 boundaries and E6 cost"
+    },
+    {
+      "id": "Table.3",
+      "scope": "Source structure/overlap, gate and dedup diagnostic results, explanation references; no diagnostic risk TPR/FPR"
+    }
+  ],
+  "temporal_phase_order": [
+    "clean_pre",
+    "control_mid",
+    "clean_post"
+  ]
+}

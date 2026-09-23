@@ -1,0 +1,4423 @@
+{
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "common_gate_ids": [
+    "registered_current_fields",
+    "explicit_observed_and_quality",
+    "typed_finite_non_sentinel",
+    "product_specific_relation_scope",
+    "software_not_hardware_comparison",
+    "separate_A_B_C",
+    "uniform_research_scope",
+    "attribution_never_inferred",
+    "browser_evidence_only_if_present"
+  ],
+  "scopes": [
+    {
+      "rule_id": "CORE-002",
+      "provenance_group": "E",
+      "decision_family": "featureapp_bridge",
+      "original_evidence_family": "featureapp_bridge",
+      "applicability_id": "scope-v2:CORE-002",
+      "profile": "retained:bridge",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "explicit boolean bridge state",
+        "fixed App177 study surface, never infer route from free metadata"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:CORE-002",
+        "rule_id": "CORE-002",
+        "profile": "bridge",
+        "required_fields": [
+          "app.webview_data.bridge_routing_layer.jsbridge_injected"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.bridge_routing_layer.jsbridge_injected"
+        ],
+        "conditions": [
+          "explicit boolean bridge state",
+          "fixed App177 study surface, never infer route from free metadata"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "NW-001",
+      "provenance_group": "E",
+      "decision_family": "model_app_ua",
+      "original_evidence_family": "model_app_ua",
+      "applicability_id": "scope-v2:NW-001",
+      "profile": "app_model",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "one explicit non-K model-before-Build token",
+        "Native model is meaningful",
+        "App agent is not Dalvik"
+      ],
+      "risk_conditions": [
+        "default/settings observed and exactly equal",
+        "default model token equals normalized Native model; unresolved aliases stay UNKNOWN"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_default_or_authorized_override_boundary_during_capture",
+          "measurement_requirements": [
+            "parseable non-reduced current identity operands"
+          ],
+          "risk_scope_requirements": [
+            "typed current default/settings reference",
+            "explicit custom settings exclude App UA risk eligibility",
+            "reference agrees with Native convention"
+          ],
+          "attribution_only": [
+            "authorization of overrides",
+            "uninterrupted default origin throughout capture"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NW-001",
+        "rule_id": "NW-001",
+        "profile": "app_model",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.device_model",
+          "app.web_data.navigator_layer.user_agent",
+          "app.webview_data.kernel_container_layer.default_ua_native",
+          "app.webview_data.webview_settings_layer.settings_user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.device_model",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "explicit unique non-K model-before-Build token",
+          "Native model is interpretable",
+          "current settings/default UA chain known",
+          "UA origin and stability throughout capture established"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_default_or_authorized_override_boundary_during_capture"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "require_dalvik": false
+        }
+      }
+    },
+    {
+      "rule_id": "NW-002",
+      "provenance_group": "E",
+      "decision_family": "app_os",
+      "original_evidence_family": "app_os",
+      "applicability_id": "scope-v2:NW-002",
+      "profile": "app_os",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive unambiguous Native/Android UA majors agree with frozen parsers",
+        "App agent is not Dalvik",
+        "Android10/K reduction excluded"
+      ],
+      "risk_conditions": [
+        "default/settings observed and exactly equal",
+        "non-reduced default Android major agrees with Native"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_default_or_authorized_override_boundary_during_capture",
+          "measurement_requirements": [
+            "parseable non-reduced current identity operands"
+          ],
+          "risk_scope_requirements": [
+            "typed current default/settings reference",
+            "explicit custom settings exclude App UA risk eligibility",
+            "reference agrees with Native convention"
+          ],
+          "attribution_only": [
+            "authorization of overrides",
+            "uninterrupted default origin throughout capture"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NW-002",
+        "rule_id": "NW-002",
+        "profile": "app_os",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.web_data.navigator_layer.user_agent",
+          "app.webview_data.kernel_container_layer.default_ua_native",
+          "app.webview_data.webview_settings_layer.settings_user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "explicit parseable Native version and App Android token",
+          "App/WebView reduction excluded independently of Browser milestones",
+          "UA origin and capture-time stability established"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_default_or_authorized_override_boundary_during_capture"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "NW-005",
+      "provenance_group": "E",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "native_app_gpu_family",
+      "applicability_id": "scope-v2:NW-005",
+      "profile": "gpu_family",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "both renderers resolve to exactly one existing named hardware family",
+        "no masked renderer",
+        "no software-renderer token"
+      ],
+      "risk_conditions": [
+        "reported family-coherence hypothesis only, no physical-path identity claim"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering",
+          "measurement_requirements": [
+            "meaningful unmasked renderers",
+            "software cannot be used as a hardware-family comparison",
+            "unique named families for NW-005"
+          ],
+          "risk_scope_requirements": [
+            "reported cross-renderer family coherence, not physical-path identity"
+          ],
+          "attribution_only": [
+            "actual physical/host/remote/hybrid route and its authorization"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NW-005",
+        "rule_id": "NW-005",
+        "profile": "gpu",
+        "required_fields": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ],
+        "conditions": [
+          "unmasked meaningful renderer strings",
+          "Native hardware family unambiguous",
+          "software/host/remote or hybrid rendering exclusions established",
+          "ANGLE alone never a contradiction"
+        ],
+        "unobservable_alert_preconditions": [
+          "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "families": [
+            "adreno",
+            "mali",
+            "powervr",
+            "tegra",
+            "vivante"
+          ],
+          "software_tokens": [
+            "swiftshader",
+            "llvmpipe",
+            "softpipe",
+            "swrast"
+          ]
+        }
+      }
+    },
+    {
+      "rule_id": "NW-006",
+      "provenance_group": "E",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "applicability_id": "scope-v2:NW-006",
+      "profile": "retained:ua_surface_context",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NW-006",
+        "rule_id": "NW-006",
+        "profile": "ua_surface_context",
+        "required_fields": [
+          "app.web_data.navigator_layer.platform",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.platform",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "interpretable UA/platform fields"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "NW-007",
+      "provenance_group": "E",
+      "decision_family": "mobile_touch",
+      "original_evidence_family": "mobile_touch",
+      "applicability_id": "scope-v2:NW-007",
+      "profile": "retained:touch_context",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "UA string and nonnegative integer maxTouchPoints"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NW-007",
+        "rule_id": "NW-007",
+        "profile": "touch_context",
+        "required_fields": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "UA string and nonnegative integer maxTouchPoints"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "NVW-001",
+      "provenance_group": "E",
+      "decision_family": "model_system_agent",
+      "original_evidence_family": "model_system_agent",
+      "applicability_id": "scope-v2:NVW-001",
+      "profile": "system_model",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "additional_risk_required_fields": [
+        "app.webview_data.kernel_container_layer.default_ua_native"
+      ],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "explicit Dalvik grammar and one meaningful model-before-Build token",
+        "Native model is meaningful"
+      ],
+      "risk_conditions": [
+        "default App UA model token agrees with normalized Native as a naming-reference check",
+        "property-coherence scope only, never current JS-UA identity"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_system_http_agent_origin",
+          "measurement_requirements": [
+            "explicit Dalvik grammar and interpretable identity operands"
+          ],
+          "risk_scope_requirements": [
+            "uniform host-property coherence hypothesis, not JS-UA identity"
+          ],
+          "attribution_only": [
+            "whether mutable http.agent was legitimately overridden"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NVW-001",
+        "rule_id": "NVW-001",
+        "profile": "system_model",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.device_model",
+          "app.webview_data.kernel_container_layer.system_http_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.device_model",
+          "app.webview_data.kernel_container_layer.system_http_agent"
+        ],
+        "conditions": [
+          "explicit Dalvik grammar and unique model-before-Build token",
+          "property is the unmodified default for this historical implementation"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_system_http_agent_origin"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "require_dalvik": true
+        }
+      }
+    },
+    {
+      "rule_id": "NVW-002",
+      "provenance_group": "E",
+      "decision_family": "host_os",
+      "original_evidence_family": "host_os",
+      "applicability_id": "scope-v2:NVW-002",
+      "profile": "system_os",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "explicit Dalvik grammar",
+        "positive unambiguous Native/Android agent majors agree with frozen parsers"
+      ],
+      "risk_conditions": [
+        "uniform relative-Native and process-property coherence hypothesis"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_system_http_agent_origin",
+          "measurement_requirements": [
+            "explicit Dalvik grammar and interpretable identity operands"
+          ],
+          "risk_scope_requirements": [
+            "uniform host-property coherence hypothesis, not JS-UA identity"
+          ],
+          "attribution_only": [
+            "whether mutable http.agent was legitimately overridden"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NVW-002",
+        "rule_id": "NVW-002",
+        "profile": "system_os",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.webview_data.kernel_container_layer.system_http_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.webview_data.kernel_container_layer.system_http_agent"
+        ],
+        "conditions": [
+          "explicit Dalvik Android grammar",
+          "Native version parses without guessing",
+          "unmodified property origin established"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_system_http_agent_origin"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "NVW-003",
+      "provenance_group": "C",
+      "decision_family": "deployment_identity",
+      "original_evidence_family": "deployment_identity",
+      "applicability_id": "scope-v2:NVW-003",
+      "profile": "retained:deployment",
+      "decision_role": "deployment_policy",
+      "relation_required_fields": [
+        "app.webview_data.host_security_layer.app_package_name"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered package/release fields available",
+        "fixed historical MTC deployment scope only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NVW-003",
+        "rule_id": "NVW-003",
+        "profile": "deployment",
+        "required_fields": [
+          "app.webview_data.host_security_layer.app_package_name"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.host_security_layer.app_package_name"
+        ],
+        "conditions": [
+          "registered package/release fields available",
+          "fixed historical MTC deployment scope only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "deployment_policy",
+        "parameters": {
+          "policy_version": "mtc-featureapp-deployment-policy-v1",
+          "allowed_packages": [
+            "com.example.hybridguard.featureapp"
+          ],
+          "allowed_releases": [
+            {
+              "version_code": 9,
+              "version_name": "1.6.2-expanded-v2.2-mtc"
+            },
+            {
+              "version_code": 11,
+              "version_name": "1.6.4-expanded-v2.2-mtc-https"
+            }
+          ],
+          "basis": [
+            "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+            "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+          ],
+          "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+          "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+        }
+      }
+    },
+    {
+      "rule_id": "NVW-004",
+      "provenance_group": "C",
+      "decision_family": "installer_context",
+      "original_evidence_family": "installer_context",
+      "applicability_id": "scope-v2:NVW-004",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NVW-004",
+        "rule_id": "NVW-004",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.webview_data.host_security_layer.installer_package"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.host_security_layer.installer_package"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "NVW-005",
+      "provenance_group": "E",
+      "decision_family": "debug_cleartext",
+      "original_evidence_family": "debug_cleartext",
+      "applicability_id": "scope-v2:NVW-005",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NVW-005",
+        "rule_id": "NVW-005",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+          "app.webview_data.host_security_layer.is_debuggable"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+          "app.webview_data.host_security_layer.is_debuggable"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "WVWEB-002",
+      "provenance_group": "C",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "applicability_id": "scope-v2:WVWEB-002",
+      "profile": "retained:ua_surface_context",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:WVWEB-002",
+        "rule_id": "WVWEB-002",
+        "profile": "ua_surface_context",
+        "required_fields": [
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "interpretable UA/platform fields"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {
+          "wv_pattern": ";\\s*wv\\b",
+          "version_pattern": "\\bVersion/4\\.0\\b"
+        }
+      }
+    },
+    {
+      "rule_id": "WVWEB-004",
+      "provenance_group": "E",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "applicability_id": "scope-v2:WVWEB-004",
+      "profile": "retained:ua_surface_context",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:WVWEB-004",
+        "rule_id": "WVWEB-004",
+        "profile": "ua_surface_context",
+        "required_fields": [
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "interpretable UA/platform fields"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "PHYS-005",
+      "provenance_group": "E",
+      "decision_family": "PHYS-005",
+      "original_evidence_family": "PHYS-005",
+      "applicability_id": "scope-v2:PHYS-005",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.is_charging",
+        "app.android_native_data.security_config_layer.is_adb_enabled"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:PHYS-005",
+        "rule_id": "PHYS-005",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+          "app.android_native_data.battery_dynamics_layer.is_charging",
+          "app.android_native_data.security_config_layer.is_adb_enabled"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+          "app.android_native_data.battery_dynamics_layer.is_charging",
+          "app.android_native_data.security_config_layer.is_adb_enabled"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "PHYS-006",
+      "provenance_group": "E",
+      "decision_family": "PHYS-006",
+      "original_evidence_family": "PHYS-006",
+      "applicability_id": "scope-v2:PHYS-006",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_type"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:PHYS-006",
+        "rule_id": "PHYS-006",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+          "app.android_native_data.build_fingerprint_layer.build_tags",
+          "app.android_native_data.build_fingerprint_layer.build_type"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+          "app.android_native_data.build_fingerprint_layer.build_tags",
+          "app.android_native_data.build_fingerprint_layer.build_type"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "SCENE-001",
+      "provenance_group": "E",
+      "decision_family": "SCENE-001",
+      "original_evidence_family": "SCENE-001",
+      "applicability_id": "scope-v2:SCENE-001",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.web_data.execution_layer.timezone_offset",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:SCENE-001",
+        "rule_id": "SCENE-001",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+          "app.android_native_data.security_config_layer.is_adb_enabled",
+          "app.web_data.execution_layer.timezone_offset",
+          "app.webview_data.host_security_layer.installer_package"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+          "app.android_native_data.security_config_layer.is_adb_enabled",
+          "app.web_data.execution_layer.timezone_offset",
+          "app.webview_data.host_security_layer.installer_package"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "TOL-001",
+      "provenance_group": "C",
+      "decision_family": "debug_cleartext",
+      "original_evidence_family": "debug_cleartext",
+      "applicability_id": "scope-v2:TOL-001",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.webview_data.host_security_layer.is_debuggable",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:TOL-001",
+        "rule_id": "TOL-001",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.security_config_layer.is_adb_enabled",
+          "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+          "app.webview_data.host_security_layer.is_debuggable"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.security_config_layer.is_adb_enabled",
+          "app.webview_data.host_security_layer.is_debuggable",
+          "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-OS-001",
+      "provenance_group": "O_u",
+      "decision_family": "app_os",
+      "original_evidence_family": "app_os",
+      "applicability_id": "scope-v2:OFFDER-OS-001",
+      "profile": "app_os",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive unambiguous Native/Android UA majors agree with frozen parsers",
+        "App agent is not Dalvik",
+        "Android10/K reduction excluded"
+      ],
+      "risk_conditions": [
+        "default/settings observed and exactly equal",
+        "non-reduced default Android major agrees with Native"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_default_or_authorized_override_boundary_during_capture",
+          "measurement_requirements": [
+            "parseable non-reduced current identity operands"
+          ],
+          "risk_scope_requirements": [
+            "typed current default/settings reference",
+            "explicit custom settings exclude App UA risk eligibility",
+            "reference agrees with Native convention"
+          ],
+          "attribution_only": [
+            "authorization of overrides",
+            "uninterrupted default origin throughout capture"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-OS-001",
+        "rule_id": "OFFDER-OS-001",
+        "profile": "app_os",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.web_data.navigator_layer.user_agent",
+          "app.webview_data.kernel_container_layer.default_ua_native",
+          "app.webview_data.webview_settings_layer.settings_user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "explicit parseable Native version and App Android token",
+          "App/WebView reduction excluded independently of Browser milestones",
+          "UA origin and capture-time stability established"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_default_or_authorized_override_boundary_during_capture"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-OS-002",
+      "provenance_group": "O_u",
+      "decision_family": "host_os",
+      "original_evidence_family": "host_os",
+      "applicability_id": "scope-v2:OFFDER-OS-002",
+      "profile": "system_os",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "explicit Dalvik grammar",
+        "positive unambiguous Native/Android agent majors agree with frozen parsers"
+      ],
+      "risk_conditions": [
+        "uniform relative-Native and process-property coherence hypothesis"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_system_http_agent_origin",
+          "measurement_requirements": [
+            "explicit Dalvik grammar and interpretable identity operands"
+          ],
+          "risk_scope_requirements": [
+            "uniform host-property coherence hypothesis, not JS-UA identity"
+          ],
+          "attribution_only": [
+            "whether mutable http.agent was legitimately overridden"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-OS-002",
+        "rule_id": "OFFDER-OS-002",
+        "profile": "system_os",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.webview_data.kernel_container_layer.system_http_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.webview_data.kernel_container_layer.system_http_agent"
+        ],
+        "conditions": [
+          "explicit Dalvik Android grammar",
+          "Native version parses without guessing",
+          "unmodified property origin established"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_system_http_agent_origin"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-UA-001",
+      "provenance_group": "O_u",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "applicability_id": "scope-v2:OFFDER-UA-001",
+      "profile": "retained:ua_surface_context",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.platform"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-UA-001",
+        "rule_id": "OFFDER-UA-001",
+        "profile": "ua_surface_context",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.web_data.navigator_layer.platform",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "app.web_data.navigator_layer.user_agent",
+          "app.web_data.navigator_layer.platform"
+        ],
+        "conditions": [
+          "interpretable UA/platform fields"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-UA-002",
+      "provenance_group": "O_u",
+      "decision_family": "host_ua",
+      "original_evidence_family": "host_ua",
+      "applicability_id": "scope-v2:OFFDER-UA-002",
+      "profile": "retained:ua_snapshot",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "both current strings available",
+        "same instance and capture interval would be required for a strong equality claim"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "atomic_same_instance_ua_capture",
+          "measurement_requirements": [
+            "atomic_same_instance_ua_capture remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-UA-002",
+        "rule_id": "OFFDER-UA-002",
+        "profile": "ua_snapshot",
+        "required_fields": [
+          "app.web_data.navigator_layer.user_agent",
+          "app.webview_data.kernel_container_layer.default_ua_native"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.kernel_container_layer.default_ua_native",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "both current strings available",
+          "same instance and capture interval would be required for a strong equality claim"
+        ],
+        "unobservable_alert_preconditions": [
+          "atomic_same_instance_ua_capture"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-TOUCH-001",
+      "provenance_group": "O_u",
+      "decision_family": "mobile_touch",
+      "original_evidence_family": "mobile_touch",
+      "applicability_id": "scope-v2:OFFDER-TOUCH-001",
+      "profile": "retained:touch_context",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.max_touch_points"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "UA string and nonnegative integer maxTouchPoints"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-TOUCH-001",
+        "rule_id": "OFFDER-TOUCH-001",
+        "profile": "touch_context",
+        "required_fields": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.user_agent",
+          "app.web_data.navigator_layer.max_touch_points"
+        ],
+        "conditions": [
+          "UA string and nonnegative integer maxTouchPoints"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-BRIDGE-001",
+      "provenance_group": "O_u",
+      "decision_family": "featureapp_bridge",
+      "original_evidence_family": "featureapp_bridge",
+      "applicability_id": "scope-v2:OFFDER-BRIDGE-001",
+      "profile": "retained:bridge",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "explicit boolean bridge state",
+        "fixed App177 study surface, never infer route from free metadata"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-BRIDGE-001",
+        "rule_id": "OFFDER-BRIDGE-001",
+        "profile": "bridge",
+        "required_fields": [
+          "app.webview_data.bridge_routing_layer.jsbridge_injected"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.bridge_routing_layer.jsbridge_injected"
+        ],
+        "conditions": [
+          "explicit boolean bridge state",
+          "fixed App177 study surface, never infer route from free metadata"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-DEVCONFIG-001",
+      "provenance_group": "O_u",
+      "decision_family": "debug_cleartext",
+      "original_evidence_family": "debug_cleartext",
+      "applicability_id": "scope-v2:OFFDER-DEVCONFIG-001",
+      "profile": "retained:declared_fields",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.webview_data.host_security_layer.is_debuggable",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-DEVCONFIG-001",
+        "rule_id": "OFFDER-DEVCONFIG-001",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+          "app.webview_data.host_security_layer.is_debuggable"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.host_security_layer.is_debuggable",
+          "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-GPU-001",
+      "provenance_group": "O_u",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "OFFDER-GPU-001",
+      "applicability_id": "scope-v2:OFFDER-GPU-001",
+      "profile": "gpu_backend_marker",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "typed meaningful current Native/EGL/WebGL strings",
+        "software and masking exclusions retained"
+      ],
+      "risk_conditions": [
+        "NOT_ELIGIBLE: backend marker alone lacks an independent comparable identity claim"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering",
+          "measurement_requirements": [
+            "meaningful unmasked renderers",
+            "software cannot be used as a hardware-family comparison",
+            "unique named families for NW-005"
+          ],
+          "risk_scope_requirements": [
+            "reported cross-renderer family coherence, not physical-path identity"
+          ],
+          "attribution_only": [
+            "actual physical/host/remote/hybrid route and its authorization"
+          ],
+          "insufficient_risk_basis": [
+            "backend marker alone has no independent identity-coherence implication"
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-GPU-001",
+        "rule_id": "OFFDER-GPU-001",
+        "profile": "gpu",
+        "required_fields": [
+          "app.android_native_data.graphics_layer.egl_renderer",
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer",
+          "app.web_data.graphics_layer.webgl_vendor"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.android_native_data.graphics_layer.egl_renderer",
+          "app.web_data.graphics_layer.webgl_vendor",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ],
+        "conditions": [
+          "unmasked meaningful renderer strings",
+          "Native hardware family unambiguous",
+          "software/host/remote or hybrid rendering exclusions established",
+          "ANGLE alone never a contradiction"
+        ],
+        "unobservable_alert_preconditions": [
+          "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "OFFDER-PACKAGE-001",
+      "provenance_group": "C",
+      "decision_family": "deployment_identity",
+      "original_evidence_family": "deployment_identity",
+      "applicability_id": "scope-v2:OFFDER-PACKAGE-001",
+      "profile": "retained:deployment",
+      "decision_role": "deployment_policy",
+      "relation_required_fields": [
+        "app.webview_data.host_security_layer.app_package_name",
+        "app.webview_data.host_security_layer.app_version_code",
+        "app.webview_data.host_security_layer.app_version_name"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered package/release fields available",
+        "fixed historical MTC deployment scope only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-PACKAGE-001",
+        "rule_id": "OFFDER-PACKAGE-001",
+        "profile": "deployment",
+        "required_fields": [
+          "app.webview_data.host_security_layer.app_package_name",
+          "app.webview_data.host_security_layer.app_version_code",
+          "app.webview_data.host_security_layer.app_version_name"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.host_security_layer.app_package_name",
+          "app.webview_data.host_security_layer.app_version_code",
+          "app.webview_data.host_security_layer.app_version_name"
+        ],
+        "conditions": [
+          "registered package/release fields available",
+          "fixed historical MTC deployment scope only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "deployment_policy",
+        "parameters": {
+          "policy_version": "mtc-featureapp-deployment-policy-v1",
+          "allowed_packages": [
+            "com.example.hybridguard.featureapp"
+          ],
+          "allowed_releases": [
+            {
+              "version_code": 9,
+              "version_name": "1.6.2-expanded-v2.2-mtc"
+            },
+            {
+              "version_code": 11,
+              "version_name": "1.6.4-expanded-v2.2-mtc-https"
+            }
+          ],
+          "basis": [
+            "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+            "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+          ],
+          "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+          "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+        }
+      }
+    },
+    {
+      "rule_id": "OFFDER-NET-001",
+      "provenance_group": "O_u",
+      "decision_family": "network_context",
+      "original_evidence_family": "network_context",
+      "applicability_id": "scope-v2:OFFDER-NET-001",
+      "profile": "retained:network_context",
+      "decision_role": "context_only",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_api_level",
+        "app.android_native_data.network_state_layer.active_network_present",
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport",
+        "app.android_native_data.network_state_layer.has_cellular_transport"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive integer API level",
+        "API >=23 for the collector capabilities path",
+        "typed transport list/flags"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-NET-001",
+        "rule_id": "OFFDER-NET-001",
+        "profile": "network_context",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_api_level",
+          "app.android_native_data.network_state_layer.active_network_present",
+          "app.android_native_data.network_state_layer.active_transport_types",
+          "app.android_native_data.network_state_layer.has_cellular_transport",
+          "app.android_native_data.network_state_layer.has_vpn_transport",
+          "app.android_native_data.network_state_layer.has_wifi_transport"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_api_level",
+          "app.android_native_data.network_state_layer.active_network_present",
+          "app.android_native_data.network_state_layer.active_transport_types",
+          "app.android_native_data.network_state_layer.has_vpn_transport",
+          "app.android_native_data.network_state_layer.has_wifi_transport",
+          "app.android_native_data.network_state_layer.has_cellular_transport"
+        ],
+        "conditions": [
+          "positive integer API level",
+          "API >=23 for the collector capabilities path",
+          "typed transport list/flags"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "context_only",
+        "parameters": {
+          "collector_caps_min_api": 23
+        }
+      }
+    },
+    {
+      "rule_id": "P3-X-TIMEZONE-OFFSET",
+      "provenance_group": "E",
+      "decision_family": "P3-X-TIMEZONE-OFFSET",
+      "original_evidence_family": "P3-X-TIMEZONE-OFFSET",
+      "applicability_id": "scope-v2:P3-X-TIMEZONE-OFFSET",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.execution_layer.timezone_offset",
+        "browser.web_data.execution_layer.timezone_offset"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-X-TIMEZONE-OFFSET",
+        "rule_id": "P3-X-TIMEZONE-OFFSET",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.web_data.execution_layer.timezone_offset",
+          "browser.web_data.execution_layer.timezone_offset"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.execution_layer.timezone_offset",
+          "browser.web_data.execution_layer.timezone_offset"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-X-LANGUAGE",
+      "provenance_group": "E",
+      "decision_family": "P3-X-LANGUAGE",
+      "original_evidence_family": "P3-X-LANGUAGE",
+      "applicability_id": "scope-v2:P3-X-LANGUAGE",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.language",
+        "browser.web_data.navigator_layer.language"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-X-LANGUAGE",
+        "rule_id": "P3-X-LANGUAGE",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.web_data.navigator_layer.language",
+          "browser.web_data.navigator_layer.language"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.language",
+          "browser.web_data.navigator_layer.language"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-X-TOUCH",
+      "provenance_group": "E",
+      "decision_family": "P3-X-TOUCH",
+      "original_evidence_family": "P3-X-TOUCH",
+      "applicability_id": "scope-v2:P3-X-TOUCH",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "browser.web_data.navigator_layer.max_touch_points"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-X-TOUCH",
+        "rule_id": "P3-X-TOUCH",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "browser.web_data.navigator_layer.max_touch_points"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "browser.web_data.navigator_layer.max_touch_points"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-X-CORES",
+      "provenance_group": "E",
+      "decision_family": "P3-X-CORES",
+      "original_evidence_family": "P3-X-CORES",
+      "applicability_id": "scope-v2:P3-X-CORES",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.navigator_layer.hardware_concurrency",
+        "browser.web_data.navigator_layer.hardware_concurrency"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-X-CORES",
+        "rule_id": "P3-X-CORES",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.web_data.navigator_layer.hardware_concurrency",
+          "browser.web_data.navigator_layer.hardware_concurrency"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.navigator_layer.hardware_concurrency",
+          "browser.web_data.navigator_layer.hardware_concurrency"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-X-DPR",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "applicability_id": "scope-v2:P3-X-DPR",
+      "profile": "retained:screen_geometry",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-X-DPR",
+        "rule_id": "P3-X-DPR",
+        "profile": "screen_geometry",
+        "required_fields": [
+          "app.web_data.screen_layer.device_pixel_ratio",
+          "browser.web_data.screen_layer.device_pixel_ratio"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.screen_layer.device_pixel_ratio",
+          "browser.web_data.screen_layer.device_pixel_ratio"
+        ],
+        "conditions": [
+          "positive dimensions/DPR",
+          "same window/zoom/display context would be needed for a universal relation"
+        ],
+        "unobservable_alert_preconditions": [
+          "equivalent_window_page_zoom_and_display_context"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-X-SCREEN-SIZE",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "applicability_id": "scope-v2:P3-X-SCREEN-SIZE",
+      "profile": "retained:screen_geometry",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-X-SCREEN-SIZE",
+        "rule_id": "P3-X-SCREEN-SIZE",
+        "profile": "screen_geometry",
+        "required_fields": [
+          "app.web_data.screen_layer.screen_resolution_logical",
+          "browser.web_data.screen_layer.screen_resolution_logical"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.screen_layer.screen_resolution_logical",
+          "browser.web_data.screen_layer.screen_resolution_logical"
+        ],
+        "conditions": [
+          "positive dimensions/DPR",
+          "same window/zoom/display context would be needed for a universal relation"
+        ],
+        "unobservable_alert_preconditions": [
+          "equivalent_window_page_zoom_and_display_context"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SCREEN-APP",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "applicability_id": "scope-v2:P3-SCREEN-APP",
+      "profile": "retained:screen_geometry",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SCREEN-APP",
+        "rule_id": "P3-SCREEN-APP",
+        "profile": "screen_geometry",
+        "required_fields": [
+          "app.android_native_data.screen_display_layer.screen_resolution_physical",
+          "app.web_data.screen_layer.device_pixel_ratio",
+          "app.web_data.screen_layer.screen_resolution_logical"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.screen_display_layer.screen_resolution_physical",
+          "app.web_data.screen_layer.screen_resolution_logical",
+          "app.web_data.screen_layer.device_pixel_ratio"
+        ],
+        "conditions": [
+          "positive dimensions/DPR",
+          "same window/zoom/display context would be needed for a universal relation"
+        ],
+        "unobservable_alert_preconditions": [
+          "equivalent_window_page_zoom_and_display_context"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "css_pixel_tolerance": 1.0
+        }
+      }
+    },
+    {
+      "rule_id": "P3-COLOR-APP",
+      "provenance_group": "H",
+      "decision_family": "P3-COLOR-APP",
+      "original_evidence_family": "P3-COLOR-APP",
+      "applicability_id": "scope-v2:P3-COLOR-APP",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-COLOR-APP",
+        "rule_id": "P3-COLOR-APP",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.web_data.screen_layer.color_depth",
+          "app.web_data.screen_layer.pixel_depth"
+        ],
+        "predicate_dependencies": [
+          "app.web_data.screen_layer.color_depth",
+          "app.web_data.screen_layer.pixel_depth"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SCREEN-BROWSER",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "applicability_id": "scope-v2:P3-SCREEN-BROWSER",
+      "profile": "retained:screen_geometry",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "browser.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SCREEN-BROWSER",
+        "rule_id": "P3-SCREEN-BROWSER",
+        "profile": "screen_geometry",
+        "required_fields": [
+          "app.android_native_data.screen_display_layer.screen_resolution_physical",
+          "browser.web_data.screen_layer.device_pixel_ratio",
+          "browser.web_data.screen_layer.screen_resolution_logical"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.screen_display_layer.screen_resolution_physical",
+          "browser.web_data.screen_layer.screen_resolution_logical",
+          "browser.web_data.screen_layer.device_pixel_ratio"
+        ],
+        "conditions": [
+          "positive dimensions/DPR",
+          "same window/zoom/display context would be needed for a universal relation"
+        ],
+        "unobservable_alert_preconditions": [
+          "equivalent_window_page_zoom_and_display_context"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "css_pixel_tolerance": 1.0
+        }
+      }
+    },
+    {
+      "rule_id": "P3-COLOR-BROWSER",
+      "provenance_group": "H",
+      "decision_family": "P3-COLOR-BROWSER",
+      "original_evidence_family": "P3-COLOR-BROWSER",
+      "applicability_id": "scope-v2:P3-COLOR-BROWSER",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "browser.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.pixel_depth"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-COLOR-BROWSER",
+        "rule_id": "P3-COLOR-BROWSER",
+        "profile": "declared_fields",
+        "required_fields": [
+          "browser.web_data.screen_layer.color_depth",
+          "browser.web_data.screen_layer.pixel_depth"
+        ],
+        "predicate_dependencies": [
+          "browser.web_data.screen_layer.color_depth",
+          "browser.web_data.screen_layer.pixel_depth"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-UA-REDUCED-BROWSER",
+      "provenance_group": "H",
+      "decision_family": "P3-UA-REDUCED-BROWSER",
+      "original_evidence_family": "P3-UA-REDUCED-BROWSER",
+      "applicability_id": "scope-v2:P3-UA-REDUCED-BROWSER",
+      "profile": "retained:browser_os",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "real admitted Browser fields present",
+        "explicit parseable Android UA",
+        "reduced shape is not interpreted as actual OS"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "unmodified_browser_ua_origin",
+          "measurement_requirements": [
+            "The frozen Browser >=107/Android10 predicate has an unresolved product-scope discrepancy; retain UNKNOWN outside explicitly excluded reduced shapes."
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [
+            "unmodified Browser UA origin"
+          ],
+          "insufficient_risk_basis": [
+            "No Browser risk promotion or new Browser evidence in this revision."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-UA-REDUCED-BROWSER",
+        "rule_id": "P3-UA-REDUCED-BROWSER",
+        "profile": "browser_os",
+        "required_fields": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "browser.web_data.navigator_layer.user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.build_fingerprint_layer.os_version",
+          "browser.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "real admitted Browser fields present",
+          "explicit parseable Android UA",
+          "reduced shape is not interpreted as actual OS"
+        ],
+        "unobservable_alert_preconditions": [
+          "unmodified_browser_ua_origin"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "reduced_chrome_min_major": 107,
+          "reduced_android_token": 10
+        }
+      }
+    },
+    {
+      "rule_id": "P3-UA-DEFAULT",
+      "provenance_group": "E",
+      "decision_family": "host_ua",
+      "original_evidence_family": "host_ua",
+      "applicability_id": "scope-v2:P3-UA-DEFAULT",
+      "profile": "retained:ua_snapshot",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "both current strings available",
+        "same instance and capture interval would be required for a strong equality claim"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "atomic_same_instance_ua_capture",
+          "measurement_requirements": [
+            "atomic_same_instance_ua_capture remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-UA-DEFAULT",
+        "rule_id": "P3-UA-DEFAULT",
+        "profile": "ua_snapshot",
+        "required_fields": [
+          "app.web_data.navigator_layer.user_agent",
+          "app.webview_data.kernel_container_layer.default_ua_native"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.kernel_container_layer.default_ua_native",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "both current strings available",
+          "same instance and capture interval would be required for a strong equality claim"
+        ],
+        "unobservable_alert_preconditions": [
+          "atomic_same_instance_ua_capture"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-UA-SETTINGS",
+      "provenance_group": "E",
+      "decision_family": "host_ua",
+      "original_evidence_family": "host_ua",
+      "applicability_id": "scope-v2:P3-UA-SETTINGS",
+      "profile": "retained:ua_snapshot",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.webview_data.webview_settings_layer.settings_user_agent",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "both current strings available",
+        "same instance and capture interval would be required for a strong equality claim"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "atomic_same_instance_ua_capture",
+          "measurement_requirements": [
+            "atomic_same_instance_ua_capture remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-UA-SETTINGS",
+        "rule_id": "P3-UA-SETTINGS",
+        "profile": "ua_snapshot",
+        "required_fields": [
+          "app.web_data.navigator_layer.user_agent",
+          "app.webview_data.webview_settings_layer.settings_user_agent"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.webview_settings_layer.settings_user_agent",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "conditions": [
+          "both current strings available",
+          "same instance and capture interval would be required for a strong equality claim"
+        ],
+        "unobservable_alert_preconditions": [
+          "atomic_same_instance_ua_capture"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-PROVIDER-PARSE",
+      "provenance_group": "C",
+      "decision_family": "P3-PROVIDER-PARSE",
+      "original_evidence_family": "P3-PROVIDER-PARSE",
+      "applicability_id": "scope-v2:P3-PROVIDER-PARSE",
+      "profile": "retained:declared_fields",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.webview_data.kernel_container_layer.webview_provider_version",
+        "app.webview_data.kernel_container_layer.webview_provider_major"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-PROVIDER-PARSE",
+        "rule_id": "P3-PROVIDER-PARSE",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.webview_data.kernel_container_layer.webview_provider_major",
+          "app.webview_data.kernel_container_layer.webview_provider_version"
+        ],
+        "predicate_dependencies": [
+          "app.webview_data.kernel_container_layer.webview_provider_version",
+          "app.webview_data.kernel_container_layer.webview_provider_major"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-GPU-COPY",
+      "provenance_group": "C",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "P3-GPU-COPY",
+      "applicability_id": "scope-v2:P3-GPU-COPY",
+      "profile": "retained:declared_fields",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-GPU-COPY",
+        "rule_id": "P3-GPU-COPY",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.graphics_layer.egl_renderer",
+          "app.android_native_data.graphics_layer.native_gpu_renderer"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.android_native_data.graphics_layer.egl_renderer"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-MEM-AVAILABLE",
+      "provenance_group": "H",
+      "decision_family": "P3-MEM-AVAILABLE",
+      "original_evidence_family": "P3-MEM-AVAILABLE",
+      "applicability_id": "scope-v2:P3-MEM-AVAILABLE",
+      "profile": "retained:declared_fields",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.total_memory_gb"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-MEM-AVAILABLE",
+        "rule_id": "P3-MEM-AVAILABLE",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.memory_layer.avail_memory_gb",
+          "app.android_native_data.memory_layer.total_memory_gb"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.memory_layer.avail_memory_gb",
+          "app.android_native_data.memory_layer.total_memory_gb"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-NAME_COUNT",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-NAME_COUNT",
+      "profile": "retained:declared_fields",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-NAME_COUNT",
+        "rule_id": "P3-SENSOR-NAME_COUNT",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+          "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+          "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-VENDOR_COUNT",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-VENDOR_COUNT",
+      "profile": "retained:declared_fields",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-VENDOR_COUNT",
+        "rule_id": "P3-SENSOR-VENDOR_COUNT",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+          "app.android_native_data.sensor_matrix_layer.sensor_vendor_count"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+          "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-TYPE-COUNT",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-TYPE-COUNT",
+      "profile": "retained:declared_fields",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-TYPE-COUNT",
+        "rule_id": "P3-SENSOR-TYPE-COUNT",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+          "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-TYPE-ORDER",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-TYPE-ORDER",
+      "profile": "retained:declared_fields",
+      "decision_role": "collector_consistency",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-TYPE-ORDER",
+        "rule_id": "P3-SENSOR-TYPE-ORDER",
+        "profile": "declared_fields",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "registered predicate dependencies observed, finite and correctly typed"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "collector_consistency",
+        "parameters": {}
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-ACCELEROMETER",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-ACCELEROMETER",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-ACCELEROMETER",
+        "rule_id": "P3-SENSOR-ACCELEROMETER",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 1
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-MAGNETIC_FIELD",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-MAGNETIC_FIELD",
+        "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 2
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-GYROSCOPE",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-GYROSCOPE",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-GYROSCOPE",
+        "rule_id": "P3-SENSOR-GYROSCOPE",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 4
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-LIGHT_SENSOR",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-LIGHT_SENSOR",
+        "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 5
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-PRESSURE_SENSOR",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-PRESSURE_SENSOR",
+        "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 6
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-PROXIMITY_SENSOR",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-PROXIMITY_SENSOR",
+        "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 8
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-GRAVITY_SENSOR",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-GRAVITY_SENSOR",
+        "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 9
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-ROTATION_VECTOR",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-ROTATION_VECTOR",
+        "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 11
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-STEP_DETECTOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-STEP_DETECTOR",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-STEP_DETECTOR",
+        "rule_id": "P3-SENSOR-STEP_DETECTOR",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_step_detector",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_step_detector",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 18
+        }
+      }
+    },
+    {
+      "rule_id": "P3-SENSOR-STEP_COUNTER",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "applicability_id": "scope-v2:P3-SENSOR-STEP_COUNTER",
+      "profile": "retained:sensor_positive",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "risk_conditions": [
+        "retained non-candidate role"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:P3-SENSOR-STEP_COUNTER",
+        "rule_id": "P3-SENSOR-STEP_COUNTER",
+        "profile": "sensor_positive",
+        "required_fields": [
+          "app.android_native_data.sensor_matrix_layer.has_step_counter",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.sensor_matrix_layer.has_step_counter",
+          "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+        ],
+        "conditions": [
+          "boolean has_sensor and positive integer type list available",
+          "positive antecedent only"
+        ],
+        "unobservable_alert_preconditions": [],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": true,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "sensor_type": 19
+        }
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@
   "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "planning_only": false,
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "S04_COMPLETE_WAITING_S05_AUTHORIZATION",
+  "experiment_execution_status": "S05_COMPLETE_WAITING_S06_AUTHORIZATION",
   "scope": {
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
@@ -14,34 +14,37 @@
     "preserve_P0_P6": true,
     "no_new_collection_required": true,
     "external_model_calls_this_turn": 0,
-    "detector_runs_this_turn": "SYNTHETIC_ONLY_FOCUSED_TESTS_AND_SAVED_FIXTURES",
+    "detector_runs_this_turn": 0,
     "material_validator_runs_this_turn": 0,
-    "pre_step_git_delivery_explicitly_authorized": false,
-    "current_execution_step": "S04",
+    "pre_step_git_delivery_explicitly_authorized": true,
+    "current_execution_step": "S05",
     "actual_sample_prediction_rows_this_turn": 0,
     "performance_metrics_computed_this_turn": false,
     "S01_rerun_this_turn": false,
     "S02_rerun_this_turn": false,
     "source_registry_only_this_turn": false,
-    "S04_executed_this_turn": true,
-    "git_commit_or_push_this_turn": false,
+    "S04_executed_this_turn": false,
+    "git_commit_or_push_this_turn": true,
     "contract_revision_only_this_turn": false,
     "S03_v1_full_step_rerun_this_turn": false,
-    "S03_v1_regression_tests_this_turn": 15,
+    "S03_v1_regression_tests_this_turn": 0,
     "actual_sample_scope_evaluations_this_turn": 0,
-    "synthetic_saved_prediction_rows_this_turn": 14,
-    "synthetic_metrics_computed_this_turn": true,
-    "S05_executed_this_turn": false,
-    "real_detector_runs_this_turn": 0
+    "synthetic_saved_prediction_rows_this_turn": 0,
+    "synthetic_metrics_computed_this_turn": false,
+    "S05_executed_this_turn": true,
+    "real_detector_runs_this_turn": 0,
+    "S05_committed_or_pushed": false,
+    "S06_executed_this_turn": false,
+    "git_delivery_step": "S04"
   },
   "repositories": {
     "main": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
       "branch": "main",
-      "current_commit": "8d2e8d55e34fcd75a4d6f3f5b9f0834862316554",
+      "current_commit": "f00e699d2763afed5369774f01e5a0f632d8f5c6",
       "design_baseline_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
       "baseline_match": false,
-      "git_head_changed_this_turn": false,
+      "git_head_changed_this_turn": true,
       "working_tree_clean": false,
       "status_before_plan": [
         " M .DS_Store",
@@ -310,7 +313,9 @@
       "last_verified_remote_main_commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
       "last_remote_verification_scope": "Explicit pre-S02 S01 push; verified remote main matches local commit.",
       "external_review_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
-      "external_review_commit_match": true
+      "external_review_commit_match": true,
+      "remote_verified_commit": "f00e699d2763afed5369774f01e5a0f632d8f5c6",
+      "remote_verified_at": "2026-09-23T16:21:56.794639+00:00"
     },
     "attack": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research",
@@ -1234,35 +1239,184 @@
         "S04"
       ],
       "dependency_details": "S01–S04完成其相关分支；每个拟报告TPR/FPR的样本有独立事实与准入。缺标签的支线可标NOT_EVALUATED并从性能矩阵声明关闭，不能自动补标签。",
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "execution_started": false,
-      "completed_at": null,
+      "status": "DONE",
+      "authorized": true,
+      "execution_started": true,
+      "completed_at": "2026-09-23T16:48:35.782952+00:00",
       "artifacts": {
         "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze",
         "planned_description": "`protocol.json/.md`、`FREEZE_MANIFEST.json`、`expected_units.jsonl`、`variant_registry.json`、`metric_spec.json`、`figure_spec.json`、`exposure_history.json`、`evaluation_access_policy.json`、`VALIDATION.json`、`STEP_REPORT.md`。",
-        "produced": []
+        "produced": [
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/DEPENDENCY_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/DEVELOPMENT_CHECK_HISTORY.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/FINAL_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/FOCUSED_TESTS.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/FOCUSED_TESTS_INITIAL_FAILURE.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/FREEZE_MANIFEST.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/GENERATION.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/READ_ONLY_BASELINE.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/STATIC_VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/TEST_RESULTS.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/blind/inputs.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/diagnostic_expected_units.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/diagnostic_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/dry_plan.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/P6_metadata/RESERVED_ACCESS.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/P6_metadata/RESERVED_FIRST_READ.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/P6_metadata/RESERVED_RELEASE.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/P6_metadata/mtc_p6_protocol.v1.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/P6_metadata/protocol_FREEZE.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/admission_policy.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/environment_group_registry.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/exclusions.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/facts_and_eligibility.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/history_links.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/manual_fact_queue.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/material_inventory.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/missing_materials.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/stage_accounting.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S01/triplet_registry.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S02/adapter_rejections.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S02/bundle_history.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S02/evaluation_index.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S02/field_mapping.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S02/input_manifest.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/S02/phase_associations.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/01_admission/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/01_admission/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/02_inputs/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/02_inputs/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/03_registry/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/03_registry/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/03r_role_gate_v2/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/03r_role_gate_v2/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/04_contract/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/acceptance/04_contract/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/control_matching.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/evaluation_index.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/plan_at_freeze/EXECUTION_PLAN.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/plan_at_freeze/S03_R_CONTRACT_REVISION_v2.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/plan_at_freeze/S04_CONTRACT_IMPLEMENTATION_v2.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/population.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/provenance_v1/family_registry.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/provenance_v1/primary_source_review.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/provenance_v1/source_registry.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/source_uncertainties.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/task_denominators.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation/timing_strata.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/evaluation_access_policy.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/expected_units.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/exposure_history.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/figure_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/adapters/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/adapters/official_kb_adapter.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/adapters/paired244_catalog.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/adapters/rule_kb_adapter.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/official_semantic_relations.v1.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/paired244_browser_relations.v1.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/paired244_browser_relations.v3.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/paired244_rule_catalog.v1.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/paired244_rule_catalog.v3.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/evidence/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/evidence/extractor.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/evidence/paired244.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/official_semantics/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/official_semantics/evaluator.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/adapter.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/baselines.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/contract.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/evaluation.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/freeze.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/freeze_specs.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/persistence.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/policy.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/provenance.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/provenance_revision.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/registry_output.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/reporting.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/runner.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/schemas.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/synthetic.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/manipulation_eval/verification.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/mtc_closed_resource.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/research/mtc_p3_candidates.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/retrieval/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/retrieval/exact_retriever.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/retrieval/paired244.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/rules/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/rules/executor.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/rules/legacy_backlog.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/rules/paired244.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/schemas/expanded_v2.schema.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/schemas/field_registry.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/schemas/manipulation_decision_v2.schema.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/scripts/plot_formal_manipulation_eval.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/scripts/run_formal_manipulation_eval.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/tests/test_formal_manipulation_freeze.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/verification/__init__.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/verification/paired244.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/verification/verifier.py",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/scoring/rule_knowledge_base.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/metric_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/p6_reuse_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/participating_worktree.diff",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/protocol.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/protocol.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/source_environment.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/step_execution_plans/S06.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/step_execution_plans/S07.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/step_execution_plans/S08.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/step_execution_plans/S10.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/synthetic/fixtures.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/synthetic/reference/SOURCE_STRUCTURAL_LIMITS.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/synthetic/reference/SYNTHETIC_FIXTURES.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/synthetic_expected_units.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/timing_expected_units.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/timing_spec.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/variant_registry.json"
+        ],
+        "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/STEP_REPORT.md",
+        "validation": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/VALIDATION.json",
+        "config_directory": "hybridguard_agent/config/formal_manipulation_protocol_v2"
       },
-      "acceptance_summary": "每条件有精确ID/角色/门控/阈值；唯一单元数可重建；所有任务分母可由S01侧表生成；冻结源码和配置可追溯工作区差异；prediction产物仍不存在；没有未经说明的可调参数。冻结验证只查manifest/schema/集合一致性，不运行正式规则。",
-      "acceptance_status": "NOT_RUN",
-      "blocking_reasons": [
-        {
-          "type": "AUTHORIZATION",
-          "detail": "等待用户明确发送 执行 S05"
-        },
-        {
-          "type": "DEPENDENCY_NOT_EXECUTED",
-          "steps": [
-            "S01",
-            "S02",
-            "S03",
-            "S04"
-          ]
-        }
-      ],
+      "acceptance_summary": "14 static focused tests and finite manifest/schema/set validation PASS. 262 original stages uniquely mapped into 2854 planned risk units; inherited denominators and time-control UNKNOWN preserved. 13 selected variants, 7 candidates/5 families/threshold1. No formal predictions. Fig.6 and evaluation configuration key changes documented independently.",
+      "acceptance_status": "PASS",
+      "blocking_reasons": [],
       "failure_policy": "缺事实只关闭对应性能项；结构/版本不一致阻断该run。冻结后新增候选/阈值/门控/指标主定义必须另版本，不能覆盖。",
       "stop_after_step": true,
-      "invocation": "执行 S05"
+      "invocation": "执行 S05",
+      "started_at": "2026-09-23T16:21:56.794639+00:00",
+      "review_status": "AWAITING_USER_REVIEW",
+      "protocol_version": "formal-manipulation-protocol-v2",
+      "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+      "policy_version": "formal-manipulation-family-or-v2",
+      "focused_tests_passed": 14,
+      "static_checks_passed": 33,
+      "protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
+      "commit_status": "LOCAL_NOT_COMMITTED",
+      "next_step_executed": false
     },
     {
       "id": "S06",
@@ -1289,16 +1443,6 @@
         {
           "type": "AUTHORIZATION",
           "detail": "等待用户明确发送 执行 S06"
-        },
-        {
-          "type": "DEPENDENCY_NOT_EXECUTED",
-          "steps": [
-            "S05"
-          ]
-        },
-        {
-          "type": "FACT_ADMISSION_PENDING",
-          "detail": "S01 has not adjudicated detection/triplet/control eligibility; only the relevant metric branch is blocked if its facts remain UNKNOWN."
         }
       ],
       "failure_policy": "实现异常保留FAILED并报PARTIAL，必要修复另技术run记录；缺材料只影响对应单元；低召回、高误报、不恢复均保存并继续后续分析，不回调策略。",
@@ -1330,12 +1474,6 @@
         {
           "type": "AUTHORIZATION",
           "detail": "等待用户明确发送 执行 S07"
-        },
-        {
-          "type": "DEPENDENCY_NOT_EXECUTED",
-          "steps": [
-            "S05"
-          ]
         }
       ],
       "failure_policy": "来源映射错属于实现错误并阻断受影响比较；缺标签不生成该性能指标；各组相同、联合下降均为可交付科学结果。",
@@ -1411,7 +1549,6 @@
         {
           "type": "DEPENDENCY_NOT_EXECUTED",
           "steps": [
-            "S05",
             "S06"
           ]
         }
@@ -1445,12 +1582,6 @@
         {
           "type": "AUTHORIZATION",
           "detail": "等待用户明确发送 执行 S10"
-        },
-        {
-          "type": "DEPENDENCY_NOT_EXECUTED",
-          "steps": [
-            "S05"
-          ]
         }
       ],
       "failure_policy": "缺自然输入只阻断该可用性子表；缺标签照留描述。大量弃判、同输入不可区分、不恢复都作为边界交付。",
@@ -1505,7 +1636,6 @@
         {
           "type": "DEPENDENCY_NOT_EXECUTED",
           "steps": [
-            "S05",
             "S06",
             "S07"
           ]
@@ -1565,9 +1695,9 @@
       "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
     }
   ],
-  "next_authorization_step": "S05",
-  "next_authorization_instruction": "执行 S05",
-  "next_step_scope": "S04 DONE/PASS for implementation and synthetic validation only. S05 protocol freezing remains unexecuted and requires separate authorization; real experiments remain unexecuted.",
+  "next_authorization_step": "S06",
+  "next_authorization_instruction": "执行 S06",
+  "next_step_scope": "Only explicitly authorized S06: frozen E1 main216 x two risk methods; time-control FPR remains closed. No automatic S07.",
   "plan_validation": {
     "step_count": 12,
     "all_required_step_fields_present": true,
@@ -1703,6 +1833,34 @@
       "S05_executed": false,
       "committed_or_pushed": false,
       "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/STEP_REPORT.md"
+    },
+    {
+      "event": "S04_COMMITTED_PUSHED_THEN_S05_AUTHORIZED",
+      "at": "2026-09-23T16:21:56.794639+00:00",
+      "commit": "f00e699d2763afed5369774f01e5a0f632d8f5c6",
+      "remote": "origin/main",
+      "remote_verified": true,
+      "S04_delivery_files": 74,
+      "unrelated_worktree_entries_retained": 270,
+      "historical_reports": "Preserved pre-push completion timepoints",
+      "authorization": "提交推送改动，然后进行S05",
+      "formal_execution_authorized": false
+    },
+    {
+      "event": "S05_AUTHORIZED_AND_COMPLETED",
+      "at": "2026-09-23T16:48:35.782952+00:00",
+      "baseline_commit": "f00e699d2763afed5369774f01e5a0f632d8f5c6",
+      "protocol_version": "formal-manipulation-protocol-v2",
+      "protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
+      "focused_tests_passed": 14,
+      "checks_passed": 33,
+      "risk_plan_units": 2854,
+      "real_predictions": 0,
+      "performance_metrics": "NOT_EVALUATED",
+      "temporal_control_FPR": "CLOSED_NO_ELIGIBLE_LABELS",
+      "S06_executed": false,
+      "S05_committed_or_pushed": false,
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/STEP_REPORT.md"
     }
   ],
   "step_revisions": [
@@ -1777,14 +1935,16 @@
     }
   ],
   "next_step_contract": {
-    "step": "S05",
+    "step": "S06",
     "contract_version": "formal-manipulation-relation-risk-attribution-v2",
     "policy_version": "formal-manipulation-family-or-v2",
-    "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
-    "role_gate_config_directory": "hybridguard_agent/config/formal_manipulation_role_gate_v2",
-    "policy_config_directory": "hybridguard_agent/config/formal_manipulation_policy_v2",
-    "plan_amendment": "deliverables/formal_experiment_execution_plan/S04_CONTRACT_IMPLEMENTATION_v2.md",
+    "protocol_version": "formal-manipulation-protocol-v2",
+    "protocol_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/protocol.json",
+    "protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
+    "role_gate_config_dir": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2",
+    "policy_path": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
     "execution_authorized": false,
-    "formal_experiment_authorized": false
+    "formal_experiment_authorized": false,
+    "expected_new_units": 432
   }
 }

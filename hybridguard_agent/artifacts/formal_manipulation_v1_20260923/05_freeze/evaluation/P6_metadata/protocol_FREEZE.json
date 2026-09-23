@@ -1,0 +1,236 @@
+{
+  "protocol_version": "mtc-p6-fixed-comparison-v1",
+  "declared_at_utc": "2026-09-22T16:24:47.323112+00:00",
+  "source_commit": "a51b2504368be191114f24f1b4f9f28df2ca4057",
+  "research_principle": "Old results inform design only; no inherited effect target, rule/threshold tuning, outcome-based exclusions or best-run selection.",
+  "resource_policy": "EXISTING_DATA_ONLY_NO_COLLECTION",
+  "allowed_splits": [
+    "discovery",
+    "development",
+    "reserved_validation"
+  ],
+  "source_plan": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922",
+  "source_snapshot": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final",
+  "release_ledger": "deliverables/mtc_p6_20260923/RESERVED_ACCESS.json",
+  "primary_selection": "Exact frozen P2 primary_representative rows in paired_244; no outcome-based filtering.",
+  "primary_expected": {
+    "discovery": {
+      "records": 630,
+      "groups": 610
+    },
+    "development": {
+      "records": 144,
+      "groups": 142
+    },
+    "reserved_validation": {
+      "records": 117,
+      "groups": 116
+    }
+  },
+  "repeat_selection": "All 137 P2 paired_repeat_observation rows; Full244 only; compare with preselected same exact manufacturer/model/release primary. Report same-installation separately, no physical identity or stability inference.",
+  "other_views": "App-only 654, partial 11 and same-session extras 6 remain in data/QC accounting, outside paired_244 primary comparison.",
+  "reserved_release": "After focused tests and complete code/rule/protocol freeze, one P6-specific release; preserve historical P2 lock and P3 guard. Do not change rules based on reserved outcomes.",
+  "exposure_disclosure": {
+    "global_qc_seen": true,
+    "discovery_and_development_previously_evaluated": true,
+    "reserved_role": "Prospectively reserved after global QC; not never-seen external blind test."
+  },
+  "variants": [
+    {
+      "id": "Native84",
+      "view": "Native84",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "Host26",
+      "view": "Host26",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "AppWeb67",
+      "view": "AppWeb67",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "Browser67",
+      "view": "Browser67",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "NativeAppWeb151",
+      "view": "NativeAppWeb151",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "AppWebBrowser134",
+      "view": "AppWebBrowser134",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "App177",
+      "view": "App177",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "Full244",
+      "view": "Full244",
+      "catalog": "v3",
+      "selection": "all_active"
+    },
+    {
+      "id": "Full244_no_cross",
+      "view": "Full244",
+      "catalog": "v3",
+      "selection": "no_app_browser_relation"
+    },
+    {
+      "id": "App177_v1",
+      "view": "App177",
+      "catalog": "v1",
+      "selection": "all_active"
+    },
+    {
+      "id": "App177_v2",
+      "view": "App177",
+      "catalog": "v2",
+      "selection": "all_active"
+    },
+    {
+      "id": "Full244_empirical",
+      "view": "Full244",
+      "catalog": "v3",
+      "selection": "empirical"
+    },
+    {
+      "id": "Full244_official",
+      "view": "Full244",
+      "catalog": "v3",
+      "selection": "official"
+    },
+    {
+      "id": "Full244_empirical_official",
+      "view": "Full244",
+      "catalog": "v3",
+      "selection": "empirical_official"
+    },
+    {
+      "id": "Full244_support",
+      "view": "Full244",
+      "catalog": "v3",
+      "selection": "support"
+    }
+  ],
+  "paired_contrasts": [
+    [
+      "App177",
+      "Full244"
+    ],
+    [
+      "Browser67",
+      "Full244"
+    ],
+    [
+      "Full244_no_cross",
+      "Full244"
+    ],
+    [
+      "NativeAppWeb151",
+      "App177"
+    ],
+    [
+      "AppWebBrowser134",
+      "Full244"
+    ],
+    [
+      "App177_v1",
+      "App177"
+    ],
+    [
+      "App177_v2",
+      "App177"
+    ],
+    [
+      "Full244_empirical",
+      "Full244_empirical_official"
+    ],
+    [
+      "Full244_official",
+      "Full244_empirical_official"
+    ],
+    [
+      "Full244_empirical_official",
+      "Full244"
+    ]
+  ],
+  "source_semantics": "official lane retains 14 empirically screened semantic entries; support contains deployment/context/collector checks. Report shared evidence families; never independent votes or pure-official causal effects.",
+  "no_cross_definition": "Remove every active rule requiring both app.* and browser.* fields, including Native-to-Browser; keep remaining predicates unchanged.",
+  "metric_definitions": {
+    "applicable_checks": [
+      "MATCH",
+      "COUNTEREXAMPLE",
+      "CONTEXT_OBSERVED",
+      "POLICY_MISMATCH"
+    ],
+    "unassessed_checks": [
+      "UNKNOWN",
+      "NOT_EVALUATED"
+    ],
+    "not_applicable": "NOT_APPLICABLE, separate and never a positive vote",
+    "relation_deviation": "COUNTEREXAMPLE excluding collector_derived_consistency; not attack or false positive",
+    "means": "Average across representatives within P2 leakage group, then across groups. Failures remain counted and suppress aggregate means/intervals rather than becoming negatives.",
+    "rule_group_priority": [
+      "FAILED",
+      "COUNTEREXAMPLE",
+      "POLICY_MISMATCH",
+      "UNKNOWN",
+      "NOT_EVALUATED",
+      "CONTEXT_OBSERVED",
+      "MATCH",
+      "NOT_APPLICABLE"
+    ],
+    "no_applicable_rules": "NOT_EVALUATED; cannot conclude that input surface is useless."
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 620260923,
+    "level": 0.95,
+    "unit": "paired P2 leakage group",
+    "scope": "reserved paired contrasts only",
+    "metrics": [
+      "applicable_checks",
+      "relation_deviation_present",
+      "unassessed_checks"
+    ],
+    "interpretation": "Conditional sampling variability within this convenience cohort; not population generalization, significance testing or detection CI."
+  },
+  "strata": [
+    "exact_manufacturer",
+    "android_api",
+    "collector_version_code",
+    "resolved_browser_package"
+  ],
+  "stratum_group_floor": 10,
+  "stratum_policy": "All strata saved; below 10 groups descriptive only. No new model-family rules, exclusions or leave-group-out tuning.",
+  "legacy_baseline": "Replay original 10 compiled device predicates and 9 compiled official relations unchanged on same MTC representatives; retain ordered, independent and availability-gated modes. P4 v1 is post-P3 repaired runtime, not the original historical engine.",
+  "historical_diagnostic": {
+    "input_set": "knowledge_rule_validation/config/layer_ablation_attack_input_set.v1.json",
+    "policy": "One bounded attempt to read existing selected manifests and sibling raw data; no downloads or new collection. Require original two-state admission AND explicit complete 177-field statuses for current runtime mapping. Incompatible/missing cases close with reasons. No inherited labels or effect-count targets; no fabricated Browser fields; report separately from MTC."
+  },
+  "execution_order": "discovery, development, reserved; rotate fixed variant order by representative index; one runtime execution per cell, with built-in verifier replay.",
+  "failure_policy": "Persist failed cells with IDs/reasons, retain full intended denominators, no automatic success-only replacement or silent restart after reserved exposure.",
+  "timing_policy": "Single sequential offline wall time including evidence, execution, retrieval and verifier; median/p95 descriptive only, no phone-latency or optimal-performance claim.",
+  "model_training": false,
+  "threshold_optimization": false,
+  "external_model_calls": false,
+  "new_collection": false,
+  "detection_metrics": "NOT_EVALUATED",
+  "source_data_mutation": false,
+  "excluded": "No TPR/FPR/F1, calibrated risk, cross-device identity accuracy, synthetic attack effectiveness, new learned rules, or dense/vector/LLM RAG efficacy claims."
+}

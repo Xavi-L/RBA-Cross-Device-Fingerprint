@@ -1,0 +1,65 @@
+{
+  "common": {
+    "attribution_certainty": "UNKNOWN",
+    "candidate_rule_ids": [
+      "NVW-001",
+      "NVW-002",
+      "NW-001",
+      "NW-002",
+      "NW-005",
+      "OFFDER-OS-001",
+      "OFFDER-OS-002"
+    ],
+    "detection_metrics": "NOT_EVALUATED_DIAGNOSTIC",
+    "formal_risk_prediction": false,
+    "implementation_status": "FROZEN_DEFINITION_IMPLEMENT_IN_AUTHORIZED_S09",
+    "input_view": "App177",
+    "method": "final_v3_v2",
+    "original_outcomes_preserved": true,
+    "source_condition": "SRC-111",
+    "threshold": 1
+  },
+  "definitions": [
+    {
+      "diagnostic_id": "D1_REMOVE_UA_REDUCTION",
+      "domains": [
+        "main216",
+        "synthetic_semantic"
+      ],
+      "not_exercised": "If the original predicate or another gate still excludes a reduced identity, record NOT_EXERCISED; no parser relaxation.",
+      "operator": "Replace only the _reduced(ua) and _reduced(default) rejection terms in v2 _relation_gate/_risk_gate with false; all other terms unchanged. Apply to the frozen candidate IDs only.",
+      "original_probe": "Use saved original outcomes; reevaluate only the declared diagnostic gates over the frozen current payload. A gate passing with an original UNKNOWN/NOT_APPLICABLE outcome supplies no vote.",
+      "preserved": "Original predicate and its model_token K/no-Build rejection, observed/type/quality, Dalvik product scope, Native/default/settings alignment, software gate, family OR and threshold remain. Do not force A or B to pass."
+    },
+    {
+      "diagnostic_id": "D2_UNKNOWN_AS_COMPARABLE",
+      "domains": [
+        "synthetic_semantic"
+      ],
+      "not_exercised": "Absent/invalid/zero/masked value remains unavailable. This counterfactual is not a claim that a failed collection measured the value.",
+      "operator": "In an explicitly marked synthetic shadow accessor only, ignore field_status/field_quality availability rejection when an existing value is non-null, valid typed, finite and non-sentinel. Keep all parsing, masking-token, product, software, reference and role gates. Never infer or edit observed in the stored input.",
+      "original_probe": "Save original outcome first; evaluate the SAME frozen predicate against the shadow accessor for the diagnostic outcome. No imputation, invented value, forced MATCH/COUNTEREXAMPLE, or real-sample risk row."
+    },
+    {
+      "diagnostic_id": "D3_DUPLICATE_VOTES",
+      "domains": [
+        "main216",
+        "synthetic_semantic"
+      ],
+      "execution": "SAVED_EVENT_DERIVATION_ONLY_NO_DETECTOR_REPLAY",
+      "operator": "From saved verified events, count qualifying COUNTEREXAMPLE rule IDs instead of distinct decision_family IDs. Preserve MATCH coverage and all v2 gates/roles/source conditions. FAILED remains FAILED; no qualifying families remains INSUFFICIENT_EVIDENCE.",
+      "structural_binary_effect": "Exactly zero at threshold 1; report score and reference inflation only. Never adjust threshold to manufacture benefit."
+    },
+    {
+      "diagnostic_id": "D4_RAW_UNCONDITIONAL_EQUALITY",
+      "domains": [
+        "synthetic_semantic"
+      ],
+      "execution": "SYNTHETIC_MECHANISM_ONLY_NOT_HISTORICAL_RUNTIME",
+      "operator": "For each candidate's ordered pair of relation_required_fields, compare raw JSON values with type-sensitive recursive equality (object key order ignored; array order retained; bool differs from number; int/float numeric equality). Two absent keys compare equal; absent differs from present null. No parsing, normalization, availability, product or quality gate.",
+      "scope": "No risk decision or performance metric. Emit RAW_EQUAL/RAW_DIFFERENT plus ignored status/quality and original relation outcome; do not call raw inequality an attack."
+    }
+  ],
+  "metrics_boundary": "Diagnostic changes cannot overwrite valid v2 risk results. Any future alternative binary detector requires a new approved contract.",
+  "version": "formal-semantic-diagnostics-freeze-v2"
+}

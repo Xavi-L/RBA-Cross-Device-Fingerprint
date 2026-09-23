@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "baseline_commit": "f00e699d2763afed5369774f01e5a0f632d8f5c6",
+  "remote_commit_verified_equal": true,
+  "S04_delivery_files": 74,
+  "previous_steps_rerun": false,
+  "checks": {
+    "S01_S02_262_facts_and_reports_agree": true,
+    "S03_v1_zero_candidates_kept_as_history": true,
+    "S03_R_v2_7_candidates_5_families": true,
+    "S04_35_final_tests_and_14_saved_synthetic_rows_report_agree": true,
+    "no_old_roles_override_v2": true,
+    "P6_access_consumed_not_blind": true
+  },
+  "substantive_acceptance_conflicts": [],
+  "explicit_spec_corrections": [
+    {
+      "item": "S04 Fig.6 scope",
+      "conflict": "S04 placeholder describes boundary/cost/fidelity; execution plan specifies operating points",
+      "resolution": "Independent S05 figure-spec-freeze-v2 keeps operating points; costs in tables/appendices. No eligible control_mid labels, so Fig.6 performance remains NOT_EVALUATED."
+    },
+    {
+      "item": "S02 null configuration_id / S04 grouping key",
+      "resolution": "Only S05 evaluation index derives configuration_id from preserved config_id; retain original S02_configuration_id and exact S02 source copy; no labels/worker changes."
+    }
+  ],
+  "timepoint_policy": "Previous unpushed/unreviewed report text preserved; current S04 delivery recorded separately.",
+  "remaining_fact_limits": [
+    "time controls UNKNOWN/no FPR",
+    "L1 and missing private/direct logs",
+    "3 association groups not verified physical-device count",
+    "no Browser attack inputs",
+    "attribution UNKNOWN"
+  ]
+}

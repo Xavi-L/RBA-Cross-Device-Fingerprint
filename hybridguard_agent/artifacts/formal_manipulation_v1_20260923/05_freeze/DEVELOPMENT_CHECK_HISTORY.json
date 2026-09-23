@@ -1,0 +1,31 @@
+{
+  "earlier_static_preflight": [
+    {
+      "error": "Mixed source bindings",
+      "cause": "S05 incorrectly expected contract_version on each source_bindings row; accepted file uses catalog_version, v2 contract is on its companion documents",
+      "resolution": "Check exact catalog_version and cross-bind rows to all six v2 documents; no accepted source changes"
+    },
+    {
+      "error": "AttributeError: NoneType has no attribute get",
+      "cause": "Control original_attack_annotation is legitimately null",
+      "resolution": "Use empty declared-mechanism set for null annotation; retain all original facts and null in saved S02 copy"
+    }
+  ],
+  "initial_test_run": {
+    "tests": 14,
+    "failures": 1,
+    "errors": 1,
+    "log": "FOCUSED_TESTS_INITIAL_FAILURE.txt",
+    "issues": [
+      "Destination fixture hit overlap before existing-path rejection",
+      "AST closure initially rejected legal package-relative import"
+    ]
+  },
+  "resolution": "Separate existing-path fixture; resolve relative import by package ancestry while still reading AST without import",
+  "final_tests": {
+    "passed": 14,
+    "log": "FOCUSED_TESTS.txt"
+  },
+  "formal_predictions_at_all_stages": 0,
+  "historical_artifacts_overwritten": false
+}

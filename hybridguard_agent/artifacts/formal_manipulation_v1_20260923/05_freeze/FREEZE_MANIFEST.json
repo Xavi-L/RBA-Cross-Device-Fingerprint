@@ -1,0 +1,957 @@
+{
+  "bound_files": [
+    {
+      "bytes": 10321104,
+      "category": "BLIND_INPUT",
+      "path": "blind/inputs.jsonl",
+      "sha256": "ca174d01f6ef8506c0ac97e655723eecc99ce96e7751bf1bfa382828e246f0a3",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl"
+    },
+    {
+      "bytes": 55584,
+      "category": "GENERATED_STATIC_UNITS_OR_INPUTS",
+      "path": "diagnostic_expected_units.jsonl",
+      "sha256": "7115ac9c9040155e4e7b547d29c2bff7cafcbca7bc590056edb7be888db07a03",
+      "source": null
+    },
+    {
+      "bytes": 3958,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "diagnostic_spec.json",
+      "sha256": "4756e9d66271f4a2c76cf7e749e71eb7fc5b2edd72d8dfa0934e0f1e224cf8af",
+      "source": null
+    },
+    {
+      "bytes": 529,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "dry_plan.json",
+      "sha256": "56b71b7158cde48d1e17b31c95ffe47c232b9056d6b6e48901ef0eea32e5faa0",
+      "source": null
+    },
+    {
+      "bytes": 570,
+      "category": "P6_METADATA_ONLY_NO_OUTCOMES",
+      "path": "evaluation/P6_metadata/RESERVED_ACCESS.json",
+      "sha256": "f12d477936d520346219585d53388b056f422ab0dc35bac25cf3f40f5eb13c86",
+      "source": "deliverables/mtc_p6_20260923/RESERVED_ACCESS.json"
+    },
+    {
+      "bytes": 109,
+      "category": "P6_METADATA_ONLY_NO_OUTCOMES",
+      "path": "evaluation/P6_metadata/RESERVED_FIRST_READ.json",
+      "sha256": "5c9524b335fe60e9784b231216fcf5f4e91e5bd2b4ff1d1f00d70faeb5bb8253",
+      "source": "deliverables/mtc_p6_20260923/RESERVED_FIRST_READ.json"
+    },
+    {
+      "bytes": 759,
+      "category": "P6_METADATA_ONLY_NO_OUTCOMES",
+      "path": "evaluation/P6_metadata/RESERVED_RELEASE.json",
+      "sha256": "82298d174fbfd9aba6af2bb27d4e4e861b5076c7fc87bc3a8fc3b5bedc90e2bf",
+      "source": "deliverables/mtc_p6_20260923/RESERVED_RELEASE.json"
+    },
+    {
+      "bytes": 8045,
+      "category": "P6_METADATA_ONLY_NO_OUTCOMES",
+      "path": "evaluation/P6_metadata/mtc_p6_protocol.v1.json",
+      "sha256": "afae08d08f5e67f42c29364a7555aa5bb9a6fae07cbd7f1535699c6746e47f63",
+      "source": "hybridguard_agent/config/mtc_p6_protocol.v1.json"
+    },
+    {
+      "bytes": 8045,
+      "category": "P6_METADATA_ONLY_NO_OUTCOMES",
+      "path": "evaluation/P6_metadata/protocol_FREEZE.json",
+      "sha256": "afae08d08f5e67f42c29364a7555aa5bb9a6fae07cbd7f1535699c6746e47f63",
+      "source": "hybridguard_agent/artifacts/mtc_p6_fixed_20260923/protocol_FREEZE.json"
+    },
+    {
+      "bytes": 1399,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/admission_policy.json",
+      "sha256": "faf89d74ebc7d4c93b063c04053184ef029b2eb0e7d8fd916ce9d7b6ee4cf6a8",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/admission_policy.json"
+    },
+    {
+      "bytes": 257655,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/environment_group_registry.json",
+      "sha256": "a93b3f858f826fcea223c76101075d6e1f1928e45a4f520d1441c5ed198f3266",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/environment_group_registry.json"
+    },
+    {
+      "bytes": 61236,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/exclusions.jsonl",
+      "sha256": "e43b02d8d85126beadf512365b34f13edd1ef95f414b0710903c0d630d723f90",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/exclusions.jsonl"
+    },
+    {
+      "bytes": 1512732,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/facts_and_eligibility.jsonl",
+      "sha256": "1e2e3be883fbed926462dec8d74c34e842138f99515270c1150a0d86fb3a035b",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/facts_and_eligibility.jsonl"
+    },
+    {
+      "bytes": 1543,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/history_links.json",
+      "sha256": "818fc7f9251b49f23a7c38e153d8d90049b527a3ea3173fc2823fe882e29365b",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/history_links.json"
+    },
+    {
+      "bytes": 20757,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/manual_fact_queue.json",
+      "sha256": "45d88d7396e9a4c6e54e0c5753bdee1bd5e83fccae36e9435b6dcded6fc13883",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/manual_fact_queue.json"
+    },
+    {
+      "bytes": 70797,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/material_inventory.jsonl",
+      "sha256": "4eaaef6403270b92d3ce90630a10fd12483888f016b2561e39332f44cccd72ab",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/material_inventory.jsonl"
+    },
+    {
+      "bytes": 35430,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/missing_materials.jsonl",
+      "sha256": "3d269711738f07e44104b7ef7eff07ad44dbd532c49260f68c481b612065cecb",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/missing_materials.jsonl"
+    },
+    {
+      "bytes": 66208,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/stage_accounting.jsonl",
+      "sha256": "0b1d487843914ab0258cff4f2753059e9ea6676893c4629b4f5a0fc10cfb26d7",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/stage_accounting.jsonl"
+    },
+    {
+      "bytes": 277635,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S01/triplet_registry.jsonl",
+      "sha256": "d1640588f6ea8ba65577bb7304bec31abc6b1d2d03531552aa542515cffa8b57",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/triplet_registry.jsonl"
+    },
+    {
+      "bytes": 0,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S02/adapter_rejections.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/adapter_rejections.jsonl"
+    },
+    {
+      "bytes": 8948,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S02/bundle_history.json",
+      "sha256": "56e09e15fa3e662a8e4b0c732552c2a5385bddc35fd2695d7caa60bd94b83f80",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/bundle_history.json"
+    },
+    {
+      "bytes": 1967321,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S02/evaluation_index.jsonl",
+      "sha256": "399e7ac358fd0509de790faeb366d28fc060a54b003e8cbbd11d0d210378958a",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/evaluation_index.jsonl"
+    },
+    {
+      "bytes": 63218,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S02/field_mapping.json",
+      "sha256": "6b2ec20ab5897fff772a48eebd5bcecf67d0c1037d33957552c72776b457a780",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/field_mapping.json"
+    },
+    {
+      "bytes": 245816,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S02/input_manifest.jsonl",
+      "sha256": "2b7767da1eed4ab3d3806c82db95251a303d216ad6334208e1a478e2056d9f7f",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl"
+    },
+    {
+      "bytes": 80077,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/S02/phase_associations.json",
+      "sha256": "6d76a06ef5af65d93864e0a26bed1ccbcc506f3de6e0202ce77643d91ad2e21b",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/phase_associations.json"
+    },
+    {
+      "bytes": 7223,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/01_admission/STEP_REPORT.md",
+      "sha256": "fdca2eb63bab540b0b716255237ada8e94b705d2daaa8f1de83ccb8c0b33cee4",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/STEP_REPORT.md"
+    },
+    {
+      "bytes": 1000,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/01_admission/VALIDATION.json",
+      "sha256": "a0bd579365c950861c41f24a2710ff794b8c33aae031a0e75d515f5ef8753aef",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/VALIDATION.json"
+    },
+    {
+      "bytes": 4713,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/02_inputs/STEP_REPORT.md",
+      "sha256": "11b7909c9846d4a8dfc3a10bae5338a6f579621b76de81e58ef3dda91102f39b",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/STEP_REPORT.md"
+    },
+    {
+      "bytes": 1155,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/02_inputs/VALIDATION.json",
+      "sha256": "dc5e52662bbb025d89abc6925513c573f0fa3f4a56696abcce86e3da30b81cda",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/VALIDATION.json"
+    },
+    {
+      "bytes": 12364,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/03_registry/STEP_REPORT.md",
+      "sha256": "020b5a2f6cdc9eb905cfebe49f799c569ebe03c4a02efc2230961f167206dbd8",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STEP_REPORT.md"
+    },
+    {
+      "bytes": 4160,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/03_registry/VALIDATION.json",
+      "sha256": "74fc71faf09c26aa95618566ffd2746862362dfc71bc52f8771990cbcfe85b29",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/VALIDATION.json"
+    },
+    {
+      "bytes": 8174,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/03r_role_gate_v2/STEP_REPORT.md",
+      "sha256": "ea61d63e198f8df9bc8b419ef2d8cf1da23e539a5aa40f1c2c5e24e2411cc6f4",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/STEP_REPORT.md"
+    },
+    {
+      "bytes": 3171,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/03r_role_gate_v2/VALIDATION.json",
+      "sha256": "a7f719ffa4becb572701516ebe9f93235aaa16cc6559767733d534a52c0a8d54",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/VALIDATION.json"
+    },
+    {
+      "bytes": 8822,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/04_contract/STEP_REPORT.md",
+      "sha256": "70d08f07c0d4b9b49555107eb5ee97b69ebe84edeb716e24bbc8672d97193180",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/STEP_REPORT.md"
+    },
+    {
+      "bytes": 2861,
+      "category": "PRIOR_ACCEPTANCE",
+      "path": "evaluation/acceptance/04_contract/VALIDATION.json",
+      "sha256": "2cb88d043883d5dca2edeafc852cf237d97c8c9148ad95c12b0351ec60373566",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/VALIDATION.json"
+    },
+    {
+      "bytes": 26140,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "evaluation/control_matching.json",
+      "sha256": "187b5b031e627d877e903280c9f38546a667077b1a940ff2671267e301770335",
+      "source": null
+    },
+    {
+      "bytes": 2164559,
+      "category": "GENERATED_STATIC_UNITS_OR_INPUTS",
+      "path": "evaluation/evaluation_index.jsonl",
+      "sha256": "866767979dc8d5cac8de7883b682c21445c89150e782e550201e2d1431f3bf07",
+      "source": null
+    },
+    {
+      "bytes": 79490,
+      "category": "PRE_FREEZE_PLAN_TIMEPOINT",
+      "path": "evaluation/plan_at_freeze/EXECUTION_PLAN.md",
+      "sha256": "ab32a0e13c724b7d1c7b53ab3e61a3dddcf4ecbced446aeaf344cd5e8ae95bcc",
+      "source": "deliverables/formal_experiment_execution_plan/EXECUTION_PLAN.md"
+    },
+    {
+      "bytes": 5409,
+      "category": "PRE_FREEZE_PLAN_TIMEPOINT",
+      "path": "evaluation/plan_at_freeze/S03_R_CONTRACT_REVISION_v2.md",
+      "sha256": "3f71743da8877017058be15721e4d9b645a1b655d2cd3f40b633f094cc9e7ee6",
+      "source": "deliverables/formal_experiment_execution_plan/S03_R_CONTRACT_REVISION_v2.md"
+    },
+    {
+      "bytes": 5660,
+      "category": "PRE_FREEZE_PLAN_TIMEPOINT",
+      "path": "evaluation/plan_at_freeze/S04_CONTRACT_IMPLEMENTATION_v2.md",
+      "sha256": "59dfd1c050247f08f077646e04622c6ffb0e35fc5f8e300b0e24bb9b8d808820",
+      "source": "deliverables/formal_experiment_execution_plan/S04_CONTRACT_IMPLEMENTATION_v2.md"
+    },
+    {
+      "bytes": 40385,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "evaluation/population.json",
+      "sha256": "01da82d09b9f4ca0773a361f8ca66bc610f496952af647790ad5286998b3c0b0",
+      "source": null
+    },
+    {
+      "bytes": 113152,
+      "category": "PROVENANCE_ONLY_NOT_V2_ROLE_AUTHORITY",
+      "path": "evaluation/provenance_v1/family_registry.json",
+      "sha256": "6363fdc315de1a807e91626f5ab9f38fb07cc83d13b35fc40dcaf25ba6b1358a",
+      "source": "hybridguard_agent/config/formal_manipulation_v1/family_registry.json"
+    },
+    {
+      "bytes": 14063,
+      "category": "PROVENANCE_ONLY_NOT_V2_ROLE_AUTHORITY",
+      "path": "evaluation/provenance_v1/primary_source_review.json",
+      "sha256": "dbedc3a66d81a1995dce11018c9d0a2bdefab18b701657282ffaecc24e99d434",
+      "source": "hybridguard_agent/config/formal_manipulation_v1/primary_source_review.json"
+    },
+    {
+      "bytes": 249956,
+      "category": "PROVENANCE_ONLY_NOT_V2_ROLE_AUTHORITY",
+      "path": "evaluation/provenance_v1/source_registry.jsonl",
+      "sha256": "10cf75fc1979b5d369a401f4bc64c441d622d2a4264c8e1a12334f8bf18b53f4",
+      "source": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl"
+    },
+    {
+      "bytes": 27753,
+      "category": "EVALUATION_ONLY",
+      "path": "evaluation/source_uncertainties.jsonl",
+      "sha256": "d6c70a8176724abe5f6910f066ae92f0593e4ae6a1611d145ec5d9f085f31331",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/source_uncertainties.jsonl"
+    },
+    {
+      "bytes": 25793,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "evaluation/task_denominators.json",
+      "sha256": "aa43b5b2a2d46d28ad6f773cdaa5f909cd3941e92bde0dd77019e6140f321188",
+      "source": null
+    },
+    {
+      "bytes": 3747,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "evaluation/timing_strata.json",
+      "sha256": "486e2e37acb2051fc628aed0c3dd3493235e64696ddaf0616fea4807369efeb7",
+      "source": null
+    },
+    {
+      "bytes": 1751,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "evaluation_access_policy.json",
+      "sha256": "864f1f5bf7b3e4dca64b62c57e3d2fefce6686d219a3764d3bf96f5a57ee1fd1",
+      "source": null
+    },
+    {
+      "bytes": 433006,
+      "category": "GENERATED_STATIC_UNITS_OR_INPUTS",
+      "path": "expected_units.jsonl",
+      "sha256": "410070dbf959e53eaf8a48cd8421d7285b1ad351d5662139d23a8d56ef7788a1",
+      "source": null
+    },
+    {
+      "bytes": 2006,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "exposure_history.json",
+      "sha256": "4973781e268508c33b8f1666c91f55fb67ba0fb691d20610e9235702bfa6794b",
+      "source": null
+    },
+    {
+      "bytes": 5280,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "figure_spec.json",
+      "sha256": "3ca998834e77d14498dee97976fc438ef2c2e055cd28ce5fec636771c683eeea",
+      "source": null
+    },
+    {
+      "bytes": 13175,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "sha256": "564ecdbb509768b6fab541ada2572083f0e7438fb27ca5e3662187cf53eb96bd",
+      "source": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"
+    },
+    {
+      "bytes": 68,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/__init__.py",
+      "sha256": "1320cc5ea837a0eac3477998ac93d28ce753944ab001092957e90300b4d1d559",
+      "source": "hybridguard_agent/__init__.py"
+    },
+    {
+      "bytes": 80,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/adapters/__init__.py",
+      "sha256": "720236a81bf55cbff9fc0c69e6f24bdbcc268478861ea36d7083d3f6a5af001a",
+      "source": "hybridguard_agent/adapters/__init__.py"
+    },
+    {
+      "bytes": 3316,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/adapters/official_kb_adapter.py",
+      "sha256": "5dfb5851e2c464f55c9c74582912c338625306d06de132ca8e062c6b2a1b3a11",
+      "source": "hybridguard_agent/adapters/official_kb_adapter.py"
+    },
+    {
+      "bytes": 1765,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/adapters/paired244_catalog.py",
+      "sha256": "7f8a118d25c452184350ad0683c4887f4962d1c3c49b78e2b0ab8b4e536347b9",
+      "source": "hybridguard_agent/adapters/paired244_catalog.py"
+    },
+    {
+      "bytes": 4088,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/adapters/rule_kb_adapter.py",
+      "sha256": "6a53164d0853bb423efbbe8a893dbbc8447572bb652520ccf1226900ad87ed73",
+      "source": "hybridguard_agent/adapters/rule_kb_adapter.py"
+    },
+    {
+      "bytes": 2336,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+      "sha256": "5714f7f5075c525552606fff6846bfb02a5b046331faa866f523c2db8875642f",
+      "source": "hybridguard_agent/config/deterministic_rule_predicates.v1.json"
+    },
+    {
+      "bytes": 1604,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+      "sha256": "c0167ceb7b84c0e1df6e2cb0561d98eb43384221e38fc5f780a80a3613a70129",
+      "source": "hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json"
+    },
+    {
+      "bytes": 1098,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json",
+      "sha256": "5741e0a565886b78bdc714df444ab622ea75ec7803869ff778b08a697e007da5",
+      "source": "hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json"
+    },
+    {
+      "bytes": 2523,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json",
+      "sha256": "2de680f5d50777bc93a539cae62e8a8eccb53cea04a315e28b8f3e1197da5701",
+      "source": "hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json"
+    },
+    {
+      "bytes": 1510,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json",
+      "sha256": "3282c886449978a926258c111f5b8973b03ed4078695411830671e24194fb061",
+      "source": "hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json"
+    },
+    {
+      "bytes": 115363,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json",
+      "sha256": "727c351d7c66602d5978513f8dac3b1ecfabfac415d252b0c8a1958049e12571",
+      "source": "hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json"
+    },
+    {
+      "bytes": 174456,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+      "sha256": "ac4acd1ec337ae887c90a4edddf6d6fc087c20d2b63fb456ef024609cfc2c6d1",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json"
+    },
+    {
+      "bytes": 105697,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+      "sha256": "a4dd31f5b95ef8e9fbfeaa787c573bb368e0e81dc238ae0ce3fe9eb9405cbd95",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json"
+    },
+    {
+      "bytes": 8334,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+      "sha256": "38d5a6ce1909dfd0f18e1fd9dcc3b20f9626d4467bd2645e924f2304181e6d58",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json"
+    },
+    {
+      "bytes": 8709,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+      "sha256": "25f8cadfa3aa7afba284011fa26a6dbd826e4865003edbefc02cbdadd7da3a00",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json"
+    },
+    {
+      "bytes": 1736,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+      "sha256": "22870ad587226bb09e684eb601c5a52df6f5100cc65e96fd404991de240186dc",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json"
+    },
+    {
+      "bytes": 23749,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+      "sha256": "6f2acfbf1082c746fe48742a21d5cd9e6b78d8550d2316437a8eaced9746481c",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl"
+    },
+    {
+      "bytes": 21899,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json",
+      "sha256": "a13b3148eda619eedd2b7d24db6730c9e123441297b8f4fbb8d73069321107f5",
+      "source": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json"
+    },
+    {
+      "bytes": 22596,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/official_semantic_relations.v1.json",
+      "sha256": "a5e024b904d568a38157e91ff31d8676a7937acf9a34dc083271b746556b5ddb",
+      "source": "hybridguard_agent/config/official_semantic_relations.v1.json"
+    },
+    {
+      "bytes": 3961,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/paired244_browser_relations.v1.json",
+      "sha256": "7653fd3f80d2ffecec7e497577210bf0d427a84d639183c19f09abb9c3f48f95",
+      "source": "hybridguard_agent/config/paired244_browser_relations.v1.json"
+    },
+    {
+      "bytes": 3961,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/paired244_browser_relations.v3.json",
+      "sha256": "329f730bf776a28c3e52a8c889b05aa52742cbc32e7cd3e46ba9945f2d4c0ed7",
+      "source": "hybridguard_agent/config/paired244_browser_relations.v3.json"
+    },
+    {
+      "bytes": 116994,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/paired244_rule_catalog.v1.json",
+      "sha256": "af835d40d93101cfa97e88f9ab01e18f1e55207a746fbed6236ef1faf7dbc83d",
+      "source": "hybridguard_agent/config/paired244_rule_catalog.v1.json"
+    },
+    {
+      "bytes": 144212,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/config/paired244_rule_catalog.v3.json",
+      "sha256": "f614943f111cb8f3c1cf76a29c6a95b6d306d780b9e101299a8cfbae7c5a52b5",
+      "source": "hybridguard_agent/config/paired244_rule_catalog.v3.json"
+    },
+    {
+      "bytes": 356,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/evidence/__init__.py",
+      "sha256": "4fc1a527cb9136f8fd5a3ae7cb729aada1bb188a28e7820a74f4b9884c40d149",
+      "source": "hybridguard_agent/evidence/__init__.py"
+    },
+    {
+      "bytes": 26195,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/evidence/extractor.py",
+      "sha256": "540b6bc52bf5dbacb3c9d8c14e5ef2cfdc638f0351df00608888e8140a42e015",
+      "source": "hybridguard_agent/evidence/extractor.py"
+    },
+    {
+      "bytes": 8203,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/evidence/paired244.py",
+      "sha256": "59ca069d56922610354ba2477f36e8b1e5c2775eaef4b5e366ce7895069726dd",
+      "source": "hybridguard_agent/evidence/paired244.py"
+    },
+    {
+      "bytes": 205,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/official_semantics/__init__.py",
+      "sha256": "5a908ea456544b65269c796575a8f0e6940d7ad74172fce9a369d466495e9358",
+      "source": "hybridguard_agent/official_semantics/__init__.py"
+    },
+    {
+      "bytes": 20072,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/official_semantics/evaluator.py",
+      "sha256": "65c39096b601c12ccbb505a26d81d6a29dbdde9d45f8ef13143e8d8d16057662",
+      "source": "hybridguard_agent/official_semantics/evaluator.py"
+    },
+    {
+      "bytes": 81,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/__init__.py",
+      "sha256": "e507b761f4cfe5ec303fe5f26aa507cc9a9e2f264ea26ae5bb2dacf52a210062",
+      "source": "hybridguard_agent/research/__init__.py"
+    },
+    {
+      "bytes": 80,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/__init__.py",
+      "sha256": "47ef4f35a142f9546668113ba11d967dcbd75fe5353a631332abe22d4acd0eb9",
+      "source": "hybridguard_agent/research/manipulation_eval/__init__.py"
+    },
+    {
+      "bytes": 39966,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/adapter.py",
+      "sha256": "fe54884572b0217d4ffaf8661151edd959ef4fef9841b0485d7a2ec25cef1d88",
+      "source": "hybridguard_agent/research/manipulation_eval/adapter.py"
+    },
+    {
+      "bytes": 2520,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/baselines.py",
+      "sha256": "5b6cac758c1b5de0b71c5105f013ffa845d016ed363ba738b295fd9d92347a26",
+      "source": "hybridguard_agent/research/manipulation_eval/baselines.py"
+    },
+    {
+      "bytes": 9130,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/contract.py",
+      "sha256": "fe0ec8983ca1da2e83eeaf3d1182ebeb7359a773399424a4504931c64fdde81d",
+      "source": "hybridguard_agent/research/manipulation_eval/contract.py"
+    },
+    {
+      "bytes": 17959,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/evaluation.py",
+      "sha256": "70e7271c52fbdc620538677cfc6717e7a9dcbc7afa74a515886977f11bf1c638",
+      "source": "hybridguard_agent/research/manipulation_eval/evaluation.py"
+    },
+    {
+      "bytes": 47701,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/freeze.py",
+      "sha256": "4fa018decb8d0f8dadebd79dd7968c28b651f8a0a3e8ed868042005fe77471de",
+      "source": "hybridguard_agent/research/manipulation_eval/freeze.py"
+    },
+    {
+      "bytes": 10328,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/freeze_specs.py",
+      "sha256": "bdf99ab549d1e188153d8ae999d373ebdcb59fdefb34083bc033fdcdadd0bf3e",
+      "source": "hybridguard_agent/research/manipulation_eval/freeze_specs.py"
+    },
+    {
+      "bytes": 1524,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/persistence.py",
+      "sha256": "42a78d75da4b20df454a22e9e2b39ef68e031e0a2bbea71afd9105df352b0c20",
+      "source": "hybridguard_agent/research/manipulation_eval/persistence.py"
+    },
+    {
+      "bytes": 7059,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/policy.py",
+      "sha256": "24ce47be5efa29ced9163cc40724ed09f3fefcf1a2b9856017c72ad5bf29525b",
+      "source": "hybridguard_agent/research/manipulation_eval/policy.py"
+    },
+    {
+      "bytes": 43305,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/provenance.py",
+      "sha256": "1d27b733329f2d675cd7d389b556db68e2d311eae7ca0353bf1a71309814e37e",
+      "source": "hybridguard_agent/research/manipulation_eval/provenance.py"
+    },
+    {
+      "bytes": 34423,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/provenance_revision.py",
+      "sha256": "7a7976c42c7b7ef01243acd79627596c4a45ee78feaf704635339a3ef04c0189",
+      "source": "hybridguard_agent/research/manipulation_eval/provenance_revision.py"
+    },
+    {
+      "bytes": 1259,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/registry_output.py",
+      "sha256": "4cc69da111059e5a724eb443323038c98703a8f48490544a14e6a67f6aa86627",
+      "source": "hybridguard_agent/research/manipulation_eval/registry_output.py"
+    },
+    {
+      "bytes": 6893,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/reporting.py",
+      "sha256": "9419a76bb0d5fb532a8f28853a76dff0a096bce0bf8b8d342db4d63cb52c1061",
+      "source": "hybridguard_agent/research/manipulation_eval/reporting.py"
+    },
+    {
+      "bytes": 11706,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/runner.py",
+      "sha256": "f00d1c89307d2fa9426bd46dc685383628ce4022b5216cca193774e02e610997",
+      "source": "hybridguard_agent/research/manipulation_eval/runner.py"
+    },
+    {
+      "bytes": 7504,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/schemas.py",
+      "sha256": "64c5a5592e45f9493f861c1415a912c6710177af2357f97dc1f4f0e39256396e",
+      "source": "hybridguard_agent/research/manipulation_eval/schemas.py"
+    },
+    {
+      "bytes": 6873,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/synthetic.py",
+      "sha256": "075bc25a9f3bc7c45e65b765e96e36c8ff5b3d5bbbc4fc211e9afc2e14100879",
+      "source": "hybridguard_agent/research/manipulation_eval/synthetic.py"
+    },
+    {
+      "bytes": 3712,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/manipulation_eval/verification.py",
+      "sha256": "cce3813dbc23643af76ac587a1cb9164d996f0fad33cb5a33811f78c6d0ee0de",
+      "source": "hybridguard_agent/research/manipulation_eval/verification.py"
+    },
+    {
+      "bytes": 11217,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/mtc_closed_resource.py",
+      "sha256": "e6e7812c414f8e147fccf5639e1b41d009de53b3142011176616d5a4c916990a",
+      "source": "hybridguard_agent/research/mtc_closed_resource.py"
+    },
+    {
+      "bytes": 15180,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/research/mtc_p3_candidates.py",
+      "sha256": "ab6a3bdc3f42d5e8b6674d9d580abe554d85f2cce2523114535e31aa007c4b86",
+      "source": "hybridguard_agent/research/mtc_p3_candidates.py"
+    },
+    {
+      "bytes": 204,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/retrieval/__init__.py",
+      "sha256": "4dffa844c3e26a3868907c06906e67c74afa941bb764fcd7bc3d2eb7ae0abcbe",
+      "source": "hybridguard_agent/retrieval/__init__.py"
+    },
+    {
+      "bytes": 5052,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/retrieval/exact_retriever.py",
+      "sha256": "8bc91b682e66b53fb4bb501bd7f94716c8d64d9e664ade81b24cf30fc62f5dd3",
+      "source": "hybridguard_agent/retrieval/exact_retriever.py"
+    },
+    {
+      "bytes": 1114,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/retrieval/paired244.py",
+      "sha256": "d553d4f0a26aa826f2bf407ac44d6dbfd0323105655b3f9d3cfb4a7e01bd4929",
+      "source": "hybridguard_agent/retrieval/paired244.py"
+    },
+    {
+      "bytes": 202,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/rules/__init__.py",
+      "sha256": "4b6bdd0b94c56e615cb3ca2491cbce0dc2ca4d5adb7c2945889a19fc0bd7826d",
+      "source": "hybridguard_agent/rules/__init__.py"
+    },
+    {
+      "bytes": 9519,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/rules/executor.py",
+      "sha256": "6fc1bda7e800a2aac669508786cb7e0566a1e5945c9be948a6348922828ef639",
+      "source": "hybridguard_agent/rules/executor.py"
+    },
+    {
+      "bytes": 4578,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/rules/legacy_backlog.py",
+      "sha256": "0dcc70ec55e970387ad280c611b53c7b93ee7fa535ad4215b94fd8ecbfe722cf",
+      "source": "hybridguard_agent/rules/legacy_backlog.py"
+    },
+    {
+      "bytes": 11273,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/rules/paired244.py",
+      "sha256": "b96d7eac1697d7905edc3a3cc99ab09b4a8189b52a65ffbef8a06588aad9accc",
+      "source": "hybridguard_agent/rules/paired244.py"
+    },
+    {
+      "bytes": 12651,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/schemas/expanded_v2.schema.json",
+      "sha256": "bd145e759275f9d500b5c1f6dcdf4f013d18c456819bd83065a59c64648a2e40",
+      "source": "hybridguard_agent/schemas/expanded_v2.schema.json"
+    },
+    {
+      "bytes": 51711,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/schemas/field_registry.json",
+      "sha256": "9a4be3a978538737e090b05c7b907b9eefe3ec6967377824f5cd8e45c72286a2",
+      "source": "hybridguard_agent/schemas/field_registry.json"
+    },
+    {
+      "bytes": 3405,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json",
+      "sha256": "49639355fdb201f5f707816a407233e0906efedff0faabfe46b5aa327b62a047",
+      "source": "hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json"
+    },
+    {
+      "bytes": 15366,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json",
+      "sha256": "34ce596e9463f943ecdec58fb34005bc6134f57bf08a533566c2ab8a70730668",
+      "source": "hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json"
+    },
+    {
+      "bytes": 3051,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/hybridguard_agent/schemas/manipulation_decision_v2.schema.json",
+      "sha256": "bc466262ec89e650c15bd13e61bfdf3807dbd6d986ff679c15cb8c0458d7551f",
+      "source": "hybridguard_agent/schemas/manipulation_decision_v2.schema.json"
+    },
+    {
+      "bytes": 849,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py",
+      "sha256": "9b81cea90d26d5a4ef2ba0564f5d6c30c6ec987cf996e57d6eefdd30ae9b50fc",
+      "source": "hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py"
+    },
+    {
+      "bytes": 773,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/scripts/plot_formal_manipulation_eval.py",
+      "sha256": "fd63e6ff8f444e55b40c8024bb11a42b11d2ce3fcfbfb8ef9a05fac63307f29e",
+      "source": "hybridguard_agent/scripts/plot_formal_manipulation_eval.py"
+    },
+    {
+      "bytes": 1976,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/scripts/run_formal_manipulation_eval.py",
+      "sha256": "51bc1140271652b00db01d665a92c5b72e7d83f3ea653e854b4211d01abdcdac",
+      "source": "hybridguard_agent/scripts/run_formal_manipulation_eval.py"
+    },
+    {
+      "bytes": 8744,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/tests/test_formal_manipulation_freeze.py",
+      "sha256": "fbba57da931e4544edf7013d28b645780ed000e4d1eb32a31ac4cff86acc8b62",
+      "source": "hybridguard_agent/tests/test_formal_manipulation_freeze.py"
+    },
+    {
+      "bytes": 145,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/verification/__init__.py",
+      "sha256": "19e7a4b1b8197714224d23095983f9a8e12e614bf51e6c7aa8a6de14d3036934",
+      "source": "hybridguard_agent/verification/__init__.py"
+    },
+    {
+      "bytes": 2688,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/verification/paired244.py",
+      "sha256": "f7cce7101cc20423636faeeac6f6a4ddd7fdc50e138fbeec9497fa64521a70be",
+      "source": "hybridguard_agent/verification/paired244.py"
+    },
+    {
+      "bytes": 2949,
+      "category": "PARTICIPATING_SOURCE",
+      "path": "frozen_sources/hybridguard_agent/verification/verifier.py",
+      "sha256": "e5947e130ae17401b42b81b171e304f64999c97a0560cc246922ca2aa67b41fc",
+      "source": "hybridguard_agent/verification/verifier.py"
+    },
+    {
+      "bytes": 48691,
+      "category": "RUNTIME_CONFIG",
+      "path": "frozen_sources/scoring/rule_knowledge_base.json",
+      "sha256": "bd64876a301eaa063b7793fd7fb471ffe64bab4478970f7f3a6476ff0a4a7884",
+      "source": "scoring/rule_knowledge_base.json"
+    },
+    {
+      "bytes": 2467,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "metric_spec.json",
+      "sha256": "f47121b82109271db6042f66a3274e6f1dced93caf3f6a30149f76605a9aedd7",
+      "source": null
+    },
+    {
+      "bytes": 1434,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "p6_reuse_spec.json",
+      "sha256": "d35587bd76ec0964a9c8989702f820318ce7c1896a25bd92e2cff442b2327ba1",
+      "source": null
+    },
+    {
+      "bytes": 1,
+      "category": "PARTICIPATING_DIFF_ONLY",
+      "path": "participating_worktree.diff",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source": null
+    },
+    {
+      "bytes": 1216,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "source_environment.json",
+      "sha256": "4530ce0d6cc7d48e4c9eaf927091f7da4f3cf13cbe3c0751ca13de291f742bea",
+      "source": null
+    },
+    {
+      "bytes": 64778,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "step_execution_plans/S06.json",
+      "sha256": "94dda0177d44996b58aebe9165634fb2369730c6e447dc6d9876a1b235df156d",
+      "source": null
+    },
+    {
+      "bytes": 226244,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "step_execution_plans/S07.json",
+      "sha256": "d3406048c1c754f979074391ee22450dab3c3f4e59108af371c64ce46a2e0bc3",
+      "source": null
+    },
+    {
+      "bytes": 132220,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "step_execution_plans/S08.json",
+      "sha256": "16dc87b7c684932e576a0df84ba728683c74cb4e263aa31547559eb802ecaade",
+      "source": null
+    },
+    {
+      "bytes": 7162,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "step_execution_plans/S10.json",
+      "sha256": "7f0c711692a50c7bc304cddc210aa744f3745e16b5f512a6cb68596b7b97f0c4",
+      "source": null
+    },
+    {
+      "bytes": 1951352,
+      "category": "GENERATED_STATIC_UNITS_OR_INPUTS",
+      "path": "synthetic/fixtures.jsonl",
+      "sha256": "af4329b9eae3d187a1da328fea5445d3b6b278e71903d4e144aa2254e55656ec",
+      "source": null
+    },
+    {
+      "bytes": 16169,
+      "category": "S04_SYNTHETIC_OR_STATIC_REFERENCE",
+      "path": "synthetic/reference/SOURCE_STRUCTURAL_LIMITS.json",
+      "sha256": "d89d82d934d0c920e6bf6b5e01a7c30ed70b0e987c8a509705ebd9872436d78c",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/SOURCE_STRUCTURAL_LIMITS.json"
+    },
+    {
+      "bytes": 197862,
+      "category": "S04_SYNTHETIC_OR_STATIC_REFERENCE",
+      "path": "synthetic/reference/SYNTHETIC_FIXTURES.jsonl",
+      "sha256": "bcba738035c58a62c4e4901f5079d53e631caf90a0ddf9009074029fc62a4dc5",
+      "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/SYNTHETIC_FIXTURES.jsonl"
+    },
+    {
+      "bytes": 5694,
+      "category": "GENERATED_STATIC_UNITS_OR_INPUTS",
+      "path": "synthetic_expected_units.jsonl",
+      "sha256": "9ee7700134fd95d77cef7372543f11f6f6667fc24f610def1dcf044739a686d6",
+      "source": null
+    },
+    {
+      "bytes": 163632,
+      "category": "GENERATED_STATIC_UNITS_OR_INPUTS",
+      "path": "timing_expected_units.jsonl",
+      "sha256": "deb045ba0129aa664e08cb20c837a255b577894cbacc357e532b55125b6d0d2e",
+      "source": null
+    },
+    {
+      "bytes": 3302,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "timing_spec.json",
+      "sha256": "0207efda86641edd4e0a90b1494897cfde452103721ffeabfced3357c45c451b",
+      "source": null
+    },
+    {
+      "bytes": 117955,
+      "category": "GENERATED_STATIC_SPEC",
+      "path": "variant_registry.json",
+      "sha256": "2bb4d3c46dc67c0102d857e0cd5f0043446cc22f8d99619f5c9ca06a51070e36",
+      "source": null
+    }
+  ],
+  "config_copy": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/config/formal_manipulation_protocol_v2/protocol.json",
+  "copied_source_count": 44,
+  "digest_definition": "sha256(sorted bound_files canonical JSON encoded by freeze.encoded); protocol binds that digest; protocol SHA is outside the digest to avoid self-reference",
+  "hash_scope": "One finite participating-source/config/input freeze, no whole-repo hashing; acceptance reports and subsequent status/report files excluded from self-reference",
+  "manifest_version": "formal-freeze-manifest-v2",
+  "protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
+  "protocol_sha256": "915ddcbf53bfb56275515a9de7613ce385f2ad6d487ed760b78a86d9d230294f",
+  "runtime_resource_count": 25
+}
