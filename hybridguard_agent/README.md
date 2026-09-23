@@ -17,9 +17,9 @@
 
 用户已明确没有补采机会，现有数据就是全部资源。剩余规则研究已收尾：无法验证的条目关闭，描述性结果不升级成攻击规则；P5 补采取消，后续实验仅报告现有证据能支持的结论。当前结果见下方 v3 章节。
 
-2026-09-23 按用户明确要求，将 MTC 最终原始冻结、P1 QC 快照和 P2 分组清单一并纳入 Git；数据入口与计数见 [数据交付说明](../deliverables/mtc_closed_resource_20260922/DATA_DELIVERY.md)。保留验证集的锁定状态不因数据提交而改变。
+2026-09-23 按用户明确要求，将 MTC 最终原始冻结、P1 QC 快照和 P2 分组清单一并纳入 Git；数据入口与计数见 [数据交付说明](../deliverables/mtc_closed_resource_20260922/DATA_DELIVERY.md)。随后 P6 已按独立冻结协议使用保留集，P2 原锁仍保留历史内容；详见下方 P6 与 [结果报告](../deliverables/mtc_p6_20260923/REPORT.md)。
 
-P0、P1 已完成：接收 1,029 条完成配对、891 个厂商／型号／系统组合；QC 主视图保留 1,028 条配对，仍覆盖 891 个组合。另 1 条配对保留为部分数据，原始记录不删除。v2 区分采集状态、已知默认哨兵和数值表示；P2 已冻结分组／切分和任务准入；P3 已完成旧规则基线与有限候选研究目录；P4 已接入 244 执行链。独立事实标签仍缺失，检测指标未准入，保留验证集继续锁定。
+P0、P1 已完成：接收 1,029 条完成配对、891 个厂商／型号／系统组合；QC 主视图保留 1,028 条配对，仍覆盖 891 个组合。另 1 条配对保留为部分数据，原始记录不删除。v2 区分采集状态、已知默认哨兵和数值表示；P2 已冻结分组／切分和任务准入；P3 已完成旧规则基线与有限候选研究目录；P4 已接入 244 执行链，研究收尾后默认 57 项可执行。P5 补采取消，P6 正式比较已完成，P7 尚未执行。独立事实标签仍缺失，检测指标未准入。
 
 ```bash
 python3 hybridguard_agent/scripts/build_mtc_paired244_snapshot.py \
@@ -106,7 +106,23 @@ python3 hybridguard_agent/scripts/run_mtc_closed_resource_runtime.py \
 
 权威产物分别为 `artifacts/mtc_closed_resource_study_20260922/`、`artifacts/mtc_closed_resource_runtime_20260922/`。79 项重点和兼容测试通过；1,548 次运行无失败，83,592 次原 54 项结果对照无变化，2,322 次新增研究／运行时对照一致，6,966 次 Browser 遮蔽检查通过。当前 `analyze_paired244_record`、P1 record 的 `analyze_payload` 及 readiness 均使用 v3；历史 v1／v2 重放入口保留。
 
-保留验证集继续锁定，攻击分类为 `NOT_EVALUATED`，不训练模型、不拟合阈值。P6／P7 尚未执行；后续仅开展现有数据支持的固定规则输入、规则版本、知识来源及覆盖／冲突／未知比较，缺少标签的检测指标不进入本轮任务。详见 [研究收尾报告](../deliverables/mtc_closed_resource_20260922/REPORT.md)、[25 项最终处置](../deliverables/mtc_closed_resource_20260922/RESOLUTIONS.md)。
+上述研究收尾时，保留验证集仍锁定，尚未执行 P6／P7；该历史批次不训练模型、不拟合阈值，攻击分类为 `NOT_EVALUATED`。详见 [研究收尾报告](../deliverables/mtc_closed_resource_20260922/REPORT.md)、[25 项最终处置](../deliverables/mtc_closed_resource_20260922/RESOLUTIONS.md)。随后 P6 的独立评价如下。
+
+### P6 固定输入、规则版本与来源比较（2026-09-23）
+
+冻结 `config/mtc_p6_protocol.v1.json` 后，891 条 P2 主代表分别执行 15 个条件，完成 13,365 次主比较、891 条原始旧引擎重放、137 条重复观测和 69 对历史材料诊断，运行无失败。8 种输入在证据抽取前遮蔽；跨端消融删除 8 项 App—Browser 关系；其余条件固定比较 v1／v2／v3 和经验／官方派生／辅助来源。规则仍为 57 项，没有训练或效果目标。
+
+保留集 117 条代表／116 组上，App177→Full244 的平均可评估检查为 46.57→55.30，差异记录为 3→11；去跨端后回到 3 条。新版规则扩大覆盖，但同 App177 输入的差异记录数没有增加；官方派生组没有带来额外保留集差异；跨端核数相等有 6 组反例。差异不是攻击，所有检测指标仍未评估。
+
+94 项重点与兼容测试通过；已保存输出审计确认原 v3 发现／开发的 88,236 项检查结果不变。权威逐记录输出与冻结源码：`artifacts/mtc_p6_fixed_20260923/`。详见 [P6 报告](../deliverables/mtc_p6_20260923/REPORT.md)、[协议](../deliverables/mtc_p6_20260923/PROTOCOL.md)、[验收](../deliverables/mtc_p6_20260923/FINAL_AUDIT.json)。
+
+P6 已读取保留集 117 条主代表及 18 条重复观测，独立访问记录为 `CONSUMED_FIXED_EVALUATION`。P2 原始 LOCKED 文件与 P3 访问限制保留；不能据旧锁宣称保留集尚未评价，也不能删访问记录后重跑选优。当前 readiness 的 `MANAGED_BY_EXPERIMENT_PROTOCOL` 不授予数据访问权。仅复核已保存结果：
+
+```bash
+python3 -B deliverables/mtc_p6_20260923/audit_saved_outputs.py
+```
+
+原始数据未改动，后端／ngrok 未重启；P7 论文与复现包尚未执行。
 
 ## 历史 v8 入口：paired244 快照、离线运行与实验准入
 

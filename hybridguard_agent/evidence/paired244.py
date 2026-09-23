@@ -25,6 +25,8 @@ VIEWS = {
     "Full244": tuple(SURFACES), "App177": ("native84", "host26", "app_web67"),
     "Native84": ("native84",), "Host26": ("host26",),
     "AppWeb67": ("app_web67",), "Browser67": ("browser67",),
+    "NativeAppWeb151": ("native84", "app_web67"),
+    "AppWebBrowser134": ("app_web67", "browser67"),
 }
 STATES = {"observed", "unsupported_by_os", "permission_denied", "runtime_error", "timeout", "not_applicable"}
 

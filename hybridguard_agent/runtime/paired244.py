@@ -39,4 +39,5 @@ def paired_runtime_readiness(*, catalog=None):
     return {"runtime_version": "paired244-runtime-" + catalog["catalog_version"].rsplit("-", 1)[1], "status": "ready",
             "input_contract": "hybridguard-mtc-observation-v2", "catalog_version": catalog["catalog_version"],
             "catalog_entries": len(catalog["rules"]), "entry_status_counts": dict(Counter(r["status"] for r in catalog["rules"])),
-            "external_model_called": False, "reserved_validation": "LOCKED", "detection_metrics": "NOT_EVALUATED"}
+            "external_model_called": False, "reserved_validation": "MANAGED_BY_EXPERIMENT_PROTOCOL",
+            "reserved_access_granted_by_runtime": False, "detection_metrics": "NOT_EVALUATED"}
