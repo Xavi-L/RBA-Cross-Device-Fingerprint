@@ -6,7 +6,7 @@
   "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "planning_only": false,
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "S01_DONE_NO_DETECTION_EXPERIMENTS",
+  "experiment_execution_status": "S02_COMPLETED_ADAPTATION_ONLY",
   "scope": {
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
@@ -15,14 +15,18 @@
     "no_new_collection_required": true,
     "external_model_calls_this_turn": 0,
     "detector_runs_this_turn": 0,
-    "material_validator_runs_this_turn": 31,
-    "pre_step_git_delivery_explicitly_authorized": true
+    "material_validator_runs_this_turn": 0,
+    "pre_step_git_delivery_explicitly_authorized": true,
+    "current_execution_step": "S02",
+    "actual_sample_prediction_rows_this_turn": 0,
+    "performance_metrics_computed_this_turn": false,
+    "S01_rerun_this_turn": false
   },
   "repositories": {
     "main": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
       "branch": "main",
-      "current_commit": "4826e2649a734b709a05fd4717f63e7adb50e95b",
+      "current_commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
       "design_baseline_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
       "baseline_match": false,
       "git_head_changed_this_turn": true,
@@ -290,7 +294,9 @@
       },
       "relevant_research_tracked_changes": [],
       "note": "Preserved existing Android/TLS/build/deployment and other user files. Counts are porcelain entries, not recursively counted files.",
-      "current_commit_note": "Design/plan documentation and attack gitlink committed and pushed before S01; research code baseline unchanged until uncommitted S01 implementation."
+      "current_commit_note": "Design/plan documentation and attack gitlink committed and pushed before S01; research code baseline unchanged until uncommitted S01 implementation.",
+      "last_verified_remote_main_commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
+      "last_remote_verification_scope": "Explicit pre-S02 S01 push; verified remote main matches local commit."
     },
     "attack": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research",
@@ -629,6 +635,12 @@
         "S02_through_S12_unexecuted": true,
         "S01_artifacts_git_ignored_by_existing_policy": true,
         "S01_source_and_artifacts_committed": false
+      },
+      "git_delivery": {
+        "commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
+        "pushed": true,
+        "remote_main_verified": true,
+        "scope": "S01 delivery authorized before S02. The existing final_review is the snapshot at S01 completion before this delivery."
       }
     },
     {
@@ -645,33 +657,162 @@
         "S01"
       ],
       "dependency_details": "S01材料定位/结构部分完成；个别标签仍UNKNOWN不阻止适配，但不能提前计算性能。原始字段无法绑定只阻断对应样本。",
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "execution_started": false,
-      "completed_at": null,
+      "status": "DONE",
+      "authorized": true,
+      "execution_started": true,
+      "completed_at": "2026-09-23T11:02:32.953989+00:00",
       "artifacts": {
         "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs",
         "planned_description": "`inference_inputs.jsonl`、`input_manifest.jsonl`、`evaluation_index.jsonl`、`adapter_rejections.jsonl`、`field_mapping.json`、`VALIDATION.json`、`STEP_REPORT.md`。",
-        "produced": []
+        "produced": [
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/CONVERSION.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/DEPENDENCY_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/FINAL_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/FOCUSED_TESTS.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/PRE_EXECUTION_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/SUMMARY.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/adapter_rejections.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/bundle_history.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/evaluation_index.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/field_mapping.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/phase_associations.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/source_snapshot.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/stage_accounting.jsonl"
+        ]
       },
       "acceptance_summary": "S01每个候选阶段恰好转换或明确拒绝；三态/control索引不丢post；盲化payload只含allowlist。合成测试验证隐藏层值/状态/quality/派生摘要清除；元数据置换不改投影；真假/0/空列表/无状态的边界正确。真实材料此步没有任何新预测。",
-      "acceptance_status": "NOT_RUN",
-      "blocking_reasons": [
-        {
-          "type": "AUTHORIZATION",
-          "detail": "等待用户明确发送 执行 S02"
-        },
-        {
-          "type": "DEPENDENCY_NOT_EXECUTED",
-          "steps": [
-            "S01"
-          ]
-        }
-      ],
+      "acceptance_status": "PASS",
+      "blocking_reasons": [],
       "failure_policy": "适配bug修复合成夹具后再转换；源状态缺失保留拒绝，不猜值；历史P6结果不因新适配失败被重写。",
       "stop_after_step": true,
       "invocation": "执行 S02",
-      "dependency_policy": "S01 material inventory/structure branch must be accepted; unresolved label facts do not block adaptation."
+      "dependency_policy": "S01 material inventory/structure branch must be accepted; unresolved label facts do not block adaptation.",
+      "started_at": "2026-09-23T10:42:44.944977+00:00",
+      "authorization": "User authorized S02 only after pushing S01; no automatic S03 or final Git delivery.",
+      "execution_summary": {
+        "step": "S02",
+        "adapter_version": "app177-triplet-adapter-v1",
+        "created_at": "2026-09-23T10:59:08.014418+00:00",
+        "input_stages": 262,
+        "converted": 262,
+        "rejected": 0,
+        "evaluation_units": 262,
+        "cohorts": {
+          "lower_evidence_attack": {
+            "input": 45,
+            "converted": 45,
+            "rejected": 0
+          },
+          "temporal_control_unknown": {
+            "input": 54,
+            "converted": 54,
+            "rejected": 0
+          },
+          "admitted_attack_triplet": {
+            "input": 162,
+            "converted": 162,
+            "rejected": 0
+          },
+          "incomplete_attempt": {
+            "input": 1,
+            "converted": 1,
+            "rejected": 0
+          }
+        },
+        "rejection_reasons": {},
+        "phases": {
+          "clean_pre": 88,
+          "attack": 69,
+          "clean_post": 87,
+          "control_mid": 18
+        },
+        "association_groups": 88,
+        "complete_attack_triplets": 69,
+        "complete_temporal_triplets": 18,
+        "incomplete_associations": 1,
+        "empty_bundles": [
+          "20260823_playwright_api36_controlled_v1"
+        ],
+        "identical_payload_groups": 0,
+        "units_in_identical_payload_groups": 0,
+        "field_status_counts": {
+          "observed": 46374
+        },
+        "field_quality_counts": {
+          "observed_value": 46374
+        },
+        "S01_eligibility_retained": {
+          "eligible_attack_stages": 54,
+          "eligible_attack_triplets": 54,
+          "eligible_pre_control_stages": 54,
+          "eligible_post_control_stages": 54,
+          "eligible_temporal_control_stages": 0
+        },
+        "temporal_no_intervention": "UNKNOWN",
+        "environment_groups": 3,
+        "performance_status": "NOT_EVALUATED",
+        "detector_runs": 0,
+        "prediction_rows": 0,
+        "model_calls": 0,
+        "threshold_changes": 0,
+        "S01_rerun": false,
+        "S03_started": false
+      },
+      "final_review": {
+        "status": "PASS",
+        "checks": {
+          "expected_262_unique_partition": true,
+          "evaluation_line_references": true,
+          "saved_facts_unchanged": true,
+          "opaque_envelope_only": true,
+          "payload_allowlist": true,
+          "all_three_field_maps_177": true,
+          "no_real_predictions": true,
+          "preserved_sequences_and_rounds": true,
+          "unrelated_worktree_status_unchanged": true,
+          "S01_committed_files_unchanged": true,
+          "attack_repository_clean": true,
+          "nothing_staged_after_S01_push": true,
+          "S03_output_not_started": true
+        },
+        "cohorts": {
+          "lower_evidence_attack": 45,
+          "temporal_control_unknown": 54,
+          "admitted_attack_triplet": 162,
+          "incomplete_attempt": 1
+        },
+        "synthetic_tests": 15,
+        "S01_rerun": false,
+        "S02_committed_or_pushed": false,
+        "S03_started": false,
+        "scope": "Saved S02 output readback and workspace checks; no detector, policy, metrics or admission rerun."
+      },
+      "remaining_branch_limits": [
+        {
+          "task": "temporal_control_FPR",
+          "status": "BLOCKED",
+          "reason": "S01 no_intervention remains UNKNOWN for all 54 temporal control phases; structural adaptation grants no label eligibility."
+        },
+        {
+          "task": "legacy_attack_admission",
+          "status": "UNKNOWN_LOWER_EVIDENCE",
+          "reason": "45 legacy stages remain lower evidence; missing logs are not collected or repaired."
+        },
+        {
+          "task": "failed_attempt_history",
+          "status": "RETAINED",
+          "reason": "One clean_pre-only attempt and one empty failed bundle remain incomplete; no phases fabricated."
+        }
+      ],
+      "git_delivery": {
+        "committed": false,
+        "pushed": false,
+        "reason": "User requested stop after S02 without automatic Git delivery."
+      }
     },
     {
       "id": "S03",
@@ -1096,9 +1237,9 @@
       "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
     }
   ],
-  "next_authorization_step": "S02",
-  "next_authorization_instruction": "执行 S02",
-  "next_step_scope": "Only App177 triplet/control compatibility adaptation and blinded input projection, including rejected/UNKNOWN material accounting; no predictions, performance, or automatic S03.",
+  "next_authorization_step": "S03",
+  "next_authorization_instruction": "执行 S03",
+  "next_step_scope": "S02 completed and stopped. S03 source/family/applicability registry remains unexecuted and requires separate authorization; no automatic Git delivery.",
   "plan_validation": {
     "step_count": 12,
     "all_required_step_fields_present": true,
@@ -1135,6 +1276,31 @@
       "focused_synthetic_tests_passed": 13,
       "S02_executed": false,
       "S01_changes_committed": false
+    },
+    {
+      "event": "S01_PUSHED_AND_S02_AUTHORIZED",
+      "commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
+      "remote_main_verified": true,
+      "S01_dependency_records_consistent": true,
+      "S01_rerun": false,
+      "S01_relabelled": false
+    },
+    {
+      "event": "S02_COMPLETED_AND_STOPPED",
+      "at": "2026-09-23T11:02:32.953989+00:00",
+      "status": "PASS",
+      "input_stages": 262,
+      "converted": 262,
+      "rejected": 0,
+      "synthetic_tests_passed": 15,
+      "S01_facts_unchanged": true,
+      "temporal_no_intervention": "UNKNOWN",
+      "detector_runs": 0,
+      "actual_sample_predictions": 0,
+      "TPR_FPR_calculated": false,
+      "S03_started": false,
+      "S02_committed_or_pushed": false,
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/STEP_REPORT.md"
     }
   ]
 }

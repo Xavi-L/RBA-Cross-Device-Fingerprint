@@ -1,0 +1,1833 @@
+{
+  "adapter_version": "app177-triplet-adapter-v1",
+  "record_schema_version": "hybridguard-mtc-observation-v2",
+  "field_count": 177,
+  "surface_counts": {
+    "native84": 84,
+    "app_web67": 67,
+    "host26": 26
+  },
+  "value_type_authority": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+  "mapping_reused": "hybridguard_agent.evidence.paired244.legacy_field_map / field_contract",
+  "normalization_reused": "hybridguard_agent.evidence.extractor.normalize_payload",
+  "compatibility_reference": "scripts/run_mtc_p6_history.py::legacy_row (read only, never imported or executed)",
+  "legacy_schema_note": "Generated from the current valid expanded-v2 cloud collection. Review any intentional field evolution before replacing this contract.",
+  "historical_numeric_type_differences": 54,
+  "type_policy": "current CSV/runtime types; bootstrap integer observations do not narrow the current number contract",
+  "status_policy": "exact canonical set of 177 registered fields, one explicit logical or legacy alias per field; six states only",
+  "value_alias_policy": "accept flat/nested or equal dual aliases; reject conflicting registered aliases",
+  "availability_policy": "never infer observed; typed unavailable values retained with source_unavailable; missing unavailable values stay null",
+  "sentinel_policy": "observed device_memory/hardware_concurrency=0 retain zero and explicit status, quality=ambiguous_sentinel",
+  "invalid_value_policy": "observed null/missing, wrong type, nonfinite or non-JSON field value rejects the stage",
+  "inference_payload_keys": [
+    "adapter_version",
+    "features",
+    "field_quality",
+    "field_status",
+    "record_schema_version"
+  ],
+  "views": {
+    "App177": [
+      "native84",
+      "host26",
+      "app_web67"
+    ],
+    "Native84": [
+      "native84"
+    ],
+    "Host26": [
+      "host26"
+    ],
+    "AppWeb67": [
+      "app_web67"
+    ],
+    "NativeAppWeb151": [
+      "native84",
+      "app_web67"
+    ],
+    "NativePlusAppWeb151": [
+      "native84",
+      "app_web67"
+    ]
+  },
+  "fields": [
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_health_code",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_health_code",
+      "legacy_alias": "android_native_data.battery_health_code",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_level_pct",
+      "legacy_alias": "android_native_data.battery_level_pct",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_plugged_code",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_plugged_code",
+      "legacy_alias": "android_native_data.battery_plugged_code",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_status_code",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_status_code",
+      "legacy_alias": "android_native_data.battery_status_code",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_technology",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_technology",
+      "legacy_alias": "android_native_data.battery_technology",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_temp_celsius",
+      "legacy_alias": "android_native_data.battery_temp_celsius",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.battery_voltage_mv",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.battery_voltage_mv",
+      "legacy_alias": "android_native_data.battery_voltage_mv",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.battery_dynamics_layer.is_charging",
+      "source_logical_path": "android_native_data.battery_dynamics_layer.is_charging",
+      "legacy_alias": "android_native_data.is_charging",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_bootloader",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_bootloader",
+      "legacy_alias": "android_native_data.build_bootloader",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_display",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_display",
+      "legacy_alias": "android_native_data.build_display",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_fingerprint",
+      "legacy_alias": "android_native_data.build_fingerprint",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_id",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_id",
+      "legacy_alias": "android_native_data.build_id",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_tags",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_tags",
+      "legacy_alias": "android_native_data.build_tags",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_time_ms",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_time_ms",
+      "legacy_alias": "android_native_data.build_time_ms",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.build_type",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.build_type",
+      "legacy_alias": "android_native_data.build_type",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.cpu_abi",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.cpu_abi",
+      "legacy_alias": "android_native_data.cpu_abi",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.device_board",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.device_board",
+      "legacy_alias": "android_native_data.device_board",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.device_brand",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.device_brand",
+      "legacy_alias": "android_native_data.device_brand",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.device_hardware",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.device_hardware",
+      "legacy_alias": "android_native_data.device_hardware",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.device_manufacturer",
+      "legacy_alias": "android_native_data.device_manufacturer",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.device_model",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.device_model",
+      "legacy_alias": "android_native_data.device_model",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.device_product",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.device_product",
+      "legacy_alias": "android_native_data.device_product",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.elapsed_realtime_ms",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.elapsed_realtime_ms",
+      "legacy_alias": "android_native_data.elapsed_realtime_ms",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.kernel_arch",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.kernel_arch",
+      "legacy_alias": "android_native_data.kernel_arch",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.os_api_level",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.os_api_level",
+      "legacy_alias": "android_native_data.os_api_level",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.os_version",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.os_version",
+      "legacy_alias": "android_native_data.os_version",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.security_patch",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.security_patch",
+      "legacy_alias": "android_native_data.security_patch",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.supported_abis",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.supported_abis",
+      "legacy_alias": "android_native_data.supported_abis",
+      "type": "array",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "array"
+      ]
+    },
+    {
+      "field": "app.android_native_data.build_fingerprint_layer.uptime_ms",
+      "source_logical_path": "android_native_data.build_fingerprint_layer.uptime_ms",
+      "legacy_alias": "android_native_data.uptime_ms",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.graphics_layer.egl_renderer",
+      "source_logical_path": "android_native_data.graphics_layer.egl_renderer",
+      "legacy_alias": "android_native_data.egl_renderer",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.graphics_layer.egl_vendor",
+      "source_logical_path": "android_native_data.graphics_layer.egl_vendor",
+      "legacy_alias": "android_native_data.egl_vendor",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.graphics_layer.gles_version",
+      "source_logical_path": "android_native_data.graphics_layer.gles_version",
+      "legacy_alias": "android_native_data.gles_version",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.graphics_layer.native_gpu_renderer",
+      "source_logical_path": "android_native_data.graphics_layer.native_gpu_renderer",
+      "legacy_alias": "android_native_data.native_gpu_renderer",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.graphics_layer.native_gpu_vendor",
+      "source_logical_path": "android_native_data.graphics_layer.native_gpu_vendor",
+      "legacy_alias": "android_native_data.native_gpu_vendor",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.locale_timezone_layer.native_country",
+      "source_logical_path": "android_native_data.locale_timezone_layer.native_country",
+      "legacy_alias": "android_native_data.native_country",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.locale_timezone_layer.native_language",
+      "source_logical_path": "android_native_data.locale_timezone_layer.native_language",
+      "legacy_alias": "android_native_data.native_language",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.locale_timezone_layer.native_locale",
+      "source_logical_path": "android_native_data.locale_timezone_layer.native_locale",
+      "legacy_alias": "android_native_data.native_locale",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+      "source_logical_path": "android_native_data.locale_timezone_layer.native_timezone_id",
+      "legacy_alias": "android_native_data.native_timezone_id",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+      "source_logical_path": "android_native_data.locale_timezone_layer.native_timezone_offset_min",
+      "legacy_alias": "android_native_data.native_timezone_offset_min",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.memory_layer.avail_memory_gb",
+      "source_logical_path": "android_native_data.memory_layer.avail_memory_gb",
+      "legacy_alias": "android_native_data.avail_memory_gb",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.memory_layer.is_low_memory",
+      "source_logical_path": "android_native_data.memory_layer.is_low_memory",
+      "legacy_alias": "android_native_data.is_low_memory",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.memory_layer.memory_threshold_gb",
+      "source_logical_path": "android_native_data.memory_layer.memory_threshold_gb",
+      "legacy_alias": "android_native_data.memory_threshold_gb",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.memory_layer.total_memory_gb",
+      "source_logical_path": "android_native_data.memory_layer.total_memory_gb",
+      "legacy_alias": "android_native_data.total_memory_gb",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.active_network_present",
+      "source_logical_path": "android_native_data.network_state_layer.active_network_present",
+      "legacy_alias": "android_native_data.active_network_present",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.active_transport_types",
+      "source_logical_path": "android_native_data.network_state_layer.active_transport_types",
+      "legacy_alias": "android_native_data.active_transport_types",
+      "type": "array",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "array"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.has_cellular_transport",
+      "source_logical_path": "android_native_data.network_state_layer.has_cellular_transport",
+      "legacy_alias": "android_native_data.has_cellular_transport",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.has_vpn_transport",
+      "source_logical_path": "android_native_data.network_state_layer.has_vpn_transport",
+      "legacy_alias": "android_native_data.has_vpn_transport",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.has_wifi_transport",
+      "source_logical_path": "android_native_data.network_state_layer.has_wifi_transport",
+      "legacy_alias": "android_native_data.has_wifi_transport",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.link_downstream_kbps",
+      "source_logical_path": "android_native_data.network_state_layer.link_downstream_kbps",
+      "legacy_alias": "android_native_data.link_downstream_kbps",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.link_upstream_kbps",
+      "source_logical_path": "android_native_data.network_state_layer.link_upstream_kbps",
+      "legacy_alias": "android_native_data.link_upstream_kbps",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.network_state_layer.network_metered",
+      "source_logical_path": "android_native_data.network_state_layer.network_metered",
+      "legacy_alias": "android_native_data.network_metered",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.font_scale",
+      "source_logical_path": "android_native_data.screen_display_layer.font_scale",
+      "legacy_alias": "android_native_data.font_scale",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.orientation_code",
+      "source_logical_path": "android_native_data.screen_display_layer.orientation_code",
+      "legacy_alias": "android_native_data.orientation_code",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_density_dpi",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_density_dpi",
+      "legacy_alias": "android_native_data.screen_density_dpi",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_mode_physical_height",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_mode_physical_height",
+      "legacy_alias": "android_native_data.screen_mode_physical_height",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_mode_physical_width",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_mode_physical_width",
+      "legacy_alias": "android_native_data.screen_mode_physical_width",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_mode_refresh_rate_hz",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_mode_refresh_rate_hz",
+      "legacy_alias": "android_native_data.screen_mode_refresh_rate_hz",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_refresh_rate_hz",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_refresh_rate_hz",
+      "legacy_alias": "android_native_data.screen_refresh_rate_hz",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_resolution_physical",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_resolution_physical",
+      "legacy_alias": "android_native_data.screen_resolution_physical",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_scaled_density",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_scaled_density",
+      "legacy_alias": "android_native_data.screen_scaled_density",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_xdpi",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_xdpi",
+      "legacy_alias": "android_native_data.screen_xdpi",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.screen_display_layer.screen_ydpi",
+      "source_logical_path": "android_native_data.screen_display_layer.screen_ydpi",
+      "legacy_alias": "android_native_data.screen_ydpi",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.security_config_layer.developer_options_enabled",
+      "source_logical_path": "android_native_data.security_config_layer.developer_options_enabled",
+      "legacy_alias": "android_native_data.developer_options_enabled",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.security_config_layer.http_proxy_setting",
+      "source_logical_path": "android_native_data.security_config_layer.http_proxy_setting",
+      "legacy_alias": "android_native_data.http_proxy_setting",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.security_config_layer.is_adb_enabled",
+      "source_logical_path": "android_native_data.security_config_layer.is_adb_enabled",
+      "legacy_alias": "android_native_data.is_adb_enabled",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.security_config_layer.java_http_proxy_host",
+      "source_logical_path": "android_native_data.security_config_layer.java_http_proxy_host",
+      "legacy_alias": "android_native_data.java_http_proxy_host",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.security_config_layer.java_http_proxy_port",
+      "source_logical_path": "android_native_data.security_config_layer.java_http_proxy_port",
+      "legacy_alias": "android_native_data.java_http_proxy_port",
+      "type": "string",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.android_native_data.security_config_layer.su_binary_present",
+      "source_logical_path": "android_native_data.security_config_layer.su_binary_present",
+      "legacy_alias": "android_native_data.su_binary_present",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_accelerometer",
+      "legacy_alias": "android_native_data.has_accelerometer",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_gravity_sensor",
+      "legacy_alias": "android_native_data.has_gravity_sensor",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_gyroscope",
+      "legacy_alias": "android_native_data.has_gyroscope",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_light_sensor",
+      "legacy_alias": "android_native_data.has_light_sensor",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_magnetic_field",
+      "legacy_alias": "android_native_data.has_magnetic_field",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_pressure_sensor",
+      "legacy_alias": "android_native_data.has_pressure_sensor",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_proximity_sensor",
+      "legacy_alias": "android_native_data.has_proximity_sensor",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_rotation_vector",
+      "legacy_alias": "android_native_data.has_rotation_vector",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_step_counter",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_step_counter",
+      "legacy_alias": "android_native_data.has_step_counter",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.has_step_detector",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.has_step_detector",
+      "legacy_alias": "android_native_data.has_step_detector",
+      "type": "boolean",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.sensor_name_count",
+      "legacy_alias": "android_native_data.sensor_name_count",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.sensor_total_count",
+      "legacy_alias": "android_native_data.sensor_total_count",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.sensor_type_list",
+      "legacy_alias": "android_native_data.sensor_type_list",
+      "type": "array",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "array"
+      ]
+    },
+    {
+      "field": "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+      "source_logical_path": "android_native_data.sensor_matrix_layer.sensor_vendor_count",
+      "legacy_alias": "android_native_data.sensor_vendor_count",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.android_native_data.storage_layer.data_storage_free_gb",
+      "source_logical_path": "android_native_data.storage_layer.data_storage_free_gb",
+      "legacy_alias": "android_native_data.data_storage_free_gb",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.android_native_data.storage_layer.data_storage_total_gb",
+      "source_logical_path": "android_native_data.storage_layer.data_storage_total_gb",
+      "legacy_alias": "android_native_data.data_storage_total_gb",
+      "type": "number",
+      "surface": "native84",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.audio_layer.audio_context_supported",
+      "source_logical_path": "web_data.audio_layer.audio_context_supported",
+      "legacy_alias": "web_data.audio_context_supported",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.audio_layer.audio_error",
+      "source_logical_path": "web_data.audio_layer.audio_error",
+      "legacy_alias": "web_data.audio_error",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.audio_layer.audio_hash",
+      "source_logical_path": "web_data.audio_layer.audio_hash",
+      "legacy_alias": "web_data.audio_hash",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.audio_layer.audio_output_latency",
+      "source_logical_path": "web_data.audio_layer.audio_output_latency",
+      "legacy_alias": "web_data.audio_output_latency",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.audio_layer.audio_sample_rate",
+      "source_logical_path": "web_data.audio_layer.audio_sample_rate",
+      "legacy_alias": "web_data.audio_sample_rate",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.automation_surface_layer.mime_types_count",
+      "source_logical_path": "web_data.automation_surface_layer.mime_types_count",
+      "legacy_alias": "web_data.mime_types_count",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.automation_surface_layer.mime_types_hash",
+      "source_logical_path": "web_data.automation_surface_layer.mime_types_hash",
+      "legacy_alias": "web_data.mime_types_hash",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.automation_surface_layer.plugin_probe_error",
+      "source_logical_path": "web_data.automation_surface_layer.plugin_probe_error",
+      "legacy_alias": "web_data.plugin_probe_error",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.automation_surface_layer.plugins_count",
+      "source_logical_path": "web_data.automation_surface_layer.plugins_count",
+      "legacy_alias": "web_data.plugins_count",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.automation_surface_layer.plugins_hash",
+      "source_logical_path": "web_data.automation_surface_layer.plugins_hash",
+      "legacy_alias": "web_data.plugins_hash",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.automation_surface_layer.webdriver",
+      "source_logical_path": "web_data.automation_surface_layer.webdriver",
+      "legacy_alias": "web_data.webdriver",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.execution_layer.compute_task_time_ms",
+      "source_logical_path": "web_data.execution_layer.compute_task_time_ms",
+      "legacy_alias": "web_data.compute_task_time_ms",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.execution_layer.local_storage_available",
+      "source_logical_path": "web_data.execution_layer.local_storage_available",
+      "legacy_alias": "web_data.local_storage_available",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.execution_layer.performance_time_origin",
+      "source_logical_path": "web_data.execution_layer.performance_time_origin",
+      "legacy_alias": "web_data.performance_time_origin",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.execution_layer.session_storage_available",
+      "source_logical_path": "web_data.execution_layer.session_storage_available",
+      "legacy_alias": "web_data.session_storage_available",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.execution_layer.timezone_id",
+      "source_logical_path": "web_data.execution_layer.timezone_id",
+      "legacy_alias": "web_data.timezone_id",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.execution_layer.timezone_offset",
+      "source_logical_path": "web_data.execution_layer.timezone_offset",
+      "legacy_alias": "web_data.timezone_offset",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.font_layer.available_font_hash",
+      "source_logical_path": "web_data.font_layer.available_font_hash",
+      "legacy_alias": "web_data.available_font_hash",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.font_layer.font_probe_count",
+      "source_logical_path": "web_data.font_layer.font_probe_count",
+      "legacy_alias": "web_data.font_probe_count",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.font_layer.font_probe_error",
+      "source_logical_path": "web_data.font_layer.font_probe_error",
+      "legacy_alias": "web_data.font_probe_error",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.canvas_hash",
+      "source_logical_path": "web_data.graphics_layer.canvas_hash",
+      "legacy_alias": "web_data.canvas_hash",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl2_supported",
+      "source_logical_path": "web_data.graphics_layer.webgl2_supported",
+      "legacy_alias": "web_data.webgl2_supported",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl_aliased_line_width_range",
+      "source_logical_path": "web_data.graphics_layer.webgl_aliased_line_width_range",
+      "legacy_alias": "web_data.webgl_aliased_line_width_range",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl_extensions_count",
+      "source_logical_path": "web_data.graphics_layer.webgl_extensions_count",
+      "legacy_alias": "web_data.webgl_extensions_count",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl_max_texture_size",
+      "source_logical_path": "web_data.graphics_layer.webgl_max_texture_size",
+      "legacy_alias": "web_data.webgl_max_texture_size",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl_max_viewport_dims",
+      "source_logical_path": "web_data.graphics_layer.webgl_max_viewport_dims",
+      "legacy_alias": "web_data.webgl_max_viewport_dims",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl_renderer",
+      "source_logical_path": "web_data.graphics_layer.webgl_renderer",
+      "legacy_alias": "web_data.webgl_renderer",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.graphics_layer.webgl_vendor",
+      "source_logical_path": "web_data.graphics_layer.webgl_vendor",
+      "legacy_alias": "web_data.webgl_vendor",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.cookie_enabled",
+      "source_logical_path": "web_data.navigator_layer.cookie_enabled",
+      "legacy_alias": "web_data.cookie_enabled",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.device_memory",
+      "source_logical_path": "web_data.navigator_layer.device_memory",
+      "legacy_alias": "web_data.device_memory",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.do_not_track",
+      "source_logical_path": "web_data.navigator_layer.do_not_track",
+      "legacy_alias": "web_data.do_not_track",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.hardware_concurrency",
+      "source_logical_path": "web_data.navigator_layer.hardware_concurrency",
+      "legacy_alias": "web_data.hardware_concurrency",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.language",
+      "source_logical_path": "web_data.navigator_layer.language",
+      "legacy_alias": "web_data.language",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.languages",
+      "source_logical_path": "web_data.navigator_layer.languages",
+      "legacy_alias": "web_data.languages",
+      "type": "array",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "array"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.max_touch_points",
+      "source_logical_path": "web_data.navigator_layer.max_touch_points",
+      "legacy_alias": "web_data.max_touch_points",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.online",
+      "source_logical_path": "web_data.navigator_layer.online",
+      "legacy_alias": "web_data.online",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.platform",
+      "source_logical_path": "web_data.navigator_layer.platform",
+      "legacy_alias": "web_data.platform",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.product",
+      "source_logical_path": "web_data.navigator_layer.product",
+      "legacy_alias": "web_data.product",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.product_sub",
+      "source_logical_path": "web_data.navigator_layer.product_sub",
+      "legacy_alias": "web_data.product_sub",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.user_agent",
+      "source_logical_path": "web_data.navigator_layer.user_agent",
+      "legacy_alias": "web_data.user_agent",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.navigator_layer.vendor",
+      "source_logical_path": "web_data.navigator_layer.vendor",
+      "legacy_alias": "web_data.vendor",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.network_api_layer.downlink_mbps",
+      "source_logical_path": "web_data.network_api_layer.downlink_mbps",
+      "legacy_alias": "web_data.downlink_mbps",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.network_api_layer.effective_type",
+      "source_logical_path": "web_data.network_api_layer.effective_type",
+      "legacy_alias": "web_data.effective_type",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.network_api_layer.rtt_ms",
+      "source_logical_path": "web_data.network_api_layer.rtt_ms",
+      "legacy_alias": "web_data.rtt_ms",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.network_api_layer.save_data",
+      "source_logical_path": "web_data.network_api_layer.save_data",
+      "legacy_alias": "web_data.save_data",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.camera_permission_state",
+      "source_logical_path": "web_data.permissions_layer.camera_permission_state",
+      "legacy_alias": "web_data.camera_permission_state",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.clipboard_read_state",
+      "source_logical_path": "web_data.permissions_layer.clipboard_read_state",
+      "legacy_alias": "web_data.clipboard_read_state",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.geolocation_permission_state",
+      "source_logical_path": "web_data.permissions_layer.geolocation_permission_state",
+      "legacy_alias": "web_data.geolocation_permission_state",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.microphone_permission_state",
+      "source_logical_path": "web_data.permissions_layer.microphone_permission_state",
+      "legacy_alias": "web_data.microphone_permission_state",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.notification_permission_state",
+      "source_logical_path": "web_data.permissions_layer.notification_permission_state",
+      "legacy_alias": "web_data.notification_permission_state",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.permission_query_errors",
+      "source_logical_path": "web_data.permissions_layer.permission_query_errors",
+      "legacy_alias": "web_data.permission_query_errors",
+      "type": "array",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "array"
+      ]
+    },
+    {
+      "field": "app.web_data.permissions_layer.permissions_api_supported",
+      "source_logical_path": "web_data.permissions_layer.permissions_api_supported",
+      "legacy_alias": "web_data.permissions_api_supported",
+      "type": "boolean",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.avail_height",
+      "source_logical_path": "web_data.screen_layer.avail_height",
+      "legacy_alias": "web_data.avail_height",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.avail_width",
+      "source_logical_path": "web_data.screen_layer.avail_width",
+      "legacy_alias": "web_data.avail_width",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.color_depth",
+      "source_logical_path": "web_data.screen_layer.color_depth",
+      "legacy_alias": "web_data.color_depth",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.device_pixel_ratio",
+      "source_logical_path": "web_data.screen_layer.device_pixel_ratio",
+      "legacy_alias": "web_data.device_pixel_ratio",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.inner_height",
+      "source_logical_path": "web_data.screen_layer.inner_height",
+      "legacy_alias": "web_data.inner_height",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.inner_width",
+      "source_logical_path": "web_data.screen_layer.inner_width",
+      "legacy_alias": "web_data.inner_width",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.orientation_angle",
+      "source_logical_path": "web_data.screen_layer.orientation_angle",
+      "legacy_alias": "web_data.orientation_angle",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.orientation_type",
+      "source_logical_path": "web_data.screen_layer.orientation_type",
+      "legacy_alias": "web_data.orientation_type",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.outer_height",
+      "source_logical_path": "web_data.screen_layer.outer_height",
+      "legacy_alias": "web_data.outer_height",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.outer_width",
+      "source_logical_path": "web_data.screen_layer.outer_width",
+      "legacy_alias": "web_data.outer_width",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.pixel_depth",
+      "source_logical_path": "web_data.screen_layer.pixel_depth",
+      "legacy_alias": "web_data.pixel_depth",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.screen_resolution_logical",
+      "source_logical_path": "web_data.screen_layer.screen_resolution_logical",
+      "legacy_alias": "web_data.screen_resolution_logical",
+      "type": "string",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.visual_viewport_height",
+      "source_logical_path": "web_data.screen_layer.visual_viewport_height",
+      "legacy_alias": "web_data.visual_viewport_height",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.visual_viewport_scale",
+      "source_logical_path": "web_data.screen_layer.visual_viewport_scale",
+      "legacy_alias": "web_data.visual_viewport_scale",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.web_data.screen_layer.visual_viewport_width",
+      "source_logical_path": "web_data.screen_layer.visual_viewport_width",
+      "legacy_alias": "web_data.visual_viewport_width",
+      "type": "number",
+      "surface": "app_web67",
+      "historical_bootstrap_types": [
+        "integer",
+        "number"
+      ]
+    },
+    {
+      "field": "app.webview_data.bridge_routing_layer.bridge_latency_ms",
+      "source_logical_path": "webview_data.bridge_routing_layer.bridge_latency_ms",
+      "legacy_alias": "webview_data.bridge_latency_ms",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "number"
+      ]
+    },
+    {
+      "field": "app.webview_data.bridge_routing_layer.jsbridge_injected",
+      "source_logical_path": "webview_data.bridge_routing_layer.jsbridge_injected",
+      "legacy_alias": "webview_data.jsbridge_injected",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.host_security_layer.app_package_name",
+      "source_logical_path": "webview_data.host_security_layer.app_package_name",
+      "legacy_alias": "webview_data.app_package_name",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.host_security_layer.app_version_code",
+      "source_logical_path": "webview_data.host_security_layer.app_version_code",
+      "legacy_alias": "webview_data.app_version_code",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.host_security_layer.app_version_name",
+      "source_logical_path": "webview_data.host_security_layer.app_version_name",
+      "legacy_alias": "webview_data.app_version_name",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.host_security_layer.installer_package",
+      "source_logical_path": "webview_data.host_security_layer.installer_package",
+      "legacy_alias": "webview_data.installer_package",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+      "source_logical_path": "webview_data.host_security_layer.is_cleartext_traffic_permitted",
+      "legacy_alias": "webview_data.is_cleartext_traffic_permitted",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.host_security_layer.is_debuggable",
+      "source_logical_path": "webview_data.host_security_layer.is_debuggable",
+      "legacy_alias": "webview_data.is_debuggable",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.kernel_container_layer.default_ua_native",
+      "source_logical_path": "webview_data.kernel_container_layer.default_ua_native",
+      "legacy_alias": "webview_data.default_ua_native",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.kernel_container_layer.system_http_agent",
+      "source_logical_path": "webview_data.kernel_container_layer.system_http_agent",
+      "legacy_alias": "webview_data.system_http_agent",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.kernel_container_layer.webview_provider_major",
+      "source_logical_path": "webview_data.kernel_container_layer.webview_provider_major",
+      "legacy_alias": "webview_data.webview_provider_major",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.kernel_container_layer.webview_provider_package",
+      "source_logical_path": "webview_data.kernel_container_layer.webview_provider_package",
+      "legacy_alias": "webview_data.webview_provider_package",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.kernel_container_layer.webview_provider_version",
+      "source_logical_path": "webview_data.kernel_container_layer.webview_provider_version",
+      "legacy_alias": "webview_data.webview_provider_version",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    },
+    {
+      "field": "app.webview_data.kernel_container_layer.webview_provider_version_code",
+      "source_logical_path": "webview_data.kernel_container_layer.webview_provider_version_code",
+      "legacy_alias": "webview_data.webview_provider_version_code",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.temporal_build_layer.first_install_time",
+      "source_logical_path": "webview_data.temporal_build_layer.first_install_time",
+      "legacy_alias": "webview_data.first_install_time",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.temporal_build_layer.last_update_time",
+      "source_logical_path": "webview_data.temporal_build_layer.last_update_time",
+      "legacy_alias": "webview_data.last_update_time",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.temporal_build_layer.min_sdk_version",
+      "source_logical_path": "webview_data.temporal_build_layer.min_sdk_version",
+      "legacy_alias": "webview_data.min_sdk_version",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.temporal_build_layer.target_sdk_version",
+      "source_logical_path": "webview_data.temporal_build_layer.target_sdk_version",
+      "legacy_alias": "webview_data.target_sdk_version",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.allow_content_access",
+      "source_logical_path": "webview_data.webview_settings_layer.allow_content_access",
+      "legacy_alias": "webview_data.allow_content_access",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.allow_file_access",
+      "source_logical_path": "webview_data.webview_settings_layer.allow_file_access",
+      "legacy_alias": "webview_data.allow_file_access",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.database_enabled",
+      "source_logical_path": "webview_data.webview_settings_layer.database_enabled",
+      "legacy_alias": "webview_data.database_enabled",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.dom_storage_enabled",
+      "source_logical_path": "webview_data.webview_settings_layer.dom_storage_enabled",
+      "legacy_alias": "webview_data.dom_storage_enabled",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.java_script_enabled",
+      "source_logical_path": "webview_data.webview_settings_layer.java_script_enabled",
+      "legacy_alias": "webview_data.java_script_enabled",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.mixed_content_mode",
+      "source_logical_path": "webview_data.webview_settings_layer.mixed_content_mode",
+      "legacy_alias": "webview_data.mixed_content_mode",
+      "type": "number",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "integer"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.safe_browsing_enabled",
+      "source_logical_path": "webview_data.webview_settings_layer.safe_browsing_enabled",
+      "legacy_alias": "webview_data.safe_browsing_enabled",
+      "type": "boolean",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "boolean"
+      ]
+    },
+    {
+      "field": "app.webview_data.webview_settings_layer.settings_user_agent",
+      "source_logical_path": "webview_data.webview_settings_layer.settings_user_agent",
+      "legacy_alias": "webview_data.settings_user_agent",
+      "type": "string",
+      "surface": "host26",
+      "historical_bootstrap_types": [
+        "string"
+      ]
+    }
+  ]
+}
