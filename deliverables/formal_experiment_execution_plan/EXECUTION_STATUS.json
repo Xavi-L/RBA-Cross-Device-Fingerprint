@@ -6,7 +6,7 @@
   "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "planning_only": false,
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "S02_COMPLETED_ADAPTATION_ONLY",
+  "experiment_execution_status": "S03_COMPLETE_WAITING_S04_AUTHORIZATION",
   "scope": {
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
@@ -16,20 +16,24 @@
     "external_model_calls_this_turn": 0,
     "detector_runs_this_turn": 0,
     "material_validator_runs_this_turn": 0,
-    "pre_step_git_delivery_explicitly_authorized": true,
-    "current_execution_step": "S02",
+    "pre_step_git_delivery_explicitly_authorized": false,
+    "current_execution_step": "S03",
     "actual_sample_prediction_rows_this_turn": 0,
     "performance_metrics_computed_this_turn": false,
-    "S01_rerun_this_turn": false
+    "S01_rerun_this_turn": false,
+    "S02_rerun_this_turn": false,
+    "source_registry_only_this_turn": true,
+    "S04_executed_this_turn": false,
+    "git_commit_or_push_this_turn": false
   },
   "repositories": {
     "main": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
       "branch": "main",
-      "current_commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
+      "current_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
       "design_baseline_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
       "baseline_match": false,
-      "git_head_changed_this_turn": true,
+      "git_head_changed_this_turn": false,
       "working_tree_clean": false,
       "status_before_plan": [
         " M .DS_Store",
@@ -294,9 +298,11 @@
       },
       "relevant_research_tracked_changes": [],
       "note": "Preserved existing Android/TLS/build/deployment and other user files. Counts are porcelain entries, not recursively counted files.",
-      "current_commit_note": "Design/plan documentation and attack gitlink committed and pushed before S01; research code baseline unchanged until uncommitted S01 implementation.",
+      "current_commit_note": "S03 verified local HEAD against the user-specified S01/S02 pushed review version. Earlier local-only delivery wording records the historical pre-push time. No Git mutation or remote refresh during S03.",
       "last_verified_remote_main_commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
-      "last_remote_verification_scope": "Explicit pre-S02 S01 push; verified remote main matches local commit."
+      "last_remote_verification_scope": "Explicit pre-S02 S01 push; verified remote main matches local commit.",
+      "external_review_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+      "external_review_commit_match": true
     },
     "attack": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research",
@@ -385,13 +391,18 @@
     "primary_scoped_pre_controls": 54,
     "primary_scoped_post_controls": 54,
     "S01_fact_rows": 262,
-    "S01_environment_groups": 3
+    "S01_environment_groups": 3,
+    "S03_active_rules": 57,
+    "S03_decision_families": 27,
+    "S03_shared_families": 9,
+    "S03_alert_candidate_rules": 0,
+    "S03_alert_candidate_families": 0
   },
   "audit_provenance": {
     "design_report_attack_pass": 18,
     "design_report_attack_fail": 5,
     "design_report_control_pass": 6,
-    "local_validator_replayed_this_turn": true,
+    "local_validator_replayed_this_turn": false,
     "static_missing_direct_success_logs": 15,
     "receipt_count": 54,
     "receipts_without_raw_log_path": 48,
@@ -403,7 +414,8 @@
     "local_complete_attack_fail": 5,
     "local_incomplete_attack_fail": 2,
     "local_control_pass": 6,
-    "S01_result_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/SUMMARY.json"
+    "S01_result_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/SUMMARY.json",
+    "local_validator_runs_scope": "31 saved material-validator runs from S01; zero reruns in S03."
   },
   "material_and_method_gaps": [
     {
@@ -823,26 +835,254 @@
       ],
       "dependencies": [],
       "dependency_details": "无，可独立执行；不需要攻击预测或补日志。若来源证据无法核实，标UNKNOWN，只限制相关归因/角色。",
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "execution_started": false,
-      "completed_at": null,
+      "status": "DONE",
+      "authorized": true,
+      "execution_started": true,
+      "completed_at": "2026-09-23T12:15:23.997807+00:00",
       "artifacts": {
         "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry",
         "planned_description": "完整source/family/applicability/roles四表、`source_overlap_matrix.csv`、`source_uncertainties.jsonl`、`SEMANTIC_DECISIONS.md`、`VALIDATION.json`、`STEP_REPORT.md`。",
-        "produced": []
+        "produced": [
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/DEPENDENCY_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/FINAL_REVIEW.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/FOCUSED_TESTS.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/READ_ONLY_BASELINE.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/SEMANTIC_DECISIONS.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STRUCTURAL_CHECKS.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/SUMMARY.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/applicability_policy.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/decision_roles.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/family_registry.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/primary_source_review.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/source_conditions.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/source_overlap_matrix.csv",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/source_registry.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/source_uncertainties.jsonl"
+        ]
       },
       "acceptance_summary": "57ACTIVE恰好分组一次，E=23、O_u=9、H=14、C=11或明确解释任何真实版本变化；每条角色有理由/反例/适用字段；同源家族不会因来源不同重复计数；未知来源版本未造假。测试只查ID闭合、字段已注册、来源八组合和家族合并边界；无真实预测。",
-      "acceptance_status": "NOT_RUN",
-      "blocking_reasons": [
-        {
-          "type": "AUTHORIZATION",
-          "detail": "等待用户明确发送 执行 S03"
-        }
-      ],
+      "acceptance_status": "PASS",
+      "blocking_reasons": [],
       "failure_policy": "台账不一致阻断该来源比较；必要门控不可实现则降角色并披露结构性覆盖损失，不以扩大警报集合凑结果。其余来源可继续，缺官方文档不引入LLM替代事实。",
       "stop_after_step": true,
-      "invocation": "执行 S03"
+      "invocation": "执行 S03",
+      "started_at": "2026-09-23T11:43:51.367519+00:00",
+      "config_artifacts": [
+        "hybridguard_agent/config/formal_manipulation_v1/applicability_policy.json",
+        "hybridguard_agent/config/formal_manipulation_v1/decision_roles.json",
+        "hybridguard_agent/config/formal_manipulation_v1/family_registry.json",
+        "hybridguard_agent/config/formal_manipulation_v1/primary_source_review.json",
+        "hybridguard_agent/config/formal_manipulation_v1/source_conditions.json",
+        "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl"
+      ],
+      "implementation_files": [
+        "hybridguard_agent/research/manipulation_eval/provenance.py",
+        "hybridguard_agent/tests/test_formal_manipulation_registry.py"
+      ],
+      "execution_summary": {
+        "active_rules": 57,
+        "source_groups": {
+          "E": {
+            "total_rules": 23,
+            "decision_roles": {
+              "alert_candidate": 0,
+              "observation_only": 18,
+              "context_only": 4,
+              "collector_consistency": 1,
+              "deployment_policy": 0
+            },
+            "alert_candidate_families": [],
+            "shared_families": [
+              "app_os",
+              "app_surface",
+              "debug_cleartext",
+              "featureapp_bridge",
+              "host_os",
+              "host_ua",
+              "mobile_touch",
+              "native_app_gpu_family"
+            ],
+            "source_uncertainty_rule_ids": [
+              "CORE-002",
+              "NW-001",
+              "NW-002",
+              "NW-005",
+              "NW-006",
+              "NW-007",
+              "NVW-001",
+              "NVW-002",
+              "NVW-005",
+              "WVWEB-004",
+              "PHYS-005",
+              "PHYS-006",
+              "SCENE-001",
+              "P3-X-CORES",
+              "P3-X-DPR",
+              "P3-X-SCREEN-SIZE",
+              "P3-SCREEN-APP",
+              "P3-SCREEN-BROWSER",
+              "P3-UA-DEFAULT",
+              "P3-UA-SETTINGS"
+            ],
+            "unimplementable_alert_gate_rule_ids": [
+              "NW-001",
+              "NW-002",
+              "NW-005",
+              "NVW-001",
+              "NVW-002",
+              "P3-X-DPR",
+              "P3-X-SCREEN-SIZE",
+              "P3-SCREEN-APP",
+              "P3-SCREEN-BROWSER",
+              "P3-UA-DEFAULT",
+              "P3-UA-SETTINGS"
+            ],
+            "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+          },
+          "O_u": {
+            "total_rules": 9,
+            "decision_roles": {
+              "alert_candidate": 0,
+              "observation_only": 6,
+              "context_only": 2,
+              "collector_consistency": 1,
+              "deployment_policy": 0
+            },
+            "alert_candidate_families": [],
+            "shared_families": [
+              "app_os",
+              "app_surface",
+              "debug_cleartext",
+              "featureapp_bridge",
+              "host_os",
+              "host_ua",
+              "mobile_touch",
+              "native_app_gpu_family"
+            ],
+            "source_uncertainty_rule_ids": [
+              "OFFDER-OS-001",
+              "OFFDER-OS-002",
+              "OFFDER-UA-001",
+              "OFFDER-UA-002",
+              "OFFDER-TOUCH-001",
+              "OFFDER-BRIDGE-001",
+              "OFFDER-DEVCONFIG-001",
+              "OFFDER-GPU-001",
+              "OFFDER-NET-001"
+            ],
+            "unimplementable_alert_gate_rule_ids": [
+              "OFFDER-OS-001",
+              "OFFDER-OS-002",
+              "OFFDER-UA-002",
+              "OFFDER-GPU-001"
+            ],
+            "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+          },
+          "H": {
+            "total_rules": 14,
+            "decision_roles": {
+              "alert_candidate": 0,
+              "observation_only": 14,
+              "context_only": 0,
+              "collector_consistency": 0,
+              "deployment_policy": 0
+            },
+            "alert_candidate_families": [],
+            "shared_families": [
+              "sensor_structure"
+            ],
+            "source_uncertainty_rule_ids": [
+              "P3-COLOR-APP",
+              "P3-COLOR-BROWSER",
+              "P3-UA-REDUCED-BROWSER",
+              "P3-MEM-AVAILABLE",
+              "P3-SENSOR-ACCELEROMETER",
+              "P3-SENSOR-MAGNETIC_FIELD",
+              "P3-SENSOR-GYROSCOPE",
+              "P3-SENSOR-LIGHT_SENSOR",
+              "P3-SENSOR-PRESSURE_SENSOR",
+              "P3-SENSOR-PROXIMITY_SENSOR",
+              "P3-SENSOR-GRAVITY_SENSOR",
+              "P3-SENSOR-ROTATION_VECTOR",
+              "P3-SENSOR-STEP_DETECTOR",
+              "P3-SENSOR-STEP_COUNTER"
+            ],
+            "unimplementable_alert_gate_rule_ids": [
+              "P3-UA-REDUCED-BROWSER"
+            ],
+            "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+          },
+          "C": {
+            "total_rules": 11,
+            "decision_roles": {
+              "alert_candidate": 0,
+              "observation_only": 0,
+              "context_only": 3,
+              "collector_consistency": 6,
+              "deployment_policy": 2
+            },
+            "alert_candidate_families": [],
+            "shared_families": [
+              "app_surface",
+              "debug_cleartext",
+              "native_app_gpu_family",
+              "sensor_structure"
+            ],
+            "source_uncertainty_rule_ids": [
+              "NVW-004",
+              "OFFDER-PACKAGE-001",
+              "P3-PROVIDER-PARSE",
+              "P3-SENSOR-NAME_COUNT",
+              "P3-SENSOR-VENDOR_COUNT",
+              "P3-SENSOR-TYPE-COUNT",
+              "P3-SENSOR-TYPE-ORDER"
+            ],
+            "unimplementable_alert_gate_rule_ids": [],
+            "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+          }
+        },
+        "decision_families": 27,
+        "source_uncertainty_items": 81,
+        "overlap_pairs": 1596,
+        "exact_duplicate_pairs": 4,
+        "alert_candidate_rules": 0,
+        "alert_candidate_families": 0,
+        "proposed_candidates_demoted": [
+          "NVW-001",
+          "NVW-002",
+          "NW-001",
+          "NW-002",
+          "NW-005",
+          "OFFDER-GPU-001",
+          "OFFDER-OS-001",
+          "OFFDER-OS-002"
+        ],
+        "real_predictions": 0,
+        "detector_calls": 0,
+        "LLM_calls": 0,
+        "performance_metrics": "NOT_EVALUATED",
+        "S04_started": false,
+        "thresholds_modified": false,
+        "focused_tests_passed": 15,
+        "static_acceptance_checks_passed": 40,
+        "shared_families": 9
+      },
+      "retained_limits": [
+        "temporal control no_intervention UNKNOWN",
+        "missing/private log and L1 evidence limits retained",
+        "environment association groups are not verified independent physical devices",
+        "App177 has no fabricated independent Browser",
+        "document revision and gate precondition unknowns retained",
+        "All source conditions have no alert role under the current evidence contract. This is a structural limitation, not observed zero incremental source value."
+      ],
+      "git_delivery": {
+        "committed": false,
+        "pushed": false,
+        "head_at_completion": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+        "scope": "S03-only authorized execution; no automatic Git delivery"
+      }
     },
     {
       "id": "S04",
@@ -875,13 +1115,6 @@
         {
           "type": "AUTHORIZATION",
           "detail": "等待用户明确发送 执行 S04"
-        },
-        {
-          "type": "DEPENDENCY_NOT_EXECUTED",
-          "steps": [
-            "S02",
-            "S03"
-          ]
         }
       ],
       "failure_policy": "实现/指标错先修夹具与源码；必要字段不足按UNKNOWN/observation处理。无足够报警角色也如实保留策略边界，不临时改阈值或查看正式效果选方案。",
@@ -1237,9 +1470,9 @@
       "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
     }
   ],
-  "next_authorization_step": "S03",
-  "next_authorization_instruction": "执行 S03",
-  "next_step_scope": "S02 completed and stopped. S03 source/family/applicability registry remains unexecuted and requires separate authorization; no automatic Git delivery.",
+  "next_authorization_step": "S04",
+  "next_authorization_instruction": "执行 S04",
+  "next_step_scope": "S03 completed and stopped. S04 is unexecuted and requires separate authorization. All reviewed source groups have zero alert candidates under the current allowed-field contract; retain this structural limitation and do not convert abstention to NO_ALERT or infer zero source value.",
   "plan_validation": {
     "step_count": 12,
     "all_required_step_fields_present": true,
@@ -1301,6 +1534,37 @@
       "S03_started": false,
       "S02_committed_or_pushed": false,
       "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/STEP_REPORT.md"
+    },
+    {
+      "event": "S03_AUTHORIZED",
+      "head": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+      "scope": "S03 only, no S04, no commit/push, no actual predictions.",
+      "prior_local_only_wording": "pre-push historical snapshots; no prior step rerun"
+    },
+    {
+      "event": "S03_COMPLETED_AND_STOPPED",
+      "at": "2026-09-23T12:15:23.997807+00:00",
+      "status": "PASS",
+      "head": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+      "external_review_head_match": true,
+      "source_groups": {
+        "E": 23,
+        "O_u": 9,
+        "H": 14,
+        "C": 11
+      },
+      "active_rules": 57,
+      "focused_tests_passed": 15,
+      "decision_families": 27,
+      "shared_families": 9,
+      "alert_candidate_rules": 0,
+      "structural_limit_disclosed": true,
+      "S01_S02_rerun": false,
+      "S01_S02_artifacts_unchanged": true,
+      "actual_sample_predictions": 0,
+      "S04_executed": false,
+      "committed_or_pushed": false,
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STEP_REPORT.md"
     }
   ]
 }

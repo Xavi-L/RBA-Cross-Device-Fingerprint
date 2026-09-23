@@ -1,0 +1,123 @@
+{
+  "head": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+  "external_review_head_matches": true,
+  "steps": {
+    "S01": {
+      "status": "PASS",
+      "saved_test_count": 13,
+      "recorded_completion_time": "2026-09-23T08:46:35.634588+00:00",
+      "summary": {
+        "schema_version": "formal-manipulation-admission-v1",
+        "study_version": "formal_manipulation_v1_20260923",
+        "candidate_bundles": 31,
+        "complete_attack_bundles": 23,
+        "control_bundles": 6,
+        "incomplete_bundles": 2,
+        "raw_rows": 262,
+        "fact_rows": 262,
+        "bound_phase_rows": 262,
+        "complete_attack_triplets": 69,
+        "control_triplets": 18,
+        "validator_results": {
+          "attack:failed": 7,
+          "control:passed": 6,
+          "attack:passed": 18
+        },
+        "eligible_attack_stages": 54,
+        "eligible_attack_triplets": 54,
+        "eligible_pre_control_stages": 54,
+        "eligible_post_control_stages": 54,
+        "eligible_temporal_control_stages": 0,
+        "environment_groups": 3,
+        "independent_physical_devices": null,
+        "missing_material_counts": {
+          "MISSING_DIRECT_SUCCESS_EVIDENCE": 15,
+          "PRIVATE_RUNNER_LOG_PATH_UNDISCLOSED": 48,
+          "PRIVATE_RUNNER_LOG_MISSING": 6
+        },
+        "manual_queue_items": 11,
+        "performance_status": "NOT_EVALUATED",
+        "detector_runs": 0,
+        "model_calls": 0,
+        "attack_runs": 0,
+        "temporal_control_FPR_status": "BLOCKED_NO_INDEPENDENT_OF_DETECTOR_OPERATIONAL_ABSENCE_EVIDENCE"
+      }
+    },
+    "S02": {
+      "status": "PASS",
+      "saved_test_count": 15,
+      "recorded_completion_time": "2026-09-23T11:02:32.953989+00:00",
+      "summary": {
+        "step": "S02",
+        "adapter_version": "app177-triplet-adapter-v1",
+        "created_at": "2026-09-23T10:59:08.014418+00:00",
+        "input_stages": 262,
+        "converted": 262,
+        "rejected": 0,
+        "evaluation_units": 262,
+        "cohorts": {
+          "lower_evidence_attack": {
+            "input": 45,
+            "converted": 45,
+            "rejected": 0
+          },
+          "temporal_control_unknown": {
+            "input": 54,
+            "converted": 54,
+            "rejected": 0
+          },
+          "admitted_attack_triplet": {
+            "input": 162,
+            "converted": 162,
+            "rejected": 0
+          },
+          "incomplete_attempt": {
+            "input": 1,
+            "converted": 1,
+            "rejected": 0
+          }
+        },
+        "rejection_reasons": {},
+        "phases": {
+          "clean_pre": 88,
+          "attack": 69,
+          "clean_post": 87,
+          "control_mid": 18
+        },
+        "association_groups": 88,
+        "complete_attack_triplets": 69,
+        "complete_temporal_triplets": 18,
+        "incomplete_associations": 1,
+        "empty_bundles": [
+          "20260823_playwright_api36_controlled_v1"
+        ],
+        "identical_payload_groups": 0,
+        "units_in_identical_payload_groups": 0,
+        "field_status_counts": {
+          "observed": 46374
+        },
+        "field_quality_counts": {
+          "observed_value": 46374
+        },
+        "S01_eligibility_retained": {
+          "eligible_attack_stages": 54,
+          "eligible_attack_triplets": 54,
+          "eligible_pre_control_stages": 54,
+          "eligible_post_control_stages": 54,
+          "eligible_temporal_control_stages": 0
+        },
+        "temporal_no_intervention": "UNKNOWN",
+        "environment_groups": 3,
+        "performance_status": "NOT_EVALUATED",
+        "detector_runs": 0,
+        "prediction_rows": 0,
+        "model_calls": 0,
+        "threshold_changes": 0,
+        "S01_rerun": false,
+        "S03_started": false
+      }
+    }
+  },
+  "historical_wording": "S01/S02 still-local statements describe their pre-push completion time; S01 committed a68fcec and S02 b3d8bad. Historical artifacts remain unchanged.",
+  "S01_S02_rerun": false
+}

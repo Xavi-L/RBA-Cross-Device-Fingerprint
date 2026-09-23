@@ -1,6 +1,6 @@
 # HybridGuard 正式实验逐步实施计划
 
-计划版本：`formal-experiment-execution-plan-v1-20260923`。编制日期：2026-09-23。当前进度：**S01 材料核验与准入、S02 App177 结构适配均已完成；S03–S12 未执行。** 原始编制快照保留在第 2 节；最新执行事实见 `EXECUTION_STATUS.json`。
+计划版本：`formal-experiment-execution-plan-v1-20260923`。编制日期：2026-09-23。当前进度：**S01 材料核验与准入、S02 App177 结构适配、S03 来源与语义台账均已完成；S04–S12 未执行。** 原始编制快照保留在第 2 节；最新执行事实见 `EXECUTION_STATUS.json`。
 
 本计划依据 `HybridGuard_Experiment_Design/` 四份文件的完整内容，并核对两个本地仓库的源码、原始材料、保存结果和访问记录。工程验收是合同、实现、隔离和结果完整性；论文结论由真实结果决定。高检出、零误报、联合最优或每个模块有收益均不是验收条件。
 
@@ -629,3 +629,16 @@ S02 全量接收 262 条原始阶段：262 成功，0 拒绝；其中准入攻�
 复用 App177 当前字段目录与映射，完成精确 177 状态键、别名冲突、类型、非有限值、零哨兵、flat/nested 兼容和推理 allowlist 校验。15 项合成聚焦测试通过，保存后索引和关联回读通过；真实材料仅转换与结构校验，没有检测规则、报警策略、predictions、TPR/FPR 或阈值变更。54 条时间对照的 no_intervention 仍为 UNKNOWN，原准入与 3 个环境关联组不变，缺件和证据等级限制继续保留。
 
 报告：`hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/STEP_REPORT.md`。产物与验证已保存，本地 S02 状态为 DONE/PASS。S02 改动未提交、未推送；本轮已停止，S03 未执行，只有收到后续单独授权才可开始。
+
+
+### S03 执行更新（2026-09-23）
+
+当前 HEAD 已核对为 `b3d8badee44577787bdcd3cb22d70a155b1bb613`，与用户指定外部核查版本一致。上面的 S01/S02“仍在本地、未推送”是各自完成时的推送前记录；其后已交付，不改写历史产物，不重跑 S01/S02 或重裁事实。
+
+57 项 ACTIVE 全部且唯一登记为 E 23 / O_u 9 / H 14 / C 11。来源、applicability、decision_role 分列，O_u 不称纯官方；27 个研究家族中 9 个跨来源共享，保留原 evidence_family。公共有效域上 4 对完全重复与同族不等价关系分别记录；四来源条件和 O_u/H/E 八组合都保存精确 ID、公共 C 及同一语义门控。
+
+15 项静态/合成聚焦测试通过，保存产物回读验证通过。UA reduction 按 Chrome desktop M107、Chrome Android M110、当前 Android WebView Android 17 文档分别记录；冻结 Browser >=107 条件的差异进入新台账，未修改 v3。Dalvik 可变属性和合法 GPU 软件/host 渲染的边界继续保留。
+
+**本步审定报警候选 0、报警家族 0。** 计划建议的 8 条候选均因允许字段不能完整确认必要的合法覆盖/渲染路径排除条件而降为 observation_only。各来源组后续二值增量受这一结构限制，不能将零增量解释为来源无价值；也不能将全弃判当作 NO_ALERT 或零误报。当前角色是语义与字段合同审定结果，未使用正式预测挑选规则。
+
+报告：`hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STEP_REPORT.md`。本地 S03 为 DONE/PASS，工程通过不表示检测能力或性能已经验证。S01/S02 原产物和事实限制保留，时间对照 no_intervention 仍为 UNKNOWN；无真实预测、性能计算、阈值修改或 LLM 调用。S03 未提交、未推送，S04 未执行，等待下一步单独授权。

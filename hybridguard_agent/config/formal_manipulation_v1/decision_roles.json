@@ -1,0 +1,961 @@
+{
+  "version": "formal-manipulation-source-registry-v1",
+  "roles": [
+    {
+      "rule_id": "CORE-002",
+      "provenance_group": "E",
+      "decision_role": "collector_consistency",
+      "decision_family": "featureapp_bridge",
+      "applicability_id": "scope:CORE-002",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "intentionally disabled bridge",
+        "collection failure or alternate route",
+        "Bridge absence is a collection/integrity observation, never an attack label. Sensor count does not cause rejection."
+      ],
+      "rationale": "Bridge presence is collector consistency. The old topology assumption is project-specific and not an independently observed attack fact.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "NW-001",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "model_app_ua",
+      "applicability_id": "scope:NW-001",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "legitimate per-instance or DevTools UA override",
+        "UA changed after settings snapshot",
+        "OEM model alias or reduced K token",
+        "Only unambiguous Android model-before-Build tokens; no inferred aliases, substring matching or recovery of reduced model. Custom UA may disagree."
+      ],
+      "rationale": "A differing explicit model is a relation observation under the unchanged-Native threat model. The allowed fields cannot establish an atomic default-UA chain; equality of settings/default snapshots is insufficient. No alert role is granted.",
+      "unobservable_alert_preconditions": [
+        "unmodified_default_or_authorized_override_boundary_during_capture"
+      ]
+    },
+    {
+      "rule_id": "NW-002",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "app_os",
+      "applicability_id": "scope:NW-002",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "legitimate custom UA",
+        "WebView reduced Android 10/K",
+        "opaque or preview Build.VERSION.RELEASE",
+        "UA changed after host snapshot",
+        "Android 16/API 36 是合法版本；无法解析版本时记为未知，不单独高危。"
+      ],
+      "rationale": "Parsed OS inequality alone does not exclude legitimate override. Native RELEASE is not guaranteed numeric, and WebView scope is distinct from external Chrome. Retain observation with UNKNOWN alert prerequisites.",
+      "unobservable_alert_preconditions": [
+        "unmodified_default_or_authorized_override_boundary_during_capture"
+      ]
+    },
+    {
+      "rule_id": "NW-005",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "native_app_gpu_family",
+      "applicability_id": "scope:NW-005",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "SwiftShader/lavapipe/llvmpipe software rendering",
+        "legitimate emulator host GPU",
+        "remote or hybrid rendering",
+        "privacy-masked or ambiguous renderer",
+        "ANGLE translation on Android",
+        "Narrow renderer-family relation replaces the unverified SoC/board lookup. Software fallback is not applicable; unknown/masked/ambiguous families remain unknown. Same family does not establish same GPU/device."
+      ],
+      "rationale": "NW-005 compares named families; OFFDER-GPU-001 matches desktop backend markers. They share renderer evidence but are not equivalent. Strings do not establish the required physical rendering path; both remain observations.",
+      "unobservable_alert_preconditions": [
+        "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+      ]
+    },
+    {
+      "rule_id": "NW-006",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "app_surface",
+      "applicability_id": "scope:NW-006",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "仅缺少具体型号不等同于桌面 UA；必须结合明确关键词判断。"
+      ],
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "NW-007",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "mobile_touch",
+      "applicability_id": "scope:NW-007",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "non-touch Android device",
+        "external input devices",
+        "browser exposure/privacy differences",
+        "触点数量具体值不要求一致，只要求移动环境具备基本触控能力。"
+      ],
+      "rationale": "Zero touch is a legal observation and cannot by itself justify a manipulation alert.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "NVW-001",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "model_system_agent",
+      "applicability_id": "scope:NVW-001",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "legitimate System.setProperty override retaining Dalvik grammar",
+        "OEM/default grammar variation",
+        "preview builds omit MODEL",
+        "System http.agent is a mutable process property, not current WebView JS UA. AOSP default and Native fields share Build.MODEL; not independent identity evidence."
+      ],
+      "rationale": "http.agent is a mutable process property, not current WebView JS UA. Its default shares Build.MODEL with Native, so it is neither an independent identity root nor an executable alert premise here.",
+      "unobservable_alert_preconditions": [
+        "unmodified_system_http_agent_origin"
+      ]
+    },
+    {
+      "rule_id": "NVW-002",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "host_os",
+      "applicability_id": "scope:NVW-002",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "legal http.agent override",
+        "vendor non-Dalvik agent",
+        "preview or opaque RELEASE string",
+        "无法解析版本时不单独高危。"
+      ],
+      "rationale": "Only a Dalvik-scoped comparison is interpretable. Current strings cannot establish that the process property retained its default; do not fill this gap using run logs or tool configuration.",
+      "unobservable_alert_preconditions": [
+        "unmodified_system_http_agent_origin"
+      ]
+    },
+    {
+      "rule_id": "NVW-003",
+      "provenance_group": "C",
+      "decision_role": "deployment_policy",
+      "decision_family": "deployment_identity",
+      "applicability_id": "scope:NVW-003",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "old 1.6.3 attack-collection APK",
+        "debug/grey release or manual install",
+        "改为精确匹配本项目已声明的包名；不沿用宽泛前缀或可信设备结论。 精确匹配、相似前缀拒绝、空值未知、缺字段未评估；输出部署策略差异。"
+      ],
+      "rationale": "The retained MTC code9/code11 policy is not the App177 attack release contract. A mismatch is deployment-only and does not alter S01 labels.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "NVW-004",
+      "provenance_group": "C",
+      "decision_role": "context_only",
+      "decision_family": "installer_context",
+      "applicability_id": "scope:NVW-004",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "改为安装来源上下文；源码把安装器 null 写为 manual，不能推断实际安装方式。 manual 回退、unknown、具名安装器均独立测试，任何来源都不产生攻击/安全标签。"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "NVW-005",
+      "provenance_group": "E",
+      "decision_role": "context_only",
+      "decision_family": "debug_cleartext",
+      "applicability_id": "scope:NVW-005",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "开发灰度阶段允许该组合，不应单独判定中高风险。"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "WVWEB-002",
+      "provenance_group": "C",
+      "decision_role": "context_only",
+      "decision_family": "app_surface",
+      "applicability_id": "scope:WVWEB-002",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "仅报告 UA 中 wv/Version 标记的出现情况；标记缺失不再构成风险。 含标记/无标记/自定义 UA/空值，均不将标记作为容器真值。"
+      ],
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "WVWEB-004",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "app_surface",
+      "applicability_id": "scope:WVWEB-004",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "App 内正常 WebView 不应出现该类 UA。"
+      ],
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "PHYS-005",
+      "provenance_group": "E",
+      "decision_role": "context_only",
+      "decision_family": "PHYS-005",
+      "applicability_id": "scope:PHYS-005",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "ADB 单独开启在开发灰度阶段可容忍，不应超过低风险或轻中风险。"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "PHYS-006",
+      "provenance_group": "E",
+      "decision_role": "context_only",
+      "decision_family": "PHYS-006",
+      "applicability_id": "scope:PHYS-006",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "仅 user/release-keys 属于正常发布构建信号。"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "SCENE-001",
+      "provenance_group": "E",
+      "decision_role": "context_only",
+      "decision_family": "SCENE-001",
+      "applicability_id": "scope:SCENE-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "该场景不应与模拟器/重放混淆；若传感器和 Bridge 正常，通常给 35-45 分。"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "TOL-001",
+      "provenance_group": "C",
+      "decision_role": "context_only",
+      "decision_family": "debug_cleartext",
+      "applicability_id": "scope:TOL-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "将 ADB/debuggable/cleartext 作为开发配置事实，避免单项或组合自动判攻击。 真假、权限不可用与遮蔽边界；加入 ADB 事实，标明与原 debug/cleartext 检查共享证据。"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "OFFDER-OS-001",
+      "provenance_group": "O_u",
+      "decision_role": "observation_only",
+      "decision_family": "app_os",
+      "applicability_id": "scope:OFFDER-OS-001",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "legitimate custom UA",
+        "WebView reduced Android 10/K",
+        "opaque or preview Build.VERSION.RELEASE",
+        "UA changed after host snapshot",
+        "legitimate custom user-agent override",
+        "privacy-reduced or malformed user-agent",
+        "Only evaluate when both Android majors parse successfully; a UA with no Android token remains unknown."
+      ],
+      "rationale": "Parsed OS inequality alone does not exclude legitimate override. Native RELEASE is not guaranteed numeric, and WebView scope is distinct from external Chrome. Retain observation with UNKNOWN alert prerequisites.",
+      "unobservable_alert_preconditions": [
+        "unmodified_default_or_authorized_override_boundary_during_capture"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-OS-002",
+      "provenance_group": "O_u",
+      "decision_role": "observation_only",
+      "decision_family": "host_os",
+      "applicability_id": "scope:OFFDER-OS-002",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "legal http.agent override",
+        "vendor non-Dalvik agent",
+        "preview or opaque RELEASE string",
+        "vendor-specific HTTP agent without an Android version token",
+        "Only compare parsed Android majors; provider patch versions are irrelevant."
+      ],
+      "rationale": "Only a Dalvik-scoped comparison is interpretable. Current strings cannot establish that the process property retained its default; do not fill this gap using run logs or tool configuration.",
+      "unobservable_alert_preconditions": [
+        "unmodified_system_http_agent_origin"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-UA-001",
+      "provenance_group": "O_u",
+      "decision_role": "observation_only",
+      "decision_family": "app_surface",
+      "applicability_id": "scope:OFFDER-UA-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "legitimate desktop user-agent override for site compatibility",
+        "remote debugging or test automation",
+        "Linux arm and Linux x86 Android surfaces remain mobile_or_ambiguous; only explicit desktop/headless/script markers violate the relation."
+      ],
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "OFFDER-UA-002",
+      "provenance_group": "O_u",
+      "decision_role": "observation_only",
+      "decision_family": "host_ua",
+      "applicability_id": "scope:OFFDER-UA-002",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "custom per-instance UA",
+        "UA change between host snapshot and JS probe",
+        "custom user-agent override",
+        "site compatibility policy",
+        "Exact mismatch is only a soft deviation because applications may deliberately override the runtime UA."
+      ],
+      "rationale": "Default, instance settings and JS UA are distinct observations; their equality is not a universal invariant. The settings snapshot is captured before the JS probe.",
+      "unobservable_alert_preconditions": [
+        "atomic_same_instance_ua_capture"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-TOUCH-001",
+      "provenance_group": "O_u",
+      "decision_role": "observation_only",
+      "decision_family": "mobile_touch",
+      "applicability_id": "scope:OFFDER-TOUCH-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "non-touch Android device",
+        "external input devices",
+        "browser exposure/privacy differences",
+        "emulator or special device without a touch surface",
+        "privacy or browser compatibility behavior",
+        "Only applies to Android browser/WebView UA classes; zero touch is not an attack verdict."
+      ],
+      "rationale": "Zero touch is a legal observation and cannot by itself justify a manipulation alert.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "OFFDER-BRIDGE-001",
+      "provenance_group": "O_u",
+      "decision_role": "collector_consistency",
+      "decision_family": "featureapp_bridge",
+      "applicability_id": "scope:OFFDER-BRIDGE-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "intentionally disabled bridge",
+        "collection failure or alternate route",
+        "collector route that intentionally disables the bridge",
+        "external browser capture",
+        "Only applies when collector_app is featureapp; external browsers and WebViews without a designed bridge are not applicable."
+      ],
+      "rationale": "Bridge presence is collector consistency. The old topology assumption is project-specific and not an independently observed attack fact.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "OFFDER-DEVCONFIG-001",
+      "provenance_group": "O_u",
+      "decision_role": "context_only",
+      "decision_family": "debug_cleartext",
+      "applicability_id": "scope:OFFDER-DEVCONFIG-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "authorized development build",
+        "local research collection endpoint",
+        "Expected in some development and collection builds; never becomes an attack alert by itself."
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "OFFDER-GPU-001",
+      "provenance_group": "O_u",
+      "decision_role": "observation_only",
+      "decision_family": "native_app_gpu_family",
+      "applicability_id": "scope:OFFDER-GPU-001",
+      "proposed_alert_candidate_reviewed": true,
+      "known_counterexamples": [
+        "SwiftShader/lavapipe/llvmpipe software rendering",
+        "legitimate emulator host GPU",
+        "remote or hybrid rendering",
+        "privacy-masked or ambiguous renderer",
+        "ANGLE translation on Android",
+        "remote rendering that intentionally exposes a desktop GPU string",
+        "future Android WebView backend reporting changes",
+        "ANGLE alone is not a violation on Android; only explicit Windows/Direct3D desktop markers contradict the Android Native graphics stack."
+      ],
+      "rationale": "NW-005 compares named families; OFFDER-GPU-001 matches desktop backend markers. They share renderer evidence but are not equivalent. Strings do not establish the required physical rendering path; both remain observations.",
+      "unobservable_alert_preconditions": [
+        "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-PACKAGE-001",
+      "provenance_group": "C",
+      "decision_role": "deployment_policy",
+      "decision_family": "deployment_identity",
+      "applicability_id": "scope:OFFDER-PACKAGE-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "old 1.6.3 attack-collection APK",
+        "debug/grey release or manual install",
+        "local debug installation",
+        "enterprise MDM installation",
+        "grey release",
+        "将已冻结 MTC v9/v11 部署清单变成包名与版本配对检查；安装来源单列上下文。 版本 code/name 必须来自同一清单项；缺失未评估，未知版本仅策略差异，不证明攻击。"
+      ],
+      "rationale": "The retained MTC code9/code11 policy is not the App177 attack release contract. A mismatch is deployment-only and does not alter S01 labels.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "OFFDER-NET-001",
+      "provenance_group": "O_u",
+      "decision_role": "context_only",
+      "decision_family": "network_context",
+      "applicability_id": "scope:OFFDER-NET-001",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "VPN",
+        "network handover",
+        "no active network",
+        "legacy API fallback",
+        "normal VPN user",
+        "网络/VPN 仅作瞬时上下文；按采集器 API 路径限制回退字段。 旧 API 返回不适用；字段缺失未评估；VPN、无网络、网络切换均不判攻击。"
+      ],
+      "rationale": "Network flags share one snapshot and describe dynamic context, not attack or safety.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-X-TIMEZONE-OFFSET",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "P3-X-TIMEZONE-OFFSET",
+      "applicability_id": "scope:P3-X-TIMEZONE-OFFSET",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "DST boundary or time/settings changes between captures"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-X-LANGUAGE",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "P3-X-LANGUAGE",
+      "applicability_id": "scope:P3-X-LANGUAGE",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "per-app and browser language preferences"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-X-TOUCH",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "P3-X-TOUCH",
+      "applicability_id": "scope:P3-X-TOUCH",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "browser exposure/privacy/input device differences"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-X-CORES",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "P3-X-CORES",
+      "applicability_id": "scope:P3-X-CORES",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "privacy caps and logical processor availability; 0 is sentinel"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-X-DPR",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "screen_geometry",
+      "applicability_id": "scope:P3-X-DPR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "zoom, density and per-container window configuration"
+      ],
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ]
+    },
+    {
+      "rule_id": "P3-X-SCREEN-SIZE",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "screen_geometry",
+      "applicability_id": "scope:P3-X-SCREEN-SIZE",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "orientation normalized only; multiwindow and screen exposure can differ"
+      ],
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ]
+    },
+    {
+      "rule_id": "P3-SCREEN-APP",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "screen_geometry",
+      "applicability_id": "scope:P3-SCREEN-APP",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom"
+      ],
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ]
+    },
+    {
+      "rule_id": "P3-COLOR-APP",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "P3-COLOR-APP",
+      "applicability_id": "scope:P3-COLOR-APP",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "CSSOM screen exposure relation, not independent hardware evidence"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SCREEN-BROWSER",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "screen_geometry",
+      "applicability_id": "scope:P3-SCREEN-BROWSER",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom"
+      ],
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ]
+    },
+    {
+      "rule_id": "P3-COLOR-BROWSER",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "P3-COLOR-BROWSER",
+      "applicability_id": "scope:P3-COLOR-BROWSER",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "CSSOM screen exposure relation, not independent hardware evidence"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-UA-REDUCED-BROWSER",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "P3-UA-REDUCED-BROWSER",
+      "applicability_id": "scope:P3-UA-REDUCED-BROWSER",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "Chrome Android reduced OS/model",
+        "older opt-in reduction",
+        "legitimate custom Browser UA",
+        "other browser product/version behavior",
+        "Chrome Android >=107 reduced Android 10 token is compatible, not actual OS recovery; customized UA can still violate"
+      ],
+      "rationale": "Frozen v3 uses >=107 and Android 10 without checking K. Primary rollout distinguishes desktop M107 from Android M110; this S03 overlay records the discrepancy, guards reduced shapes, and never rewrites the frozen predicate or fabricates Browser evidence.",
+      "unobservable_alert_preconditions": [
+        "unmodified_browser_ua_origin"
+      ]
+    },
+    {
+      "rule_id": "P3-UA-DEFAULT",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "host_ua",
+      "applicability_id": "scope:P3-UA-DEFAULT",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "custom per-instance UA",
+        "UA change between host snapshot and JS probe",
+        "host configuration and JS navigator UA can differ; no universal equality guarantee"
+      ],
+      "rationale": "Default, instance settings and JS UA are distinct observations; their equality is not a universal invariant. The settings snapshot is captured before the JS probe.",
+      "unobservable_alert_preconditions": [
+        "atomic_same_instance_ua_capture"
+      ]
+    },
+    {
+      "rule_id": "P3-UA-SETTINGS",
+      "provenance_group": "E",
+      "decision_role": "observation_only",
+      "decision_family": "host_ua",
+      "applicability_id": "scope:P3-UA-SETTINGS",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "custom per-instance UA",
+        "UA change between host snapshot and JS probe",
+        "host configuration and JS navigator UA can differ; no universal equality guarantee"
+      ],
+      "rationale": "Default, instance settings and JS UA are distinct observations; their equality is not a universal invariant. The settings snapshot is captured before the JS probe.",
+      "unobservable_alert_preconditions": [
+        "atomic_same_instance_ua_capture"
+      ]
+    },
+    {
+      "rule_id": "P3-PROVIDER-PARSE",
+      "provenance_group": "C",
+      "decision_role": "collector_consistency",
+      "decision_family": "P3-PROVIDER-PARSE",
+      "applicability_id": "scope:P3-PROVIDER-PARSE",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "major is parsed from version by this collector; duplicate derivation, not new detection power"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-GPU-COPY",
+      "provenance_group": "C",
+      "decision_role": "collector_consistency",
+      "decision_family": "native_app_gpu_family",
+      "applicability_id": "scope:P3-GPU-COPY",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "both copy one glRenderer value; tautological collector consistency"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-MEM-AVAILABLE",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "P3-MEM-AVAILABLE",
+      "applicability_id": "scope:P3-MEM-AVAILABLE",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "same MemoryInfo snapshot, GB units; this is memory accounting, not identity"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-NAME_COUNT",
+      "provenance_group": "C",
+      "decision_role": "collector_consistency",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-NAME_COUNT",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "distinct subset count cannot exceed source list count"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-VENDOR_COUNT",
+      "provenance_group": "C",
+      "decision_role": "collector_consistency",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-VENDOR_COUNT",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "distinct subset count cannot exceed source list count"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-TYPE-COUNT",
+      "provenance_group": "C",
+      "decision_role": "collector_consistency",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-TYPE-COUNT",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "collector returns distinct sorted type list; same-list derivation"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-TYPE-ORDER",
+      "provenance_group": "C",
+      "decision_role": "collector_consistency",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-TYPE-ORDER",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "collector implementation invariant, not independent evidence"
+      ],
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-ACCELEROMETER",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-ACCELEROMETER",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-MAGNETIC_FIELD",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-GYROSCOPE",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-GYROSCOPE",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-LIGHT_SENSOR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-PRESSURE_SENSOR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-PROXIMITY_SENSOR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-GRAVITY_SENSOR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-ROTATION_VECTOR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-STEP_DETECTOR",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-STEP_DETECTOR",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    },
+    {
+      "rule_id": "P3-SENSOR-STEP_COUNTER",
+      "provenance_group": "H",
+      "decision_role": "observation_only",
+      "decision_family": "sensor_structure",
+      "applicability_id": "scope:P3-SENSOR-STEP_COUNTER",
+      "proposed_alert_candidate_reviewed": false,
+      "known_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "unobservable_alert_preconditions": []
+    }
+  ],
+  "proposed_candidate_ids": [
+    "NVW-001",
+    "NVW-002",
+    "NW-001",
+    "NW-002",
+    "NW-005",
+    "OFFDER-GPU-001",
+    "OFFDER-OS-001",
+    "OFFDER-OS-002"
+  ],
+  "alert_candidate_ids": [],
+  "structural_limit": "Current fields do not close the necessary default-origin/render-path exclusions. All proposed alert candidates remain observations. This is not measured zero detection value."
+}

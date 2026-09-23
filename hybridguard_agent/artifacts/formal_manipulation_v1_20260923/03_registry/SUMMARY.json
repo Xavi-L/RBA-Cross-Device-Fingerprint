@@ -1,0 +1,373 @@
+{
+  "step": "S03",
+  "version": "formal-manipulation-source-registry-v1",
+  "external_review_head": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+  "catalog_total": 87,
+  "active_rules": 57,
+  "source_groups": {
+    "E": {
+      "total_rules": 23,
+      "decision_roles": {
+        "alert_candidate": 0,
+        "observation_only": 18,
+        "context_only": 4,
+        "collector_consistency": 1,
+        "deployment_policy": 0
+      },
+      "alert_candidate_families": [],
+      "shared_families": [
+        "app_os",
+        "app_surface",
+        "debug_cleartext",
+        "featureapp_bridge",
+        "host_os",
+        "host_ua",
+        "mobile_touch",
+        "native_app_gpu_family"
+      ],
+      "source_uncertainty_rule_ids": [
+        "CORE-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "NW-006",
+        "NW-007",
+        "NVW-001",
+        "NVW-002",
+        "NVW-005",
+        "WVWEB-004",
+        "PHYS-005",
+        "PHYS-006",
+        "SCENE-001",
+        "P3-X-CORES",
+        "P3-X-DPR",
+        "P3-X-SCREEN-SIZE",
+        "P3-SCREEN-APP",
+        "P3-SCREEN-BROWSER",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "unimplementable_alert_gate_rule_ids": [
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "NVW-001",
+        "NVW-002",
+        "P3-X-DPR",
+        "P3-X-SCREEN-SIZE",
+        "P3-SCREEN-APP",
+        "P3-SCREEN-BROWSER",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+    },
+    "O_u": {
+      "total_rules": 9,
+      "decision_roles": {
+        "alert_candidate": 0,
+        "observation_only": 6,
+        "context_only": 2,
+        "collector_consistency": 1,
+        "deployment_policy": 0
+      },
+      "alert_candidate_families": [],
+      "shared_families": [
+        "app_os",
+        "app_surface",
+        "debug_cleartext",
+        "featureapp_bridge",
+        "host_os",
+        "host_ua",
+        "mobile_touch",
+        "native_app_gpu_family"
+      ],
+      "source_uncertainty_rule_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002",
+        "OFFDER-UA-001",
+        "OFFDER-UA-002",
+        "OFFDER-TOUCH-001",
+        "OFFDER-BRIDGE-001",
+        "OFFDER-DEVCONFIG-001",
+        "OFFDER-GPU-001",
+        "OFFDER-NET-001"
+      ],
+      "unimplementable_alert_gate_rule_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002",
+        "OFFDER-UA-002",
+        "OFFDER-GPU-001"
+      ],
+      "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+    },
+    "H": {
+      "total_rules": 14,
+      "decision_roles": {
+        "alert_candidate": 0,
+        "observation_only": 14,
+        "context_only": 0,
+        "collector_consistency": 0,
+        "deployment_policy": 0
+      },
+      "alert_candidate_families": [],
+      "shared_families": [
+        "sensor_structure"
+      ],
+      "source_uncertainty_rule_ids": [
+        "P3-COLOR-APP",
+        "P3-COLOR-BROWSER",
+        "P3-UA-REDUCED-BROWSER",
+        "P3-MEM-AVAILABLE",
+        "P3-SENSOR-ACCELEROMETER",
+        "P3-SENSOR-MAGNETIC_FIELD",
+        "P3-SENSOR-GYROSCOPE",
+        "P3-SENSOR-LIGHT_SENSOR",
+        "P3-SENSOR-PRESSURE_SENSOR",
+        "P3-SENSOR-PROXIMITY_SENSOR",
+        "P3-SENSOR-GRAVITY_SENSOR",
+        "P3-SENSOR-ROTATION_VECTOR",
+        "P3-SENSOR-STEP_DETECTOR",
+        "P3-SENSOR-STEP_COUNTER"
+      ],
+      "unimplementable_alert_gate_rule_ids": [
+        "P3-UA-REDUCED-BROWSER"
+      ],
+      "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+    },
+    "C": {
+      "total_rules": 11,
+      "decision_roles": {
+        "alert_candidate": 0,
+        "observation_only": 0,
+        "context_only": 3,
+        "collector_consistency": 6,
+        "deployment_policy": 2
+      },
+      "alert_candidate_families": [],
+      "shared_families": [
+        "app_surface",
+        "debug_cleartext",
+        "native_app_gpu_family",
+        "sensor_structure"
+      ],
+      "source_uncertainty_rule_ids": [
+        "NVW-004",
+        "OFFDER-PACKAGE-001",
+        "P3-PROVIDER-PARSE",
+        "P3-SENSOR-NAME_COUNT",
+        "P3-SENSOR-VENDOR_COUNT",
+        "P3-SENSOR-TYPE-COUNT",
+        "P3-SENSOR-TYPE-ORDER"
+      ],
+      "unimplementable_alert_gate_rule_ids": [],
+      "binary_detection_increment": "STRUCTURALLY_NO_ALERT_ROLE_NOT_AN_EMPIRICAL_VALUE_JUDGMENT"
+    }
+  },
+  "decision_families": 27,
+  "shared_families": [
+    {
+      "decision_family": "app_os",
+      "rule_ids": [
+        "NW-002",
+        "OFFDER-OS-001"
+      ],
+      "original_evidence_families": [
+        "app_os"
+      ],
+      "provenance_groups": [
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "app_surface",
+      "rule_ids": [
+        "NW-006",
+        "OFFDER-UA-001",
+        "WVWEB-002",
+        "WVWEB-004"
+      ],
+      "original_evidence_families": [
+        "app_surface"
+      ],
+      "provenance_groups": [
+        "C",
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "debug_cleartext",
+      "rule_ids": [
+        "NVW-005",
+        "OFFDER-DEVCONFIG-001",
+        "TOL-001"
+      ],
+      "original_evidence_families": [
+        "debug_cleartext"
+      ],
+      "provenance_groups": [
+        "C",
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "featureapp_bridge",
+      "rule_ids": [
+        "CORE-002",
+        "OFFDER-BRIDGE-001"
+      ],
+      "original_evidence_families": [
+        "featureapp_bridge"
+      ],
+      "provenance_groups": [
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "host_os",
+      "rule_ids": [
+        "NVW-002",
+        "OFFDER-OS-002"
+      ],
+      "original_evidence_families": [
+        "host_os"
+      ],
+      "provenance_groups": [
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "host_ua",
+      "rule_ids": [
+        "OFFDER-UA-002",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "original_evidence_families": [
+        "host_ua"
+      ],
+      "provenance_groups": [
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "mobile_touch",
+      "rule_ids": [
+        "NW-007",
+        "OFFDER-TOUCH-001"
+      ],
+      "original_evidence_families": [
+        "mobile_touch"
+      ],
+      "provenance_groups": [
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "native_app_gpu_family",
+      "rule_ids": [
+        "NW-005",
+        "OFFDER-GPU-001",
+        "P3-GPU-COPY"
+      ],
+      "original_evidence_families": [
+        "OFFDER-GPU-001",
+        "P3-GPU-COPY",
+        "native_app_gpu_family"
+      ],
+      "provenance_groups": [
+        "C",
+        "E",
+        "O_u"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    },
+    {
+      "decision_family": "sensor_structure",
+      "rule_ids": [
+        "P3-SENSOR-ACCELEROMETER",
+        "P3-SENSOR-GRAVITY_SENSOR",
+        "P3-SENSOR-GYROSCOPE",
+        "P3-SENSOR-LIGHT_SENSOR",
+        "P3-SENSOR-MAGNETIC_FIELD",
+        "P3-SENSOR-NAME_COUNT",
+        "P3-SENSOR-PRESSURE_SENSOR",
+        "P3-SENSOR-PROXIMITY_SENSOR",
+        "P3-SENSOR-ROTATION_VECTOR",
+        "P3-SENSOR-STEP_COUNTER",
+        "P3-SENSOR-STEP_DETECTOR",
+        "P3-SENSOR-TYPE-COUNT",
+        "P3-SENSOR-TYPE-ORDER",
+        "P3-SENSOR-VENDOR_COUNT"
+      ],
+      "original_evidence_families": [
+        "sensor_structure"
+      ],
+      "provenance_groups": [
+        "C",
+        "H"
+      ],
+      "alert_candidate_ids": [],
+      "shared_evidence_policy": "one family identity across sources; multiplicity never adds independent support",
+      "related_does_not_imply_equivalent": true
+    }
+  ],
+  "source_uncertainty_items": 81,
+  "source_uncertainty_codes": {
+    "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED": 10,
+    "DOCUMENT_REVISION_UNKNOWN": 43,
+    "LOCAL_SOURCE_REFERENCE_NOT_REFRESHED": 11,
+    "ALERT_PRECONDITION_NOT_OBSERVABLE": 16,
+    "BROWSER_UA_MILESTONE_SCOPE_DISCREPANCY": 1
+  },
+  "overlap_pairs": 1596,
+  "exact_duplicate_pairs": 4,
+  "alert_candidate_rules": 0,
+  "alert_candidate_families": 0,
+  "proposed_candidates_demoted": [
+    "NVW-001",
+    "NVW-002",
+    "NW-001",
+    "NW-002",
+    "NW-005",
+    "OFFDER-GPU-001",
+    "OFFDER-OS-001",
+    "OFFDER-OS-002"
+  ],
+  "real_predictions": 0,
+  "detector_calls": 0,
+  "LLM_calls": 0,
+  "performance_metrics": "NOT_EVALUATED",
+  "S04_started": false,
+  "thresholds_modified": false
+}
