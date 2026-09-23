@@ -4,9 +4,9 @@
   "created_at": "2026-09-23T16:18:16.723745+08:00",
   "plan_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_PLAN.md",
   "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
-  "planning_only": true,
+  "planning_only": false,
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "NOT_STARTED",
+  "experiment_execution_status": "S01_DONE_NO_DETECTION_EXPERIMENTS",
   "scope": {
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
@@ -15,16 +15,17 @@
     "no_new_collection_required": true,
     "external_model_calls_this_turn": 0,
     "detector_runs_this_turn": 0,
-    "material_validator_runs_this_turn": 0
+    "material_validator_runs_this_turn": 31,
+    "pre_step_git_delivery_explicitly_authorized": true
   },
   "repositories": {
     "main": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
       "branch": "main",
-      "current_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
+      "current_commit": "4826e2649a734b709a05fd4717f63e7adb50e95b",
       "design_baseline_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
-      "baseline_match": true,
-      "git_head_changed_this_turn": false,
+      "baseline_match": false,
+      "git_head_changed_this_turn": true,
       "working_tree_clean": false,
       "status_before_plan": [
         " M .DS_Store",
@@ -288,7 +289,8 @@
         "untracked_entries": 41
       },
       "relevant_research_tracked_changes": [],
-      "note": "Preserved existing Android/TLS/build/deployment and other user files. Counts are porcelain entries, not recursively counted files."
+      "note": "Preserved existing Android/TLS/build/deployment and other user files. Counts are porcelain entries, not recursively counted files.",
+      "current_commit_note": "Design/plan documentation and attack gitlink committed and pushed before S01; research code baseline unchanged until uncommitted S01 implementation."
     },
     "attack": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research",
@@ -371,20 +373,31 @@
     "raw_field_status_keys": 177,
     "attack_install_clusters_observed": 3,
     "attack_independent_physical_devices": null,
-    "primary_admitted_attack_triplets": null,
-    "primary_verified_control_triplets": null
+    "primary_admitted_attack_triplets": 54,
+    "primary_verified_control_triplets": 0,
+    "primary_verified_control_triplets_scope": "temporal-control triplets only",
+    "primary_scoped_pre_controls": 54,
+    "primary_scoped_post_controls": 54,
+    "S01_fact_rows": 262,
+    "S01_environment_groups": 3
   },
   "audit_provenance": {
     "design_report_attack_pass": 18,
     "design_report_attack_fail": 5,
     "design_report_control_pass": 6,
-    "local_validator_replayed_this_turn": false,
+    "local_validator_replayed_this_turn": true,
     "static_missing_direct_success_logs": 15,
     "receipt_count": 54,
     "receipts_without_raw_log_path": 48,
     "receipts_with_missing_raw_log_path": 6,
     "independent_attestation_status": "NOT_INDEPENDENTLY_ATTESTED",
-    "S01_admission_status": "NOT_EXECUTED"
+    "S01_admission_status": "DONE",
+    "local_validator_runs": 31,
+    "local_complete_attack_pass": 18,
+    "local_complete_attack_fail": 5,
+    "local_incomplete_attack_fail": 2,
+    "local_control_pass": 6,
+    "S01_result_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/SUMMARY.json"
   },
   "material_and_method_gaps": [
     {
@@ -402,7 +415,7 @@
     {
       "id": "G02",
       "type": "FACT_EVIDENCE",
-      "detail": "Receipt-supported intervention/control facts still require independent-of-detector adjudication; no automatic truth upgrade from PASS.",
+      "detail": "S01 independently adjudicated 54 receipt-supported intervention triplets and scoped pre/post controls; 54 temporal-control phases remain UNKNOWN for absence/cleanup facts.",
       "affected_steps": [
         "S01",
         "S05",
@@ -465,26 +478,158 @@
       ],
       "dependencies": [],
       "dependency_details": "无。当前A原材料存在，可开始。缺15日志只阻断相应较低证据包晋级；无需等待它们完成全部工作。",
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "execution_started": false,
-      "completed_at": null,
+      "status": "DONE",
+      "authorized": true,
+      "execution_started": true,
+      "completed_at": "2026-09-23T08:46:35.634588+00:00",
       "artifacts": {
         "planned_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission",
         "planned_description": "`material_inventory.jsonl`、`validator_results.jsonl`、`facts_and_eligibility.jsonl`、`environment_group_registry.json`、`exclusions.jsonl`、`missing_materials.jsonl`、`manual_fact_queue.json`、`VALIDATION.json`、`STEP_REPORT.md`，均在`R/01_admission/`。",
-        "produced": []
+        "produced": [
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/FOCUSED_TESTS.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/STEP_REPORT.md",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/SUMMARY.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/VALIDATION.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/admission_policy.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/environment_group_registry.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/exclusions.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/facts_and_eligibility.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/history_links.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/manual_fact_queue.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/material_inventory.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/missing_materials.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/source_snapshot.json",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/stage_accounting.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/triplet_registry.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validator_results.jsonl",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_cdp_api30_formal_v4.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_cdp_api30_formal_v4.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_cdp_api35_formal_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_cdp_api35_formal_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_cdp_api36_formal_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_cdp_api36_formal_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_stealth_api35_formal_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_stealth_api35_formal_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_stealth_api36_formal_v2.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260812_stealth_api36_formal_v2.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api30_no_attack_temporal_v6.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api30_no_attack_temporal_v6.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api35_no_attack_temporal_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api35_no_attack_temporal_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_no_attack_temporal_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_no_attack_temporal_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_platform_only_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_platform_only_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_resource_pair_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_resource_pair_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_ua_only_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_ua_only_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_webdriver_only_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_cdp_webdriver_only_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_no_attack_v2.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_api36_rule_boundary_no_attack_v2.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api30_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api30_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api30_controlled_v2.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api30_controlled_v2.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api35_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api35_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api36_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_cdp_api36_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_playwright_api36_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_playwright_api36_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_playwright_api36_controlled_v2.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_playwright_api36_controlled_v2.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_puppeteer_api30_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_puppeteer_api30_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_stealth_api30_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_stealth_api30_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_stealth_api35_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_stealth_api35_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_stealth_api36_controlled_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260823_stealth_api36_controlled_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_cdp_emulation_v5_no_attack_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_cdp_emulation_v5_no_attack_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_boundary_no_attack_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_boundary_no_attack_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_languages_only_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_languages_only_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_plugins_mime_v1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_plugins_mime_v1.stdout.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_webgl_pair_v1_rerun1.stderr.txt",
+          "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/validators/20260824_api36_stealth_webgl_pair_v1_rerun1.stdout.txt"
+        ]
       },
       "acceptance_summary": "全部29完整候选包与2不完整包均有去向；manifest/raw引用可审计，不能默丢行；每个准入样本有独立事实理由和环境组；等级/准入完全不依赖检测器；验证器结果与D差异有解释。聚焦测试仅合成：缺引用、重复session、错payload、恢复失败、control被误标positive、同install跨alias合组；不跑性能。",
-      "acceptance_status": "NOT_RUN",
-      "blocking_reasons": [
-        {
-          "type": "AUTHORIZATION",
-          "detail": "等待用户明确发送 执行 S01"
-        }
-      ],
+      "acceptance_status": "PASS",
+      "blocking_reasons": [],
       "failure_policy": "校验器实现错误保留异常并停相应核验；缺材料降档/阻断该事实；无可观测效应或恢复失败按真实状态登记，不视为检测漏报。没有可核验对照时FPR分支阻断，适配/来源和P6复用可继续。",
       "stop_after_step": true,
-      "invocation": "执行 S01"
+      "invocation": "执行 S01",
+      "started_at": "2026-09-23T08:29:42.435716+00:00",
+      "authorization": "User: 先提交推送改动，然后开始执行S01",
+      "result_summary": {
+        "schema_version": "formal-manipulation-admission-v1",
+        "study_version": "formal_manipulation_v1_20260923",
+        "candidate_bundles": 31,
+        "complete_attack_bundles": 23,
+        "control_bundles": 6,
+        "incomplete_bundles": 2,
+        "raw_rows": 262,
+        "fact_rows": 262,
+        "bound_phase_rows": 262,
+        "complete_attack_triplets": 69,
+        "control_triplets": 18,
+        "validator_results": {
+          "attack:failed": 7,
+          "control:passed": 6,
+          "attack:passed": 18
+        },
+        "eligible_attack_stages": 54,
+        "eligible_attack_triplets": 54,
+        "eligible_pre_control_stages": 54,
+        "eligible_post_control_stages": 54,
+        "eligible_temporal_control_stages": 0,
+        "environment_groups": 3,
+        "independent_physical_devices": null,
+        "missing_material_counts": {
+          "MISSING_DIRECT_SUCCESS_EVIDENCE": 15,
+          "PRIVATE_RUNNER_LOG_PATH_UNDISCLOSED": 48,
+          "PRIVATE_RUNNER_LOG_MISSING": 6
+        },
+        "manual_queue_items": 11,
+        "performance_status": "NOT_EVALUATED",
+        "detector_runs": 0,
+        "model_calls": 0,
+        "attack_runs": 0,
+        "temporal_control_FPR_status": "BLOCKED_NO_INDEPENDENT_OF_DETECTOR_OPERATIONAL_ABSENCE_EVIDENCE"
+      },
+      "remaining_branch_limits": [
+        {
+          "task": "temporal_control_FPR",
+          "status": "BLOCKED",
+          "reason": "54 control phases lack retained session-bound operational absence/cleanup evidence; no-intervention remains UNKNOWN."
+        },
+        {
+          "task": "legacy_15_triplets_positive_admission",
+          "status": "UNKNOWN_LOWER_EVIDENCE",
+          "reason": "15 directly referenced execution logs absent; optional evidence promotion only."
+        }
+      ],
+      "final_review": {
+        "saved_ledger_reconciled": true,
+        "unrelated_worktree_status_unchanged": true,
+        "attack_repository_clean": true,
+        "S02_through_S12_unexecuted": true,
+        "S01_artifacts_git_ignored_by_existing_policy": true,
+        "S01_source_and_artifacts_committed": false
+      }
     },
     {
       "id": "S02",
@@ -951,9 +1096,9 @@
       "dependency_mode": "BRANCH_SPECIFIC_OR_EXPLICIT_PARTIAL_DELIVERY"
     }
   ],
-  "next_authorization_step": "S01",
-  "next_authorization_instruction": "执行 S01",
-  "next_step_scope": "Only material validators, independent fact/eligibility ledger and conservative environment grouping; no detector/performance experiment, attack execution, collection, model call or automatic S02.",
+  "next_authorization_step": "S02",
+  "next_authorization_instruction": "执行 S02",
+  "next_step_scope": "Only App177 triplet/control compatibility adaptation and blinded input projection, including rejected/UNKNOWN material accounting; no predictions, performance, or automatic S03.",
   "plan_validation": {
     "step_count": 12,
     "all_required_step_fields_present": true,
@@ -968,12 +1113,28 @@
     "attack_HEAD_matches_fetched_origin_main": true,
     "attack_working_tree_clean": true,
     "no_S_step_artifact_directories_created": true,
-    "validation_type": "STATIC_PLAN_AND_STATUS_CHECKS_ONLY"
+    "validation_type": "STATIC_PLAN_AND_STATUS_CHECKS_ONLY",
+    "snapshot_scope": "Historical plan-creation checks; current execution state is in steps and experiment_execution_status."
   },
   "history": [
     {
       "event": "PLAN_CREATED_ONLY",
       "detail": "Four design documents and targeted repositories/materials inspected; attack repository updated by authorized fast-forward; no S-step executed."
+    },
+    {
+      "event": "S01_AUTHORIZED_AND_VALIDATORS_REPLAYED",
+      "at": "2026-09-23T08:29:42.435716+00:00",
+      "git_commit_pushed_before_execution": "4826e2649a734b709a05fd4717f63e7adb50e95b",
+      "validator_runs": 31
+    },
+    {
+      "event": "S01_COMPLETED",
+      "at": "2026-09-23T08:46:35.634588+00:00",
+      "acceptance": "PASS",
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/STEP_REPORT.md",
+      "focused_synthetic_tests_passed": 13,
+      "S02_executed": false,
+      "S01_changes_committed": false
     }
   ]
 }

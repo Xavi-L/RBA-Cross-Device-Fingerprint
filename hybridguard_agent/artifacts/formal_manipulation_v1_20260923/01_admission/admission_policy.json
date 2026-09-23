@@ -1,0 +1,18 @@
+{
+  "schema_version": "formal-manipulation-admission-v1",
+  "detector_independent": true,
+  "positive_requires": "unique bound pre/current payloads, bound execution evidence, observable declared field effect, no label conflict",
+  "detection_requires_post_restoration": false,
+  "triplet_requires": "eligible attack, three unique bound phases, supported scoped pre-control; retain failed/unknown rollback",
+  "post_negative_requires": "supported scoped absence plus all declared fields restored with observed status",
+  "temporal_negative_requires": "bound operational no-intervention/cleanup evidence beyond control declarations and stable raw values",
+  "clean_scope": "absence of the declared intervention in the recorded surfaces; never universal benignness",
+  "effect_L2_scope": "directly inspectable bound raw payload field values, not private runner logs",
+  "execution_L1_scope": "session/run/config receipt plus recorded execution; private log not independently verified",
+  "clean_L1_scope": "receipt-anchored triplet, run not_run/absence observations matching raw, declared effect absent",
+  "independent_attestation": false,
+  "unknown_is_negative": false,
+  "missing_log_is_false_negative": false,
+  "groups_are_physical_devices": false,
+  "source_selection_limitation": "existing complete bundles were selected by a restoration-oriented validator; all incomplete attempts retained"
+}

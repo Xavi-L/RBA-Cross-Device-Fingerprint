@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "evidence_directory": "execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1",
+  "bundle_type": "paired_triplet",
+  "run_file": "paired_triplet_run.json",
+  "gates": {
+    "bundle_integrity": {
+      "status": "passed",
+      "checks_passed": 539,
+      "sessions": 9,
+      "pairs": 3
+    },
+    "observable_effect": {
+      "status": "observed",
+      "effect_type": "fingerprint_field_mutation",
+      "attack_sessions_with_field_effect": 3,
+      "transport_sessions_with_process_attribution": 0
+    },
+    "attack_positive_eligibility": {
+      "status": "eligible",
+      "eligible": true,
+      "eligible_attack_sessions": 3,
+      "reason": "All three attack states have expected raw field mutations, attribution, and verified clean_post restoration."
+    }
+  },
+  "release": {
+    "schema_version": "expanded-v2.2-status",
+    "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+    "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c"
+  }
+}

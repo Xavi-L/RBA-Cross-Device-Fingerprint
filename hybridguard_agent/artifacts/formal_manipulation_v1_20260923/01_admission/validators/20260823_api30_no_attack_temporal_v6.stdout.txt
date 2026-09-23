@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "evidence_schema_version": "no-attack-temporal-control-v1",
+  "control_classification": "control_only_temporal_stability",
+  "release": {
+    "schema_version": "expanded-v2.2-status",
+    "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+    "app_version_code": 10,
+    "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+    "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d"
+  },
+  "gates": {
+    "evidence_integrity": {
+      "status": "passed",
+      "checks_passed": 678,
+      "sessions": 9,
+      "triplets": 3
+    },
+    "attack_positive_eligibility": {
+      "status": "ineligible",
+      "eligible": false,
+      "reason": "No-attack temporal controls are never attack-positive examples."
+    }
+  },
+  "aggregate_drift": {
+    "comparison_unit": "triplet_transition",
+    "raw_values_emitted": false,
+    "field_paths_emitted": false,
+    "transitions": {
+      "clean_pre_to_control_mid": {
+        "triplets_compared": 3,
+        "fingerprint_value_fields_compared": 531,
+        "fingerprint_value_fields_changed": 21,
+        "field_status_entries_compared": 531,
+        "field_status_entries_changed": 0
+      },
+      "control_mid_to_clean_post": {
+        "triplets_compared": 3,
+        "fingerprint_value_fields_compared": 531,
+        "fingerprint_value_fields_changed": 22,
+        "field_status_entries_compared": 531,
+        "field_status_entries_changed": 0
+      },
+      "clean_pre_to_clean_post": {
+        "triplets_compared": 3,
+        "fingerprint_value_fields_compared": 531,
+        "fingerprint_value_fields_changed": 23,
+        "field_status_entries_compared": 531,
+        "field_status_entries_changed": 0
+      }
+    }
+  }
+}

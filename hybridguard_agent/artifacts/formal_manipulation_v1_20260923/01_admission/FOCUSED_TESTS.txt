@@ -1,0 +1,43 @@
+COMMAND: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest hybridguard_agent.tests.test_formal_manipulation_admission -v
+test_control_pass_and_stability_are_not_operational_no_intervention_proof (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_control_pass_and_stability_are_not_operational_no_intervention_proof) ... ok
+test_control_positive_annotation_never_creates_a_positive (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_control_positive_annotation_never_creates_a_positive) ... ok
+test_duplicate_session_is_rejected_without_silently_losing_raw_rows (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_duplicate_session_is_rejected_without_silently_losing_raw_rows) ... ok
+test_future_post_label_conflict_is_not_a_veto_on_active_detection (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_future_post_label_conflict_is_not_a_veto_on_active_detection) ... ok
+test_missing_execution_receipt_preserves_effect_but_not_attribution (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_missing_execution_receipt_preserves_effect_but_not_attribution) ... ok
+test_missing_post_does_not_remove_supported_active_fact (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_missing_post_does_not_remove_supported_active_fact) ... ok
+test_missing_reference_cannot_be_saved_by_validator_pass (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_missing_reference_cannot_be_saved_by_validator_pass) ... ok
+test_restoration_failure_does_not_select_away_detection_or_triplet (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_restoration_failure_does_not_select_away_detection_or_triplet) ... ok
+test_same_install_across_aliases_and_alias_only_attempt_merge_transitively (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_same_install_across_aliases_and_alias_only_attempt_merge_transitively) ... ok
+test_supported_execution_effect_and_scoped_controls (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_supported_execution_effect_and_scoped_controls) ... ok
+test_unavailable_field_and_false_zero_are_not_silently_conflated (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_unavailable_field_and_false_zero_are_not_silently_conflated) ... ok
+test_wrong_payload_with_same_session_rejects_binding (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_wrong_payload_with_same_session_rejects_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.027s
+
+OK
+
+EXIT_CODE: 0
+
+Final tests after receipt-conflict and exit-code handling changes:
+COMMAND: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest hybridguard_agent.tests.test_formal_manipulation_admission -v
+test_control_pass_and_stability_are_not_operational_no_intervention_proof (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_control_pass_and_stability_are_not_operational_no_intervention_proof) ... ok
+test_control_positive_annotation_never_creates_a_positive (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_control_positive_annotation_never_creates_a_positive) ... ok
+test_duplicate_session_is_rejected_without_silently_losing_raw_rows (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_duplicate_session_is_rejected_without_silently_losing_raw_rows) ... ok
+test_future_post_label_conflict_is_not_a_veto_on_active_detection (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_future_post_label_conflict_is_not_a_veto_on_active_detection) ... ok
+test_missing_execution_receipt_preserves_effect_but_not_attribution (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_missing_execution_receipt_preserves_effect_but_not_attribution) ... ok
+test_missing_post_does_not_remove_supported_active_fact (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_missing_post_does_not_remove_supported_active_fact) ... ok
+test_missing_reference_cannot_be_saved_by_validator_pass (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_missing_reference_cannot_be_saved_by_validator_pass) ... ok
+test_receipt_for_other_session_is_conflict_even_when_validator_passes (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_receipt_for_other_session_is_conflict_even_when_validator_passes) ... ok
+test_restoration_failure_does_not_select_away_detection_or_triplet (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_restoration_failure_does_not_select_away_detection_or_triplet) ... ok
+test_same_install_across_aliases_and_alias_only_attempt_merge_transitively (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_same_install_across_aliases_and_alias_only_attempt_merge_transitively) ... ok
+test_supported_execution_effect_and_scoped_controls (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_supported_execution_effect_and_scoped_controls) ... ok
+test_unavailable_field_and_false_zero_are_not_silently_conflated (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_unavailable_field_and_false_zero_are_not_silently_conflated) ... ok
+test_wrong_payload_with_same_session_rejects_binding (hybridguard_agent.tests.test_formal_manipulation_admission.AdmissionTests.test_wrong_payload_with_same_session_rejects_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.027s
+
+OK
+
+EXIT_CODE: 0

@@ -1,0 +1,28 @@
+{
+  "schema_version": "formal-manipulation-admission-v1",
+  "completed_at": "2026-09-23T08:46:35.634588+00:00",
+  "status": "PASS",
+  "checks": {
+    "all_discovered_and_design_bundles_ledgered": true,
+    "all_raw_rows_accounted": true,
+    "all_raw_rows_have_ledger_candidates": true,
+    "unique_candidate_ids": true,
+    "all_candidates_grouped": true,
+    "design_audit_reconciled": true,
+    "control_never_positive": true,
+    "no_validator_process_errors": true,
+    "source_files_unchanged": true,
+    "no_detector_or_performance_execution": true
+  },
+  "material_validator_runs": 31,
+  "detector_runs": 0,
+  "model_calls": 0,
+  "scientific_metrics_computed": false,
+  "synthetic_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest hybridguard_agent.tests.test_formal_manipulation_admission -v",
+    "passed": 13,
+    "failed": 0,
+    "log": "FOCUSED_TESTS.txt"
+  },
+  "source_check_method": "size and mtime over relevant material files; no repository-wide hash audit"
+}
