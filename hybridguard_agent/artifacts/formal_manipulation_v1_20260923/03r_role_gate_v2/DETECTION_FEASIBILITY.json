@@ -1,0 +1,267 @@
+{
+  "step": "S03-R",
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "review_baseline": "66f9cdc2d40c41ccec0999c7a6c8d68c0a1b415f",
+  "candidate_rules": 7,
+  "candidate_families": 5,
+  "candidate_rule_ids": [
+    "NW-001",
+    "NW-002",
+    "NW-005",
+    "NVW-001",
+    "NVW-002",
+    "OFFDER-OS-001",
+    "OFFDER-OS-002"
+  ],
+  "reachability": [
+    {
+      "rule_id": "NW-001",
+      "family": "model_app_ua",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    },
+    {
+      "rule_id": "NW-002",
+      "family": "app_os",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    },
+    {
+      "rule_id": "NW-005",
+      "family": "native_app_gpu_family",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    },
+    {
+      "rule_id": "NVW-001",
+      "family": "model_system_agent",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    },
+    {
+      "rule_id": "NVW-002",
+      "family": "host_os",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    },
+    {
+      "rule_id": "OFFDER-OS-001",
+      "family": "app_os",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    },
+    {
+      "rule_id": "OFFDER-OS-002",
+      "family": "host_os",
+      "consistent_path_reachable": true,
+      "conflict_path_reachable": true,
+      "attribution_stays_unknown": true
+    }
+  ],
+  "all_candidate_paths_reachable": true,
+  "synthetic_cases": 35,
+  "synthetic_cases_passed": 35,
+  "source_groups": {
+    "E": {
+      "total_rules": 23,
+      "decision_roles": {
+        "collector_consistency": 1,
+        "alert_candidate": 5,
+        "observation_only": 13,
+        "context_only": 4
+      },
+      "candidate_rule_ids": [
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "NVW-001",
+        "NVW-002"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os",
+        "model_app_ua",
+        "model_system_agent",
+        "native_app_gpu_family"
+      ],
+      "structural_limit": "SYNTHETICALLY_REACHABLE_ONLY_ACTUAL_COVERAGE_AND_DETECTION_UNKNOWN"
+    },
+    "O_u": {
+      "total_rules": 9,
+      "decision_roles": {
+        "alert_candidate": 2,
+        "observation_only": 4,
+        "collector_consistency": 1,
+        "context_only": 2
+      },
+      "candidate_rule_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os"
+      ],
+      "structural_limit": "SYNTHETICALLY_REACHABLE_ONLY_ACTUAL_COVERAGE_AND_DETECTION_UNKNOWN"
+    },
+    "H": {
+      "total_rules": 14,
+      "decision_roles": {
+        "observation_only": 14
+      },
+      "candidate_rule_ids": [],
+      "candidate_family_ids": [],
+      "structural_limit": "NO_RISK_CANDIDATES_ZERO_BINARY_INCREMENT_IS_STRUCTURAL"
+    },
+    "C": {
+      "total_rules": 11,
+      "decision_roles": {
+        "deployment_policy": 2,
+        "context_only": 3,
+        "collector_consistency": 6
+      },
+      "candidate_rule_ids": [],
+      "candidate_family_ids": [],
+      "structural_limit": "NO_RISK_CANDIDATES_ZERO_BINARY_INCREMENT_IS_STRUCTURAL"
+    }
+  },
+  "source_condition_candidate_membership": [
+    {
+      "condition_id": "SRC-000",
+      "candidate_rule_ids": [],
+      "candidate_family_ids": []
+    },
+    {
+      "condition_id": "SRC-001",
+      "candidate_rule_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os",
+        "model_app_ua",
+        "model_system_agent",
+        "native_app_gpu_family"
+      ]
+    },
+    {
+      "condition_id": "SRC-010",
+      "candidate_rule_ids": [],
+      "candidate_family_ids": []
+    },
+    {
+      "condition_id": "SRC-011",
+      "candidate_rule_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os",
+        "model_app_ua",
+        "model_system_agent",
+        "native_app_gpu_family"
+      ]
+    },
+    {
+      "condition_id": "SRC-100",
+      "candidate_rule_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os"
+      ]
+    },
+    {
+      "condition_id": "SRC-101",
+      "candidate_rule_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "OFFDER-OS-001",
+        "OFFDER-OS-002"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os",
+        "model_app_ua",
+        "model_system_agent",
+        "native_app_gpu_family"
+      ]
+    },
+    {
+      "condition_id": "SRC-110",
+      "candidate_rule_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os"
+      ]
+    },
+    {
+      "condition_id": "SRC-111",
+      "candidate_rule_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "OFFDER-OS-001",
+        "OFFDER-OS-002"
+      ],
+      "candidate_family_ids": [
+        "app_os",
+        "host_os",
+        "model_app_ua",
+        "model_system_agent",
+        "native_app_gpu_family"
+      ]
+    }
+  ],
+  "shared_candidate_families": [
+    {
+      "decision_family": "app_os",
+      "candidate_ids": [
+        "NW-002",
+        "OFFDER-OS-001"
+      ]
+    },
+    {
+      "decision_family": "host_os",
+      "candidate_ids": [
+        "NVW-002",
+        "OFFDER-OS-002"
+      ]
+    }
+  ],
+  "source_increment_limit": "O_u candidates duplicate E app_os/host_os candidates on the common valid domain under the same v2 gates. With E retained, they add no candidate family; a future fixed family-OR policy cannot present that structural zero as empirical absence of official-derived value. H/C have no candidate roles.",
+  "feasibility_status": "LIMITED_RISK_CONTRACT_HAS_REACHABLE_PATHS_NOT_VALIDATED_DETECTION",
+  "actual_sample_predictions": 0,
+  "actual_sample_scope_evaluations": 0,
+  "actual_detection_performance": "NOT_EVALUATED",
+  "temporal_control_FPR": "BLOCKED_S01_NO_INTERVENTION_UNKNOWN",
+  "S04_alarm_aggregation_implemented": false,
+  "threshold_changed": false,
+  "known_legal_behavior_relabelled": false,
+  "LLM_calls": 0,
+  "candidate_count_is_not_an_acceptance_target": true
+}

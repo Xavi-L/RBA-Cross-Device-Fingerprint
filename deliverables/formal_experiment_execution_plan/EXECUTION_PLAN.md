@@ -1,6 +1,6 @@
 # HybridGuard 正式实验逐步实施计划
 
-计划版本：`formal-experiment-execution-plan-v1-20260923`。编制日期：2026-09-23。当前进度：**S01 材料核验与准入、S02 App177 结构适配、S03 来源与语义台账均已完成；S04–S12 未执行。** 原始编制快照保留在第 2 节；最新执行事实见 `EXECUTION_STATUS.json`。
+计划版本：`formal-experiment-execution-plan-v1-20260923`。编制日期：2026-09-23。当前进度：**S01、S02、S03 已完成；独立 S03-R v2 已完成工程验证、等待审查；S04–S12 未执行。** 原始编制快照保留在第 2 节；最新执行事实见 `EXECUTION_STATUS.json`。
 
 本计划依据 `HybridGuard_Experiment_Design/` 四份文件的完整内容，并核对两个本地仓库的源码、原始材料、保存结果和访问记录。工程验收是合同、实现、隔离和结果完整性；论文结论由真实结果决定。高检出、零误报、联合最优或每个模块有收益均不是验收条件。
 
@@ -155,6 +155,8 @@ Fig.2覆盖全部配置或使用S05预定的固定排序分面，不在结果后
 MTC全部保持未标注参考。不得拼接无关Browser制造攻击paired244，不训练MTC正常/模拟器攻击域分类器。Native仅是本次声明干预未修改的相对参照，不是可信硬件根。
 
 ### 5.2 版本化最小策略：推荐policy-v1
+
+**S03-R v2 修订说明：**以下 policy-v1 为原设计记录。后续单独授权的 S04 应采用 `formal-manipulation-relation-risk-attribution-v2` 的 A/B/C 分离合同及统一研究范围；修订理由、候选与不可评估主张见 [版本化修订说明](S03_R_CONTRACT_REVISION_v2.md)。S03 v1 产物和原零候选验收保留；本修订不启动 S04。
 
 保留所有关系检查及其原outcome，另设 `ManipulationDecision`。`source_lane`、目录ACTIVE和`COUNTEREXAMPLE`都不自动授予报警资格。
 
@@ -642,3 +644,14 @@ S02 全量接收 262 条原始阶段：262 成功，0 拒绝；其中准入攻�
 **本步审定报警候选 0、报警家族 0。** 计划建议的 8 条候选均因允许字段不能完整确认必要的合法覆盖/渲染路径排除条件而降为 observation_only。各来源组后续二值增量受这一结构限制，不能将零增量解释为来源无价值；也不能将全弃判当作 NO_ALERT 或零误报。当前角色是语义与字段合同审定结果，未使用正式预测挑选规则。
 
 报告：`hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STEP_REPORT.md`。本地 S03 为 DONE/PASS，工程通过不表示检测能力或性能已经验证。S01/S02 原产物和事实限制保留，时间对照 no_intervention 仍为 UNKNOWN；无真实预测、性能计算、阈值修改或 LLM 调用。S03 未提交、未推送，S04 未执行，等待下一步单独授权。
+
+
+### S03-R v2 执行更新（2026-09-23，待审查）
+
+基线 HEAD 核对为 `66f9cdc2d40c41ccec0999c7a6c8d68c0a1b415f`。独立版本 `formal-manipulation-relation-risk-attribution-v2` 将关系适用性、限定研究风险资格、攻击归因确定性分开。七条既有候选取得有限风险资格、涉及五个家族；OFFDER-GPU-001 仍观察，其余未建议检查角色不变。合法替代解释没有改成攻击真值，真正影响测量的门控继续保留。
+
+原 S03 的 15 项测试和新版本 17 项测试通过；35 个合成夹具通过并证明各候选的一致/冲突路径可达，归因仍 UNKNOWN。没有真实预测或性能评估，没有实现 S04 聚合器。H/C 无风险候选，O_u 的两个家族与 E 共享且在共同有效域等价；零增量的结构限制不得解释为来源无价值。
+
+独立产物位于 `hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/`，配置位于 `hybridguard_agent/config/formal_manipulation_role_gate_v2/`。两者在命令中同时显式指定；只换 output、旧配置目的地或非空/重叠目录现在会在写入前拒绝。原 S03 语义函数、配置、产物及测试保留。
+
+本地 S03-R 为 DONE/PASS、AWAITING_USER_REVIEW；[合同修订说明](S03_R_CONTRACT_REVISION_v2.md) 明确后续 S04 的版本绑定和仍不可评估的主张。S01/S02 不重跑，时间对照标签限制不变。完成后停止等待审查，不进入 S04，不提交或推送。

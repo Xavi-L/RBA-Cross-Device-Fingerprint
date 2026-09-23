@@ -6,7 +6,7 @@
   "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "planning_only": false,
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "S03_COMPLETE_WAITING_S04_AUTHORIZATION",
+  "experiment_execution_status": "S03_R_COMPLETE_AWAITING_REVIEW",
   "scope": {
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
@@ -17,20 +17,24 @@
     "detector_runs_this_turn": 0,
     "material_validator_runs_this_turn": 0,
     "pre_step_git_delivery_explicitly_authorized": false,
-    "current_execution_step": "S03",
+    "current_execution_step": "S03-R",
     "actual_sample_prediction_rows_this_turn": 0,
     "performance_metrics_computed_this_turn": false,
     "S01_rerun_this_turn": false,
     "S02_rerun_this_turn": false,
     "source_registry_only_this_turn": true,
     "S04_executed_this_turn": false,
-    "git_commit_or_push_this_turn": false
+    "git_commit_or_push_this_turn": false,
+    "contract_revision_only_this_turn": true,
+    "S03_v1_full_step_rerun_this_turn": false,
+    "S03_v1_regression_tests_this_turn": 15,
+    "actual_sample_scope_evaluations_this_turn": 0
   },
   "repositories": {
     "main": {
       "path": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
       "branch": "main",
-      "current_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+      "current_commit": "66f9cdc2d40c41ccec0999c7a6c8d68c0a1b415f",
       "design_baseline_commit": "bc305de024a0374e3dcc0d45c2f132203210e327",
       "baseline_match": false,
       "git_head_changed_this_turn": false,
@@ -298,7 +302,7 @@
       },
       "relevant_research_tracked_changes": [],
       "note": "Preserved existing Android/TLS/build/deployment and other user files. Counts are porcelain entries, not recursively counted files.",
-      "current_commit_note": "S03 verified local HEAD against the user-specified S01/S02 pushed review version. Earlier local-only delivery wording records the historical pre-push time. No Git mutation or remote refresh during S03.",
+      "current_commit_note": "S03-R local HEAD matches review baseline 66f9cdc; no Git mutation in this revision. S03 v1 completion and pre-push statements remain historical snapshots.",
       "last_verified_remote_main_commit": "a68fcecb07dbd150525661f6aec8e7d9ac6664cd",
       "last_remote_verification_scope": "Explicit pre-S02 S01 push; verified remote main matches local commit.",
       "external_review_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
@@ -396,7 +400,10 @@
     "S03_decision_families": 27,
     "S03_shared_families": 9,
     "S03_alert_candidate_rules": 0,
-    "S03_alert_candidate_families": 0
+    "S03_alert_candidate_families": 0,
+    "S03_R_candidate_rules": 7,
+    "S03_R_candidate_families": 5,
+    "S03_R_contract_version": "formal-manipulation-relation-risk-attribution-v2"
   },
   "audit_provenance": {
     "design_report_attack_pass": 18,
@@ -1472,7 +1479,7 @@
   ],
   "next_authorization_step": "S04",
   "next_authorization_instruction": "执行 S04",
-  "next_step_scope": "S03 completed and stopped. S04 is unexecuted and requires separate authorization. All reviewed source groups have zero alert candidates under the current allowed-field contract; retain this structural limitation and do not convert abstention to NO_ALERT or infer zero source value.",
+  "next_step_scope": "S03-R completed and stopped for review. S04 remains separately authorized only, and must explicitly use the v2 A/B/C contract if approved. Synthetic reachability is not real detection performance; S01 temporal-label limits and source redundancy remain.",
   "plan_validation": {
     "step_count": 12,
     "all_required_step_fields_present": true,
@@ -1565,6 +1572,107 @@
       "S04_executed": false,
       "committed_or_pushed": false,
       "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/STEP_REPORT.md"
+    },
+    {
+      "event": "S03_R_AUTHORIZED",
+      "baseline": "66f9cdc2d40c41ccec0999c7a6c8d68c0a1b415f",
+      "scope": "Separate A relation applicability, B research-risk eligibility and C attribution; static/synthetic only; v1 acceptance preserved; no S04 or Git delivery."
+    },
+    {
+      "event": "S03_R_COMPLETED_AWAITING_REVIEW",
+      "at": "2026-09-23T14:58:45.926532+00:00",
+      "review_baseline": "66f9cdc2d40c41ccec0999c7a6c8d68c0a1b415f",
+      "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+      "candidate_rules": 7,
+      "candidate_families": 5,
+      "focused_tests_passed": 32,
+      "saved_synthetic_cases_passed": 35,
+      "S03_v1_preserved": true,
+      "S01_S02_rerun": false,
+      "attribution_certainty": "UNKNOWN",
+      "actual_predictions": 0,
+      "S04_executed": false,
+      "committed_or_pushed": false,
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/STEP_REPORT.md"
     }
-  ]
+  ],
+  "step_revisions": [
+    {
+      "id": "S03-R",
+      "base_step": "S03",
+      "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+      "review_baseline": "66f9cdc2d40c41ccec0999c7a6c8d68c0a1b415f",
+      "status": "DONE",
+      "authorized": true,
+      "started_at": "2026-09-23T14:34:22.465844+00:00",
+      "acceptance_status": "PASS",
+      "output_directory": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2",
+      "config_directory": "hybridguard_agent/config/formal_manipulation_role_gate_v2",
+      "auto_advance": false,
+      "auto_commit_or_push": false,
+      "completed_at": "2026-09-23T14:58:45.926532+00:00",
+      "review_status": "AWAITING_USER_REVIEW",
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/STEP_REPORT.md",
+      "plan_amendment": "deliverables/formal_experiment_execution_plan/S03_R_CONTRACT_REVISION_v2.md",
+      "artifacts": [
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/DEPENDENCY_REVIEW.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/DETECTION_FEASIBILITY.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/FINAL_REVIEW.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/FOCUSED_TESTS.txt",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/GENERATION.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/READ_ONLY_BASELINE.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/ROLE_AND_GATE_REVISION.md",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/STEP_REPORT.md",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/SYNTHETIC_FIXTURES.jsonl",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/SYNTHETIC_RESULTS.jsonl",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/VALIDATION.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/applicability_policy.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/decision_roles.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/family_bindings.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/precondition_classification.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/research_scope.json",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/source_bindings.jsonl",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/source_conditions.json"
+      ],
+      "config_artifacts": [
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+        "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json"
+      ],
+      "validation_summary": {
+        "static_checks_passed": 30,
+        "v1_regression_tests": 15,
+        "v2_focused_tests": 17,
+        "saved_synthetic_cases": 35,
+        "synthetic_cases_passed": 35,
+        "candidate_rules": 7,
+        "candidate_families": 5,
+        "all_candidate_paths_reachable": true,
+        "actual_predictions": 0,
+        "performance_metrics": "NOT_EVALUATED",
+        "S04_executed": false
+      },
+      "retained_limits": [
+        "C attribution UNKNOWN for all current evidence",
+        "risk alerts are research warnings, not attack truth or probability",
+        "O_u candidate families overlap E; H/C have no candidates",
+        "S01 temporal no_intervention UNKNOWN and FPR qualification unchanged",
+        "Native relative anchor, missing-log/evidence-level and environment-group limits retained",
+        "real detection coverage/performance and external generalization NOT_EVALUATED"
+      ]
+    }
+  ],
+  "next_step_contract": {
+    "step": "S04",
+    "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+    "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+    "config_directory": "hybridguard_agent/config/formal_manipulation_role_gate_v2",
+    "plan_amendment": "deliverables/formal_experiment_execution_plan/S03_R_CONTRACT_REVISION_v2.md",
+    "review_status": "AWAITING_USER_REVIEW",
+    "execution_authorized": false
+  }
 }

@@ -18,6 +18,7 @@ import sys
 
 from hybridguard_agent.evidence.paired244 import field_contract, legacy_field_map, valid_type
 from hybridguard_agent.research.mtc_closed_resource import model_token, gpu_family
+from hybridguard_agent.research.manipulation_eval.registry_output import validate_destinations
 
 ROOT = Path(__file__).resolve().parents[3]
 CONFIG = ROOT / "hybridguard_agent/config"
@@ -518,9 +519,8 @@ def validate_registry(catalog, rows, scopes, roles, families, conditions):
     return checks
 
 
-def generate(output=OUTPUT, config_dir=STUDY_CONFIG):
-    if (output / "VALIDATION.json").exists():
-        raise ValueError("S03 accepted outputs are immutable; use another version")
+def generate(output=None, config_dir=None):
+    output, config_dir = validate_destinations(output, config_dir)
     catalog, rows, scopes, roles, uncertainties = build_registry()
     families, overlaps = family_registry(rows)
     conditions = source_conditions(rows)
@@ -575,8 +575,8 @@ def generate(output=OUTPUT, config_dir=STUDY_CONFIG):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=OUTPUT)
-    parser.add_argument("--config-dir", type=Path, default=STUDY_CONFIG)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--config-dir", type=Path, required=True)
     args = parser.parse_args()
     summary = generate(args.output, args.config_dir)
     print(json.dumps({"active_rules": summary["active_rules"], "source_groups": {k: v["total_rules"] for k, v in summary["source_groups"].items()},
