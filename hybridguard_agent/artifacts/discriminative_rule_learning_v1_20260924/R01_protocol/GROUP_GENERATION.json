@@ -1,0 +1,86 @@
+{
+  "source_groups": [
+    {
+      "group_id": "env-001",
+      "member_bundles": [
+        "20260812_cdp_api30_formal_v4",
+        "20260823_api30_no_attack_temporal_v6",
+        "20260823_cdp_api30_controlled_v1",
+        "20260823_cdp_api30_controlled_v2",
+        "20260823_puppeteer_api30_controlled_v1",
+        "20260823_stealth_api30_controlled_v1"
+      ],
+      "collector_install_ids": [
+        "e76b8e94-ee71-4246-8aeb-21a6f97b499b"
+      ],
+      "device_aliases": [
+        "api30-c9-research-emulator-01"
+      ],
+      "physical_identity": "UNKNOWN",
+      "independent_physical_device_count": null
+    },
+    {
+      "group_id": "env-002",
+      "member_bundles": [
+        "20260812_cdp_api35_formal_v1",
+        "20260812_stealth_api35_formal_v1",
+        "20260823_api35_no_attack_temporal_v1",
+        "20260823_cdp_api35_controlled_v1",
+        "20260823_stealth_api35_controlled_v1"
+      ],
+      "collector_install_ids": [
+        "347ff2a9-1a75-48ad-9411-e6cad1b0eef9"
+      ],
+      "device_aliases": [
+        "hybridguard-api35-research-avd-v1"
+      ],
+      "physical_identity": "UNKNOWN",
+      "independent_physical_device_count": null
+    },
+    {
+      "group_id": "env-003",
+      "member_bundles": [
+        "20260812_cdp_api36_formal_v1",
+        "20260812_stealth_api36_formal_v2",
+        "20260823_api36_no_attack_temporal_v1",
+        "20260823_api36_rule_boundary_cdp_platform_only_v1",
+        "20260823_api36_rule_boundary_cdp_resource_pair_v1",
+        "20260823_api36_rule_boundary_cdp_ua_only_v1",
+        "20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1",
+        "20260823_api36_rule_boundary_cdp_webdriver_only_v1",
+        "20260823_api36_rule_boundary_no_attack_v2",
+        "20260823_cdp_api36_controlled_v1",
+        "20260823_playwright_api36_controlled_v1",
+        "20260823_playwright_api36_controlled_v2",
+        "20260823_stealth_api36_controlled_v1",
+        "20260824_api36_cdp_emulation_v5_no_attack_v1",
+        "20260824_api36_cdp_emulation_v5_screen_metrics_only_v1",
+        "20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1",
+        "20260824_api36_stealth_boundary_no_attack_v1",
+        "20260824_api36_stealth_languages_only_v1",
+        "20260824_api36_stealth_plugins_mime_v1",
+        "20260824_api36_stealth_webgl_pair_v1_rerun1"
+      ],
+      "collector_install_ids": [
+        "0492da06-a60e-4b63-8a36-c59bb6078953"
+      ],
+      "device_aliases": [
+        "api36-research-emulator-01",
+        "hybridguard-api36-research-avd-v1"
+      ],
+      "physical_identity": "UNKNOWN",
+      "independent_physical_device_count": null
+    }
+  ],
+  "source_rules": [
+    "transitive closure over install/stable-key/alias/run-capture links",
+    "same API/model/adb serial/backend staging is not an identity link",
+    "alias-only links are conservative association, not verified identity"
+  ],
+  "phase_associations_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/phase_associations.json",
+  "phase_association_count": 88,
+  "membership_generator": "hybridguard_agent/scripts/prepare_rule_learning_r01.py",
+  "all_bundle_stages_same_side": true,
+  "seed": 20260924,
+  "shuffle": false
+}

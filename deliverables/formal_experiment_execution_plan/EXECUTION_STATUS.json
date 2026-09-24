@@ -9,11 +9,13 @@
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "NEW_MAINLINE_PLANNED_NO_R_STEP_EXECUTED",
+  "experiment_execution_status": "R01_COMPLETE_PENDING_USER_ACCEPTANCE_NO_TRAINING_OR_PREDICTION",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
-    "research_execution_authorized": false,
+    "research_execution_authorized": true,
+    "authorized_steps": ["R01"],
+    "authorization_scope": "R01_STATIC_PROTOCOL_METADATA_AND_FOCUSED_SYNTHETIC_CHECKS_ONLY",
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
     "auto_git_commit_or_push_for_future_steps": false,
@@ -23,7 +25,7 @@
     "model_fits_this_documentation_change": 0,
     "upstream_rebuilds_this_documentation_change": 0,
     "new_collection_or_attack_execution_this_documentation_change": 0,
-    "notes": "This is a documentation/scheduling change, not approval to run R01 or any experiment. Future code/data work requires its own explicit step authorization."
+    "notes": "The user subsequently authorized R01 only. R01 is complete locally and awaits user acceptance. R02-R10, legacy S07, training, predictions, collection, attack execution and Git delivery remain unauthorized. Earlier documentation authorization is preserved in history."
   },
   "legacy_archive": {
     "schema_version": "formal-experiment-execution-status-v1",
@@ -73,20 +75,47 @@
     "artifacts": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924",
     "config": "hybridguard_agent/config/rule_learning_v1_20260924",
     "implementation": "hybridguard_agent/research/rule_learning",
-    "exists_or_implemented_claim": false
+    "exists_or_implemented_claim": true,
+    "existing_scope": "R01_CONFIG_AND_PROTOCOL_ARTIFACTS_ONLY",
+    "learner_implementation_exists": false
   },
   "steps": [
     {
       "id": "R01",
       "name": "新协议、候选语法与分组/数据角色冻结",
       "depends_on": [],
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "acceptance_status": "NOT_RUN",
+      "status": "DONE",
+      "authorized": true,
+      "acceptance_status": "PASS_STATIC_AND_SYNTHETIC_ONLY",
+      "user_acceptance": "PENDING",
+      "execution_basis_commit": "cbd9f5a",
+      "completed_on": "2026-09-24",
+      "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
       "output_directory": "R01_protocol",
-      "artifacts": [],
+      "artifacts": [
+        "hybridguard_agent/config/rule_learning_v1_20260924/study_protocol.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/candidate_grammar.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/measurement_contract.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/split_policy.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/metric_spec.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/experiment_matrix.json",
+        "hybridguard_agent/config/rule_learning_v1_20260924/figure_spec.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/STEP_REPORT.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/DATA_ROLE_LEDGER.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/CANDIDATE_LEDGER.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/GROUP_SUPPORT.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/SPLIT_MEMBERSHIP.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/FOLD_MANIFEST.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/SPLIT_FEASIBILITY.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/EXPOSURE_HISTORY.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/REFERENCE_READING.md"
+      ],
       "blockers": [],
-      "acceptance_summary": "Freeze data roles, candidate grammar, T/F/U semantics, split feasibility, finite learning/search and evaluation contracts before model selection."
+      "branch_limits": {"mechanism_holdout": "NOT_EVALUABLE_UNVERIFIED_PARTITION", "prospective_confirmation": "NOT_AVAILABLE", "actual_relation_coverage_and_model_feasibility": "NOT_EVALUATED"},
+      "execution_counts": {"real_fits": 0, "real_predictions": 0, "detector_calls": 0, "upstream_rebuilds": 0, "full_outcome_rankings": 0},
+      "acceptance_summary": "57 ACTIVE reconciled; 20 cross-surface relations, 12 structurally supported by App177 and 10 canonical identities before fitting. All 262 stages and 31 bundles accounted. Three fixed-parameter environment folds plus fourteen shared-environment configuration folds frozen. Alpha=0.05, coverage>=0.8, finite OR/DNF2 and metric/figure contracts validated. R02 awaits user acceptance and separate authorization."
     },
     {
       "id": "R02",
@@ -199,9 +228,9 @@
       "acceptance_summary": "Each claim/figure binds saved results and its actual evidence scope; incomplete branches stay explicit; P6 is saved-output reuse only."
     }
   ],
-  "next_authorization_step": "R01",
-  "next_authorization_instruction": "执行 R01",
-  "next_step_scope": "Protocol, candidate grammar and grouped evaluation feasibility only. No real model fitting, new predictions or legacy S07 execution.",
+  "next_authorization_step": "R02",
+  "next_authorization_instruction": "验收 R01 后，执行 R02",
+  "next_step_scope": "R02 state-aware matrix and leakage isolation only, after separate authorization. R01 completion does not authorize R02, model fitting, detection prediction, legacy S07 or Git delivery.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -216,6 +245,23 @@
       "authority": "User approved the data-driven research direction and requested a mainline document, execution-plan update and pull request.",
       "research_steps_started": [],
       "algorithms_or_data_modified": false
+    },
+    {
+      "event": "R01_AUTHORIZED_AND_COMPLETED_STATIC_PROTOCOL",
+      "date": "2026-09-24",
+      "authority": "User pasted the explicit R01-only request; finish and stop for acceptance without R02, commit, push or PR.",
+      "execution_basis_commit": "cbd9f5a",
+      "step": "R01",
+      "status": "DONE",
+      "acceptance_status": "PASS_STATIC_AND_SYNTHETIC_ONLY",
+      "user_acceptance": "PENDING",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/VALIDATION.json",
+      "real_fits": 0,
+      "real_predictions": 0,
+      "legacy_results_or_frozen_files_modified": false,
+      "next_step_auto_started": false,
+      "git_commit_push_pr": false
     }
   ]
 }
