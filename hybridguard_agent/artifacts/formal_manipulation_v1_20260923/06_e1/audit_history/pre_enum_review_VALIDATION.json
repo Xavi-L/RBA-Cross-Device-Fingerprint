@@ -1,0 +1,338 @@
+{
+  "schema_version": "s06-saved-output-validation-v1",
+  "status": "PASS",
+  "at": "2026-09-24T05:03:01.482794+00:00",
+  "scope": "SAVED_OUTPUT_ACCOUNTING_ONLY_NO_DETECTOR_OR_VERIFIER_REEXECUTION",
+  "run_id": "s06-e1-freeze-r1-20260924T044354Z",
+  "review_commit": "f3f934d0f93d72e16b3d97e4e390796065e5fff8",
+  "freeze_revision": "formal-manipulation-freeze-r1",
+  "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "policy_version": "formal-manipulation-family-or-v2",
+  "expected_units": 432,
+  "actual_unique_units": 432,
+  "rule_events": 22896,
+  "runtime_records": 432,
+  "evaluation_rows": 432,
+  "configuration_rows": 40,
+  "failures": 0,
+  "abstentions": 0,
+  "checks_passed": 23,
+  "checks": [
+    {
+      "name": "exact_static_unit_binding",
+      "status": "PASS",
+      "detail": "432 unique method-stage units; 216 unique stages; same frozen order and two App177/SRC-111 variants"
+    },
+    {
+      "name": "historical_authorization_preserved",
+      "status": "PASS",
+      "detail": "Only new job carries this S06 authorization"
+    },
+    {
+      "name": "job_and_version_binding",
+      "status": "PASS",
+      "detail": "Explicit r1 / v2 binding; no schema or policy fallback"
+    },
+    {
+      "name": "frozen_startup_validation",
+      "status": "PASS",
+      "detail": {
+        "bound_file_count": 154,
+        "source_count": 48,
+        "resource_count": 28,
+        "semantic_invariance": "PASS"
+      }
+    },
+    {
+      "name": "predictions_exact_once",
+      "status": "PASS",
+      "detail": "No missing, duplicate, substituted or extra units"
+    },
+    {
+      "name": "prediction_binding_and_no_evaluation_metadata",
+      "status": "PASS",
+      "detail": "Prediction envelope has only job identity and worker outputs"
+    },
+    {
+      "name": "single_attempt_receipts",
+      "status": "PASS",
+      "detail": "432 returns, one attempt each; no automatic retries"
+    },
+    {
+      "name": "complete_original_rule_events",
+      "status": "PASS",
+      "detail": {
+        "rows": 22896,
+        "final_catalog_per_unit": 87,
+        "legacy_catalog_per_unit": 19,
+        "final_ACTIVE_rules": 57,
+        "includes_non_active_dispositions": true
+      }
+    },
+    {
+      "name": "saved_runtime_and_verifier_results",
+      "status": "PASS",
+      "detail": {
+        "runtime_rows": 432,
+        "saved_original_and_risk_verifiers_valid": true,
+        "verifier_reexecutions_in_this_check": 0
+      }
+    },
+    {
+      "name": "failure_and_abstention_accounting",
+      "status": "PASS",
+      "detail": {
+        "failure_rows": 0,
+        "abstention_rows": 0,
+        "empty_files_retained": true
+      }
+    },
+    {
+      "name": "runtime_sources_configs_resources",
+      "status": "PASS",
+      "detail": {
+        "prediction_modules": 36,
+        "evaluation_modules": 16,
+        "resource_count": 28,
+        "actual_paths": "PREDICT_PROCESS_AUDIT.json / EVALUATE_PROCESS_AUDIT.json"
+      }
+    },
+    {
+      "name": "isolated_subprocesses",
+      "status": "PASS",
+      "detail": "Separate -I -B -S interpreters; empty cwd; frozen runtime plus standard library"
+    },
+    {
+      "name": "full_chain_without_evaluation_reexecution",
+      "status": "PASS",
+      "detail": "Original Verifiers recompute internally; 432 experimental worker calls, no second experimental pass"
+    },
+    {
+      "name": "worker_evaluation_isolation",
+      "status": "PASS",
+      "detail": "Allowed current-session payload only; job identity stays in scheduler; independent facts opened only by evaluation"
+    },
+    {
+      "name": "closure_precedes_fact_join",
+      "status": "PASS",
+      "detail": {
+        "prediction_closed": "2026-09-24T04:44:53.914992+00:00",
+        "accounting_closed_and_join_enabled": "2026-09-24T04:46:13.360487+00:00"
+      }
+    },
+    {
+      "name": "independent_join_exact_units",
+      "status": "PASS",
+      "detail": "432 rows joined without replacing any saved decision"
+    },
+    {
+      "name": "frozen_denominators_and_metric_arithmetic",
+      "status": "PASS",
+      "detail": {
+        "final_v3_v2:App177:SRC-111": {
+          "positive_TPR": {
+            "n": 54,
+            "alert": 0,
+            "no_alert": 54,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "clean_pre_FPR": {
+            "n": 54,
+            "alert": 0,
+            "no_alert": 54,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "clean_post_FPR": {
+            "n": 54,
+            "alert": 0,
+            "no_alert": 54,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "verified_negative_all": {
+            "n": 108,
+            "alert": 0,
+            "no_alert": 108,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "primary_control_mid_FPR": {
+            "n": 0,
+            "alert": 0,
+            "no_alert": 0,
+            "abstain": 0,
+            "failed": 0,
+            "rate": null,
+            "status": "NOT_EVALUATED_NO_ELIGIBLE_LABELS"
+          }
+        },
+        "legacy19_v2:App177:SRC-111": {
+          "positive_TPR": {
+            "n": 54,
+            "alert": 0,
+            "no_alert": 54,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "clean_pre_FPR": {
+            "n": 54,
+            "alert": 0,
+            "no_alert": 54,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "clean_post_FPR": {
+            "n": 54,
+            "alert": 0,
+            "no_alert": 54,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "verified_negative_all": {
+            "n": 108,
+            "alert": 0,
+            "no_alert": 108,
+            "abstain": 0,
+            "failed": 0,
+            "rate": 0.0,
+            "status": "COMPLETE"
+          },
+          "primary_control_mid_FPR": {
+            "n": 0,
+            "alert": 0,
+            "no_alert": 0,
+            "abstain": 0,
+            "failed": 0,
+            "rate": null,
+            "status": "NOT_EVALUATED_NO_ELIGIBLE_LABELS"
+          }
+        }
+      }
+    },
+    {
+      "name": "temporal_truth_unknown_and_FPR_unavailable",
+      "status": "PASS",
+      "detail": "54 UNKNOWN temporal stages per method; 18 midpoints per method; eligible FPR denominator 0, not observed 0%"
+    },
+    {
+      "name": "triplet_and_temporal_traceability",
+      "status": "PASS",
+      "detail": "Every phase points to a saved independent unit; eligible 010 denominator 54 per method; all 18 temporal trajectories per method retained"
+    },
+    {
+      "name": "configuration_and_unit_long_tables",
+      "status": "PASS",
+      "detail": "14 admitted attack configurations + 6 UNKNOWN controls, separately per method; all 432 unit reasons retained"
+    },
+    {
+      "name": "bounded_risk_claims",
+      "status": "PASS",
+      "detail": "Frozen family OR threshold 1; no inferred attack truth/probability or source contribution"
+    },
+    {
+      "name": "historical_files_unchanged",
+      "status": "PASS",
+      "detail": {
+        "registered_files": 519,
+        "changed": [],
+        "scope": "S01/S02/S03/S03-R/S04/S05/S05-R artifact and acceptance file size/mtime; no regeneration"
+      }
+    },
+    {
+      "name": "git_scope_and_stop_boundary",
+      "status": "PASS",
+      "detail": {
+        "existing_dirty_entries_preserved": 270,
+        "unexpected_new_changes": [],
+        "head": "f3f934d0f93d72e16b3d97e4e390796065e5fff8",
+        "index_empty": true,
+        "no_new_S07_S08_S10_paths": true
+      }
+    }
+  ],
+  "performance_is_not_an_acceptance_threshold": true,
+  "scientific_result": {
+    "final_v3_v2:App177:SRC-111": {
+      "attack": {
+        "n": 54,
+        "alert": 0,
+        "no_alert": 54,
+        "abstain": 0,
+        "failed": 0,
+        "rate": 0.0,
+        "decision_coverage": 1.0,
+        "conditional_rate": 0.0,
+        "identifiable_bounds": [
+          0.0,
+          0.0
+        ],
+        "status": "COMPLETE",
+        "interval_method": "NO_POPULATION_CI_RELATED_ENVIRONMENT_GROUPS",
+        "zero_wording": "0/54 observed"
+      },
+      "triplets": {
+        "n": 54,
+        "success_010": 0,
+        "rate_010": 0.0,
+        "incomplete": 0,
+        "active_alert_denominator": 0,
+        "recovered_after_alert": 0,
+        "conditional_recovery_rate": null,
+        "status": "COMPLETE"
+      }
+    },
+    "legacy19_v2:App177:SRC-111": {
+      "attack": {
+        "n": 54,
+        "alert": 0,
+        "no_alert": 54,
+        "abstain": 0,
+        "failed": 0,
+        "rate": 0.0,
+        "decision_coverage": 1.0,
+        "conditional_rate": 0.0,
+        "identifiable_bounds": [
+          0.0,
+          0.0
+        ],
+        "status": "COMPLETE",
+        "interval_method": "NO_POPULATION_CI_RELATED_ENVIRONMENT_GROUPS",
+        "zero_wording": "0/54 observed"
+      },
+      "triplets": {
+        "n": 54,
+        "success_010": 0,
+        "rate_010": 0.0,
+        "incomplete": 0,
+        "active_alert_denominator": 0,
+        "recovered_after_alert": 0,
+        "conditional_recovery_rate": null,
+        "status": "COMPLETE"
+      }
+    }
+  },
+  "actual_experimental_worker_calls": 432,
+  "detector_calls_during_this_validation": 0,
+  "LLM_calls": 0,
+  "synthetic_calls_this_step": 0,
+  "upstream_reruns": 0,
+  "S07_executed": false,
+  "commit_or_push": false
+}

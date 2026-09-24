@@ -1,0 +1,25 @@
+S06 saved-output consistency checks; no detector, Verifier, synthetic or upstream replay.
+PASS exact_static_unit_binding: "432 unique method-stage units; 216 unique stages; same frozen order and two App177/SRC-111 variants"
+PASS historical_authorization_preserved: "Only new job carries this S06 authorization"
+PASS job_and_version_binding: "Explicit r1 / v2 binding; no schema or policy fallback"
+PASS frozen_startup_validation: {"bound_file_count": 154, "source_count": 48, "resource_count": 28, "semantic_invariance": "PASS"}
+PASS predictions_exact_once: "No missing, duplicate, substituted or extra units"
+PASS prediction_binding_and_no_evaluation_metadata: "Prediction envelope has only job identity and worker outputs"
+PASS single_attempt_receipts: "432 returns, one attempt each; no automatic retries"
+PASS complete_original_rule_events: {"rows": 22896, "final_catalog_per_unit": 87, "legacy_catalog_per_unit": 19, "final_ACTIVE_rules": 57, "includes_non_active_dispositions": true}
+PASS saved_runtime_and_verifier_results: {"runtime_rows": 432, "saved_original_and_risk_verifiers_valid": true, "verifier_reexecutions_in_this_check": 0}
+PASS failure_and_abstention_accounting: {"failure_rows": 0, "abstention_rows": 0, "empty_files_retained": true}
+PASS runtime_sources_configs_resources: {"prediction_modules": 36, "evaluation_modules": 16, "resource_count": 28, "actual_paths": "PREDICT_PROCESS_AUDIT.json / EVALUATE_PROCESS_AUDIT.json"}
+PASS isolated_subprocesses: "Separate -I -B -S interpreters; empty cwd; frozen runtime plus standard library"
+PASS full_chain_without_evaluation_reexecution: "Original Verifiers recompute internally; 432 experimental worker calls, no second experimental pass"
+PASS worker_evaluation_isolation: "Allowed current-session payload only; job identity stays in scheduler; independent facts opened only by evaluation"
+PASS closure_precedes_fact_join: {"prediction_closed": "2026-09-24T04:44:53.914992+00:00", "accounting_closed_and_join_enabled": "2026-09-24T04:46:13.360487+00:00"}
+PASS independent_join_exact_units: "432 rows joined without replacing any saved decision"
+PASS frozen_denominators_and_metric_arithmetic: {"final_v3_v2:App177:SRC-111": {"positive_TPR": {"n": 54, "alert": 0, "no_alert": 54, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "clean_pre_FPR": {"n": 54, "alert": 0, "no_alert": 54, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "clean_post_FPR": {"n": 54, "alert": 0, "no_alert": 54, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "verified_negative_all": {"n": 108, "alert": 0, "no_alert": 108, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "primary_control_mid_FPR": {"n": 0, "alert": 0, "no_alert": 0, "abstain": 0, "failed": 0, "rate": null, "status": "NOT_EVALUATED_NO_ELIGIBLE_LABELS"}}, "legacy19_v2:App177:SRC-111": {"positive_TPR": {"n": 54, "alert": 0, "no_alert": 54, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "clean_pre_FPR": {"n": 54, "alert": 0, "no_alert": 54, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "clean_post_FPR": {"n": 54, "alert": 0, "no_alert": 54, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "verified_negative_all": {"n": 108, "alert": 0, "no_alert": 108, "abstain": 0, "failed": 0, "rate": 0.0, "status": "COMPLETE"}, "primary_control_mid_FPR": {"n": 0, "alert": 0, "no_alert": 0, "abstain": 0, "failed": 0, "rate": null, "status": "NOT_EVALUATED_NO_ELIGIBLE_LABELS"}}}
+PASS temporal_truth_unknown_and_FPR_unavailable: "54 UNKNOWN temporal stages per method; 18 midpoints per method; eligible FPR denominator 0, not observed 0%"
+PASS triplet_and_temporal_traceability: "Every phase points to a saved independent unit; eligible 010 denominator 54 per method; all 18 temporal trajectories per method retained"
+PASS configuration_and_unit_long_tables: "14 admitted attack configurations + 6 UNKNOWN controls, separately per method; all 432 unit reasons retained"
+PASS bounded_risk_claims: "Frozen family OR threshold 1; no inferred attack truth/probability or source contribution"
+PASS historical_files_unchanged: {"registered_files": 519, "changed": [], "scope": "S01/S02/S03/S03-R/S04/S05/S05-R artifact and acceptance file size/mtime; no regeneration"}
+PASS git_scope_and_stop_boundary: {"existing_dirty_entries_preserved": 270, "unexpected_new_changes": [], "head": "f3f934d0f93d72e16b3d97e4e390796065e5fff8", "index_empty": true, "no_new_S07_S08_S10_paths": true}
+RESULT: 23/23 PASS. No performance-based acceptance threshold.
