@@ -1,0 +1,16 @@
+{
+  "schema_version": "rule-learning-exposure-history-v1",
+  "study_version": "discriminative-rule-learning-v1-20260924",
+  "recorded_on": "2026-09-24",
+  "current_claim_scope": "EXPOSED_RETROSPECTIVE_DEVELOPMENT_AND_GROUPED_EVALUATION",
+  "events": [
+    {"id": "MTC_PRIOR_QC_AND_DISCOVERY", "when": "PRIOR_TO_R01", "material": "MTC_P0_P6", "exposure": "QC, relation discovery, empirical screening and fixed comparison already performed", "source": "hybridguard_agent/artifacts/mtc_p6_fixed_20260923/p2_control/summary.json", "screening_lineage": "PER_RULE_IN_CANDIDATE_LEDGER", "original_holdout_becomes_new_blind_test": false},
+    {"id": "MTC_RESERVED_CONSUMED", "when": "PRIOR_TO_R01", "material": "P6_reserved_validation", "source": "hybridguard_agent/artifacts/mtc_p6_fixed_20260923/RESERVED_FIRST_READ.json", "current_role": "REFERENCE_ONLY_NO_ATTACK_OR_CLEAN_TRUTH"},
+    {"id": "S01_S03R", "when": "PRIOR_TO_R01", "exposure": "all admission metadata, field mappings, source and semantic role decisions available", "labels_changed_R01": false},
+    {"id": "S06_FULL_SAVED_RESULTS", "when": "PRIOR_TO_R01", "exposure": "manual policies and full-event summaries informed the research direction", "saved_summary": {"attack_alerts_each_method": "0/54", "exact_010_each_method": "0/54", "attack_stages_with_non_candidate_counterexamples_each_method": "36/54"}, "source": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/06_e1/STEP_REPORT.md", "counterexamples_are_new_detector_TPR": false},
+    {"id": "R01_READS", "when": "2026-09-24", "scope": ["current mainline, plan, status and bibliography", "S01 facts/groups/materials", "S02 metadata, field mapping and associations", "S03/S03-R provenance and role history", "57 ACTIVE catalog definitions and targeted predicate/collector source", "S06 report and bounded event schema example", "P6 saved role/count/access metadata", "linked primary paper and author slides"], "full_event_matrix_constructed": false, "per_rule_full_label_performance_computed": false, "thresholds_or_rules_ranked_on_full_data": false, "real_fit_count": 0, "real_prediction_count": 0, "dependency_validators_rerun": 0}
+  ],
+  "future_access_policy": {"outer_train": ["fit", "support", "thresholds", "selection", "pruning"], "outer_test_before_model_freeze": ["metadata_counts_and_association_checks_only"], "outer_test_after_model_freeze": ["fixed_transform", "predict", "evaluate"], "any_feedback_driven_revision": "NEW_PROTOCOL_VERSION_EXPLORATORY_ITERATION", "repartition_restores_blinding": false},
+  "prospective_confirmation": {"status": "NOT_AVAILABLE", "all_current_material_ineligible": true, "new_collection_authorized": false},
+  "history_limits": ["legacy empirical screening is not fully recorded for some E rules; preserve UNKNOWN history", "prior exposure is not undone by fold isolation", "S01 label evidence is not independent physical identity attestation"]
+}

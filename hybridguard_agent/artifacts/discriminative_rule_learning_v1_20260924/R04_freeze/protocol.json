@@ -1,0 +1,162 @@
+{
+  "R05_counts": {
+    "fits": 27,
+    "models": 39,
+    "predictions": 2106
+  },
+  "budget": {
+    "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+    "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+    "max_fit_jobs": 200,
+    "max_solver_threads": 1,
+    "priority": [
+      "R05_PRIMARY",
+      "R06_SOURCE_REFIT",
+      "R07_SINGLE_SURFACE_REFIT",
+      "R08_CONFIG_TRANSFER",
+      "SENSITIVITY"
+    ],
+    "wall_clock_seconds": 21600
+  },
+  "data_indices": {
+    "BUILTIN_SYNTHETIC": "synthetic/DATA_INDEX.json",
+    "R02_FIXED_CACHE": "DATA_INDEX.json"
+  },
+  "fit_slots_before_SRC111_reuse": 75,
+  "global_budget_ledger": "one persistent exclusive ledger per freeze across all later stages; no automatic retries",
+  "history_proof_counts": {
+    "EXACT_INPUT_AND_METHOD_MATCH": 216,
+    "UNAVAILABLE_OR_CONTRACT_MISMATCH": 46
+  },
+  "io_overhead_seconds_per_job_cap": 30,
+  "model_units": 115,
+  "prediction_units": 4374,
+  "priority_tie_break": "priority then lexicographic exact job_id; no result adaptation",
+  "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+  "real_data_rows": 262,
+  "real_execution_authorized": false,
+  "reserved_nonfit_units": {
+    "R06_POSTFIT_DELETE": {
+      "base_models": [
+        "R05_PRIMARY__LOEO-v1-01__GREEDY_OR__OP05__SRC-111__core",
+        "R05_PRIMARY__LOEO-v1-02__GREEDY_OR__OP05__SRC-111__core",
+        "R05_PRIMARY__LOEO-v1-03__GREEDY_OR__OP05__SRC-111__core"
+      ],
+      "source_removals": [
+        "E",
+        "O_u",
+        "H"
+      ],
+      "state": "NOT_RUN_INTERFACE_RESERVED_FOR_R06"
+    },
+    "R07_FIXED_MODEL_MASK": {
+      "base_models": [
+        "R05_PRIMARY__LOEO-v1-01__GREEDY_OR__OP05__SRC-111__core",
+        "R05_PRIMARY__LOEO-v1-02__GREEDY_OR__OP05__SRC-111__core",
+        "R05_PRIMARY__LOEO-v1-03__GREEDY_OR__OP05__SRC-111__core"
+      ],
+      "removed_surfaces": [
+        "native84",
+        "app_web67",
+        "host26"
+      ],
+      "state": "NOT_RUN_INTERFACE_RESERVED_FOR_R07"
+    },
+    "R09_COST": {
+      "spec_ref": "snapshot/hybridguard_agent/config/rule_learning_v1_20260924/experiment_matrix.json#R09_COST",
+      "state": "NOT_RUN_TIMING_DRIVER_RESERVED_FOR_R09"
+    }
+  },
+  "reviewed_commit": "a1d8695b832850f1807d2af6a1dd1ea1bc99f63c",
+  "schema_version": "r04-job-freeze-v1",
+  "separately_closed_branches": {
+    "R08_MECHANISM": "NOT_EVALUABLE_UNVERIFIED_MECHANISM_PARTITION",
+    "R08_PROSPECTIVE": "NOT_AVAILABLE"
+  },
+  "synthetic_suites": {
+    "budget_count": {
+      "budget": {
+        "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+        "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+        "max_fit_jobs": 1,
+        "max_solver_threads": 1,
+        "priority": [
+          "R05_PRIMARY",
+          "R06_SOURCE_REFIT",
+          "R07_SINGLE_SURFACE_REFIT",
+          "R08_CONFIG_TRANSFER",
+          "SENSITIVITY"
+        ],
+        "wall_clock_seconds": 21600
+      },
+      "job_ids": [
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core"
+      ]
+    },
+    "budget_time": {
+      "budget": {
+        "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+        "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+        "max_fit_jobs": 200,
+        "max_solver_threads": 1,
+        "priority": [
+          "R05_PRIMARY",
+          "R06_SOURCE_REFIT",
+          "R07_SINGLE_SURFACE_REFIT",
+          "R08_CONFIG_TRANSFER",
+          "SENSITIVITY"
+        ],
+        "wall_clock_seconds": 0
+      },
+      "job_ids": [
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core"
+      ]
+    },
+    "complete": {
+      "budget": {
+        "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+        "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+        "max_fit_jobs": 200,
+        "max_solver_threads": 1,
+        "priority": [
+          "R05_PRIMARY",
+          "R06_SOURCE_REFIT",
+          "R07_SINGLE_SURFACE_REFIT",
+          "R08_CONFIG_TRANSFER",
+          "SENSITIVITY"
+        ],
+        "wall_clock_seconds": 21600
+      },
+      "job_ids": [
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_complementary_test_labels__SYNTHETIC-complementary_test_labels-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_and_required__SYNTHETIC-and_required-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_and_required__SYNTHETIC-and_required-1__FINITE_IP_OR__OP05__SRC-111__core",
+        "SYNTHETIC_and_required__SYNTHETIC-and_required-1__FINITE_IP_DNF2__OP05__SRC-111__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__GREEDY_OR__OP05__SRC-000__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__GREEDY_OR__OP05__SRC-001__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__GREEDY_OR__OP05__SRC-010__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__DIRECT_CORE_OR__NOT_APPLICABLE__SRC-111__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__HISTORICAL_SEVEN__NOT_APPLICABLE__SRC-111__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__ALWAYS_NO_ALERT__NOT_APPLICABLE__SRC-111__core",
+        "SYNTHETIC_aliases__SYNTHETIC-aliases-1__ALWAYS_ABSTAIN__NOT_APPLICABLE__SRC-111__core",
+        "SYNTHETIC_numeric__SYNTHETIC-numeric-1__GREEDY_OR__OP05__SRC-111__native84",
+        "SYNTHETIC_numeric_test_extreme__SYNTHETIC-numeric_test_extreme-1__GREEDY_OR__OP05__SRC-111__native84",
+        "SYNTHETIC_negative__SYNTHETIC-negative-1__GREEDY_OR__OP05__SRC-111__core",
+        "SYNTHETIC_infeasible__SYNTHETIC-infeasible-1__FINITE_IP_OR__OP05__SRC-111__core",
+        "SYNTHETIC_cap_overflow__SYNTHETIC-cap_overflow-1__FINITE_IP_DNF2__OP05__SRC-111__core",
+        "SYNTHETIC_REUSE__SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core"
+      ]
+    }
+  },
+  "unimplemented_later_experiment_interfaces": [
+    "R06_POSTFIT_DELETE",
+    "R07_FIXED_MODEL_MASK",
+    "R09_COST_TIMING_DRIVER"
+  ],
+  "unique_fit_jobs": 72
+}

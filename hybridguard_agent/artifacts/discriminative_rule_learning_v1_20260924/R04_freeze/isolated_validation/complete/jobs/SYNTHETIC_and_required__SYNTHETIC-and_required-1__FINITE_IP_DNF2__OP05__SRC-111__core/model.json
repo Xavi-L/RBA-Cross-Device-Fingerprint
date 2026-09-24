@@ -1,0 +1,218 @@
+{
+  "method_id": "FINITE_IP_DNF2",
+  "status": "FITTED",
+  "clauses": [
+    {
+      "literals": [
+        {
+          "atom_id": "A",
+          "polarity": "POSITIVE"
+        },
+        {
+          "atom_id": "B",
+          "polarity": "POSITIVE"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "A",
+      "family": "A",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "A"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "fixture_only": true
+      }
+    },
+    {
+      "atom_id": "B",
+      "family": "B",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "B"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "fixture_only": true
+      }
+    }
+  ],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "split_id": "SYNTHETIC-R04",
+    "fold_id": "SYNTHETIC-and_required-1",
+    "method_id": "FINITE_IP_DNF2",
+    "operating_point": "OP05",
+    "source_condition": "SRC-111",
+    "input_view": "core",
+    "data_origin": "BUILTIN_SYNTHETIC",
+    "model_unit_id": "SYNTHETIC_and_required__SYNTHETIC-and_required-1__FINITE_IP_DNF2__OP05__SRC-111__core",
+    "fit_job_id": "SYNTHETIC_and_required__SYNTHETIC-and_required-1__FINITE_IP_DNF2__OP05__SRC-111__core",
+    "train_membership_digest": "3cfb6c931d1a8b0777e3c77fad11e37d7cbd7da7de9768dfe649ff25113d9e84",
+    "input_manifest_ref": "synthetic/DATA_INDEX.json",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "freeze_manifest_digest": "84e3744281fb6f562227a5f11ed08fd27a7bffe8b92cab2c3163a731846869c3",
+    "resource_manifest_digest": "a39856960ad0a530dce7789f7b8aaed8fc4bfcfd2a1cc350464b159b1549e1e4",
+    "authorization_ref": "AUTHORIZATION.json#SYNTHETIC_R04",
+    "job_digest": "8194c129209a32be7a26eb1400677e59a7cbebd5e2e7cc31260b5b3015f954c6"
+  },
+  "view": {
+    "kind": "CANONICAL_DEVIATION",
+    "source_condition": "SRC-111",
+    "view_id": "SYNTHETIC_CORE",
+    "input_atom_ids": [
+      "A",
+      "B"
+    ]
+  },
+  "fit": {
+    "available": true,
+    "solver": "HiGHS",
+    "version": "1.12.0",
+    "numpy": "2.3.5",
+    "threads": 1,
+    "mip_rel_gap": 0.0,
+    "mip_abs_gap": 0.0,
+    "mip_feasibility_tolerance": 1e-09,
+    "status": "OPTIMAL_FINITE_POOL",
+    "best_bound": 0.985,
+    "gap": 0.0,
+    "infeasibility_proved": false,
+    "primary_optimal": true,
+    "tie_break_complete": true,
+    "objective_integer_scale": 600,
+    "optimality_scope": "FINITE_SUPPORTED_POOL_ONLY",
+    "column_generation": false,
+    "train_ids": [
+      "fixture-r04-and_required-1-fixture-and_required-train-0-clean_pre",
+      "fixture-r04-and_required-1-fixture-and_required-train-0-attack",
+      "fixture-r04-and_required-1-fixture-and_required-train-0-clean_post",
+      "fixture-r04-and_required-1-fixture-and_required-train-1-clean_pre",
+      "fixture-r04-and_required-1-fixture-and_required-train-1-attack",
+      "fixture-r04-and_required-1-fixture-and_required-train-1-clean_post",
+      "fixture-r04-and_required-1-fixture-and_required-train-2-clean_pre",
+      "fixture-r04-and_required-1-fixture-and_required-train-2-attack",
+      "fixture-r04-and_required-1-fixture-and_required-train-2-clean_post",
+      "fixture-r04-and_required-1-fixture-and_required-train-3-clean_pre",
+      "fixture-r04-and_required-1-fixture-and_required-train-3-attack",
+      "fixture-r04-and_required-1-fixture-and_required-train-3-clean_post",
+      "fixture-r04-and_required-1-fixture-and_required-train-4-clean_pre",
+      "fixture-r04-and_required-1-fixture-and_required-train-4-attack",
+      "fixture-r04-and_required-1-fixture-and_required-train-4-clean_post",
+      "fixture-r04-and_required-1-fixture-and_required-train-5-clean_pre",
+      "fixture-r04-and_required-1-fixture-and_required-train-5-attack",
+      "fixture-r04-and_required-1-fixture-and_required-train-5-clean_post"
+    ],
+    "train_expected_n": 18,
+    "train_consumed_n": 18,
+    "fit_scope": "SYNTHETIC_ONLY",
+    "fixture_name": "and_required",
+    "fit_job_id": "SYNTHETIC_and_required__SYNTHETIC-and_required-1__FINITE_IP_DNF2__OP05__SRC-111__core",
+    "elapsed_seconds": 0.007100083865225315,
+    "freeze_time": "2026-09-24T10:42:45.675503+00:00",
+    "candidate_pool_size": 3,
+    "registered_clause_count": 8,
+    "clean_budget_count": 0,
+    "clean_denominator": 12,
+    "stratum_denominators": {
+      "clean_pre": 6,
+      "attack": 6,
+      "clean_post": 6
+    },
+    "training_result": {
+      "objective": {
+        "numerator": 197,
+        "denominator": 200,
+        "value": 0.985
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 3,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "A:POSITIVE & B:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "support_scope": "COMPLETE_ADMITTED_TRAIN_TRIPLETS_ONLY"
+  },
+  "encoder": {},
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-2113fda1f9faa9426fe0c99a",
+  "complexity": {
+    "distinct_atoms": 2,
+    "clauses": 1,
+    "literal_occurrences": 2,
+    "objective_complexity": 3,
+    "distinct_families": 2,
+    "distinct_surfaces": 2,
+    "source_union": [
+      "E"
+    ]
+  }
+}

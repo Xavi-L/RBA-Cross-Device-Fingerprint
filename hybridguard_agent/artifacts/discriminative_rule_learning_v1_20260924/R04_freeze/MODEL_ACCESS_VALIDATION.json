@@ -1,0 +1,49 @@
+{
+  "authority": "isolated_validation/FOCUSED_TESTS.txt tests 01/07/08/09/11/12/14/15",
+  "capability_scope": "trusted operator workflow; no OS sandbox or digital-signature claim",
+  "formal_real_request": "denied at stage boundary before any train open",
+  "real_grants_issued": 0,
+  "request_fields_checked": [
+    "stage",
+    "authorization_record_ref",
+    "freeze_manifest_ref",
+    "resource_manifest_ref",
+    "expected_fit_job_ref",
+    "protocol_digest",
+    "split_id",
+    "fold_id",
+    "method_id",
+    "operating_point",
+    "source_condition",
+    "input_view",
+    "train_membership_ref"
+  ],
+  "status": "PASS",
+  "formal_request_evidence": {
+    "check": "formal_request",
+    "matching_request": "R04_REAL_DATA_FIT_NOT_AUTHORIZED",
+    "mutated_fields_denied": 13,
+    "real_train_open_events": 0,
+    "unfitted_real_lineage_descriptor": {
+      "authorization_ref": "AUTHORIZATION.json#R05",
+      "candidate_version": "r01-atoms-v1",
+      "data_origin": "R02_FIXED_CACHE",
+      "fit_job_id": "R05_PRIMARY__LOEO-v1-01__FINITE_IP_DNF2__OP05__SRC-111__core",
+      "fold_id": "LOEO-v1-01",
+      "freeze_manifest_digest": "84e3744281fb6f562227a5f11ed08fd27a7bffe8b92cab2c3163a731846869c3",
+      "input_manifest_ref": "DATA_INDEX.json",
+      "input_view": "core",
+      "job_digest": "23bdb1a4d28b7a71e00f473afa971924e63f21c26c71963ba27bfda6d989e583",
+      "method_id": "FINITE_IP_DNF2",
+      "model_unit_id": "R05_PRIMARY__LOEO-v1-01__FINITE_IP_DNF2__OP05__SRC-111__core",
+      "operating_point": "OP05",
+      "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+      "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+      "resource_manifest_digest": "a39856960ad0a530dce7789f7b8aaed8fc4bfcfd2a1cc350464b159b1549e1e4",
+      "source_condition": "SRC-111",
+      "split_id": "LOEO-v1",
+      "study_version": "discriminative-rule-learning-v1-20260924",
+      "train_membership_digest": "b9cc9b0905b7ca12bc8b4e29a9012d12a01f9b748ff4958553c227aefa4d8e23"
+    }
+  }
+}

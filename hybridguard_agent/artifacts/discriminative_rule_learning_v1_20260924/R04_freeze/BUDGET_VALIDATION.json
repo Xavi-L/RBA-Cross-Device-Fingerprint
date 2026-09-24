@@ -1,0 +1,104 @@
+{
+  "R01_total_budget": {
+    "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+    "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+    "max_fit_jobs": 200,
+    "max_solver_threads": 1,
+    "priority": [
+      "R05_PRIMARY",
+      "R06_SOURCE_REFIT",
+      "R07_SINGLE_SURFACE_REFIT",
+      "R08_CONFIG_TRANSFER",
+      "SENSITIVITY"
+    ],
+    "wall_clock_seconds": 21600
+  },
+  "count_suite": {
+    "budget": {
+      "charged_seconds": 0.9834295420441777,
+      "freeze_digest": "84e3744281fb6f562227a5f11ed08fd27a7bffe8b92cab2c3163a731846869c3",
+      "jobs": {
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core": {
+          "artifact_directory": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze/isolated_validation/budget_count/jobs/SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core",
+          "elapsed_seconds": 0.6376615830231458,
+          "reserved_seconds": 90,
+          "state": "COMPLETED"
+        },
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core": {
+          "state": "NOT_RUN_BUDGET_EXHAUSTED"
+        }
+      },
+      "limits": {
+        "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+        "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+        "max_fit_jobs": 1,
+        "max_solver_threads": 1,
+        "priority": [
+          "R05_PRIMARY",
+          "R06_SOURCE_REFIT",
+          "R07_SINGLE_SURFACE_REFIT",
+          "R08_CONFIG_TRANSFER",
+          "SENSITIVITY"
+        ],
+        "wall_clock_seconds": 21600
+      },
+      "order": [
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core"
+      ],
+      "used_fit_jobs": 1
+    },
+    "jobs": 2,
+    "predictions": 18,
+    "real_fits": 0,
+    "real_predictions": 0,
+    "stage": "SYNTHETIC_R04",
+    "states": [
+      "COMPLETED",
+      "NOT_RUN_BUDGET_EXHAUSTED"
+    ],
+    "suite": "budget_count"
+  },
+  "priority": "fixed priority then exact job_id within the currently authorized stage; later unauthorized stages are never auto-started",
+  "shared_ledger": "persisted with exclusive lock; existing reservations cannot be rerun; crashes retain reservation",
+  "status": "PASS",
+  "time_suite": {
+    "budget": {
+      "charged_seconds": 0.3678684588521719,
+      "freeze_digest": "84e3744281fb6f562227a5f11ed08fd27a7bffe8b92cab2c3163a731846869c3",
+      "jobs": {
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core": {
+          "state": "NOT_RUN_BUDGET_EXHAUSTED"
+        },
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core": {
+          "state": "NOT_RUN_BUDGET_EXHAUSTED"
+        }
+      },
+      "limits": {
+        "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+        "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+        "max_fit_jobs": 200,
+        "max_solver_threads": 1,
+        "priority": [
+          "R05_PRIMARY",
+          "R06_SOURCE_REFIT",
+          "R07_SINGLE_SURFACE_REFIT",
+          "R08_CONFIG_TRANSFER",
+          "SENSITIVITY"
+        ],
+        "wall_clock_seconds": 0
+      },
+      "order": [],
+      "used_fit_jobs": 0
+    },
+    "jobs": 2,
+    "predictions": 18,
+    "real_fits": 0,
+    "real_predictions": 0,
+    "stage": "SYNTHETIC_R04",
+    "states": [
+      "NOT_RUN_BUDGET_EXHAUSTED",
+      "NOT_RUN_BUDGET_EXHAUSTED"
+    ],
+    "suite": "budget_time"
+  }
+}

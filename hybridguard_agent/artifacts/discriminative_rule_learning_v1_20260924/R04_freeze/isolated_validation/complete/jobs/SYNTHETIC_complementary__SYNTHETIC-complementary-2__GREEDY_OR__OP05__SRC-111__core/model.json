@@ -1,0 +1,213 @@
+{
+  "method_id": "GREEDY_OR",
+  "status": "FITTED",
+  "clauses": [
+    {
+      "literals": [
+        {
+          "atom_id": "A",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "B",
+          "polarity": "POSITIVE"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "A",
+      "family": "A",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "A"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "fixture_only": true
+      }
+    },
+    {
+      "atom_id": "B",
+      "family": "B",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "B"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "fixture_only": true
+      }
+    }
+  ],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "split_id": "SYNTHETIC-R04",
+    "fold_id": "SYNTHETIC-complementary-2",
+    "method_id": "GREEDY_OR",
+    "operating_point": "OP05",
+    "source_condition": "SRC-111",
+    "input_view": "core",
+    "data_origin": "BUILTIN_SYNTHETIC",
+    "model_unit_id": "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core",
+    "fit_job_id": "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core",
+    "train_membership_digest": "66b2d2219646b906fa35ab4898a45e8facdc763bf0c534b1d450e3e3f1286ecf",
+    "input_manifest_ref": "synthetic/DATA_INDEX.json",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "freeze_manifest_digest": "84e3744281fb6f562227a5f11ed08fd27a7bffe8b92cab2c3163a731846869c3",
+    "resource_manifest_digest": "a39856960ad0a530dce7789f7b8aaed8fc4bfcfd2a1cc350464b159b1549e1e4",
+    "authorization_ref": "AUTHORIZATION.json#SYNTHETIC_R04",
+    "job_digest": "7fcda04d4559a22e76b57c02a511e7503e7fe1e4d8bcc20dcfb412a8cd088457"
+  },
+  "view": {
+    "kind": "CANONICAL_DEVIATION",
+    "source_condition": "SRC-111",
+    "view_id": "SYNTHETIC_CORE",
+    "input_atom_ids": [
+      "A",
+      "B"
+    ]
+  },
+  "fit": {
+    "status": "HEURISTIC_FEASIBLE",
+    "stop": "no_positive_objective_improvement",
+    "optimality": "NONE",
+    "infeasibility_proved": false,
+    "best_bound": null,
+    "gap": null,
+    "solver": "R03_DETERMINISTIC_GREEDY_V1",
+    "train_ids": [
+      "fixture-r04-complementary-2-fixture-complementary-train-0-clean_pre",
+      "fixture-r04-complementary-2-fixture-complementary-train-0-attack",
+      "fixture-r04-complementary-2-fixture-complementary-train-0-clean_post",
+      "fixture-r04-complementary-2-fixture-complementary-train-1-clean_pre",
+      "fixture-r04-complementary-2-fixture-complementary-train-1-attack",
+      "fixture-r04-complementary-2-fixture-complementary-train-1-clean_post",
+      "fixture-r04-complementary-2-fixture-complementary-train-2-clean_pre",
+      "fixture-r04-complementary-2-fixture-complementary-train-2-attack",
+      "fixture-r04-complementary-2-fixture-complementary-train-2-clean_post",
+      "fixture-r04-complementary-2-fixture-complementary-train-3-clean_pre",
+      "fixture-r04-complementary-2-fixture-complementary-train-3-attack",
+      "fixture-r04-complementary-2-fixture-complementary-train-3-clean_post",
+      "fixture-r04-complementary-2-fixture-complementary-train-4-clean_pre",
+      "fixture-r04-complementary-2-fixture-complementary-train-4-attack",
+      "fixture-r04-complementary-2-fixture-complementary-train-4-clean_post",
+      "fixture-r04-complementary-2-fixture-complementary-train-5-clean_pre",
+      "fixture-r04-complementary-2-fixture-complementary-train-5-attack",
+      "fixture-r04-complementary-2-fixture-complementary-train-5-clean_post"
+    ],
+    "train_expected_n": 18,
+    "train_consumed_n": 18,
+    "fit_scope": "SYNTHETIC_ONLY",
+    "fixture_name": "complementary",
+    "fit_job_id": "SYNTHETIC_complementary__SYNTHETIC-complementary-2__GREEDY_OR__OP05__SRC-111__core",
+    "elapsed_seconds": 0.001180542167276144,
+    "freeze_time": "2026-09-24T10:42:48.779881+00:00",
+    "candidate_pool_size": 4,
+    "registered_clause_count": 4,
+    "clean_budget_count": 0,
+    "clean_denominator": 12,
+    "stratum_denominators": {
+      "clean_pre": 6,
+      "attack": 6,
+      "clean_post": 6
+    },
+    "training_result": {
+      "objective": {
+        "numerator": 49,
+        "denominator": 50,
+        "value": 0.98
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 4,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "A:POSITIVE",
+        "B:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "support_scope": "COMPLETE_ADMITTED_TRAIN_TRIPLETS_ONLY"
+  },
+  "encoder": {},
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-4eb56924eac6df2b7992f0a2",
+  "complexity": {
+    "distinct_atoms": 2,
+    "clauses": 2,
+    "literal_occurrences": 2,
+    "objective_complexity": 4,
+    "distinct_families": 2,
+    "distinct_surfaces": 2,
+    "source_union": [
+      "E"
+    ]
+  }
+}

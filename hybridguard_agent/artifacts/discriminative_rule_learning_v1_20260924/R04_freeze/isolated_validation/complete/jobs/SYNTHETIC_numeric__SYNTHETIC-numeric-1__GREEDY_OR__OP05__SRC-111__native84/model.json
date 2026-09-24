@@ -1,0 +1,231 @@
+{
+  "method_id": "GREEDY_OR",
+  "status": "FITTED",
+  "clauses": [
+    {
+      "literals": [
+        {
+          "atom_id": "CONTROL:native.flag",
+          "polarity": "POSITIVE"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "CONTROL:native.flag",
+      "family": "flag",
+      "surfaces": [
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "CONTROL:native.flag"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "fixture_only": true
+      }
+    }
+  ],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "split_id": "SYNTHETIC-R04",
+    "fold_id": "SYNTHETIC-numeric-1",
+    "method_id": "GREEDY_OR",
+    "operating_point": "OP05",
+    "source_condition": "SRC-111",
+    "input_view": "native84",
+    "data_origin": "BUILTIN_SYNTHETIC",
+    "model_unit_id": "SYNTHETIC_numeric__SYNTHETIC-numeric-1__GREEDY_OR__OP05__SRC-111__native84",
+    "fit_job_id": "SYNTHETIC_numeric__SYNTHETIC-numeric-1__GREEDY_OR__OP05__SRC-111__native84",
+    "train_membership_digest": "9a55ce1e1f10030dfd436de61bd52c0656807a4c686acfa157ec32cb745df7f0",
+    "input_manifest_ref": "synthetic/DATA_INDEX.json",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "freeze_manifest_digest": "84e3744281fb6f562227a5f11ed08fd27a7bffe8b92cab2c3163a731846869c3",
+    "resource_manifest_digest": "a39856960ad0a530dce7789f7b8aaed8fc4bfcfd2a1cc350464b159b1549e1e4",
+    "authorization_ref": "AUTHORIZATION.json#SYNTHETIC_R04",
+    "job_digest": "2025422de0e5c7e64b0ee78bf73bed239f990b312e276f7a8bded2d9984c0f90"
+  },
+  "view": {
+    "view_id": "SINGLE:native84",
+    "kind": "SINGLE_SURFACE",
+    "surface": "native84",
+    "input_atom_ids": [
+      "CONTROL:native.flag",
+      "CONTROL:native.number:LE:12.75",
+      "CONTROL:native.number:LE:4.25",
+      "CONTROL:native.number:LE:8.5"
+    ]
+  },
+  "fit": {
+    "status": "HEURISTIC_FEASIBLE",
+    "stop": "no_positive_objective_improvement",
+    "optimality": "NONE",
+    "infeasibility_proved": false,
+    "best_bound": null,
+    "gap": null,
+    "solver": "R03_DETERMINISTIC_GREEDY_V1",
+    "train_ids": [
+      "fixture-r04-numeric-1-fixture-numeric-train-0-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-0-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-0-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-1-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-1-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-1-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-2-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-2-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-2-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-3-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-3-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-3-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-4-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-4-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-4-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-5-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-5-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-5-clean_post"
+    ],
+    "train_expected_n": 18,
+    "train_consumed_n": 18,
+    "fit_scope": "SYNTHETIC_ONLY",
+    "fixture_name": "numeric",
+    "fit_job_id": "SYNTHETIC_numeric__SYNTHETIC-numeric-1__GREEDY_OR__OP05__SRC-111__native84",
+    "elapsed_seconds": 0.0016061670612543821,
+    "freeze_time": "2026-09-24T10:42:51.235490+00:00",
+    "candidate_pool_size": 7,
+    "registered_clause_count": 8,
+    "clean_budget_count": 0,
+    "clean_denominator": 12,
+    "stratum_denominators": {
+      "clean_pre": 6,
+      "attack": 6,
+      "clean_post": 6
+    },
+    "training_result": {
+      "objective": {
+        "numerator": 99,
+        "denominator": 100,
+        "value": 0.99
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CONTROL:native.flag:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "support_scope": "COMPLETE_ADMITTED_TRAIN_TRIPLETS_ONLY"
+  },
+  "encoder": {
+    "version": "SINGLE_SURFACE_TRAIN_ENCODER_V1",
+    "surface": "native84",
+    "fold_id": "SYNTHETIC-numeric-1",
+    "train_ids": [
+      "fixture-r04-numeric-1-fixture-numeric-train-0-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-0-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-0-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-1-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-1-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-1-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-2-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-2-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-2-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-3-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-3-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-3-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-4-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-4-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-4-clean_post",
+      "fixture-r04-numeric-1-fixture-numeric-train-5-clean_pre",
+      "fixture-r04-numeric-1-fixture-numeric-train-5-attack",
+      "fixture-r04-numeric-1-fixture-numeric-train-5-clean_post"
+    ],
+    "fixed_atoms": [
+      "CONTROL:native.flag"
+    ],
+    "numeric": {
+      "UNFITTED_CONTROL:native.number": {
+        "thresholds": [
+          4.25,
+          8.5,
+          12.75
+        ],
+        "atom_ids": [
+          "CONTROL:native.number:LE:4.25",
+          "CONTROL:native.number:LE:8.5",
+          "CONTROL:native.number:LE:12.75"
+        ],
+        "status": "FROZEN",
+        "train_observed_n": 18,
+        "train_expected_n": 18
+      }
+    }
+  },
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-db16610eecb2f3ac6a83ea4b",
+  "complexity": {
+    "distinct_atoms": 1,
+    "clauses": 1,
+    "literal_occurrences": 1,
+    "objective_complexity": 2,
+    "distinct_families": 1,
+    "distinct_surfaces": 1,
+    "source_union": [
+      "E"
+    ]
+  }
+}

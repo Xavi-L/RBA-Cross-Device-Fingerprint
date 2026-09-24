@@ -1,0 +1,221 @@
+{
+  "method_id": "FINITE_IP_OR",
+  "status": "FITTED",
+  "clauses": [
+    {
+      "literals": [
+        {
+          "atom_id": "A",
+          "polarity": "POSITIVE"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "A",
+      "family": "A",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "A"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "fixture_only": true
+      }
+    }
+  ],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "input_manifest_ref": "hybridguard_agent/research/rule_learning/synthetic.py#union_budget",
+    "fold_id": "fixture-fold-1",
+    "split_id": "SYNTHETIC",
+    "operating_point": "OP05",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "data_origin": "BUILTIN_SYNTHETIC"
+  },
+  "view": {
+    "view_id": "SYNTHETIC_CORE",
+    "kind": "CANONICAL_DEVIATION",
+    "source_condition": "SRC-111",
+    "input_atom_ids": [
+      "A",
+      "B"
+    ]
+  },
+  "fit": {
+    "available": true,
+    "solver": "HiGHS",
+    "version": "1.12.0",
+    "numpy": "2.3.5",
+    "threads": 1,
+    "mip_rel_gap": 0.0,
+    "mip_abs_gap": 0.0,
+    "mip_feasibility_tolerance": 1e-09,
+    "status": "OPTIMAL_FINITE_POOL",
+    "best_bound": 0.49,
+    "gap": 0.0,
+    "infeasibility_proved": false,
+    "primary_optimal": true,
+    "tie_break_complete": true,
+    "objective_integer_scale": 600,
+    "optimality_scope": "FINITE_SUPPORTED_POOL_ONLY",
+    "column_generation": false,
+    "train_ids": [
+      "fixture-union_budget-train-0-clean_pre",
+      "fixture-union_budget-train-0-attack",
+      "fixture-union_budget-train-0-clean_post",
+      "fixture-union_budget-train-1-clean_pre",
+      "fixture-union_budget-train-1-attack",
+      "fixture-union_budget-train-1-clean_post",
+      "fixture-union_budget-train-2-clean_pre",
+      "fixture-union_budget-train-2-attack",
+      "fixture-union_budget-train-2-clean_post",
+      "fixture-union_budget-train-3-clean_pre",
+      "fixture-union_budget-train-3-attack",
+      "fixture-union_budget-train-3-clean_post",
+      "fixture-union_budget-train-4-clean_pre",
+      "fixture-union_budget-train-4-attack",
+      "fixture-union_budget-train-4-clean_post",
+      "fixture-union_budget-train-5-clean_pre",
+      "fixture-union_budget-train-5-attack",
+      "fixture-union_budget-train-5-clean_post",
+      "fixture-union_budget-train-6-clean_pre",
+      "fixture-union_budget-train-6-attack",
+      "fixture-union_budget-train-6-clean_post",
+      "fixture-union_budget-train-7-clean_pre",
+      "fixture-union_budget-train-7-attack",
+      "fixture-union_budget-train-7-clean_post",
+      "fixture-union_budget-train-8-clean_pre",
+      "fixture-union_budget-train-8-attack",
+      "fixture-union_budget-train-8-clean_post",
+      "fixture-union_budget-train-9-clean_pre",
+      "fixture-union_budget-train-9-attack",
+      "fixture-union_budget-train-9-clean_post",
+      "fixture-union_budget-train-10-clean_pre",
+      "fixture-union_budget-train-10-attack",
+      "fixture-union_budget-train-10-clean_post",
+      "fixture-union_budget-train-11-clean_pre",
+      "fixture-union_budget-train-11-attack",
+      "fixture-union_budget-train-11-clean_post"
+    ],
+    "train_expected_n": 36,
+    "train_consumed_n": 36,
+    "fit_scope": "SYNTHETIC_ONLY",
+    "fixture_name": "union_budget",
+    "elapsed_seconds": 0.010579041903838515,
+    "freeze_time": "2026-09-24T09:35:35.882650+00:00",
+    "candidate_pool_size": 4,
+    "registered_clause_count": 4,
+    "clean_budget_count": 1,
+    "clean_denominator": 24,
+    "stratum_denominators": {
+      "clean_pre": 12,
+      "attack": 12,
+      "clean_post": 12
+    },
+    "training_result": {
+      "objective": {
+        "numerator": 49,
+        "denominator": 100,
+        "value": 0.49
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 2,
+        "value": 0.5
+      },
+      "clean_alarms": 1,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "A:POSITIVE"
+      ],
+      "states": [
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "support_scope": "COMPLETE_ADMITTED_TRAIN_TRIPLETS_ONLY"
+  },
+  "encoder": {},
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-c66b952ac167b5a833f3c050",
+  "complexity": {
+    "distinct_atoms": 1,
+    "clauses": 1,
+    "literal_occurrences": 1,
+    "objective_complexity": 2,
+    "distinct_families": 1,
+    "distinct_surfaces": 2,
+    "source_union": [
+      "E"
+    ]
+  }
+}
