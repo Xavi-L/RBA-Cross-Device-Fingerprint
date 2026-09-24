@@ -1,0 +1,38 @@
+{
+  "schema_version": "r02-matrix-schema-v1",
+  "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+  "row_key": "opaque_id",
+  "opaque_id_is_feature": false,
+  "column_order": "COLUMN_MANIFEST.json",
+  "X_value": "candidate_matrix.jsonl:values",
+  "X_available": "availability_matrix.jsonl:available",
+  "X_reason": "availability_matrix.jsonl:reasons",
+  "state_values": [
+    "T",
+    "F",
+    "U",
+    null
+  ],
+  "state_null": "FAILED or NOT_REQUESTED, distinguished by evaluation_status; never a logical U",
+  "value_values": [
+    true,
+    false,
+    null
+  ],
+  "OK_U": {
+    "value": null,
+    "available": false
+  },
+  "boolean_metadata_and_domain": "candidate_manifest.jsonl",
+  "audit_not_inference": "atom_records.jsonl",
+  "evaluation_only": "evaluation_index.jsonl",
+  "field_state_and_cache_lineage": "atom_records.jsonl",
+  "feature_load_entrypoint": "fold_data.load_fold",
+  "fit_permission_entrypoint": "fold_data.FoldData.assert_fit",
+  "source_alias_provenance": "source_manifest.jsonl and COLUMN_MANIFEST.json:core_definitions",
+  "all_262_rows_retained": true,
+  "scalar_controls": "control_inputs.jsonl (62 numeric inputs not thresholded)",
+  "fixed_control_atoms": "fixed_control_matrix.jsonl (53 columns)",
+  "input_paths_and_phase_groups_are_features": false,
+  "control_field_states": "control_field_states.jsonl"
+}
