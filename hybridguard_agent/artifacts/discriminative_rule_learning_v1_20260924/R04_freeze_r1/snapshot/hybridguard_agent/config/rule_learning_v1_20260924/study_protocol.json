@@ -1,0 +1,25 @@
+{
+  "schema_version": "rule-learning-study-protocol-v1",
+  "study_version": "discriminative-rule-learning-v1-20260924",
+  "protocol_id": "r01-protocol-v1-20260924",
+  "candidate_version": "r01-atoms-v1",
+  "measurement_version": "r01-measurement-v1",
+  "basis_commit": "cbd9f5a",
+  "authority": {"step": "R01", "scope": "STATIC_PROTOCOL_ONLY", "automatic_advance": false, "commit_push_pr": false},
+  "population": {"input_view": "App177", "supervised_stages": 162, "attack_stages": 54, "clean_pre_stages": 54, "clean_post_stages": 54, "triplets": 54, "environment_association_groups": 3, "independent_physical_devices": null, "clean_scope": "ABSENCE_OF_S01_DECLARED_INTERVENTION_ON_RECORDED_SURFACES"},
+  "claim_scope": "EXPOSED_RETROSPECTIVE_GROUPED_EVALUATION",
+  "prospective_confirmation": "NOT_AVAILABLE",
+  "inference": {"unit": "CURRENT_STAGE", "required_history": [], "allowed_payload_keys": ["features", "field_status", "field_quality", "record_schema_version", "adapter_version"], "sidecar_join_key": "opaque_id", "join_key_is_feature": false, "forbidden_feature_categories": ["phase", "label", "tool", "config_id", "configuration_id", "expected_mutations", "session_id", "triplet_id", "bundle_id", "environment_group_id", "collector_install_id", "file_path", "capture_*", "control_*", "execution_receipt", "future_post"]},
+  "learning": {"unit": "WHOLE_RULE_SET", "alarm_eligibility": "TRAIN_FOLD_SELECTION_RESULT", "primary_representation": "CROSS_SURFACE_SINGLE_LITERAL_OR", "legacy_role_is_eligibility_filter": false, "require_nonempty_success": false, "require_improvement_over_baselines": false},
+  "input_refs": {
+    "admission": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission",
+    "adaptation": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs",
+    "source_registry": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/source_registry.jsonl",
+    "role_history": "hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+    "catalog": "hybridguard_agent/config/paired244_rule_catalog.v3.json",
+    "saved_events": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/06_e1/prediction/rule_events.jsonl"
+  },
+  "real_operations_in_R01": {"fits": 0, "predictions": 0, "detector_calls": 0, "upstream_validators": 0, "new_collection": 0, "attack_tool_runs": 0},
+  "revisions": {"outer_result_driven_change": "NEW_PROTOCOL_AND_EXPOSURE_ENTRY_REQUIRED", "old_labels_predicates_results": "READ_ONLY", "new_relations": "ONLY_DECLARED_FINITE_SINGLE_SURFACE_CONTROL_ENCODER", "new_cross_surface_relations": false},
+  "artifact_binding": {"protocol_digest": "PROTOCOL_BINDING.json:sha256_of_eight_configs_and_candidate_ledger", "split_id": "MANIFEST_PER_TRACK", "fold_id_without_fold": "NOT_APPLICABLE", "model_id_before_fit": "NOT_FITTED", "input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl"}
+}

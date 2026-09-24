@@ -9,7 +9,7 @@
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "R04_COMPLETE_PENDING_USER_ACCEPTANCE_FROZEN_SYNTHETIC_ONLY",
+  "experiment_execution_status": "R04_R1_COMPLETE_PENDING_USER_ACCEPTANCE_SYNTHETIC_ONLY",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
@@ -18,9 +18,10 @@
       "R01",
       "R02",
       "R03",
-      "R04"
+      "R04",
+      "R04-R1"
     ],
-    "authorization_scope": "R04_FORMAL_JOB_BINDING_RESOURCE_FREEZE_AND_SYNTHETIC_CHAIN_ONLY",
+    "authorization_scope": "R04_R1_TWO_ENGINEERING_FIXES_AND_SYNTHETIC_REGRESSION_ONLY",
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
     "auto_git_commit_or_push_for_future_steps": false,
@@ -30,7 +31,7 @@
     "model_fits_this_documentation_change": 0,
     "upstream_rebuilds_this_documentation_change": 0,
     "new_collection_or_attack_execution_this_documentation_change": 0,
-    "notes": "The user externally accepted R03 at a1d8695b832850f1807d2af6a1dd1ea1bc99f63c and separately authorized R04 only. R04 is complete and awaits external review. No real execution approval record was issued. R05 and later real fitting, threshold/rule selection, prediction, legacy S07 and Git delivery remain unauthorized. R03 execution-time reports and VALIDATION are preserved."
+    "notes": "The user requested two R04 engineering fixes at 51726c0: incomplete cell coverage and exact single-surface admission. R04-R1 is complete and pending external review. Original R04 acceptance, logs and saved failure examples are preserved as execution-time records; they do not establish correctness of the two identified branches. No real fit approval, R05, legacy S07 or Git delivery is authorized."
   },
   "legacy_archive": {
     "schema_version": "formal-experiment-execution-status-v1",
@@ -399,8 +400,8 @@
     }
   ],
   "next_authorization_step": "R05",
-  "next_authorization_instruction": "验收 R04 后，执行 R05",
-  "next_step_scope": "R05 requires separate explicit approval bound to the exact R04 freeze/resources/jobs/train members and shared budget ledger. R04 freeze does not authorize real execution, later steps or Git delivery.",
+  "next_authorization_instruction": "验收 R04-R1 后，另行授权执行 R05",
+  "next_step_scope": "R05 remains unstarted and requires explicit authorization bound to the reviewed R04_freeze_r1 freeze/resources/exact jobs/train members and shared budget. R04-R1 grants synthetic regression only; no real fit/prediction or Git delivery.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -509,6 +510,58 @@
       "real_predictions": 0,
       "next_step_auto_started": false,
       "git_commit_push_pr": false
+    },
+    {
+      "event": "R04_REVIEW_FINDINGS_AND_R1_AUTHORIZATION",
+      "date": "2026-09-24",
+      "step": "R04-R1",
+      "reviewed_commit": "51726c0af36f9bcb1fda7647788be2f945c4f44d",
+      "authority": "User: 先不要执行 R05。执行小范围 R04-R1；只修复不完整运行覆盖率与单层候选白名单接入。",
+      "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/R04_R1_REVISION.json",
+      "original_R04_validation_overwritten": false
+    },
+    {
+      "event": "R04_R1_COMPLETED_SYNTHETIC_REGRESSION_ONLY",
+      "date": "2026-09-24",
+      "step": "R04-R1",
+      "status": "DONE",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/VALIDATION.json",
+      "synthetic_tests_passed": 56,
+      "real_fits": 0,
+      "real_predictions": 0,
+      "next_step_auto_started": false,
+      "git_commit_push_pr": false
+    }
+  ],
+  "step_revisions": [
+    {
+      "id": "R04-R1",
+      "parent_step": "R04",
+      "name": "不完整运行覆盖率与单层候选白名单接入修复",
+      "status": "DONE",
+      "authorized": true,
+      "acceptance_status": "PASS_TARGETED_REVISION_AND_INDEPENDENT_SYNTHETIC_REGRESSION",
+      "user_acceptance": "PENDING",
+      "execution_basis_commit": "51726c0af36f9bcb1fda7647788be2f945c4f44d",
+      "output_directory": "R04_freeze_r1",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/VALIDATION.json",
+      "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+      "original_R04_record_replaced": false,
+      "execution_counts": {
+        "synthetic_tests_passed": 56,
+        "real_fits": 0,
+        "real_predictions": 0,
+        "real_fit_authorizations": 0,
+        "R01_R02_rebuilds": 0
+      },
+      "planned_units_unchanged": {
+        "fit": 72,
+        "model": 115,
+        "prediction": 4374
+      },
+      "completed_on": "2026-09-24"
     }
   ]
 }

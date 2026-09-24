@@ -1,0 +1,63 @@
+{
+  "baseline_commit": "51726c0af36f9bcb1fda7647788be2f945c4f44d",
+  "baseline_validation_preserved": true,
+  "changes": [
+    "Null expected cells for absent model/unknown structure; receipt-specific OOF reconciliation and overall/stratified unknown propagation; explicitly scoped known subset.",
+    "R02 exact catalog + fixed control + unfitted numeric whitelist applied before train encoder/support; full audit definitions retained.",
+    "Revision-only snapshot, builtin synthetic fixtures and focused regressions."
+  ],
+  "confirmed_issues": [
+    "Existing failure/not-run receipt without a model was counted as zero expected cells; stale coverage values and strata remained evaluable.",
+    "Single-surface admission used only surfaces, allowing catalog audit/deployment items outside R02 columns."
+  ],
+  "not_changed": [
+    "R01 protocol digest, grammar, measurements, labels, splits, learning objective, alpha, support, complexity",
+    "selector/solver and core source projection/equivalent aliases",
+    "R01/R02/R03/R04 original artifacts, validation, logs and saved failures"
+  ],
+  "old_budget_count_atom_coverage": {
+    "expected_denominator": 18,
+    "numerator": 18,
+    "status": "OK",
+    "value": 1.0
+  },
+  "real_job_manifests_byte_identical": {
+    "SPLIT_MANIFEST.json": true,
+    "expected_fit_jobs.jsonl": true,
+    "expected_model_units.jsonl": true,
+    "expected_prediction_units.jsonl": true
+  },
+  "revised_budget_count_atom_coverage": {
+    "expected_denominator": null,
+    "known_subset": {
+      "denominator": 18,
+      "expected_denominator": 18,
+      "minimum_nonzero_rate": 0.05555555555555555,
+      "model_unit_ids": [
+        "SYNTHETIC_complementary__SYNTHETIC-complementary-1__GREEDY_OR__OP05__SRC-111__core"
+      ],
+      "numerator": 18,
+      "reason": null,
+      "scope": "ONLY_ROWS_WITH_KNOWN_MODEL_CELL_COUNTS",
+      "source_rows": [
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-0-clean_pre",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-0-attack",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-0-clean_post",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-1-clean_pre",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-1-attack",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-1-clean_post",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-2-clean_pre",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-2-attack",
+        "fixture-r04-complementary-1-fixture-complementary-outer_test-2-clean_post"
+      ],
+      "stage_n": 9,
+      "status": "OK",
+      "value": 1.0
+    },
+    "numerator": null,
+    "status": "NOT_EVALUABLE",
+    "value": null
+  },
+  "step": "R04-R1",
+  "worker_regression_scope": "Failure/timeout is injected at the builtin synthetic subprocess boundary; no physical long timeout is claimed."
+}

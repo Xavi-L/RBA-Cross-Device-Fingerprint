@@ -1,0 +1,656 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.ModelTests.test_explanations_match_signed_clauses",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.ModelTests.test_illegal_clause_and_sidecar_envelope",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.ModelTests.test_save_load_predictions_and_model_mutation",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.ModelTests.test_selected_failure_not_hidden_by_true_or_false",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.ModelTests.test_truth_tables_and_unknown_negation",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.ModelTests.test_u_failed_unrequested_and_empty_are_distinct",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_and_extension_and_certified_infeasibility",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_complementarity_and_redundancy",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_empty_unknown_failure_and_coverage_boundary",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_fixed_operating_points_and_unknown_negative_prediction",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_grammar_family_subsumption_opposite_and_complexity",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_heuristic_empty_does_not_prove_infeasible",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_ip_against_exhaustive_oracle",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_macro_weights_are_not_micro_weights",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_native_highs_zero_time_limit",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_one_pass_backward_prune_and_coverage_tie",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_set_clean_union_budget",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_support_counts_complete_triplets_not_aliases_or_stages",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_support_minima_and_finite_cap_without_ranking",
+      "status": "PASS"
+    },
+    {
+      "test": "hybridguard_agent.tests.test_rule_learning_r03.SelectorTests.test_timeout_unavailable_error_and_incumbent_recheck",
+      "status": "PASS"
+    }
+  ],
+  "ip_exhaustive_checks": [
+    {
+      "fixture": "union_budget",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 15,
+      "selected": [
+        "A:POSITIVE"
+      ],
+      "oracle_objective": 0.49,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "union_budget",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 63,
+      "selected": [
+        "A:POSITIVE"
+      ],
+      "oracle_objective": 0.49,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "complementary",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 15,
+      "selected": [
+        "A:POSITIVE",
+        "B:POSITIVE"
+      ],
+      "oracle_objective": 0.98,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "complementary",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 63,
+      "selected": [
+        "A:POSITIVE",
+        "B:POSITIVE"
+      ],
+      "oracle_objective": 0.98,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "redundant",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 3,
+      "selected": [
+        "A:POSITIVE"
+      ],
+      "oracle_objective": 0.99,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "redundant",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 7,
+      "selected": [
+        "A:POSITIVE"
+      ],
+      "oracle_objective": 0.99,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "negative",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 1,
+      "selected": [
+        "A:NEGATIVE"
+      ],
+      "oracle_objective": 0.99,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "negative",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 1,
+      "selected": [
+        "A:NEGATIVE"
+      ],
+      "oracle_objective": 0.99,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "and_required",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 3,
+      "selected": [],
+      "oracle_objective": null,
+      "solver_status": "NO_FEASIBLE_MODEL_EMPTY_MODEL",
+      "gap": null,
+      "match": true
+    },
+    {
+      "fixture": "and_required",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 7,
+      "selected": [
+        "A:POSITIVE & B:POSITIVE"
+      ],
+      "oracle_objective": 0.985,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "low_coverage",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 1,
+      "selected": [],
+      "oracle_objective": null,
+      "solver_status": "NO_FEASIBLE_MODEL_EMPTY_MODEL",
+      "gap": null,
+      "match": true
+    },
+    {
+      "fixture": "low_coverage",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 1,
+      "selected": [],
+      "oracle_objective": null,
+      "solver_status": "NO_FEASIBLE_MODEL_EMPTY_MODEL",
+      "gap": null,
+      "match": true
+    },
+    {
+      "fixture": "coverage_boundary",
+      "method": "FINITE_IP_OR",
+      "enumerated_subsets": 1,
+      "selected": [
+        "A:POSITIVE"
+      ],
+      "oracle_objective": 0.79,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    },
+    {
+      "fixture": "coverage_boundary",
+      "method": "FINITE_IP_DNF2",
+      "enumerated_subsets": 1,
+      "selected": [
+        "A:POSITIVE"
+      ],
+      "oracle_objective": 0.79,
+      "solver_status": "OPTIMAL_FINITE_POOL",
+      "gap": 0.0,
+      "match": true
+    }
+  ],
+  "native_timeout": {
+    "solver": "HiGHS",
+    "version": "1.12.0",
+    "time_limit_seconds": 0,
+    "status": "kTimeLimit",
+    "incumbent": false,
+    "note": "Zero-time backend status smoke; feasible-timeout and error handling use explicit synthetic injection."
+  },
+  "greedy_prune": {
+    "fixture": "pruning",
+    "trace": [
+      {
+        "operation": "ADD",
+        "selected": [
+          "A:POSITIVE"
+        ],
+        "score": {
+          "objective": {
+            "numerator": 49,
+            "denominator": 100,
+            "value": 0.49
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 2,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "A:POSITIVE"
+          ],
+          "states": [
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+          ]
+        }
+      },
+      {
+        "operation": "ADD",
+        "selected": [
+          "A:POSITIVE",
+          "B:POSITIVE"
+        ],
+        "score": {
+          "objective": {
+            "numerator": 97,
+            "denominator": 150,
+            "value": 0.6466666666666666
+          },
+          "macro_tpr": {
+            "numerator": 2,
+            "denominator": 3,
+            "value": 0.6666666666666666
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 4,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "A:POSITIVE",
+            "B:POSITIVE"
+          ],
+          "states": [
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+          ]
+        }
+      },
+      {
+        "operation": "ADD",
+        "selected": [
+          "A:POSITIVE",
+          "B:POSITIVE",
+          "C:POSITIVE"
+        ],
+        "score": {
+          "objective": {
+            "numerator": 241,
+            "denominator": 300,
+            "value": 0.8033333333333333
+          },
+          "macro_tpr": {
+            "numerator": 5,
+            "denominator": 6,
+            "value": 0.8333333333333334
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 6,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "A:POSITIVE",
+            "B:POSITIVE",
+            "C:POSITIVE"
+          ],
+          "states": [
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+          ]
+        }
+      },
+      {
+        "operation": "PRUNE",
+        "removed": "A:POSITIVE",
+        "score": {
+          "objective": {
+            "numerator": 61,
+            "denominator": 75,
+            "value": 0.8133333333333334
+          },
+          "macro_tpr": {
+            "numerator": 5,
+            "denominator": 6,
+            "value": 0.8333333333333334
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 4,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "B:POSITIVE",
+            "C:POSITIVE"
+          ],
+          "states": [
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "T",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F",
+            "F"
+          ]
+        }
+      }
+    ],
+    "selected": [
+      "B:POSITIVE",
+      "C:POSITIVE"
+    ]
+  },
+  "failure_branches": [
+    {
+      "injected_outcome": {
+        "status": "TIME_LIMIT_FEASIBLE",
+        "best_bound": 1,
+        "gap": 0.02
+      },
+      "validated_model_status": "FITTED",
+      "expected_prediction_rows": 9,
+      "decisions": [
+        "NO_ALERT",
+        "MANIPULATION_ALERT",
+        "NO_ALERT",
+        "NO_ALERT",
+        "MANIPULATION_ALERT",
+        "NO_ALERT",
+        "NO_ALERT",
+        "MANIPULATION_ALERT",
+        "NO_ALERT"
+      ]
+    },
+    {
+      "injected_outcome": {
+        "status": "FAILED_FIT",
+        "reason": "TIME_LIMIT_NO_INCUMBENT"
+      },
+      "validated_model_status": "FAILED",
+      "expected_prediction_rows": 9,
+      "decisions": [
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED"
+      ]
+    }
+  ],
+  "forced_failure_cases": "explicit synthetic injection, not observations of production solver reliability",
+  "model_save_load_prediction_and_encoder_equivalence": true
+}
