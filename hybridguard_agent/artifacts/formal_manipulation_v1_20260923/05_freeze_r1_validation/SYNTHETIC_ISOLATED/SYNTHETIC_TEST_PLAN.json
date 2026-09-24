@@ -1,0 +1,40 @@
+{
+  "S06_units": 0,
+  "child_flags": [
+    "-I",
+    "-B",
+    "-S"
+  ],
+  "fixture_kind": "SYNTHETIC",
+  "freeze_revision": "formal-manipulation-freeze-r1",
+  "missing_expected": "MISSING_RUNTIME_RESOURCE in CLI and API before samples/output/worker",
+  "missing_resources": [
+    "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+    "hybridguard_agent/config/paired244_review_sources.v1.json",
+    "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+  ],
+  "normal_expected": {
+    "final_v3_v2": {
+      "consistent": [
+        "NO_ALERT",
+        0
+      ],
+      "single_family_duplicate_rules": [
+        "MANIPULATION_ALERT",
+        1
+      ]
+    },
+    "legacy19_v2": {
+      "consistent": [
+        "NO_ALERT",
+        0
+      ],
+      "single_family_duplicate_rules": [
+        "MANIPULATION_ALERT",
+        1
+      ]
+    }
+  },
+  "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+  "real_predictions": 0
+}

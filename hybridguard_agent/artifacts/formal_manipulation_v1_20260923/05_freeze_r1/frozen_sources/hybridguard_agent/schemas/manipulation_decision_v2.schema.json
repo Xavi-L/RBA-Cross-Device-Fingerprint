@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "manipulation_decision_v2",
+  "type": "object",
+  "properties": {
+    "decision_schema_version": {
+      "const": "manipulation-decision-v2"
+    },
+    "contract_version": {
+      "const": "formal-manipulation-relation-risk-attribution-v2"
+    },
+    "policy_version": {
+      "const": "formal-manipulation-family-or-v2"
+    },
+    "research_scope_id": {
+      "const": "featureapp-reported-identity-coherence-research-v2"
+    },
+    "decision": {
+      "enum": [
+        "MANIPULATION_ALERT",
+        "NO_ALERT",
+        "INSUFFICIENT_EVIDENCE",
+        "FAILED"
+      ]
+    },
+    "alert_score": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "score_meaning": {
+      "const": "count_of_distinct_qualifying_conflict_families_not_probability"
+    },
+    "threshold": {
+      "const": 1
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eligible_family_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "eligible_family_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evaluated_family_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "evaluated_family_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "triggered_family_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unavailable_family_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "partial_coverage": {
+      "type": "boolean"
+    },
+    "family_coverage": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "verification_valid": {
+      "type": "boolean"
+    },
+    "calibrated_attack_probability": {
+      "const": null
+    },
+    "attribution_certainty": {
+      "const": {
+        "status": "UNKNOWN",
+        "reason": "current_fields_do_not_prove_authorization_attack_or_intent",
+        "attack_proven": false,
+        "calibrated_attack_probability": null
+      }
+    },
+    "attack_classification": {
+      "const": "NOT_EVALUATED"
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision_schema_version",
+    "contract_version",
+    "policy_version",
+    "research_scope_id",
+    "decision",
+    "alert_score",
+    "score_meaning",
+    "threshold",
+    "reason_codes",
+    "eligible_family_count",
+    "eligible_family_ids",
+    "evaluated_family_count",
+    "evaluated_family_ids",
+    "triggered_family_ids",
+    "unavailable_family_ids",
+    "partial_coverage",
+    "family_coverage",
+    "verification_valid",
+    "calibrated_attack_probability",
+    "attribution_certainty",
+    "attack_classification",
+    "claim_boundary"
+  ],
+  "additionalProperties": false
+}

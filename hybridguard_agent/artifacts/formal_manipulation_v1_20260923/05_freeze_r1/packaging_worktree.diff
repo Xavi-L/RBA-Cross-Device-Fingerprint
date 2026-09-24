@@ -1,0 +1,112 @@
+diff --git a/hybridguard_agent/research/manipulation_eval/freeze.py b/hybridguard_agent/research/manipulation_eval/freeze.py
+index 02da66b..664eab6 100644
+--- a/hybridguard_agent/research/manipulation_eval/freeze.py
++++ b/hybridguard_agent/research/manipulation_eval/freeze.py
+@@ -17,6 +17,7 @@ import subprocess
+ import sys
+ 
+ from hybridguard_agent.research.manipulation_eval.freeze_specs import diagnostic_spec, fixtures, timing_spec
++from hybridguard_agent.research.manipulation_eval.runtime_resources import resource_paths, resource_manifest
+ 
+ ROOT = Path(__file__).resolve().parents[3]
+ STUDY = "formal-manipulation-v1"
+@@ -274,6 +275,8 @@ def destinations(root, output, config_dir):
+     protected += [root / ROLE, root / POLICY_DIR, root / "hybridguard_agent/config/formal_manipulation_v1"]
+     protected += list((root / "hybridguard_agent/artifacts").glob("mtc_*"))
+     protected += [root / "deliverables", root / "hybridguard-browser-fingerprint-research"]
++    protected += [p for p in (root / ARTIFACT).iterdir() if p.is_dir()]
++    protected += list((root / "hybridguard_agent/config").glob("formal_manipulation_protocol*"))
+     for dest in (out, cfg):
+         require(not dest.exists(), "Destination exists; use a new version: " + str(dest))
+         require(all(not (dest == p.resolve() or p.resolve() in dest.parents or dest in p.resolve().parents) for p in protected), "Protected/overlapping destination")
+@@ -365,14 +368,7 @@ def generate(*, output, config_dir, root=ROOT):
+         "hybridguard_agent/research/manipulation_eval/synthetic.py",
+         "hybridguard_agent/tests/test_formal_manipulation_freeze.py",
+     ])
+-    resources = [Path("hybridguard_agent/config") / f for f in (
+-        "paired244_rule_catalog.v1.json", "paired244_rule_catalog.v3.json",
+-        "paired244_browser_relations.v1.json", "paired244_browser_relations.v3.json",
+-        "deterministic_rule_predicates.v1.json", "official_semantic_relations.v1.json")]
+-    resources += [Path("hybridguard_agent/schemas") / f for f in ("field_registry.json", "expanded_v2.schema.json",
+-        "formal_manipulation_job_v2.schema.json", "formal_manipulation_long_tables_v2.schema.json", "manipulation_decision_v2.schema.json")]
+-    resources += [Path("scoring/rule_knowledge_base.json"), Path("android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv")]
+-    resources += sorted(p.relative_to(root) for directory in (ROLE, POLICY_DIR) for p in (root / directory).iterdir() if p.is_file())
++    resources = resource_paths()
+     copies = [(p, Path("frozen_sources") / p, "PARTICIPATING_SOURCE" if p.suffix == ".py" else "RUNTIME_CONFIG") for p in required_sources + resources]
+     a, i, s4 = ARTIFACT / "01_admission", ARTIFACT / "02_inputs", ARTIFACT / "04_contract"
+     copies += [(i / "inference_inputs.jsonl", Path("blind/inputs.jsonl"), "BLIND_INPUT")]
+@@ -511,6 +507,8 @@ def generate(*, output, config_dir, root=ROOT):
+                        ("evaluation/evaluation_index.jsonl", d["enriched"]), ("synthetic/fixtures.jsonl", d["synthetic"])):
+         put(Path(name), encoded_lines(rows), "GENERATED_STATIC_UNITS_OR_INPUTS")
+     put(Path("participating_worktree.diff"), (patch + "\n").encode(), "PARTICIPATING_DIFF_ONLY")
++    put(Path("frozen_sources/RUNTIME_RESOURCES.json"),
++        encoded(resource_manifest(out / "frozen_sources", freeze_revision="explicit-runtime-resources")), "RUNTIME_RESOURCE_MANIFEST")
+     entries.sort(key=lambda e: e["path"])
+     digest = hashlib.sha256(encoded(entries)).hexdigest()
+     protocol["protocol_digest"] = digest
+@@ -532,6 +530,9 @@ def validate(output, *, config_dir):
+     """One bounded manifest/schema/set validation, never import a runtime."""
+     out = Path(output)
+     manifest, protocol = read(out / "FREEZE_MANIFEST.json"), read(out / "protocol.json")
++    if "freeze_revision" in protocol:
++        from hybridguard_agent.research.manipulation_eval.freeze_revision import validate_revision
++        return validate_revision(out, config_dir=config_dir)
+     entries = manifest["bound_files"]
+     require(len(entries) == len({e["path"] for e in entries}), "Duplicate manifest path")
+     for entry in entries:
+diff --git a/hybridguard_agent/research/manipulation_eval/runner.py b/hybridguard_agent/research/manipulation_eval/runner.py
+index f9ddf4a..a573274 100644
+--- a/hybridguard_agent/research/manipulation_eval/runner.py
++++ b/hybridguard_agent/research/manipulation_eval/runner.py
+@@ -128,6 +128,11 @@ def validate_protocol(protocol, contract):
+ 
+ 
+ def run_predictions(*, input_path, protocol, contract, output):
++    # Packaging gate precedes contract validation, output creation and input IO.
++    # The single-session worker and every relation/risk predicate stay unchanged.
++    from hybridguard_agent.research.manipulation_eval.runtime_resources import preflight
++    preflight(require_manifest=protocol.get("execution_scope") == "FROZEN_FORMAL_EVALUATION",
++              config_dir=contract.get("config_dir") if contract else None)
+     variants = validate_protocol(protocol, contract)
+     out = new_output(output, inputs=[input_path, contract["config_dir"]])
+     base = {k: protocol[k] for k in ("study_version", "run_id", "protocol_digest")}
+diff --git a/hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py b/hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py
+index 630b5cf..cc24183 100644
+--- a/hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py
++++ b/hybridguard_agent/scripts/freeze_formal_manipulation_protocol.py
+@@ -14,8 +14,17 @@ def main():
+     parser.add_argument("--output", required=True, type=Path)
+     parser.add_argument("--config-dir", required=True, type=Path)
+     parser.add_argument("--validate-only", action="store_true")
++    parser.add_argument("--parent-freeze", type=Path)
++    parser.add_argument("--freeze-revision")
+     args = parser.parse_args()
+-    result = validate(args.output, config_dir=args.config_dir) if args.validate_only else generate(output=args.output, config_dir=args.config_dir)
++    if args.parent_freeze is not None or args.freeze_revision is not None:
++        if args.parent_freeze is None or args.freeze_revision is None:
++            parser.error("--parent-freeze and --freeze-revision must be supplied together")
++        from hybridguard_agent.research.manipulation_eval.freeze_revision import revise, validate_revision
++        result = (validate_revision(args.output, config_dir=args.config_dir, parent=args.parent_freeze) if args.validate_only else
++                  revise(parent=args.parent_freeze, output=args.output, config_dir=args.config_dir, freeze_revision=args.freeze_revision))
++    else:
++        result = validate(args.output, config_dir=args.config_dir) if args.validate_only else generate(output=args.output, config_dir=args.config_dir)
+     print(json.dumps(result, ensure_ascii=False, indent=2))
+ 
+ 
+diff --git a/hybridguard_agent/scripts/run_formal_manipulation_eval.py b/hybridguard_agent/scripts/run_formal_manipulation_eval.py
+index ffcbce8..2d72594 100644
+--- a/hybridguard_agent/scripts/run_formal_manipulation_eval.py
++++ b/hybridguard_agent/scripts/run_formal_manipulation_eval.py
+@@ -20,6 +20,12 @@ def main():
+         evaluate.add_argument("--" + name, type=Path, required=True)
+     args = parser.parse_args()
+     if args.command == "predict":
++        from hybridguard_agent.research.manipulation_eval.runtime_resources import preflight
++        # A job is control-plane metadata. Check resources before importing the
++        # execution chain, loading a contract or opening any sample/output file.
++        job_header = json.loads(args.protocol.read_text())
++        preflight(require_manifest=job_header.get("execution_scope") == "FROZEN_FORMAL_EVALUATION",
++                  config_dir=args.config_dir, policy_path=args.policy)
+         from hybridguard_agent.research.manipulation_eval.contract import load_contract, read_json
+         from hybridguard_agent.research.manipulation_eval.runner import run_predictions
+         contract = load_contract(contract_version=args.contract_version, config_dir=args.config_dir, policy_path=args.policy)

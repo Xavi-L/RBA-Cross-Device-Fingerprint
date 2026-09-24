@@ -1,0 +1,189 @@
+{
+  "caller_inputs": "Blind sample/job IO is caller supplied; synthetic smoke opens no S01/S02 input, label, evaluation or real prediction file",
+  "check_limit": "Read-site review plus guarded synthetic execution is not an exhaustive whole-repository audit or proof of performance",
+  "excluded_unselected_readers": [
+    {
+      "reader": "adapter.generate / admission readers",
+      "reason": "Upstream processing, not selected worker; retained input bytes copied from S05"
+    },
+    {
+      "reader": "provenance / provenance_revision generators",
+      "reason": "Not invoked; only constants and gate functions selected"
+    },
+    {
+      "reader": "official_kb_adapter.load_official_cards / exact_retriever.load_retrieval_policy",
+      "reason": "Generic retrieval not selected: paired244 retrieval uses runtime_cards"
+    },
+    {
+      "reader": "rules.executor.load_predicates / official_semantics.evaluator.load_catalog",
+      "reason": "Standalone default loaders are not selected by the paired adapters; their deterministic/official JSON definitions are already explicitly bound and supplied by legacy19_catalog"
+    },
+    {
+      "reader": "paired244 catalog v2",
+      "reason": "Neither frozen method selects v2 catalog; v1 and v3 are bound"
+    }
+  ],
+  "new_required_resources": [
+    "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+    "hybridguard_agent/config/paired244_review_sources.v1.json",
+    "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+  ],
+  "no_other_selected_chain_resource_omission_found": true,
+  "omission_cause": "AST follows Python imports, not runtime JSON reads. Previous explicit resource list omitted all three runtime_cards source documents; manifest validation only covered listed files.",
+  "resources": [
+    {
+      "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "reader": "evidence/paired244.py::field_contract",
+      "scope": "Both methods, including import-time field mapping"
+    },
+    {
+      "path": "hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+      "reader": "manipulation_eval/baselines.py::legacy19_catalog",
+      "scope": "Original 10+9 compiled predicates"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Fixed v2 risk policy"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json",
+      "reader": "Frozen protocol/evaluation consumers",
+      "scope": "Inherited companion specs; retained without semantic changes"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json",
+      "reader": "Frozen protocol/evaluation consumers",
+      "scope": "Inherited companion specs; retained without semantic changes"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json",
+      "reader": "Frozen protocol/evaluation consumers",
+      "scope": "Inherited companion specs; retained without semantic changes"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json",
+      "reader": "Frozen protocol/evaluation consumers",
+      "scope": "Inherited companion specs; retained without semantic changes"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json",
+      "reader": "manipulation_eval/contract.py::load_contract",
+      "scope": "Complete explicit S03-R v2 documents"
+    },
+    {
+      "path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "reader": "adapters/paired244_catalog.py::runtime_cards",
+      "scope": "v3 only, including Verifier replay"
+    },
+    {
+      "path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "reader": "adapters/paired244_catalog.py::runtime_cards",
+      "scope": "Both v1 and v3, including Verifier replay"
+    },
+    {
+      "path": "hybridguard_agent/config/official_semantic_relations.v1.json",
+      "reader": "manipulation_eval/baselines.py::legacy19_catalog",
+      "scope": "Original 10+9 compiled predicates"
+    },
+    {
+      "path": "hybridguard_agent/config/paired244_browser_relations.v1.json",
+      "reader": "rules/paired244.py::load_catalog",
+      "scope": "Exact v1 and v3 used by legacy19/final; v2 catalog is not selected"
+    },
+    {
+      "path": "hybridguard_agent/config/paired244_browser_relations.v3.json",
+      "reader": "rules/paired244.py::load_catalog",
+      "scope": "Exact v1 and v3 used by legacy19/final; v2 catalog is not selected"
+    },
+    {
+      "path": "hybridguard_agent/config/paired244_review_sources.v1.json",
+      "reader": "adapters/paired244_catalog.py::runtime_cards",
+      "scope": "v3 only, including Verifier replay"
+    },
+    {
+      "path": "hybridguard_agent/config/paired244_rule_catalog.v1.json",
+      "reader": "rules/paired244.py::load_catalog",
+      "scope": "Exact v1 and v3 used by legacy19/final; v2 catalog is not selected"
+    },
+    {
+      "path": "hybridguard_agent/config/paired244_rule_catalog.v3.json",
+      "reader": "rules/paired244.py::load_catalog",
+      "scope": "Exact v1 and v3 used by legacy19/final; v2 catalog is not selected"
+    },
+    {
+      "path": "hybridguard_agent/schemas/expanded_v2.schema.json",
+      "reader": "manipulation_eval/adapter.py::mapping_contract",
+      "scope": "Both payload projection paths"
+    },
+    {
+      "path": "hybridguard_agent/schemas/field_registry.json",
+      "reader": "Frozen schema companions",
+      "scope": "Inherited schema resources; field registry helper is not the paired runtime retrieval"
+    },
+    {
+      "path": "hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json",
+      "reader": "Frozen schema companions",
+      "scope": "Inherited schema resources; field registry helper is not the paired runtime retrieval"
+    },
+    {
+      "path": "hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json",
+      "reader": "Frozen schema companions",
+      "scope": "Inherited schema resources; field registry helper is not the paired runtime retrieval"
+    },
+    {
+      "path": "hybridguard_agent/schemas/manipulation_decision_v2.schema.json",
+      "reader": "Frozen schema companions",
+      "scope": "Inherited schema resources; field registry helper is not the paired runtime retrieval"
+    },
+    {
+      "path": "scoring/rule_knowledge_base.json",
+      "reader": "adapters/rule_kb_adapter.py::assert_pinned_rule_kb",
+      "scope": "Both load_catalog paths"
+    }
+  ],
+  "scope": "Finite selected final_v3_v2 and legacy19_v2 worker chain, including both Verifiers and import-time field mapping",
+  "selected_call_chain": [
+    "contract.load_contract",
+    "runner.worker",
+    "adapter.project_payload / mapping_contract",
+    "evidence.paired244.build_paired_evidence / field_contract",
+    "rules.paired244.load_catalog / execute_paired_rules",
+    "baselines.legacy19_catalog",
+    "retrieval.paired244.build_paired_context",
+    "adapters.paired244_catalog.runtime_cards",
+    "verification.paired244.verify_paired_output",
+    "policy.build_events / decide",
+    "verification.verify_policy_output"
+  ]
+}

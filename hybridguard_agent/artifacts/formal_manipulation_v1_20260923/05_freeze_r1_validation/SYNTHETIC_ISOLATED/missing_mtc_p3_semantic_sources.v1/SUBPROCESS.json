@@ -1,0 +1,21 @@
+{
+  "PYTHONPATH_removed": true,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-I",
+    "-B",
+    "-S",
+    "-c",
+    "import sys,os,json; b={'initial_sys_path':list(sys.path),'preexisting_research_modules':[n for n in sys.modules if n.startswith('hybridguard_agent')]};sys.path.insert(0,sys.argv[1]); from hybridguard_agent.research.manipulation_eval.snapshot_smoke import child_main;child_main(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],b)",
+    "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-pjq6rrk2/snapshot",
+    "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-pjq6rrk2/SYNTHETIC",
+    "missing",
+    "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+  ],
+  "copied_only_frozen_sources": true,
+  "copied_snapshot_bytes_match": true,
+  "cwd": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-pjq6rrk2/empty-cwd",
+  "returncode": 0,
+  "source_snapshot": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1",
+  "temporary_directory_deleted_after_test": true
+}

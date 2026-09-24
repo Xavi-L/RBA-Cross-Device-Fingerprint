@@ -1,0 +1,798 @@
+{
+  "LLM_calls": 0,
+  "PYTHONPATH": null,
+  "S06_units": 0,
+  "bootstrap": {
+    "initial_sys_path": [
+      "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python314.zip",
+      "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14",
+      "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/lib-dynload"
+    ],
+    "preexisting_research_modules": []
+  },
+  "call_counts": {
+    "hybridguard_agent/adapters/__init__.py::<module>": 1,
+    "hybridguard_agent/adapters/official_kb_adapter.py::<module>": 1,
+    "hybridguard_agent/adapters/paired244_catalog.py::<module>": 1,
+    "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 12,
+    "hybridguard_agent/adapters/rule_kb_adapter.py::<module>": 1,
+    "hybridguard_agent/adapters/rule_kb_adapter.py::KnowledgeDriftError": 1,
+    "hybridguard_agent/adapters/rule_kb_adapter.py::assert_pinned_rule_kb": 3,
+    "hybridguard_agent/adapters/rule_kb_adapter.py::sha256_file": 3,
+    "hybridguard_agent/evidence/__init__.py::<module>": 1,
+    "hybridguard_agent/evidence/extractor.py::<genexpr>": 12466,
+    "hybridguard_agent/evidence/extractor.py::<module>": 1,
+    "hybridguard_agent/evidence/extractor.py::_android_major": 178,
+    "hybridguard_agent/evidence/extractor.py::_boolean": 650,
+    "hybridguard_agent/evidence/extractor.py::_build_marker_categories": 130,
+    "hybridguard_agent/evidence/extractor.py::_canonical_status_path": 966,
+    "hybridguard_agent/evidence/extractor.py::_comparison_status": 8,
+    "hybridguard_agent/evidence/extractor.py::_derived_facts": 130,
+    "hybridguard_agent/evidence/extractor.py::_evidence_groups": 4,
+    "hybridguard_agent/evidence/extractor.py::_fact": 2340,
+    "hybridguard_agent/evidence/extractor.py::_field_states": 130,
+    "hybridguard_agent/evidence/extractor.py::_flatten_layer": 390,
+    "hybridguard_agent/evidence/extractor.py::_installer_class": 130,
+    "hybridguard_agent/evidence/extractor.py::_integer": 390,
+    "hybridguard_agent/evidence/extractor.py::_number": 130,
+    "hybridguard_agent/evidence/extractor.py::_observation": 40,
+    "hybridguard_agent/evidence/extractor.py::_observed_fields": 4,
+    "hybridguard_agent/evidence/extractor.py::_platform_class": 130,
+    "hybridguard_agent/evidence/extractor.py::_status_for": 2340,
+    "hybridguard_agent/evidence/extractor.py::_ua_android_major": 308,
+    "hybridguard_agent/evidence/extractor.py::_ua_class": 130,
+    "hybridguard_agent/evidence/extractor.py::_unwrap_payload": 130,
+    "hybridguard_agent/evidence/extractor.py::build_evidence_bundle_v2": 4,
+    "hybridguard_agent/evidence/extractor.py::canonical_json": 32,
+    "hybridguard_agent/evidence/extractor.py::get_path": 2804,
+    "hybridguard_agent/evidence/extractor.py::normalize_payload": 130,
+    "hybridguard_agent/evidence/extractor.py::sha256_value": 28,
+    "hybridguard_agent/evidence/extractor.py::validate_evidence_bundle_v2": 4,
+    "hybridguard_agent/evidence/paired244.py::<genexpr>": 14682,
+    "hybridguard_agent/evidence/paired244.py::<module>": 1,
+    "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 4,
+    "hybridguard_agent/evidence/paired244.py::field_contract": 1,
+    "hybridguard_agent/evidence/paired244.py::legacy_field_map": 15,
+    "hybridguard_agent/evidence/paired244.py::legacy_payload": 130,
+    "hybridguard_agent/evidence/paired244.py::surface_of": 5133,
+    "hybridguard_agent/evidence/paired244.py::valid_type": 412,
+    "hybridguard_agent/official_semantics/__init__.py::<module>": 1,
+    "hybridguard_agent/official_semantics/evaluator.py::<genexpr>": 348,
+    "hybridguard_agent/official_semantics/evaluator.py::<module>": 1,
+    "hybridguard_agent/official_semantics/evaluator.py::_base_result": 48,
+    "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled": 48,
+    "hybridguard_agent/official_semantics/evaluator.py::_fact_equality": 24,
+    "hybridguard_agent/official_semantics/evaluator.py::_fact_status": 36,
+    "hybridguard_agent/official_semantics/evaluator.py::_normalized_value": 48,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::<genexpr>": 3188,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::<lambda>": 177,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::AdaptationError": 1,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::json_value_valid": 708,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::mapping_contract": 1,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::project_payload": 4,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::quality_for": 708,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::selected_fields": 23,
+    "hybridguard_agent/research/manipulation_eval/adapter.py::validate_inference_payload": 4,
+    "hybridguard_agent/research/manipulation_eval/baselines.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/baselines.py::legacy19_catalog": 2,
+    "hybridguard_agent/research/manipulation_eval/contract.py::<genexpr>": 730,
+    "hybridguard_agent/research/manipulation_eval/contract.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/contract.py::keyed": 5,
+    "hybridguard_agent/research/manipulation_eval/contract.py::load_contract": 1,
+    "hybridguard_agent/research/manipulation_eval/contract.py::pairs": 743,
+    "hybridguard_agent/research/manipulation_eval/contract.py::read_json": 11,
+    "hybridguard_agent/research/manipulation_eval/contract.py::read_jsonl": 1,
+    "hybridguard_agent/research/manipulation_eval/contract.py::strict_json": 68,
+    "hybridguard_agent/research/manipulation_eval/persistence.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/policy.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 8,
+    "hybridguard_agent/research/manipulation_eval/policy.py::capable_families": 8,
+    "hybridguard_agent/research/manipulation_eval/policy.py::decide": 4,
+    "hybridguard_agent/research/manipulation_eval/policy.py::gate_axes": 300,
+    "hybridguard_agent/research/manipulation_eval/provenance.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/provenance.py::_finite_json": 296,
+    "hybridguard_agent/research/manipulation_eval/provenance.py::_version": 96,
+    "hybridguard_agent/research/manipulation_eval/provenance.py::evaluate_applicability": 32,
+    "hybridguard_agent/research/manipulation_eval/provenance.py::result": 32,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::<genexpr>": 1692,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::_major": 96,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::_operands": 344,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::_reduced": 64,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::_relation_gate": 300,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::_risk_gate": 300,
+    "hybridguard_agent/research/manipulation_eval/provenance_revision.py::_state": 600,
+    "hybridguard_agent/research/manipulation_eval/registry_output.py::<genexpr>": 4,
+    "hybridguard_agent/research/manipulation_eval/registry_output.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/runner.py::<genexpr>": 16,
+    "hybridguard_agent/research/manipulation_eval/runner.py::<lambda>": 20,
+    "hybridguard_agent/research/manipulation_eval/runner.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/runner.py::projection": 4,
+    "hybridguard_agent/research/manipulation_eval/runner.py::risk": 4,
+    "hybridguard_agent/research/manipulation_eval/runner.py::timed": 28,
+    "hybridguard_agent/research/manipulation_eval/runner.py::worker": 4,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::<genexpr>": 117,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::<lambda>": 84,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::_checked_paths": 1,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::add": 33,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::preflight": 1,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::resource_paths": 3,
+    "hybridguard_agent/research/manipulation_eval/runtime_resources.py::resource_specs": 3,
+    "hybridguard_agent/research/manipulation_eval/schemas.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/schemas.py::closed": 8,
+    "hybridguard_agent/research/manipulation_eval/schemas.py::constant": 22,
+    "hybridguard_agent/research/manipulation_eval/schemas.py::nullable": 8,
+    "hybridguard_agent/research/manipulation_eval/schemas.py::validate_schema": 134,
+    "hybridguard_agent/research/manipulation_eval/synthetic.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/synthetic.py::consistent_payload": 1,
+    "hybridguard_agent/research/manipulation_eval/synthetic.py::empty_payload": 3,
+    "hybridguard_agent/research/manipulation_eval/synthetic.py::fixtures": 1,
+    "hybridguard_agent/research/manipulation_eval/synthetic.py::put": 14,
+    "hybridguard_agent/research/manipulation_eval/verification.py::<module>": 1,
+    "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 4,
+    "hybridguard_agent/research/mtc_closed_resource.py::<genexpr>": 116,
+    "hybridguard_agent/research/mtc_closed_resource.py::<module>": 1,
+    "hybridguard_agent/research/mtc_closed_resource.py::_text": 88,
+    "hybridguard_agent/research/mtc_closed_resource.py::evaluate": 18,
+    "hybridguard_agent/research/mtc_closed_resource.py::gpu_family": 20,
+    "hybridguard_agent/research/mtc_closed_resource.py::model_token": 28,
+    "hybridguard_agent/research/mtc_p3_candidates.py::<module>": 1,
+    "hybridguard_agent/research/mtc_p3_candidates.py::_number": 18,
+    "hybridguard_agent/research/mtc_p3_candidates.py::_semantic_equal": 18,
+    "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate": 18,
+    "hybridguard_agent/retrieval/__init__.py::<module>": 1,
+    "hybridguard_agent/retrieval/exact_retriever.py::<module>": 1,
+    "hybridguard_agent/retrieval/paired244.py::<module>": 1,
+    "hybridguard_agent/retrieval/paired244.py::build_paired_context": 12,
+    "hybridguard_agent/rules/__init__.py::<module>": 1,
+    "hybridguard_agent/rules/executor.py::<genexpr>": 192,
+    "hybridguard_agent/rules/executor.py::<module>": 1,
+    "hybridguard_agent/rules/executor.py::_combined_fact_status": 36,
+    "hybridguard_agent/rules/executor.py::_evaluate": 36,
+    "hybridguard_agent/rules/executor.py::_result": 36,
+    "hybridguard_agent/rules/legacy_backlog.py::<module>": 1,
+    "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule": 6,
+    "hybridguard_agent/rules/legacy_backlog.py::get": 6,
+    "hybridguard_agent/rules/legacy_backlog.py::result": 6,
+    "hybridguard_agent/rules/paired244.py::<genexpr>": 471,
+    "hybridguard_agent/rules/paired244.py::<module>": 1,
+    "hybridguard_agent/rules/paired244.py::execute_paired_rules": 12,
+    "hybridguard_agent/rules/paired244.py::load_catalog": 3,
+    "hybridguard_agent/rules/paired244.py::paired_decision": 12,
+    "hybridguard_agent/verification/__init__.py::<module>": 1,
+    "hybridguard_agent/verification/paired244.py::<genexpr>": 2816,
+    "hybridguard_agent/verification/paired244.py::<module>": 1,
+    "hybridguard_agent/verification/paired244.py::verify_paired_output": 8,
+    "hybridguard_agent/verification/verifier.py::<module>": 1
+  },
+  "cwd": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/empty-cwd",
+  "fixture_kind": "SYNTHETIC",
+  "guard_violations": [],
+  "isolated_flags": {
+    "dont_write_bytecode": true,
+    "isolated": 1,
+    "no_site": 1
+  },
+  "mode": "normal",
+  "module_files": {
+    "hybridguard_agent": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/__init__.py",
+    "hybridguard_agent.adapters": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/adapters/__init__.py",
+    "hybridguard_agent.adapters.official_kb_adapter": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/adapters/official_kb_adapter.py",
+    "hybridguard_agent.adapters.paired244_catalog": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/adapters/paired244_catalog.py",
+    "hybridguard_agent.adapters.rule_kb_adapter": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/adapters/rule_kb_adapter.py",
+    "hybridguard_agent.evidence": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/evidence/__init__.py",
+    "hybridguard_agent.evidence.extractor": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/evidence/extractor.py",
+    "hybridguard_agent.evidence.paired244": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/evidence/paired244.py",
+    "hybridguard_agent.official_semantics": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/official_semantics/__init__.py",
+    "hybridguard_agent.official_semantics.evaluator": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/official_semantics/evaluator.py",
+    "hybridguard_agent.research": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/__init__.py",
+    "hybridguard_agent.research.manipulation_eval": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/__init__.py",
+    "hybridguard_agent.research.manipulation_eval.adapter": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/adapter.py",
+    "hybridguard_agent.research.manipulation_eval.baselines": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/baselines.py",
+    "hybridguard_agent.research.manipulation_eval.contract": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/contract.py",
+    "hybridguard_agent.research.manipulation_eval.persistence": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/persistence.py",
+    "hybridguard_agent.research.manipulation_eval.policy": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/policy.py",
+    "hybridguard_agent.research.manipulation_eval.provenance": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/provenance.py",
+    "hybridguard_agent.research.manipulation_eval.provenance_revision": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/provenance_revision.py",
+    "hybridguard_agent.research.manipulation_eval.registry_output": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/registry_output.py",
+    "hybridguard_agent.research.manipulation_eval.runner": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/runner.py",
+    "hybridguard_agent.research.manipulation_eval.runtime_resources": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/runtime_resources.py",
+    "hybridguard_agent.research.manipulation_eval.schemas": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/schemas.py",
+    "hybridguard_agent.research.manipulation_eval.snapshot_smoke": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/snapshot_smoke.py",
+    "hybridguard_agent.research.manipulation_eval.synthetic": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/synthetic.py",
+    "hybridguard_agent.research.manipulation_eval.verification": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/manipulation_eval/verification.py",
+    "hybridguard_agent.research.mtc_closed_resource": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/mtc_closed_resource.py",
+    "hybridguard_agent.research.mtc_p3_candidates": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/research/mtc_p3_candidates.py",
+    "hybridguard_agent.retrieval": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/retrieval/__init__.py",
+    "hybridguard_agent.retrieval.exact_retriever": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/retrieval/exact_retriever.py",
+    "hybridguard_agent.retrieval.paired244": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/retrieval/paired244.py",
+    "hybridguard_agent.rules": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/rules/__init__.py",
+    "hybridguard_agent.rules.executor": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/rules/executor.py",
+    "hybridguard_agent.rules.legacy_backlog": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/rules/legacy_backlog.py",
+    "hybridguard_agent.rules.paired244": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/rules/paired244.py",
+    "hybridguard_agent.verification": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/verification/__init__.py",
+    "hybridguard_agent.verification.paired244": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/verification/paired244.py",
+    "hybridguard_agent.verification.verifier": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/verification/verifier.py"
+  },
+  "omission_rejections": [],
+  "python_executable": "/opt/homebrew/Cellar/python@3.14/3.14.3_1/bin/python3.14",
+  "real_prediction_count": 0,
+  "removed_resource": null,
+  "resource_reads": [
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/RUNTIME_RESOURCES.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "RUNTIME_RESOURCES.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "phase": "PREFLIGHT",
+      "relative_path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/deterministic_rule_predicates.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/official_semantic_relations.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/official_semantic_relations.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/paired244_browser_relations.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v3.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/paired244_browser_relations.v3.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v1.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/paired244_rule_catalog.v1.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v3.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/config/paired244_rule_catalog.v3.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/expanded_v2.schema.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/schemas/expanded_v2.schema.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/field_registry.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/schemas/field_registry.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/manipulation_decision_v2.schema.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "hybridguard_agent/schemas/manipulation_decision_v2.schema.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/scoring/rule_knowledge_base.json",
+      "phase": "PREFLIGHT",
+      "relative_path": "scoring/rule_knowledge_base.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v3.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/paired244_rule_catalog.v3.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/scoring/rule_knowledge_base.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "scoring/rule_knowledge_base.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v3.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/paired244_browser_relations.v3.json"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl"
+    },
+    {
+      "case": null,
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/expanded_v2.schema.json",
+      "phase": "IMPORT_AND_CONTRACT",
+      "relative_path": "hybridguard_agent/schemas/expanded_v2.schema.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_review_sources.v1.json"
+    },
+    {
+      "case": "final_v3_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_closed_resource_sources.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_rule_catalog.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/scoring/rule_knowledge_base.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "scoring/rule_knowledge_base.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_browser_relations.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/deterministic_rule_predicates.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/official_semantic_relations.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/official_semantic_relations.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "legacy19_v2:consistent",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_rule_catalog.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/scoring/rule_knowledge_base.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "scoring/rule_knowledge_base.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/paired244_browser_relations.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/deterministic_rule_predicates.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/official_semantic_relations.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/official_semantic_relations.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    },
+    {
+      "case": "legacy19_v2:single_family_duplicate_rules",
+      "path": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "phase": "FULL_CHAIN",
+      "relative_path": "hybridguard_agent/config/mtc_p3_semantic_sources.v1.json"
+    }
+  ],
+  "results": [
+    {
+      "case_id": "final_v3_v2:consistent",
+      "decision": "NO_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "case_id": "final_v3_v2:single_family_duplicate_rules",
+      "decision": "MANIPULATION_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 1,
+      "status": "COMPLETED"
+    },
+    {
+      "case_id": "legacy19_v2:consistent",
+      "decision": "NO_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "case_id": "legacy19_v2:single_family_duplicate_rules",
+      "decision": "MANIPULATION_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 1,
+      "status": "COMPLETED"
+    }
+  ],
+  "single_relation_probe_calls": 0,
+  "snapshot_copy": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot",
+  "startup_preflight": {
+    "digest_checked_paths": [
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/deterministic_rule_predicates.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/evaluation_contract.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/figure_spec.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/metric_spec.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_policy_v2/variant_plan.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/decision_roles.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/family_bindings.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/precondition_classification.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/research_scope.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_bindings.jsonl",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/formal_manipulation_role_gate_v2/source_conditions.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_closed_resource_sources.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/mtc_p3_semantic_sources.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/official_semantic_relations.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_browser_relations.v3.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_review_sources.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v1.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/config/paired244_rule_catalog.v3.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/expanded_v2.schema.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/field_registry.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/formal_manipulation_job_v2.schema.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/formal_manipulation_long_tables_v2.schema.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/hybridguard_agent/schemas/manipulation_decision_v2.schema.json",
+      "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/scoring/rule_knowledge_base.json"
+    ],
+    "manifest": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot/RUNTIME_RESOURCES.json",
+    "output_created": false,
+    "resource_count": 28,
+    "root": "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot",
+    "sample_files_read": false,
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "synthetic_unit_count": 4,
+  "sys_path": [
+    "/private/var/folders/rk/2gmg78l55dl2m5ld98kpb3100000gn/T/hybridguard-s05r-synthetic-hhg4azl_/snapshot",
+    "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python314.zip",
+    "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14",
+    "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/lib-dynload"
+  ]
+}

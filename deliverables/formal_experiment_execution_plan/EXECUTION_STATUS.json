@@ -6,7 +6,7 @@
   "status_file": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "planning_only": false,
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "S05_COMPLETE_WAITING_S06_AUTHORIZATION",
+  "experiment_execution_status": "S05_R_COMPLETE_WAITING_REVIEW",
   "scope": {
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
@@ -14,28 +14,32 @@
     "preserve_P0_P6": true,
     "no_new_collection_required": true,
     "external_model_calls_this_turn": 0,
-    "detector_runs_this_turn": 0,
+    "detector_runs_this_turn": "SYNTHETIC_FULL_CHAIN_ONLY",
     "material_validator_runs_this_turn": 0,
-    "pre_step_git_delivery_explicitly_authorized": true,
-    "current_execution_step": "S05",
+    "pre_step_git_delivery_explicitly_authorized": false,
+    "current_execution_step": "S05-R",
     "actual_sample_prediction_rows_this_turn": 0,
     "performance_metrics_computed_this_turn": false,
     "S01_rerun_this_turn": false,
     "S02_rerun_this_turn": false,
     "source_registry_only_this_turn": false,
     "S04_executed_this_turn": false,
-    "git_commit_or_push_this_turn": true,
+    "git_commit_or_push_this_turn": false,
     "contract_revision_only_this_turn": false,
     "S03_v1_full_step_rerun_this_turn": false,
     "S03_v1_regression_tests_this_turn": 0,
     "actual_sample_scope_evaluations_this_turn": 0,
     "synthetic_saved_prediction_rows_this_turn": 0,
     "synthetic_metrics_computed_this_turn": false,
-    "S05_executed_this_turn": true,
+    "S05_executed_this_turn": false,
     "real_detector_runs_this_turn": 0,
     "S05_committed_or_pushed": false,
     "S06_executed_this_turn": false,
-    "git_delivery_step": "S04"
+    "git_delivery_step": null,
+    "S05_R_executed_this_turn": true,
+    "synthetic_full_chain_units_this_turn": 12,
+    "synthetic_accepted_snapshot_units": 4,
+    "synthetic_result_format": "SYNTHETIC_RESULTS.json; no predictions.jsonl or formal units"
   },
   "repositories": {
     "main": {
@@ -1696,8 +1700,8 @@
     }
   ],
   "next_authorization_step": "S06",
-  "next_authorization_instruction": "执行 S06",
-  "next_step_scope": "Only explicitly authorized S06: frozen E1 main216 x two risk methods; time-control FPR remains closed. No automatic S07.",
+  "next_authorization_instruction": "先审查 S05-R；审查通过后另行明确授权 执行 S06",
+  "next_step_scope": "Waiting for S05-R review. S06 remains unauthorized; future authorization must use revised snapshot source/config/digest. No automatic advance.",
   "plan_validation": {
     "step_count": 12,
     "all_required_step_fields_present": true,
@@ -1861,6 +1865,28 @@
       "S06_executed": false,
       "S05_committed_or_pushed": false,
       "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/STEP_REPORT.md"
+    },
+    {
+      "event": "S05_R_AUTHORIZED",
+      "at": "2026-09-24T03:49:11.066700+00:00",
+      "review_baseline": "595d30d690713f6ee800a7825cfe8199cee97565",
+      "original_S05_unchanged": true,
+      "S06_authorized": false
+    },
+    {
+      "event": "S05_R_COMPLETED_WAITING_REVIEW",
+      "at": "2026-09-24T04:13:00.074855+00:00",
+      "review_baseline": "595d30d690713f6ee800a7825cfe8199cee97565",
+      "freeze_revision": "formal-manipulation-freeze-r1",
+      "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+      "focused_tests_passed": 9,
+      "synthetic_accepted_units": 4,
+      "startup_rejections": 6,
+      "original_S05_unchanged": true,
+      "real_predictions": 0,
+      "S06_executed": false,
+      "committed_or_pushed": false,
+      "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/STEP_REPORT.md"
     }
   ],
   "step_revisions": [
@@ -1932,6 +1958,44 @@
         "real detection coverage/performance and external generalization NOT_EVALUATED"
       ],
       "external_review_commit": "8d2e8d55e34fcd75a4d6f3f5b9f0834862316554"
+    },
+    {
+      "id": "S05-R",
+      "parent_step": "S05",
+      "status": "DONE",
+      "authorized": true,
+      "started_at": "2026-09-24T03:49:11.066700+00:00",
+      "review_baseline": "595d30d690713f6ee800a7825cfe8199cee97565",
+      "scope": "Resource packaging repair and isolated synthetic full-chain smoke only; no semantic or real-experiment changes",
+      "acceptance_status": "PASS",
+      "stop_after_step": true,
+      "review_status": "AWAITING_USER_REVIEW",
+      "completed_at": "2026-09-24T04:13:00.074855+00:00",
+      "freeze_revision": "formal-manipulation-freeze-r1",
+      "protocol_version": "formal-manipulation-protocol-v2",
+      "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+      "policy_version": "formal-manipulation-family-or-v2",
+      "parent_protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
+      "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+      "artifacts": {
+        "directory": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1",
+        "config_directory": "hybridguard_agent/config/formal_manipulation_protocol_v2_r1",
+        "validation_directory": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1_validation",
+        "report": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/STEP_REPORT.md",
+        "validation": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/VALIDATION.json",
+        "resource_manifest": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/frozen_sources/RUNTIME_RESOURCES.json",
+        "semantic_invariance": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/SEMANTIC_INVARIANCE.json"
+      },
+      "focused_tests_passed": 9,
+      "accepted_synthetic_units": 4,
+      "missing_source_cases": 3,
+      "startup_rejections": 6,
+      "original_S05_unchanged": true,
+      "experimental_semantics_unchanged": true,
+      "real_predictions": 0,
+      "real_metrics": "NOT_EVALUATED",
+      "commit_status": "LOCAL_NOT_COMMITTED",
+      "next_step_executed": false
     }
   ],
   "next_step_contract": {
@@ -1939,12 +2003,14 @@
     "contract_version": "formal-manipulation-relation-risk-attribution-v2",
     "policy_version": "formal-manipulation-family-or-v2",
     "protocol_version": "formal-manipulation-protocol-v2",
-    "protocol_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/protocol.json",
-    "protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
-    "role_gate_config_dir": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2",
-    "policy_path": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+    "protocol_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/protocol.json",
+    "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+    "role_gate_config_dir": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2",
+    "policy_path": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/05_freeze_r1/frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
     "execution_authorized": false,
     "formal_experiment_authorized": false,
-    "expected_new_units": 432
+    "expected_new_units": 432,
+    "freeze_revision": "formal-manipulation-freeze-r1",
+    "packaging_review_status": "AWAITING_USER_REVIEW"
   }
 }

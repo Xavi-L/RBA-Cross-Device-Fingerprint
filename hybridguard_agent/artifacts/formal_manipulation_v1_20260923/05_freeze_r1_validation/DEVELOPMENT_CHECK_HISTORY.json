@@ -1,0 +1,28 @@
+{
+  "accepted_revision": {
+    "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+    "status": "PASS",
+    "summary": "SYNTHETIC_ISOLATED/SYNTHETIC_SMOKE_VALIDATION.json",
+    "synthetic_units": 4
+  },
+  "corrected_draft": {
+    "missing_source_cases": 3,
+    "startup_rejections": 6,
+    "status": "PASS",
+    "summary": "DEVELOPMENT/CORRECTED_DRAFT_SUMMARY.json",
+    "synthetic_units": 4
+  },
+  "full_chain_synthetic_units_this_turn": 12,
+  "initial": {
+    "cause": "Profiler counted its own generator while the call-count dictionary was iterated",
+    "failure": "RuntimeError: dictionary changed size during iteration",
+    "harness_status": "FAILED_AFTER_FIRST_MISSING_RESOURCE_CLI_API_CHECKS",
+    "log": "DEVELOPMENT/INITIAL_HARNESS_FAILURE.txt",
+    "normal_full_chain_units": 4,
+    "normal_status": "PASS"
+  },
+  "real_units_this_turn": 0,
+  "repair": "Ignore smoke driver frames in profiler; iterate a snapshot of counter keys. No fixture, predicate, role, gate or policy changed.",
+  "result_based_rule_or_fixture_adjustments": false,
+  "scope": "SYNTHETIC_TEMPORARY_DRAFTS_NOT_ACCEPTED_OR_FORMAL_UNITS"
+}

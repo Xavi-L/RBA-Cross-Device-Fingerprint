@@ -1,0 +1,88 @@
+{
+  "LLM_calls": 0,
+  "S06_units": 0,
+  "all_modules_and_research_resources_from_copied_snapshot": true,
+  "fixture_kind": "SYNTHETIC",
+  "freeze_revision": "formal-manipulation-freeze-r1",
+  "independent_subprocess_count": 4,
+  "metrics": "NOT_EVALUATED",
+  "no_main_workspace_fallback": true,
+  "normal_results": [
+    {
+      "case_id": "final_v3_v2:consistent",
+      "decision": "NO_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "case_id": "final_v3_v2:single_family_duplicate_rules",
+      "decision": "MANIPULATION_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 1,
+      "status": "COMPLETED"
+    },
+    {
+      "case_id": "legacy19_v2:consistent",
+      "decision": "NO_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "case_id": "legacy19_v2:single_family_duplicate_rules",
+      "decision": "MANIPULATION_ALERT",
+      "full_chain_call_counts": {
+        "hybridguard_agent/adapters/paired244_catalog.py::runtime_cards": 3,
+        "hybridguard_agent/evidence/paired244.py::build_paired_evidence": 1,
+        "hybridguard_agent/research/manipulation_eval/policy.py::build_events": 2,
+        "hybridguard_agent/research/manipulation_eval/policy.py::decide": 1,
+        "hybridguard_agent/research/manipulation_eval/verification.py::verify_policy_output": 1,
+        "hybridguard_agent/rules/paired244.py::execute_paired_rules": 3,
+        "hybridguard_agent/verification/paired244.py::verify_paired_output": 2
+      },
+      "original_verifier": true,
+      "risk_verifier": true,
+      "score": 1,
+      "status": "COMPLETED"
+    }
+  ],
+  "not_performance_or_full_input_coverage_proof": true,
+  "omission_resource_cases": 3,
+  "protocol_digest": "9a6cb92a5d973a42d230305e176ab9ef824bca2e8aae045dafed515ce61c0f19",
+  "real_predictions": 0,
+  "scope": "INDEPENDENT_SNAPSHOT_SYNTHETIC_FULL_CHAIN_AND_STARTUP_OMISSION",
+  "startup_rejection_count": 6,
+  "status": "PASS",
+  "synthetic_unit_count": 4
+}
