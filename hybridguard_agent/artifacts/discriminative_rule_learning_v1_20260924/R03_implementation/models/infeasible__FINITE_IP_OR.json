@@ -1,0 +1,148 @@
+{
+  "method_id": "FINITE_IP_OR",
+  "status": "EMPTY_MODEL",
+  "clauses": [],
+  "atoms": [],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "input_manifest_ref": "hybridguard_agent/research/rule_learning/synthetic.py#infeasible",
+    "fold_id": "fixture-fold-1",
+    "split_id": "SYNTHETIC",
+    "operating_point": "OP05",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "data_origin": "BUILTIN_SYNTHETIC"
+  },
+  "view": {
+    "view_id": "SYNTHETIC_CORE",
+    "kind": "CANONICAL_DEVIATION",
+    "source_condition": "SRC-111",
+    "input_atom_ids": [
+      "A"
+    ]
+  },
+  "fit": {
+    "available": true,
+    "solver": "HiGHS",
+    "version": "1.12.0",
+    "numpy": "2.3.5",
+    "threads": 1,
+    "mip_rel_gap": 0.0,
+    "mip_abs_gap": 0.0,
+    "mip_feasibility_tolerance": 1e-09,
+    "status": "NO_FEASIBLE_MODEL_EMPTY_MODEL",
+    "infeasibility_proved": true,
+    "optimality_scope": "FINITE_SUPPORTED_POOL_ONLY",
+    "best_bound": null,
+    "gap": null,
+    "train_ids": [
+      "fixture-infeasible-train-0-clean_pre",
+      "fixture-infeasible-train-0-attack",
+      "fixture-infeasible-train-0-clean_post",
+      "fixture-infeasible-train-1-clean_pre",
+      "fixture-infeasible-train-1-attack",
+      "fixture-infeasible-train-1-clean_post",
+      "fixture-infeasible-train-2-clean_pre",
+      "fixture-infeasible-train-2-attack",
+      "fixture-infeasible-train-2-clean_post",
+      "fixture-infeasible-train-3-clean_pre",
+      "fixture-infeasible-train-3-attack",
+      "fixture-infeasible-train-3-clean_post",
+      "fixture-infeasible-train-4-clean_pre",
+      "fixture-infeasible-train-4-attack",
+      "fixture-infeasible-train-4-clean_post",
+      "fixture-infeasible-train-5-clean_pre",
+      "fixture-infeasible-train-5-attack",
+      "fixture-infeasible-train-5-clean_post"
+    ],
+    "train_expected_n": 18,
+    "train_consumed_n": 18,
+    "fit_scope": "SYNTHETIC_ONLY",
+    "fixture_name": "infeasible",
+    "elapsed_seconds": 0.003231584094464779,
+    "freeze_time": "2026-09-24T09:35:35.984176+00:00",
+    "candidate_pool_size": 1,
+    "registered_clause_count": 2,
+    "clean_budget_count": 0,
+    "clean_denominator": 12,
+    "stratum_denominators": {
+      "clean_pre": 6,
+      "attack": 6,
+      "clean_post": 6
+    },
+    "training_result": {
+      "objective": {
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0
+      },
+      "macro_tpr": {
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        },
+        "attack": {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        },
+        "clean_post": {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 0,
+        "denominator": 1,
+        "value": 0.0
+      },
+      "complexity": 0,
+      "feasible": false,
+      "partial_feasible": true,
+      "clause_ids": [],
+      "states": [
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL",
+        "EMPTY_MODEL"
+      ]
+    },
+    "support_scope": "COMPLETE_ADMITTED_TRAIN_TRIPLETS_ONLY"
+  },
+  "encoder": {},
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-2b4fa4e42a6a7c9060f2d0dc",
+  "complexity": {
+    "distinct_atoms": 0,
+    "clauses": 0,
+    "literal_occurrences": 0,
+    "objective_complexity": 0,
+    "distinct_families": 0,
+    "distinct_surfaces": 0,
+    "source_union": []
+  }
+}

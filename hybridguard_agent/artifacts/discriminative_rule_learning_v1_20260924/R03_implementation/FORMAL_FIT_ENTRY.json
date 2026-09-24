@@ -1,0 +1,34 @@
+{
+  "status": "CLOSED_R03_NOT_AUTHORIZATION",
+  "request_fields": [
+    "stage",
+    "authorization_record_ref",
+    "freeze_manifest_ref",
+    "resource_manifest_ref",
+    "expected_fit_job_ref",
+    "protocol_digest",
+    "split_id",
+    "fold_id",
+    "method_id",
+    "operating_point",
+    "source_condition",
+    "input_view",
+    "train_membership_ref"
+  ],
+  "issuer_entry": "access.open_formal_fit",
+  "current_behavior": "always raises stage authorization error after request-shape checks",
+  "R04_must_bind": [
+    "R01 eight configs and digest",
+    "R02 raw per-alias cells, reasons and cache lineage",
+    "exact fold membership and S01 roles",
+    "R03 code and synthetic fixtures",
+    "HiGHS 1.12.0, NumPy 2.3.5, Python and platform",
+    "single-surface metadata and encoder code",
+    "source-specific projection and all aliases",
+    "S06 historical method/input proof and original coverage schema",
+    "expected fit/model/prediction job manifests",
+    "global fit count/wall-clock priority and per-fit shared deadline",
+    "freeze-before-test-read runner and explicit OOF aggregation"
+  ],
+  "later_stage_must_authorize": "each real fit job; a caller-provided stage string or freeze file is insufficient"
+}

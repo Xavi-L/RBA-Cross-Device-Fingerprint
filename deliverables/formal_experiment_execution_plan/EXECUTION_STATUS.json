@@ -9,13 +9,17 @@
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "R02_COMPLETE_PENDING_USER_ACCEPTANCE_NO_TRAINING_OR_RISK_PREDICTION",
+  "experiment_execution_status": "R03_COMPLETE_PENDING_USER_ACCEPTANCE_SYNTHETIC_ONLY",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
     "research_execution_authorized": true,
-    "authorized_steps": ["R01", "R02"],
-    "authorization_scope": "R02_FIXED_MATRIX_CACHE_AND_SYNTHETIC_ISOLATION_ONLY",
+    "authorized_steps": [
+      "R01",
+      "R02",
+      "R03"
+    ],
+    "authorization_scope": "R03_IMPLEMENTATION_AND_SYNTHETIC_VALIDATION_ONLY",
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
     "auto_git_commit_or_push_for_future_steps": false,
@@ -25,7 +29,7 @@
     "model_fits_this_documentation_change": 0,
     "upstream_rebuilds_this_documentation_change": 0,
     "new_collection_or_attack_execution_this_documentation_change": 0,
-    "notes": "The user externally accepted R01 at commit 283ff801ea3cfddce231c928017185db0f34683b and separately authorized R02 only. R02 is complete locally and awaits review. R03-R10, legacy S07, real training, risk predictions, collection, attack execution and Git delivery for R02 remain unauthorized. R01 execution-time acceptance and history are retained; its external acceptance is a separate event."
+    "notes": "The user externally accepted R02 at daca1ff477383ded6b6c81600dbca1cb6270e9f9 and separately authorized R03 only. R03 implementation and synthetic acceptance are complete, pending external review. R04-R10, real fits/rankings/thresholds/risk predictions, legacy S07, and Git delivery for R03 remain unauthorized. Original R02 execution-time validation and history are retained; external acceptance is a separate event."
   },
   "legacy_archive": {
     "schema_version": "formal-experiment-execution-status-v1",
@@ -76,8 +80,8 @@
     "config": "hybridguard_agent/config/rule_learning_v1_20260924",
     "implementation": "hybridguard_agent/research/rule_learning",
     "exists_or_implemented_claim": true,
-    "existing_scope": "R01_CONFIG_PROTOCOL_AND_R02_MATRIX_ISOLATION_IMPLEMENTATION",
-    "learner_implementation_exists": false
+    "existing_scope": "R01_PROTOCOL_R02_MATRIX_R03_SYNTHETIC_TESTED_LEARNING_IMPLEMENTATION",
+    "learner_implementation_exists": true
   },
   "steps": [
     {
@@ -122,11 +126,13 @@
     {
       "id": "R02",
       "name": "状态感知关系矩阵与泄漏隔离",
-      "depends_on": ["R01"],
+      "depends_on": [
+        "R01"
+      ],
       "status": "DONE",
       "authorized": true,
       "acceptance_status": "PASS_MATRIX_AND_SYNTHETIC_ISOLATION_ONLY",
-      "user_acceptance": "PENDING",
+      "user_acceptance": "ACCEPTED_EXTERNAL",
       "execution_basis_commit": "283ff801ea3cfddce231c928017185db0f34683b",
       "completed_on": "2026-09-24",
       "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
@@ -151,20 +157,69 @@
         "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R02_matrix/TRAIN_TRANSFORM_MANIFEST.json"
       ],
       "blockers": [],
-      "execution_counts": {"real_fits": 0, "risk_predictions": 0, "new_single_relation_predicate_calls": 1850, "reused_original_results": 8772, "full_label_rankings": 0, "upstream_rebuilds": 0},
-      "acceptance_summary": "262 unique stages and 57 registered candidates reconciled (14934 cells); 162 supervised and 100 descriptive rows stay separate. Available 10622, U 3264, FAILED 0, no-Boolean NOT_REQUESTED 1048. All 524 OS alias checks agree after canonical deviation polarity. Ten core columns, 104 control inputs and 53 fixed control atoms saved; 62 numeric inputs remain unfitted. Exact R01 folds and real-fit denial verified; 12 static checks and 29 synthetic tests pass. R03 requires separate review and authorization."
+      "execution_counts": {
+        "real_fits": 0,
+        "risk_predictions": 0,
+        "new_single_relation_predicate_calls": 1850,
+        "reused_original_results": 8772,
+        "full_label_rankings": 0,
+        "upstream_rebuilds": 0
+      },
+      "acceptance_summary": "262 unique stages and 57 registered candidates reconciled (14934 cells); 162 supervised and 100 descriptive rows stay separate. Available 10622, U 3264, FAILED 0, no-Boolean NOT_REQUESTED 1048. All 524 OS alias checks agree after canonical deviation polarity. Ten core columns, 104 control inputs and 53 fixed control atoms saved; 62 numeric inputs remain unfitted. Exact R01 folds and real-fit denial verified; 12 static checks and 29 synthetic tests pass. R03 requires separate review and authorization.",
+      "external_acceptance_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/R02_EXTERNAL_ACCEPTANCE.json",
+      "externally_reviewed_commit": "daca1ff477383ded6b6c81600dbca1cb6270e9f9"
     },
     {
       "id": "R03",
       "name": "选择器、合理基线和合成验证",
-      "depends_on": ["R01", "R02"],
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "acceptance_status": "NOT_RUN",
+      "depends_on": [
+        "R01",
+        "R02"
+      ],
+      "status": "DONE",
+      "authorized": true,
+      "acceptance_status": "PASS_IMPLEMENTATION_AND_SYNTHETIC_ONLY",
       "output_directory": "R03_implementation",
-      "artifacts": [],
+      "artifacts": [
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/STEP_REPORT.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/BINDING_REVIEW.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/R02_EXTERNAL_ACCEPTANCE.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/MODEL_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/LEAKAGE_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/METRIC_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/HAND_CALCULATIONS.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/SINGLE_SURFACE_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/BASELINE_SOURCE_INTERFACES.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/FORMAL_FIT_ENTRY.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/ENVIRONMENT.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/ARTIFACT_MANIFEST.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/FINAL_REVIEW.json"
+      ],
       "blockers": [],
-      "acceptance_summary": "Implement and synthetically validate fold-local rule-set selection, baselines, tri-valued prediction and metrics; no real outer-fold fitting."
+      "acceptance_summary": "GREEDY_OR, finite IP OR and DNF2, train-only support/whole-model clean budgets, tri-valued prediction, frozen models/encoders, provenance-aware baselines and metrics implemented. HiGHS 1.12.0; 35 synthetic tests pass, including 14 independent exhaustive IP comparisons. Empty and failure outcomes retained. No real fitting, rankings, thresholds or risk predictions. Stop at R03 for external review; R04 is not started.",
+      "user_acceptance": "PENDING",
+      "execution_basis_commit": "daca1ff477383ded6b6c81600dbca1cb6270e9f9",
+      "completed_on": "2026-09-24",
+      "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+      "execution_counts": {
+        "real_fits": 0,
+        "real_rule_rankings": 0,
+        "real_threshold_fits": 0,
+        "real_risk_predictions": 0,
+        "matrix_rebuilds": 0,
+        "legacy_S07": 0,
+        "synthetic_tests_passed": 35,
+        "ip_exhaustive_comparisons": 14,
+        "saved_synthetic_models": 25,
+        "saved_synthetic_demo_prediction_rows": 225
+      },
+      "branch_limits": {
+        "column_generation": "NOT_IMPLEMENTED_NOT_AUTHORIZED_BY_R01",
+        "formal_fit_issuance": "CLOSED_R03_REQUIRES_R04_BINDING_AND_LATER_JOB_AUTHORIZATION",
+        "formal_runner_global_budget_and_OOF_aggregation": "R04_R05_NOT_IMPLEMENTED",
+        "real_source_retraining": "R06_NOT_RUN"
+      }
     },
     {
       "id": "R04",
@@ -253,9 +308,9 @@
       "acceptance_summary": "Each claim/figure binds saved results and its actual evidence scope; incomplete branches stay explicit; P6 is saved-output reuse only."
     }
   ],
-  "next_authorization_step": "R03",
-  "next_authorization_instruction": "验收 R02 后，执行 R03",
-  "next_step_scope": "R03 selector, baseline and synthetic implementation only after separate authorization. No real fitting, risk prediction, legacy S07 or R02 Git delivery is authorized by R02 completion.",
+  "next_authorization_step": "R04",
+  "next_authorization_instruction": "验收 R03 后，执行 R04",
+  "next_step_scope": "R04 training/evaluation job and resource freeze only after separate authorization. No R04/R05, real fitting/ranking/thresholds/risk predictions, legacy S07 or R03 commit/push is authorized by R03 completion.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -312,6 +367,33 @@
       "real_fits": 0,
       "risk_predictions": 0,
       "R01_protocol_and_legacy_results_modified": false,
+      "next_step_auto_started": false,
+      "git_commit_push_pr": false
+    },
+    {
+      "event": "R02_EXTERNAL_REVIEW_ACCEPTED",
+      "date": "2026-09-24",
+      "authority": "User: R02 外部验收通过。执行 R03：选择器、合理基线和合成验证。",
+      "reviewed_commit": "daca1ff477383ded6b6c81600dbca1cb6270e9f9",
+      "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/R02_EXTERNAL_ACCEPTANCE.json",
+      "original_R02_validation_or_history_overwritten": false
+    },
+    {
+      "event": "R03_AUTHORIZED_AND_COMPLETED_SYNTHETIC_IMPLEMENTATION",
+      "date": "2026-09-24",
+      "authority": "User authorized R03 implementation and synthetic checks only; stop without R04/R05, real fitting/ranking/thresholds/predictions, old S07, commit or push.",
+      "execution_basis_commit": "daca1ff477383ded6b6c81600dbca1cb6270e9f9",
+      "step": "R03",
+      "status": "DONE",
+      "acceptance_status": "PASS_IMPLEMENTATION_AND_SYNTHETIC_ONLY",
+      "user_acceptance": "PENDING",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R03_implementation/VALIDATION.json",
+      "synthetic_tests_passed": 35,
+      "ip_exhaustive_comparisons": 14,
+      "real_fits": 0,
+      "real_risk_predictions": 0,
+      "R01_R02_or_legacy_results_modified": false,
       "next_step_auto_started": false,
       "git_commit_push_pr": false
     }
