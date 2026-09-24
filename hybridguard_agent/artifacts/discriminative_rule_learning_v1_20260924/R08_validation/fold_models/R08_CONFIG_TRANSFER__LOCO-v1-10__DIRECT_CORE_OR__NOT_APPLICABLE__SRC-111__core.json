@@ -1,0 +1,523 @@
+{
+  "method_id": "DIRECT_CORE_OR",
+  "status": "FIXED",
+  "clauses": [
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:NVW-001",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:NVW-002",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:NW-001",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:NW-002",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:NW-005",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:OFFDER-UA-001",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:OFFDER-UA-002",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:P3-SCREEN-APP",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:P3-UA-DEFAULT",
+          "polarity": "POSITIVE"
+        }
+      ]
+    },
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:P3-UA-SETTINGS",
+          "polarity": "POSITIVE"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "DEVIATION:NVW-001",
+      "family": "model_system_agent",
+      "surfaces": [
+        "host26",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NVW-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NVW-001",
+        "all_registered_equivalent_aliases": [
+          "NVW-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NVW-001",
+            "source": "E",
+            "raw_atom_id": "CAT:NVW-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "model_token",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.device_model",
+              "app.webview_data.kernel_container_layer.system_http_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NVW-002",
+      "family": "host_os",
+      "surfaces": [
+        "host26",
+        "native84"
+      ],
+      "sources": [
+        "E",
+        "O_u"
+      ],
+      "aliases": [
+        "NVW-002",
+        "OFFDER-OS-002"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NVW-002",
+        "all_registered_equivalent_aliases": [
+          "NVW-002",
+          "OFFDER-OS-002"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NVW-002",
+            "source": "E",
+            "raw_atom_id": "CAT:NVW-002",
+            "deviation_polarity": "POSITIVE",
+            "profile": "system_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.webview_data.kernel_container_layer.system_http_agent"
+            ]
+          },
+          {
+            "rule_id": "OFFDER-OS-002",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-OS-002",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "system_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.webview_data.kernel_container_layer.system_http_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NW-001",
+      "family": "model_app_ua",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NW-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NW-001",
+        "all_registered_equivalent_aliases": [
+          "NW-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NW-001",
+            "source": "E",
+            "raw_atom_id": "CAT:NW-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "model_token",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.device_model",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NW-002",
+      "family": "app_os",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E",
+        "O_u"
+      ],
+      "aliases": [
+        "NW-002",
+        "OFFDER-OS-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NW-002",
+        "all_registered_equivalent_aliases": [
+          "NW-002",
+          "OFFDER-OS-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NW-002",
+            "source": "E",
+            "raw_atom_id": "CAT:NW-002",
+            "deviation_polarity": "POSITIVE",
+            "profile": "app_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          },
+          {
+            "rule_id": "OFFDER-OS-001",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-OS-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "app_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NW-005",
+      "family": "native_app_gpu_family",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NW-005"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NW-005",
+        "all_registered_equivalent_aliases": [
+          "NW-005"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NW-005",
+            "source": "E",
+            "raw_atom_id": "CAT:NW-005",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "gpu_family",
+            "field_refs": [
+              "app.android_native_data.graphics_layer.native_gpu_renderer",
+              "app.web_data.graphics_layer.webgl_renderer"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:OFFDER-UA-001",
+      "family": "app_surface",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "O_u"
+      ],
+      "aliases": [
+        "OFFDER-UA-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "OFFDER-UA-001",
+        "all_registered_equivalent_aliases": [
+          "OFFDER-UA-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "OFFDER-UA-001",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-UA-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "host_web_class",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent",
+              "app.web_data.navigator_layer.platform"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:OFFDER-UA-002",
+      "family": "host_ua",
+      "surfaces": [
+        "app_web67",
+        "host26"
+      ],
+      "sources": [
+        "O_u"
+      ],
+      "aliases": [
+        "OFFDER-UA-002"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "OFFDER-UA-002",
+        "all_registered_equivalent_aliases": [
+          "OFFDER-UA-002"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "OFFDER-UA-002",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-UA-002",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "literal_equality",
+            "field_refs": [
+              "app.webview_data.kernel_container_layer.default_ua_native",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:P3-SCREEN-APP",
+      "family": "screen_geometry",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "P3-SCREEN-APP"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "P3-SCREEN-APP",
+        "all_registered_equivalent_aliases": [
+          "P3-SCREEN-APP"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "P3-SCREEN-APP",
+            "source": "E",
+            "raw_atom_id": "CAT:P3-SCREEN-APP",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "screen_short_side",
+            "field_refs": [
+              "app.android_native_data.screen_display_layer.screen_resolution_physical",
+              "app.web_data.screen_layer.screen_resolution_logical",
+              "app.web_data.screen_layer.device_pixel_ratio"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:P3-UA-DEFAULT",
+      "family": "host_ua",
+      "surfaces": [
+        "app_web67",
+        "host26"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "P3-UA-DEFAULT"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "P3-UA-DEFAULT",
+        "all_registered_equivalent_aliases": [
+          "P3-UA-DEFAULT"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "P3-UA-DEFAULT",
+            "source": "E",
+            "raw_atom_id": "CAT:P3-UA-DEFAULT",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "literal_equality",
+            "field_refs": [
+              "app.webview_data.kernel_container_layer.default_ua_native",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:P3-UA-SETTINGS",
+      "family": "host_ua",
+      "surfaces": [
+        "app_web67",
+        "host26"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "P3-UA-SETTINGS"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "P3-UA-SETTINGS",
+        "all_registered_equivalent_aliases": [
+          "P3-UA-SETTINGS"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "P3-UA-SETTINGS",
+            "source": "E",
+            "raw_atom_id": "CAT:P3-UA-SETTINGS",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "literal_equality",
+            "field_refs": [
+              "app.webview_data.webview_settings_layer.settings_user_agent",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "split_id": "LOCO-v1",
+    "fold_id": "LOCO-v1-10",
+    "method_id": "DIRECT_CORE_OR",
+    "operating_point": "NOT_APPLICABLE",
+    "source_condition": "SRC-111",
+    "input_view": "core",
+    "data_origin": "R02_FIXED_CACHE",
+    "model_unit_id": "R08_CONFIG_TRANSFER__LOCO-v1-10__DIRECT_CORE_OR__NOT_APPLICABLE__SRC-111__core",
+    "fit_job_id": null,
+    "train_membership_digest": "21bac84fc8b711751e2bdcf621bbfd74bfe3cd5dc52e2c842bdf7b1e76edd31b",
+    "input_manifest_ref": "DATA_INDEX.json",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+    "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0",
+    "authorization_ref": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R08_validation/R08_APPROVAL.json#f7cc3483b14b608f6f12a9a4c96bd837a846aabb49eef643235a65a168803592",
+    "job_digest": "e64848bd4594d5e5a979c5642f11b9610070283c48ca90713191d22543d7b0bc"
+  },
+  "view": {
+    "view_id": "CORE:SRC-111",
+    "kind": "CANONICAL_DEVIATION",
+    "source_condition": "SRC-111",
+    "input_atom_ids": [
+      "DEVIATION:NVW-001",
+      "DEVIATION:NVW-002",
+      "DEVIATION:NW-001",
+      "DEVIATION:NW-002",
+      "DEVIATION:NW-005",
+      "DEVIATION:OFFDER-UA-001",
+      "DEVIATION:OFFDER-UA-002",
+      "DEVIATION:P3-SCREEN-APP",
+      "DEVIATION:P3-UA-DEFAULT",
+      "DEVIATION:P3-UA-SETTINGS"
+    ]
+  },
+  "fit": {
+    "status": "FIXED_NO_FIT",
+    "train_ids": [],
+    "support_filter": false,
+    "fit_scope": "EXACT_AUTHORIZED_JOB_TRAIN_ONLY",
+    "fixture_name": null,
+    "fit_job_id": null,
+    "freeze_time": "2026-09-24T15:22:26.577640+00:00",
+    "cap_exemption": true,
+    "measurement_contract": "r01-measurement-v1"
+  },
+  "encoder": {},
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-177a342c92abc6298ca5c8ba",
+  "complexity": {
+    "distinct_atoms": 10,
+    "clauses": 10,
+    "literal_occurrences": 10,
+    "objective_complexity": 20,
+    "distinct_families": 8,
+    "distinct_surfaces": 3,
+    "source_union": [
+      "E",
+      "O_u"
+    ]
+  }
+}

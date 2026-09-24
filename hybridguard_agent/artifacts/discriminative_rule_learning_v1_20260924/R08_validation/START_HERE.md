@@ -1,0 +1,11 @@
+# R08_CONFIG_TRANSFER 审查入口
+
+先读 STEP_REPORT.md、VALIDATION.json、validation_track_registry.json 和 generalization_claim_limits.md。
+
+本目录是14个LOCO训练折和两固定基线的原dispatcher一次真实执行；不是运行入口的替代实现。DISPATCH_COMMAND.json记录原命令，不能在本目录再次执行，原共享预算账本禁止同job静默重试。审核只需读取保存的dispatch产物。
+
+精确成员在三类expected清单和SPLIT_MEMBERS；原模型/训练/预测/访问记录在dispatch/jobs。MODEL_MANIFEST、training_support_table、held_out_configuration_results、metrics/OOF与规则来源/别名和失败/弃判表是保存产物导出。LOCO_LOEO文件只比较保存的不同评价轨，不合并分母、不产生新模型或预测。
+
+源码export_rule_learning_r08.py仅做只读产物核算/导出，使用快照Python。它拒绝覆盖已有导出文件；不要为复查重新拟合。R01–R07原产物保持只读，R07验收单独记录。READ_ONLY_CHECK与ARTIFACT_MANIFEST是本次执行时点记录；未来授权步骤可以更新共享账本和状态，不能因此覆盖历史清单。
+
+配置主分支完成等待外部验收；机制不可评估、前瞻无材料，结果null。R07未运行分支不是本轮前置。停止于此，不自动执行R09、V2、联合/集成或最终重拟合，不自动提交推送。

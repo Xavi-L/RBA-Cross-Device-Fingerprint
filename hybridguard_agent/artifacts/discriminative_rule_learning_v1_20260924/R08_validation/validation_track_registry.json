@@ -1,0 +1,58 @@
+{
+  "R07_union_36_is_not_an_R08_model": true,
+  "descriptive_stages_excluded": 100,
+  "independent_samples_across_tracks_or_methods_are_not_additive": true,
+  "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+  "schema_version": "r08-validation-track-registry-v1",
+  "tracks": [
+    {
+      "OOF_ref": "dispatch/OOF.json",
+      "attack_n_per_method": 54,
+      "branch": "R08_CONFIG_TRANSFER",
+      "expected_members_ref": "expected_model_units.jsonl",
+      "fold_n": 14,
+      "independent_environment_claim": false,
+      "independent_mechanism_claim": false,
+      "methods": [
+        "GREEDY_OR/OP05",
+        "HISTORICAL_SEVEN",
+        "DIRECT_CORE_OR"
+      ],
+      "model_n": 42,
+      "name": "配置留出/配置迁移",
+      "new_fit_n": 14,
+      "prediction_n": 486,
+      "shared_environment_allowed": true,
+      "status": "COMPLETED_PENDING_EXTERNAL_REVIEW",
+      "track_id": "LOCO-v1",
+      "unique_stage_n": 162
+    },
+    {
+      "branch": "R05_PRIMARY",
+      "fold_n": 3,
+      "name": "环境关联组留出，已保存参照",
+      "new_fit_n": 0,
+      "new_prediction_n": 0,
+      "pooled_with_LOCO": false,
+      "saved_reference_model_n": 9,
+      "saved_reference_prediction_n": 486,
+      "source_ref": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/dispatch/OOF.json",
+      "status": "SAVED_REFERENCE_ONLY",
+      "track_id": "LOEO-v1",
+      "unique_stage_n": 162
+    },
+    {
+      "branch": "R08_MECHANISM",
+      "mechanism_id": null,
+      "reason": "FROZEN_PARTITION_NOT_VERIFIED_NO_TOOL_CONFIG_FIELDSET_PROXY",
+      "result": null,
+      "status": "NOT_EVALUABLE_UNVERIFIED_MECHANISM_PARTITION"
+    },
+    {
+      "branch": "R08_PROSPECTIVE",
+      "reason": "NO_NEW_INDEPENDENT_UNEXPOSED_MATERIAL",
+      "result": null,
+      "status": "NOT_AVAILABLE"
+    }
+  ]
+}
