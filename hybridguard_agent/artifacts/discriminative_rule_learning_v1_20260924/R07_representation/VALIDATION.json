@@ -1,0 +1,193 @@
+{
+  "R06_POSTFIT_DELETE": "NOT_RUN",
+  "R06_parent_status": "PARTIALLY_COMPLETED",
+  "all_R07_branches_complete": false,
+  "automatic_retries": 0,
+  "branches": {
+    "R06_POSTFIT_DELETE": "NOT_RUN",
+    "R06_parent_status": "PARTIALLY_COMPLETED",
+    "R07_BROWSER_ATTACK": {
+      "reason": "NO_BROWSER_ATTACK_MATERIAL",
+      "result": null,
+      "status": "NOT_AVAILABLE"
+    },
+    "R07_FIXED_MODEL_MASK": {
+      "authorized_this_run": false,
+      "implemented_in_freeze": false,
+      "reserved_rows": 9,
+      "result": null,
+      "status": "NOT_RUN"
+    },
+    "R07_SEMANTIC_DIAGNOSTIC": {
+      "authorized_this_run": false,
+      "frozen_job_driver_available": false,
+      "registered_variants": 4,
+      "result": null,
+      "scope": "SYNTHETIC_ONLY",
+      "status": "NOT_RUN"
+    },
+    "R07_SINGLE_SURFACE_REFIT": {
+      "authorized_this_run": true,
+      "model_units": 9,
+      "new_fit_jobs": 9,
+      "prediction_records": 486,
+      "status": "COMPLETED_PENDING_EXTERNAL_REVIEW"
+    },
+    "all_R07_branches_complete": false
+  },
+  "budget_exhausted_jobs": 0,
+  "checks": [
+    {
+      "ref": "RECONCILIATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "REFERENCE_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "ACCESS_ORDER_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "RUNTIME_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "ENCODER_ALLOWLIST_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "TRAINING_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "OOF_ARITHMETIC_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "BUDGET_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "POSTPROCESS_MANIFEST.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "READ_ONLY_CHECK.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "TRAIN_CANDIDATE_BUDGET_DIAGNOSTICS.json",
+      "status": "PASS_SAVED_STATISTICS_RECONCILED"
+    }
+  ],
+  "comparison": {
+    "AppWeb_cross_intersection": 15,
+    "AppWeb_cross_union": 36,
+    "R05_cross_attack": [
+      24,
+      54
+    ],
+    "R05_misses_recovered_by_AppWeb": [
+      12,
+      30
+    ],
+    "app_web67_attack": [
+      27,
+      54
+    ],
+    "completely_missed_R05_configs_recovered": [
+      2,
+      8
+    ],
+    "cross_only_attacks": 9,
+    "host26_attack": [
+      0,
+      54
+    ],
+    "native84_attack": [
+      0,
+      54
+    ],
+    "union_is_new_model": false
+  },
+  "counts": {
+    "R05_new_fit_or_prediction_calls": 0,
+    "R05_reference_models": 3,
+    "R05_reference_saved_predictions": 162,
+    "counts_do_not_turn_surfaces_into_independent_samples": true,
+    "expected_predictions": 486,
+    "missing_or_duplicate_units": 0,
+    "model_states": {
+      "COMPLETED": 3,
+      "EMPTY_MODEL": 6
+    },
+    "model_units": 9,
+    "new_fit_jobs": 9,
+    "numeric_encoder_jobs": 9,
+    "prediction_decisions": {
+      "EMPTY_MODEL": 324,
+      "MANIPULATION_ALERT": 27,
+      "NO_ALERT": 135
+    },
+    "retries": 0,
+    "saved_numeric_field_transformers": 186,
+    "saved_predictions": 486,
+    "stage_counts": {
+      "attack": 54,
+      "clean_post": 54,
+      "clean_pre": 54
+    },
+    "unique_supervised_stages": 162
+  },
+  "coverage_unknown_policy": "R04-R1 NOT_EVALUABLE/null retained; this run has known EMPTY_MODEL zero cell denominators, no unknown model sizes",
+  "created_at": "2026-09-24T14:53:00.830458+00:00",
+  "descriptive_stages_in_evaluation": 0,
+  "evaluation_scope": "EXPOSED_MATERIAL_RETROSPECTIVE_GROUPED_EVALUATION_NOT_NEW_BLIND_TEST",
+  "excluded_descriptive_stages": 100,
+  "frozen_bindings": {
+    "approval_digest": "fee973548d8971f310c8b538ebb16988ee12a9706fe436b69b8f13a8abd669c1",
+    "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0"
+  },
+  "metric_cells_independently_verified": 4680,
+  "numeric_fit_and_encoder": {
+    "exact_whitelist_and_train_membership": true,
+    "frozen_before_outer_read": true,
+    "jobs": 9,
+    "limitation": "Per-field numeric_thresholds operation events are lost when frozen _derived creates a new access object. Verification uses frozen code/capability, actual train-only reads, encoder members and saved/loaded model before outer access; no invented per-call receipts.",
+    "no_postprocess_threshold_refit_or_raw_value_reread": true,
+    "saved_field_transformers": 186
+  },
+  "performance_or_nonempty_model_required_for_acceptance": false,
+  "postfit_delete_was_not_required_to_enter_R07": true,
+  "reference_R05_models_preserved": 3,
+  "reviewed_baseline": "4a99e883c62994c1a5037b2bedc0da5205c69b7c",
+  "same_R05_outer_IDs_and_denominators": true,
+  "schema_version": "r07-single-surface-validation-v1",
+  "status": "PASS_SINGLE_SURFACE_REFIT_ONLY",
+  "stopped_before": [
+    "UNIMPLEMENTED_R07_BRANCHES",
+    "R08",
+    "V2_REDESIGN",
+    "FULL_DEVELOPMENT_REFIT",
+    "OLD_S07",
+    "COLLECTION",
+    "ATTACK_TOOLS",
+    "GIT_COMMIT_PUSH"
+  ],
+  "technical_failed_jobs": 0,
+  "timeouts": 0,
+  "training": {
+    "empty_candidate_pool": false,
+    "empty_feasible": false,
+    "empty_is_not_technical_failure": true,
+    "empty_models": 6,
+    "nonempty_constraints": "PASS",
+    "nonempty_models": 3,
+    "solver_infeasibility_proved": false
+  },
+  "user_acceptance": "PENDING"
+}

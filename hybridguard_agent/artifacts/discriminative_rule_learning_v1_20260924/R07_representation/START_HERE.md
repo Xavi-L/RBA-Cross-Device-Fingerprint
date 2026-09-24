@@ -1,0 +1,9 @@
+# R07 单层重训练审查入口
+
+先读 STEP_REPORT.md、VALIDATION.json、RUN_MANIFEST.json。dispatch/保持原dispatcher输出；MODEL_MANIFEST、fold_models/、training_logs/和encoders/给出9个作业的模型、训练和阈值。
+
+single_surface_metrics.csv包含三种单层；comparison_metrics.csv另含明确标记的R05原跨层参照。paired_comparison、paired_stage_comparison逐同ID比较；missed_attack_recovery完整列出R05的30个漏检，missed_config_recovery保留全部8个完全漏检配置。并集只作描述，不是新的组合模型。
+
+BRANCH_STATUS、fixed_model_mask和semantic_state_diagnostics保留未运行/null。Native/Host的空模型有实际拟合和非空候选池，不能与未运行分支混用。阈值逐调用日志未被冻结derived访问对象保留，核验的证据范围见ENCODER_ALLOWLIST_VALIDATION。
+
+DISPATCH_COMMAND记录已经执行的唯一运行，不重跑覆盖结果；同一真实账本继续使用。后处理export_rule_learning_r07.py只读保存产物，排他创建新导出，不执行fit/预测。

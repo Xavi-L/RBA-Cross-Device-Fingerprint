@@ -9,7 +9,7 @@
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "R06_SOURCE_REFIT_DONE_PENDING_REVIEW_POSTFIT_DELETE_NOT_RUN",
+  "experiment_execution_status": "R07_SINGLE_SURFACE_REFIT_DONE_PENDING_REVIEW_OTHER_BRANCHES_NOT_RUN",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
@@ -21,9 +21,10 @@
       "R04",
       "R04-R1",
       "R05",
-      "R06_SOURCE_REFIT"
+      "R06_SOURCE_REFIT",
+      "R07_SINGLE_SURFACE_REFIT"
     ],
-    "authorization_scope": "R06_SOURCE_REFIT_ONLY",
+    "authorization_scope": "R07_SINGLE_SURFACE_REFIT_ONLY",
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
     "auto_git_commit_or_push_for_future_steps": false,
@@ -33,7 +34,7 @@
     "model_fits_this_documentation_change": 0,
     "upstream_rebuilds_this_documentation_change": 0,
     "new_collection_or_attack_execution_this_documentation_change": 0,
-    "notes": "R05 external acceptance is independently recorded. Only the exact R06_SOURCE_REFIT matrix is authorized: 21 new fits and 3 exact R05 reuses through the frozen dispatcher and existing real ledger. Post-fit deletion, R07, final refit, collection, attack tools, legacy S07 and Git delivery are not authorized."
+    "notes": "R06_SOURCE_REFIT is externally accepted; parent R06 remains PARTIALLY_COMPLETED and postfit deletion NOT_RUN is not a prerequisite. Only 9 frozen R07 single-surface refits are authorized. Compare saved R05 results; no R08, V2 redesign, final refit, other branches or Git delivery."
   },
   "legacy_archive": {
     "schema_version": "formal-experiment-execution-status-v1",
@@ -439,7 +440,7 @@
       "blockers": [],
       "acceptance_summary": "R06_SOURCE_REFIT completed through the unchanged R04-R1 dispatcher: 21 new fits (15 fitted, 6 empty-candidate models), 3 exact R05 reuses, 24 model units and 1296 predictions over the same 162 stages. E/HE detect 21/54, O_u-containing conditions 24/54, pre/post alarms 0/54 each; H has no admitted core candidate. R06_POSTFIT_DELETE remains a reserved, unimplemented, unauthorized NOT_RUN branch; R06 as a whole is not marked complete.",
       "execution_basis_commit": "9376c775549e913e0e88b678d345a35fdd726081",
-      "user_acceptance": "PENDING",
+      "user_acceptance": "SOURCE_REFIT_ACCEPTED_EXTERNAL_OTHER_BRANCH_NOT_RUN",
       "authorization_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R06_sources/R06_APPROVAL.json",
       "authorized_branches": [
         "R06_SOURCE_REFIT"
@@ -449,12 +450,14 @@
           "status": "DONE",
           "authorized": true,
           "acceptance_status": "PASS",
-          "user_acceptance": "PENDING",
+          "user_acceptance": "ACCEPTED_EXTERNAL",
           "completed_at": "2026-09-24T14:01:50.676386+00:00",
           "new_fit_jobs": 21,
           "exact_reused_models": 3,
           "model_units": 24,
-          "prediction_records": 1296
+          "prediction_records": 1296,
+          "externally_reviewed_commit": "4a99e883c62994c1a5037b2bedc0da5205c69b7c",
+          "external_acceptance_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/R06_SOURCE_REFIT_EXTERNAL_ACCEPTANCE.json"
         },
         "R06_POSTFIT_DELETE": {
           "status": "NOT_RUN",
@@ -531,13 +534,164 @@
         "R04",
         "R05"
       ],
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "acceptance_status": "NOT_RUN",
+      "status": "PARTIALLY_COMPLETED",
+      "authorized": true,
+      "acceptance_status": "PASS_SINGLE_SURFACE_REFIT_ONLY_OTHER_BRANCHES_NOT_RUN",
       "output_directory": "R07_representation",
-      "artifacts": [],
+      "artifacts": [
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/RUN_MANIFEST.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/STEP_REPORT.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/MODEL_RULES.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/CANDIDATE_AVAILABILITY.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/R06_SOURCE_REFIT_EXTERNAL_ACCEPTANCE.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/R07_APPROVAL.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/SINGLE_SURFACE_INPUT_REGISTRY.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/expected_fit_jobs.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/expected_model_units.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/expected_prediction_units.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/MODEL_MANIFEST.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/REFERENCE_MODEL_MANIFEST.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/single_surface_metrics.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/comparison_metrics.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/encoder_thresholds.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/selected_rules.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/support_statistics.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/candidate_admission.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/selection_trace.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/oof_predictions.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/rule_events.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/by_configuration.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/by_environment.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/paired_comparison.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/paired_stage_comparison.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/missed_attack_recovery.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/missed_config_recovery.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/representation_gap_cases.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/RULE_STABILITY.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/fixed_model_mask.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/semantic_state_diagnostics.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/BRANCH_STATUS.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/TRAIN_CANDIDATE_BUDGET_DIAGNOSTICS.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/RECONCILIATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/REFERENCE_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/ACCESS_ORDER_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/RUNTIME_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/ENCODER_ALLOWLIST_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/TRAINING_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/OOF_ARITHMETIC_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/BUDGET_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/POSTPROCESS_MANIFEST.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/READ_ONLY_CHECK.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/ARTIFACT_MANIFEST.json"
+      ],
       "blockers": [],
-      "acceptance_summary": "Fair single-layer refit versus cross-layer learning; separate frozen-model masking and semantic diagnostics without fabricated observability."
+      "acceptance_summary": "Frozen R07 single-surface main branch completed once: 9 real fits, 9 model units, 486 predictions over the same 162 stages. AppWeb detects 27/54, Native/Host each retain 3 empty models. AppWeb and R05 cross-surface overlap 15 attacks, AppWeb recovers 12 of 30 R05 misses in 2 of 8 fully missed configurations, and misses 9 cross-only attacks. No nonempty model clean alarms or abstentions, but AppWeb complexity is 12/12/2 versus cross 2/2/2 and macro TPR is lower. Frozen per-field numeric operation-log loss is documented; train-only membership, access order, whitelist and encoder/model freeze bindings pass. Mask and semantic branches remain NOT_RUN/null.",
+      "execution_basis_commit": "4a99e883c62994c1a5037b2bedc0da5205c69b7c",
+      "user_acceptance": "PENDING",
+      "authorization_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/R07_APPROVAL.json",
+      "authorized_branches": [
+        "R07_SINGLE_SURFACE_REFIT"
+      ],
+      "branches": {
+        "R07_SINGLE_SURFACE_REFIT": {
+          "status": "DONE",
+          "authorized": true,
+          "acceptance_status": "PASS_WITH_DOCUMENTED_OPERATION_LOG_LIMITATION",
+          "user_acceptance": "PENDING",
+          "completed_at": "2026-09-24T14:53:00.830458+00:00",
+          "new_fit_jobs": 9,
+          "model_units": 9,
+          "prediction_records": 486
+        },
+        "R07_FIXED_MODEL_MASK": {
+          "status": "NOT_RUN",
+          "authorized": false,
+          "implemented_in_freeze": false,
+          "reason": "FROZEN_RESERVED_INTERFACE_UNIMPLEMENTED",
+          "result": null,
+          "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/fixed_model_mask.jsonl"
+        },
+        "R07_SEMANTIC_DIAGNOSTIC": {
+          "status": "NOT_RUN",
+          "authorized": false,
+          "scope": "SYNTHETIC_ONLY",
+          "frozen_job_driver_available": false,
+          "reason": "NO_FROZEN_R07_JOB_DRIVER_OR_EXPECTED_UNITS",
+          "result": null,
+          "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/semantic_state_diagnostics.jsonl"
+        },
+        "R07_BROWSER_ATTACK": {
+          "status": "NOT_AVAILABLE",
+          "reason": "NO_BROWSER_ATTACK_MATERIAL",
+          "result": null
+        }
+      },
+      "all_branches_complete": false,
+      "main_branch_completed_on": "2026-09-24",
+      "main_branch_completed_at": "2026-09-24T14:53:00.830458+00:00",
+      "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+      "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+      "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/VALIDATION.json",
+      "run_manifest": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/RUN_MANIFEST.json",
+      "execution_counts": {
+        "R05_new_fit_or_prediction_calls": 0,
+        "R05_reference_models": 3,
+        "R05_reference_saved_predictions": 162,
+        "counts_do_not_turn_surfaces_into_independent_samples": true,
+        "expected_predictions": 486,
+        "missing_or_duplicate_units": 0,
+        "model_states": {
+          "COMPLETED": 3,
+          "EMPTY_MODEL": 6
+        },
+        "model_units": 9,
+        "new_fit_jobs": 9,
+        "numeric_encoder_jobs": 9,
+        "prediction_decisions": {
+          "EMPTY_MODEL": 324,
+          "MANIPULATION_ALERT": 27,
+          "NO_ALERT": 135
+        },
+        "retries": 0,
+        "saved_numeric_field_transformers": 186,
+        "saved_predictions": 486,
+        "stage_counts": {
+          "attack": 54,
+          "clean_post": 54,
+          "clean_pre": 54
+        },
+        "unique_supervised_stages": 162,
+        "descriptive_stages_in_evaluation": 0,
+        "technical_failed_model_units": 0,
+        "timeouts": 0,
+        "budget_exhausted_units": 0,
+        "R07_fixed_mask_runs": 0,
+        "R07_semantic_diagnostic_runs": 0,
+        "R08_jobs": 0,
+        "V2_redesigns": 0,
+        "full_development_refits": 0,
+        "new_collection_or_attack_tools": 0
+      },
+      "budget_ledger_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+      "budget_usage": {
+        "all_63_prior_job_records_preserved_exactly": true,
+        "cumulative_charged_seconds": 66.3366497089155,
+        "cumulative_fit_jobs": 57,
+        "incremental_charged_seconds": 10.423875458072871,
+        "new_fit_jobs": 9,
+        "original_dispatch_SUMMARY_real_fits_is_cumulative": true,
+        "prior_charged_seconds": 55.91277425084263,
+        "prior_fit_jobs": 48,
+        "remaining_fit_jobs": 143,
+        "remaining_seconds": 21533.663350291084,
+        "reset": false,
+        "same_ledger_ref": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+        "status": "PASS",
+        "synthetic_ledger": false
+      }
     },
     {
       "id": "R08",
@@ -594,8 +748,8 @@
     }
   ],
   "next_authorization_step": null,
-  "next_authorization_instruction": "R06_SOURCE_REFIT 已完成，等待本主分支验收。拟合后删除仍未实现且未授权；不自动进入 R07 或其他分支。",
-  "next_step_scope": "Await external review of R06_SOURCE_REFIT only; no automatic execution of other branches, R07, final-development refit or Git delivery.",
+  "next_authorization_instruction": "R07_SINGLE_SURFACE_REFIT 及保存结果比较已完成，等待本主分支验收；不自动执行 R08、V2重设计或其他分支。",
+  "next_step_scope": "Await external review of R07 single-surface main branch only; parent R06 remains partial and POSTFIT_DELETE NOT_RUN is not a prerequisite.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -796,6 +950,49 @@
       "all_R06_branches_complete": false,
       "R06_POSTFIT_DELETE": "NOT_RUN",
       "R07_started": false,
+      "user_acceptance": "PENDING",
+      "git_commit_or_push": false
+    },
+    {
+      "event": "R06_SOURCE_REFIT_EXTERNAL_REVIEW_ACCEPTED",
+      "utc": "2026-09-24T14:27:54.492654+00:00",
+      "reviewed_commit": "4a99e883c62994c1a5037b2bedc0da5205c69b7c",
+      "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/R06_SOURCE_REFIT_EXTERNAL_ACCEPTANCE.json",
+      "parent_R06_status": "PARTIALLY_COMPLETED",
+      "R06_POSTFIT_DELETE": "NOT_RUN",
+      "postfit_delete_required_before_R07": false,
+      "original_R06_validation_overwritten": false
+    },
+    {
+      "event": "R07_SINGLE_SURFACE_REFIT_EXPLICIT_AUTHORIZATION_PREPARED",
+      "utc": "2026-09-24T14:27:54.492654+00:00",
+      "approval_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/R07_APPROVAL.json",
+      "approval_digest": "fee973548d8971f310c8b538ebb16988ee12a9706fe436b69b8f13a8abd669c1",
+      "new_fit_jobs": 9,
+      "model_units": 9,
+      "prediction_records": 486,
+      "budget_reset": false,
+      "other_branches_authorized": false
+    },
+    {
+      "event": "R07_SINGLE_SURFACE_REFIT_COMPLETED_OTHER_BRANCHES_NOT_RUN",
+      "utc": "2026-09-24T14:53:00.830458+00:00",
+      "execution_basis_commit": "4a99e883c62994c1a5037b2bedc0da5205c69b7c",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/VALIDATION.json",
+      "run_manifest": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/RUN_MANIFEST.json",
+      "new_fit_jobs": 9,
+      "model_units": 9,
+      "prediction_records": 486,
+      "R05_reference_saved_predictions": 162,
+      "unique_supervised_stages": 162,
+      "retries": 0,
+      "shared_budget_cumulative_fits": 57,
+      "all_R07_branches_complete": false,
+      "R06_parent_status": "PARTIALLY_COMPLETED",
+      "R06_POSTFIT_DELETE": "NOT_RUN",
+      "R08_started": false,
+      "V2_redesign": false,
       "user_acceptance": "PENDING",
       "git_commit_or_push": false
     }
