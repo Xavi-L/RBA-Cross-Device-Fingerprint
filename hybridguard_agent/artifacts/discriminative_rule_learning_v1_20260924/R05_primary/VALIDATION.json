@@ -1,0 +1,133 @@
+{
+  "acceptance_basis": "Exact frozen execution, isolation, full expected denominators and faithful saved-result reporting; no performance or nonempty-model prerequisite.",
+  "checks": [
+    {
+      "checked_units": 3298,
+      "evidence": "PREFLIGHT.json",
+      "name": "frozen_startup_and_resource_binding",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 2106,
+      "evidence": "PREDICTION_RECONCILIATION.json",
+      "name": "exact_fit_model_prediction_reconciliation",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 39,
+      "evidence": "ACCESS_ORDER_VALIDATION.json",
+      "name": "train_model_freeze_test_prediction_close_label_order",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 39,
+      "evidence": "SOURCE_RUNTIME_VALIDATION.json",
+      "name": "actual_module_interpreter_dependency_paths",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 27,
+      "evidence": "TRAINING_CONSTRAINT_VALIDATION.json",
+      "name": "train_support_clean_union_coverage_complexity",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 6006,
+      "evidence": "OOF_ARITHMETIC_VALIDATION.json",
+      "name": "fold_and_OOF_denominator_arithmetic",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 2340,
+      "evidence": "ADDITIONAL_METRIC_VALIDATION.json",
+      "name": "train_objective_macro_recovery_saved_logic",
+      "status": "PASS"
+    },
+    {
+      "checked_units": 7167,
+      "evidence": "READ_ONLY_CHECK.json",
+      "name": "historical_workspace_and_freeze_read_only",
+      "status": "PASS"
+    }
+  ],
+  "completed_at": "2026-09-24T12:31:21.451252+00:00",
+  "execution_counts": {
+    "R01_R02_rebuilds": 0,
+    "R06_jobs": 0,
+    "budget_exhausted_units": 0,
+    "descriptive_stages_in_evaluation": 0,
+    "empty_models": 0,
+    "expected_prediction_records": 2106,
+    "fit_or_prediction_retries": 0,
+    "fixed_baseline_units": 12,
+    "full_development_refits": 0,
+    "historical_saved_results_adapted": 162,
+    "missing_or_duplicate_prediction_units": 0,
+    "new_collection_or_attack_tools": 0,
+    "old_detector_calls": 0,
+    "predictor_inference_records": 1944,
+    "real_fit_authorizations": 1,
+    "real_fit_jobs": 27,
+    "real_model_units": 39,
+    "real_numeric_threshold_fits": 0,
+    "saved_prediction_records": 2106,
+    "technical_failed_model_units": 0,
+    "timeouts": 0,
+    "unique_supervised_stages": 162
+  },
+  "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+  "git_commit_or_push": false,
+  "postprocessing": {
+    "error_history_ref": "checks/POSTPROCESS_ATTEMPTS.json",
+    "fits": 0,
+    "new_predictions": 0,
+    "supplementary_auditor_error_then_fixed": true
+  },
+  "primary_observation": {
+    "attack_denominator": 54,
+    "attack_detected": 24,
+    "decision_coverage_d": 162,
+    "decision_coverage_n": 162,
+    "exact_FTF": 24,
+    "method": "GREEDY_OR",
+    "missed_attack_n": 30,
+    "operating_point": "OP05",
+    "post_alarm": 0,
+    "post_denominator": 54,
+    "pre_alarm": 0,
+    "pre_denominator": 54,
+    "triplet_denominator": 54
+  },
+  "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+  "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0",
+  "reviewed_baseline": "772890fbb14fb50b35d9fa410fddf0b673563c02",
+  "saved_prediction_decisions": {
+    "EMPTY_MODEL": 0,
+    "FAILED": 0,
+    "INSUFFICIENT_EVIDENCE": 300,
+    "MANIPULATION_ALERT": 240,
+    "NO_ALERT": 1566
+  },
+  "schema_version": "r05-execution-validation-v1",
+  "science_limits": [
+    "EXPOSED_RETROSPECTIVE_GROUPED_EVALUATION",
+    "NOT_NEW_BLIND_TEST",
+    "NO_VERIFIED_MECHANISM_GENERALIZATION",
+    "ZERO_EMPIRICAL_ALARMS_NOT_POPULATION_FPR_GUARANTEE",
+    "DIRECT_CORE_OR_ZERO_CLEAN_ALARMS_WITH_ZERO_DECIDED_CLEAN_COVERAGE",
+    "NO_R06_SOURCE_CONTRIBUTION_CLAIM"
+  ],
+  "solver_statuses": {
+    "HEURISTIC_FEASIBLE": 9,
+    "OPTIMAL_FINITE_POOL": 18
+  },
+  "status": "PASS",
+  "stopped_after": "R05",
+  "technical_acceptance": "PASS",
+  "unknown_model_size_coverage": {
+    "known_zero_cell_models": "Historical adapter and explicit constants have 0/0 NOT_EVALUABLE; not failed models.",
+    "required_semantics": "NOT_EVALUABLE with null value and null unknown expected denominator; preserved R04-R1 implementation.",
+    "state": "NOT_ENCOUNTERED_IN_THIS_REAL_RUN"
+  },
+  "user_acceptance": "PENDING"
+}

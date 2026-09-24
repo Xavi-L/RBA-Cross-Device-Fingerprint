@@ -1,0 +1,275 @@
+{
+  "method_id": "FINITE_IP_OR",
+  "status": "FITTED",
+  "clauses": [
+    {
+      "literals": [
+        {
+          "atom_id": "DEVIATION:OFFDER-UA-001",
+          "polarity": "POSITIVE"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "DEVIATION:OFFDER-UA-001",
+      "family": "app_surface",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "O_u"
+      ],
+      "aliases": [
+        "OFFDER-UA-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "OFFDER-UA-001",
+        "all_registered_equivalent_aliases": [
+          "OFFDER-UA-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "OFFDER-UA-001",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-UA-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "host_web_class",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent",
+              "app.web_data.navigator_layer.platform"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "binding": {
+    "study_version": "discriminative-rule-learning-v1-20260924",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "candidate_version": "r01-atoms-v1",
+    "split_id": "LOEO-v1",
+    "fold_id": "LOEO-v1-03",
+    "method_id": "FINITE_IP_OR",
+    "operating_point": "OP05",
+    "source_condition": "SRC-111",
+    "input_view": "core",
+    "data_origin": "R02_FIXED_CACHE",
+    "model_unit_id": "R05_PRIMARY__LOEO-v1-03__FINITE_IP_OR__OP05__SRC-111__core",
+    "fit_job_id": "R05_PRIMARY__LOEO-v1-03__FINITE_IP_OR__OP05__SRC-111__core",
+    "train_membership_digest": "53001f6db1116d9edc3d72c84ccddf9324e6ca9ad5fab0ae57d017e772f7b27e",
+    "input_manifest_ref": "DATA_INDEX.json",
+    "protocol_input_manifest_ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/input_manifest.jsonl",
+    "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+    "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0",
+    "authorization_ref": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R05_APPROVAL.json#45ecd73c7fda8fdda19a50554e69010b26d2a686b7a5551973a4bb83fff6edeb",
+    "job_digest": "44dbf155924629f583d137caf966f787e6469ac17047711055ae81f2c73b123f"
+  },
+  "view": {
+    "view_id": "CORE:SRC-111",
+    "kind": "CANONICAL_DEVIATION",
+    "source_condition": "SRC-111",
+    "input_atom_ids": [
+      "DEVIATION:NVW-001",
+      "DEVIATION:NVW-002",
+      "DEVIATION:NW-001",
+      "DEVIATION:NW-002",
+      "DEVIATION:NW-005",
+      "DEVIATION:OFFDER-UA-001",
+      "DEVIATION:OFFDER-UA-002",
+      "DEVIATION:P3-SCREEN-APP",
+      "DEVIATION:P3-UA-DEFAULT",
+      "DEVIATION:P3-UA-SETTINGS"
+    ]
+  },
+  "fit": {
+    "available": true,
+    "solver": "HiGHS",
+    "version": "1.12.0",
+    "numpy": "2.3.5",
+    "threads": 1,
+    "mip_rel_gap": 0.0,
+    "mip_abs_gap": 0.0,
+    "mip_feasibility_tolerance": 1e-09,
+    "status": "OPTIMAL_FINITE_POOL",
+    "best_bound": 0.6566666666666666,
+    "gap": 0.0,
+    "infeasibility_proved": false,
+    "primary_optimal": true,
+    "tie_break_complete": true,
+    "objective_integer_scale": 1800,
+    "optimality_scope": "FINITE_SUPPORTED_POOL_ONLY",
+    "column_generation": false,
+    "train_ids": [
+      "sample-04689a7774754137a06fc672c9a34627",
+      "sample-065c905ccda7420eb2d26ede92451811",
+      "sample-0bffc108cdcd46498c072fd18758b023",
+      "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+      "sample-22af7231c85d4cc39f29e370761b0111",
+      "sample-22ed5502a1a24385bef4cb91046e3683",
+      "sample-24e48e8890bc4126b5935b155cc639ee",
+      "sample-3e78f40f8bd04583b5788feff41ee1b2",
+      "sample-43c57dc95de64fd68ff3c063b467954a",
+      "sample-45096de3c57844d5a2bdf29d9aa66349",
+      "sample-4eaed0eeb4674f62a1334405cc6424f4",
+      "sample-50047e752ee34cadb1371d0d6bc8306f",
+      "sample-50cbd0648d2e4f378532f8697492cdd3",
+      "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+      "sample-5d9dbd64e3e14564b0221a22467b6900",
+      "sample-5f95e46d790c4744b43d87096099f53d",
+      "sample-61a5188e903649b3a8a4e8eca064adea",
+      "sample-676bd0b06acd4e6d811bba4f163c62e7",
+      "sample-72a718199ea14f289bd36a1cd7b1583a",
+      "sample-75ef55c214514955bac9be4cef96e0fd",
+      "sample-79a20c1c837b40cd9632e14018584f7c",
+      "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+      "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+      "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+      "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+      "sample-89bbcf34beb24f66bbac691b9d61be73",
+      "sample-97a26777a752437a93cd8c4ec3c25125",
+      "sample-99be81ac75a14cadb445bf46c644773a",
+      "sample-9e49742f5d844f06b1e3a334f09830a8",
+      "sample-a1d720b4a9be4ca9b2562409112234ee",
+      "sample-a2b40d8e26654e33977d07e8029b4152",
+      "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+      "sample-d3d254c58cde4c868caff5fdd10665e8",
+      "sample-d6f036ef74814caaa28123219461a406",
+      "sample-d74ffc400a3f4186a8eb1893088c2980",
+      "sample-dc63c0ebfba2446c88f40e44ee325283",
+      "sample-e309872634a34831a5844178f012a88e",
+      "sample-e725bf3af705442ab4ab221b7d10b0e4",
+      "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+      "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+      "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+      "sample-f2321ba4b0084cc29bb571ad11754c8a",
+      "sample-f5fa5cb164b64da88065e6b242e53e43",
+      "sample-fdc30f7ccbe148469fa395ab8266ac01",
+      "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+    ],
+    "train_expected_n": 45,
+    "train_consumed_n": 45,
+    "fit_scope": "EXACT_AUTHORIZED_JOB_TRAIN_ONLY",
+    "fixture_name": null,
+    "fit_job_id": "R05_PRIMARY__LOEO-v1-03__FINITE_IP_OR__OP05__SRC-111__core",
+    "elapsed_seconds": 0.02695387485437095,
+    "freeze_time": "2026-09-24T12:07:20.787240+00:00",
+    "candidate_pool_size": 13,
+    "registered_clause_count": 20,
+    "clean_budget_count": 1,
+    "clean_denominator": 30,
+    "stratum_denominators": {
+      "clean_pre": 15,
+      "attack": 15,
+      "clean_post": 15
+    },
+    "training_result": {
+      "objective": {
+        "numerator": 197,
+        "denominator": 300,
+        "value": 0.6566666666666666
+      },
+      "macro_tpr": {
+        "numerator": 2,
+        "denominator": 3,
+        "value": 0.6666666666666666
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "DEVIATION:OFFDER-UA-001:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "support_scope": "COMPLETE_ADMITTED_TRAIN_TRIPLETS_ONLY"
+  },
+  "encoder": {},
+  "constant": null,
+  "schema_version": "r03-rule-model-v1",
+  "model_id": "r03-4de29656b74a8e6e84ff346d",
+  "complexity": {
+    "distinct_atoms": 1,
+    "clauses": 1,
+    "literal_occurrences": 1,
+    "objective_complexity": 2,
+    "distinct_families": 1,
+    "distinct_surfaces": 2,
+    "source_union": [
+      "O_u"
+    ]
+  }
+}

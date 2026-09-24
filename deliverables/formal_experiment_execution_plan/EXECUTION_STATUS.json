@@ -9,7 +9,7 @@
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "R04_R1_COMPLETE_PENDING_USER_ACCEPTANCE_SYNTHETIC_ONLY",
+  "experiment_execution_status": "R05_DONE_PENDING_EXTERNAL_REVIEW",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
@@ -19,9 +19,10 @@
       "R02",
       "R03",
       "R04",
-      "R04-R1"
+      "R04-R1",
+      "R05"
     ],
-    "authorization_scope": "R04_R1_TWO_ENGINEERING_FIXES_AND_SYNTHETIC_REGRESSION_ONLY",
+    "authorization_scope": "R05_FROZEN_REAL_FIT_AND_OUTER_PREDICTION_ONLY",
     "only_authorized_step_may_execute": true,
     "auto_advance": false,
     "auto_git_commit_or_push_for_future_steps": false,
@@ -31,7 +32,7 @@
     "model_fits_this_documentation_change": 0,
     "upstream_rebuilds_this_documentation_change": 0,
     "new_collection_or_attack_execution_this_documentation_change": 0,
-    "notes": "The user requested two R04 engineering fixes at 51726c0: incomplete cell coverage and exact single-surface admission. R04-R1 is complete and pending external review. Original R04 acceptance, logs and saved failure examples are preserved as execution-time records; they do not establish correctness of the two identified branches. No real fit approval, R05, legacy S07 or Git delivery is authorized."
+    "notes": "R04-R1 external acceptance at 772890f was recorded separately. The explicitly authorized R05 frozen matrix completed once with 27 real fits, 39 model/baseline units and 2106 saved predictions. R05 external review is pending. Preserve R04/R04-R1 historical authorization and validation, and the shared real budget ledger. R06, full-development refit, collection, attack tools, S07 and Git delivery remain unauthorized."
   },
   "legacy_archive": {
     "schema_version": "formal-experiment-execution-status-v1",
@@ -307,13 +308,80 @@
       "depends_on": [
         "R04"
       ],
-      "status": "PENDING_AUTHORIZATION",
-      "authorized": false,
-      "acceptance_status": "NOT_RUN",
+      "status": "DONE",
+      "authorized": true,
+      "acceptance_status": "PASS_FROZEN_FOLD_EXECUTION_AND_OOF_AUDIT",
       "output_directory": "R05_primary",
-      "artifacts": [],
+      "artifacts": [
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/RUN_MANIFEST.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/STEP_REPORT.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/MODEL_RULES.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R05_APPROVAL.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R04_R1_EXTERNAL_ACCEPTANCE.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/expected_fit_jobs.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/expected_model_units.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/expected_prediction_units.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/MODEL_MANIFEST.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/FIT_RECONCILIATION.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/selected_rules.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/support_statistics.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/selection_trace.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/oof_predictions.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/rule_events.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/metrics.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/metrics.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/triplet_results.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/by_configuration.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/by_environment.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/TRAINING_CONSTRAINT_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/ACCESS_ORDER_VALIDATION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/READ_ONLY_CHECK.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/ARTIFACT_MANIFEST.json"
+      ],
       "blockers": [],
-      "acceptance_summary": "Refit every learned transform/selector inside each train fold; freeze model before outer predictions; retain every failure and all denominators."
+      "acceptance_summary": "Exact R04-R1 snapshot dispatcher completed 27 real fits, 39 model/baseline units and 2106 expected saved predictions over 162 supervised stages. Train-only access, freeze-before-test and post-closure label join verified. GREEDY_OR/OP05 detects 24/54 attacks, pre/post alarms 0/54 each, exact FTF 24/54, decision coverage 162/162. All prescribed algorithms/operating points retained; no outcome-driven reruns. R05 is complete and awaits external review; R06 and full-development refit were not run.",
+      "execution_basis_commit": "772890fbb14fb50b35d9fa410fddf0b673563c02",
+      "authorization_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R05_APPROVAL.json",
+      "user_acceptance": "PENDING",
+      "completed_on": "2026-09-24",
+      "completed_at": "2026-09-24T12:31:21.451252+00:00",
+      "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+      "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+      "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/VALIDATION.json",
+      "execution_counts": {
+        "real_fit_authorizations": 1,
+        "real_fit_jobs": 27,
+        "real_model_units": 39,
+        "fixed_baseline_units": 12,
+        "expected_prediction_records": 2106,
+        "saved_prediction_records": 2106,
+        "predictor_inference_records": 1944,
+        "historical_saved_results_adapted": 162,
+        "unique_supervised_stages": 162,
+        "descriptive_stages_in_evaluation": 0,
+        "empty_models": 0,
+        "technical_failed_model_units": 0,
+        "timeouts": 0,
+        "budget_exhausted_units": 0,
+        "missing_or_duplicate_prediction_units": 0,
+        "fit_or_prediction_retries": 0,
+        "real_numeric_threshold_fits": 0,
+        "old_detector_calls": 0,
+        "R01_R02_rebuilds": 0,
+        "R06_jobs": 0,
+        "full_development_refits": 0,
+        "new_collection_or_attack_tools": 0
+      },
+      "budget_ledger_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+      "budget_usage": {
+        "used_fit_jobs": 27,
+        "charged_seconds": 36.8935912088491,
+        "max_fit_jobs": 200,
+        "max_seconds": 21600
+      }
     },
     {
       "id": "R06",
@@ -399,9 +467,9 @@
       "acceptance_summary": "Each claim/figure binds saved results and its actual evidence scope; incomplete branches stay explicit; P6 is saved-output reuse only."
     }
   ],
-  "next_authorization_step": "R05",
-  "next_authorization_instruction": "验收 R04-R1 后，另行授权执行 R05",
-  "next_step_scope": "R05 remains unstarted and requires explicit authorization bound to the reviewed R04_freeze_r1 freeze/resources/exact jobs/train members and shared budget. R04-R1 grants synthetic regression only; no real fit/prediction or Git delivery.",
+  "next_authorization_step": "R06",
+  "next_authorization_instruction": "先审查 R05；外部验收通过后另行明确授权执行 R06。当前停止。",
+  "next_step_scope": "R06 requires separate explicit authorization; reuse the existing real research budget ledger without reset. No automatic source refit, final-development refit or later-stage execution.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -532,6 +600,39 @@
       "real_predictions": 0,
       "next_step_auto_started": false,
       "git_commit_push_pr": false
+    },
+    {
+      "event": "R04_R1_EXTERNAL_REVIEW_ACCEPTED",
+      "utc": "2026-09-24T12:06:33.486913+00:00",
+      "reviewed_commit": "772890fbb14fb50b35d9fa410fddf0b673563c02",
+      "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R04_R1_EXTERNAL_ACCEPTANCE.json",
+      "original_validation_overwritten": false
+    },
+    {
+      "event": "R05_EXPLICIT_AUTHORIZATION_AND_DISPATCH_PREPARED",
+      "utc": "2026-09-24T12:06:33.486913+00:00",
+      "authorization_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R05_APPROVAL.json",
+      "approval_digest": "45ecd73c7fda8fdda19a50554e69010b26d2a686b7a5551973a4bb83fff6edeb",
+      "expected_fit_jobs": 27,
+      "expected_model_units": 39,
+      "expected_predictions": 2106,
+      "later_stages_authorized": false
+    },
+    {
+      "event": "R05_COMPLETED_FROZEN_REAL_FITS_AND_OOF",
+      "utc": "2026-09-24T12:31:21.451252+00:00",
+      "execution_basis_commit": "772890fbb14fb50b35d9fa410fddf0b673563c02",
+      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/STEP_REPORT.md",
+      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/VALIDATION.json",
+      "real_fits": 27,
+      "model_units": 39,
+      "prediction_records": 2106,
+      "unique_supervised_stages": 162,
+      "real_fit_or_prediction_retries": 0,
+      "user_acceptance": "PENDING",
+      "shared_budget_ledger": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+      "R06_or_full_development_refit_started": false,
+      "git_commit_or_push": false
     }
   ],
   "step_revisions": [
@@ -542,7 +643,7 @@
       "status": "DONE",
       "authorized": true,
       "acceptance_status": "PASS_TARGETED_REVISION_AND_INDEPENDENT_SYNTHETIC_REGRESSION",
-      "user_acceptance": "PENDING",
+      "user_acceptance": "ACCEPTED_EXTERNAL",
       "execution_basis_commit": "51726c0af36f9bcb1fda7647788be2f945c4f44d",
       "output_directory": "R04_freeze_r1",
       "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/STEP_REPORT.md",
@@ -561,7 +662,9 @@
         "model": 115,
         "prediction": 4374
       },
-      "completed_on": "2026-09-24"
+      "completed_on": "2026-09-24",
+      "externally_reviewed_commit": "772890fbb14fb50b35d9fa410fddf0b673563c02",
+      "external_acceptance_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R04_R1_EXTERNAL_ACCEPTANCE.json"
     }
   ]
 }

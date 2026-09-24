@@ -1,0 +1,21 @@
+{
+  "scope": "SUPPLEMENTAL_SAVED_ARTIFACT_AUDITOR_ONLY",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "POSTPROCESS_SCRIPT_ERROR",
+      "error": "KeyError: clause_explanations",
+      "cause": "Historical adapter records legitimately omit clause_explanations; the new supplementary auditor used direct indexing.",
+      "correction": "Use optional lookup and audit stored clause logic only when explanations exist.",
+      "output_files_written_by_failed_attempt": 0,
+      "snapshot_or_model_changes": 0,
+      "real_fits": 0,
+      "new_predictions": 0
+    },
+    {
+      "attempt": 2,
+      "result_ref": "../ADDITIONAL_METRIC_VALIDATION.json",
+      "scope": "Repeat closed-output arithmetic only; no dispatcher, worker, fit or prediction retry."
+    }
+  ]
+}
