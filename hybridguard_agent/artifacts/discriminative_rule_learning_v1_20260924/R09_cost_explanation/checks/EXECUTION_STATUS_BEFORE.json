@@ -2,14 +2,14 @@
   "schema_version": "formal-experiment-execution-status-v2",
   "plan_version": "formal-experiment-execution-plan-v2-20260924",
   "mainline_version": "hybridguard-research-mainline-v1-20260924",
-  "updated_on": "2026-09-25",
+  "updated_on": "2026-09-24",
   "basis_commit": "8a9c05c73137430bcf43f93afb8c0795fc9b5f04",
   "mainline_file": "RESEARCH_MAINLINE.md",
   "plan_file": "deliverables/formal_experiment_execution_plan/EXECUTION_PLAN.md",
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
   "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "R09_DONE_PENDING_REVIEW_DECLARED_MEASUREMENT_AND_MANUAL_LIMITATIONS",
+  "experiment_execution_status": "R08_CONFIG_TRANSFER_DONE_PENDING_REVIEW_OTHER_BRANCHES_UNAVAILABLE",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
@@ -762,7 +762,7 @@
       },
       "acceptance_summary": "Frozen LOCO-v1 config-transfer completed once: 14 new GREEDY_OR/OP05 fits, 42 model/baseline units and 486 predictions over the same 162 stages. All 14 new learners select DEVIATION:OFFDER-UA-001:POSITIVE, complexity 2. Primary attack/FTF 24/54, pre/post alarms 0/54, full decision coverage. DIRECT_CORE_OR keeps 138/162 abstentions; HISTORICAL_SEVEN 0/54. Each method has the same saved stage decisions as R05 LOEO, but distinct training memberships, models and separate denominators. All LOCO test environments are shared with train. Mechanism unverified, prospective unavailable; no V2 or ensemble.",
       "execution_basis_commit": "8e79a59bff6d382ec974b66a22abf1f755091719",
-      "user_acceptance": "ACCEPTED_EXTERNAL_MAIN_BRANCH_ONLY",
+      "user_acceptance": "PENDING",
       "authorization_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R08_validation/R08_APPROVAL.json",
       "authorized_branches": [
         "R08_CONFIG_TRANSFER"
@@ -772,7 +772,7 @@
           "status": "DONE",
           "authorized": true,
           "acceptance_status": "PASS",
-          "user_acceptance": "ACCEPTED_EXTERNAL",
+          "user_acceptance": "PENDING",
           "completed_at": "2026-09-24T15:39:16.335413+00:00",
           "new_fit_jobs": 14,
           "model_units": 42,
@@ -849,9 +849,7 @@
         "same_ledger_ref": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
         "status": "PASS",
         "synthetic_ledger": false
-      },
-      "external_acceptance_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/R08_CONFIG_TRANSFER_EXTERNAL_ACCEPTANCE.json",
-      "externally_reviewed_commit": "e6a1ba47f732b1494ae0a042b056866fe36f6023"
+      }
     },
     {
       "id": "R09",
@@ -860,111 +858,13 @@
         "R04",
         "R05"
       ],
-      "status": "DONE",
-      "authorized": true,
-      "acceptance_status": "PASS_PROGRAMMATIC_WITH_DECLARED_NOT_RECORDED_AND_NOT_REVIEWED",
+      "status": "PENDING_AUTHORIZATION",
+      "authorized": false,
+      "acceptance_status": "NOT_RUN",
       "output_directory": "R09_cost_explanation",
-      "artifacts": [
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/R08_CONFIG_TRANSFER_EXTERNAL_ACCEPTANCE.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/R09_AUTHORIZATION.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/benchmark_protocol.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/DRIVER_FREEZE_MANIFEST.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/DRIVER_RESOURCE_MANIFEST.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/model_input_manifest.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/expected_repeats.jsonl",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/SAVED_ARTIFACT_MANIFEST.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/synthetic_validation.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/synthetic_explanation_audit.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/timing_cold_raw.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/timing_cold_startup_raw.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/timing_warmup_raw.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/timing_timed_raw.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/timing_passes.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/inference_cost_summary.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/repeat_reconciliation.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/existing_training_costs.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/training_cost_summary.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/model_complexity_solver.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/explanation_audit.csv",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/explanation_audit_summary.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/model_source_lineage.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/NOT_RECORDED_NOT_REVIEWED.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/TIMING_BUDGET_LEDGER.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/BENCHMARK_CLOSURE.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/BRANCH_STATUS.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/POSTPROCESS_MANIFEST.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/RUN_MANIFEST.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/VALIDATION.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/STEP_REPORT.md",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/STARTUP.md",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/READ_ONLY_CHECK.json",
-        "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/ARTIFACT_MANIFEST.json"
-      ],
+      "artifacts": [],
       "blockers": [],
-      "acceptance_summary": "Saved training costs cover 71 actual fits; 3 R06 reuses are excluded. Three fixed R05 primary models complete 1 cold, 1 warmup and 5 timed passes over the same 162 stages, with 1134/1134 full-field matches. Programmatic audit accounts for 4374 saved OOF records; human semantics remain NOT_REVIEWED and historical lookup is not detector runtime. No new fit, learning snapshot changes, scientific predictions, R10 or commit/push.",
-      "user_acceptance": "PENDING",
-      "authorization_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/R09_AUTHORIZATION.json",
-      "execution_basis_commit": "e6a1ba47f732b1494ae0a042b056866fe36f6023",
-      "completed_on": "2026-09-25",
-      "completed_at": "2026-09-24T16:34:37.167352+00:00",
-      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/STEP_REPORT.md",
-      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/VALIDATION.json",
-      "run_manifest": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/RUN_MANIFEST.json",
-      "branches": {
-        "R09_COST": {
-          "status": "DONE",
-          "saved_fits_summarized": 71,
-          "inference_models": 3,
-          "benchmark_repeats": 1134,
-          "new_fit_jobs": 0
-        },
-        "R09_EXPLANATION": {
-          "status": "DONE_PROGRAMMATIC_AUDIT",
-          "saved_records": 4374,
-          "programmatic_failures": 0,
-          "manual_semantics": "NOT_REVIEWED",
-          "manual_result": null,
-          "historical_literal_explanations": "NOT_EVALUABLE_SAVED_ADAPTER",
-          "historical_literal_result": null
-        }
-      },
-      "execution_counts": {
-        "existing_fit_jobs_summarized": 71,
-        "saved_model_units": 114,
-        "unique_saved_models": 111,
-        "saved_explanation_records": 4374,
-        "unique_supervised_stages": 162,
-        "new_fit_jobs": 0,
-        "new_scientific_predictions": 0,
-        "benchmark_models": 3,
-        "benchmark_records": 1134,
-        "cold_records": 162,
-        "warmup_records": 162,
-        "timed_records": 810,
-        "semantic_matches": 1134,
-        "benchmark_retries": 0,
-        "technical_failures": 0,
-        "programmatic_audit_failures": 0,
-        "manual_semantic_records_not_reviewed": 4374,
-        "synthetic_checks_passed": 42,
-        "validation_checks_passed": 25
-      },
-      "budget_usage": {
-        "original_ledger_unchanged": true,
-        "linked_account_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/TIMING_BUDGET_LEDGER.json",
-        "shared_link_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/R09_TIMING_LINK.json",
-        "incremental_charged_seconds": 0.805261084,
-        "new_fit_jobs": 0,
-        "cumulative_fit_jobs": 71,
-        "cumulative_charged_seconds_including_linked_account": 103.84705641808023,
-        "budget_reset": false,
-        "future_steps_must_include_linked_debit": true
-      },
-      "limitations": {
-        "manual_semantics": "NOT_REVIEWED",
-        "unseparated_timing": "NOT_RECORDED",
-        "historical_detector_runtime": "NOT_EVALUABLE_SAVED_LOOKUP_NOT_FAIR_RUNTIME"
-      }
+      "acceptance_summary": "Record training/solver and inference costs separately; explanations reference actual model clauses and observed fields, not attack intent."
     },
     {
       "id": "R10",
@@ -988,8 +888,8 @@
     }
   ],
   "next_authorization_step": null,
-  "next_authorization_instruction": "R09 已完成，等待外部验收；人工语义项保持 NOT_REVIEWED，不自动执行 R10、V2、联合模型、全开发集重拟合或提交推送。",
-  "next_step_scope": "Await R09 review only. R06/R07/R08 remain partial. Later budget accounting must include the linked R09 nonfit debit.",
+  "next_authorization_instruction": "R08_CONFIG_TRANSFER 已完成，等待本主分支外部验收；不自动执行 R09、V2、联合/集成、全开发集重拟合或其他分支。",
+  "next_step_scope": "Await R08 config-transfer review only; R07 remains partial; mechanism and prospective limitations remain explicit.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -1276,30 +1176,6 @@
       "R08_PROSPECTIVE": "NOT_AVAILABLE",
       "R09_started": false,
       "V2_or_joint_ensemble_model": false,
-      "user_acceptance": "PENDING",
-      "git_commit_or_push": false
-    },
-    {
-      "event": "R08_CONFIG_TRANSFER_EXTERNAL_REVIEW_ACCEPTED_AND_R09_NONFIT_AUTHORIZED",
-      "utc": "2026-09-24T16:12:31.489271+00:00",
-      "record": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/R08_CONFIG_TRANSFER_EXTERNAL_ACCEPTANCE.json",
-      "new_fit_authorized": false,
-      "R08_parent_status": "PARTIALLY_COMPLETED"
-    },
-    {
-      "event": "R09_COST_AND_PROGRAMMATIC_EXPLANATION_COMPLETED",
-      "utc": "2026-09-24T16:34:37.167352+00:00",
-      "execution_basis_commit": "e6a1ba47f732b1494ae0a042b056866fe36f6023",
-      "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/STEP_REPORT.md",
-      "validation": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/VALIDATION.json",
-      "new_fit_jobs": 0,
-      "saved_fit_jobs_summarized": 71,
-      "benchmark_records": 1134,
-      "semantic_matches": 1134,
-      "saved_explanation_records": 4374,
-      "manual_semantics": "NOT_REVIEWED",
-      "R08_parent_status": "PARTIALLY_COMPLETED",
-      "R10_started": false,
       "user_acceptance": "PENDING",
       "git_commit_or_push": false
     }

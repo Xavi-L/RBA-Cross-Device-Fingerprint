@@ -1,0 +1,101 @@
+{
+  "schema_version": "r09-fixed-inference-v1",
+  "sealed_at": "2026-09-24T16:24:10.268810+00:00",
+  "protocol_digest_recomputed": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+  "freeze_root": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1",
+  "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+  "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0",
+  "cost_spec": {
+    "id": "R09_COST",
+    "models": "ALL_SAVED_FITS_AND_FIXED_GREEDY_OR_OP05_LOEO_MODELS",
+    "fit_job_count": 0,
+    "inference_ids": "ALL_LOEO_TEST_IDS_SORTED",
+    "warmup_passes": 1,
+    "timed_passes": 5,
+    "cold_passes": 1,
+    "cold_definition": "NEW_PROCESS_MODULE_AND_MODEL_LOAD_INCLUDED_OS_PAGE_CACHE_NOT_CLEARED",
+    "clock": "MONOTONIC_PERF_COUNTER_NS",
+    "train_and_inference_separate": true,
+    "legacy_S06_audit_timing_is_fair_benchmark": false
+  },
+  "explanation_spec": {
+    "id": "R09_EXPLANATION",
+    "population": "ALL_SAVED_OOF_DECISIONS",
+    "checks": [
+      "model clause membership",
+      "current input field references",
+      "literal polarity and U",
+      "no intent attribution"
+    ],
+    "manual_missing": "NOT_REVIEWED",
+    "fit_job_count": 0
+  },
+  "new_fit_jobs": 0,
+  "record_role": "BENCHMARK_ONLY",
+  "model_scope": "THREE_R05_GREEDY_OR_OP05_LOEO_PRIMARY_MODELS",
+  "comparison_scope": "No other online comparator specified; ALL_SAVED_FITS is offline training-cost scope",
+  "input_order": "GLOBAL_ASCENDING_OPAQUE_ID_ACROSS_ALL_THREE_FOLDS_EVERY_PASS",
+  "process_order": [
+    "LOEO-v1-01",
+    "LOEO-v1-02",
+    "LOEO-v1-03"
+  ],
+  "cold_passes": 1,
+  "warmup_passes": 1,
+  "timed_passes": 5,
+  "clock": "MONOTONIC_PERF_COUNTER_NS",
+  "clock_info": {
+    "implementation": "mach_absolute_time()",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution": 4.166666666666667e-08
+  },
+  "cold_definition": "3 fresh sequentially launched workers, one per fixed model; cold pass includes launch/module/model loads and all 162 samples; OS page cache NOT cleared",
+  "worker_lifetime": "same 3 workers remain alive for warmup and all 5 timed passes; no concurrent prediction requests",
+  "boundaries": {
+    "cold_pass_inclusive_ns": "parent before launching first worker through last cold sample audit fsync",
+    "parent_process_launch_through_ready_ns": "Popen to ready receipt, includes interpreter/driver/module/model/resource loading",
+    "module_load_ns": "frozen module imports and no-learning guard installation",
+    "model_load_including_validation_ns": "frozen load_model including JSON read/parse, structure, model ID and complexity validation",
+    "cached_input_read_parse_ns": "read/parse exactly one R02 cached row on every call",
+    "fixed_feature_conversion_ns": "unmodified project_core on complete SRC-111 candidate metadata and one cached row, including alias/polarity/availability",
+    "predict_including_explanation_and_model_integrity_ns": "unmodified predict plus two dispatcher metadata fields; includes model content serialization/hash, Boolean logic and explanation construction",
+    "boolean_only_ns": "NOT_RECORDED: interleaved frozen predictor, null; no profiling/subtraction estimate",
+    "explanation_only_ns": "NOT_RECORDED: interleaved frozen predictor, null; no profiling/subtraction estimate",
+    "semantic_verification_ns": "full dictionary equality to saved closed prediction, all fields",
+    "prediction_serialization_ns": "JSON encoding full prediction for audit digest",
+    "sample_inclusive_ns": "worker cached input read through semantic digest/result fields, before timing-envelope JSON/IPC",
+    "ipc_request_response_inclusive_ns": "parent request encoding/write/flush through worker response parse; includes sample and IPC",
+    "audit_serialization_write_flush_ns": "per-pass sum of directly measured parent timing-record JSON/write/flush",
+    "audit_fsync_ns": "one fsync per pass measured directly",
+    "elapsed_inclusive_ns": "parent wall time for complete pass, cold includes startup, warm/timed includes IPC/audit"
+  },
+  "primary_summary": "all five timed passes; per-pass plus pooled count/median/p95 (nearest-rank)/mean; no best-pass selection",
+  "unmeasured": [
+    "original fingerprint collection",
+    "relation extraction",
+    "Boolean-only time",
+    "explanation-only time",
+    "old detector runtime"
+  ],
+  "failure_policy": "one attempt only; stop on first worker/semantic error or budget expiry; retain failed/raw rows and mark every missing expected row NOT_RUN with null times; no retries",
+  "shared_budget_ledger": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+  "budget_link": "TIMING_BUDGET_LEDGER.json",
+  "benchmark_wall_cap_seconds": 300,
+  "budget_fit_increment": 0,
+  "budget_expansion": false,
+  "runtime": {
+    "OS_dependency_policy": "same macOS/platform; system frameworks and /usr/lib remain OS resources; no workspace or site-package fallback",
+    "external_python_files": [],
+    "highspy": "1.12.0",
+    "machine": "arm64",
+    "numpy": "2.3.5",
+    "original_python_ref": "/Users/xavier/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "platform": "macOS-15.7-arm64-arm-64bit",
+    "python": "3.12.14",
+    "python_copy": "dependencies/python/bin/python3.12"
+  },
+  "resource_preflight_outside_pass_timers": true,
+  "scientific_predictions_overwritten": false,
+  "new_independent_samples": 0
+}
