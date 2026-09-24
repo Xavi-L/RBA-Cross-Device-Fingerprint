@@ -1,0 +1,2909 @@
+{
+  "bit_order": [
+    "O_u",
+    "H",
+    "E"
+  ],
+  "conditions": [
+    {
+      "allowed_raw_core_alias_n": 0,
+      "allowed_sources": [],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [],
+      "canonical_candidates": [],
+      "canonical_core_atom_n": 0,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [],
+      "raw_alias_ids": [],
+      "registered_source_catalog_n": 0,
+      "source_condition": "SRC-000"
+    },
+    {
+      "allowed_raw_core_alias_n": 8,
+      "allowed_sources": [
+        "E"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [
+        "DEVIATION:NVW-001",
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-001",
+        "DEVIATION:NW-002",
+        "DEVIATION:NW-005",
+        "DEVIATION:P3-SCREEN-APP",
+        "DEVIATION:P3-UA-DEFAULT",
+        "DEVIATION:P3-UA-SETTINGS"
+      ],
+      "canonical_candidates": [
+        {
+          "all_registered_aliases": [
+            "NVW-001"
+          ],
+          "allowed_aliases": [
+            "NVW-001"
+          ],
+          "atom_id": "DEVIATION:NVW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NVW-001",
+              "rule_id": "NVW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_system_agent"
+        },
+        {
+          "all_registered_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "allowed_aliases": [
+            "NVW-002"
+          ],
+          "atom_id": "DEVIATION:NVW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:NVW-002",
+              "rule_id": "NVW-002",
+              "source": "E"
+            }
+          ],
+          "family": "host_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-001"
+          ],
+          "allowed_aliases": [
+            "NW-001"
+          ],
+          "atom_id": "DEVIATION:NW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NW-001",
+              "rule_id": "NW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_app_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "allowed_aliases": [
+            "NW-002"
+          ],
+          "atom_id": "DEVIATION:NW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:NW-002",
+              "rule_id": "NW-002",
+              "source": "E"
+            }
+          ],
+          "family": "app_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-005"
+          ],
+          "allowed_aliases": [
+            "NW-005"
+          ],
+          "atom_id": "DEVIATION:NW-005",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.graphics_layer.native_gpu_renderer",
+                "app.web_data.graphics_layer.webgl_renderer"
+              ],
+              "profile": "gpu_family",
+              "raw_atom_id": "CAT:NW-005",
+              "rule_id": "NW-005",
+              "source": "E"
+            }
+          ],
+          "family": "native_app_gpu_family"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "allowed_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "atom_id": "DEVIATION:P3-SCREEN-APP",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.screen_display_layer.screen_resolution_physical",
+                "app.web_data.screen_layer.screen_resolution_logical",
+                "app.web_data.screen_layer.device_pixel_ratio"
+              ],
+              "profile": "screen_short_side",
+              "raw_atom_id": "CAT:P3-SCREEN-APP",
+              "rule_id": "P3-SCREEN-APP",
+              "source": "E"
+            }
+          ],
+          "family": "screen_geometry"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "allowed_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "atom_id": "DEVIATION:P3-UA-DEFAULT",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-DEFAULT",
+              "rule_id": "P3-UA-DEFAULT",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "allowed_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "atom_id": "DEVIATION:P3-UA-SETTINGS",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.webview_settings_layer.settings_user_agent",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-SETTINGS",
+              "rule_id": "P3-UA-SETTINGS",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        }
+      ],
+      "canonical_core_atom_n": 8,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "CORE-002",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NVW-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-007",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-SCREEN-BROWSER",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-CORES",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-DPR",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-LANGUAGE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-SCREEN-SIZE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TIMEZONE-OFFSET",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TOUCH",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "SCENE-001",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "host26",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "WVWEB-004",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        }
+      ],
+      "raw_alias_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "P3-SCREEN-APP",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "registered_source_catalog_n": 23,
+      "source_condition": "SRC-001"
+    },
+    {
+      "allowed_raw_core_alias_n": 0,
+      "allowed_sources": [
+        "H"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [],
+      "canonical_candidates": [],
+      "canonical_core_atom_n": 0,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-APP",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-MEM-AVAILABLE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ACCELEROMETER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GYROSCOPE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_COUNTER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_DETECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-UA-REDUCED-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        }
+      ],
+      "raw_alias_ids": [],
+      "registered_source_catalog_n": 14,
+      "source_condition": "SRC-010"
+    },
+    {
+      "allowed_raw_core_alias_n": 8,
+      "allowed_sources": [
+        "H",
+        "E"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [
+        "DEVIATION:NVW-001",
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-001",
+        "DEVIATION:NW-002",
+        "DEVIATION:NW-005",
+        "DEVIATION:P3-SCREEN-APP",
+        "DEVIATION:P3-UA-DEFAULT",
+        "DEVIATION:P3-UA-SETTINGS"
+      ],
+      "canonical_candidates": [
+        {
+          "all_registered_aliases": [
+            "NVW-001"
+          ],
+          "allowed_aliases": [
+            "NVW-001"
+          ],
+          "atom_id": "DEVIATION:NVW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NVW-001",
+              "rule_id": "NVW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_system_agent"
+        },
+        {
+          "all_registered_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "allowed_aliases": [
+            "NVW-002"
+          ],
+          "atom_id": "DEVIATION:NVW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:NVW-002",
+              "rule_id": "NVW-002",
+              "source": "E"
+            }
+          ],
+          "family": "host_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-001"
+          ],
+          "allowed_aliases": [
+            "NW-001"
+          ],
+          "atom_id": "DEVIATION:NW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NW-001",
+              "rule_id": "NW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_app_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "allowed_aliases": [
+            "NW-002"
+          ],
+          "atom_id": "DEVIATION:NW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:NW-002",
+              "rule_id": "NW-002",
+              "source": "E"
+            }
+          ],
+          "family": "app_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-005"
+          ],
+          "allowed_aliases": [
+            "NW-005"
+          ],
+          "atom_id": "DEVIATION:NW-005",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.graphics_layer.native_gpu_renderer",
+                "app.web_data.graphics_layer.webgl_renderer"
+              ],
+              "profile": "gpu_family",
+              "raw_atom_id": "CAT:NW-005",
+              "rule_id": "NW-005",
+              "source": "E"
+            }
+          ],
+          "family": "native_app_gpu_family"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "allowed_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "atom_id": "DEVIATION:P3-SCREEN-APP",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.screen_display_layer.screen_resolution_physical",
+                "app.web_data.screen_layer.screen_resolution_logical",
+                "app.web_data.screen_layer.device_pixel_ratio"
+              ],
+              "profile": "screen_short_side",
+              "raw_atom_id": "CAT:P3-SCREEN-APP",
+              "rule_id": "P3-SCREEN-APP",
+              "source": "E"
+            }
+          ],
+          "family": "screen_geometry"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "allowed_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "atom_id": "DEVIATION:P3-UA-DEFAULT",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-DEFAULT",
+              "rule_id": "P3-UA-DEFAULT",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "allowed_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "atom_id": "DEVIATION:P3-UA-SETTINGS",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.webview_settings_layer.settings_user_agent",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-SETTINGS",
+              "rule_id": "P3-UA-SETTINGS",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        }
+      ],
+      "canonical_core_atom_n": 8,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "CORE-002",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NVW-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-007",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-APP",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-MEM-AVAILABLE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-SCREEN-BROWSER",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ACCELEROMETER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GYROSCOPE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_COUNTER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_DETECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-UA-REDUCED-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-CORES",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-DPR",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-LANGUAGE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-SCREEN-SIZE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TIMEZONE-OFFSET",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TOUCH",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "SCENE-001",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "host26",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "WVWEB-004",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        }
+      ],
+      "raw_alias_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "P3-SCREEN-APP",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "registered_source_catalog_n": 37,
+      "source_condition": "SRC-011"
+    },
+    {
+      "allowed_raw_core_alias_n": 4,
+      "allowed_sources": [
+        "O_u"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-002",
+        "DEVIATION:OFFDER-UA-001",
+        "DEVIATION:OFFDER-UA-002"
+      ],
+      "canonical_candidates": [
+        {
+          "all_registered_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "allowed_aliases": [
+            "OFFDER-OS-002"
+          ],
+          "atom_id": "DEVIATION:NVW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-002",
+              "rule_id": "OFFDER-OS-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "allowed_aliases": [
+            "OFFDER-OS-001"
+          ],
+          "atom_id": "DEVIATION:NW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-001",
+              "rule_id": "OFFDER-OS-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_os"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ],
+              "profile": "host_web_class",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_surface"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:OFFDER-UA-002",
+              "rule_id": "OFFDER-UA-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_ua"
+        }
+      ],
+      "canonical_core_atom_n": 4,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-BRIDGE-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-DEVCONFIG-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "OFFDER-GPU-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "NO_BOOLEAN_CONDITION_IN_CONTEXT_OUTCOME_USE_DECLARED_CONTROL_ENCODER",
+          "rule_id": "OFFDER-NET-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-TOUCH-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        }
+      ],
+      "raw_alias_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002",
+        "OFFDER-UA-001",
+        "OFFDER-UA-002"
+      ],
+      "registered_source_catalog_n": 9,
+      "source_condition": "SRC-100"
+    },
+    {
+      "allowed_raw_core_alias_n": 12,
+      "allowed_sources": [
+        "O_u",
+        "E"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [
+        "DEVIATION:NVW-001",
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-001",
+        "DEVIATION:NW-002",
+        "DEVIATION:NW-005",
+        "DEVIATION:OFFDER-UA-001",
+        "DEVIATION:OFFDER-UA-002",
+        "DEVIATION:P3-SCREEN-APP",
+        "DEVIATION:P3-UA-DEFAULT",
+        "DEVIATION:P3-UA-SETTINGS"
+      ],
+      "canonical_candidates": [
+        {
+          "all_registered_aliases": [
+            "NVW-001"
+          ],
+          "allowed_aliases": [
+            "NVW-001"
+          ],
+          "atom_id": "DEVIATION:NVW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NVW-001",
+              "rule_id": "NVW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_system_agent"
+        },
+        {
+          "all_registered_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "allowed_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "atom_id": "DEVIATION:NVW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:NVW-002",
+              "rule_id": "NVW-002",
+              "source": "E"
+            },
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-002",
+              "rule_id": "OFFDER-OS-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-001"
+          ],
+          "allowed_aliases": [
+            "NW-001"
+          ],
+          "atom_id": "DEVIATION:NW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NW-001",
+              "rule_id": "NW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_app_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "allowed_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "atom_id": "DEVIATION:NW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:NW-002",
+              "rule_id": "NW-002",
+              "source": "E"
+            },
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-001",
+              "rule_id": "OFFDER-OS-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-005"
+          ],
+          "allowed_aliases": [
+            "NW-005"
+          ],
+          "atom_id": "DEVIATION:NW-005",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.graphics_layer.native_gpu_renderer",
+                "app.web_data.graphics_layer.webgl_renderer"
+              ],
+              "profile": "gpu_family",
+              "raw_atom_id": "CAT:NW-005",
+              "rule_id": "NW-005",
+              "source": "E"
+            }
+          ],
+          "family": "native_app_gpu_family"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ],
+              "profile": "host_web_class",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_surface"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:OFFDER-UA-002",
+              "rule_id": "OFFDER-UA-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "allowed_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "atom_id": "DEVIATION:P3-SCREEN-APP",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.screen_display_layer.screen_resolution_physical",
+                "app.web_data.screen_layer.screen_resolution_logical",
+                "app.web_data.screen_layer.device_pixel_ratio"
+              ],
+              "profile": "screen_short_side",
+              "raw_atom_id": "CAT:P3-SCREEN-APP",
+              "rule_id": "P3-SCREEN-APP",
+              "source": "E"
+            }
+          ],
+          "family": "screen_geometry"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "allowed_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "atom_id": "DEVIATION:P3-UA-DEFAULT",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-DEFAULT",
+              "rule_id": "P3-UA-DEFAULT",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "allowed_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "atom_id": "DEVIATION:P3-UA-SETTINGS",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.webview_settings_layer.settings_user_agent",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-SETTINGS",
+              "rule_id": "P3-UA-SETTINGS",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        }
+      ],
+      "canonical_core_atom_n": 10,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "CORE-002",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NVW-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-007",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-BRIDGE-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-DEVCONFIG-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "OFFDER-GPU-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "NO_BOOLEAN_CONDITION_IN_CONTEXT_OUTCOME_USE_DECLARED_CONTROL_ENCODER",
+          "rule_id": "OFFDER-NET-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-TOUCH-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-SCREEN-BROWSER",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-CORES",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-DPR",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-LANGUAGE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-SCREEN-SIZE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TIMEZONE-OFFSET",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TOUCH",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "SCENE-001",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "host26",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "WVWEB-004",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        }
+      ],
+      "raw_alias_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "OFFDER-OS-001",
+        "OFFDER-OS-002",
+        "OFFDER-UA-001",
+        "OFFDER-UA-002",
+        "P3-SCREEN-APP",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "registered_source_catalog_n": 32,
+      "source_condition": "SRC-101"
+    },
+    {
+      "allowed_raw_core_alias_n": 4,
+      "allowed_sources": [
+        "O_u",
+        "H"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-002",
+        "DEVIATION:OFFDER-UA-001",
+        "DEVIATION:OFFDER-UA-002"
+      ],
+      "canonical_candidates": [
+        {
+          "all_registered_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "allowed_aliases": [
+            "OFFDER-OS-002"
+          ],
+          "atom_id": "DEVIATION:NVW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-002",
+              "rule_id": "OFFDER-OS-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "allowed_aliases": [
+            "OFFDER-OS-001"
+          ],
+          "atom_id": "DEVIATION:NW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-001",
+              "rule_id": "OFFDER-OS-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_os"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ],
+              "profile": "host_web_class",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_surface"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:OFFDER-UA-002",
+              "rule_id": "OFFDER-UA-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_ua"
+        }
+      ],
+      "canonical_core_atom_n": 4,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-BRIDGE-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-DEVCONFIG-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "OFFDER-GPU-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "NO_BOOLEAN_CONDITION_IN_CONTEXT_OUTCOME_USE_DECLARED_CONTROL_ENCODER",
+          "rule_id": "OFFDER-NET-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-TOUCH-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-APP",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-MEM-AVAILABLE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ACCELEROMETER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GYROSCOPE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_COUNTER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_DETECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-UA-REDUCED-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        }
+      ],
+      "raw_alias_ids": [
+        "OFFDER-OS-001",
+        "OFFDER-OS-002",
+        "OFFDER-UA-001",
+        "OFFDER-UA-002"
+      ],
+      "registered_source_catalog_n": 23,
+      "source_condition": "SRC-110"
+    },
+    {
+      "allowed_raw_core_alias_n": 12,
+      "allowed_sources": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "bit_order": [
+        "O_u",
+        "H",
+        "E"
+      ],
+      "candidate_availability_scope": "saved train-fold support only; outer coverage measures selected model cells",
+      "canonical_atom_ids": [
+        "DEVIATION:NVW-001",
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-001",
+        "DEVIATION:NW-002",
+        "DEVIATION:NW-005",
+        "DEVIATION:OFFDER-UA-001",
+        "DEVIATION:OFFDER-UA-002",
+        "DEVIATION:P3-SCREEN-APP",
+        "DEVIATION:P3-UA-DEFAULT",
+        "DEVIATION:P3-UA-SETTINGS"
+      ],
+      "canonical_candidates": [
+        {
+          "all_registered_aliases": [
+            "NVW-001"
+          ],
+          "allowed_aliases": [
+            "NVW-001"
+          ],
+          "atom_id": "DEVIATION:NVW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NVW-001",
+              "rule_id": "NVW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_system_agent"
+        },
+        {
+          "all_registered_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "allowed_aliases": [
+            "NVW-002",
+            "OFFDER-OS-002"
+          ],
+          "atom_id": "DEVIATION:NVW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:NVW-002",
+              "rule_id": "NVW-002",
+              "source": "E"
+            },
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.webview_data.kernel_container_layer.system_http_agent"
+              ],
+              "profile": "system_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-002",
+              "rule_id": "OFFDER-OS-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-001"
+          ],
+          "allowed_aliases": [
+            "NW-001"
+          ],
+          "atom_id": "DEVIATION:NW-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.device_model",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "model_token",
+              "raw_atom_id": "CAT:NW-001",
+              "rule_id": "NW-001",
+              "source": "E"
+            }
+          ],
+          "family": "model_app_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "allowed_aliases": [
+            "NW-002",
+            "OFFDER-OS-001"
+          ],
+          "atom_id": "DEVIATION:NW-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "POSITIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:NW-002",
+              "rule_id": "NW-002",
+              "source": "E"
+            },
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "app_android_major",
+              "raw_atom_id": "CAT:OFFDER-OS-001",
+              "rule_id": "OFFDER-OS-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_os"
+        },
+        {
+          "all_registered_aliases": [
+            "NW-005"
+          ],
+          "allowed_aliases": [
+            "NW-005"
+          ],
+          "atom_id": "DEVIATION:NW-005",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.graphics_layer.native_gpu_renderer",
+                "app.web_data.graphics_layer.webgl_renderer"
+              ],
+              "profile": "gpu_family",
+              "raw_atom_id": "CAT:NW-005",
+              "rule_id": "NW-005",
+              "source": "E"
+            }
+          ],
+          "family": "native_app_gpu_family"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-001",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ],
+              "profile": "host_web_class",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u"
+            }
+          ],
+          "family": "app_surface"
+        },
+        {
+          "all_registered_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "allowed_aliases": [
+            "OFFDER-UA-002"
+          ],
+          "atom_id": "DEVIATION:OFFDER-UA-002",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:OFFDER-UA-002",
+              "rule_id": "OFFDER-UA-002",
+              "source": "O_u"
+            }
+          ],
+          "family": "host_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "allowed_aliases": [
+            "P3-SCREEN-APP"
+          ],
+          "atom_id": "DEVIATION:P3-SCREEN-APP",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.android_native_data.screen_display_layer.screen_resolution_physical",
+                "app.web_data.screen_layer.screen_resolution_logical",
+                "app.web_data.screen_layer.device_pixel_ratio"
+              ],
+              "profile": "screen_short_side",
+              "raw_atom_id": "CAT:P3-SCREEN-APP",
+              "rule_id": "P3-SCREEN-APP",
+              "source": "E"
+            }
+          ],
+          "family": "screen_geometry"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "allowed_aliases": [
+            "P3-UA-DEFAULT"
+          ],
+          "atom_id": "DEVIATION:P3-UA-DEFAULT",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.kernel_container_layer.default_ua_native",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-DEFAULT",
+              "rule_id": "P3-UA-DEFAULT",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        },
+        {
+          "all_registered_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "allowed_aliases": [
+            "P3-UA-SETTINGS"
+          ],
+          "atom_id": "DEVIATION:P3-UA-SETTINGS",
+          "contributing_aliases": [
+            {
+              "deviation_polarity": "NEGATIVE",
+              "field_refs": [
+                "app.webview_data.webview_settings_layer.settings_user_agent",
+                "app.web_data.navigator_layer.user_agent"
+              ],
+              "profile": "literal_equality",
+              "raw_atom_id": "CAT:P3-UA-SETTINGS",
+              "rule_id": "P3-UA-SETTINGS",
+              "source": "E"
+            }
+          ],
+          "family": "host_ua"
+        }
+      ],
+      "canonical_core_atom_n": 10,
+      "common_measurement_gates_removed": false,
+      "excluded_catalog_entries": [
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "CORE-002",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NVW-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "NW-007",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-BRIDGE-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-DEVCONFIG-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "host26"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "OFFDER-GPU-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "NO_BOOLEAN_CONDITION_IN_CONTEXT_OUTCOME_USE_DECLARED_CONTROL_ENCODER",
+          "rule_id": "OFFDER-NET-001",
+          "selectable_on_App177": false,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "OFFDER-TOUCH-001",
+          "selectable_on_App177": true,
+          "source": "O_u",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-APP",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-COLOR-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-MEM-AVAILABLE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-SCREEN-BROWSER",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ACCELEROMETER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-GYROSCOPE",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_COUNTER",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "P3-SENSOR-STEP_DETECTOR",
+          "selectable_on_App177": true,
+          "source": "H",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-UA-REDUCED-BROWSER",
+          "selectable_on_App177": false,
+          "source": "H",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "browser67",
+            "native84"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-CORES",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-DPR",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-LANGUAGE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-SCREEN-SIZE",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TIMEZONE-OFFSET",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": true,
+          "reason": "DEFINED_CROSS_SURFACE_OBSERVATION_LEGAL_ALTERNATIVES_LIMIT_ATTRIBUTION_ONLY",
+          "rule_id": "P3-X-TOUCH",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": "BROWSER_SURFACE_ABSENT",
+          "surfaces": [
+            "app_web67",
+            "browser67"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-005",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "PHYS-006",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "MULTISURFACE_DEPENDENCIES_DO_NOT_CREATE_RELATIONAL_COMPARISON",
+          "rule_id": "SCENE-001",
+          "selectable_on_App177": false,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67",
+            "host26",
+            "native84"
+          ]
+        },
+        {
+          "core": false,
+          "reason": "SINGLE_SURFACE_OR_SHARED_COPY_CONTROL_NOT_CROSS_SURFACE_CONTRIBUTION",
+          "rule_id": "WVWEB-004",
+          "selectable_on_App177": true,
+          "source": "E",
+          "structural_unavailability": null,
+          "surfaces": [
+            "app_web67"
+          ]
+        }
+      ],
+      "raw_alias_ids": [
+        "NVW-001",
+        "NVW-002",
+        "NW-001",
+        "NW-002",
+        "NW-005",
+        "OFFDER-OS-001",
+        "OFFDER-OS-002",
+        "OFFDER-UA-001",
+        "OFFDER-UA-002",
+        "P3-SCREEN-APP",
+        "P3-UA-DEFAULT",
+        "P3-UA-SETTINGS"
+      ],
+      "registered_source_catalog_n": 46,
+      "source_condition": "SRC-111"
+    }
+  ]
+}

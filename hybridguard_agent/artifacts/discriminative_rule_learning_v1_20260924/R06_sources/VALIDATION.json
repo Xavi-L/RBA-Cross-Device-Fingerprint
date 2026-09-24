@@ -1,0 +1,154 @@
+{
+  "access_order": {
+    "new_train_freeze_test_close_evaluate_chains": 21,
+    "original_R05_chains_referenced": 3
+  },
+  "all_R06_branches_complete": false,
+  "automatic_retries": 0,
+  "branches": {
+    "R06_POSTFIT_DELETE": {
+      "authorized_this_run": false,
+      "implemented_in_freeze": false,
+      "metric_value": null,
+      "reserved_rows": 9,
+      "status": "NOT_RUN"
+    },
+    "R06_SOURCE_REFIT": {
+      "status": "COMPLETED_PENDING_EXTERNAL_REVIEW"
+    },
+    "all_R06_branches_complete": false
+  },
+  "budget_exhausted_units": 0,
+  "checks": [
+    {
+      "ref": "RECONCILIATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "REUSE_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "ACCESS_ORDER_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "SOURCE_RUNTIME_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "TRAINING_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "ALIAS_SUPPORT_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "OOF_ARITHMETIC_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "BUDGET_VALIDATION.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "POSTPROCESS_MANIFEST.json",
+      "status": "PASS"
+    },
+    {
+      "ref": "READ_ONLY_CHECK.json",
+      "status": "PASS"
+    }
+  ],
+  "counts": {
+    "expected_predictions": 1296,
+    "missing_or_duplicate_units": 0,
+    "model_states": {
+      "COMPLETED": 15,
+      "EMPTY_MODEL": 6,
+      "REUSED": 3
+    },
+    "model_units": 24,
+    "new_fit_jobs": 21,
+    "new_prediction_computations": 1134,
+    "prediction_decisions": {
+      "EMPTY_MODEL": 324,
+      "MANIPULATION_ALERT": 138,
+      "NO_ALERT": 834
+    },
+    "retries": 0,
+    "reused_models": 3,
+    "reused_prediction_records": 162,
+    "saved_predictions": 1296,
+    "stage_counts": {
+      "attack": 54,
+      "clean_post": 54,
+      "clean_pre": 54
+    },
+    "unique_supervised_stages": 162
+  },
+  "created_at": "2026-09-24T14:01:50.676386+00:00",
+  "descriptive_stages_in_supervised_evaluation": 0,
+  "evaluation_scope": "EXPOSED_MATERIAL_RETROSPECTIVE_GROUPED_EVALUATION_NOT_NEW_BLIND_TEST",
+  "exact_R05_reuse": {
+    "ids_bytes_freeze_times_and_original_artifact_directories_preserved": true,
+    "models": 3,
+    "new_fit_or_inference_calls": 0,
+    "predictions": 162
+  },
+  "excluded_descriptive_stages": 100,
+  "frozen_bindings": {
+    "approval_digest": "81db53765148e4cacd2b6b8fbd568ccfa281000e47fd05a1e529ca085123c579",
+    "freeze_manifest_digest": "bff86c2423283d9ecdf6402c2975a747707cd7d521a328561ef676cdcff2ddad",
+    "protocol_digest": "4ab418434ea79085746c2761a1314751b7c83a538813ae3872b3d9721a2823d4",
+    "resource_manifest_digest": "7e2aa45c9cf78abc106cb61e3863c5d89f2491fe0b406b645cd48fad80bd0de0"
+  },
+  "metrics": {
+    "empty_known_zero_atom_and_clause_denominators": "NOT_EVALUABLE_VALUE_NULL_EXPECTED_ZERO",
+    "expected_stage_denominators_preserved": true,
+    "folds_each": 3,
+    "independent_checked_cells": 9360,
+    "shared_alias_literal_fold_support_cases": 12,
+    "source_conditions": 8,
+    "unknown_model_size_units": 0,
+    "unknown_size_policy": "FROZEN_R04_R1_NOT_EVALUABLE_VALUE_AND_EXPECTED_DENOMINATOR_NULL"
+  },
+  "performance_gain_or_nonempty_models_required_for_acceptance": false,
+  "postprocess": {
+    "new_fits": 0,
+    "new_predictions": 0,
+    "raw_feature_reads": 0
+  },
+  "preserved_negative_results": {
+    "E_attack_misses": 33,
+    "H_only_EMPTY_MODEL_stages": 162,
+    "O_u_attack_misses": 30,
+    "no_source_EMPTY_MODEL_stages": 162
+  },
+  "reviewed_baseline": "9376c775549e913e0e88b678d345a35fdd726081",
+  "schema_version": "r06-source-refit-validation-v1",
+  "scope": "R06_SOURCE_REFIT",
+  "status": "PASS_SOURCE_REFIT_ONLY",
+  "stopped_before": [
+    "R06_POSTFIT_DELETE",
+    "R07",
+    "FULL_DEVELOPMENT_REFIT",
+    "OLD_S07",
+    "COLLECTION",
+    "ATTACK_TOOLS",
+    "GIT_COMMIT_PUSH"
+  ],
+  "technical_failures": 0,
+  "timeouts": 0,
+  "training": {
+    "empty_is_not_solver_failure": true,
+    "empty_train_feasible": false,
+    "new_empty_candidate_models": 6,
+    "new_fit_jobs": 21,
+    "new_nonempty_fitted_models": 15,
+    "nonempty_training_constraints": "PASS",
+    "real_numeric_threshold_fits": 0
+  },
+  "user_acceptance": "PENDING"
+}
