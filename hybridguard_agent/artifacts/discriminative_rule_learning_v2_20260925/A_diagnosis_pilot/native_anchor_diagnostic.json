@@ -1,0 +1,21 @@
+{
+  "native_field": "app.android_native_data.build_fingerprint_layer.os_version",
+  "observed_values": {
+    "Android 16": 117,
+    "Android 11": 27,
+    "Android 15": 18
+  },
+  "native_validity_gate_pass_n": 162,
+  "n": 162,
+  "values_are_not_constant": true,
+  "native_value_is_only_validity_gate_in_selected_predicate": true,
+  "C0_UA_and_W0_NW006_differing_ids": [],
+  "empirical_equality_is_not_global_alias": true,
+  "domain_difference": "NW-006 requires both UA/platform classes interpretable; OFFDER-UA-001 permits one interpretable Web class but additionally requires Native Android major.",
+  "code_refs": [
+    "hybridguard_agent/official_semantics/evaluator.py:221",
+    "hybridguard_agent/rules/executor.py:97",
+    "hybridguard_agent/research/rule_learning/matrix.py:149"
+  ],
+  "synthetic_check_ref": "hybridguard_agent/tests/test_rule_learning_v2.py#test_native_anchor_is_validity_gate_not_version_comparison"
+}

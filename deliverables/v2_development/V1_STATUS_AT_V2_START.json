@@ -7,9 +7,9 @@
   "mainline_file": "RESEARCH_MAINLINE.md",
   "plan_file": "deliverables/formal_experiment_execution_plan/EXECUTION_PLAN.md",
   "status_file": "deliverables/formal_experiment_execution_plan/EXECUTION_STATUS.json",
-  "active_research_track": "discriminative-rule-learning-v2",
+  "active_research_track": "discriminative-rule-learning-v1",
   "plan_preparation_status": "COMPLETE",
-  "experiment_execution_status": "V2_A_COMPLETED_PENDING_USER_REVIEW_R10_DEFERRED",
+  "experiment_execution_status": "R09_DONE_PENDING_REVIEW_DECLARED_MEASUREMENT_AND_MANUAL_LIMITATIONS",
   "last_completed_legacy_step": "S06",
   "scope": {
     "documentation_and_PR_explicitly_authorized": true,
@@ -988,8 +988,8 @@
     }
   ],
   "next_authorization_step": null,
-  "next_authorization_instruction": "V2-A 已完成，等待用户审查；R10 暂缓，不自动进入 V2-B/C、全开发集最终拟合或独立确认。V1旧scope和步骤记录仅代表历史授权与事实。",
-  "next_step_scope": "Review V2-A REPORT.md only; no automatic further fit, collection or Git delivery. Preserve R06/R07/R08 partial statuses.",
+  "next_authorization_instruction": "R09 已完成，等待外部验收；人工语义项保持 NOT_REVIEWED，不自动执行 R10、V2、联合模型、全开发集重拟合或提交推送。",
+  "next_step_scope": "Await R09 review only. R06/R07/R08 remain partial. Later budget accounting must include the linked R09 nonfit debit.",
   "history": [
     {
       "event": "LEGACY_STATUS_ARCHIVED_LOSSLESSLY",
@@ -1335,20 +1335,5 @@
       "externally_reviewed_commit": "772890fbb14fb50b35d9fa410fddf0b673563c02",
       "external_acceptance_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/R04_R1_EXTERNAL_ACCEPTANCE.json"
     }
-  ],
-  "v2_route": {
-    "roadmap": "V2_DEVELOPMENT_ROADMAP.md",
-    "plan": "deliverables/v2_development/EXECUTION_PLAN.md",
-    "status": "V2_A_COMPLETED_PENDING_USER_REVIEW",
-    "authorization": "Explicit user V2-A request on 2026-09-25; only S_FLAT/J0 GREEDY_OR OP05 3 LOEO folds each, <=6 real fits including retries, <=600 charged seconds and shared remainder",
-    "R10": "DEFERRED_BY_USER",
-    "v1_status_archive": "deliverables/v2_development/V1_STATUS_AT_V2_START.json",
-    "v1_status_archive_sha256": "f3ee1618e91f9a25ce61ac75f9f326959a9ae9168a7e462fd7ad3c20b7a96682",
-    "historical_steps_preserved": true,
-    "legacy_scope_is_historical_not_current_authorization": true,
-    "automatic_phase_advance": false,
-    "report": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/REPORT.md",
-    "real_fits": 6,
-    "linked_budget_ledger": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/linked_budget_ledger.json"
-  }
+  ]
 }

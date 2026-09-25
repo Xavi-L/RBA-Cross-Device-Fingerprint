@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "reported_elapsed_seconds": 0.168,
+  "recorded_at": "2026-09-24T18:24:57.732597+00:00",
+  "command": "python3 -B -m unittest hybridguard_agent.tests.test_rule_learning_v2 -v",
+  "real_fits": 0,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "tests": 8,
+      "errors": 1,
+      "error": "KeyError name in synthetic official-relation metadata fixture",
+      "effect": "No real fit. Added required result metadata to test fixture; production predicate unchanged."
+    },
+    {
+      "attempt": 2,
+      "tests": 8,
+      "errors": 0
+    },
+    {
+      "attempt": 3,
+      "tests": 10,
+      "errors": 0,
+      "change": "Added exact J0 union and full posthoc truth-table coverage."
+    }
+  ],
+  "scope": [
+    "exact candidate allowlist",
+    "source aliases and polarity",
+    "T/F/U and failure",
+    "exact train-only quantiles",
+    "V1 mathematical kernel parity on named synthetic toy",
+    "model save-load and no overwrite",
+    "prediction cannot read poison label/phase sidecar",
+    "failed and empty model retention",
+    "Native validity-gate semantic contrast",
+    "unchanged V1 settings"
+  ]
+}

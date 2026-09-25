@@ -1,0 +1,341 @@
+{
+  "prioritized_families": 3,
+  "rows": [
+    {
+      "family": "RESOURCE_CAPABILITY",
+      "component": "memory",
+      "native_field": "app.android_native_data.memory_layer.total_memory_gb",
+      "web_field": "app.web_data.navigator_layer.device_memory",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "REAL_REFERENCE_SEMANTIC_ALIGNMENT_REQUIRED",
+      "native_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "2.4145469665527344": 45,
+          "1.9342193603515625": 27,
+          "2.4146652221679688": 18,
+          "2.4145431518554688": 72
+        }
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "2": 144,
+          "16": 12,
+          "8": 6
+        }
+      },
+      "units_and_meaning": "Native totalMem / 1024^3 is GiB despite _gb name; Web deviceMemory is an approximate, rounded/clamped exposure, not exact RAM.",
+      "legal_counterexamples": "Healthy 2.4145 GiB Native versus Web 2 is already present. Browser rounding, clamps, unavailable APIs and process/environment limits are legitimate counterexamples to equality.",
+      "next_action": "A later version may test a semantic range/residual; first bind units and actual browser-version behavior. No new bound implemented here.",
+      "evidence_paths": [
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:107",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:451",
+        "web_probe/canonical_web_probe.js:355",
+        "https://www.w3.org/TR/device-memory/",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-19e49034b3d047ad9e5cb96c98dbfc8c",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-85d3032ca80a403d9cbae33f12955f2e",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-732f8493f58347918c2c98b817b6aecb",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f5fa5cb164b64da88065e6b242e53e43",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-0bffc108cdcd46498c072fd18758b023",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-22ed5502a1a24385bef4cb91046e3683",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-24e48e8890bc4126b5935b155cc639ee",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6d40e867146642de955768a0ed8200b3",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-497f3bba454d455d81c1a533d98ac074"
+      ],
+      "new_predicate_implemented": false
+    },
+    {
+      "family": "RESOURCE_CAPABILITY",
+      "component": "logical_processors",
+      "native_field": null,
+      "web_field": "app.web_data.navigator_layer.hardware_concurrency",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "BLOCKED_MISSING_NATIVE_HOST_REFERENCE",
+      "native_observation": {
+        "exists": false,
+        "observed_n": 0,
+        "n": 162,
+        "values": {}
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "4": 135,
+          "48": 12,
+          "16": 3,
+          "10": 3,
+          "12": 9
+        }
+      },
+      "units_and_meaning": "Web logical processors potentially available to user agent; CPU ABI/architecture is not a count.",
+      "legal_counterexamples": "Browser worker limits and anti-fingerprinting can lower reported concurrency; >4 is not an attack definition.",
+      "next_action": "Keep existing single-field pilot result; any Native CPU-count collection requires separate authorization.",
+      "evidence_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:80",
+        "web_probe/canonical_web_probe.js:354",
+        "https://html.spec.whatwg.org/multipage/workers.html#dom-navigator-hardwareconcurrency",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-19e49034b3d047ad9e5cb96c98dbfc8c",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-85d3032ca80a403d9cbae33f12955f2e",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-732f8493f58347918c2c98b817b6aecb",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f5fa5cb164b64da88065e6b242e53e43",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-0bffc108cdcd46498c072fd18758b023",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-22ed5502a1a24385bef4cb91046e3683",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-24e48e8890bc4126b5935b155cc639ee",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6d40e867146642de955768a0ed8200b3",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-497f3bba454d455d81c1a533d98ac074"
+      ],
+      "new_predicate_implemented": false
+    },
+    {
+      "family": "LANGUAGE_LIST",
+      "component": "locale_and_language_preferences",
+      "native_field": "app.android_native_data.locale_timezone_layer.native_locale",
+      "web_field": "app.web_data.navigator_layer.languages",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "REAL_REFERENCE_LEGAL_VARIATION_UNRESOLVED",
+      "native_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "\"en-US\"": 162
+        }
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "[\"en-US\"]": 150,
+          "[\"en-US\", \"en\"]": 9,
+          "[\"fr-FR\", \"fr\"]": 3
+        }
+      },
+      "units_and_meaning": "Native Locale.getDefault().toLanguageTag() is process default; Web languages is an ordered array. V1 numeric control retains only length.",
+      "legal_counterexamples": "Application/process locale, browser language preferences, fallback language tags and ordering can legitimately differ. en-US,en still includes native en-US.",
+      "next_action": "Consider a bounded language-family/set relation after authorizing B and agreeing legitimate customization cases; no arbitrary string vocabulary.",
+      "evidence_paths": [
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:176",
+        "web_probe/canonical_web_probe.js:349",
+        "hybridguard_agent/research/rule_learning/matrix.py:357",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f5fa5cb164b64da88065e6b242e53e43",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-0bffc108cdcd46498c072fd18758b023",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-22ed5502a1a24385bef4cb91046e3683",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-24e48e8890bc4126b5935b155cc639ee",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6d40e867146642de955768a0ed8200b3",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-497f3bba454d455d81c1a533d98ac074",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-698f3fcbada2411da6d5ef701a65b419",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-2b9de382d01b49d7a19a13821e13f5a5",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-437a6b1693cf4be99d0aa2e82bd219e5",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-2bf57f5017f94a6a936704994f5b8536",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6ccca997f7544e0ab15164d4d9f4ff7e",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-df93dd709f2d478fb883ea5c5d12a5af"
+      ],
+      "new_predicate_implemented": false
+    },
+    {
+      "family": "LANGUAGE_LIST",
+      "component": "primary_language",
+      "native_field": "app.android_native_data.locale_timezone_layer.native_language",
+      "web_field": "app.web_data.navigator_layer.language",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "REAL_REFERENCE_UNITS_REQUIRE_TAG_NORMALIZATION",
+      "native_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "\"en\"": 162
+        }
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "\"en-US\"": 162
+        }
+      },
+      "units_and_meaning": "Native language subtag en versus Web full tag en-US; raw equality has mismatched granularity.",
+      "legal_counterexamples": "Regional variants and per-application language are legitimate; current language field stays en-US even in French languages-list intervention.",
+      "next_action": "Keep as explanatory evidence; any new normalization grammar is B-only.",
+      "evidence_paths": [
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:177",
+        "web_probe/canonical_web_probe.js:348",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f5fa5cb164b64da88065e6b242e53e43",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-0bffc108cdcd46498c072fd18758b023",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-22ed5502a1a24385bef4cb91046e3683",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-24e48e8890bc4126b5935b155cc639ee",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6d40e867146642de955768a0ed8200b3",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-497f3bba454d455d81c1a533d98ac074",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-698f3fcbada2411da6d5ef701a65b419",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-2b9de382d01b49d7a19a13821e13f5a5",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-437a6b1693cf4be99d0aa2e82bd219e5",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-2bf57f5017f94a6a936704994f5b8536",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6ccca997f7544e0ab15164d4d9f4ff7e",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-df93dd709f2d478fb883ea5c5d12a5af"
+      ],
+      "new_predicate_implemented": false
+    },
+    {
+      "family": "LANGUAGE_LIST",
+      "component": "plugin_mime_counts",
+      "native_field": null,
+      "web_field": "app.web_data.automation_surface_layer.mime_types_count",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "BLOCKED_MISSING_NATIVE_HOST_REFERENCE_AND_MEMBER_LIST",
+      "native_observation": {
+        "exists": false,
+        "observed_n": 0,
+        "n": 162,
+        "values": {}
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "0": 150,
+          "4": 12
+        }
+      },
+      "units_and_meaning": "Counts exist; source computes local member summaries but saves only counts and hashes, not semantic member lists.",
+      "legal_counterexamples": "PDF support, browser builds and authorized automation can change counts. Hashes do not supply a lawful Native mirror or permitted vocabulary.",
+      "next_action": "Retain same-surface controls; do not use hashes or invent Native plugin membership.",
+      "evidence_paths": [
+        "web_probe/canonical_web_probe.js:583",
+        "web_probe/canonical_web_probe.js:607",
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f5fa5cb164b64da88065e6b242e53e43",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-0bffc108cdcd46498c072fd18758b023",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-22ed5502a1a24385bef4cb91046e3683",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-24e48e8890bc4126b5935b155cc639ee",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6d40e867146642de955768a0ed8200b3",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-497f3bba454d455d81c1a533d98ac074",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-698f3fcbada2411da6d5ef701a65b419",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-2b9de382d01b49d7a19a13821e13f5a5",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-437a6b1693cf4be99d0aa2e82bd219e5",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-2bf57f5017f94a6a936704994f5b8536",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-6ccca997f7544e0ab15164d4d9f4ff7e",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-df93dd709f2d478fb883ea5c5d12a5af"
+      ],
+      "new_predicate_implemented": false
+    },
+    {
+      "family": "TIMEZONE",
+      "component": "offset",
+      "native_field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+      "web_field": "app.web_data.execution_layer.timezone_offset",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "REAL_REFERENCE_BLOCKED_FOR_GENERAL_RULE_BY_DST_AND_SIGN",
+      "native_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "0": 162
+        }
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "0": 159,
+          "420": 3
+        }
+      },
+      "units_and_meaning": "Native rawOffset/60000 is standard-time local-minus-UTC minutes without DST; JavaScript getTimezoneOffset is UTC-minus-local at current date.",
+      "legal_counterexamples": "DST, different sampling instant near transitions and legitimate per-process/browser timezone changes invalidate simple equality or sign reversal.",
+      "next_action": "Resolve current-time/DST semantics and allowed customization before a B predicate. Existing GMT-only data cannot validate nonzero/DST cases.",
+      "evidence_paths": [
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:180",
+        "web_probe/canonical_web_probe.js:401",
+        "https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html#getRawOffset--",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f23d2812340f43b98977853175d7cbdf",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7694b66eb50542b197e217196bb1b41c",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-c18ab253975947a0a4a1c8548002dfff"
+      ],
+      "new_predicate_implemented": false
+    },
+    {
+      "family": "TIMEZONE",
+      "component": "zone_identifier",
+      "native_field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+      "web_field": "app.web_data.execution_layer.timezone_id",
+      "host_field": null,
+      "host_reference_status": "NO_SAME_SEMANTIC_REFERENCE_IN_HOST26",
+      "status": "REAL_REFERENCE_LEGAL_ALIAS_VARIATION_UNRESOLVED",
+      "native_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "\"GMT\"": 162
+        }
+      },
+      "web_observation": {
+        "exists": true,
+        "n": 162,
+        "observed_n": 162,
+        "values": {
+          "\"+00:00\"": 132,
+          "\"UTC\"": 27,
+          "\"America/Los_Angeles\"": 3
+        }
+      },
+      "units_and_meaning": "Native TimeZone ID and Intl resolved ID can use aliases/offset strings. Current clean contains GMT versus UTC/+00:00.",
+      "legal_counterexamples": "Distinct IDs can identify the same offset; equal current offsets can have different DST rules.",
+      "next_action": "Do not learn literal zone IDs. Bind semantic equivalence and date if later authorized.",
+      "evidence_paths": [
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:179",
+        "web_probe/canonical_web_probe.js:398",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-f23d2812340f43b98977853175d7cbdf",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-7694b66eb50542b197e217196bb1b41c",
+        "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/inference_inputs.jsonl#opaque_id=sample-c18ab253975947a0a4a1c8548002dfff"
+      ],
+      "new_predicate_implemented": false
+    }
+  ],
+  "native_cpu_count_search": {
+    "registered_catalog_matches": [],
+    "actual_native_processor_like_fields": [
+      "app.android_native_data.build_fingerprint_layer.cpu_abi",
+      "app.android_native_data.build_fingerprint_layer.kernel_arch",
+      "app.android_native_data.build_fingerprint_layer.supported_abis"
+    ],
+    "interpretation": "Existing ABI/architecture fields are not concurrency counts; no mirror invented."
+  },
+  "measurement_scope": "162 S01 supervised stages; 100 descriptive stages not fitted or promoted",
+  "source_version_caution": "Local collector source explains current field semantics; it is not an APK-byte reproduction or new collection audit.",
+  "priority_is_development_hypothesis_not_performance_promise": true
+}

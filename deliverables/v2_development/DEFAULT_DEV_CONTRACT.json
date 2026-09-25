@@ -1,0 +1,216 @@
+{
+  "schema_version": "v2-a-development-contract-v1",
+  "status": "PROPOSED_EXECUTABLE_SPEC_NOT_A_V1_DISPATCHER_JOB",
+  "phase": "V2-A",
+  "basis_commit": "5aabe2d609ab6ab737a7a057d4b9260479385fad",
+  "study_id": "discriminative-rule-learning-v2-20260925",
+  "evaluation_role": "EXPOSED_RETROSPECTIVE_DEVELOPMENT",
+  "execution_requires_explicit_user_start_prompt": true,
+  "hypotheses_not_performance_promises": true,
+  "protected_v1_paths": [
+    "hybridguard_agent/artifacts/formal_manipulation_v1_20260923",
+    "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924",
+    "hybridguard_agent/config/rule_learning_v1_20260924",
+    "hybridguard_agent/research/rule_learning"
+  ],
+  "new_paths": {
+    "implementation": "hybridguard_agent/research/rule_learning_v2",
+    "config": "hybridguard_agent/config/rule_learning_v2_20260925",
+    "artifacts": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot",
+    "planned_not_already_implemented": true
+  },
+  "input_contract": {
+    "supervised_stage_count_at_baseline": 162,
+    "attack_count": 54,
+    "clean_pre_count": 54,
+    "clean_post_count": 54,
+    "descriptive_stage_count": 100,
+    "descriptive_fit_permission": "DENIED",
+    "label_scope": "S01_DECLARED_INTERVENTION_SURFACE_ONLY",
+    "unknown_temporal_control_is_negative": false,
+    "unlabeled_MTC_is_negative": false,
+    "current_session_only_at_prediction": true,
+    "forbidden_predictor_fields": [
+      "label",
+      "phase",
+      "tool",
+      "config_id",
+      "group_id",
+      "bundle_id",
+      "session_id",
+      "installation_id",
+      "absolute_paths",
+      "future_post",
+      "previous_pre",
+      "expected_modified_fields"
+    ],
+    "grouping": "INHERIT_R01_LOEO_TRIPLETS_AND_ASSOCIATION_BOUNDARIES",
+    "split_id": "LOEO-v1",
+    "fold_ids": [
+      "LOEO-v1-01",
+      "LOEO-v1-02",
+      "LOEO-v1-03"
+    ],
+    "candidate_and_feature_fit": "EXACT_TRAIN_MEMBERS_ONLY",
+    "model_freeze_before_own_outer_prediction": true,
+    "repeated_development_use_does_not_restore_blind_test": true
+  },
+  "representations": {
+    "C0": {
+      "definition": "V1 canonical core relations",
+      "at_baseline_canonical_atoms": 10,
+      "fit_in_A": false
+    },
+    "W0": {
+      "definition": "Saved V1 app_web67 fold models; compare matching saved decisions",
+      "fit_in_A": false
+    },
+    "S_FLAT": {
+      "definition": "Union of approved V1 same-surface catalog, fixed controls and train-fitted numeric encoders across native84/app_web67/host26; no new explicit cross relation",
+      "not_a_single_surface_model": true,
+      "field_allowlist": "R04-R1/R02 exact single_surface_allowlists",
+      "catalog_direction": "ORIGINAL_PER_ATOM_CONDITION",
+      "new_arbitrary_vocabulary": false
+    },
+    "J0": {
+      "definition": "Unified training on S_FLAT union C0; not concatenating learned OOF rules",
+      "required_cross_atoms_selected": 0,
+      "source_alias_support_count_once": true
+    }
+  },
+  "authorized_when_prompt_sent": {
+    "diagnostics": [
+      "ALL_14_CONFIGURATIONS",
+      "FAILURE_REASON_LEDGER",
+      "FIELD_REFERENCE_INVENTORY",
+      "POST_HOC_C0_OR_W0_FULL_STAGE_COMPARISON",
+      "FIXED_REPRESENTATION_INPUT_COLLISIONS"
+    ],
+    "new_fit_specs": [
+      {
+        "representation": "S_FLAT",
+        "method": "GREEDY_OR",
+        "operating_point": "OP05",
+        "folds": 3
+      },
+      {
+        "representation": "J0",
+        "method": "GREEDY_OR",
+        "operating_point": "OP05",
+        "folds": 3
+      }
+    ],
+    "planned_fit_count": 6,
+    "expected_prediction_count_if_all_six_jobs_complete": 324,
+    "unique_stage_count_not_increased": 162,
+    "no_required_nonempty_model_or_TPR": true
+  },
+  "initial_learning_settings": {
+    "reference": "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json",
+    "objective": "MacroTPR_config_environment - lambda * (clause_count + literal_occurrences)",
+    "lambda": 0.005,
+    "macro_weights": "EQUAL_CONFIG_THEN_EQUAL_REPRESENTED_ENVIRONMENT_WITHIN_CONFIG",
+    "alpha": 0.05,
+    "clean_budget_count": "floor(alpha*N_train_clean)",
+    "min_train_decision_coverage": 0.8,
+    "coverage_strata": [
+      "attack",
+      "clean_pre",
+      "clean_post"
+    ],
+    "max_clauses": 6,
+    "max_literals": 12,
+    "max_complexity": 12,
+    "max_clause_length": 1,
+    "max_clauses_per_family": 2,
+    "minimum_available_complete_triplets": 3,
+    "minimum_true_attack_triplets": 2,
+    "minimum_support_bundles": 1,
+    "minimum_support_environments": 1,
+    "numeric_quantiles": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "numeric_fit_scope": "TRAIN_ONLY",
+    "numeric_interpolation": "LINEAR_AT_INDEX_(N_MINUS_1)*Q",
+    "seed": 20260924,
+    "greedy_max_additions": 6,
+    "backward_pruning_passes": 1,
+    "fit_time_limit_seconds": 60,
+    "tie_break": [
+      "higher_objective",
+      "higher_MacroTPR",
+      "fewer_clean_alarms",
+      "higher_min_stratum_decision_coverage",
+      "lower_complexity",
+      "lexicographic_atom_polarity_clause_ids"
+    ],
+    "training_execution_failures_max": 0,
+    "primary_three_value_contract_unchanged": true,
+    "negative_U": "U",
+    "empty_model": "EMPTY_MODEL_ABSTENTION_NOT_NORMAL",
+    "failures": "FAILED_NOT_U_OR_NO_ALERT",
+    "do_not_silently_change_when_adapter_fails": true
+  },
+  "trial_resource_budget": {
+    "max_actual_fits_including_engineering_retries": 6,
+    "max_charged_execution_seconds": 600,
+    "shared_remaining_budget_is_additional_hard_cap": true,
+    "v1_budget_ledger_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+    "linked_nonfit_budget_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/R09_TIMING_LINK.json",
+    "do_not_write_or_reset_v1_ledger": true,
+    "new_v2_linked_ledger_required": true,
+    "no_new_fit_quota_from_directory_change": true,
+    "budget_exhaustion": "STOP_PRESERVE_ALL_EXPECTED_AND_ATTEMPTED_UNITS"
+  },
+  "development_retries": {
+    "engineering_error_fix_allowed": true,
+    "requires_new_attempt_and_code_version": true,
+    "counts_against_fit_cap": true,
+    "scientific_negative_result_auto_retry": false,
+    "overwrite_previous_attempt": false
+  },
+  "metrics": [
+    "attack_micro_TPR",
+    "MacroTPR_config_environment",
+    "pre_alarm",
+    "post_alarm",
+    "decided_clean_alarm",
+    "decision_coverage",
+    "abstention",
+    "failure",
+    "exact_FTF",
+    "complexity",
+    "candidate_availability",
+    "selected_atom_availability",
+    "per_fold",
+    "per_configuration",
+    "gained_and_lost_attack_ids",
+    "new_clean_alarm_ids"
+  ],
+  "not_authorized_in_A": [
+    "V2-B",
+    "V2-C",
+    "R10",
+    "new_attack_tool_runs",
+    "new_collection",
+    "paid_services",
+    "new_relation_predicates",
+    "new_string_or_threshold_grammar",
+    "FINITE_IP_OR_experiments",
+    "DNF2_experiments",
+    "column_generation",
+    "final_development_refit",
+    "independent_confirmation_access",
+    "automatic_git_writes"
+  ],
+  "posthoc_ensemble_diagnostic": {
+    "source": "Saved same-fold C0 and W0 decisions over all 162 stages",
+    "role": "POST_HOC_ENSEMBLE_DIAGNOSTIC_NOT_INDEPENDENT_CONFIRMATION",
+    "truth_table": "A FAILED component -> diagnostic FAILED; otherwise any T -> T; both F -> F; otherwise U. EMPTY/insufficient are U.",
+    "include_clean_and_undefined_states": true,
+    "new_fit": false,
+    "historical_attack_union_36_is_not_a_guaranteed_new_model_score": true
+  }
+}

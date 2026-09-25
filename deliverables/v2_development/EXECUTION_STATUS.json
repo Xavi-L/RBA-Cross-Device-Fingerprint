@@ -1,0 +1,108 @@
+{
+  "schema_version": "v2-development-status-v1",
+  "roadmap_version": "hybridguard-v2-roadmap-20260925-v1",
+  "created_on": "2026-09-25",
+  "basis_repository": "Xavi-L/RBA-Cross-Device-Fingerprint",
+  "basis_commit": "5aabe2d609ab6ab737a7a057d4b9260479385fad",
+  "roadmap_path": "V2_DEVELOPMENT_ROADMAP.md",
+  "plan_path": "deliverables/v2_development/EXECUTION_PLAN.md",
+  "scope": {
+    "this_delivery": "V2_A_DIAGNOSIS_PILOT_COMPLETE",
+    "remote_repository_written": false,
+    "experiments_executed": true,
+    "real_fits": 6,
+    "new_predictions": 324,
+    "new_collection": 0,
+    "documentation_requested_by_user": true,
+    "experimental_authorization": "EXPLICIT_USER_V2_A_20260925_ONLY",
+    "how_to_authorize_A": "User explicitly sends AGENT_START_PROMPT.md or equivalent V2-A authorization.",
+    "automatic_phase_advance": false
+  },
+  "scheduling_decision": {
+    "active_planning_track": "discriminative-rule-learning-v2",
+    "R10": "DEFERRED_BY_USER_UNTIL_METHOD_STABILIZES",
+    "V1": "READ_ONLY_BASELINE",
+    "R06_R07_R08_pending_branches": "PRESERVE_EXISTING_STATUSES_NOT_V2_PREREQUISITES",
+    "next_action": "WAIT_FOR_USER_REVIEW_NO_AUTOMATIC_V2_B_C_OR_R10",
+    "do_not_reset_v1_step_records": true,
+    "route_update_pending_agent_install": false
+  },
+  "phases": [
+    {
+      "id": "V2-A",
+      "name": "诊断与首轮开发试验",
+      "status": "COMPLETED_PENDING_USER_REVIEW",
+      "max_actual_fits": 6,
+      "output_directory": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot",
+      "fits_completed": 6,
+      "artifacts": [
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/REPORT.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/diagnosis.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/selection_diagnosis.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/field_reference_inventory.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/batch_spec.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/linked_budget_ledger.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/metrics.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/metrics_by_configuration.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/metrics_by_fold.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/gained_lost.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/posthoc_ensemble_diagnostic.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/native_anchor_diagnostic.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/input_collision_summary.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/model_manifest.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/verification.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/synthetic_test_results.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/postrun_engineering_note.json"
+      ],
+      "stop_after_batch": true,
+      "fits_attempted": 6,
+      "fit_failures": 0,
+      "fit_retries": 0,
+      "new_predictions": 324,
+      "unique_supervised_stages": 162,
+      "charged_execution_seconds": 9.565894707804546,
+      "completed_at": "2026-09-24T18:36:32.829312+00:00",
+      "scientific_outcome": "NO_GAIN_OVER_W0_J0_SELECTED_NO_CROSS_ATOMS",
+      "fit_quota_remaining": 0
+    },
+    {
+      "id": "V2-B",
+      "name": "有限方法迭代",
+      "status": "PENDING_A_REVIEW_AND_AUTHORIZATION",
+      "proposed_total_fit_cap": 60,
+      "output_directory": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development",
+      "fits_completed": 0,
+      "artifacts": []
+    },
+    {
+      "id": "V2-C",
+      "name": "定型与确认",
+      "status": "PENDING_B_REVIEW_AND_AUTHORIZATION",
+      "independent_confirmation_material": "NOT_ESTABLISHED",
+      "output_directory": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation",
+      "fits_completed": 0,
+      "artifacts": []
+    }
+  ],
+  "history": [
+    {
+      "event": "V2_DOCUMENT_PACKAGE_CREATED",
+      "date": "2026-09-25",
+      "effect": "R10 deferral and three-checkpoint development roadmap documented; no experimental work."
+    },
+    {
+      "event": "V2_A_EXPLICITLY_AUTHORIZED_AND_ROUTED",
+      "date": "2026-09-25",
+      "effect": "V1 status archived byte-for-byte; historical steps retained; six-fit and shared budget caps apply."
+    },
+    {
+      "event": "V2_A_COMPLETED_AND_STOPPED",
+      "date": "2026-09-25",
+      "real_fits": 6,
+      "new_predictions": 324,
+      "effect": "S_FLAT/J0 both 27/54, macro 5/14, equal W0. C0 remains saved baseline. No next phase authorized."
+    }
+  ],
+  "updated_on": "2026-09-25"
+}
