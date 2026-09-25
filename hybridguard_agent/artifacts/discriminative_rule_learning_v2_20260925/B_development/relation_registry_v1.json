@@ -1,0 +1,97 @@
+{
+  "version": "V2_B_RELATIONS_V1",
+  "created_at": "2026-09-25T06:08:14.298526+00:00",
+  "role": "RESEARCHER_PROPOSED_V2_NOT_OFFICIAL_ATTACK_DEFINITION",
+  "sources": {
+    "memory_api": "https://www.w3.org/TR/2026/WD-device-memory-1-20260330/",
+    "native_memory": "https://developer.android.com/reference/android/app/ActivityManager.MemoryInfo#totalMem",
+    "language_api": "https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator-languages",
+    "language_syntax": "https://www.rfc-editor.org/rfc/rfc5646",
+    "native_locale": "https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--",
+    "native_timezone": "https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html#getRawOffset--",
+    "web_offset": "https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date.prototype.gettimezoneoffset"
+  },
+  "collector_refs": [
+    "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:107",
+    "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:176",
+    "web_probe/canonical_web_probe.js:348",
+    "web_probe/canonical_web_probe.js:401"
+  ],
+  "families": [
+    {
+      "id": "memory",
+      "status": "IMPLEMENTED_TRAIN_RATIO",
+      "fields": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "units": "GiB/GiB dimensionless; Native totalMem excludes below-kernel fixed allocations, Web is approximate/quantized/clamped",
+      "expression": "Web device_memory / Native total_memory_gb, with <= own train Q25/Q50/Q75 and both original polarities",
+      "parameters": "Only original linear train quantiles; no universal equality, clamp constant, or all-development cutpoint",
+      "domain": "Finite positive numeric values, both observed_value; missing/zero/boolean/invalid -> U",
+      "legal_counterexamples": [
+        "2.4145 GiB -> Web 2 by quantization",
+        "6 GiB -> Web 8 by rounding",
+        "32 GiB -> Web 8 by an implementation cap",
+        "Kernel reserved memory, VM/container limits and browser privacy policy"
+      ],
+      "limitation": "This is a learned scale contrast, not proof that RAM values must coincide. No history/APK execution or universal quantizer was inferred.",
+      "second_source_value_dependency": true,
+      "matched_single_information": "Both raw numeric fields already present in S_FLAT; W0 has Web memory. No new memory single-field parsing."
+    },
+    {
+      "id": "language",
+      "status": "IMPLEMENTED_LIMITED_PRIMARY_SUBTAG_RELATIONS",
+      "fields": [
+        "app.android_native_data.locale_timezone_layer.native_locale",
+        "app.web_data.navigator_layer.language",
+        "app.web_data.navigator_layer.languages"
+      ],
+      "expressions": [
+        "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS",
+        "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST"
+      ],
+      "parameters": "No learned vocabulary. Case-insensitive 2/3-letter primary, optional script and region; variants/extensions/private-use/deprecated unresolved forms -> U.",
+      "units": "Primary subtag only, not full locale identity or linguistic mutual intelligibility",
+      "legal_counterexamples": [
+        "en-US vs en-GB same primary",
+        "Reordered/fallback language lists",
+        "Process locale en-US and browser preference fr-FR can be legitimate",
+        "Scripts can matter even with the same primary"
+      ],
+      "matched_single_atom": "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST",
+      "matched_single_inputs": [
+        "app.web_data.navigator_layer.language",
+        "app.web_data.navigator_layer.languages"
+      ],
+      "matched_single_parameters": "Identical parser and set membership. No Native input, arbitrary category dictionary or training vocabulary.",
+      "second_source_value_dependency": true
+    },
+    {
+      "id": "timezone",
+      "status": "IMPLEMENTED_FIXED_NATIVE_DOMAIN_ONLY",
+      "fields": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "expression": "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS",
+      "units": "Native minutes east, Web Date minutes west; negate Web before comparing",
+      "parameters": "Known fixed-zone syntax/UTC aliases; Native ID offset must agree with Native raw offset",
+      "domain": "Dynamic Native zones/DST, unsupported names or inconsistent Native fields -> U. For fixed Native zones no timestamp is needed; Web offset already represents its actual current instant.",
+      "legal_counterexamples": [
+        "GMT, UTC and +00:00 aliases",
+        "Separate process/browser zones can legitimately differ",
+        "Dynamic-zone raw standard offset differs from DST current offset"
+      ],
+      "blocked": "General dynamic Native-zone relation needs a trustworthy observation instant/current offset; it is not approximated by rawOffset.",
+      "second_source_value_dependency": true,
+      "matched_single_information": "Web numeric offset already present; no Web zone vocabulary is added."
+    }
+  ],
+  "blocked_extensions": [
+    "Native/Host CPU count absent; ABI is not a count",
+    "Plugins/MIME have no second-source member mirror; hashes excluded"
+  ],
+  "data_dependence": "Only the ratio encoder fits own-fold train. Pure parsing/indexing never fits; no calibration on all 162 stages."
+}

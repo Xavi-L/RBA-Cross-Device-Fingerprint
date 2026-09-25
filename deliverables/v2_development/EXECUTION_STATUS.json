@@ -23,7 +23,7 @@
     "R10": "DEFERRED_BY_USER_UNTIL_METHOD_STABILIZES",
     "V1": "READ_ONLY_BASELINE",
     "R06_R07_R08_pending_branches": "PRESERVE_EXISTING_STATUSES_NOT_V2_PREREQUISITES",
-    "next_action": "WAIT_FOR_USER_REVIEW_NO_AUTOMATIC_V2_B_C_OR_R10",
+    "next_action": "WAIT_FOR_V2_B_USER_REVIEW_NO_AUTOMATIC_C_R10_V3",
     "do_not_reset_v1_step_records": true,
     "route_update_pending_agent_install": false
   },
@@ -31,7 +31,7 @@
     {
       "id": "V2-A",
       "name": "诊断与首轮开发试验",
-      "status": "COMPLETED_PENDING_USER_REVIEW",
+      "status": "ACCEPTED_BY_USER",
       "max_actual_fits": 6,
       "output_directory": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot",
       "fits_completed": 6,
@@ -64,16 +64,59 @@
       "charged_execution_seconds": 9.565894707804546,
       "completed_at": "2026-09-24T18:36:32.829312+00:00",
       "scientific_outcome": "NO_GAIN_OVER_W0_J0_SELECTED_NO_CROSS_ATOMS",
-      "fit_quota_remaining": 0
+      "fit_quota_remaining": 0,
+      "acceptance": {
+        "status": "ACCEPTED_BY_USER",
+        "commit": "72a7c74d97b04f0bcce202a5d482e02c1e4e9cad",
+        "date": "2026-09-25"
+      },
+      "prior_execution_status": "COMPLETED_PENDING_USER_REVIEW"
     },
     {
       "id": "V2-B",
       "name": "有限方法迭代",
-      "status": "PENDING_A_REVIEW_AND_AUTHORIZATION",
+      "status": "COMPLETED_PENDING_USER_REVIEW",
       "proposed_total_fit_cap": 60,
       "output_directory": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development",
-      "fits_completed": 0,
-      "artifacts": []
+      "fits_completed": 39,
+      "artifacts": [
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/REPORT.md",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/CANDIDATE_SELECTION.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/completion.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/B_CONTRACT.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/linked_budget_ledger.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials.jsonl",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/metrics.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/metrics_by_configuration.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/metrics_by_fold.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/gained_lost.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/model_manifest.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/candidate_counts.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/relation_registry_v1.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/relation_evidence.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/relation_train_support.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/remaining_misses.csv",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/signal_groups_v1.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/final_engineering_semantic_tests.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/execution_verification.json",
+        "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/postrun_engineering_note.json"
+      ],
+      "contract": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/B_CONTRACT.json",
+      "fits_attempted": 39,
+      "fit_failures": 0,
+      "fit_retries": 0,
+      "new_predictions": 2106,
+      "unique_supervised_stages": 162,
+      "new_model_specs": 13,
+      "charged_execution_seconds": 27.176215997664258,
+      "completed_at": "2026-09-25T06:33:01.011075+00:00",
+      "max_actual_fits": 60,
+      "max_charged_seconds": 3600,
+      "primary_candidate": "W0__R_KEEP_V1",
+      "alternate_candidate": null,
+      "scientific_outcome": "SAME_POOL_RETENTION_GAIN_NO_INCREMENTAL_CROSS_RELATION_GAIN; CX_MEMORY_CAUSED_18_CLEAN_ALARMS",
+      "stop_after_stage": true,
+      "fit_quota_unused_at_close": 21
     },
     {
       "id": "V2-C",
@@ -102,7 +145,58 @@
       "real_fits": 6,
       "new_predictions": 324,
       "effect": "S_FLAT/J0 both 27/54, macro 5/14, equal W0. C0 remains saved baseline. No next phase authorized."
+    },
+    {
+      "event": "V2_A_ACCEPTED_BY_USER",
+      "date": "2026-09-25",
+      "commit": "72a7c74d97b04f0bcce202a5d482e02c1e4e9cad",
+      "original_A_outputs_read_only": true
+    },
+    {
+      "event": "V2_B_EXPLICITLY_AUTHORIZED",
+      "utc": "2026-09-25T05:59:33.243680+00:00",
+      "contract": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/B_CONTRACT.json",
+      "fit_cap": 60,
+      "seconds_cap": 3600,
+      "no_automatic_git_or_next_phase": true
+    },
+    {
+      "event": "V2_A_ACCEPTANCE_APPLIED_TO_CURRENT_STATUS",
+      "utc": "2026-09-25T06:33:01.011075+00:00",
+      "from": "COMPLETED_PENDING_USER_REVIEW",
+      "to": "ACCEPTED_BY_USER",
+      "basis": "Prior explicit user acceptance of 72a7c74; no A artifact edits or reruns."
+    },
+    {
+      "event": "V2_B_COMPLETED_AND_STOPPED",
+      "utc": "2026-09-25T06:33:01.011075+00:00",
+      "real_fits": 39,
+      "charged_seconds": 27.176215997664258,
+      "failed_fits": 0,
+      "retries": 0,
+      "new_predictions": 2106,
+      "primary_candidate": "W0__R_KEEP_V1",
+      "effect": "45/54 attack, macro 11/14, clean 0/108, coverage 162/162; gain from original Web pool retention. Cross-relation variants provide no further gain; adverse memory/clean outcome preserved. Pending user review; C/R10/V3 not started; no Git writes."
     }
   ],
-  "updated_on": "2026-09-25"
+  "updated_on": "2026-09-25",
+  "current_execution": {
+    "phase": "V2-B",
+    "authorization_id": "USER_V2_B_LIMITED_METHOD_ITERATION_20260925",
+    "contract": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/B_CONTRACT.json",
+    "historical_scope_field_retained": true,
+    "status": "COMPLETED_PENDING_USER_REVIEW",
+    "output_directory": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development",
+    "completion": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/completion.json",
+    "real_fits": 39,
+    "new_predictions": 2106,
+    "charged_execution_seconds": 27.176215997664258,
+    "cumulative_fit_jobs": 116,
+    "cumulative_charged_seconds": 140.58916712354903,
+    "remaining_research_fits": 84,
+    "remaining_research_seconds": 21459.410832876452,
+    "scope_field_role": "HISTORICAL_A_DELIVERY_UNCHANGED",
+    "automatic_phase_advance": false,
+    "remote_repository_written": false
+  }
 }

@@ -1,0 +1,142 @@
+{
+  "schema_version": "v2-b-contract-v1",
+  "phase": "V2-B",
+  "authorization_id": "USER_V2_B_LIMITED_METHOD_ITERATION_20260925",
+  "authorization": "Explicit pasted user request in current task; A accepted at 72a7c74d97b04f0bcce202a5d482e02c1e4e9cad.",
+  "accepted_A_commit": "72a7c74d97b04f0bcce202a5d482e02c1e4e9cad",
+  "created_at": "2026-09-25T05:59:33.128264+00:00",
+  "evaluation_role": "EXPOSED_RETROSPECTIVE_DEVELOPMENT",
+  "stage_fit_cap": 60,
+  "stage_seconds_cap": 3600,
+  "max_new_specs_per_batch": 4,
+  "max_fits_per_batch": 12,
+  "worker_wall_cap_seconds": 90,
+  "shared_research_caps": {
+    "fits": 200,
+    "seconds": 21600
+  },
+  "base_account": {
+    "v1_and_r09": {
+      "ledger_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/ledger.json",
+      "r09_link_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/REAL_RESEARCH_BUDGET/R09_TIMING_LINK.json",
+      "r09_account_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R09_cost_explanation/TIMING_BUDGET_LEDGER.json",
+      "used_fit_jobs": 71,
+      "charged_seconds": 103.84705641808023,
+      "v1_charged_seconds": 103.04179533408023,
+      "r09_charged_seconds": 0.805261084,
+      "limits": {
+        "budget_carryover_or_expansion": "EXPLICIT_REVISION_BEFORE_RUN",
+        "budget_exhaustion": "NOT_RUN_BUDGET_EXHAUSTED_KEEP_JOB_ROWS",
+        "max_fit_jobs": 200,
+        "max_solver_threads": 1,
+        "priority": [
+          "R05_PRIMARY",
+          "R06_SOURCE_REFIT",
+          "R07_SINGLE_SURFACE_REFIT",
+          "R08_CONFIG_TRANSFER",
+          "SENSITIVITY"
+        ],
+        "wall_clock_seconds": 21600
+      },
+      "remaining_fits": 129,
+      "remaining_seconds": 21496.15294358192
+    },
+    "A_ledger_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/linked_budget_ledger.json",
+    "A_fit_jobs": 6,
+    "A_charged_seconds": 9.565894707804546,
+    "used_fit_jobs": 77,
+    "charged_seconds": 113.41295112588477,
+    "remaining_fits": 123,
+    "remaining_seconds": 21486.587048874117
+  },
+  "inherited_settings": {
+    "lambda": 0.005,
+    "alpha": 0.05,
+    "min_train_decision_coverage": 0.8,
+    "coverage_strata": [
+      "attack",
+      "clean_pre",
+      "clean_post"
+    ],
+    "max_clauses": 6,
+    "max_literals": 12,
+    "max_complexity": 12,
+    "max_clause_length": 1,
+    "max_clauses_per_family": 2,
+    "minimum_available_complete_triplets": 3,
+    "minimum_true_attack_triplets": 2,
+    "minimum_support_bundles": 1,
+    "minimum_support_environments": 1,
+    "numeric_quantiles": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "numeric_interpolation": "LINEAR_AT_INDEX_(N_MINUS_1)*Q",
+    "seed": 20260924,
+    "greedy_max_additions": 6,
+    "backward_pruning_passes": 1,
+    "fit_time_limit_seconds": 60,
+    "training_execution_failures_max": 0
+  },
+  "A_contract_read_only_ref": "deliverables/v2_development/DEFAULT_DEV_CONTRACT.json",
+  "fit_accounting": "Each independently learned model costs one fit; encoder/support/sparse initialization/retention are recorded internal stages. Saved sparse reuse does not refit its encoder. No unregistered diagnostic fit.",
+  "billing_scope": "Each worker wall time includes input, all train stages, save/load, prediction and evaluation. Every attempted worker consumes the fit cap, including failures; no automatic retries.",
+  "sparse_objective": "Inherited MacroTPR - 0.005*complexity",
+  "retention_preference": {
+    "name": "R_KEEP_V1",
+    "initialization": "Matching saved fold sparse model, or explicitly counted internal sparse initialization",
+    "D": "sum_group sum_train_attack macro_weight[i] * any_T_in_group(S,i)",
+    "constraints": "Original support, per-phase coverage >=0.8, no train failures, union clean floor(.05*N), <=6 clauses, <=12 complexity, original family caps, no attack detection loss",
+    "tie_break": [
+      "higher_added_train_macro_detection",
+      "higher_added_D",
+      "lower_final_clean_alarms",
+      "lower_final_complexity",
+      "stable_clause_id"
+    ],
+    "post_retention_sparse_pruning": false,
+    "same_objective_claim": false,
+    "new_optimization_or_generalization_guarantee": false
+  },
+  "relation_families_allowed": [
+    "memory",
+    "language",
+    "timezone"
+  ],
+  "data": {
+    "supervised_stages": 162,
+    "attack": 54,
+    "clean_pre": 54,
+    "clean_post": 54,
+    "triplets": 54,
+    "split": "original LOEO-v1, exact bundle/environment boundaries",
+    "descriptive_100_fit": false,
+    "UNKNOWN_or_MTC_as_clean": false
+  },
+  "prediction": "Current allowed session fields only; no labels/phase/config/group/tool/IDs/paths/pre/post or modified-field lists in conditions",
+  "freeze_before_evaluation_features": true,
+  "predictions_close_before_evaluation_labels": true,
+  "protected_paths": [
+    "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot",
+    "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924",
+    "hybridguard_agent/research/rule_learning",
+    "hybridguard_agent/config/rule_learning_v1_20260924"
+  ],
+  "excluded": [
+    "new collection",
+    "attack tools",
+    "paid services",
+    "arbitrary string vocabulary or unique IDs",
+    "IP",
+    "DNF2",
+    "column generation",
+    "whole-development final fit",
+    "confirmation access",
+    "V2-C",
+    "R10",
+    "V3",
+    "automatic Git writes"
+  ],
+  "stop": "Complete bounded attribution and one primary/at most one alternate or NO_IMPROVING_CANDIDATE; wait for user review"
+}

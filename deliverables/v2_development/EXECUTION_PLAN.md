@@ -80,3 +80,13 @@
 - 允许开发期工程修复后的留痕重试；不允许择优覆盖，所有实际fit计费。
 - 旧fit预算及R09关联账目不归零，V2追加关联账本；没有新fit永久授权。
 - 任何现阶段未知的实现、字段或性能都写未知，不把文档中的建议当事实。
+
+## 2026-09-25 V2-B 明确授权记录
+
+A 提交 `72a7c74` 已由用户验收。按本轮具体指令执行失败汇总修复、同池 R_KEEP_V1 三规格九折试验，再做最多三个有真实参照关系家族的 GREEDY_OR 匹配表示对照及必要归因。阶段上限60次 fit/3600秒，每批最多4规格/12次 fit，并接续 V1、R09、A 与已有 B 扣账。A 产物及旧合同只读；不执行 IP/DNF2、全开发集最终拟合、独立确认、新采集、工具攻击、V2-C/R10/V3 或自动 Git 写入。完整合同及批次规格位于 `B_development/`；完成候选决策后停止一次等待审查。
+
+## 2026-09-25 V2-B 执行完成，等待审查
+
+A 的用户验收已记入当前状态，历史产物保持只读。B 完成四批、13 规格共 39 次实际 fit，失败/重试均 0，计费 27.176215998 秒；连同 V1、R09、A 累计 116 fits / 140.589167124 秒。工程与语义测试 36 项通过。主候选 W0 + R_KEEP_V1 检出 45/54，配置/环境宏平均 78.57%，pre/post 报警各 0/54、覆盖 162/162，三折复杂度均 12。相对 W0 新增 18、丢失 0，增益集中于一个留出环境组。较大表示无额外增益，内存跨层关系新增 18 个 clean 报警的负结果已保留。候选为已暴露材料上的开发决策，尚无独立确认或全开发集最终模型。
+
+证据：[REPORT.md](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/REPORT.md)、[CANDIDATE_SELECTION.json](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/CANDIDATE_SELECTION.json)、[completion.json](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/completion.json)。账本已关闭；下一动作是等待 B 审查。本轮不执行 V2-C/R10/V3，不 commit、push 或创建 PR。

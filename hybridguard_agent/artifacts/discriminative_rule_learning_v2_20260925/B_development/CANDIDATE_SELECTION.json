@@ -1,0 +1,178 @@
+{
+  "schema_version": "v2-b-candidate-selection-v1",
+  "decision": "PRIMARY_CANDIDATE_FOR_USER_REVIEW",
+  "evaluation_role": "EXPOSED_RETROSPECTIVE_DEVELOPMENT",
+  "selected_at": "2026-09-25T06:20:21.654383+00:00",
+  "primary": {
+    "spec_id": "W0__R_KEEP_V1",
+    "learning_procedure": "Original W0 train encoder and GREEDY_OR/OP05 initialization, then fixed R_KEEP_V1 signal retention under unchanged limits",
+    "metrics": {
+      "metrics": {
+        "attack_tpr": {
+          "numerator": 45,
+          "denominator": 54,
+          "expected_denominator": 54,
+          "value": 0.8333333333333334,
+          "status": "OK",
+          "reason": null
+        },
+        "clean_alarm_rate": {
+          "numerator": 0,
+          "denominator": 108,
+          "expected_denominator": 108,
+          "value": 0.0,
+          "status": "OK",
+          "reason": null
+        },
+        "pre_alarm_rate": {
+          "numerator": 0,
+          "denominator": 54,
+          "expected_denominator": 54,
+          "value": 0.0,
+          "status": "OK",
+          "reason": null
+        },
+        "post_alarm_rate": {
+          "numerator": 0,
+          "denominator": 54,
+          "expected_denominator": 54,
+          "value": 0.0,
+          "status": "OK",
+          "reason": null
+        },
+        "decided_clean_alarm_rate": {
+          "numerator": 0,
+          "denominator": 108,
+          "expected_denominator": 108,
+          "value": 0.0,
+          "status": "OK",
+          "reason": null
+        },
+        "decision_coverage": {
+          "numerator": 162,
+          "denominator": 162,
+          "expected_denominator": 162,
+          "value": 1.0,
+          "status": "OK",
+          "reason": null
+        },
+        "abstention_rate": {
+          "numerator": 0,
+          "denominator": 162,
+          "expected_denominator": 162,
+          "value": 0.0,
+          "status": "OK",
+          "reason": null
+        },
+        "failure_rate": {
+          "numerator": 0,
+          "denominator": 162,
+          "expected_denominator": 162,
+          "value": 0.0,
+          "status": "OK",
+          "reason": null
+        },
+        "atom_coverage": {
+          "numerator": 972,
+          "denominator": 972,
+          "expected_denominator": 972,
+          "value": 1.0,
+          "status": "OK",
+          "reason": null
+        },
+        "clause_coverage": {
+          "numerator": 972,
+          "denominator": 972,
+          "expected_denominator": 972,
+          "value": 1.0,
+          "status": "OK",
+          "reason": null
+        },
+        "MacroTPR_config_environment": {
+          "numerator": 11.0,
+          "denominator": 14,
+          "expected_denominator": 14,
+          "value": 0.7857142857142857,
+          "status": "OK",
+          "reason": null
+        },
+        "exact_FTF": {
+          "numerator": 45,
+          "denominator": 54,
+          "expected_denominator": 54,
+          "value": 0.8333333333333334,
+          "status": "OK",
+          "reason": null
+        },
+        "conditional_recovery": {
+          "numerator": 45,
+          "denominator": 45,
+          "expected_denominator": 45,
+          "value": 1.0,
+          "status": "OK",
+          "reason": null
+        }
+      },
+      "evaluation_role": "EXPOSED_RETROSPECTIVE_DEVELOPMENT",
+      "expected_stages": 162,
+      "positive": 54,
+      "negative": 108,
+      "decision_counts": {
+        "MANIPULATION_ALERT": 45,
+        "NO_ALERT": 117,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "EMPTY_MODEL": 0,
+        "FAILED": 0
+      },
+      "prediction_evidence": "model_manifest.json and original per-trial predictions.jsonl"
+    },
+    "complexity_by_fold": [
+      12,
+      12,
+      12
+    ],
+    "fold_models": [
+      "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__W0__R_KEEP_V1__LOEO-v1-01__attempt01/model.json",
+      "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__W0__R_KEEP_V1__LOEO-v1-02__attempt01/model.json",
+      "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__W0__R_KEEP_V1__LOEO-v1-03__attempt01/model.json"
+    ],
+    "no_whole_development_final_model_fitted": true
+  },
+  "alternate": null,
+  "rationale": [
+    "Configuration/environment macro improves as well as micro; no new observed clean alarms, failures or abstentions.",
+    "Same decisions and selected clauses as larger flat/joint/matched variants, with only the original Web input scope.",
+    "No new cross-relation gain beyond this same-selector single-surface control. CX introduces 18 clean alarms.",
+    "Additional third-fold complexity is an explicit cost: 2 to 12; all three folds now use 6 clauses."
+  ],
+  "tradeoffs": [
+    "All gain over saved W0 occurs in one held-out environment group, across six configurations; only three environment association groups exist.",
+    "Absolute memory/concurrency, UA/platform, webdriver and list counts can respond to legitimate browser/hardware/customization changes.",
+    "0/108 exposed clean alarms is not population zero FPR. Labels cover only the declared intervention surface.",
+    "Manual semantic signal groups and selection were developed after exposure to these materials."
+  ],
+  "rejected_new_alternatives": {
+    "flat_joint_matched_variants": "No decision/selected-rule gain; larger input requirements.",
+    "CX_GREEDY_OR": "27/54 but pre/post 9/54 each; memory-induced normal environment shift.",
+    "CX_R_KEEP_V1": "30/54 with same 18 clean alarms; no advantage over primary clean/detection tradeoff.",
+    "CX_NO_MEMORY": "Same decisions as C0 with higher complexity.",
+    "CX_MEMORY_ONLY": "Same adverse decisions as CX."
+  },
+  "historical_C0": "Retained low-complexity baseline (2/2/2), not a newly promoted B alternate.",
+  "stop_reason": "Key authorized hypotheses tested with same-pool, same-selector, matched-parser and targeted family controls; further tuning lacks a new hypothesis.",
+  "C_status": "NOT_STARTED_REQUIRES_USER_AUTHORIZATION",
+  "independent_confirmation": "NOT_ESTABLISHED_OR_ACCESSED",
+  "minimal_C_plan": [
+    "Freeze candidate grammar, group mapping, fit procedure and clean/coverage operating point before opening new confirmation labels.",
+    "Authorize independently collected/adjudicated environments crossed with configurations, including legitimate high RAM/CPU, language, timezone, PDF/plugin, UA customization and authorized automation controls.",
+    "Use paired expected-ID comparisons against saved-method C0 and W0 procedures, report macro/micro/clean/coverage/complexity with independent-group uncertainty; do not retune on confirmation feedback."
+  ],
+  "not_claimed": [
+    "new blind test",
+    "unseen mechanism guarantee",
+    "cross-layer superiority",
+    "universal zero FPR",
+    "optimization/generalization theorem",
+    "V2-C completed"
+  ]
+}

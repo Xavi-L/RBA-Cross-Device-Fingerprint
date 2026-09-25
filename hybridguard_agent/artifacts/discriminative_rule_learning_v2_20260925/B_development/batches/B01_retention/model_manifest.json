@@ -1,0 +1,6962 @@
+[
+  {
+    "spec_id": "C0",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/dispatch/jobs/R05_PRIMARY__LOEO-v1-01__GREEDY_OR__OP05__SRC-111__core/model.json",
+    "model_id": "r03-32440e7ea280302890a67a73",
+    "status": "FITTED",
+    "complexity": 2,
+    "complexity_detail": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 2,
+      "source_union": [
+        "O_u"
+      ]
+    },
+    "clauses": [
+      "DEVIATION:OFFDER-UA-001:POSITIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "DEVIATION:OFFDER-UA-001",
+        "sources": [
+          "O_u"
+        ],
+        "surfaces": [
+          "app_web67",
+          "native84"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "OFFDER-UA-001"
+        ],
+        "provenance": {
+          "canonical_rule_id": "OFFDER-UA-001",
+          "all_registered_equivalent_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "contributing_aliases": [
+            {
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "deviation_polarity": "NEGATIVE",
+              "profile": "host_web_class",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "registered_clauses": 20,
+    "eligible_clauses": 13,
+    "selected_clauses": 1,
+    "cross_atoms_selected": [
+      "DEVIATION:OFFDER-UA-001"
+    ],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 487,
+        "denominator": 1300,
+        "value": 0.37461538461538463
+      },
+      "macro_tpr": {
+        "numerator": 5,
+        "denominator": 13,
+        "value": 0.38461538461538464
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "DEVIATION:OFFDER-UA-001:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": null
+  },
+  {
+    "spec_id": "C0",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/dispatch/jobs/R05_PRIMARY__LOEO-v1-02__GREEDY_OR__OP05__SRC-111__core/model.json",
+    "model_id": "r03-473f47463b00eb7aea74f493",
+    "status": "FITTED",
+    "complexity": 2,
+    "complexity_detail": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 2,
+      "source_union": [
+        "O_u"
+      ]
+    },
+    "clauses": [
+      "DEVIATION:OFFDER-UA-001:POSITIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "DEVIATION:OFFDER-UA-001",
+        "sources": [
+          "O_u"
+        ],
+        "surfaces": [
+          "app_web67",
+          "native84"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "OFFDER-UA-001"
+        ],
+        "provenance": {
+          "canonical_rule_id": "OFFDER-UA-001",
+          "all_registered_equivalent_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "contributing_aliases": [
+            {
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "deviation_polarity": "NEGATIVE",
+              "profile": "host_web_class",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "registered_clauses": 20,
+    "eligible_clauses": 13,
+    "selected_clauses": 1,
+    "cross_atoms_selected": [
+      "DEVIATION:OFFDER-UA-001"
+    ],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 293,
+        "denominator": 700,
+        "value": 0.4185714285714286
+      },
+      "macro_tpr": {
+        "numerator": 3,
+        "denominator": 7,
+        "value": 0.42857142857142855
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "DEVIATION:OFFDER-UA-001:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": null
+  },
+  {
+    "spec_id": "C0",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R05_primary/dispatch/jobs/R05_PRIMARY__LOEO-v1-03__GREEDY_OR__OP05__SRC-111__core/model.json",
+    "model_id": "r03-016f41d7f421b218512d7262",
+    "status": "FITTED",
+    "complexity": 2,
+    "complexity_detail": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 2,
+      "source_union": [
+        "O_u"
+      ]
+    },
+    "clauses": [
+      "DEVIATION:OFFDER-UA-001:POSITIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "DEVIATION:OFFDER-UA-001",
+        "sources": [
+          "O_u"
+        ],
+        "surfaces": [
+          "app_web67",
+          "native84"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "OFFDER-UA-001"
+        ],
+        "provenance": {
+          "canonical_rule_id": "OFFDER-UA-001",
+          "all_registered_equivalent_aliases": [
+            "OFFDER-UA-001"
+          ],
+          "contributing_aliases": [
+            {
+              "rule_id": "OFFDER-UA-001",
+              "source": "O_u",
+              "raw_atom_id": "CAT:OFFDER-UA-001",
+              "deviation_polarity": "NEGATIVE",
+              "profile": "host_web_class",
+              "field_refs": [
+                "app.android_native_data.build_fingerprint_layer.os_version",
+                "app.web_data.navigator_layer.user_agent",
+                "app.web_data.navigator_layer.platform"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "registered_clauses": 20,
+    "eligible_clauses": 13,
+    "selected_clauses": 1,
+    "cross_atoms_selected": [
+      "DEVIATION:OFFDER-UA-001"
+    ],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 197,
+        "denominator": 300,
+        "value": 0.6566666666666666
+      },
+      "macro_tpr": {
+        "numerator": 2,
+        "denominator": 3,
+        "value": 0.6666666666666666
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "DEVIATION:OFFDER-UA-001:POSITIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": null
+  },
+  {
+    "spec_id": "W0",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/dispatch/jobs/R07_SINGLE_SURFACE_REFIT__LOEO-v1-01__GREEDY_OR__OP05__SRC-111__app_web67/model.json",
+    "model_id": "r03-72ebee654baa2baecddd499a",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 98,
+    "eligible_clauses": 68,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 511,
+        "denominator": 650,
+        "value": 0.7861538461538462
+      },
+      "macro_tpr": {
+        "numerator": 11,
+        "denominator": 13,
+        "value": 0.8461538461538461
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": null
+  },
+  {
+    "spec_id": "W0",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/dispatch/jobs/R07_SINGLE_SURFACE_REFIT__LOEO-v1-02__GREEDY_OR__OP05__SRC-111__app_web67/model.json",
+    "model_id": "r03-4d84d2da75641777abb9ca64",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 98,
+    "eligible_clauses": 69,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 279,
+        "denominator": 350,
+        "value": 0.7971428571428572
+      },
+      "macro_tpr": {
+        "numerator": 6,
+        "denominator": 7,
+        "value": 0.8571428571428571
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": null
+  },
+  {
+    "spec_id": "W0",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/dispatch/jobs/R07_SINGLE_SURFACE_REFIT__LOEO-v1-03__GREEDY_OR__OP05__SRC-111__app_web67/model.json",
+    "model_id": "r03-de41c87a2bdd0477fc419b12",
+    "status": "FITTED",
+    "complexity": 2,
+    "complexity_detail": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      }
+    ],
+    "registered_clauses": 112,
+    "eligible_clauses": 74,
+    "selected_clauses": 1,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 99,
+        "denominator": 100,
+        "value": 0.99
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": null
+  },
+  {
+    "spec_id": "S_FLAT",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__S_FLAT__LOEO-v1-01__attempt01/model.json",
+    "model_id": "v2a-98c7cb37580bbf3af7866df0",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 306,
+    "eligible_clauses": 184,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 511,
+        "denominator": 650,
+        "value": 0.7861538461538462
+      },
+      "macro_tpr": {
+        "numerator": 11,
+        "denominator": 13,
+        "value": 0.8461538461538461
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 122
+    }
+  },
+  {
+    "spec_id": "S_FLAT",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__S_FLAT__LOEO-v1-02__attempt01/model.json",
+    "model_id": "v2a-84ac5d432d9db213e8f06d32",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 306,
+    "eligible_clauses": 185,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 279,
+        "denominator": 350,
+        "value": 0.7971428571428572
+      },
+      "macro_tpr": {
+        "numerator": 6,
+        "denominator": 7,
+        "value": 0.8571428571428571
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 121
+    }
+  },
+  {
+    "spec_id": "S_FLAT",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__S_FLAT__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2a-f9d3b0ff27936380a94e0e4f",
+    "status": "FITTED",
+    "complexity": 2,
+    "complexity_detail": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      }
+    ],
+    "registered_clauses": 330,
+    "eligible_clauses": 199,
+    "selected_clauses": 1,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 99,
+        "denominator": 100,
+        "value": 0.99
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 131
+    }
+  },
+  {
+    "spec_id": "J0",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__J0__LOEO-v1-01__attempt01/model.json",
+    "model_id": "v2a-529ee07bc937d659b2254f0f",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 326,
+    "eligible_clauses": 197,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 511,
+        "denominator": 650,
+        "value": 0.7861538461538462
+      },
+      "macro_tpr": {
+        "numerator": 11,
+        "denominator": 13,
+        "value": 0.8461538461538461
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 129
+    }
+  },
+  {
+    "spec_id": "J0",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__J0__LOEO-v1-02__attempt01/model.json",
+    "model_id": "v2a-2023ca4f7a6c7b544a8a0cc9",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": null,
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 326,
+    "eligible_clauses": 198,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 279,
+        "denominator": 350,
+        "value": 0.7971428571428572
+      },
+      "macro_tpr": {
+        "numerator": 6,
+        "denominator": 7,
+        "value": 0.8571428571428571
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 128
+    }
+  },
+  {
+    "spec_id": "J0",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__J0__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2a-39179204efc23331b428bb88",
+    "status": "FITTED",
+    "complexity": 2,
+    "complexity_detail": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "signal_group": null,
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      }
+    ],
+    "registered_clauses": 350,
+    "eligible_clauses": 212,
+    "selected_clauses": 1,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 99,
+        "denominator": 100,
+        "value": 0.99
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 2,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": null,
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 138
+    }
+  },
+  {
+    "spec_id": "W0__R_KEEP_V1",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__W0__R_KEEP_V1__LOEO-v1-01__attempt01/model.json",
+    "model_id": "v2b-912dd9f1bd4251ed0ee34002",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": "timezone_semantics",
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 98,
+    "eligible_clauses": 68,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 511,
+        "denominator": 650,
+        "value": 0.7861538461538462
+      },
+      "macro_tpr": {
+        "numerator": 11,
+        "denominator": 13,
+        "value": 0.8461538461538461
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/dispatch/jobs/R07_SINGLE_SURFACE_REFIT__LOEO-v1-01__GREEDY_OR__OP05__SRC-111__app_web67/model.json",
+      "model_id": "r03-72ebee654baa2baecddd499a",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "STRUCTURE_OR_FAMILY_LIMIT": 62,
+      "SET_CLEAN_BUDGET": 51,
+      "INSUFFICIENT_TRAIN_SUPPORT": 30,
+      "NO_NEW_SIGNAL_COVERAGE": 5
+    }
+  },
+  {
+    "spec_id": "W0__R_KEEP_V1",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__W0__R_KEEP_V1__LOEO-v1-02__attempt01/model.json",
+    "model_id": "v2b-867c18c621454d8425661c4b",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": "timezone_semantics",
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 98,
+    "eligible_clauses": 69,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 279,
+        "denominator": 350,
+        "value": 0.7971428571428572
+      },
+      "macro_tpr": {
+        "numerator": 6,
+        "denominator": 7,
+        "value": 0.8571428571428571
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/dispatch/jobs/R07_SINGLE_SURFACE_REFIT__LOEO-v1-02__GREEDY_OR__OP05__SRC-111__app_web67/model.json",
+      "model_id": "r03-4d84d2da75641777abb9ca64",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "STRUCTURE_OR_FAMILY_LIMIT": 63,
+      "SET_CLEAN_BUDGET": 52,
+      "INSUFFICIENT_TRAIN_SUPPORT": 29,
+      "NO_NEW_SIGNAL_COVERAGE": 5
+    }
+  },
+  {
+    "spec_id": "W0__R_KEEP_V1",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__W0__R_KEEP_V1__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2b-2ed884b7f7a7b4ecfc748a19",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "signal_group": "web_cpu_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 112,
+    "eligible_clauses": 74,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 47,
+        "denominator": 50,
+        "value": 0.94
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R07_representation/dispatch/jobs/R07_SINGLE_SURFACE_REFIT__LOEO-v1-03__GREEDY_OR__OP05__SRC-111__app_web67/model.json",
+      "model_id": "r03-de41c87a2bdd0477fc419b12",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CAT:NW-006:POSITIVE",
+        "signal_group": "web_client_identity",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 1.6666666666666667,
+        "score": {
+          "objective": {
+            "numerator": 49,
+            "denominator": 50,
+            "value": 0.98
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 4,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "signal_group": "automation_flag",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 2.3333333333333335,
+        "score": {
+          "objective": {
+            "numerator": 97,
+            "denominator": 100,
+            "value": 0.97
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 6,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "signal_group": "memory_capacity",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 3.0,
+        "score": {
+          "objective": {
+            "numerator": 24,
+            "denominator": 25,
+            "value": 0.96
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 8,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "signal_group": "plugin_capability",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.3333333333333333,
+        "D_after": 3.3333333333333335,
+        "score": {
+          "objective": {
+            "numerator": 19,
+            "denominator": 20,
+            "value": 0.95
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 10,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+        "signal_group": "language_preferences",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.3333333333333333,
+        "D_after": 3.6666666666666665,
+        "score": {
+          "objective": {
+            "numerator": 47,
+            "denominator": 50,
+            "value": 0.94
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 12,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+          ]
+        }
+      }
+    ],
+    "not_selected_reason_counts": {
+      "STRUCTURE_OR_FAMILY_LIMIT": 68,
+      "SET_CLEAN_BUDGET": 62,
+      "INSUFFICIENT_TRAIN_SUPPORT": 38,
+      "NO_NEW_SIGNAL_COVERAGE": 7
+    }
+  },
+  {
+    "spec_id": "S_FLAT__R_KEEP_V1",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__S_FLAT__R_KEEP_V1__LOEO-v1-01__attempt01/model.json",
+    "model_id": "v2b-537d243ac6044f930e431c61",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": "timezone_semantics",
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 306,
+    "eligible_clauses": 184,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 511,
+        "denominator": 650,
+        "value": 0.7861538461538462
+      },
+      "macro_tpr": {
+        "numerator": 11,
+        "denominator": 13,
+        "value": 0.8461538461538461
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__S_FLAT__LOEO-v1-01__attempt01/model.json",
+      "model_id": "v2a-98c7cb37580bbf3af7866df0",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 122,
+      "STRUCTURE_OR_FAMILY_LIMIT": 178,
+      "SET_CLEAN_BUDGET": 167,
+      "NO_NEW_SIGNAL_COVERAGE": 5
+    }
+  },
+  {
+    "spec_id": "S_FLAT__R_KEEP_V1",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__S_FLAT__R_KEEP_V1__LOEO-v1-02__attempt01/model.json",
+    "model_id": "v2b-4b8a35ca6cf6bc7d55ca7b79",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": "timezone_semantics",
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 306,
+    "eligible_clauses": 185,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 279,
+        "denominator": 350,
+        "value": 0.7971428571428572
+      },
+      "macro_tpr": {
+        "numerator": 6,
+        "denominator": 7,
+        "value": 0.8571428571428571
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__S_FLAT__LOEO-v1-02__attempt01/model.json",
+      "model_id": "v2a-84ac5d432d9db213e8f06d32",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 121,
+      "STRUCTURE_OR_FAMILY_LIMIT": 179,
+      "SET_CLEAN_BUDGET": 168,
+      "NO_NEW_SIGNAL_COVERAGE": 5
+    }
+  },
+  {
+    "spec_id": "S_FLAT__R_KEEP_V1",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__S_FLAT__R_KEEP_V1__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2b-82d7e67f6d0ab33ab605d086",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "signal_group": "web_cpu_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 330,
+    "eligible_clauses": 199,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 47,
+        "denominator": 50,
+        "value": 0.94
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__S_FLAT__LOEO-v1-03__attempt01/model.json",
+      "model_id": "v2a-f9d3b0ff27936380a94e0e4f",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CAT:NW-006:POSITIVE",
+        "signal_group": "web_client_identity",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 1.6666666666666667,
+        "score": {
+          "objective": {
+            "numerator": 49,
+            "denominator": 50,
+            "value": 0.98
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 4,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "signal_group": "automation_flag",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 2.3333333333333335,
+        "score": {
+          "objective": {
+            "numerator": 97,
+            "denominator": 100,
+            "value": 0.97
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 6,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "signal_group": "memory_capacity",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 3.0,
+        "score": {
+          "objective": {
+            "numerator": 24,
+            "denominator": 25,
+            "value": 0.96
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 8,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "signal_group": "plugin_capability",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.3333333333333333,
+        "D_after": 3.3333333333333335,
+        "score": {
+          "objective": {
+            "numerator": 19,
+            "denominator": 20,
+            "value": 0.95
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 10,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+        "signal_group": "language_preferences",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.3333333333333333,
+        "D_after": 3.6666666666666665,
+        "score": {
+          "objective": {
+            "numerator": 47,
+            "denominator": 50,
+            "value": 0.94
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 12,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+          ]
+        }
+      }
+    ],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 131,
+      "STRUCTURE_OR_FAMILY_LIMIT": 193,
+      "SET_CLEAN_BUDGET": 187,
+      "NO_NEW_SIGNAL_COVERAGE": 7
+    }
+  },
+  {
+    "spec_id": "J0__R_KEEP_V1",
+    "fold_id": "LOEO-v1-01",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__J0__R_KEEP_V1__LOEO-v1-01__attempt01/model.json",
+    "model_id": "v2b-8a7708f48fa9e6c6c3e5dc63",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": "timezone_semantics",
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 326,
+    "eligible_clauses": 197,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 511,
+        "denominator": 650,
+        "value": 0.7861538461538462
+      },
+      "macro_tpr": {
+        "numerator": 11,
+        "denominator": 13,
+        "value": 0.8461538461538461
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__J0__LOEO-v1-01__attempt01/model.json",
+      "model_id": "v2a-529ee07bc937d659b2254f0f",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 129,
+      "STRUCTURE_OR_FAMILY_LIMIT": 191,
+      "SET_CLEAN_BUDGET": 176,
+      "NO_NEW_SIGNAL_COVERAGE": 9
+    }
+  },
+  {
+    "spec_id": "J0__R_KEEP_V1",
+    "fold_id": "LOEO-v1-02",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__J0__R_KEEP_V1__LOEO-v1-02__attempt01/model.json",
+    "model_id": "v2b-b9f887eb24e156a6452e8877",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "signal_group": "timezone_semantics",
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 326,
+    "eligible_clauses": 198,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 4,
+    "training_result": {
+      "objective": {
+        "numerator": 279,
+        "denominator": 350,
+        "value": 0.7971428571428572
+      },
+      "macro_tpr": {
+        "numerator": 6,
+        "denominator": 7,
+        "value": 0.8571428571428571
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__J0__LOEO-v1-02__attempt01/model.json",
+      "model_id": "v2a-2023ca4f7a6c7b544a8a0cc9",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 128,
+      "STRUCTURE_OR_FAMILY_LIMIT": 192,
+      "SET_CLEAN_BUDGET": 177,
+      "NO_NEW_SIGNAL_COVERAGE": 9
+    }
+  },
+  {
+    "spec_id": "J0__R_KEEP_V1",
+    "fold_id": "LOEO-v1-03",
+    "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B01_retention__J0__R_KEEP_V1__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2b-2ffe9b84428049a6f84217bc",
+    "status": "FITTED",
+    "complexity": 12,
+    "complexity_detail": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    },
+    "clauses": [
+      "CAT:NW-006:POSITIVE",
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+    ],
+    "selected_atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "sources": [
+          "E"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "app_surface",
+        "signal_group": "web_client_identity",
+        "aliases": [
+          "NW-006"
+        ],
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "signal_group": "automation_flag",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+        "signal_group": "plugin_capability",
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+        "signal_group": "memory_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.device_memory",
+          "threshold": 2.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "signal_group": "web_cpu_capacity",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "surfaces": [
+          "app_web67"
+        ],
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "signal_group": "language_preferences",
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "registered_clauses": 350,
+    "eligible_clauses": 212,
+    "selected_clauses": 6,
+    "cross_atoms_selected": [],
+    "training_clean_budget": 1,
+    "training_result": {
+      "objective": {
+        "numerator": 47,
+        "denominator": 50,
+        "value": 0.94
+      },
+      "macro_tpr": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "clean_alarms": 0,
+      "coverage": {
+        "clean_pre": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "attack": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_post": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "minimum_coverage": {
+        "numerator": 1,
+        "denominator": 1,
+        "value": 1.0
+      },
+      "complexity": 12,
+      "feasible": true,
+      "partial_feasible": true,
+      "clause_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ],
+      "states": [
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "F",
+        "F",
+        "F",
+        "F",
+        "T",
+        "T",
+        "T",
+        "F"
+      ]
+    },
+    "initialization": {
+      "type": "MATCHING_SAVED_TRAIN_MODEL",
+      "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/A_diagnosis_pilot/trials/V2-A__J0__LOEO-v1-03__attempt01/model.json",
+      "model_id": "v2a-39179204efc23331b428bb88",
+      "threshold_refit": false,
+      "outer_predictions_or_scores_used": false,
+      "train_and_fold_binding_verified": true,
+      "candidate_support_and_training_score_verified": true
+    },
+    "retained_trace": [
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CAT:NW-006:POSITIVE",
+        "signal_group": "web_client_identity",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 1.6666666666666667,
+        "score": {
+          "objective": {
+            "numerator": 49,
+            "denominator": 50,
+            "value": 0.98
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 4,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "signal_group": "automation_flag",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 2.3333333333333335,
+        "score": {
+          "objective": {
+            "numerator": 97,
+            "denominator": 100,
+            "value": 0.97
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 6,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "signal_group": "memory_capacity",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.6666666666666666,
+        "D_after": 3.0,
+        "score": {
+          "objective": {
+            "numerator": 24,
+            "denominator": 25,
+            "value": 0.96
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 8,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "signal_group": "plugin_capability",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.3333333333333333,
+        "D_after": 3.3333333333333335,
+        "score": {
+          "objective": {
+            "numerator": 19,
+            "denominator": 20,
+            "value": 0.95
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 10,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+          ]
+        }
+      },
+      {
+        "operation": "RETAIN_SIGNAL",
+        "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+        "signal_group": "language_preferences",
+        "delta_macro_tpr": 0.0,
+        "delta_D": 0.3333333333333333,
+        "D_after": 3.6666666666666665,
+        "score": {
+          "objective": {
+            "numerator": 47,
+            "denominator": 50,
+            "value": 0.94
+          },
+          "macro_tpr": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_alarms": 0,
+          "coverage": {
+            "clean_pre": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "attack": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "clean_post": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "minimum_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "complexity": 12,
+          "feasible": true,
+          "partial_feasible": true,
+          "clause_ids": [
+            "CAT:NW-006:POSITIVE",
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+            "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+          ]
+        }
+      }
+    ],
+    "not_selected_reason_counts": {
+      "INSUFFICIENT_TRAIN_SUPPORT": 138,
+      "STRUCTURE_OR_FAMILY_LIMIT": 206,
+      "SET_CLEAN_BUDGET": 196,
+      "NO_NEW_SIGNAL_COVERAGE": 11
+    }
+  }
+]

@@ -1,0 +1,1431 @@
+{
+  "schema_version": "v2-b-model-v1",
+  "model_id": "v2b-cc6a9a02fc85c1e89acb6a8d",
+  "kernel_schema": "REUSED_RULE_STRUCTURE_NO_V1_JOB_AUTHORIZATION",
+  "engine_structure": {
+    "method_id": "GREEDY_OR",
+    "status": "FITTED",
+    "clauses": [
+      {
+        "literals": [
+          {
+            "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+            "polarity": "NEGATIVE"
+          }
+        ]
+      }
+    ],
+    "atoms": [
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "orientation": "CONTROL_LE",
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      }
+    ],
+    "binding": {
+      "study_version": "discriminative-rule-learning-v2-20260925",
+      "phase": "V2-B",
+      "protocol_digest": "45b85d7ce626272f493671968dbeb54f6769bc0c172757bc0f12f68b86823a6c",
+      "authorization_id": "USER_V2_B_LIMITED_METHOD_ITERATION_20260925",
+      "fold_id": "LOEO-v1-03",
+      "split_id": "LOEO-v1",
+      "operating_point": "OP05",
+      "candidate_version": "SEMANTIC_SIGNAL_GROUPS_V1+V2_B_RELATIONS_V1",
+      "input_manifest_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/DATA_INDEX.json",
+      "model_unit_id": "B02_relations__JX__GREEDY_OR__LOEO-v1-03",
+      "representation": "JX",
+      "method_id": "GREEDY_OR",
+      "evaluation_role": "EXPOSED_RETROSPECTIVE_DEVELOPMENT",
+      "data_origin": "V1_EXPOSED_DEVELOPMENT"
+    },
+    "view": {
+      "view_id": "V2-B:JX",
+      "representation": "JX",
+      "kind": "V2_B_UNIFIED",
+      "base_representation": "J0",
+      "relation_families": [
+        "memory",
+        "language",
+        "timezone"
+      ],
+      "matched_single_features": false,
+      "input_atom_ids": [
+        "CAT:CORE-002",
+        "CAT:NVW-005",
+        "CAT:NW-006",
+        "CAT:NW-007",
+        "CAT:OFFDER-BRIDGE-001",
+        "CAT:OFFDER-DEVCONFIG-001",
+        "CAT:OFFDER-TOUCH-001",
+        "CAT:P3-COLOR-APP",
+        "CAT:P3-GPU-COPY",
+        "CAT:P3-MEM-AVAILABLE",
+        "CAT:P3-PROVIDER-PARSE",
+        "CAT:P3-SENSOR-ACCELEROMETER",
+        "CAT:P3-SENSOR-GRAVITY_SENSOR",
+        "CAT:P3-SENSOR-GYROSCOPE",
+        "CAT:P3-SENSOR-LIGHT_SENSOR",
+        "CAT:P3-SENSOR-MAGNETIC_FIELD",
+        "CAT:P3-SENSOR-NAME_COUNT",
+        "CAT:P3-SENSOR-PRESSURE_SENSOR",
+        "CAT:P3-SENSOR-PROXIMITY_SENSOR",
+        "CAT:P3-SENSOR-ROTATION_VECTOR",
+        "CAT:P3-SENSOR-STEP_COUNTER",
+        "CAT:P3-SENSOR-STEP_DETECTOR",
+        "CAT:P3-SENSOR-TYPE-COUNT",
+        "CAT:P3-SENSOR-TYPE-ORDER",
+        "CAT:P3-SENSOR-VENDOR_COUNT",
+        "CAT:PHYS-005",
+        "CAT:PHYS-006",
+        "CAT:WVWEB-004",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.battery_health_code:LE:2.0",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.battery_level_pct:LE:100.0",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.battery_plugged_code:LE:0.0",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.battery_status_code:LE:4.0",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.battery_temp_celsius:LE:25.0",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.battery_voltage_mv:LE:5000.0",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.is_charging:EQ:True",
+        "CONTROL:app.android_native_data.build_fingerprint_layer.os_api_level:LE:30.0",
+        "CONTROL:app.android_native_data.build_fingerprint_layer.os_api_level:LE:35.0",
+        "CONTROL:app.android_native_data.locale_timezone_layer.native_timezone_offset_min:LE:0.0",
+        "CONTROL:app.android_native_data.memory_layer.avail_memory_gb:LE:1.1168937683105469",
+        "CONTROL:app.android_native_data.memory_layer.avail_memory_gb:LE:1.1266899108886719",
+        "CONTROL:app.android_native_data.memory_layer.avail_memory_gb:LE:1.4244499206542969",
+        "CONTROL:app.android_native_data.memory_layer.is_low_memory:EQ:True",
+        "CONTROL:app.android_native_data.memory_layer.memory_threshold_gb:LE:0.2109375",
+        "CONTROL:app.android_native_data.memory_layer.total_memory_gb:LE:1.9342193603515625",
+        "CONTROL:app.android_native_data.memory_layer.total_memory_gb:LE:2.4146652221679688",
+        "CONTROL:app.android_native_data.network_state_layer.active_network_present:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.has_cellular_transport:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.has_vpn_transport:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.has_wifi_transport:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.link_downstream_kbps:LE:30000.0",
+        "CONTROL:app.android_native_data.network_state_layer.link_downstream_kbps:LE:4300.0",
+        "CONTROL:app.android_native_data.network_state_layer.link_upstream_kbps:LE:15000.0",
+        "CONTROL:app.android_native_data.network_state_layer.link_upstream_kbps:LE:1800.0",
+        "CONTROL:app.android_native_data.network_state_layer.network_metered:EQ:True",
+        "CONTROL:app.android_native_data.screen_display_layer.font_scale:LE:1.0",
+        "CONTROL:app.android_native_data.screen_display_layer.orientation_code:LE:1.0",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_density_dpi:LE:420.0",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_mode_physical_height:LE:1920.0",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_mode_physical_width:LE:1080.0",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_mode_refresh_rate_hz:LE:60.000003814697266",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_refresh_rate_hz:LE:60.000003814697266",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_scaled_density:LE:2.625",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_xdpi:LE:420.0",
+        "CONTROL:app.android_native_data.screen_display_layer.screen_ydpi:LE:420.0",
+        "CONTROL:app.android_native_data.security_config_layer.developer_options_enabled:EQ:True",
+        "CONTROL:app.android_native_data.security_config_layer.is_adb_enabled:EQ:True",
+        "CONTROL:app.android_native_data.security_config_layer.su_binary_present:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_accelerometer:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_gravity_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_gyroscope:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_light_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_magnetic_field:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_pressure_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_proximity_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_rotation_vector:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_step_counter:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_step_detector:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_name_count:LE:17.0",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_name_count:LE:18.0",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_total_count:LE:17.0",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_total_count:LE:18.0",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_vendor_count:LE:2.0",
+        "CONTROL:app.android_native_data.storage_layer.data_storage_free_gb:LE:4.968402862548828",
+        "CONTROL:app.android_native_data.storage_layer.data_storage_free_gb:LE:5.542118072509766",
+        "CONTROL:app.android_native_data.storage_layer.data_storage_free_gb:LE:5.546058654785156",
+        "CONTROL:app.android_native_data.storage_layer.data_storage_total_gb:LE:5.800384521484375",
+        "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+        "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0",
+        "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155",
+        "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0",
+        "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+        "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0",
+        "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+        "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0",
+        "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0",
+        "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0",
+        "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0",
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0",
+        "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+        "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0",
+        "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4",
+        "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0",
+        "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+        "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+        "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0",
+        "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0",
+        "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0",
+        "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625",
+        "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0",
+        "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0",
+        "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0",
+        "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0",
+        "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0",
+        "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0",
+        "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0",
+        "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625",
+        "CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms:LE:1.2",
+        "CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms:LE:1.5",
+        "CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms:LE:2.1",
+        "CONTROL:app.webview_data.bridge_routing_layer.jsbridge_injected:EQ:True",
+        "CONTROL:app.webview_data.host_security_layer.app_version_code:LE:10.0",
+        "CONTROL:app.webview_data.host_security_layer.is_cleartext_traffic_permitted:EQ:True",
+        "CONTROL:app.webview_data.host_security_layer.is_debuggable:EQ:True",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:android_browser",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:android_webview",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:desktop_or_headless",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:script_client",
+        "CONTROL:app.webview_data.kernel_container_layer.webview_provider_major:LE:124.0",
+        "CONTROL:app.webview_data.kernel_container_layer.webview_provider_major:LE:83.0",
+        "CONTROL:app.webview_data.kernel_container_layer.webview_provider_version_code:LE:410410686.0",
+        "CONTROL:app.webview_data.kernel_container_layer.webview_provider_version_code:LE:636771938.0",
+        "CONTROL:app.webview_data.temporal_build_layer.min_sdk_version:LE:21.0",
+        "CONTROL:app.webview_data.temporal_build_layer.target_sdk_version:LE:36.0",
+        "CONTROL:app.webview_data.webview_settings_layer.allow_content_access:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.allow_file_access:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.database_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.dom_storage_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.java_script_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.mixed_content_mode:LE:1.0",
+        "CONTROL:app.webview_data.webview_settings_layer.safe_browsing_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:android_browser",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:android_webview",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:desktop_or_headless",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:script_client",
+        "DEVIATION:NVW-001",
+        "DEVIATION:NVW-002",
+        "DEVIATION:NW-001",
+        "DEVIATION:NW-002",
+        "DEVIATION:NW-005",
+        "DEVIATION:OFFDER-UA-001",
+        "DEVIATION:OFFDER-UA-002",
+        "DEVIATION:P3-SCREEN-APP",
+        "DEVIATION:P3-UA-DEFAULT",
+        "DEVIATION:P3-UA-SETTINGS",
+        "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS",
+        "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST",
+        "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS",
+        "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603",
+        "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923"
+      ],
+      "new_relation_ids": [
+        "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS",
+        "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST",
+        "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS",
+        "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603",
+        "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923"
+      ]
+    },
+    "fit": {
+      "status": "HEURISTIC_FEASIBLE",
+      "stop": "no_positive_objective_improvement",
+      "optimality": "NONE",
+      "infeasibility_proved": false,
+      "best_bound": null,
+      "gap": null,
+      "solver": "R03_DETERMINISTIC_GREEDY_V1",
+      "train_ids": [
+        "sample-04689a7774754137a06fc672c9a34627",
+        "sample-065c905ccda7420eb2d26ede92451811",
+        "sample-0bffc108cdcd46498c072fd18758b023",
+        "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+        "sample-22af7231c85d4cc39f29e370761b0111",
+        "sample-22ed5502a1a24385bef4cb91046e3683",
+        "sample-24e48e8890bc4126b5935b155cc639ee",
+        "sample-3e78f40f8bd04583b5788feff41ee1b2",
+        "sample-43c57dc95de64fd68ff3c063b467954a",
+        "sample-45096de3c57844d5a2bdf29d9aa66349",
+        "sample-4eaed0eeb4674f62a1334405cc6424f4",
+        "sample-50047e752ee34cadb1371d0d6bc8306f",
+        "sample-50cbd0648d2e4f378532f8697492cdd3",
+        "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+        "sample-5d9dbd64e3e14564b0221a22467b6900",
+        "sample-5f95e46d790c4744b43d87096099f53d",
+        "sample-61a5188e903649b3a8a4e8eca064adea",
+        "sample-676bd0b06acd4e6d811bba4f163c62e7",
+        "sample-72a718199ea14f289bd36a1cd7b1583a",
+        "sample-75ef55c214514955bac9be4cef96e0fd",
+        "sample-79a20c1c837b40cd9632e14018584f7c",
+        "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+        "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+        "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "sample-89bbcf34beb24f66bbac691b9d61be73",
+        "sample-97a26777a752437a93cd8c4ec3c25125",
+        "sample-99be81ac75a14cadb445bf46c644773a",
+        "sample-9e49742f5d844f06b1e3a334f09830a8",
+        "sample-a1d720b4a9be4ca9b2562409112234ee",
+        "sample-a2b40d8e26654e33977d07e8029b4152",
+        "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+        "sample-d3d254c58cde4c868caff5fdd10665e8",
+        "sample-d6f036ef74814caaa28123219461a406",
+        "sample-d74ffc400a3f4186a8eb1893088c2980",
+        "sample-dc63c0ebfba2446c88f40e44ee325283",
+        "sample-e309872634a34831a5844178f012a88e",
+        "sample-e725bf3af705442ab4ab221b7d10b0e4",
+        "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+        "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+        "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+        "sample-f2321ba4b0084cc29bb571ad11754c8a",
+        "sample-f5fa5cb164b64da88065e6b242e53e43",
+        "sample-fdc30f7ccbe148469fa395ab8266ac01",
+        "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+      ],
+      "train_expected_n": 45,
+      "train_consumed_n": 45,
+      "fit_scope": "V2_B_EXACT_AUTHORIZED_TRAIN_ONLY",
+      "freeze_time": "2026-09-25T06:08:20.053673+00:00",
+      "elapsed_seconds": 0.43808900006115437,
+      "candidate_pool_size": 219,
+      "registered_clause_count": 360,
+      "training_result": {
+        "objective": {
+          "numerator": 99,
+          "denominator": 100,
+          "value": 0.99
+        },
+        "macro_tpr": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 2,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+        ],
+        "states": [
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "T",
+          "T",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "T",
+          "F"
+        ]
+      },
+      "clean_budget_count": 1,
+      "clean_denominator": 30,
+      "initialization": {
+        "type": "SPARSE_INITIALIZATION_WITHIN_THIS_COUNTED_FIT",
+        "threshold_refit": true,
+        "outer_predictions_or_scores_used": false
+      },
+      "actual_fit_invocations": 1,
+      "internal_stages": [
+        "train_encoder_fit",
+        "train_support",
+        "sparse_greedy",
+        "sparse_result"
+      ]
+    },
+    "encoder": {
+      "version": "v2-a-adapter-1",
+      "semantics": "V1_TRAIN_QUANTILES_UNCHANGED",
+      "fold_id": "LOEO-v1-03",
+      "train_ids": [
+        "sample-04689a7774754137a06fc672c9a34627",
+        "sample-065c905ccda7420eb2d26ede92451811",
+        "sample-0bffc108cdcd46498c072fd18758b023",
+        "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+        "sample-22af7231c85d4cc39f29e370761b0111",
+        "sample-22ed5502a1a24385bef4cb91046e3683",
+        "sample-24e48e8890bc4126b5935b155cc639ee",
+        "sample-3e78f40f8bd04583b5788feff41ee1b2",
+        "sample-43c57dc95de64fd68ff3c063b467954a",
+        "sample-45096de3c57844d5a2bdf29d9aa66349",
+        "sample-4eaed0eeb4674f62a1334405cc6424f4",
+        "sample-50047e752ee34cadb1371d0d6bc8306f",
+        "sample-50cbd0648d2e4f378532f8697492cdd3",
+        "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+        "sample-5d9dbd64e3e14564b0221a22467b6900",
+        "sample-5f95e46d790c4744b43d87096099f53d",
+        "sample-61a5188e903649b3a8a4e8eca064adea",
+        "sample-676bd0b06acd4e6d811bba4f163c62e7",
+        "sample-72a718199ea14f289bd36a1cd7b1583a",
+        "sample-75ef55c214514955bac9be4cef96e0fd",
+        "sample-79a20c1c837b40cd9632e14018584f7c",
+        "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+        "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+        "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "sample-89bbcf34beb24f66bbac691b9d61be73",
+        "sample-97a26777a752437a93cd8c4ec3c25125",
+        "sample-99be81ac75a14cadb445bf46c644773a",
+        "sample-9e49742f5d844f06b1e3a334f09830a8",
+        "sample-a1d720b4a9be4ca9b2562409112234ee",
+        "sample-a2b40d8e26654e33977d07e8029b4152",
+        "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+        "sample-d3d254c58cde4c868caff5fdd10665e8",
+        "sample-d6f036ef74814caaa28123219461a406",
+        "sample-d74ffc400a3f4186a8eb1893088c2980",
+        "sample-dc63c0ebfba2446c88f40e44ee325283",
+        "sample-e309872634a34831a5844178f012a88e",
+        "sample-e725bf3af705442ab4ab221b7d10b0e4",
+        "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+        "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+        "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+        "sample-f2321ba4b0084cc29bb571ad11754c8a",
+        "sample-f5fa5cb164b64da88065e6b242e53e43",
+        "sample-fdc30f7ccbe148469fa395ab8266ac01",
+        "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+      ],
+      "fixed_atoms": [
+        "CAT:P3-GPU-COPY",
+        "CAT:P3-MEM-AVAILABLE",
+        "CAT:P3-SENSOR-ACCELEROMETER",
+        "CAT:P3-SENSOR-GRAVITY_SENSOR",
+        "CAT:P3-SENSOR-GYROSCOPE",
+        "CAT:P3-SENSOR-LIGHT_SENSOR",
+        "CAT:P3-SENSOR-MAGNETIC_FIELD",
+        "CAT:P3-SENSOR-NAME_COUNT",
+        "CAT:P3-SENSOR-PRESSURE_SENSOR",
+        "CAT:P3-SENSOR-PROXIMITY_SENSOR",
+        "CAT:P3-SENSOR-ROTATION_VECTOR",
+        "CAT:P3-SENSOR-STEP_COUNTER",
+        "CAT:P3-SENSOR-STEP_DETECTOR",
+        "CAT:P3-SENSOR-TYPE-COUNT",
+        "CAT:P3-SENSOR-TYPE-ORDER",
+        "CAT:P3-SENSOR-VENDOR_COUNT",
+        "CAT:PHYS-005",
+        "CAT:PHYS-006",
+        "CONTROL:app.android_native_data.battery_dynamics_layer.is_charging:EQ:True",
+        "CONTROL:app.android_native_data.memory_layer.is_low_memory:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.active_network_present:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.has_cellular_transport:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.has_vpn_transport:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.has_wifi_transport:EQ:True",
+        "CONTROL:app.android_native_data.network_state_layer.network_metered:EQ:True",
+        "CONTROL:app.android_native_data.security_config_layer.developer_options_enabled:EQ:True",
+        "CONTROL:app.android_native_data.security_config_layer.is_adb_enabled:EQ:True",
+        "CONTROL:app.android_native_data.security_config_layer.su_binary_present:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_accelerometer:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_gravity_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_gyroscope:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_light_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_magnetic_field:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_pressure_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_proximity_sensor:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_rotation_vector:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_step_counter:EQ:True",
+        "CONTROL:app.android_native_data.sensor_matrix_layer.has_step_detector:EQ:True",
+        "CAT:NW-006",
+        "CAT:NW-007",
+        "CAT:OFFDER-TOUCH-001",
+        "CAT:P3-COLOR-APP",
+        "CAT:WVWEB-004",
+        "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+        "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+        "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+        "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+        "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+        "CAT:CORE-002",
+        "CAT:NVW-005",
+        "CAT:OFFDER-BRIDGE-001",
+        "CAT:OFFDER-DEVCONFIG-001",
+        "CAT:P3-PROVIDER-PARSE",
+        "CONTROL:app.webview_data.bridge_routing_layer.jsbridge_injected:EQ:True",
+        "CONTROL:app.webview_data.host_security_layer.is_cleartext_traffic_permitted:EQ:True",
+        "CONTROL:app.webview_data.host_security_layer.is_debuggable:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.allow_content_access:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.allow_file_access:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.database_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.dom_storage_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.java_script_enabled:EQ:True",
+        "CONTROL:app.webview_data.webview_settings_layer.safe_browsing_enabled:EQ:True",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:script_client",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:desktop_or_headless",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:android_browser",
+        "CONTROL:app.webview_data.kernel_container_layer.default_ua_native:EQ:android_webview",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:script_client",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:desktop_or_headless",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:android_browser",
+        "CONTROL:app.webview_data.webview_settings_layer.settings_user_agent:EQ:android_webview"
+      ],
+      "numeric": {
+        "UNFITTED_CONTROL:app.android_native_data.battery_dynamics_layer.battery_health_code": {
+          "thresholds": [
+            2.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.battery_dynamics_layer.battery_health_code:LE:2.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.battery_dynamics_layer.battery_level_pct": {
+          "thresholds": [
+            100.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.battery_dynamics_layer.battery_level_pct:LE:100.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.battery_dynamics_layer.battery_plugged_code": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.battery_dynamics_layer.battery_plugged_code:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.battery_dynamics_layer.battery_status_code": {
+          "thresholds": [
+            4.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.battery_dynamics_layer.battery_status_code:LE:4.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.battery_dynamics_layer.battery_temp_celsius": {
+          "thresholds": [
+            25.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.battery_dynamics_layer.battery_temp_celsius:LE:25.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.battery_dynamics_layer.battery_voltage_mv": {
+          "thresholds": [
+            5000.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.battery_dynamics_layer.battery_voltage_mv:LE:5000.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.build_fingerprint_layer.os_api_level": {
+          "thresholds": [
+            30.0,
+            35.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.build_fingerprint_layer.os_api_level:LE:30.0",
+            "CONTROL:app.android_native_data.build_fingerprint_layer.os_api_level:LE:35.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.locale_timezone_layer.native_timezone_offset_min": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.locale_timezone_layer.native_timezone_offset_min:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.memory_layer.avail_memory_gb": {
+          "thresholds": [
+            1.1168937683105469,
+            1.1266899108886719,
+            1.4244499206542969
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.memory_layer.avail_memory_gb:LE:1.1168937683105469",
+            "CONTROL:app.android_native_data.memory_layer.avail_memory_gb:LE:1.1266899108886719",
+            "CONTROL:app.android_native_data.memory_layer.avail_memory_gb:LE:1.4244499206542969"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.memory_layer.memory_threshold_gb": {
+          "thresholds": [
+            0.2109375
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.memory_layer.memory_threshold_gb:LE:0.2109375"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.memory_layer.total_memory_gb": {
+          "thresholds": [
+            1.9342193603515625,
+            2.4146652221679688
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.memory_layer.total_memory_gb:LE:1.9342193603515625",
+            "CONTROL:app.android_native_data.memory_layer.total_memory_gb:LE:2.4146652221679688"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.network_state_layer.link_downstream_kbps": {
+          "thresholds": [
+            4300.0,
+            30000.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.network_state_layer.link_downstream_kbps:LE:4300.0",
+            "CONTROL:app.android_native_data.network_state_layer.link_downstream_kbps:LE:30000.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.network_state_layer.link_upstream_kbps": {
+          "thresholds": [
+            1800.0,
+            15000.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.network_state_layer.link_upstream_kbps:LE:1800.0",
+            "CONTROL:app.android_native_data.network_state_layer.link_upstream_kbps:LE:15000.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.font_scale": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.font_scale:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.orientation_code": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.orientation_code:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_density_dpi": {
+          "thresholds": [
+            420.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_density_dpi:LE:420.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_mode_physical_height": {
+          "thresholds": [
+            1920.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_mode_physical_height:LE:1920.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_mode_physical_width": {
+          "thresholds": [
+            1080.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_mode_physical_width:LE:1080.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_mode_refresh_rate_hz": {
+          "thresholds": [
+            60.000003814697266
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_mode_refresh_rate_hz:LE:60.000003814697266"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_refresh_rate_hz": {
+          "thresholds": [
+            60.000003814697266
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_refresh_rate_hz:LE:60.000003814697266"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_scaled_density": {
+          "thresholds": [
+            2.625
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_scaled_density:LE:2.625"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_xdpi": {
+          "thresholds": [
+            420.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_xdpi:LE:420.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.screen_display_layer.screen_ydpi": {
+          "thresholds": [
+            420.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.screen_display_layer.screen_ydpi:LE:420.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.sensor_matrix_layer.sensor_name_count": {
+          "thresholds": [
+            17.0,
+            18.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_name_count:LE:17.0",
+            "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_name_count:LE:18.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.sensor_matrix_layer.sensor_total_count": {
+          "thresholds": [
+            17.0,
+            18.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_total_count:LE:17.0",
+            "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_total_count:LE:18.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.sensor_matrix_layer.sensor_vendor_count": {
+          "thresholds": [
+            2.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.sensor_matrix_layer.sensor_vendor_count:LE:2.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.storage_layer.data_storage_free_gb": {
+          "thresholds": [
+            4.968402862548828,
+            5.542118072509766,
+            5.546058654785156
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.storage_layer.data_storage_free_gb:LE:4.968402862548828",
+            "CONTROL:app.android_native_data.storage_layer.data_storage_free_gb:LE:5.542118072509766",
+            "CONTROL:app.android_native_data.storage_layer.data_storage_free_gb:LE:5.546058654785156"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.android_native_data.storage_layer.data_storage_total_gb": {
+          "thresholds": [
+            5.800384521484375
+          ],
+          "atom_ids": [
+            "CONTROL:app.android_native_data.storage_layer.data_storage_total_gb:LE:5.800384521484375"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "native84"
+        },
+        "UNFITTED_CONTROL:app.web_data.audio_layer.audio_output_latency": {
+          "thresholds": [
+            0.0,
+            0.046439909297052155
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0",
+            "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.audio_layer.audio_sample_rate": {
+          "thresholds": [
+            44100.0,
+            48000.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0",
+            "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.automation_surface_layer.mime_types_count": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.automation_surface_layer.plugins_count": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.execution_layer.timezone_offset": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.font_layer.font_probe_count": {
+          "thresholds": [
+            5.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.graphics_layer.webgl_extensions_count": {
+          "thresholds": [
+            15.0,
+            20.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0",
+            "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.graphics_layer.webgl_max_texture_size": {
+          "thresholds": [
+            4096.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.device_memory": {
+          "thresholds": [
+            2.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.hardware_concurrency": {
+          "thresholds": [
+            4.0,
+            12.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.max_touch_points": {
+          "thresholds": [
+            5.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.network_api_layer.downlink_mbps": {
+          "thresholds": [
+            9.4,
+            10.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4",
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.network_api_layer.rtt_ms": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.avail_height": {
+          "thresholds": [
+            732.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.avail_width": {
+          "thresholds": [
+            412.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.color_depth": {
+          "thresholds": [
+            24.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.device_pixel_ratio": {
+          "thresholds": [
+            2.625
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.inner_height": {
+          "thresholds": [
+            456.0,
+            528.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0",
+            "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.inner_width": {
+          "thresholds": [
+            412.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.orientation_angle": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.outer_height": {
+          "thresholds": [
+            456.0,
+            528.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0",
+            "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.outer_width": {
+          "thresholds": [
+            412.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.pixel_depth": {
+          "thresholds": [
+            24.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.visual_viewport_height": {
+          "thresholds": [
+            456.0,
+            528.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0",
+            "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.visual_viewport_scale": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.visual_viewport_width": {
+          "thresholds": [
+            412.19049072265625
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.languages": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms": {
+          "thresholds": [
+            1.2,
+            1.5,
+            2.1
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms:LE:1.2",
+            "CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms:LE:1.5",
+            "CONTROL:app.webview_data.bridge_routing_layer.bridge_latency_ms:LE:2.1"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        },
+        "UNFITTED_CONTROL:app.webview_data.host_security_layer.app_version_code": {
+          "thresholds": [
+            10.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.host_security_layer.app_version_code:LE:10.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        },
+        "UNFITTED_CONTROL:app.webview_data.kernel_container_layer.webview_provider_major": {
+          "thresholds": [
+            83.0,
+            124.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.kernel_container_layer.webview_provider_major:LE:83.0",
+            "CONTROL:app.webview_data.kernel_container_layer.webview_provider_major:LE:124.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        },
+        "UNFITTED_CONTROL:app.webview_data.kernel_container_layer.webview_provider_version_code": {
+          "thresholds": [
+            410410686.0,
+            636771938.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.kernel_container_layer.webview_provider_version_code:LE:410410686.0",
+            "CONTROL:app.webview_data.kernel_container_layer.webview_provider_version_code:LE:636771938.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        },
+        "UNFITTED_CONTROL:app.webview_data.temporal_build_layer.min_sdk_version": {
+          "thresholds": [
+            21.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.temporal_build_layer.min_sdk_version:LE:21.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        },
+        "UNFITTED_CONTROL:app.webview_data.temporal_build_layer.target_sdk_version": {
+          "thresholds": [
+            36.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.temporal_build_layer.target_sdk_version:LE:36.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        },
+        "UNFITTED_CONTROL:app.webview_data.webview_settings_layer.mixed_content_mode": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.webview_data.webview_settings_layer.mixed_content_mode:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 45,
+          "train_expected_n": 45,
+          "surface": "host26"
+        }
+      },
+      "v2_relations": {
+        "version": "V2_B_RELATIONS_V1",
+        "fold_id": "LOEO-v1-03",
+        "train_ids": [
+          "sample-04689a7774754137a06fc672c9a34627",
+          "sample-065c905ccda7420eb2d26ede92451811",
+          "sample-0bffc108cdcd46498c072fd18758b023",
+          "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+          "sample-22af7231c85d4cc39f29e370761b0111",
+          "sample-22ed5502a1a24385bef4cb91046e3683",
+          "sample-24e48e8890bc4126b5935b155cc639ee",
+          "sample-3e78f40f8bd04583b5788feff41ee1b2",
+          "sample-43c57dc95de64fd68ff3c063b467954a",
+          "sample-45096de3c57844d5a2bdf29d9aa66349",
+          "sample-4eaed0eeb4674f62a1334405cc6424f4",
+          "sample-50047e752ee34cadb1371d0d6bc8306f",
+          "sample-50cbd0648d2e4f378532f8697492cdd3",
+          "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+          "sample-5d9dbd64e3e14564b0221a22467b6900",
+          "sample-5f95e46d790c4744b43d87096099f53d",
+          "sample-61a5188e903649b3a8a4e8eca064adea",
+          "sample-676bd0b06acd4e6d811bba4f163c62e7",
+          "sample-72a718199ea14f289bd36a1cd7b1583a",
+          "sample-75ef55c214514955bac9be4cef96e0fd",
+          "sample-79a20c1c837b40cd9632e14018584f7c",
+          "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+          "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+          "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+          "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+          "sample-89bbcf34beb24f66bbac691b9d61be73",
+          "sample-97a26777a752437a93cd8c4ec3c25125",
+          "sample-99be81ac75a14cadb445bf46c644773a",
+          "sample-9e49742f5d844f06b1e3a334f09830a8",
+          "sample-a1d720b4a9be4ca9b2562409112234ee",
+          "sample-a2b40d8e26654e33977d07e8029b4152",
+          "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+          "sample-d3d254c58cde4c868caff5fdd10665e8",
+          "sample-d6f036ef74814caaa28123219461a406",
+          "sample-d74ffc400a3f4186a8eb1893088c2980",
+          "sample-dc63c0ebfba2446c88f40e44ee325283",
+          "sample-e309872634a34831a5844178f012a88e",
+          "sample-e725bf3af705442ab4ab221b7d10b0e4",
+          "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+          "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+          "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+          "sample-f2321ba4b0084cc29bb571ad11754c8a",
+          "sample-f5fa5cb164b64da88065e6b242e53e43",
+          "sample-fdc30f7ccbe148469fa395ab8266ac01",
+          "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+        ],
+        "numeric": {
+          "UNFITTED_CONTROL:V2REL.MEMORY_WEB_NATIVE_RATIO": {
+            "thresholds": [
+              0.8282721685966603,
+              1.0340088828582923
+            ],
+            "train_observed_n": 45,
+            "train_expected_n": 45,
+            "atom_ids": [
+              "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603",
+              "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923"
+            ]
+          }
+        },
+        "fixed_atoms": [
+          "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS",
+          "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST",
+          "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS"
+        ],
+        "vocabulary_fit": false
+      }
+    },
+    "constant": null,
+    "schema_version": "r03-rule-model-v1",
+    "model_id": "r03-271d67e1e3e9bf90d2e210fd",
+    "complexity": {
+      "distinct_atoms": 1,
+      "clauses": 1,
+      "literal_occurrences": 1,
+      "objective_complexity": 2,
+      "distinct_families": 1,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    }
+  }
+}

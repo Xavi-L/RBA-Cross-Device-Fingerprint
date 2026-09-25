@@ -1,0 +1,1883 @@
+{
+  "schema_version": "v2-b-compact-training-v1",
+  "initialization": {
+    "type": "MATCHING_SAVED_TRAIN_MODEL",
+    "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B02_relations__CX__GREEDY_OR__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2b-91ef4eee04e16af93876662b",
+    "threshold_refit": false,
+    "outer_predictions_or_scores_used": false,
+    "train_and_fold_binding_verified": true,
+    "candidate_support_and_training_score_verified": true
+  },
+  "initial_clause_ids": [
+    "DEVIATION:OFFDER-UA-001:POSITIVE"
+  ],
+  "trace": [
+    {
+      "operation": "RETAIN_SIGNAL",
+      "added": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923:NEGATIVE",
+      "signal_group": "memory_capacity",
+      "delta_macro_tpr": 0.0,
+      "delta_D": 0.6666666666666666,
+      "D_after": 1.3333333333333333,
+      "score": {
+        "objective": {
+          "numerator": 97,
+          "denominator": 150,
+          "value": 0.6466666666666666
+        },
+        "macro_tpr": {
+          "numerator": 2,
+          "denominator": 3,
+          "value": 0.6666666666666666
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 4,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "DEVIATION:OFFDER-UA-001:POSITIVE",
+          "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923:NEGATIVE"
+        ]
+      }
+    }
+  ],
+  "candidate_manifest": [
+    {
+      "clause_id": "DEVIATION:NVW-001:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "device_model_alignment",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:NVW-001:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "device_model_alignment",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:NVW-002:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "os_version_alignment",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:NVW-002:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "os_version_alignment",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:NW-001:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "device_model_alignment",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 6,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 6,
+          "T": 6,
+          "F": 0,
+          "U": 9,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:NW-001:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "device_model_alignment",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 6,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 6,
+          "T": 0,
+          "F": 6,
+          "U": 9,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:NW-002:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "os_version_alignment",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 6,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 6,
+          "T": 6,
+          "F": 0,
+          "U": 9,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:NW-002:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "os_version_alignment",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 6,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 6,
+          "T": 0,
+          "F": 6,
+          "U": 9,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:NW-005:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 0,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 0,
+          "T": 0,
+          "F": 0,
+          "U": 15,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 0,
+          "T": 0,
+          "F": 0,
+          "U": 15,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 0,
+          "T": 0,
+          "F": 0,
+          "U": 15,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:NW-005:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 0,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 0,
+          "T": 0,
+          "F": 0,
+          "U": 15,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 0,
+          "T": 0,
+          "F": 0,
+          "U": 15,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 0,
+          "T": 0,
+          "F": 0,
+          "U": 15,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:OFFDER-UA-001:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:OFFDER-UA-001:POSITIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "SPARSE_INITIALIZATION"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:OFFDER-UA-002:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:OFFDER-UA-002:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:P3-SCREEN-APP:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:P3-SCREEN-APP:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:P3-UA-DEFAULT:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:P3-UA-DEFAULT:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "DEVIATION:P3-UA-SETTINGS:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "DEVIATION:P3-UA-SETTINGS:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "timezone_semantics",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "timezone_semantics",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "memory_capacity",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 12,
+      "bundles": 4,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 12,
+          "F": 3,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "memory_capacity",
+      "reasons": [
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 3,
+      "bundles": 1,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 3,
+          "F": 12,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923:NEGATIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "memory_capacity",
+      "reasons": [
+        "RETAINED_TRAIN_SIGNAL"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "memory_capacity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "DEVIATION:NVW-001",
+      "family": "model_system_agent",
+      "surfaces": [
+        "host26",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NVW-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NVW-001",
+        "all_registered_equivalent_aliases": [
+          "NVW-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NVW-001",
+            "source": "E",
+            "raw_atom_id": "CAT:NVW-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "model_token",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.device_model",
+              "app.webview_data.kernel_container_layer.system_http_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NVW-002",
+      "family": "host_os",
+      "surfaces": [
+        "host26",
+        "native84"
+      ],
+      "sources": [
+        "E",
+        "O_u"
+      ],
+      "aliases": [
+        "NVW-002",
+        "OFFDER-OS-002"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NVW-002",
+        "all_registered_equivalent_aliases": [
+          "NVW-002",
+          "OFFDER-OS-002"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NVW-002",
+            "source": "E",
+            "raw_atom_id": "CAT:NVW-002",
+            "deviation_polarity": "POSITIVE",
+            "profile": "system_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.webview_data.kernel_container_layer.system_http_agent"
+            ]
+          },
+          {
+            "rule_id": "OFFDER-OS-002",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-OS-002",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "system_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.webview_data.kernel_container_layer.system_http_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NW-001",
+      "family": "model_app_ua",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NW-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NW-001",
+        "all_registered_equivalent_aliases": [
+          "NW-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NW-001",
+            "source": "E",
+            "raw_atom_id": "CAT:NW-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "model_token",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.device_model",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NW-002",
+      "family": "app_os",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E",
+        "O_u"
+      ],
+      "aliases": [
+        "NW-002",
+        "OFFDER-OS-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NW-002",
+        "all_registered_equivalent_aliases": [
+          "NW-002",
+          "OFFDER-OS-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NW-002",
+            "source": "E",
+            "raw_atom_id": "CAT:NW-002",
+            "deviation_polarity": "POSITIVE",
+            "profile": "app_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          },
+          {
+            "rule_id": "OFFDER-OS-001",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-OS-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "app_android_major",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:NW-005",
+      "family": "native_app_gpu_family",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NW-005"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "NW-005",
+        "all_registered_equivalent_aliases": [
+          "NW-005"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "NW-005",
+            "source": "E",
+            "raw_atom_id": "CAT:NW-005",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "gpu_family",
+            "field_refs": [
+              "app.android_native_data.graphics_layer.native_gpu_renderer",
+              "app.web_data.graphics_layer.webgl_renderer"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:OFFDER-UA-001",
+      "family": "app_surface",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "O_u"
+      ],
+      "aliases": [
+        "OFFDER-UA-001"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "OFFDER-UA-001",
+        "all_registered_equivalent_aliases": [
+          "OFFDER-UA-001"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "OFFDER-UA-001",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-UA-001",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "host_web_class",
+            "field_refs": [
+              "app.android_native_data.build_fingerprint_layer.os_version",
+              "app.web_data.navigator_layer.user_agent",
+              "app.web_data.navigator_layer.platform"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:OFFDER-UA-002",
+      "family": "host_ua",
+      "surfaces": [
+        "app_web67",
+        "host26"
+      ],
+      "sources": [
+        "O_u"
+      ],
+      "aliases": [
+        "OFFDER-UA-002"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "OFFDER-UA-002",
+        "all_registered_equivalent_aliases": [
+          "OFFDER-UA-002"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "OFFDER-UA-002",
+            "source": "O_u",
+            "raw_atom_id": "CAT:OFFDER-UA-002",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "literal_equality",
+            "field_refs": [
+              "app.webview_data.kernel_container_layer.default_ua_native",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:P3-SCREEN-APP",
+      "family": "screen_geometry",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "P3-SCREEN-APP"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "P3-SCREEN-APP",
+        "all_registered_equivalent_aliases": [
+          "P3-SCREEN-APP"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "P3-SCREEN-APP",
+            "source": "E",
+            "raw_atom_id": "CAT:P3-SCREEN-APP",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "screen_short_side",
+            "field_refs": [
+              "app.android_native_data.screen_display_layer.screen_resolution_physical",
+              "app.web_data.screen_layer.screen_resolution_logical",
+              "app.web_data.screen_layer.device_pixel_ratio"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:P3-UA-DEFAULT",
+      "family": "host_ua",
+      "surfaces": [
+        "app_web67",
+        "host26"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "P3-UA-DEFAULT"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "P3-UA-DEFAULT",
+        "all_registered_equivalent_aliases": [
+          "P3-UA-DEFAULT"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "P3-UA-DEFAULT",
+            "source": "E",
+            "raw_atom_id": "CAT:P3-UA-DEFAULT",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "literal_equality",
+            "field_refs": [
+              "app.webview_data.kernel_container_layer.default_ua_native",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "DEVIATION:P3-UA-SETTINGS",
+      "family": "host_ua",
+      "surfaces": [
+        "app_web67",
+        "host26"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "P3-UA-SETTINGS"
+      ],
+      "orientation": "CANONICAL_DEVIATION",
+      "provenance": {
+        "canonical_rule_id": "P3-UA-SETTINGS",
+        "all_registered_equivalent_aliases": [
+          "P3-UA-SETTINGS"
+        ],
+        "contributing_aliases": [
+          {
+            "rule_id": "P3-UA-SETTINGS",
+            "source": "E",
+            "raw_atom_id": "CAT:P3-UA-SETTINGS",
+            "deviation_polarity": "NEGATIVE",
+            "profile": "literal_equality",
+            "field_refs": [
+              "app.webview_data.webview_settings_layer.settings_user_agent",
+              "app.web_data.navigator_layer.user_agent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "atom_id": "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS",
+      "family": "V2_LANGUAGE",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_V2"
+      ],
+      "aliases": [
+        "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS"
+      ],
+      "orientation": "RESEARCH_CONDITION_NOT_ATTACK_TRUTH",
+      "provenance": {
+        "field_refs": [
+          "app.android_native_data.locale_timezone_layer.native_locale",
+          "app.web_data.navigator_layer.language"
+        ],
+        "relation_version": "V2_B_RELATIONS_V1",
+        "signal_group": "language_preferences"
+      }
+    },
+    {
+      "atom_id": "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST",
+      "family": "V2_LANGUAGE",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_V2"
+      ],
+      "aliases": [
+        "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST"
+      ],
+      "orientation": "RESEARCH_CONDITION_NOT_ATTACK_TRUTH",
+      "provenance": {
+        "field_refs": [
+          "app.android_native_data.locale_timezone_layer.native_locale",
+          "app.web_data.navigator_layer.languages"
+        ],
+        "relation_version": "V2_B_RELATIONS_V1",
+        "signal_group": "language_preferences"
+      }
+    },
+    {
+      "atom_id": "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS",
+      "family": "V2_TIMEZONE",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_V2"
+      ],
+      "aliases": [
+        "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS"
+      ],
+      "orientation": "RESEARCH_CONDITION_NOT_ATTACK_TRUTH",
+      "provenance": {
+        "field_refs": [
+          "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "app.web_data.execution_layer.timezone_offset"
+        ],
+        "relation_version": "V2_B_RELATIONS_V1",
+        "signal_group": "timezone_semantics"
+      }
+    },
+    {
+      "atom_id": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603",
+      "family": "V2_MEMORY",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_V2"
+      ],
+      "aliases": [
+        "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603"
+      ],
+      "orientation": "TRAIN_RATIO_LE",
+      "provenance": {
+        "field_refs": [
+          "app.android_native_data.memory_layer.total_memory_gb",
+          "app.web_data.navigator_layer.device_memory"
+        ],
+        "threshold": 0.8282721685966603,
+        "threshold_scope": "EXACT_OWN_TRAIN",
+        "relation_version": "V2_B_RELATIONS_V1",
+        "signal_group": "memory_capacity"
+      }
+    },
+    {
+      "atom_id": "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923",
+      "family": "V2_MEMORY",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_V2"
+      ],
+      "aliases": [
+        "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923"
+      ],
+      "orientation": "TRAIN_RATIO_LE",
+      "provenance": {
+        "field_refs": [
+          "app.android_native_data.memory_layer.total_memory_gb",
+          "app.web_data.navigator_layer.device_memory"
+        ],
+        "threshold": 1.0340088828582923,
+        "threshold_scope": "EXACT_OWN_TRAIN",
+        "relation_version": "V2_B_RELATIONS_V1",
+        "signal_group": "memory_capacity"
+      }
+    }
+  ],
+  "signal_group_version": "SEMANTIC_SIGNAL_GROUPS_V1",
+  "signal_groups": {
+    "DEVIATION:NVW-001": "device_model_alignment",
+    "DEVIATION:NVW-002": "os_version_alignment",
+    "DEVIATION:NW-001": "device_model_alignment",
+    "DEVIATION:NW-002": "os_version_alignment",
+    "DEVIATION:NW-005": "graphics_identity",
+    "DEVIATION:OFFDER-UA-001": "web_client_identity",
+    "DEVIATION:OFFDER-UA-002": "web_client_identity",
+    "DEVIATION:P3-SCREEN-APP": "display_geometry",
+    "DEVIATION:P3-UA-DEFAULT": "web_client_identity",
+    "DEVIATION:P3-UA-SETTINGS": "web_client_identity",
+    "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS": "language_preferences",
+    "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST": "language_preferences",
+    "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS": "timezone_semantics",
+    "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:0.8282721685966603": "memory_capacity",
+    "V2REL:MEMORY_WEB_NATIVE_RATIO:LE:1.0340088828582923": "memory_capacity"
+  },
+  "access_operations": [
+    {
+      "operation": "combination_selection",
+      "ids": [
+        "sample-04689a7774754137a06fc672c9a34627",
+        "sample-065c905ccda7420eb2d26ede92451811",
+        "sample-0bffc108cdcd46498c072fd18758b023",
+        "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+        "sample-22af7231c85d4cc39f29e370761b0111",
+        "sample-22ed5502a1a24385bef4cb91046e3683",
+        "sample-24e48e8890bc4126b5935b155cc639ee",
+        "sample-3e78f40f8bd04583b5788feff41ee1b2",
+        "sample-43c57dc95de64fd68ff3c063b467954a",
+        "sample-45096de3c57844d5a2bdf29d9aa66349",
+        "sample-4eaed0eeb4674f62a1334405cc6424f4",
+        "sample-50047e752ee34cadb1371d0d6bc8306f",
+        "sample-50cbd0648d2e4f378532f8697492cdd3",
+        "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+        "sample-5d9dbd64e3e14564b0221a22467b6900",
+        "sample-5f95e46d790c4744b43d87096099f53d",
+        "sample-61a5188e903649b3a8a4e8eca064adea",
+        "sample-676bd0b06acd4e6d811bba4f163c62e7",
+        "sample-72a718199ea14f289bd36a1cd7b1583a",
+        "sample-75ef55c214514955bac9be4cef96e0fd",
+        "sample-79a20c1c837b40cd9632e14018584f7c",
+        "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+        "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+        "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "sample-89bbcf34beb24f66bbac691b9d61be73",
+        "sample-97a26777a752437a93cd8c4ec3c25125",
+        "sample-99be81ac75a14cadb445bf46c644773a",
+        "sample-9e49742f5d844f06b1e3a334f09830a8",
+        "sample-a1d720b4a9be4ca9b2562409112234ee",
+        "sample-a2b40d8e26654e33977d07e8029b4152",
+        "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+        "sample-d3d254c58cde4c868caff5fdd10665e8",
+        "sample-d6f036ef74814caaa28123219461a406",
+        "sample-d74ffc400a3f4186a8eb1893088c2980",
+        "sample-dc63c0ebfba2446c88f40e44ee325283",
+        "sample-e309872634a34831a5844178f012a88e",
+        "sample-e725bf3af705442ab4ab221b7d10b0e4",
+        "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+        "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+        "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+        "sample-f2321ba4b0084cc29bb571ad11754c8a",
+        "sample-f5fa5cb164b64da88065e6b242e53e43",
+        "sample-fdc30f7ccbe148469fa395ab8266ac01",
+        "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+      ],
+      "utc": "2026-09-25T06:11:28.801687+00:00"
+    }
+  ],
+  "train_ids_once": [
+    "sample-04689a7774754137a06fc672c9a34627",
+    "sample-065c905ccda7420eb2d26ede92451811",
+    "sample-0bffc108cdcd46498c072fd18758b023",
+    "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+    "sample-22af7231c85d4cc39f29e370761b0111",
+    "sample-22ed5502a1a24385bef4cb91046e3683",
+    "sample-24e48e8890bc4126b5935b155cc639ee",
+    "sample-3e78f40f8bd04583b5788feff41ee1b2",
+    "sample-43c57dc95de64fd68ff3c063b467954a",
+    "sample-45096de3c57844d5a2bdf29d9aa66349",
+    "sample-4eaed0eeb4674f62a1334405cc6424f4",
+    "sample-50047e752ee34cadb1371d0d6bc8306f",
+    "sample-50cbd0648d2e4f378532f8697492cdd3",
+    "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+    "sample-5d9dbd64e3e14564b0221a22467b6900",
+    "sample-5f95e46d790c4744b43d87096099f53d",
+    "sample-61a5188e903649b3a8a4e8eca064adea",
+    "sample-676bd0b06acd4e6d811bba4f163c62e7",
+    "sample-72a718199ea14f289bd36a1cd7b1583a",
+    "sample-75ef55c214514955bac9be4cef96e0fd",
+    "sample-79a20c1c837b40cd9632e14018584f7c",
+    "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+    "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+    "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+    "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+    "sample-89bbcf34beb24f66bbac691b9d61be73",
+    "sample-97a26777a752437a93cd8c4ec3c25125",
+    "sample-99be81ac75a14cadb445bf46c644773a",
+    "sample-9e49742f5d844f06b1e3a334f09830a8",
+    "sample-a1d720b4a9be4ca9b2562409112234ee",
+    "sample-a2b40d8e26654e33977d07e8029b4152",
+    "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+    "sample-d3d254c58cde4c868caff5fdd10665e8",
+    "sample-d6f036ef74814caaa28123219461a406",
+    "sample-d74ffc400a3f4186a8eb1893088c2980",
+    "sample-dc63c0ebfba2446c88f40e44ee325283",
+    "sample-e309872634a34831a5844178f012a88e",
+    "sample-e725bf3af705442ab4ab221b7d10b0e4",
+    "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+    "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+    "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+    "sample-f2321ba4b0084cc29bb571ad11754c8a",
+    "sample-f5fa5cb164b64da88065e6b242e53e43",
+    "sample-fdc30f7ccbe148469fa395ab8266ac01",
+    "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+  ],
+  "statistics_scope": "EXACT_OWN_TRAIN_ONLY_NO_OOF_INPUT",
+  "omitted_repeated_matrices": "Regenerate from referenced frozen train inputs and encoder; no duplicate full V1/A matrices."
+}

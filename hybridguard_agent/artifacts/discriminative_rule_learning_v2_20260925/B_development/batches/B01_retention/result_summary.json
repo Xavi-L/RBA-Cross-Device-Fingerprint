@@ -1,0 +1,1217 @@
+[
+  {
+    "spec_id": "W0__R_KEEP_V1",
+    "metrics": {
+      "attack_tpr": 0.8333333333333334,
+      "MacroTPR_config_environment": 0.7857142857142857,
+      "clean_alarm_rate": 0.0,
+      "decision_coverage": 1.0,
+      "failure_rate": 0.0
+    },
+    "fold_models": [
+      {
+        "fold": "LOEO-v1-01",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      },
+      {
+        "fold": "LOEO-v1-02",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      },
+      {
+        "fold": "LOEO-v1-03",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CAT:NW-006:POSITIVE",
+            "signal_group": "web_client_identity",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 1.6666666666666667,
+            "score": {
+              "objective": {
+                "numerator": 49,
+                "denominator": 50,
+                "value": 0.98
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 4,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "signal_group": "automation_flag",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 2.3333333333333335,
+            "score": {
+              "objective": {
+                "numerator": 97,
+                "denominator": 100,
+                "value": 0.97
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 6,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "signal_group": "memory_capacity",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 3.0,
+            "score": {
+              "objective": {
+                "numerator": 24,
+                "denominator": 25,
+                "value": 0.96
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 8,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "signal_group": "plugin_capability",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.3333333333333333,
+            "D_after": 3.3333333333333335,
+            "score": {
+              "objective": {
+                "numerator": 19,
+                "denominator": 20,
+                "value": 0.95
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 10,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+            "signal_group": "language_preferences",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.3333333333333333,
+            "D_after": 3.6666666666666665,
+            "score": {
+              "objective": {
+                "numerator": 47,
+                "denominator": 50,
+                "value": 0.94
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 12,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+              ]
+            }
+          }
+        ],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      }
+    ]
+  },
+  {
+    "spec_id": "S_FLAT__R_KEEP_V1",
+    "metrics": {
+      "attack_tpr": 0.8333333333333334,
+      "MacroTPR_config_environment": 0.7857142857142857,
+      "clean_alarm_rate": 0.0,
+      "decision_coverage": 1.0,
+      "failure_rate": 0.0
+    },
+    "fold_models": [
+      {
+        "fold": "LOEO-v1-01",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      },
+      {
+        "fold": "LOEO-v1-02",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      },
+      {
+        "fold": "LOEO-v1-03",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CAT:NW-006:POSITIVE",
+            "signal_group": "web_client_identity",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 1.6666666666666667,
+            "score": {
+              "objective": {
+                "numerator": 49,
+                "denominator": 50,
+                "value": 0.98
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 4,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "signal_group": "automation_flag",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 2.3333333333333335,
+            "score": {
+              "objective": {
+                "numerator": 97,
+                "denominator": 100,
+                "value": 0.97
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 6,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "signal_group": "memory_capacity",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 3.0,
+            "score": {
+              "objective": {
+                "numerator": 24,
+                "denominator": 25,
+                "value": 0.96
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 8,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "signal_group": "plugin_capability",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.3333333333333333,
+            "D_after": 3.3333333333333335,
+            "score": {
+              "objective": {
+                "numerator": 19,
+                "denominator": 20,
+                "value": 0.95
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 10,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+            "signal_group": "language_preferences",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.3333333333333333,
+            "D_after": 3.6666666666666665,
+            "score": {
+              "objective": {
+                "numerator": 47,
+                "denominator": 50,
+                "value": 0.94
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 12,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+              ]
+            }
+          }
+        ],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      }
+    ]
+  },
+  {
+    "spec_id": "J0__R_KEEP_V1",
+    "metrics": {
+      "attack_tpr": 0.8333333333333334,
+      "MacroTPR_config_environment": 0.7857142857142857,
+      "clean_alarm_rate": 0.0,
+      "decision_coverage": 1.0,
+      "failure_rate": 0.0
+    },
+    "fold_models": [
+      {
+        "fold": "LOEO-v1-01",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      },
+      {
+        "fold": "LOEO-v1-02",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      },
+      {
+        "fold": "LOEO-v1-03",
+        "complexity": 12,
+        "clauses": [
+          [
+            {
+              "atom_id": "CAT:NW-006",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+              "polarity": "POSITIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+              "polarity": "NEGATIVE"
+            }
+          ],
+          [
+            {
+              "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+              "polarity": "NEGATIVE"
+            }
+          ]
+        ],
+        "retained": [
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CAT:NW-006:POSITIVE",
+            "signal_group": "web_client_identity",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 1.6666666666666667,
+            "score": {
+              "objective": {
+                "numerator": 49,
+                "denominator": 50,
+                "value": 0.98
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 4,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+            "signal_group": "automation_flag",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 2.3333333333333335,
+            "score": {
+              "objective": {
+                "numerator": 97,
+                "denominator": 100,
+                "value": 0.97
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 6,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+            "signal_group": "memory_capacity",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.6666666666666666,
+            "D_after": 3.0,
+            "score": {
+              "objective": {
+                "numerator": 24,
+                "denominator": 25,
+                "value": 0.96
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 8,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+            "signal_group": "plugin_capability",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.3333333333333333,
+            "D_after": 3.3333333333333335,
+            "score": {
+              "objective": {
+                "numerator": 19,
+                "denominator": 20,
+                "value": 0.95
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 10,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+              ]
+            }
+          },
+          {
+            "operation": "RETAIN_SIGNAL",
+            "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+            "signal_group": "language_preferences",
+            "delta_macro_tpr": 0.0,
+            "delta_D": 0.3333333333333333,
+            "D_after": 3.6666666666666665,
+            "score": {
+              "objective": {
+                "numerator": 47,
+                "denominator": 50,
+                "value": 0.94
+              },
+              "macro_tpr": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "clean_alarms": 0,
+              "coverage": {
+                "clean_pre": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "attack": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                },
+                "clean_post": {
+                  "numerator": 1,
+                  "denominator": 1,
+                  "value": 1.0
+                }
+              },
+              "minimum_coverage": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "complexity": 12,
+              "feasible": true,
+              "partial_feasible": true,
+              "clause_ids": [
+                "CAT:NW-006:POSITIVE",
+                "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+                "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+                "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+                "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+              ]
+            }
+          }
+        ],
+        "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6263 @@
+{
+  "schema_version": "v2-b-compact-training-v1",
+  "initialization": {
+    "type": "MATCHING_SAVED_TRAIN_MODEL",
+    "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/trials/B02_relations__W_X__GREEDY_OR__LOEO-v1-03__attempt01/model.json",
+    "model_id": "v2b-50b3daeb502e9b1e665ce508",
+    "threshold_refit": false,
+    "outer_predictions_or_scores_used": false,
+    "train_and_fold_binding_verified": true,
+    "candidate_support_and_training_score_verified": true
+  },
+  "initial_clause_ids": [
+    "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+  ],
+  "trace": [
+    {
+      "operation": "RETAIN_SIGNAL",
+      "added": "CAT:NW-006:POSITIVE",
+      "signal_group": "web_client_identity",
+      "delta_macro_tpr": 0.0,
+      "delta_D": 0.6666666666666666,
+      "D_after": 1.6666666666666667,
+      "score": {
+        "objective": {
+          "numerator": 49,
+          "denominator": 50,
+          "value": 0.98
+        },
+        "macro_tpr": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 4,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CAT:NW-006:POSITIVE",
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+        ]
+      }
+    },
+    {
+      "operation": "RETAIN_SIGNAL",
+      "added": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "signal_group": "automation_flag",
+      "delta_macro_tpr": 0.0,
+      "delta_D": 0.6666666666666666,
+      "D_after": 2.3333333333333335,
+      "score": {
+        "objective": {
+          "numerator": 97,
+          "denominator": 100,
+          "value": 0.97
+        },
+        "macro_tpr": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 6,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CAT:NW-006:POSITIVE",
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+        ]
+      }
+    },
+    {
+      "operation": "RETAIN_SIGNAL",
+      "added": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "signal_group": "memory_capacity",
+      "delta_macro_tpr": 0.0,
+      "delta_D": 0.6666666666666666,
+      "D_after": 3.0,
+      "score": {
+        "objective": {
+          "numerator": 24,
+          "denominator": 25,
+          "value": 0.96
+        },
+        "macro_tpr": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 8,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CAT:NW-006:POSITIVE",
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+        ]
+      }
+    },
+    {
+      "operation": "RETAIN_SIGNAL",
+      "added": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "signal_group": "plugin_capability",
+      "delta_macro_tpr": 0.0,
+      "delta_D": 0.3333333333333333,
+      "D_after": 3.3333333333333335,
+      "score": {
+        "objective": {
+          "numerator": 19,
+          "denominator": 20,
+          "value": 0.95
+        },
+        "macro_tpr": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 10,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CAT:NW-006:POSITIVE",
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE"
+        ]
+      }
+    },
+    {
+      "operation": "RETAIN_SIGNAL",
+      "added": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+      "signal_group": "language_preferences",
+      "delta_macro_tpr": 0.0,
+      "delta_D": 0.3333333333333333,
+      "D_after": 3.6666666666666665,
+      "score": {
+        "objective": {
+          "numerator": 47,
+          "denominator": 50,
+          "value": 0.94
+        },
+        "macro_tpr": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 12,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CAT:NW-006:POSITIVE",
+          "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+          "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+        ]
+      }
+    }
+  ],
+  "candidate_manifest": [
+    {
+      "clause_id": "CAT:NW-006:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CAT:NW-006:POSITIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "RETAINED_TRAIN_SIGNAL"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CAT:NW-007:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CAT:NW-007:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CAT:OFFDER-TOUCH-001:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 6,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 6,
+          "T": 0,
+          "F": 6,
+          "U": 9,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CAT:OFFDER-TOUCH-001:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 6,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 6,
+          "T": 6,
+          "F": 0,
+          "U": 9,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CAT:P3-COLOR-APP:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CAT:P3-COLOR-APP:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CAT:WVWEB-004:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CAT:WVWEB-004:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_context_supported",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_context_supported",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_output_latency",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_output_latency",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_output_latency",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_output_latency",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_sample_rate",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_sample_rate",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_sample_rate",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.audio_layer.audio_sample_rate",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "plugin_capability",
+      "reasons": [
+        "RETAINED_TRAIN_SIGNAL"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "plugin_capability",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "plugin_capability",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "plugin_capability",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "automation_flag",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "automation_flag",
+      "reasons": [
+        "RETAINED_TRAIN_SIGNAL"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.execution_layer.local_storage_available",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.execution_layer.local_storage_available",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.execution_layer.session_storage_available",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.execution_layer.session_storage_available",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "timezone_semantics",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "timezone_semantics",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.font_layer.font_probe_count",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.font_layer.font_probe_count",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "graphics_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.navigator_layer.cookie_enabled",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.navigator_layer.cookie_enabled",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "memory_capacity",
+      "reasons": [
+        "RETAINED_TRAIN_SIGNAL"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "memory_capacity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_cpu_capacity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_cpu_capacity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "web_cpu_capacity",
+      "reasons": [
+        "SPARSE_INITIALIZATION"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_cpu_capacity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+      "eligible": true,
+      "selected": true,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "RETAINED_TRAIN_SIGNAL"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.navigator_layer.max_touch_points",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.navigator_layer.max_touch_points",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.navigator_layer.online",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.navigator_layer.online",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "NO_NEW_SIGNAL_COVERAGE"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "web_client_identity",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.downlink_mbps",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.downlink_mbps",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.downlink_mbps",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 11,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 11,
+          "F": 4,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 11,
+          "F": 4,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 20
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.downlink_mbps",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 4,
+      "bundles": 4,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 4,
+          "F": 11,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 4,
+          "F": 11,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 10
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.rtt_ms",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.rtt_ms",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.save_data",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.network_api_layer.save_data",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "field:app.web_data.permissions_layer.permissions_api_supported",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "field:app.web_data.permissions_layer.permissions_api_supported",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 6,
+      "bundles": 2,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 6,
+          "F": 9,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 12
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 9,
+      "bundles": 3,
+      "environments": 1,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 9,
+          "F": 6,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 18
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625:NEGATIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    },
+    {
+      "clause_id": "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625:POSITIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "display_geometry",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST:NEGATIVE",
+      "eligible": true,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "STRUCTURE_OR_FAMILY_LIMIT",
+        "SET_CLEAN_BUDGET"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 15,
+      "bundles": 5,
+      "environments": 2,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 15,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 30
+    },
+    {
+      "clause_id": "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST:POSITIVE",
+      "eligible": false,
+      "selected": false,
+      "signal_group": "language_preferences",
+      "reasons": [
+        "INSUFFICIENT_TRAIN_SUPPORT"
+      ],
+      "triplets": 15,
+      "true_attack_triplets": 0,
+      "bundles": 0,
+      "environments": 0,
+      "phase_availability": {
+        "clean_pre": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "attack": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        },
+        "clean_post": {
+          "expected": 15,
+          "defined": 15,
+          "T": 0,
+          "F": 15,
+          "U": 0,
+          "FAILED": 0
+        }
+      },
+      "singleton_train_clean_alarms": 0
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "CAT:NW-006",
+      "family": "app_surface",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NW-006"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ],
+          "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+          "parameters": {}
+        },
+        "field_refs": [
+          "app.web_data.navigator_layer.platform",
+          "app.web_data.navigator_layer.user_agent"
+        ]
+      }
+    },
+    {
+      "atom_id": "CAT:NW-007",
+      "family": "mobile_touch",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "NW-007"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.web_data.navigator_layer.max_touch_points",
+            "app.web_data.navigator_layer.user_agent"
+          ],
+          "operator": "ANDROID_MOBILE_UA_AND_TOUCH_EQ_ZERO",
+          "parameters": {}
+        },
+        "field_refs": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "app.web_data.navigator_layer.user_agent"
+        ]
+      }
+    },
+    {
+      "atom_id": "CAT:OFFDER-TOUCH-001",
+      "family": "mobile_touch",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "O_u"
+      ],
+      "aliases": [
+        "OFFDER-TOUCH-001"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.web_data.navigator_layer.user_agent",
+            "app.web_data.navigator_layer.max_touch_points"
+          ],
+          "operator": "TOUCH_GT_ZERO_GIVEN_ANDROID_MOBILE_UA",
+          "parameters": {}
+        },
+        "field_refs": [
+          "app.web_data.navigator_layer.user_agent",
+          "app.web_data.navigator_layer.max_touch_points"
+        ]
+      }
+    },
+    {
+      "atom_id": "CAT:P3-COLOR-APP",
+      "family": "P3-COLOR-APP",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "H"
+      ],
+      "aliases": [
+        "P3-COLOR-APP"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.web_data.screen_layer.color_depth",
+            "app.web_data.screen_layer.pixel_depth"
+          ],
+          "operator": "TYPED_SEMANTIC_EQUAL",
+          "parameters": {}
+        },
+        "field_refs": [
+          "app.web_data.screen_layer.color_depth",
+          "app.web_data.screen_layer.pixel_depth"
+        ]
+      }
+    },
+    {
+      "atom_id": "CAT:WVWEB-004",
+      "family": "app_surface",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "E"
+      ],
+      "aliases": [
+        "WVWEB-004"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.web_data.navigator_layer.user_agent"
+          ],
+          "operator": "UA_CLASS_EQ_SCRIPT_CLIENT",
+          "parameters": {}
+        },
+        "field_refs": [
+          "app.web_data.navigator_layer.user_agent"
+        ]
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_context_supported",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+        "control_input_column": 48,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.audio_layer.audio_context_supported",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "control_input_column": 53,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.automation_surface_layer.webdriver",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.execution_layer.local_storage_available",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+        "control_input_column": 54,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.execution_layer.local_storage_available",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.execution_layer.session_storage_available",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+        "control_input_column": 55,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.execution_layer.session_storage_available",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl2_supported",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+        "control_input_column": 58,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.graphics_layer.webgl2_supported",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.cookie_enabled",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+        "control_input_column": 61,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.navigator_layer.cookie_enabled",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.online",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.online:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+        "control_input_column": 65,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.navigator_layer.online",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.network_api_layer.save_data",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.network_api_layer.save_data:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+        "control_input_column": 68,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.network_api_layer.save_data",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+      "family": "CONTROL_FIELD:app.web_data.permissions_layer.permissions_api_supported",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+        "control_input_column": 69,
+        "encoder": "BOOL_EQ_TRUE",
+        "equals": true,
+        "field": "app.web_data.permissions_layer.permissions_api_supported",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+        "control_input_column": 99,
+        "encoder": "UA_CLASS",
+        "equals": "script_client",
+        "field": "app.web_data.navigator_layer.user_agent",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+        "control_input_column": 99,
+        "encoder": "UA_CLASS",
+        "equals": "desktop_or_headless",
+        "field": "app.web_data.navigator_layer.user_agent",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+        "control_input_column": 99,
+        "encoder": "UA_CLASS",
+        "equals": "android_browser",
+        "field": "app.web_data.navigator_layer.user_agent",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+        "control_input_column": 99,
+        "encoder": "UA_CLASS",
+        "equals": "android_webview",
+        "field": "app.web_data.navigator_layer.user_agent",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.platform",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:android"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+        "control_input_column": 100,
+        "encoder": "PLATFORM_CLASS",
+        "equals": "android",
+        "field": "app.web_data.navigator_layer.platform",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.platform",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+        "control_input_column": 100,
+        "encoder": "PLATFORM_CLASS",
+        "equals": "mobile_or_ambiguous",
+        "field": "app.web_data.navigator_layer.platform",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.platform",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop"
+      ],
+      "orientation": "CONTROL_EQUALITY",
+      "provenance": {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+        "control_input_column": 100,
+        "encoder": "PLATFORM_CLASS",
+        "equals": "desktop",
+        "field": "app.web_data.navigator_layer.platform",
+        "fit_required": false,
+        "predicate_version": "r01-fixed-control-equality-v1",
+        "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+        "surface": "app_web67"
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0",
+      "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_output_latency",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.audio_layer.audio_output_latency",
+        "threshold": 0.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155",
+      "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_output_latency",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.audio_layer.audio_output_latency",
+        "threshold": 0.046439909297052155
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0",
+      "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_sample_rate",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.audio_layer.audio_sample_rate",
+        "threshold": 44100.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0",
+      "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_sample_rate",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.audio_layer.audio_sample_rate",
+        "threshold": 48000.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+      "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.automation_surface_layer.mime_types_count",
+        "threshold": 0.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0",
+      "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.plugins_count",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.automation_surface_layer.plugins_count",
+        "threshold": 0.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+      "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.execution_layer.timezone_offset",
+        "threshold": 0.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0",
+      "family": "CONTROL_FIELD:app.web_data.font_layer.font_probe_count",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.font_layer.font_probe_count",
+        "threshold": 5.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0",
+      "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl_extensions_count",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.graphics_layer.webgl_extensions_count",
+        "threshold": 15.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0",
+      "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl_extensions_count",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.graphics_layer.webgl_extensions_count",
+        "threshold": 20.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0",
+      "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl_max_texture_size",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.graphics_layer.webgl_max_texture_size",
+        "threshold": 4096.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.navigator_layer.device_memory",
+        "threshold": 2.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.navigator_layer.hardware_concurrency",
+        "threshold": 4.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.navigator_layer.hardware_concurrency",
+        "threshold": 12.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.max_touch_points",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.navigator_layer.max_touch_points",
+        "threshold": 5.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4",
+      "family": "CONTROL_FIELD:app.web_data.network_api_layer.downlink_mbps",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.network_api_layer.downlink_mbps",
+        "threshold": 9.4
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0",
+      "family": "CONTROL_FIELD:app.web_data.network_api_layer.downlink_mbps",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.network_api_layer.downlink_mbps",
+        "threshold": 10.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0",
+      "family": "CONTROL_FIELD:app.web_data.network_api_layer.rtt_ms",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.network_api_layer.rtt_ms",
+        "threshold": 0.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.avail_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.avail_height",
+        "threshold": 732.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.avail_width",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.avail_width",
+        "threshold": 412.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.color_depth",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.color_depth",
+        "threshold": 24.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.device_pixel_ratio",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.device_pixel_ratio",
+        "threshold": 2.625
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.inner_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.inner_height",
+        "threshold": 456.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.inner_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.inner_height",
+        "threshold": 528.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.inner_width",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.inner_width",
+        "threshold": 412.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.orientation_angle",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.orientation_angle",
+        "threshold": 0.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.outer_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.outer_height",
+        "threshold": 456.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.outer_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.outer_height",
+        "threshold": 528.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.outer_width",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.outer_width",
+        "threshold": 412.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.pixel_depth",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.pixel_depth",
+        "threshold": 24.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.visual_viewport_height",
+        "threshold": 456.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_height",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.visual_viewport_height",
+        "threshold": 528.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_scale",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.visual_viewport_scale",
+        "threshold": 1.0
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625",
+      "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_width",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.screen_layer.visual_viewport_width",
+        "threshold": 412.19049072265625
+      }
+    },
+    {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+      "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ],
+      "aliases": [
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+      ],
+      "orientation": "CONTROL_LE",
+      "provenance": {
+        "field": "app.web_data.navigator_layer.languages",
+        "threshold": 1.0
+      }
+    },
+    {
+      "atom_id": "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST",
+      "family": "V2_LANGUAGE_WEB",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_V2"
+      ],
+      "aliases": [
+        "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST"
+      ],
+      "orientation": "RESEARCH_CONDITION_NOT_ATTACK_TRUTH",
+      "provenance": {
+        "field_refs": [
+          "app.web_data.navigator_layer.language",
+          "app.web_data.navigator_layer.languages"
+        ],
+        "relation_version": "V2_B_RELATIONS_V1",
+        "signal_group": "language_preferences"
+      }
+    }
+  ],
+  "signal_group_version": "SEMANTIC_SIGNAL_GROUPS_V1",
+  "signal_groups": {
+    "CAT:NW-006": "web_client_identity",
+    "CAT:NW-007": "web_client_identity",
+    "CAT:OFFDER-TOUCH-001": "web_client_identity",
+    "CAT:P3-COLOR-APP": "display_geometry",
+    "CAT:WVWEB-004": "web_client_identity",
+    "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True": "field:app.web_data.audio_layer.audio_context_supported",
+    "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True": "automation_flag",
+    "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True": "field:app.web_data.execution_layer.local_storage_available",
+    "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True": "field:app.web_data.execution_layer.session_storage_available",
+    "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True": "graphics_identity",
+    "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True": "field:app.web_data.navigator_layer.cookie_enabled",
+    "CONTROL:app.web_data.navigator_layer.online:EQ:True": "field:app.web_data.navigator_layer.online",
+    "CONTROL:app.web_data.network_api_layer.save_data:EQ:True": "field:app.web_data.network_api_layer.save_data",
+    "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True": "field:app.web_data.permissions_layer.permissions_api_supported",
+    "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client": "web_client_identity",
+    "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless": "web_client_identity",
+    "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser": "web_client_identity",
+    "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview": "web_client_identity",
+    "CONTROL:app.web_data.navigator_layer.platform:EQ:android": "web_client_identity",
+    "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous": "web_client_identity",
+    "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop": "web_client_identity",
+    "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0": "field:app.web_data.audio_layer.audio_output_latency",
+    "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155": "field:app.web_data.audio_layer.audio_output_latency",
+    "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0": "field:app.web_data.audio_layer.audio_sample_rate",
+    "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0": "field:app.web_data.audio_layer.audio_sample_rate",
+    "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0": "plugin_capability",
+    "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0": "plugin_capability",
+    "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0": "timezone_semantics",
+    "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0": "field:app.web_data.font_layer.font_probe_count",
+    "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:15.0": "graphics_identity",
+    "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0": "graphics_identity",
+    "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0": "graphics_identity",
+    "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0": "memory_capacity",
+    "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0": "web_cpu_capacity",
+    "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:12.0": "web_cpu_capacity",
+    "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0": "field:app.web_data.navigator_layer.max_touch_points",
+    "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4": "field:app.web_data.network_api_layer.downlink_mbps",
+    "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0": "field:app.web_data.network_api_layer.downlink_mbps",
+    "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0": "field:app.web_data.network_api_layer.rtt_ms",
+    "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.inner_height:LE:456.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.outer_height:LE:456.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:456.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0": "display_geometry",
+    "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625": "display_geometry",
+    "CONTROL:app.web_data.navigator_layer.languages:LE:1.0": "language_preferences",
+    "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST": "language_preferences"
+  },
+  "access_operations": [
+    {
+      "operation": "combination_selection",
+      "ids": [
+        "sample-04689a7774754137a06fc672c9a34627",
+        "sample-065c905ccda7420eb2d26ede92451811",
+        "sample-0bffc108cdcd46498c072fd18758b023",
+        "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+        "sample-22af7231c85d4cc39f29e370761b0111",
+        "sample-22ed5502a1a24385bef4cb91046e3683",
+        "sample-24e48e8890bc4126b5935b155cc639ee",
+        "sample-3e78f40f8bd04583b5788feff41ee1b2",
+        "sample-43c57dc95de64fd68ff3c063b467954a",
+        "sample-45096de3c57844d5a2bdf29d9aa66349",
+        "sample-4eaed0eeb4674f62a1334405cc6424f4",
+        "sample-50047e752ee34cadb1371d0d6bc8306f",
+        "sample-50cbd0648d2e4f378532f8697492cdd3",
+        "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+        "sample-5d9dbd64e3e14564b0221a22467b6900",
+        "sample-5f95e46d790c4744b43d87096099f53d",
+        "sample-61a5188e903649b3a8a4e8eca064adea",
+        "sample-676bd0b06acd4e6d811bba4f163c62e7",
+        "sample-72a718199ea14f289bd36a1cd7b1583a",
+        "sample-75ef55c214514955bac9be4cef96e0fd",
+        "sample-79a20c1c837b40cd9632e14018584f7c",
+        "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+        "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+        "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "sample-89bbcf34beb24f66bbac691b9d61be73",
+        "sample-97a26777a752437a93cd8c4ec3c25125",
+        "sample-99be81ac75a14cadb445bf46c644773a",
+        "sample-9e49742f5d844f06b1e3a334f09830a8",
+        "sample-a1d720b4a9be4ca9b2562409112234ee",
+        "sample-a2b40d8e26654e33977d07e8029b4152",
+        "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+        "sample-d3d254c58cde4c868caff5fdd10665e8",
+        "sample-d6f036ef74814caaa28123219461a406",
+        "sample-d74ffc400a3f4186a8eb1893088c2980",
+        "sample-dc63c0ebfba2446c88f40e44ee325283",
+        "sample-e309872634a34831a5844178f012a88e",
+        "sample-e725bf3af705442ab4ab221b7d10b0e4",
+        "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+        "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+        "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+        "sample-f2321ba4b0084cc29bb571ad11754c8a",
+        "sample-f5fa5cb164b64da88065e6b242e53e43",
+        "sample-fdc30f7ccbe148469fa395ab8266ac01",
+        "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+      ],
+      "utc": "2026-09-25T06:11:32.823192+00:00"
+    }
+  ],
+  "train_ids_once": [
+    "sample-04689a7774754137a06fc672c9a34627",
+    "sample-065c905ccda7420eb2d26ede92451811",
+    "sample-0bffc108cdcd46498c072fd18758b023",
+    "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+    "sample-22af7231c85d4cc39f29e370761b0111",
+    "sample-22ed5502a1a24385bef4cb91046e3683",
+    "sample-24e48e8890bc4126b5935b155cc639ee",
+    "sample-3e78f40f8bd04583b5788feff41ee1b2",
+    "sample-43c57dc95de64fd68ff3c063b467954a",
+    "sample-45096de3c57844d5a2bdf29d9aa66349",
+    "sample-4eaed0eeb4674f62a1334405cc6424f4",
+    "sample-50047e752ee34cadb1371d0d6bc8306f",
+    "sample-50cbd0648d2e4f378532f8697492cdd3",
+    "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+    "sample-5d9dbd64e3e14564b0221a22467b6900",
+    "sample-5f95e46d790c4744b43d87096099f53d",
+    "sample-61a5188e903649b3a8a4e8eca064adea",
+    "sample-676bd0b06acd4e6d811bba4f163c62e7",
+    "sample-72a718199ea14f289bd36a1cd7b1583a",
+    "sample-75ef55c214514955bac9be4cef96e0fd",
+    "sample-79a20c1c837b40cd9632e14018584f7c",
+    "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+    "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+    "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+    "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+    "sample-89bbcf34beb24f66bbac691b9d61be73",
+    "sample-97a26777a752437a93cd8c4ec3c25125",
+    "sample-99be81ac75a14cadb445bf46c644773a",
+    "sample-9e49742f5d844f06b1e3a334f09830a8",
+    "sample-a1d720b4a9be4ca9b2562409112234ee",
+    "sample-a2b40d8e26654e33977d07e8029b4152",
+    "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+    "sample-d3d254c58cde4c868caff5fdd10665e8",
+    "sample-d6f036ef74814caaa28123219461a406",
+    "sample-d74ffc400a3f4186a8eb1893088c2980",
+    "sample-dc63c0ebfba2446c88f40e44ee325283",
+    "sample-e309872634a34831a5844178f012a88e",
+    "sample-e725bf3af705442ab4ab221b7d10b0e4",
+    "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+    "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+    "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+    "sample-f2321ba4b0084cc29bb571ad11754c8a",
+    "sample-f5fa5cb164b64da88065e6b242e53e43",
+    "sample-fdc30f7ccbe148469fa395ab8266ac01",
+    "sample-fe4e8a7920d8418fa70d3059f12ee85f"
+  ],
+  "statistics_scope": "EXACT_OWN_TRAIN_ONLY_NO_OOF_INPUT",
+  "omitted_repeated_matrices": "Regenerate from referenced frozen train inputs and encoder; no duplicate full V1/A matrices."
+}
