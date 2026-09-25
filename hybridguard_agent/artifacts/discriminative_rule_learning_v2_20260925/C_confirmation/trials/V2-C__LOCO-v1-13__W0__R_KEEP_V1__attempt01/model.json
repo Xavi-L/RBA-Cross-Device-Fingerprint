@@ -1,0 +1,1178 @@
+{
+  "schema_version": "v2-c-model-v1",
+  "model_id": "v2c-4ca48e52d31d5952c73e2464",
+  "kernel_schema": "REUSED_FROZEN_B_LEARNING_PROGRAM_NO_V1_JOB_AUTHORIZATION",
+  "engine_structure": {
+    "method_id": "R_KEEP_V1",
+    "status": "FITTED",
+    "clauses": [
+      {
+        "literals": [
+          {
+            "atom_id": "CAT:NW-006",
+            "polarity": "POSITIVE"
+          }
+        ]
+      },
+      {
+        "literals": [
+          {
+            "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+            "polarity": "POSITIVE"
+          }
+        ]
+      },
+      {
+        "literals": [
+          {
+            "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+            "polarity": "NEGATIVE"
+          }
+        ]
+      },
+      {
+        "literals": [
+          {
+            "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+            "polarity": "NEGATIVE"
+          }
+        ]
+      },
+      {
+        "literals": [
+          {
+            "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+            "polarity": "NEGATIVE"
+          }
+        ]
+      },
+      {
+        "literals": [
+          {
+            "atom_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0",
+            "polarity": "NEGATIVE"
+          }
+        ]
+      }
+    ],
+    "atoms": [
+      {
+        "atom_id": "CAT:NW-006",
+        "family": "app_surface",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "E"
+        ],
+        "aliases": [
+          "NW-006"
+        ],
+        "orientation": "CATALOG_CONDITION",
+        "provenance": {
+          "condition": {
+            "operands": [
+              "app.web_data.navigator_layer.platform",
+              "app.web_data.navigator_layer.user_agent"
+            ],
+            "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+            "parameters": {}
+          },
+          "field_refs": [
+            "app.web_data.navigator_layer.platform",
+            "app.web_data.navigator_layer.user_agent"
+          ]
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "aliases": [
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+        ],
+        "orientation": "CONTROL_EQUALITY",
+        "provenance": {
+          "atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+          "control_input_column": 53,
+          "encoder": "BOOL_EQ_TRUE",
+          "equals": true,
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "fit_required": false,
+          "predicate_version": "r01-fixed-control-equality-v1",
+          "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+          "surface": "app_web67"
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "aliases": [
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+        ],
+        "orientation": "CONTROL_LE",
+        "provenance": {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "threshold": 0.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+        ],
+        "orientation": "CONTROL_LE",
+        "provenance": {
+          "field": "app.web_data.navigator_layer.hardware_concurrency",
+          "threshold": 4.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0",
+        "family": "CONTROL_FIELD:app.web_data.screen_layer.avail_height",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "aliases": [
+          "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0"
+        ],
+        "orientation": "CONTROL_LE",
+        "provenance": {
+          "field": "app.web_data.screen_layer.avail_height",
+          "threshold": 732.0
+        }
+      },
+      {
+        "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+        "surfaces": [
+          "app_web67"
+        ],
+        "sources": [
+          "PROJECT_CONTROL_NOT_E_Ou_H_C"
+        ],
+        "aliases": [
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+        ],
+        "orientation": "CONTROL_LE",
+        "provenance": {
+          "field": "app.web_data.navigator_layer.languages",
+          "threshold": 1.0
+        }
+      }
+    ],
+    "binding": {
+      "study_version": "discriminative-rule-learning-v2-20260925",
+      "phase": "V2-C",
+      "authorization_id": "USER_V2_C_OFFLINE_FINALIZATION_20260925",
+      "protocol_digest": "3412264e8d614a04d726cdef3ce31410c3d5723163afce928893676af7595ef2",
+      "candidate_version": "SEMANTIC_SIGNAL_GROUPS_V1",
+      "fold_id": "LOCO-v1-13",
+      "split_id": "LOCO-v1",
+      "operating_point": "OP05",
+      "model_unit_id": "V2-C__LOCO-v1-13__W0__R_KEEP_V1",
+      "representation": "W0",
+      "method_id": "R_KEEP_V1",
+      "train_membership_digest": "5ec8e2b8481091ae18303d7eefc15e462db3c00eb0ece22ccc2f1af3abd23bba",
+      "evaluation_role": "EXPOSED_CONFIGURATION_HOLDOUT_INTERNAL_EVALUATION",
+      "data_origin": "V1_EXPOSED_DEVELOPMENT"
+    },
+    "view": {
+      "view_id": "V2-C:W0",
+      "representation": "W0",
+      "kind": "V2_C_UNIFIED",
+      "base_representation": "W0",
+      "relation_families": [],
+      "matched_single_features": false,
+      "input_atom_ids": [
+        "CAT:NW-006",
+        "CAT:NW-007",
+        "CAT:OFFDER-TOUCH-001",
+        "CAT:P3-COLOR-APP",
+        "CAT:WVWEB-004",
+        "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+        "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0",
+        "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+        "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0",
+        "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0",
+        "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+        "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0",
+        "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0",
+        "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+        "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+        "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0",
+        "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+        "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0",
+        "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4",
+        "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0",
+        "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+        "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+        "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0",
+        "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0",
+        "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0",
+        "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625",
+        "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0",
+        "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0",
+        "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0",
+        "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0",
+        "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0",
+        "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0",
+        "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625"
+      ],
+      "new_relation_ids": []
+    },
+    "fit": {
+      "status": "RETENTION_FEASIBLE",
+      "stop": "ORIGINAL_CLAUSE_LIMIT_REACHED",
+      "optimality": "NONE",
+      "old_sparse_objective_still_optimized": false,
+      "new_generalization_guarantee": false,
+      "D_initial": 1.4615384615384615,
+      "D_final": 1.4615384615384615,
+      "train_ids": [
+        "sample-026c9c82f8e544008d21f45281871ae6",
+        "sample-03c6dc75f1db4e92baecc6a7c70a5f02",
+        "sample-04689a7774754137a06fc672c9a34627",
+        "sample-065c905ccda7420eb2d26ede92451811",
+        "sample-0b26e99122a54a5699dbf3786325561c",
+        "sample-0bffc108cdcd46498c072fd18758b023",
+        "sample-0c95698111ae406d9ea186860a67bd74",
+        "sample-0cf60a3c6df34e538cbe239df2893a6f",
+        "sample-0d231b950599443c8bc22fb483a9f2fa",
+        "sample-0ee74dfbc8114447b5112a316a588e94",
+        "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+        "sample-160f9e5da8474eb6bbfaa61e769c21bc",
+        "sample-182aeff3c250426286d0dee524c6bfa4",
+        "sample-1944650570ca4cd39fb7b25c4085427a",
+        "sample-19e49034b3d047ad9e5cb96c98dbfc8c",
+        "sample-1af3fbc02e874366a1abaa7a59fc6648",
+        "sample-22af7231c85d4cc39f29e370761b0111",
+        "sample-22ed5502a1a24385bef4cb91046e3683",
+        "sample-24e48e8890bc4126b5935b155cc639ee",
+        "sample-24fb59bf6a1849bc9d0c2e1884e9482b",
+        "sample-2b9de382d01b49d7a19a13821e13f5a5",
+        "sample-2da864e5446e43479aae3a4834b9789c",
+        "sample-30c2aafc02bb4f88934f1a681b99ecfb",
+        "sample-33573aabe86e47cfbe7f60f14a82161f",
+        "sample-35331f1c414b4c5693fa7ce53327c5fc",
+        "sample-3612e598c6ec4901a6ed3e2298033d69",
+        "sample-3625f791402a4c98a874d7752e34d53e",
+        "sample-36b5abcfd74643ba8c765e7751cba651",
+        "sample-3e78f40f8bd04583b5788feff41ee1b2",
+        "sample-40c36801d19248dd9b0379d4e68e3e5d",
+        "sample-43353bca4447439a8b6567a7912580c2",
+        "sample-437a6b1693cf4be99d0aa2e82bd219e5",
+        "sample-43c57dc95de64fd68ff3c063b467954a",
+        "sample-45096de3c57844d5a2bdf29d9aa66349",
+        "sample-453fb62d191d4214aac0628897ea0f4c",
+        "sample-46d8e74344ca49d2a3179d9959d4e9a2",
+        "sample-480e7ba6bc8f465786594f41dbff046e",
+        "sample-497f3bba454d455d81c1a533d98ac074",
+        "sample-4c800d25dcb249c7ad0a1e1c0d8652af",
+        "sample-4eaed0eeb4674f62a1334405cc6424f4",
+        "sample-50047e752ee34cadb1371d0d6bc8306f",
+        "sample-50489a9484934babb12228cd8d08da3c",
+        "sample-50cbd0648d2e4f378532f8697492cdd3",
+        "sample-511f2a244b674863934048455c8c7a0f",
+        "sample-53dbf57ff58e43d3a7cd03a4bdd1fbd7",
+        "sample-53e4d70e4dfe4f868129e5283b6cb8e8",
+        "sample-553b14ec49be40659ece8416d63fd8a3",
+        "sample-567ce779af7149d1a24cfcf53709f8ec",
+        "sample-569dca4df02d40d8af6395bcdd0b1e10",
+        "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+        "sample-5d9dbd64e3e14564b0221a22467b6900",
+        "sample-5f95e46d790c4744b43d87096099f53d",
+        "sample-61a5188e903649b3a8a4e8eca064adea",
+        "sample-676bd0b06acd4e6d811bba4f163c62e7",
+        "sample-678aaf20ab67499ba77f06901a6df332",
+        "sample-698f3fcbada2411da6d5ef701a65b419",
+        "sample-6a341947642e46518bd9da1ac2d500e3",
+        "sample-6bc9a1548eef44308772c957fa7a95fa",
+        "sample-6c691e924c5d4061bd2e3ad3ce89efbb",
+        "sample-6c720df2cc004cddb7d6dfb1a40b4511",
+        "sample-6d40e867146642de955768a0ed8200b3",
+        "sample-6df292cd3ed64e1b97aef9bb1600e21b",
+        "sample-6e5928800d93420cbd0f4fdeff9f2c56",
+        "sample-709b05cd6edc4e17af59ca92ee4ba609",
+        "sample-709e3db2a8c445b6a0a13a11ca21fbff",
+        "sample-716409916f504b1ab6d5e34eb76b552d",
+        "sample-723b37c8a1b74099a672ec008ad6a65b",
+        "sample-72a718199ea14f289bd36a1cd7b1583a",
+        "sample-72f23290c2ce4bb7a649f50755488792",
+        "sample-732f8493f58347918c2c98b817b6aecb",
+        "sample-75266321279f40198bc7fb5e0403441c",
+        "sample-75ef55c214514955bac9be4cef96e0fd",
+        "sample-7694b66eb50542b197e217196bb1b41c",
+        "sample-783a54b63c37445a88ddf4a07549d567",
+        "sample-79a20c1c837b40cd9632e14018584f7c",
+        "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+        "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+        "sample-81b8159bd8b3423394d5e8b4a26632a6",
+        "sample-85d3032ca80a403d9cbae33f12955f2e",
+        "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "sample-89556fc6e422470687be6418887a9da8",
+        "sample-896430e0a5f94eb8aafc46be91ce1cad",
+        "sample-89bbcf34beb24f66bbac691b9d61be73",
+        "sample-8f5f93dc616d4a3ea7ffaaa6471f56dd",
+        "sample-9303443b8e5142a68b7738384a867615",
+        "sample-932cbe9564b14e75969253310235435c",
+        "sample-94e96649664e4315b2b3069a565edff8",
+        "sample-957b571ca6cb4100b4587222d97744e8",
+        "sample-97a26777a752437a93cd8c4ec3c25125",
+        "sample-97a44bd0a47740cb92ba37c8c53c4fb7",
+        "sample-97b5267853884c94bf4a362291c70a87",
+        "sample-98ab789081954ff492761392584cf081",
+        "sample-98f34a3e8c714756b25747a6de53e8d3",
+        "sample-99be81ac75a14cadb445bf46c644773a",
+        "sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "sample-9e491ec4e8404d29a705c28e8c207a7b",
+        "sample-9e49742f5d844f06b1e3a334f09830a8",
+        "sample-a1d720b4a9be4ca9b2562409112234ee",
+        "sample-a20bf5853e9a48feaff4e852bbdf47ad",
+        "sample-a288027ed42c4956859c0202949cb553",
+        "sample-a29eee631d274d9db42d18bdeb81319f",
+        "sample-a2b40d8e26654e33977d07e8029b4152",
+        "sample-a3e82097de664739874d6fecfb2c66cf",
+        "sample-a89371ebd1d5443d80b661d38ded630a",
+        "sample-a9e17a3f4e20488eaea2a853997092ae",
+        "sample-aba820088d0b4934959e7c36372b33ab",
+        "sample-af7e1ec7432e44ecaa0284575f136484",
+        "sample-b3cdf7ea97fe4828b00defe30879554f",
+        "sample-b643f5a43cd04c86b513cc14de0fe61c",
+        "sample-bc5614f4a9f445eabccf32ff225edbda",
+        "sample-bdc5e59b34604c399c0701115a201b92",
+        "sample-c18ab253975947a0a4a1c8548002dfff",
+        "sample-c6634734dc634b849b18bee1656cb263",
+        "sample-c6a4de9dcd2e4de69431563a50211fa0",
+        "sample-c9ffdbd102934795941054e15b7c9221",
+        "sample-cb5fa9a37ba247bf97bc2d4273dccc53",
+        "sample-cb7fa28f4ccf4d7ba959ff164de513e8",
+        "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+        "sample-d253736cf33f4385b2396e1e24d3fd15",
+        "sample-d3d254c58cde4c868caff5fdd10665e8",
+        "sample-d3ebc72e4aad46e992249259e59be415",
+        "sample-d583af0055d1485bb5dc2571161df308",
+        "sample-d5c2662962ef4a7f836446a355ea87dd",
+        "sample-d6f036ef74814caaa28123219461a406",
+        "sample-d74ffc400a3f4186a8eb1893088c2980",
+        "sample-d960dee1a2cb4b48b292ccb3361364bc",
+        "sample-da8ee97a8ce640c380d163e3c6369080",
+        "sample-dc63c0ebfba2446c88f40e44ee325283",
+        "sample-e17c938daf0c499e948251b9e4b94f29",
+        "sample-e309872634a34831a5844178f012a88e",
+        "sample-e4ca6e94af5a480fab241e98af396252",
+        "sample-e68c8c78b5f84db9b240a91b3a70545e",
+        "sample-e69c11c97b134bfabdcfa6b5008c46c1",
+        "sample-e725bf3af705442ab4ab221b7d10b0e4",
+        "sample-ea6bee9161cf4e7db6d706125d5ff94c",
+        "sample-eaa772506b97488f8abae1d7177d684b",
+        "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+        "sample-ec8496e0a1bc49a5890aa5994c9f1679",
+        "sample-efb03149cfc74a9282d39c98490fcf15",
+        "sample-f02d57f0c7074fb7ba06031d766d0e5f",
+        "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+        "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+        "sample-f2321ba4b0084cc29bb571ad11754c8a",
+        "sample-f23d2812340f43b98977853175d7cbdf",
+        "sample-f5fa5cb164b64da88065e6b242e53e43",
+        "sample-f941f36193334233855301a837e61fcf",
+        "sample-faa0f3c6574040b4b45a92b9d743b7de",
+        "sample-fbbe180436244862bb86dafa81b23d3b",
+        "sample-fc351797174246ee9ab37ea7babb36ce",
+        "sample-fdc30f7ccbe148469fa395ab8266ac01",
+        "sample-fe4e8a7920d8418fa70d3059f12ee85f",
+        "sample-feba82294a1f45c99c9c1371ba535693"
+      ],
+      "train_expected_n": 153,
+      "train_consumed_n": 153,
+      "fit_scope": "V2_C_EXACT_AUTHORIZED_TRAIN_ONLY",
+      "freeze_time": "2026-09-25T07:30:55.746840+00:00",
+      "elapsed_seconds": 0.10190504207275808,
+      "candidate_pool_size": 69,
+      "registered_clause_count": 98,
+      "training_result": {
+        "objective": {
+          "numerator": 561,
+          "denominator": 650,
+          "value": 0.8630769230769231
+        },
+        "macro_tpr": {
+          "numerator": 12,
+          "denominator": 13,
+          "value": 0.9230769230769231
+        },
+        "clean_alarms": 0,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "complexity": 12,
+        "feasible": true,
+        "partial_feasible": true,
+        "clause_ids": [
+          "CAT:NW-006:POSITIVE",
+          "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+          "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+          "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0:NEGATIVE",
+          "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+          "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0:NEGATIVE"
+        ],
+        "states": [
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "T",
+          "T",
+          "F",
+          "T",
+          "T",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "T",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "T",
+          "T",
+          "F",
+          "F",
+          "F",
+          "F",
+          "T",
+          "F",
+          "F"
+        ]
+      },
+      "clean_budget_count": 5,
+      "clean_denominator": 102,
+      "initialization": {
+        "type": "MATCHING_SAVED_TRAIN_MODEL",
+        "source": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__LOCO-v1-13__W0__GREEDY_OR__attempt01/model.json",
+        "model_id": "v2c-96377f50655efb4698f14369",
+        "threshold_refit": false,
+        "outer_predictions_or_scores_used": false,
+        "train_and_fold_binding_verified": true,
+        "candidate_support_and_training_score_verified": true
+      },
+      "actual_fit_invocations": 1,
+      "internal_stages": [
+        "frozen_encoder_reuse",
+        "train_support",
+        "saved_sparse_reuse",
+        "train_signal_retention"
+      ]
+    },
+    "encoder": {
+      "version": "v2-a-adapter-1",
+      "semantics": "V1_TRAIN_QUANTILES_UNCHANGED",
+      "fold_id": "LOCO-v1-13",
+      "train_ids": [
+        "sample-026c9c82f8e544008d21f45281871ae6",
+        "sample-03c6dc75f1db4e92baecc6a7c70a5f02",
+        "sample-04689a7774754137a06fc672c9a34627",
+        "sample-065c905ccda7420eb2d26ede92451811",
+        "sample-0b26e99122a54a5699dbf3786325561c",
+        "sample-0bffc108cdcd46498c072fd18758b023",
+        "sample-0c95698111ae406d9ea186860a67bd74",
+        "sample-0cf60a3c6df34e538cbe239df2893a6f",
+        "sample-0d231b950599443c8bc22fb483a9f2fa",
+        "sample-0ee74dfbc8114447b5112a316a588e94",
+        "sample-120e3c4d39f547b5a9ea2dd62196c7f6",
+        "sample-160f9e5da8474eb6bbfaa61e769c21bc",
+        "sample-182aeff3c250426286d0dee524c6bfa4",
+        "sample-1944650570ca4cd39fb7b25c4085427a",
+        "sample-19e49034b3d047ad9e5cb96c98dbfc8c",
+        "sample-1af3fbc02e874366a1abaa7a59fc6648",
+        "sample-22af7231c85d4cc39f29e370761b0111",
+        "sample-22ed5502a1a24385bef4cb91046e3683",
+        "sample-24e48e8890bc4126b5935b155cc639ee",
+        "sample-24fb59bf6a1849bc9d0c2e1884e9482b",
+        "sample-2b9de382d01b49d7a19a13821e13f5a5",
+        "sample-2da864e5446e43479aae3a4834b9789c",
+        "sample-30c2aafc02bb4f88934f1a681b99ecfb",
+        "sample-33573aabe86e47cfbe7f60f14a82161f",
+        "sample-35331f1c414b4c5693fa7ce53327c5fc",
+        "sample-3612e598c6ec4901a6ed3e2298033d69",
+        "sample-3625f791402a4c98a874d7752e34d53e",
+        "sample-36b5abcfd74643ba8c765e7751cba651",
+        "sample-3e78f40f8bd04583b5788feff41ee1b2",
+        "sample-40c36801d19248dd9b0379d4e68e3e5d",
+        "sample-43353bca4447439a8b6567a7912580c2",
+        "sample-437a6b1693cf4be99d0aa2e82bd219e5",
+        "sample-43c57dc95de64fd68ff3c063b467954a",
+        "sample-45096de3c57844d5a2bdf29d9aa66349",
+        "sample-453fb62d191d4214aac0628897ea0f4c",
+        "sample-46d8e74344ca49d2a3179d9959d4e9a2",
+        "sample-480e7ba6bc8f465786594f41dbff046e",
+        "sample-497f3bba454d455d81c1a533d98ac074",
+        "sample-4c800d25dcb249c7ad0a1e1c0d8652af",
+        "sample-4eaed0eeb4674f62a1334405cc6424f4",
+        "sample-50047e752ee34cadb1371d0d6bc8306f",
+        "sample-50489a9484934babb12228cd8d08da3c",
+        "sample-50cbd0648d2e4f378532f8697492cdd3",
+        "sample-511f2a244b674863934048455c8c7a0f",
+        "sample-53dbf57ff58e43d3a7cd03a4bdd1fbd7",
+        "sample-53e4d70e4dfe4f868129e5283b6cb8e8",
+        "sample-553b14ec49be40659ece8416d63fd8a3",
+        "sample-567ce779af7149d1a24cfcf53709f8ec",
+        "sample-569dca4df02d40d8af6395bcdd0b1e10",
+        "sample-5aa4e9a6c7bf4de8b6bd41a854026c05",
+        "sample-5d9dbd64e3e14564b0221a22467b6900",
+        "sample-5f95e46d790c4744b43d87096099f53d",
+        "sample-61a5188e903649b3a8a4e8eca064adea",
+        "sample-676bd0b06acd4e6d811bba4f163c62e7",
+        "sample-678aaf20ab67499ba77f06901a6df332",
+        "sample-698f3fcbada2411da6d5ef701a65b419",
+        "sample-6a341947642e46518bd9da1ac2d500e3",
+        "sample-6bc9a1548eef44308772c957fa7a95fa",
+        "sample-6c691e924c5d4061bd2e3ad3ce89efbb",
+        "sample-6c720df2cc004cddb7d6dfb1a40b4511",
+        "sample-6d40e867146642de955768a0ed8200b3",
+        "sample-6df292cd3ed64e1b97aef9bb1600e21b",
+        "sample-6e5928800d93420cbd0f4fdeff9f2c56",
+        "sample-709b05cd6edc4e17af59ca92ee4ba609",
+        "sample-709e3db2a8c445b6a0a13a11ca21fbff",
+        "sample-716409916f504b1ab6d5e34eb76b552d",
+        "sample-723b37c8a1b74099a672ec008ad6a65b",
+        "sample-72a718199ea14f289bd36a1cd7b1583a",
+        "sample-72f23290c2ce4bb7a649f50755488792",
+        "sample-732f8493f58347918c2c98b817b6aecb",
+        "sample-75266321279f40198bc7fb5e0403441c",
+        "sample-75ef55c214514955bac9be4cef96e0fd",
+        "sample-7694b66eb50542b197e217196bb1b41c",
+        "sample-783a54b63c37445a88ddf4a07549d567",
+        "sample-79a20c1c837b40cd9632e14018584f7c",
+        "sample-7d0cf7a3679d4c53ac45e625f89b194f",
+        "sample-7e19b3e0cd3542c99cbf9a8922f31614",
+        "sample-80ad32c65c7f4a84b70779eccd24ce6c",
+        "sample-81b8159bd8b3423394d5e8b4a26632a6",
+        "sample-85d3032ca80a403d9cbae33f12955f2e",
+        "sample-86d5cc918c2e4806811a1b6a8083f3c1",
+        "sample-89556fc6e422470687be6418887a9da8",
+        "sample-896430e0a5f94eb8aafc46be91ce1cad",
+        "sample-89bbcf34beb24f66bbac691b9d61be73",
+        "sample-8f5f93dc616d4a3ea7ffaaa6471f56dd",
+        "sample-9303443b8e5142a68b7738384a867615",
+        "sample-932cbe9564b14e75969253310235435c",
+        "sample-94e96649664e4315b2b3069a565edff8",
+        "sample-957b571ca6cb4100b4587222d97744e8",
+        "sample-97a26777a752437a93cd8c4ec3c25125",
+        "sample-97a44bd0a47740cb92ba37c8c53c4fb7",
+        "sample-97b5267853884c94bf4a362291c70a87",
+        "sample-98ab789081954ff492761392584cf081",
+        "sample-98f34a3e8c714756b25747a6de53e8d3",
+        "sample-99be81ac75a14cadb445bf46c644773a",
+        "sample-9b52b2ee157c430d9d6d65e68f69d56a",
+        "sample-9e491ec4e8404d29a705c28e8c207a7b",
+        "sample-9e49742f5d844f06b1e3a334f09830a8",
+        "sample-a1d720b4a9be4ca9b2562409112234ee",
+        "sample-a20bf5853e9a48feaff4e852bbdf47ad",
+        "sample-a288027ed42c4956859c0202949cb553",
+        "sample-a29eee631d274d9db42d18bdeb81319f",
+        "sample-a2b40d8e26654e33977d07e8029b4152",
+        "sample-a3e82097de664739874d6fecfb2c66cf",
+        "sample-a89371ebd1d5443d80b661d38ded630a",
+        "sample-a9e17a3f4e20488eaea2a853997092ae",
+        "sample-aba820088d0b4934959e7c36372b33ab",
+        "sample-af7e1ec7432e44ecaa0284575f136484",
+        "sample-b3cdf7ea97fe4828b00defe30879554f",
+        "sample-b643f5a43cd04c86b513cc14de0fe61c",
+        "sample-bc5614f4a9f445eabccf32ff225edbda",
+        "sample-bdc5e59b34604c399c0701115a201b92",
+        "sample-c18ab253975947a0a4a1c8548002dfff",
+        "sample-c6634734dc634b849b18bee1656cb263",
+        "sample-c6a4de9dcd2e4de69431563a50211fa0",
+        "sample-c9ffdbd102934795941054e15b7c9221",
+        "sample-cb5fa9a37ba247bf97bc2d4273dccc53",
+        "sample-cb7fa28f4ccf4d7ba959ff164de513e8",
+        "sample-cbad7ecdef2347f19e8da8ab4e318bcd",
+        "sample-d253736cf33f4385b2396e1e24d3fd15",
+        "sample-d3d254c58cde4c868caff5fdd10665e8",
+        "sample-d3ebc72e4aad46e992249259e59be415",
+        "sample-d583af0055d1485bb5dc2571161df308",
+        "sample-d5c2662962ef4a7f836446a355ea87dd",
+        "sample-d6f036ef74814caaa28123219461a406",
+        "sample-d74ffc400a3f4186a8eb1893088c2980",
+        "sample-d960dee1a2cb4b48b292ccb3361364bc",
+        "sample-da8ee97a8ce640c380d163e3c6369080",
+        "sample-dc63c0ebfba2446c88f40e44ee325283",
+        "sample-e17c938daf0c499e948251b9e4b94f29",
+        "sample-e309872634a34831a5844178f012a88e",
+        "sample-e4ca6e94af5a480fab241e98af396252",
+        "sample-e68c8c78b5f84db9b240a91b3a70545e",
+        "sample-e69c11c97b134bfabdcfa6b5008c46c1",
+        "sample-e725bf3af705442ab4ab221b7d10b0e4",
+        "sample-ea6bee9161cf4e7db6d706125d5ff94c",
+        "sample-eaa772506b97488f8abae1d7177d684b",
+        "sample-ebbe12eaeeef4f2faf34c4bbbb695242",
+        "sample-ec8496e0a1bc49a5890aa5994c9f1679",
+        "sample-efb03149cfc74a9282d39c98490fcf15",
+        "sample-f02d57f0c7074fb7ba06031d766d0e5f",
+        "sample-f18d4aa9aba54d589c65a4ed2fdf6f3f",
+        "sample-f18ef28ad91b433f8cd5fb21391a7e15",
+        "sample-f2321ba4b0084cc29bb571ad11754c8a",
+        "sample-f23d2812340f43b98977853175d7cbdf",
+        "sample-f5fa5cb164b64da88065e6b242e53e43",
+        "sample-f941f36193334233855301a837e61fcf",
+        "sample-faa0f3c6574040b4b45a92b9d743b7de",
+        "sample-fbbe180436244862bb86dafa81b23d3b",
+        "sample-fc351797174246ee9ab37ea7babb36ce",
+        "sample-fdc30f7ccbe148469fa395ab8266ac01",
+        "sample-fe4e8a7920d8418fa70d3059f12ee85f",
+        "sample-feba82294a1f45c99c9c1371ba535693"
+      ],
+      "fixed_atoms": [
+        "CAT:NW-006",
+        "CAT:NW-007",
+        "CAT:OFFDER-TOUCH-001",
+        "CAT:P3-COLOR-APP",
+        "CAT:WVWEB-004",
+        "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+        "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+        "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+        "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+        "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+        "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+        "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop"
+      ],
+      "numeric": {
+        "UNFITTED_CONTROL:app.web_data.audio_layer.audio_output_latency": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.audio_layer.audio_sample_rate": {
+          "thresholds": [
+            48000.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.automation_surface_layer.mime_types_count": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.automation_surface_layer.plugins_count": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.execution_layer.timezone_offset": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.font_layer.font_probe_count": {
+          "thresholds": [
+            5.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.graphics_layer.webgl_extensions_count": {
+          "thresholds": [
+            20.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.graphics_layer.webgl_max_texture_size": {
+          "thresholds": [
+            4096.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.device_memory": {
+          "thresholds": [
+            2.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.hardware_concurrency": {
+          "thresholds": [
+            4.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:4.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.max_touch_points": {
+          "thresholds": [
+            5.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.network_api_layer.downlink_mbps": {
+          "thresholds": [
+            9.4,
+            10.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4",
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.network_api_layer.rtt_ms": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.avail_height": {
+          "thresholds": [
+            732.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.avail_height:LE:732.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.avail_width": {
+          "thresholds": [
+            412.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.color_depth": {
+          "thresholds": [
+            24.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.device_pixel_ratio": {
+          "thresholds": [
+            2.625
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.inner_height": {
+          "thresholds": [
+            528.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.inner_height:LE:528.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.inner_width": {
+          "thresholds": [
+            412.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.orientation_angle": {
+          "thresholds": [
+            0.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.outer_height": {
+          "thresholds": [
+            528.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.outer_height:LE:528.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.outer_width": {
+          "thresholds": [
+            412.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.pixel_depth": {
+          "thresholds": [
+            24.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.visual_viewport_height": {
+          "thresholds": [
+            528.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:528.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.visual_viewport_scale": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.screen_layer.visual_viewport_width": {
+          "thresholds": [
+            412.19049072265625
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        },
+        "UNFITTED_CONTROL:app.web_data.navigator_layer.languages": {
+          "thresholds": [
+            1.0
+          ],
+          "atom_ids": [
+            "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+          ],
+          "status": "FROZEN",
+          "train_observed_n": 153,
+          "train_expected_n": 153,
+          "surface": "app_web67"
+        }
+      }
+    },
+    "constant": null,
+    "schema_version": "r03-rule-model-v1",
+    "model_id": "r03-45e909d023f107d5d4a5bfa4",
+    "complexity": {
+      "distinct_atoms": 6,
+      "clauses": 6,
+      "literal_occurrences": 6,
+      "objective_complexity": 12,
+      "distinct_families": 6,
+      "distinct_surfaces": 1,
+      "source_union": [
+        "E",
+        "PROJECT_CONTROL_NOT_E_Ou_H_C"
+      ]
+    }
+  }
+}

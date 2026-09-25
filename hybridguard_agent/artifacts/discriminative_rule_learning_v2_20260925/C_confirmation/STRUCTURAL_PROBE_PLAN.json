@@ -1,0 +1,229 @@
+{
+  "version": "C_STRUCTURAL_PROBES_V1",
+  "role": "SYNTHETIC_SEMANTIC_OR_STRUCTURAL_PROBE",
+  "declared_before_C_results": true,
+  "source_sha256": "4e6dc295a5105079d7259b0d2e2e41f1a1501b6c8b36107087d19217541f9323",
+  "cases": [
+    {
+      "id": "baseline_partial_android",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {},
+      "related_fields_kept_consistent": "Android UA/platform, first language, memory scale and signed timezone fields agree.",
+      "why_validate_on_real_normals": "Reference for paired structural responses, not a normal truth label.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "higher_memory",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.device_memory": 8,
+        "app.android_native_data.memory_layer.total_memory_gb": 7.5
+      },
+      "related_fields_kept_consistent": "Native accessible memory and Web approximate capacity changed together; no equality claim.",
+      "why_validate_on_real_normals": "Legitimate hardware RAM and browser approximation may cross an absolute Web threshold.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "higher_cpu",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.hardware_concurrency": 8
+      },
+      "related_fields_kept_consistent": "No Native/Host CPU count was invented; all existing other fields fixed.",
+      "why_validate_on_real_normals": "Legitimate logical processor counts vary.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "multiple_languages",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.languages": [
+          "en-US",
+          "fr-FR"
+        ]
+      },
+      "related_fields_kept_consistent": "Web language remains first list entry en-US; Native locale unchanged.",
+      "why_validate_on_real_normals": "Users can add browser language preferences.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "changed_language_order",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.language": "fr-FR",
+        "app.web_data.navigator_layer.languages": [
+          "fr-FR",
+          "en-US"
+        ]
+      },
+      "related_fields_kept_consistent": "Web language and first list element changed together; Native locale may legitimately differ.",
+      "why_validate_on_real_normals": "Process and browser preferences may differ; first preferred language should follow order.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "pdf_mime_capability",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.automation_surface_layer.plugins_count": 5,
+        "app.web_data.automation_surface_layer.mime_types_count": 2
+      },
+      "related_fields_kept_consistent": "Counts changed together; no missing plugin/MIME member list or Native mirror invented; actual count behavior requires measurement.",
+      "why_validate_on_real_normals": "PDF/plugin support can change between legitimate browser implementations.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "ua_brand_suffix",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.user_agent": "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36 MyApp/1.0",
+        "app.webview_data.webview_settings_layer.settings_user_agent": "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36 MyApp/1.0"
+      },
+      "related_fields_kept_consistent": "Current Web UA and host configured UA agree; host default UA and hardware platform remain original.",
+      "why_validate_on_real_normals": "An application may brand its UA while preserving mobile/platform semantics.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "desktop_request_ua",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+        "app.webview_data.webview_settings_layer.settings_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+      },
+      "related_fields_kept_consistent": "Actual platform remains Android/Linux; configured/current UA changed together. This is declared content negotiation, not an assertion of x86 hardware; actual WebView support remains unverified.",
+      "why_validate_on_real_normals": "A user-authorized desktop-site compatibility UA can advertise desktop semantics on mobile hardware.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "authorized_webdriver",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.automation_surface_layer.webdriver": true
+      },
+      "related_fields_kept_consistent": "Other browser fields unchanged; authorization is scenario metadata, never a predictor.",
+      "why_validate_on_real_normals": "Authorized automation is not automatically an attack under a general normal-use definition.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "timezone_minutes_west",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.execution_layer.timezone_offset": 60,
+        "app.android_native_data.locale_timezone_layer.native_timezone_id": "GMT-01:00",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min": -60
+      },
+      "related_fields_kept_consistent": "Native fixed zone and minutes east agree with negated Web minutes west; no DST assumption.",
+      "why_validate_on_real_normals": "Legitimate timezones can have positive Web minutes west.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "timezone_minutes_east",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.execution_layer.timezone_offset": -480,
+        "app.android_native_data.locale_timezone_layer.native_timezone_id": "GMT+08:00",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min": 480
+      },
+      "related_fields_kept_consistent": "Same instant-compatible fixed timezone sign/unit convention.",
+      "why_validate_on_real_normals": "Response can differ for the other side of zero.",
+      "status_changes": {},
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "missing_memory",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.web_data.navigator_layer.device_memory": null
+      },
+      "related_fields_kept_consistent": "All other fields unchanged; this tests unavailable measurement, not an attack or normal-rate label.",
+      "why_validate_on_real_normals": "Missing browser capability must preserve U.",
+      "status_changes": {
+        "app.web_data.navigator_layer.device_memory": [
+          "unsupported_by_os",
+          "source_unavailable"
+        ]
+      },
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "invalid_measurement_status",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {},
+      "related_fields_kept_consistent": "Other values unchanged; deliberately invalid engineering input, not a proposed real clean scenario.",
+      "why_validate_on_real_normals": "Malformed measurement envelopes must retain execution failure.",
+      "status_changes": {
+        "app.web_data.navigator_layer.device_memory": [
+          "INVALID_STATUS",
+          "observed_value"
+        ]
+      },
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "missing_native_anchor",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {
+        "app.android_native_data.build_fingerprint_layer.os_version": null
+      },
+      "related_fields_kept_consistent": "Web values unchanged; unavailable reference is not proof of attack.",
+      "why_validate_on_real_normals": "A missing Native validity anchor can remove coverage for C0.",
+      "status_changes": {
+        "app.android_native_data.build_fingerprint_layer.os_version": [
+          "unsupported_by_os",
+          "source_unavailable"
+        ]
+      },
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "invalid_native_anchor_status",
+      "level": "RAW_COLLECTED_FIELDS_THROUGH_ORIGINAL_MEASUREMENT",
+      "changed_fields": {},
+      "related_fields_kept_consistent": "Deliberately invalid engineering status; no real clean label.",
+      "why_validate_on_real_normals": "Check execution failure on C0 selected Native-dependent conditions.",
+      "status_changes": {
+        "app.android_native_data.build_fingerprint_layer.os_version": [
+          "INVALID_STATUS",
+          "observed_value"
+        ]
+      },
+      "limits": "Manually constructed partial field fixture; not a collected device or adjudicated clean sample. Feasibility depends on actual device/browser/version; unprovided fields stay U."
+    },
+    {
+      "id": "one_unknown_all_other_literals_false",
+      "level": "PRECOMPUTED_ATOM_LOGIC_ONLY",
+      "changed_fields": [],
+      "related_fields_kept_consistent": "No raw field realization asserted; selected atom states are prescribed solely for logic.",
+      "why_validate_on_real_normals": "Clarify frozen U/failure behavior; cannot establish a real-world error rate.",
+      "limits": "Atom-level counterfactual may lack a jointly realizable raw record; never reported as a raw-field test or normal example."
+    },
+    {
+      "id": "true_or_unknown",
+      "level": "PRECOMPUTED_ATOM_LOGIC_ONLY",
+      "changed_fields": [],
+      "related_fields_kept_consistent": "No raw field realization asserted; selected atom states are prescribed solely for logic.",
+      "why_validate_on_real_normals": "Clarify frozen U/failure behavior; cannot establish a real-world error rate.",
+      "limits": "Atom-level counterfactual may lack a jointly realizable raw record; never reported as a raw-field test or normal example."
+    },
+    {
+      "id": "failed_even_with_true",
+      "level": "PRECOMPUTED_ATOM_LOGIC_ONLY",
+      "changed_fields": [],
+      "related_fields_kept_consistent": "No raw field realization asserted; selected atom states are prescribed solely for logic.",
+      "why_validate_on_real_normals": "Clarify frozen U/failure behavior; cannot establish a real-world error rate.",
+      "limits": "Atom-level counterfactual may lack a jointly realizable raw record; never reported as a raw-field test or normal example."
+    }
+  ],
+  "not_real_labels": true,
+  "not_added_to_supervised_metrics": true,
+  "no_fit_or_parameter_selection": true
+}

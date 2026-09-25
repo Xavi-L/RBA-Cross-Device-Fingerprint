@@ -1,0 +1,160 @@
+{
+  "schema_version": "v2-c-confirmation-record-template-v1",
+  "role": "TEMPLATE_NOT_DATA",
+  "contains_real_records": false,
+  "collection_authorized": false,
+  "confirmation_feature_access_authorized": false,
+  "confirmation_label_open_authorized": false,
+  "data_role": null,
+  "allowed_data_roles": [
+    "NEW_DEVELOPMENT",
+    "INDEPENDENT_CONFIRMATION"
+  ],
+  "record_id": null,
+  "triplet_id": null,
+  "bundle_id": null,
+  "collection_batch_id": null,
+  "configuration_id": null,
+  "identity_metadata_only_not_predictors": {
+    "physical_device_study_id": null,
+    "environment_study_id": null,
+    "independence_group_id": null,
+    "related_prior_groups": [],
+    "independence_basis": null,
+    "device_model": null,
+    "os_version": null,
+    "app_version": null,
+    "browser_or_webview_package": null,
+    "browser_or_webview_version": null,
+    "kernel_version": null,
+    "batch_start_utc": null
+  },
+  "exposure": {
+    "features_seen_before_freeze": null,
+    "labels_seen_before_freeze": null,
+    "previous_development_use": null,
+    "role_assignment_basis": null
+  },
+  "authorization": {
+    "reference": null,
+    "operator": null,
+    "allowed_actions": [],
+    "expiry_or_stop": null
+  },
+  "intervention": {
+    "kind": null,
+    "allowed_kinds": [
+      "DECLARED_ATTACK",
+      "LEGAL_VARIATION",
+      "NONE"
+    ],
+    "declared_scope": null,
+    "legitimate_purpose": null,
+    "execution_log_ref": null,
+    "effect_evidence_ref": null,
+    "rollback_evidence_ref": null,
+    "execution_status": "NOT_EVALUATED",
+    "effect_status": "NOT_EVALUATED",
+    "recovery_status": "NOT_EVALUATED"
+  },
+  "stages": {
+    "pre": {
+      "collection_id": null,
+      "timestamp_utc": null,
+      "current_features_ref": null,
+      "quality_ref": null,
+      "field_status": {},
+      "field_quality": {},
+      "missing_fields": [],
+      "failure_records": [],
+      "label": null,
+      "label_status": "NOT_ADJUDICATED",
+      "label_basis_ref": null,
+      "adjudicator": null
+    },
+    "intervention": {
+      "collection_id": null,
+      "timestamp_utc": null,
+      "current_features_ref": null,
+      "quality_ref": null,
+      "field_status": {},
+      "field_quality": {},
+      "missing_fields": [],
+      "failure_records": [],
+      "label": null,
+      "label_status": "NOT_ADJUDICATED",
+      "label_basis_ref": null,
+      "adjudicator": null
+    },
+    "post": {
+      "collection_id": null,
+      "timestamp_utc": null,
+      "current_features_ref": null,
+      "quality_ref": null,
+      "field_status": {},
+      "field_quality": {},
+      "missing_fields": [],
+      "failure_records": [],
+      "label": null,
+      "label_status": "NOT_ADJUDICATED",
+      "label_basis_ref": null,
+      "adjudicator": null
+    }
+  },
+  "admission": {
+    "expected_member": null,
+    "decision": "PENDING_CONTRACT",
+    "predeclared_rule_ref": null,
+    "exclusion_or_unknown_reason": null,
+    "model_output_used_as_label_basis": false,
+    "failed_members_retained_in_denominator": true
+  },
+  "confirmation_freeze": {
+    "execution_contract_ref": null,
+    "C_contract_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/C_CONTRACT.json",
+    "C_method_freeze_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/METHOD_FREEZE.json",
+    "candidate_models": [
+      {
+        "spec_id": "C0__GREEDY_OR",
+        "model_id": "v2c-40ffc55faff1962cc57829ee",
+        "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__ALL_DEVELOPMENT_162__C0__GREEDY_OR__attempt01/model.json"
+      },
+      {
+        "spec_id": "W0__GREEDY_OR",
+        "model_id": "v2c-3def521e987075a27b52e2df",
+        "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__ALL_DEVELOPMENT_162__W0__GREEDY_OR__attempt01/model.json"
+      },
+      {
+        "spec_id": "W0__R_KEEP_V1",
+        "model_id": "v2c-af691341a2d38032d88973b5",
+        "model_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__ALL_DEVELOPMENT_162__W0__R_KEEP_V1__attempt01/model.json"
+      }
+    ],
+    "access_authorization_ref": null,
+    "prediction_close_utc": null,
+    "label_open_authorization_ref": null,
+    "label_open_utc": null
+  },
+  "operation_targets": {
+    "min_micro_detection": "TBD_BY_USER",
+    "min_macro_detection": "TBD_BY_USER",
+    "max_pre_alarm": "TBD_BY_USER",
+    "max_post_alarm": "TBD_BY_USER",
+    "max_combined_clean_alarm": "TBD_BY_USER",
+    "legal_variation_alarm_target_and_weight": "TBD_BY_USER",
+    "min_coverage": "TBD_BY_USER",
+    "max_failure": "TBD_BY_USER",
+    "comparison_claim": "TBD_BY_USER",
+    "confidence_level_and_interval_method": "TBD_BY_USER",
+    "main_configurations_and_weights": "TBD_BY_USER",
+    "independent_groups_and_sample_size": "TBD_BY_USER",
+    "collection_budget": "TBD_BY_USER",
+    "admission_exclusion_and_recollection_limits": "TBD_BY_USER",
+    "stop_date": "TBD_BY_USER"
+  },
+  "notes": [
+    "No clean or attack truth implied by template or phase name.",
+    "Do not use identity metadata as model inputs.",
+    "After any method selection using confirmation data, relabel its role as development feedback; require new independent materials."
+  ]
+}

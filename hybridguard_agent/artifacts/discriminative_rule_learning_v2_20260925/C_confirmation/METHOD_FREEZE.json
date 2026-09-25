@@ -1,0 +1,60 @@
+{
+  "created_at": "2026-09-25T07:26:49.129116+00:00",
+  "B_learning_program_unchanged": true,
+  "retention_source_exact_accepted_B": true,
+  "W0_signal_groups_equal_B": true,
+  "settings": {
+    "lambda": 0.005,
+    "alpha": 0.05,
+    "min_train_decision_coverage": 0.8,
+    "coverage_strata": [
+      "attack",
+      "clean_pre",
+      "clean_post"
+    ],
+    "max_clauses": 6,
+    "max_literals": 12,
+    "max_complexity": 12,
+    "max_clause_length": 1,
+    "max_clauses_per_family": 2,
+    "minimum_available_complete_triplets": 3,
+    "minimum_true_attack_triplets": 2,
+    "minimum_support_bundles": 1,
+    "minimum_support_environments": 1,
+    "numeric_quantiles": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "numeric_interpolation": "LINEAR_AT_INDEX_(N_MINUS_1)*Q",
+    "seed": 20260924,
+    "greedy_max_additions": 6,
+    "backward_pruning_passes": 1,
+    "fit_time_limit_seconds": 60,
+    "training_execution_failures_max": 0
+  },
+  "runtime_versions": {
+    "hybridguard_agent/research/rule_learning_v2/c_engine.py": "27725fa5f9ffe09ec9a830e225c97c8a20da454116d1c053c2a9ef9f1a375ed4",
+    "hybridguard_agent/research/rule_learning_v2/c_experiment.py": "fe23b2f12412a53e8e99a8fe91c9c0802b48ee4f70d3c7332a42a8cd8934cfe2",
+    "hybridguard_agent/research/rule_learning_v2/b_engine.py": "8c3e7c5c3036bf176ca451dfbe720c07d56da7c07a0c9100f4d08dbdab87b215",
+    "hybridguard_agent/research/rule_learning_v2/adapter.py": "c8c294e7e34030f2350f9ff47abebd8781502b018e2398cbd55667eff62c8a80",
+    "hybridguard_agent/research/rule_learning_v2/retention.py": "0c0aef39d71f905a8a9610889ed04587f8cfe2f54649ce82ec3af96ddda4fc6c",
+    "hybridguard_agent/research/rule_learning_v2/trial_summary.py": "8e0029ad85666ed630fe2e26bc3f81f751049dba3a93ab9d33cd0042853b3c60",
+    "hybridguard_agent/research/rule_learning_v2/pilot.py": "21b8e4f3324d5026acf33465dca32af44adc6c7dd322dee241d57929bff2fa3c",
+    "hybridguard_agent/research/rule_learning_v2/common.py": "0970628337a328911378aea6f01939f55992de372646310987a8f116141ed061",
+    "hybridguard_agent/research/rule_learning/baselines.py": "3a4b96bc738ce76ddcec1965a2bea51008ba897d1ad2728f60bce7392596a9f7",
+    "hybridguard_agent/research/rule_learning/contracts.py": "9fd49d0c8579e79978a94fb37b64e905df66199c00f72b0665b6d40837c9dbb4",
+    "hybridguard_agent/research/rule_learning/evaluation.py": "236c38ac982cdd002579ee893da32fb45c974143ddf5516f03849fd72ca59dee",
+    "hybridguard_agent/research/rule_learning/fold_data.py": "9f2d22ba7e6cd6e513470f231aaac3ce84d8148f132f2b3a6c9bb69bdf2b78df",
+    "hybridguard_agent/research/rule_learning/models.py": "a2fc2f2a75b70b6e3758b81049acb94c5fcfe838bb8d123bf62e1395dff116a0",
+    "hybridguard_agent/research/rule_learning/predictor.py": "a60b2025af6122fe62ac943afcbf1233cefdef00075b509dd9f6b371661dcc5a",
+    "hybridguard_agent/research/rule_learning/selector.py": "2a205bcff1c87cf4ded9f50f00a614410ccc9d13e783ba272b13f324505fd59e",
+    "hybridguard_agent/config/rule_learning_v1_20260924/candidate_grammar.json": "54db47c241cb80c9d9ff1e5c7d1ee4c7fe929b665b1e4615996729df148ebd16",
+    "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json": "50272fa7638c2fe41040e014332148e739ac1a9e2fcc8455a26841bd833a2f85"
+  },
+  "data_dependent_fit": "Own train quantiles/support/selection for each job; saved matching W0 initialization reused only within the same train/fold.",
+  "C0_W0_syntax": "Original core/SINGLE_SURFACE App Web candidates and polarity/aliases; no new relations or matched parser atoms.",
+  "all_C_jobs_frozen_before_results": true,
+  "all_jobs_ref": "C_CONTRACT.json",
+  "probe_plan_ref": "STRUCTURAL_PROBE_PLAN.json"
+}

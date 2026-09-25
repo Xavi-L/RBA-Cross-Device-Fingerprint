@@ -90,3 +90,13 @@ A 提交 `72a7c74` 已由用户验收。按本轮具体指令执行失败汇总�
 A 的用户验收已记入当前状态，历史产物保持只读。B 完成四批、13 规格共 39 次实际 fit，失败/重试均 0，计费 27.176215998 秒；连同 V1、R09、A 累计 116 fits / 140.589167124 秒。工程与语义测试 36 项通过。主候选 W0 + R_KEEP_V1 检出 45/54，配置/环境宏平均 78.57%，pre/post 报警各 0/54、覆盖 162/162，三折复杂度均 12。相对 W0 新增 18、丢失 0，增益集中于一个留出环境组。较大表示无额外增益，内存跨层关系新增 18 个 clean 报警的负结果已保留。候选为已暴露材料上的开发决策，尚无独立确认或全开发集最终模型。
 
 证据：[REPORT.md](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/REPORT.md)、[CANDIDATE_SELECTION.json](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/CANDIDATE_SELECTION.json)、[completion.json](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/B_development/completion.json)。账本已关闭；下一动作是等待 B 审查。本轮不执行 V2-C/R10/V3，不 commit、push 或创建 PR。
+
+## 2026-09-25 V2-C 明确授权与方法冻结
+
+用户验收 B 提交 `2d73be0`，保留 W0 + R_KEEP_V1 待确认。C 仅修复 JSON null 完整性检查并冻结原学习程序，预先登记 3 次全开发集拟合及 28 次原 14 折 LOCO 拟合；总上限 36 fits / 1800 秒，额外 5 次仅限有证据的工程重试。V1、A、B 产物只读；C0 LOCO 优先复用兼容 R08 保存结果。全开发集重代入、配置留出内部评价和 B LOEO 分表；不访问独立确认材料，不重新选方法，不采集或执行攻击工具，不自动 Git 写入。合同、精确成员、代码版本与预先声明的结构响应规格保存在 `C_confirmation/`。内部必需工作全部完成后交付 DEVELOPMENT_COMPLETE_CONFIRMATION_PENDING 并停止。
+
+## 2026-09-25 V2-C 内部完成，独立确认待决
+
+状态 `DEVELOPMENT_COMPLETE_CONFIRMATION_PENDING`，停止等待用户审查。JSON null 完整性修复和48项合成回归通过；冻结B学习程序，完成3个全开发集最终模型及28次原LOCO拟合，失败/重试均0，计费13.577589837秒；累计147fits/154.166756961秒，全研究剩余53fits/21445.833243039秒。W0/R_KEEP全开发集规则、编码器与阈值相同，训练重代入48/54；LOCO两项均33/54、宏50%、pre/post各0/54、覆盖162/162、复杂度12，相对增益0。B的45/54仍只属于原LOEO。C0复用14个兼容R08模型，无额外fit。18项预声明合成情景保留54个响应项（52决定、2不适用），暴露高内存/语言/MIME/UA/自动化/时区的待验证合法变化风险，不估计真实FPR。
+
+证据：[C REPORT.md](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/REPORT.md)、[completion.json](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/completion.json)、[CONFIRMATION_PLAN.md](../../hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/CONFIRMATION_PLAN.md)。真实独立材料、标签开封与操作目标尚缺，计划及记录模板已经准备；未采集、未读取/评分新确认材料、未重裁决标签。账本已关闭，未用5次工程重试额度不转为新授权。不重新选方法、不自动进入R10/V3、不commit/push/PR。
