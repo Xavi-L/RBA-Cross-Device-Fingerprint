@@ -1,0 +1,1483 @@
+{
+  "fixture_schema_version": "rsr-synthetic-fixtures-v1",
+  "source_spec_version": "rule-semantics-revision-design-v1",
+  "fixture_data_kind": "SYNTHETIC_ONLY",
+  "real_sample": false,
+  "source_spec_unchanged": true,
+  "specification_examples": [
+    {
+      "fixture_id": "LANG-EX-F-FALLBACK",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-F-FALLBACK",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "FIRST_TAG_EQUAL",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "zh-CN",
+          "app.web_data.navigator_layer.languages": [
+            "zh-CN",
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-T-ORDER",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-T-ORDER",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "T",
+      "source_expected_reason": "FIRST_TAG_DIFFERS;OLD_PRIMARY_MEMBERSHIP_WOULD_BE_F",
+      "expected_state": "T",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "fr-FR",
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-U-MISSING",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-U-MISSING",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "MISSING_OR_INVALID_LANGUAGE_INPUT",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": []
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-U-TYPE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-U-TYPE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "MISSING_OR_INVALID_LANGUAGE_INPUT",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": "en-US"
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-F-CASE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-F-CASE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "FIRST_TAG_EQUAL_CASE_INSENSITIVE",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "EN-us",
+          "app.web_data.navigator_layer.languages": [
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-T-REGION",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-T-REGION",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "T",
+      "source_expected_reason": "FULL_TAG_FIRST_DIFFERS_NOT_ATTACK_TRUTH",
+      "expected_state": "T",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-GB"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-U-EXTENSION",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-U-EXTENSION",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "UNSUPPORTED_OR_INVALID_FIRST_LANGUAGE_TAG;NOT_CLAIM_INVALID_BCP47",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US-u-ca-gregory",
+          "app.web_data.navigator_layer.languages": [
+            "en-US-u-ca-gregory"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-F-REDUCED",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-F-REDUCED",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "DECLARED_FIRST_TAG_RELATION;IMPLEMENTATION_CONFORMANCE_UNKNOWN",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "fr-FR",
+          "app.web_data.navigator_layer.languages": [
+            "fr-FR"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        },
+        "metadata": {
+          "provider_version": "UNKNOWN"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-U-PROVENANCE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-U-PROVENANCE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "SOURCE_CONTEXT_UNPAIRED",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_legacy_projection_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-FAILED",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-FAILED",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "FAILED",
+      "source_expected_reason": "INVALID_SERIALIZED_RECORD_ENVELOPE",
+      "expected_state": "FAILED",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "invented",
+        "features": {
+          "app.web_data.navigator_layer.language": null,
+          "app.web_data.navigator_layer.languages": null
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-F-TAIL-EXTENSION",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-F-TAIL-EXTENSION",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "FIRST_TAG_EQUAL;TAIL_PRESERVED_NOT_GATED",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-US",
+            "fr-FR-u-ca-gregory"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-T-TAIL-TYPE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-T-TAIL-TYPE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "T",
+      "source_expected_reason": "FIRST_TAG_DIFFERS;TAIL_TYPE_ANOMALY_DIAGNOSTIC_ONLY_NOT_ATTACK_TRUTH",
+      "expected_state": "T",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "fr-FR",
+            42
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "LANG-EX-F-TAIL-TYPE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "LANG-EX-F-TAIL-TYPE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "FIRST_TAG_EQUAL;TAIL_TYPE_ANOMALY_DIAGNOSTIC_ONLY_NOT_NORMAL_LABEL",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "same_sync_source is not copied as a trusted page flag; an explicitly SYNTHETIC caller SourceBinding uses a paired or deliberately mismatched scope."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-US",
+            null
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null
+    },
+    {
+      "fixture_id": "WEBDRIVER-NORMAL-FALSE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-NORMAL-FALSE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "正常兼容报告false；只是规格场景。",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "value_type": "boolean",
+              "boolean_value": false,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-REPORTED-TRUE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-REPORTED-TRUE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "T",
+      "source_expected_reason": "报告true，不裁决攻击、不声称是正常默认反例。",
+      "expected_state": "T",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "value_type": "boolean",
+              "boolean_value": true,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-LEGACY-FALSE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-LEGACY-FALSE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "LEGACY_NONTRUE_PROJECTION_AMBIGUOUS",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "The legacy shorthand schema selects an explicit caller mode; its saved boolean and field state are preserved."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.automation_surface_layer.webdriver": false
+        },
+        "field_status": {
+          "app.web_data.automation_surface_layer.webdriver": "observed"
+        },
+        "field_quality": {
+          "app.web_data.automation_surface_layer.webdriver": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_legacy_projection_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": "legacy_projection_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-READ-ERROR",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-READ-ERROR",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "SOURCE_STATUS_RUNTIME_ERROR；不是候选执行器FAILED。",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "The legacy shorthand schema selects an explicit caller mode; its saved boolean and field state are preserved."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.automation_surface_layer.webdriver": false
+        },
+        "field_status": {
+          "app.web_data.automation_surface_layer.webdriver": "runtime_error"
+        },
+        "field_quality": {
+          "app.web_data.automation_surface_layer.webdriver": "source_unavailable"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_legacy_projection_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": "legacy_projection_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-API-ABSENT",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-API-ABSENT",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "API_ABSENT",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": false,
+              "value_type": null,
+              "boolean_value": null,
+              "presence_read_status": "observed",
+              "value_read_status": "not_attempted",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-NONBOOLEAN",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-NONBOOLEAN",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "NONBOOLEAN_API_VALUE",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "value_type": "string",
+              "boolean_value": null,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-UNKNOWN-ENGINE",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-UNKNOWN-ENGINE",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "仅报告布尔状态可定义；不以未知版本倒推出原生automation=false。",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "value_type": "boolean",
+              "boolean_value": false,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        },
+        "metadata": {
+          "engine_version": null
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-FAILED-CONTRADICTION",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-FAILED-CONTRADICTION",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "FAILED",
+      "source_expected_reason": "INCONSISTENT_OBSERVATION_RECORD；数据验证失败而非正常不适用。",
+      "expected_state": "FAILED",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": false,
+              "value_type": "boolean",
+              "boolean_value": true,
+              "presence_read_status": "observed",
+              "value_read_status": "not_attempted",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-PRESENCE-ERROR",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-PRESENCE-ERROR",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "PRESENCE_READ_ERROR；存在性检查异常不能当API_ABSENT。",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": null,
+              "presence_read_status": "runtime_error",
+              "value_read_status": "not_attempted",
+              "value_type": null,
+              "boolean_value": null,
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-RAW-GETTER-ERROR",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-RAW-GETTER-ERROR",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "U",
+      "source_expected_reason": "VALUE_READ_ERROR;不同于presence检查失败及API缺失",
+      "expected_state": "U",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "presence_read_status": "observed",
+              "value_read_status": "runtime_error",
+              "value_type": null,
+              "boolean_value": null,
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    },
+    {
+      "fixture_id": "WEBDRIVER-RAW-INDEPENDENT-OF-OLD-GROUP",
+      "kind": "SPECIFICATION_EXAMPLE_EXECUTION_FIXTURE",
+      "source_example_id": "WEBDRIVER-RAW-INDEPENDENT-OF-OLD-GROUP",
+      "source_spec_path": "deliverables/rule_semantics_revision/CANDIDATE_SPEC.json",
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "source_executed": false,
+      "source_expected_state": "F",
+      "source_expected_reason": "raw自身读取成功；旧兼容automation组失败不覆盖原始状态。仅为未来采集契约规格例。",
+      "expected_state": "F",
+      "adaptation_notes": [
+        "Materialized the approved example_default_assumptions into this synthetic minimal input envelope; no real collection record or historical source binding is inferred.",
+        "proposed-raw-state-v1 is materialized under the rsr-input-v1 observation path. Missing observer_revision and shorthand/missing realm_binding receive explicit SYNTHETIC caller-matched metadata per the approved default assumptions; this does not repair real records."
+      ],
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "value_type": "boolean",
+              "boolean_value": false,
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        },
+        "features": {
+          "app.web_data.automation_surface_layer.webdriver": false
+        },
+        "field_status": {
+          "app.web_data.automation_surface_layer.webdriver": "runtime_error"
+        },
+        "field_quality": {
+          "app.web_data.automation_surface_layer.webdriver": "source_unavailable"
+        },
+        "metadata": {
+          "legacy_error_reason": "later MIME getter failed"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1"
+    }
+  ],
+  "additional_boundary_examples": [
+    {
+      "fixture_id": "LANG-BOUNDARY-SCRIPT",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "zh-Hans",
+          "app.web_data.navigator_layer.languages": [
+            "zh-Hant"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null,
+      "expected_state": "T",
+      "boundary_reason": "Retain script distinctions; do not reduce to primary language."
+    },
+    {
+      "fixture_id": "LANG-BOUNDARY-FIRST-NUMBER",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            42,
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null,
+      "expected_state": "U",
+      "boundary_reason": "A non-string first item cannot define the relation."
+    },
+    {
+      "fixture_id": "LANG-BOUNDARY-TRAILING-NEWLINE",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US\n",
+          "app.web_data.navigator_layer.languages": [
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null,
+      "expected_state": "U",
+      "boundary_reason": "Full match rejects trailing newline; no trim."
+    },
+    {
+      "fixture_id": "LANG-BOUNDARY-SOURCE-TIMEOUT",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "timeout",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "source_unavailable",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null,
+      "expected_state": "U",
+      "boundary_reason": "Source timeout is unavailable, not executor failure."
+    },
+    {
+      "fixture_id": "LANG-BOUNDARY-INVALID-ENUM",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "invented",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "navigator_sync_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": null,
+      "expected_state": "FAILED",
+      "boundary_reason": "Invalid related field status is malformed serialized input."
+    },
+    {
+      "fixture_id": "LANG-BOUNDARY-PAGE-SELFCLAIM",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.navigator_layer.language": "en-US",
+          "app.web_data.navigator_layer.languages": [
+            "en-US"
+          ]
+        },
+        "field_status": {
+          "app.web_data.navigator_layer.language": "observed",
+          "app.web_data.navigator_layer.languages": "observed"
+        },
+        "field_quality": {
+          "app.web_data.navigator_layer.language": "observed_value",
+          "app.web_data.navigator_layer.languages": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "UNTRUSTED_PAGE_DICTIONARY",
+        "trusted": true,
+        "same_context": true
+      },
+      "mode": null,
+      "expected_state": "U",
+      "boundary_reason": "A page dictionary does not become a caller SourceBinding."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-LEGACY-TRUE",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.automation_surface_layer.webdriver": true
+        },
+        "field_status": {
+          "app.web_data.automation_surface_layer.webdriver": "observed"
+        },
+        "field_quality": {
+          "app.web_data.automation_surface_layer.webdriver": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_legacy_projection_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": "legacy_projection_v1",
+      "expected_state": "T",
+      "boundary_reason": "Legacy true still contains the original exact-true predicate information."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-LEGACY-INT",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.automation_surface_layer.webdriver": 1
+        },
+        "field_status": {
+          "app.web_data.automation_surface_layer.webdriver": "observed"
+        },
+        "field_quality": {
+          "app.web_data.automation_surface_layer.webdriver": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_legacy_projection_v1",
+        "binding_version": "rsr-source-binding-v1"
+      },
+      "mode": "legacy_projection_v1",
+      "expected_state": "U",
+      "boundary_reason": "No bool/int coercion in legacy mode."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-RAW-UNDEFINED",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "value_type": "undefined",
+              "boolean_value": null,
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1",
+      "expected_state": "U",
+      "boundary_reason": "A present property returning JavaScript undefined is nonboolean, not absent."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-NO-FALLBACK",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "features": {
+          "app.web_data.automation_surface_layer.webdriver": true
+        },
+        "field_status": {
+          "app.web_data.automation_surface_layer.webdriver": "observed"
+        },
+        "field_quality": {
+          "app.web_data.automation_surface_layer.webdriver": "observed_value"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1",
+      "expected_state": "U",
+      "boundary_reason": "Missing raw observation must not fall back to favorable legacy true."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-MISSING-REVISION",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "value_type": "boolean",
+              "boolean_value": false,
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1",
+      "expected_state": "U",
+      "boundary_reason": "Missing raw observer metadata cannot be inferred from the value."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-HASH-ERROR",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "value_type": "boolean",
+              "boolean_value": false,
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        },
+        "metadata": {
+          "plugins_hash_error": "synthetic hash enumeration failure"
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1",
+      "expected_state": "F",
+      "boundary_reason": "An unrelated plugins hash error does not imply webdriver getter failure."
+    },
+    {
+      "fixture_id": "WEBDRIVER-BOUNDARY-BOOLEAN-CONTRADICTION",
+      "kind": "ADDITIONAL_SYNTHETIC_BOUNDARY",
+      "source_example_id": null,
+      "source_spec_version": "rule-semantics-revision-design-v1",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "candidate_version": "1.0.0",
+      "real_sample": false,
+      "payload": {
+        "record_schema_version": "rsr-input-v1",
+        "web_data": {
+          "automation_surface_layer": {
+            "webdriver_observation": {
+              "api_present": true,
+              "presence_read_status": "observed",
+              "value_read_status": "observed",
+              "value_type": "boolean",
+              "boolean_value": "false",
+              "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+              "realm_binding": "SYNTHETIC-realm-1"
+            }
+          }
+        }
+      },
+      "source_binding": {
+        "kind": "SYNTHETIC_CALLER_BINDING",
+        "source_contract_id": "SYNTHETIC-test-contract-v1",
+        "observation_scope": "webdriver_raw_observation_v1",
+        "binding_version": "rsr-source-binding-v1",
+        "observer_revision": "SYNTHETIC-webdriver-observer-v1",
+        "realm_binding": "SYNTHETIC-realm-1"
+      },
+      "mode": "raw_observation_v1",
+      "expected_state": "FAILED",
+      "boundary_reason": "Declared boolean success and a string boolean_value contradict the raw record."
+    }
+  ]
+}

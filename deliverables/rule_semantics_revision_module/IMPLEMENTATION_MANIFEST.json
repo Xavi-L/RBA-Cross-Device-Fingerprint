@@ -1,0 +1,210 @@
+{
+  "schema_version": "rule-semantics-module-implementation-v1",
+  "status": "MODULE_IMPLEMENTATION_COMPLETE_PENDING_REVIEW",
+  "starting_head": "8eeeb2238bd829a7078efe009c46e3e7f052c576",
+  "approved_design_commit": "8eeeb2238bd829a7078efe009c46e3e7f052c576",
+  "current_head": "8eeeb2238bd829a7078efe009c46e3e7f052c576",
+  "implementation_is_committed": false,
+  "design_starting_baseline": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+  "module_contract": {
+    "module": "rule_semantics_revision_v1",
+    "version": "1.0.0",
+    "input_schema_version": "rsr-input-v1",
+    "source_binding_version": "rsr-source-binding-v1",
+    "candidate_count": 2,
+    "candidates": {
+      "RSR-LANG-FIRST-v1": {
+        "version": "1.0.0",
+        "gate_version": "rsr-language-first-gate-v1",
+        "callable": "language.web_language_first_difference",
+        "information_relation": "SAME_WEB_OBSERVATION_FIRST_ITEM_RELATION",
+        "source_scopes": [
+          "navigator_sync_v1"
+        ],
+        "modes": [],
+        "mode_gate_versions": {}
+      },
+      "RSR-WEBDRIVER-STATE-v1": {
+        "version": "1.0.0",
+        "gate_version": "rsr-webdriver-reported-state-gate-v1",
+        "callable": "webdriver.webdriver_reported_state",
+        "information_relation": "SINGLE_WEB_STATE_OBSERVATION",
+        "source_scopes": [
+          "webdriver_legacy_projection_v1",
+          "webdriver_raw_observation_v1"
+        ],
+        "modes": [
+          "legacy_projection_v1",
+          "raw_observation_v1"
+        ],
+        "mode_gate_versions": {
+          "legacy_projection_v1": "rsr-webdriver-legacy-gate-v1",
+          "raw_observation_v1": "rsr-webdriver-raw-gate-v1"
+        }
+      }
+    },
+    "webdriver_overlap": {
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "mode": "legacy_projection_v1",
+      "branch": "observed/observed_value strict true with valid source binding",
+      "old_rule_id": "W03",
+      "old_atom_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+      "old_literal_id": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+      "shared_discriminative_information": true,
+      "independent_evidence_counting_allowed": false,
+      "note": "The legacy true branch shares W03's strict-true information. Legacy false -> U is a new report-state interpretation, not a correction to the old predicate or its historical outputs."
+    },
+    "source_binding_claim": "Caller-declared collection association; not getter integrity or authenticity proof.",
+    "unknown_engine_policy": "No version-based gate for literal language consistency or reported webdriver value.",
+    "mode_selection": "Explicit caller contract; never inferred from values or changed after a result.",
+    "integration": "STANDALONE_OFFLINE_ONLY",
+    "research_effectiveness": "NOT_EVALUATED",
+    "historical_record_applicability": "NOT_AUDITED",
+    "independent_confirmation": "NOT_PERFORMED"
+  },
+  "code_and_fixture_files": [
+    {
+      "path": "hybridguard_agent/research/rule_semantics_revision_v1/__init__.py",
+      "change": "ADDED",
+      "summary": "导出两个纯关系函数和轻量契约；无IO副作用",
+      "bytes": 380,
+      "sha256": "2c62ce7e70852eee347db8d32ef64cca7d997f3afa11c8f8d4ebefbd1f9e9aa9",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/research/rule_semantics_revision_v1/contracts.py",
+      "change": "ADDED",
+      "summary": "验证SemanticCell严格编码，定义外部SourceBinding与Issue",
+      "bytes": 4158,
+      "sha256": "8fcb64a2ef3807ee7946110c0c4f1799bd6a793bd620ec1008450f61d72414c6",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/research/rule_semantics_revision_v1/input_adapter.py",
+      "change": "ADDED",
+      "summary": "仅相关字段的新输入schema、枚举与可用性处理；固定原因优先级",
+      "bytes": 5143,
+      "sha256": "6fe9c2adcee80a8c865aac63d3d346bdb756f6c925f6b7825a6a4078f51f220f",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/research/rule_semantics_revision_v1/language.py",
+      "change": "ADDED",
+      "summary": "有限完整标签解析与首项差异；尾项只作诊断",
+      "bytes": 3330,
+      "sha256": "b52de3b3e81da699347b32728add449b22956d6be58614ceb8b6dc65b3a8f1a6",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/research/rule_semantics_revision_v1/webdriver.py",
+      "change": "ADDED",
+      "summary": "独立legacy/raw解析、矛盾结构检查、无回退，不替换旧W03",
+      "bytes": 10873,
+      "sha256": "71c172759541c2dc0567841f3409ec6accaec256b23995e9cb5405702902d8bd",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/research/rule_semantics_revision_v1/manifest.py",
+      "change": "ADDED",
+      "summary": "仅两候选的身份、输入/门控版本及W03信息重叠声明",
+      "bytes": 3717,
+      "sha256": "9a37051145f50d2b84f4b05969941a130ee8ae4f7d489be1510a83e333e7aa1c",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/tests/test_rule_semantics_revision_v1.py",
+      "change": "ADDED",
+      "summary": "实际调用合成夹具、边界/性质/导入副作用测试",
+      "bytes": 29497,
+      "sha256": "73b50d7f1eb4ef62187564693c618340d252947578d60ac53e5a08ddca35f5e2",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/tests/test_rule_semantics_design_validator.py",
+      "change": "ADDED",
+      "summary": "真实临时Git历史回归；不操作真实仓库索引",
+      "bytes": 13428,
+      "sha256": "9f2a59fdce88a5106d3fc631c28a637eddfcbd6919f5cb5a6a44a1f0996a8754",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "hybridguard_agent/tests/fixtures/rule_semantics_revision_v1/specification_examples.json",
+      "change": "ADDED",
+      "summary": "24批准例适配和13新增人工边界例，保留源ID与新增理由",
+      "bytes": 63182,
+      "sha256": "9ec187e08a048a9948a5349005b53cec1b4199639f45da048c71330eeef206e2",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "deliverables/rule_semantics_revision/validate_design.py",
+      "change": "MODIFIED_EXISTING",
+      "summary": "唯一既有文件修改；祖先/批准内容校验、默认只读、独占输出",
+      "bytes": 19099,
+      "sha256": "a771fd00470c655b77961e245fcfe5930db6c345ecb9824221a30b240226bfe6",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    },
+    {
+      "path": "deliverables/rule_semantics_revision_module/run_checks.py",
+      "change": "ADDED",
+      "summary": "显式加载两个测试模块并保存实际夹具结果，不做全库discover",
+      "bytes": 5370,
+      "sha256": "a607860c0948ccc5c4320902a5185d0c5c5ba857dc56f58b2486fe28de90673a",
+      "content_identity": "ACTUAL_UNCOMMITTED_WORKING_TREE_FILE"
+    }
+  ],
+  "digest_scope": "Only listed actual code and fixture files, explicitly requested for the uncommitted delivery; no repository-wide integrity scan.",
+  "only_modified_existing_file": "deliverables/rule_semantics_revision/validate_design.py",
+  "new_files": [
+    "hybridguard_agent/research/rule_semantics_revision_v1/__init__.py",
+    "hybridguard_agent/research/rule_semantics_revision_v1/contracts.py",
+    "hybridguard_agent/research/rule_semantics_revision_v1/input_adapter.py",
+    "hybridguard_agent/research/rule_semantics_revision_v1/language.py",
+    "hybridguard_agent/research/rule_semantics_revision_v1/webdriver.py",
+    "hybridguard_agent/research/rule_semantics_revision_v1/manifest.py",
+    "hybridguard_agent/tests/test_rule_semantics_revision_v1.py",
+    "hybridguard_agent/tests/test_rule_semantics_design_validator.py",
+    "hybridguard_agent/tests/fixtures/rule_semantics_revision_v1/specification_examples.json",
+    "deliverables/rule_semantics_revision_module/run_checks.py",
+    "deliverables/rule_semantics_revision_module/REPORT.md",
+    "deliverables/rule_semantics_revision_module/TEST_RESULTS.json",
+    "deliverables/rule_semantics_revision_module/DESIGN_VALIDATION.json",
+    "deliverables/rule_semantics_revision_module/IMPLEMENTATION_MANIFEST.json"
+  ],
+  "research_execution_counts": {
+    "real_collection": 0,
+    "fit": 0,
+    "model_predictions": 0,
+    "real_record_candidate_evaluations": 0
+  },
+  "synthetic_execution": {
+    "test_methods": 48,
+    "subtest_invocations": 205,
+    "approved_examples": 24,
+    "additional_boundary_examples": 13,
+    "final_failures": 0,
+    "final_errors": 0
+  },
+  "design_validation": {
+    "report": "DESIGN_VALIDATION.json",
+    "status": "PASS",
+    "checks_passed": 41,
+    "checks_total": 41,
+    "historical_VALIDATION_json_overwritten": false
+  },
+  "workspace_scope": {
+    "starting_unrelated_status_entries": 252,
+    "preserved": true,
+    "only_authorized_paths_added_or_modified": true,
+    "staged_paths": 0,
+    "commit_push_pr_performed": false
+  },
+  "research_effectiveness": "NOT_EVALUATED",
+  "historical_record_applicability": "NOT_AUDITED",
+  "independent_confirmation": "NOT_PERFORMED",
+  "review_notes": [
+    "Origin statuses runtime_error/timeout remain U; null field/status/quality means missing evidence in new interface.",
+    "Raw status enums follow approved member_schema; illegal raw enum is FAILED, not a new fallback mode.",
+    "SourceBinding is caller association only, not authentication or historical APK proof.",
+    "Saved historical false cannot be reconstructed; no true-record support/coverage effect computed."
+  ]
+}
