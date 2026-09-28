@@ -13,13 +13,12 @@ import androidx.work.WorkerParameters
 import android.util.Log
 import java.util.concurrent.TimeUnit
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
 internal object ExpandedUploadTransport {
-    private val httpClient = OkHttpClient.Builder()
+    private val httpClient = CollectionTls.clientBuilder()
         .connectTimeout(4, TimeUnit.SECONDS)
         .writeTimeout(6, TimeUnit.SECONDS)
         .readTimeout(6, TimeUnit.SECONDS)
@@ -82,7 +81,8 @@ internal object ExpandedUploadTransport {
                 }
             }
         } catch (e: Exception) {
-            Attempt(false, true, e.message ?: e.javaClass.simpleName)
+            val failure = CollectionNetworkFailure.from(e, "upload", resolvedEndpoint)
+            Attempt(false, failure.retryable, failure.detail)
         }
     }
 
@@ -211,7 +211,8 @@ internal object ExpandedUploadTransport {
                 }
             }
         } catch (e: Exception) {
-            Attempt(false, true, "readiness failed: ${e.message ?: e.javaClass.simpleName}")
+            val failure = CollectionNetworkFailure.from(e, "readiness", readinessUrl)
+            Attempt(false, failure.retryable, failure.detail)
         }
     }
 }
@@ -233,6 +234,13 @@ class ExpandedUploadWorker(
             null
         }
         val attempt = ExpandedUploadTransport.upload(payload, endpoint)
+        if (!attempt.uploaded) {
+            Log.w(
+                "HG-ExpandedUpload",
+                "background_upload_failed session=$sessionId; retryable=${attempt.retryable}; " +
+                    "attempt=$runAttemptCount; detail=${attempt.detail}"
+            )
+        }
 
         return when {
             attempt.uploaded -> {
@@ -318,6 +326,11 @@ class ExpandedUploadWorker(
 
         fun markUploaded(context: Context, sessionId: String) {
             clearPending(context, sessionId)
+            WorkManager.getInstance(context).cancelUniqueWork(workName(sessionId))
+        }
+
+        fun stopBackgroundRetry(context: Context, sessionId: String) {
+            // Preserve the durable payload for inspection; a terminal TLS failure is not upload success.
             WorkManager.getInstance(context).cancelUniqueWork(workName(sessionId))
         }
 

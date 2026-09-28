@@ -1,7 +1,7 @@
 # featureapp 采集契约与付费批次验收
 
-`:featureapp` 当前版本为 `1.6.1-expanded-v2.2-browser-recovery`
-（`versionCode=8`），面向 Android API 21+，上报 `expanded-v2.2-status`。177 个原始
+`:featureapp` 当前版本为 `1.6.4-expanded-v2.2-mtc-https`
+（`versionCode=11`），面向 Android API 21+，上报 `expanded-v2.2-status`。177 个原始
 信号仍按 Native 84、WebView 26、Web 67 的固定口径组织；新增对象都是采集元数据，
 不能作为模型特征。
 
@@ -14,6 +14,13 @@
 这里的 `collection_status.fields` 是采集可用性；攻击登记表中的 `field_effect_status` 是“干预是否改变了目标字段”。二者语义不同，不能互相替代。
 
 ## API 21+ 降级原则
+
+API 21–25 的 App 采集 HTTP client 补充官方 ISRG Root X1，保留系统信任、证书链和
+域名校验。证书/握手失败会明确报错并停止自动重试，普通网络超时仍按原策略重试。
+这不会改变外部浏览器的信任库。本次云测构建统一使用
+`https://collect.crossdevicefingerprint.site`，由 ECS 提供 HTTPS 和 Browser67 静态页，
+采集 API 再通过 ngrok 转发至电脑后端。部署状态与旧设备复测边界见
+仓库根目录 `deployment/ngrok-edge/README.md`；构建成功不等于入口和旧设备验收通过。
 
 `minSdk` 已降到 21，但新 API 不会被强行调用：Display Mode、Security Patch、NetworkCapabilities、cleartext policy、WebView provider、managed-profile 等能力按系统版本守卫。旧系统不支持的字段保留在 177 字段契约中，值为 `null`，状态为 `unsupported_by_os`；它们不是采集失败，也不要求伪造非空值。
 
@@ -38,7 +45,7 @@ com.example.hybridguard.featureapp.COLLECT_ENDPOINT    # 仅 debug APK 接受的
 
 ## Endpoint、readiness 与回执
 
-默认 endpoint 为模拟器使用的 `http://10.0.2.2:8000/api/collect/fingerprint`。为真机云构建 APK 时用 Gradle 属性固化地址：
+Gradle 项目属性已固化上述 ECS 域名；未设置属性时，代码回退 endpoint 为模拟器使用的 `http://10.0.2.2:8000/api/collect/fingerprint`。为真机云构建 APK 时也可用命令行属性固化地址：
 
 ```bash
 ./gradlew :featureapp:assembleDebug \
@@ -61,8 +68,8 @@ request ID、session、batch 和 canonical payload hash 完成最终绑定。
 
 ## 可用浏览器配对采集
 
-默认静态 HTTPS 探针为
-`https://xavi-l.github.io/RBA-Cross-Device-Fingerprint/`；ticket 和 poll
+当前项目属性的静态 HTTPS 探针为
+`https://collect.crossdevicefingerprint.site/`；ticket 和 poll
 地址默认从 `hybridguardCollectEndpoint` 的 origin 推导，也可分别覆盖：
 
 ```bash

@@ -389,6 +389,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
                 )
             }
             if (!lastAttempt.retryable) {
+                ExpandedUploadWorker.stopBackgroundRetry(applicationContext, sessionId)
+                Log.w("HG-ExpandedUpload", "foreground_upload_stopped: ${lastAttempt.detail}")
                 break
             }
             if (attemptNumber < IMMEDIATE_UPLOAD_ATTEMPTS) {
@@ -403,7 +405,11 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
 
         return UploadStatus(
             false,
-            "Upload deferred for background retry: ${lastAttempt.detail}.",
+            if (lastAttempt.retryable) {
+                "Upload deferred for background retry: ${lastAttempt.detail}."
+            } else {
+                "Upload failed; automatic retry stopped: ${lastAttempt.detail}."
+            },
             null
         )
     }

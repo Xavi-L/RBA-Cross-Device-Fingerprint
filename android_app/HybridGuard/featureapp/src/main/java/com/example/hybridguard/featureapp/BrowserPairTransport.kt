@@ -3,7 +3,6 @@ package com.example.hybridguard.featureapp
 import android.util.Log
 import java.util.concurrent.TimeUnit
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -19,7 +18,7 @@ internal object BrowserPairTransport {
     internal const val BINDING_MODE_RECEIPT = "receipt_bound"
     private val ticketRetryDelaysMs = longArrayOf(300L, 900L)
     private val jsonMediaType = "application/json; charset=utf-8".toMediaType()
-    private val httpClient = OkHttpClient.Builder()
+    private val httpClient = CollectionTls.clientBuilder()
         .connectTimeout(5, TimeUnit.SECONDS)
         .writeTimeout(7, TimeUnit.SECONDS)
         .readTimeout(8, TimeUnit.SECONDS)
@@ -171,7 +170,8 @@ internal object BrowserPairTransport {
                 TicketResult.Issued(ticket)
             }
         } catch (error: Exception) {
-            TicketResult.Failed(true, "ticket request failed: ${error.message ?: error.javaClass.simpleName}")
+            val failure = CollectionNetworkFailure.from(error, "browser-ticket", ticketEndpoint)
+            TicketResult.Failed(failure.retryable, failure.detail)
         }
     }
 
@@ -294,7 +294,8 @@ internal object BrowserPairTransport {
                     ?: PollResult.Failed(true, "poll response failed pair/receipt/hash verification")
             }
         } catch (error: Exception) {
-            PollResult.Failed(true, "poll request failed: ${error.message ?: error.javaClass.simpleName}")
+            val failure = CollectionNetworkFailure.from(error, "browser-pair-poll", state.pollBaseUrl)
+            PollResult.Failed(failure.retryable, failure.detail)
         }
     }
 

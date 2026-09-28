@@ -1,0 +1,19 @@
+{
+  "on_http_request": [
+    {
+      "expressions": [
+        "!((req.method == 'GET' && req.url.path in ['/health', '/api/collect/readiness']) || (req.method in ['POST', 'OPTIONS'] && req.url.path in ['/api/collect/fingerprint', '/api/collect/browser-ticket', '/api/collect/browser-stage', '/api/collect/browser-fingerprint']) || (req.method in ['GET', 'OPTIONS'] && (req.url.path.matches('^/api/collect/browser-pairs/[A-Za-z0-9_-]+$') || req.url.path.matches('^/api/collect/browser-fingerprint/[A-Za-z0-9_-]+/status$'))))"
+      ],
+      "actions": [
+        {
+          "type": "custom-response",
+          "config": {
+            "status_code": 403,
+            "content": "{\"detail\":\"This endpoint is not exposed for MTC collection.\"}",
+            "headers": { "content-type": "application/json" }
+          }
+        }
+      ]
+    }
+  ]
+}

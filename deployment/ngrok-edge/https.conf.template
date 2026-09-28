@@ -1,0 +1,40 @@
+# Render with render.py after the domain is confirmed; enable after issuance.
+server {
+    listen 443 ssl;
+    server_name __COLLECT_DOMAIN__;
+    ssl_certificate /etc/letsencrypt/live/__COLLECT_DOMAIN__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__COLLECT_DOMAIN__/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384;
+    ssl_ecdh_curve X25519:prime256v1:secp384r1;
+    ssl_session_cache shared:HGSSL:10m;
+
+    root /srv/hybridguard/browser-probe;
+    client_max_body_size 10m;
+    # Do not write browser query strings or bearer tokens into access logs.
+    access_log off;
+    add_header Referrer-Policy no-referrer always;
+    add_header Cache-Control no-store always;
+
+    location = / {
+        if ($request_method !~ ^(GET|HEAD)$) { return 405; }
+        try_files /browser-probe.html =404;
+    }
+    location ~ ^/(browser-probe\.html|browser-probe-bootstrap\.js|browser-probe-adapter\.js|probe/(canonical_web_probe\.js|manifest\.json))$ {
+        if ($request_method !~ ^(GET|HEAD)$) { return 405; }
+        try_files $uri =404;
+    }
+    location ~ ^/(health|api/collect/readiness)$ {
+        if ($request_method != GET) { return 405; }
+        include /etc/nginx/snippets/hybridguard-ngrok.conf;
+    }
+    location ~ ^/api/collect/(fingerprint|browser-ticket|browser-stage|browser-fingerprint)$ {
+        if ($request_method !~ ^(POST|OPTIONS)$) { return 405; }
+        include /etc/nginx/snippets/hybridguard-ngrok.conf;
+    }
+    location ~ ^/api/collect/(browser-pairs/[A-Za-z0-9_-]+|browser-fingerprint/[A-Za-z0-9_-]+/status)$ {
+        if ($request_method !~ ^(GET|OPTIONS)$) { return 405; }
+        include /etc/nginx/snippets/hybridguard-ngrok.conf;
+    }
+    location / { return 404; }
+}

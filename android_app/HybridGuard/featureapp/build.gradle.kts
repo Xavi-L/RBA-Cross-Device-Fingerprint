@@ -59,8 +59,8 @@ android {
         applicationId = "com.example.hybridguard.featureapp"
         minSdk = 21
         targetSdk = 36
-        versionCode = 8
-        versionName = "1.6.1-expanded-v2.2-browser-recovery"
+        versionCode = 11
+        versionName = "1.6.4-expanded-v2.2-mtc-https"
 
         val configuredEndpoint = providers.gradleProperty("hybridguardCollectEndpoint")
             .orElse("http://10.0.2.2:8000/api/collect/fingerprint")
@@ -194,4 +194,6 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.9.1")
     testImplementation(libs.junit)
     testImplementation("org.json:json:20240303")
+    testImplementation("com.squareup.okhttp3:okhttp-tls:4.12.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 }
