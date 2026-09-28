@@ -1,0 +1,2649 @@
+{
+  "schema_version": "rule-semantics-revision-design-v1",
+  "status": "DESIGN_ONLY",
+  "created_date": "2026-09-28",
+  "actual_head": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+  "first_review_commit": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+  "contains_first_review_commit": true,
+  "first_review_source_register": "../normal_app_behavior_review/SOURCE_REGISTER.json",
+  "additional_source_register": "ADDITIONAL_SOURCES.json",
+  "historical_status": {
+    "V2_C": "CLOSED_UNCHANGED",
+    "independent_confirmation": "PENDING_NOT_OPENED",
+    "model_or_label_changes": false
+  },
+  "run_scope": {
+    "candidate_execution": false,
+    "real_record_candidate_evaluation": false,
+    "fit": false,
+    "prediction_generation": false,
+    "collection": false,
+    "app_runtime": false,
+    "commit_push_pr": false
+  },
+  "baseline_models": [
+    {
+      "representation": "W0",
+      "method": "GREEDY_OR",
+      "model_id": "v2c-3def521e987075a27b52e2df",
+      "path": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__ALL_DEVELOPMENT_162__W0__GREEDY_OR__attempt01/model.json",
+      "source_id": "LOC-028",
+      "selected_literal_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ]
+    },
+    {
+      "representation": "C0",
+      "method": "GREEDY_OR",
+      "model_id": "v2c-40ffc55faff1962cc57829ee",
+      "path": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__ALL_DEVELOPMENT_162__C0__GREEDY_OR__attempt01/model.json",
+      "source_id": "LOC-005",
+      "selected_literal_ids": [
+        "DEVIATION:OFFDER-UA-001:POSITIVE"
+      ]
+    },
+    {
+      "representation": "W0",
+      "method": "R_KEEP_V1",
+      "model_id": "v2c-af691341a2d38032d88973b5",
+      "path": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/trials/V2-C__ALL_DEVELOPMENT_162__W0__R_KEEP_V1__attempt01/model.json",
+      "source_id": "LOC-004",
+      "selected_literal_ids": [
+        "CAT:NW-006:POSITIVE",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE",
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE"
+      ]
+    }
+  ],
+  "priority_families": [
+    {
+      "rank": 1,
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "scope": "有限首项解析/状态与手工规格单测，来源已绑定的现有字段"
+    },
+    {
+      "rank": 2,
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "scope": "legacy投影状态解析；不恢复历史原始false，不声称新跨层检测"
+    }
+  ],
+  "candidate_count": 6,
+  "common_contract": {
+    "T": "定义成立；不是attack label",
+    "F": "定义不成立；不是clean label或安全证明",
+    "U": "关系所需证据/来源/域不足；保留reason和全分母",
+    "FAILED": "工程执行或结构验证失败；不属于普通三值逻辑",
+    "cell_encoding": {
+      "T": {
+        "value": true,
+        "available": true,
+        "evaluation_status": "OK"
+      },
+      "F": {
+        "value": false,
+        "available": true,
+        "evaluation_status": "OK"
+      },
+      "U": {
+        "value": null,
+        "available": false,
+        "evaluation_status": "OK"
+      },
+      "FAILED": {
+        "value": null,
+        "available": false,
+        "evaluation_status": "FAILED"
+      }
+    },
+    "source_failure": "runtime_error/timeout/unsupported是来源U，不冒充执行器FAILED",
+    "no_runtime_whitelist": [
+      "App_name",
+      "business_UA_literal",
+      "attack_config",
+      "phase",
+      "historical_label"
+    ],
+    "no_new_independent_crosslayer_ready_claim": true,
+    "coverage": "N_expected = N_T + N_F + N_U + N_FAILED；按原因展示门控损失，适用域收窄不是FPR改善。",
+    "examples": "SPECIFICATION_EXAMPLES_ONLY; never executed; no real labels or performance metrics"
+  },
+  "candidates": [
+    {
+      "candidate_id": "RSR-UA-CONFIG-MISMATCH-v1",
+      "version": "1.0.0",
+      "family": "UA",
+      "purpose": "检测同一WebView、同一文档和稳定配置epoch内Host当前设置UA与JS实际暴露UA的失配。",
+      "identity_and_delta": {
+        "exact_relation_predecessor": "DEVIATION:P3-UA-SETTINGS",
+        "status": "FORMULA_REUSED_WITH_EXPLICIT_PAIRING_GATE_NEW_VERSION",
+        "delta": "核心字符串精确失配与旧settings候选同义；新的身份表示配对/信任域收紧及状态理由，不能计作新的比较信息。default-UA、桌面类别规则仅做迁移关联，不是本候选别名。"
+      },
+      "source_ids": [
+        "LOC-007",
+        "LOC-008",
+        "LOC-011",
+        "LOC-012",
+        "LOC-013",
+        "LOC-026",
+        "LOC-027",
+        "LOC-029",
+        "OFF-001",
+        "OFF-014",
+        "OFF-015",
+        "OFF-016",
+        "OFF-017",
+        "OFF-018",
+        "OFF-040",
+        "APPB-001",
+        "APPB-012",
+        "APPB-013",
+        "APPA-031",
+        "RSR-LOC-001",
+        "RSR-LOC-006",
+        "RSR-LOC-003"
+      ],
+      "inputs": [
+        {
+          "status_path": "$.field_status[\"app.webview_data.webview_settings_layer.settings_user_agent\"]",
+          "quality_path": "$.field_quality[\"app.webview_data.webview_settings_layer.settings_user_agent\"]",
+          "type": "string",
+          "unit": "decoded Unicode string",
+          "source": "WebSettings.getUserAgentString，现有实现是configureWebView时的快照",
+          "scope": "某个WebView实例设置；不是平台默认或逐请求HTTP UA",
+          "availability": "PRESENT_VALUE_BUT_STALE_SNAPSHOT_POSSIBLE",
+          "field": "app.webview_data.webview_settings_layer.settings_user_agent",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.webview_data.webview_settings_layer.settings_user_agent\"]",
+          "raw_path": "webview_data.webview_settings_layer.settings_user_agent",
+          "required": false,
+          "role": "LEGACY_CONTEXT_ONLY; 新比较S使用独立Host当前双读，禁止拿初始化值替代"
+        },
+        {
+          "status_path": "$.field_status[\"app.web_data.navigator_layer.user_agent\"]",
+          "quality_path": "$.field_quality[\"app.web_data.navigator_layer.user_agent\"]",
+          "type": "string",
+          "unit": "decoded Unicode string",
+          "source": "canonical_web_probe.js getNavigatorFeatures: navigator.userAgent",
+          "scope": "当前执行realm/页面上下文",
+          "availability": "PRESENT",
+          "field": "app.web_data.navigator_layer.user_agent",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.web_data.navigator_layer.user_agent\"]",
+          "raw_path": "web_data.navigator_layer.user_agent",
+          "required": true
+        },
+        {
+          "type": "string",
+          "unit": "provider package version",
+          "source": "Host WebView.getCurrentWebViewPackage().versionName，API26+；通过JSBridge进入页面再回传",
+          "scope": "provider包；不是独立证明renderer源码完全相同",
+          "availability": "PRESENT_BUT_NOT_TRUST_PROOF",
+          "field": "app.webview_data.kernel_container_layer.webview_provider_version",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "status_path": "$.field_status[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "quality_path": "$.field_quality[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "raw_path": "webview_data.kernel_container_layer.webview_provider_version",
+          "required": true
+        }
+      ],
+      "proposed_metadata": [
+        {
+          "path": "pairing_metadata.ua.host_instance_id",
+          "type": "string",
+          "required": true,
+          "source": "Host分配不复用的WebView实例ID；单独Host采集/提交",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.web_instance_id",
+          "type": "string",
+          "required": true,
+          "source": "Host协调器绑定probe响应；不能相信页面任意自报ID",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.document_id_before",
+          "type": "string",
+          "required": true,
+          "source": "Host协调器导航提交计数/文档标识",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.document_id_after",
+          "type": "string",
+          "required": true,
+          "source": "同上",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.configuration_epoch_before",
+          "type": "nonnegative integer",
+          "required": true,
+          "source": "Host记录所有影响UA的配置变更，不能仅靠前后UA相同推导无中间变更",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.configuration_epoch_after",
+          "type": "nonnegative integer",
+          "required": true,
+          "source": "同上",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.host_ua_before",
+          "type": "string",
+          "required": true,
+          "source": "probe前Host从实例当前settings读；取代旧初始化快照作为参照",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.host_ua_after",
+          "type": "string",
+          "required": true,
+          "source": "probe回调后Host同实例复读",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.probe_id",
+          "type": "string",
+          "required": true,
+          "source": "Host请求与完成回调关联",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.runtime_semantic_binding",
+          "type": "registered evidence reference",
+          "required": true,
+          "source": "预先登记的容器/API/实现版本与UA传播完成条件；不是UA自报版本",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "pairing_metadata.ua.binding_status",
+          "type": "enum VERIFIED_SOURCE_BINDING / UNKNOWN / CONFLICT",
+          "required": true,
+          "source": "Host采集代码版本与运行路径登记；不是页面提供的通行布尔值",
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        }
+      ],
+      "applicability": {
+        "container_version": "WebSettings公共API提供实例设置语义；133.0.6943.137固定源码支持setter→WebContents override→JS读取路径的部分机制。运行版本未知、厂商分支未知、没有可审阅的传播完成前提均U(VERSION_OR_BINDING_UNKNOWN)，不能由UA里的Chrome版本补证。",
+        "context": "当前页面/实例配置epoch稳定，配置生效及文档切换已由Host路径确定；不比较请求拦截器HTTP header或Java http.agent。"
+      },
+      "normalization": {
+        "operand_domain": "精确string、非空且非纯空白、有效Unicode标量串；只接受observed/observed_value；不做字符串转型。",
+        "comparison": "解码后逐字符相等；不trim、不casefold、不拆token、不折叠空白、不删App后缀或版本。",
+        "missing_token": "Android/型号/版本token均不是本公式前提；缺token不补值，也不使两个有效整串自动U。纯空/缺值U。",
+        "default_and_http": "平台默认UA仅为配置背景；实际HTTP请求UA未采集；Java http.agent是进程属性，不参与等式。",
+        "platform": "UA setter与navigator.platform读取路径独立；桌面业务UA而platform仍为Linux/ARM有正常机制，不触发本候选。"
+      },
+      "formula": {
+        "mathematical": "G ? [S != J] : U，其中S为配对期当前Host设置，J为同文档JS UA。",
+        "gate": "binding_status == VERIFIED_SOURCE_BINDING；host_instance_id==web_instance_id；document_id_before==document_id_after；configuration_epoch_before==configuration_epoch_after；host_ua_before==host_ua_after==S；请求与回调probe_id匹配；配置传播完成前提已登记。",
+        "pseudocode": [
+          "validate envelope and metadata enums; executor/contract error => FAILED",
+          "if source_status!=observed or source_quality!=observed_value => U(SOURCE_UNAVAILABLE)",
+          "if operands missing, non-string, empty/blank or invalid Unicode => U(INVALID_OR_MISSING_UA)",
+          "if pairing evidence absent/untrusted => U(SNAPSHOT_UNPAIRABLE)",
+          "if runtime binding unknown => U(VERSION_OR_BINDING_UNKNOWN)",
+          "if instance, document, epoch or before/after setting differs => U(CONFIGURATION_NOT_STABLE)",
+          "return T if S != J else F"
+        ]
+      },
+      "fixed_parameters": [
+        {
+          "name": "exact_string_comparison",
+          "value": "NO_NORMALIZATION",
+          "source": "沿用P3-UA-SETTINGS typed string equality，限定对同配置对象；无经验容差"
+        },
+        {
+          "name": "pairing_gate",
+          "value": "same instance + document + configuration epoch + settled binding",
+          "source": "来源对象与正常业务重配置反例所要求的比较前提"
+        }
+      ],
+      "normal_counterexamples_and_boundaries": [
+        "平台默认UA与业务自定义UA不同，但Host/JS相同 => F；桌面UA与ARM platform并存也不改变本公式。",
+        "正常导航或业务重配置使旧快照过时 => U，不能把正常快照失配当本关系T。",
+        "即使门控通过，未建模的合法中间层差异可T；静态资料不能把T自动改判攻击。",
+        "同源UA设置向JS传播只检链路自洽，不提供独立硬件真值。"
+      ],
+      "existing_data_support": {
+        "classification": "NEEDS_COLLECTION_METADATA",
+        "reason": "已有S/J数值，不保存WebView实例ID、文档ID、配置epoch、当前双读/传播完成证明；Host26经Web对象回传。MainActivity当前源码看不到后续UA setter仍不能证明历史APK与所有阶段无改变。",
+        "saved_formula_only": "可计算历史P3-UA-SETTINGS精确失配描述，但不得替代本候选配对有效性，也不在本轮跑数据。",
+        "existing_metadata_limits": "session_id、app版本、provider版本、上传timestamp均不能补出上述时序/实例/信任证据。"
+      },
+      "implementation_changes": [
+        "新研究模块实现配对门控和同样的string比较；不编辑旧P3谓词/旧ID。",
+        "若后续单独授权采集修改：MainActivity在Host保留实例/文档/epoch与UA双读，ExpandedWebBridge只回传probe观察；Host直接组包，避免由页面自行决定Host参照。",
+        "增加独立版本的配对schema与解析状态；历史无元数据记录返回U并保留原因。"
+      ],
+      "blockers": [
+        "B-UA-01: 当前/历史材料无配对与稳定配置epoch证据。",
+        "B-UA-02: Host字段经页面回传，页面威胁下独立性不足。",
+        "B-UA-03: 未知版本/厂商内核与设置传播完成条件不能由包版本或UA推断。"
+      ],
+      "specification_examples": [
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "正常业务使用任何自定义/桌面UA，所有配对门控满足",
+          "inputs": {
+            "S": "ExampleProduct/1.0 Desktop",
+            "J": "ExampleProduct/1.0 Desktop",
+            "platform_context": "Linux armv8l",
+            "gate": "valid"
+          },
+          "expected_state": "F",
+          "reason": "CONFIGURED_UA_EQUALS_EXPOSED_UA",
+          "real_sample": false,
+          "example_id": "UA-EX-F-BUSINESS",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "只改变同文档JS暴露结果，Host保持稳定",
+          "inputs": {
+            "S": "ExampleProduct/1.0",
+            "J": "ExampleProduct/2.0",
+            "gate": "valid"
+          },
+          "expected_state": "T",
+          "reason": "HOST_JS_UA_MISMATCH_NOT_ATTACK_TRUTH",
+          "real_sample": false,
+          "example_id": "UA-EX-T-WEBONLY",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "正常业务完成初始化后重新设置UA，只有旧快照",
+          "inputs": {
+            "S": "ExampleProduct/1.0",
+            "J": "ExampleProduct/2.0",
+            "pairing_metadata": null
+          },
+          "expected_state": "U",
+          "reason": "SNAPSHOT_UNPAIRABLE",
+          "real_sample": false,
+          "example_id": "UA-EX-U-SNAPSHOT",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "Host UA为数字",
+          "inputs": {
+            "S": 123,
+            "J": "123",
+            "gate": "valid"
+          },
+          "expected_state": "U",
+          "reason": "INVALID_OR_MISSING_UA",
+          "real_sample": false,
+          "example_id": "UA-EX-U-TYPE",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "UA宣称133但Host无法确认容器实现/传播绑定",
+          "inputs": {
+            "S": "ExampleProduct/1.0",
+            "J": "ExampleProduct/1.0",
+            "runtime_semantic_binding": "UNKNOWN"
+          },
+          "expected_state": "U",
+          "reason": "VERSION_OR_BINDING_UNKNOWN",
+          "real_sample": false,
+          "example_id": "UA-EX-U-VERSION",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "有效配对字符串仅末尾空格不同",
+          "inputs": {
+            "S": "ExampleProduct/1.0",
+            "J": "ExampleProduct/1.0 ",
+            "gate": "valid"
+          },
+          "expected_state": "T",
+          "reason": "EXACT_STRING_MISMATCH_NO_TRIM",
+          "real_sample": false,
+          "example_id": "UA-EX-T-SPACE",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "候选执行器收到非法状态枚举",
+          "inputs": {
+            "source_status": "MYSTERY"
+          },
+          "expected_state": "FAILED",
+          "reason": "INVALID_FIELD_STATE_ENUM",
+          "real_sample": false,
+          "example_id": "UA-EX-FAILED",
+          "executed": false
+        }
+      ],
+      "local_code_refs": [
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:152",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedWebBridge.kt:20",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:472",
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js:188",
+        "web_probe/canonical_web_probe.js:347",
+        "hybridguard_agent/research/rule_learning/matrix.py:29"
+      ],
+      "runtime_validation": "NOT_PERFORMED",
+      "design_status": "SPECIFIED_BUT_COLLECTION_PREREQUISITES_BLOCKED",
+      "state_semantics": {
+        "T": "在已声明有效域内关系偏差成立；不是攻击标签，也不直接授予报警资格。",
+        "F": "在已声明有效域内未见本关系偏差；不是正常标签或安全证明。",
+        "U": "正常不适用、字段缺失/非法操作数、来源不明或必要配对证据不足；保留具体reason，不转F。来源采集器已有runtime_error/timeout是不可用来源，记U并保留原状态。",
+        "FAILED": "候选执行器异常、非法envelope/声明schema/状态枚举或内部矛盾结构验证失败；evaluation_status=FAILED，不进入T/F/U逻辑。源采集runtime_error、正常不适用、版本/来源证据缺失仍U。"
+      },
+      "trust_assumptions": [
+        "Host所读settings及配置epoch不能与Web值一起被任意篡改；若威胁包含Host/API hook，本关系独立性失效，应声明而非默认可信。",
+        "当前桥把Host数据交给JS再submit，页面可改写该对象；现有路径不能称抗页面伪造参照。后续需Host直接保留/附加Host参照与绑定证据。",
+        "版本仅依Host可信包/运行部署证据，不能从被检页面UA自报恢复；包版本也不自动证明厂商实现与上游tag相同。"
+      ],
+      "gate_trust_review": {
+        "page_self_claim": "页面自报version/instance/config epoch不构成有效门控证据。",
+        "attacker_forced_u": "页面可丢失/破坏JS字段、伪造状态或回调；出现U/FAILED仍留总分母，不按未报警正常处理。",
+        "reference_mutation": "Host被改写、一致改写两端或在正式setter配置后同时暴露新值均可能F。",
+        "coverage_reporting": {
+          "denominator": "保留所有预期记录，分别报告T/F/U/FAILED；U按reason和部署范围拆分，单独列因门控损失的覆盖率。",
+          "comparison": "不得用适用域缩小后的条件分母与旧全分母直接宣称误报改善；没有新真实正常材料不能验证真实误报改善。",
+          "training": "本轮不fit、不评价真实clean/attack，不修改或重算历史模型。"
+        }
+      },
+      "possible_interventions_detected": [
+        "在Host参照可信且稳定前提下，只改JS可见UA、返回值或传输结果造成的不一致。"
+      ],
+      "not_detected": [
+        "通过正式setUserAgentString修改并已稳定传播的任意目的配置。",
+        "Host与JS一致改写、Host/API hook、统一伪造回传。",
+        "实际HTTP请求独立改写、Java http.agent变化、硬件身份伪造而两端仍一致。"
+      ],
+      "trainable_parameters": {
+        "parameters": [],
+        "constraint": "此关系无待学习参数；后续是否入选/极性只由预注册train-only流程决定，门控不能用标签或成绩学习。"
+      },
+      "information_relation": {
+        "kind": "HOST_WEB_CROSS_SURFACE_SAME_CONFIGURATION_PROPAGATION_NOT_INDEPENDENT_HARDWARE_TRUTH",
+        "independent_hardware_truth": false
+      },
+      "deployment_applicability": {
+        "CONTROLLED_HOST": "可设计实现。Host必须拥有实例/文档/配置生命周期，确认当前设置已用于被probe的页面；一次session_id或初始化快照均不够。",
+        "GENERAL_APP_WEBVIEW": "默认U：缺少独立Host配置和实例时序。仅在第三方明确集成上述可信采集协议时可进入同一有效域；App名称、业务字符串或所谓兼容模式不是放行依据。"
+      },
+      "old_rule_ids": [
+        "W01",
+        "C01",
+        "C02",
+        "C03",
+        "C04"
+      ],
+      "old_identity_references": [
+        "DEVIATION:P3-UA-SETTINGS",
+        "DEVIATION:OFFDER-UA-002",
+        "DEVIATION:P3-UA-DEFAULT",
+        "CAT:NW-006:POSITIVE",
+        "DEVIATION:OFFDER-UA-001:POSITIVE"
+      ],
+      "model_evaluation": "NOT_PERFORMED",
+      "operand_binding": {
+        "S": "pairing_metadata.ua.host_ua_before, equals host_ua_after",
+        "J": "features[\"app.web_data.navigator_layer.user_agent\"]",
+        "host_snapshot": "diagnostic predecessor only"
+      },
+      "input_contract": {
+        "record_fields": "features / field_status / field_quality；不接受label、phase、attack config作为输入",
+        "source_binding": "由集成端现有来源/采集版本登记提供可信适配契约；不是页面自报same_context/observed即可放行。新增配对/运行元数据按proposed_metadata另立版本。",
+        "schema_version_policy": "已声明格式非法/不支持的序列化schema=FAILED；运行内核版本未知/API缺失通常U，具体按候选范围；语言/报告状态不做不必要内核门控。"
+      },
+      "U_reasons": [
+        "SOURCE_UNAVAILABLE",
+        "INVALID_OR_MISSING_UA",
+        "SNAPSHOT_UNPAIRABLE",
+        "VERSION_OR_BINDING_UNKNOWN",
+        "CONFIGURATION_NOT_STABLE"
+      ],
+      "example_default_assumptions": "除该例明确覆盖的缺失/失败条件外，假定共同envelope和候选所列必要observed/status、来源配对门控成立。gate/trusted_binding/same_sync_source只是人工例的简写，不是允许从网页接收的真实通行布尔值。"
+    },
+    {
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "version": "1.0.0",
+      "family": "LANGUAGE",
+      "purpose": "只判断同一网页Navigator同步读出的language完整窄域标签是否与languages首项一致；多项列表/正常fallback本身不表示偏差。",
+      "identity_and_delta": {
+        "exact_relation_predecessor": null,
+        "status": "NEW_ORDER_AND_FULL_SUPPORTED_TAG_RELATION_WITH_EXISTING_INPUTS",
+        "delta": "B的WEB_LIST将主语言解析后做全列表集合成员检测；此候选保留脚本/地区并只比较首项。例 language=en-US,languages=[fr-FR,en-US]：旧成员关系F，本候选T；必须保留两身份，不改写B。"
+      },
+      "source_ids": [
+        "LOC-006",
+        "LOC-008",
+        "LOC-013",
+        "LOC-022",
+        "LOC-029",
+        "OFF-002",
+        "OFF-003",
+        "OFF-004",
+        "OFF-005",
+        "OFF-019",
+        "OFF-020",
+        "OFF-021",
+        "OFF-022",
+        "OFF-023",
+        "OFF-047",
+        "OFF-048",
+        "OFF-050",
+        "RSR-LOC-001",
+        "RSR-LOC-006"
+      ],
+      "inputs": [
+        {
+          "status_path": "$.field_status[\"app.web_data.navigator_layer.language\"]",
+          "quality_path": "$.field_quality[\"app.web_data.navigator_layer.language\"]",
+          "type": "string",
+          "unit": "BCP47 supported subset",
+          "source": "navigator.language || \"\"；canonical getNavigatorFeatures",
+          "scope": "同一Navigator/realm同步属性读取",
+          "availability": "PRESENT",
+          "field": "app.web_data.navigator_layer.language",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.web_data.navigator_layer.language\"]",
+          "raw_path": "web_data.navigator_layer.language",
+          "required": true
+        },
+        {
+          "status_path": "$.field_status[\"app.web_data.navigator_layer.languages\"]",
+          "quality_path": "$.field_quality[\"app.web_data.navigator_layer.languages\"]",
+          "type": "ordered JSON array; first element string; tail preserved untyped for diagnostics",
+          "unit": "BCP47 supported subset ordered labels",
+          "source": "arrayFrom(navigator.languages || [])；同一getNavigatorFeatures",
+          "scope": "该Navigator偏好列表，保留首项与顺序",
+          "availability": "PRESENT_ORDER_PRESERVED",
+          "field": "app.web_data.navigator_layer.languages",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.web_data.navigator_layer.languages\"]",
+          "raw_path": "web_data.navigator_layer.languages",
+          "required": true
+        }
+      ],
+      "proposed_metadata": [],
+      "applicability": {
+        "container_version": "WHATWG声明language是languages首项；133.0.6943.137 NavigatorLanguage实现直接取首项。版本未知时仍可报告该声明的字面自洽关系，但implementation_conformance=UNKNOWN，不能宣称已证特定内核bug/攻击。若API缺失或采集值为哨兵，U；不得按UA声称版本放行/豁免。",
+        "context": "同一次同步getNavigatorFeatures调用中的同一Navigator，不跨App、frame、导航或缓存阶段拼接。普通languagechange前后两个完整同步观测分别评估。"
+      },
+      "normalization": {
+        "name": "LIMITED_FULL_TAG_CASE_INSENSITIVE_V1",
+        "grammar": "^([A-Za-z]{2,3})(?:-([A-Za-z]{4}))?(?:-([A-Za-z]{2}|[0-9]{3}))?$",
+        "algorithm": "使用与B同一语法边界；primary为und/mul/zxx/iw/in/ji时返回U（未定义/多语言/无语言/历史别名未解析）；其余匹配串整体ASCII小写保留脚本和地区。无trim，不把_改成-，不截掉地区，不把zh-Hans/zh-Hant并为zh。",
+        "justification": "固定语法沿用B窄域，不宣称完整BCP47实现；大小写不承担语言差异。此版不做别名、扩展、private-use或地区fallback映射；支持域之外U而非偏差。禁止按训练样本制作语言词表。",
+        "list_domain": "必须是非空JSON数组；仅language与languages[0]要求为string且被同一窄域解析器接受，保留顺序。尾项原样保留为诊断，尾项是否合法string/tag均不参与此首项关系的门控或公式。若整体envelope违反版本契约则FAILED；尾项异常本身不覆盖已可计算首项关系。",
+        "reduction_and_fallback": "语言缩减使列表成为单项而language同步首项，仍F；en-US后追加en/其他fallback不影响首项，不要求列表长度=1或地区全相同。language=en而首项=en-US则按本公式T：这是完整标签首项不一致，不能仅因共同primary而抹除；是否正常实现差异需另审，T仍非攻击。"
+      },
+      "formula": {
+        "mathematical": "n(language) != n(languages[0])",
+        "pseudocode": [
+          "validate envelope/status enums => FAILED only if contract malformed",
+          "if either source is not observed/observed_value => U(SOURCE_UNAVAILABLE)",
+          "if collector provenance does not establish a single synchronous Navigator observation => U(SOURCE_CONTEXT_UNPAIRED)",
+          "if language not string or languages not nonempty array => U(MISSING_OR_INVALID_LANGUAGE_INPUT)",
+          "parse language and languages[0] only with LIMITED_FULL_TAG_CASE_INSENSITIVE_V1; either failure => U(UNSUPPORTED_OR_INVALID_FIRST_LANGUAGE_TAG); preserve tail diagnostics without gating the relation",
+          "return T if n(language)!=n(languages[0]) else F"
+        ],
+        "provenance_contract": "当前canonical getNavigatorFeatures同一函数连续读取language及languages，无await；是否对应历史APK需依现有来源登记/采集版本绑定，不用当前文件代替历史证明。输入整批缺可信来源绑定时应U，而不是因为数组恰好一致就放行。"
+      },
+      "fixed_parameters": [
+        {
+          "name": "tag_grammar_and_exclusions",
+          "value": "复用B已登记窄域，无训练词表",
+          "source": "LOC-022 primary_language语法与非语言/历史别名边界；新比较保留完整匹配串"
+        },
+        {
+          "name": "first_index",
+          "value": 0,
+          "source": "OFF-002规范；OFF-023固定实现"
+        },
+        {
+          "name": "ascii_casefold_only",
+          "value": true,
+          "source": "LOC-022已有case-insensitive窄域；不引入区域fallback经验等价"
+        }
+      ],
+      "normal_counterexamples_and_boundaries": [
+        "en-US + [en-US,en]，zh-CN + [zh-CN,en-US]等正常多项/自动fallback均F。",
+        "仅大小写不同为F；地区或脚本不同且处在首项时T，不能将这类关系偏差直接标攻击。",
+        "language或首项为标准合法但本有限解析未支持的扩展/private-use/历史别名时U；必须报告域损失，不能说合法标签是错误。尾项同类内容不影响首项关系，原样保留为诊断。",
+        "若版本实现或正常更新/包装层使首项和language短暂不一致，当前关系可T，需保留正常反例假设；本轮不证发生率。"
+      ],
+      "existing_data_support": {
+        "classification": "EXISTING_INPUTS_SUFFICIENT_FOR_PROPOSED_SCOPE",
+        "reason": "两输入已有，languages数组保存顺序而非只有len；canonical同一Navigator同步采集；适用范围为来源已绑定、field_status/quality有效、窄域标签的记录。不需要额外设备、Native/Host镜像或新数值阈值。",
+        "qualification": "不保证所有历史记录覆盖率；缺来源绑定或API/合法扩展不支持=>U，需在下一轮独立记录；本轮没有读取真实样本来试候选或挑选。",
+        "not_duplicate": "区别于V2SINGLE全列表primary集合成员关系；保留旧身份作为语义对照。"
+      },
+      "implementation_changes": [
+        "在独立research设计实现模块新增limited_full_tag和web_language_first_difference，不修改旧relations.py中的B定义。",
+        "输入适配器复用现有features/field_status/field_quality，保留ordered array；用已有来源契约约束同期，缺少时U并记录。",
+        "新增手工规格单测：首项/成员差异、地区/脚本、大小写、fallback、缩减、空数组、首项非法类型、尾项扩展/异常不遮蔽结果、非法schema。",
+        "未来实验固定选择策略，仅替换/加入声明的新同层表示；若以后另加Native/Web候选，匹配对照必须拿到同样完整标签解析。"
+      ],
+      "blockers": [
+        "无核心字段阻塞。历史记录采集来源绑定与实际覆盖率尚未逐条核验；这是后续输入准入/覆盖核查，不能把当前源码当作历史APK运行证据。",
+        "不提出Native/Web新候选：Native是Java进程默认Locale，非Resources/system列表；传播/配置时序缺口使无条件相等无法成立。",
+        "完整BCP47 alias/extension canonicalization未在此版定义，language或首项域外保持U；尾项不参与此门控，不凭经验猜fallback。"
+      ],
+      "specification_examples": [
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "正常地区语言与fallback多项",
+          "inputs": {
+            "language": "zh-CN",
+            "languages": [
+              "zh-CN",
+              "en-US"
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "F",
+          "reason": "FIRST_TAG_EQUAL",
+          "real_sample": false,
+          "example_id": "LANG-EX-F-FALLBACK",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "language仍在列表第二项但首项不同",
+          "inputs": {
+            "language": "en-US",
+            "languages": [
+              "fr-FR",
+              "en-US"
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "T",
+          "reason": "FIRST_TAG_DIFFERS;OLD_PRIMARY_MEMBERSHIP_WOULD_BE_F",
+          "real_sample": false,
+          "example_id": "LANG-EX-T-ORDER",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "旧API缺languages，采集投影[]",
+          "inputs": {
+            "language": "en-US",
+            "languages": [],
+            "same_sync_source": true
+          },
+          "expected_state": "U",
+          "reason": "MISSING_OR_INVALID_LANGUAGE_INPUT",
+          "real_sample": false,
+          "example_id": "LANG-EX-U-MISSING",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "列表错误保存为字符串",
+          "inputs": {
+            "language": "en-US",
+            "languages": "en-US",
+            "same_sync_source": true
+          },
+          "expected_state": "U",
+          "reason": "MISSING_OR_INVALID_LANGUAGE_INPUT",
+          "real_sample": false,
+          "example_id": "LANG-EX-U-TYPE",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "大小写规范化",
+          "inputs": {
+            "language": "EN-us",
+            "languages": [
+              "en-US"
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "F",
+          "reason": "FIRST_TAG_EQUAL_CASE_INSENSITIVE",
+          "real_sample": false,
+          "example_id": "LANG-EX-F-CASE",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "primary相同但首项地区不同",
+          "inputs": {
+            "language": "en-US",
+            "languages": [
+              "en-GB"
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "T",
+          "reason": "FULL_TAG_FIRST_DIFFERS_NOT_ATTACK_TRUTH",
+          "real_sample": false,
+          "example_id": "LANG-EX-T-REGION",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "合法BCP47扩展超过此版窄域",
+          "inputs": {
+            "language": "en-US-u-ca-gregory",
+            "languages": [
+              "en-US-u-ca-gregory"
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "U",
+          "reason": "UNSUPPORTED_OR_INVALID_FIRST_LANGUAGE_TAG;NOT_CLAIM_INVALID_BCP47",
+          "real_sample": false,
+          "example_id": "LANG-EX-U-EXTENSION",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "未知实现版本且列表已缩减为首项；两API有效，同源已知",
+          "inputs": {
+            "language": "fr-FR",
+            "languages": [
+              "fr-FR"
+            ],
+            "same_sync_source": true,
+            "provider_version": "UNKNOWN"
+          },
+          "expected_state": "F",
+          "reason": "DECLARED_FIRST_TAG_RELATION;IMPLEMENTATION_CONFORMANCE_UNKNOWN",
+          "real_sample": false,
+          "example_id": "LANG-EX-F-REDUCED",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "同session但两字段来自不同缓存/未知构建",
+          "inputs": {
+            "language": "en-US",
+            "languages": [
+              "en-US"
+            ],
+            "same_sync_source": false
+          },
+          "expected_state": "U",
+          "reason": "SOURCE_CONTEXT_UNPAIRED",
+          "real_sample": false,
+          "example_id": "LANG-EX-U-PROVENANCE",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "关系执行器输入外壳不符合版本契约",
+          "inputs": {
+            "record_schema_version": "invented"
+          },
+          "expected_state": "FAILED",
+          "reason": "INVALID_SERIALIZED_RECORD_ENVELOPE",
+          "real_sample": false,
+          "example_id": "LANG-EX-FAILED",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "首项一致，合法扩展只出现在尾项",
+          "inputs": {
+            "language": "en-US",
+            "languages": [
+              "en-US",
+              "fr-FR-u-ca-gregory"
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "F",
+          "reason": "FIRST_TAG_EQUAL;TAIL_PRESERVED_NOT_GATED",
+          "real_sample": false,
+          "example_id": "LANG-EX-F-TAIL-EXTENSION",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "首项不一致且尾项异常类型，异常诊断不能遮蔽已可计算首项关系",
+          "inputs": {
+            "language": "en-US",
+            "languages": [
+              "fr-FR",
+              42
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "T",
+          "reason": "FIRST_TAG_DIFFERS;TAIL_TYPE_ANOMALY_DIAGNOSTIC_ONLY_NOT_ATTACK_TRUTH",
+          "real_sample": false,
+          "example_id": "LANG-EX-T-TAIL-TYPE",
+          "executed": false
+        },
+        {
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario": "首项一致且尾项非字符串，保留尾项类型诊断",
+          "inputs": {
+            "language": "en-US",
+            "languages": [
+              "en-US",
+              null
+            ],
+            "same_sync_source": true
+          },
+          "expected_state": "F",
+          "reason": "FIRST_TAG_EQUAL;TAIL_TYPE_ANOMALY_DIAGNOSTIC_ONLY_NOT_NORMAL_LABEL",
+          "real_sample": false,
+          "example_id": "LANG-EX-F-TAIL-TYPE",
+          "executed": false
+        }
+      ],
+      "local_code_refs": [
+        "web_probe/canonical_web_probe.js:344",
+        "web_probe/canonical_web_probe.js:817",
+        "hybridguard_agent/research/rule_learning_v2/relations.py:49",
+        "hybridguard_agent/research/rule_learning_v2/relations.py:103",
+        "hybridguard_agent/research/rule_learning/matrix.py:78",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt:176"
+      ],
+      "runtime_validation": "NOT_PERFORMED",
+      "design_status": "READY_FOR_LIMITED_SCOPE_PARSER_AND_STATE_IMPLEMENTATION",
+      "state_semantics": {
+        "T": "在已声明有效域内关系偏差成立；不是攻击标签，也不直接授予报警资格。",
+        "F": "在已声明有效域内未见本关系偏差；不是正常标签或安全证明。",
+        "U": "正常不适用、字段缺失/非法操作数、来源不明或必要配对证据不足；保留具体reason，不转F。来源采集器已有runtime_error/timeout是不可用来源，记U并保留原状态。",
+        "FAILED": "候选执行器异常、非法envelope/声明schema/状态枚举或内部矛盾结构验证失败；evaluation_status=FAILED，不进入T/F/U逻辑。源采集runtime_error、正常不适用、版本/来源证据缺失仍U。"
+      },
+      "trust_assumptions": [
+        "同一函数来源绑定，数组未经排序/去重，status/quality不是页面自行声称的免检凭据。",
+        "JS属性可以被重写，本候选检查同层自洽而非真实系统语言；一致改写两端不能被发现。",
+        "未检查的历史采集构建不自动满足当前源码的同步读取前提；无法绑定来源时保留U。"
+      ],
+      "gate_trust_review": {
+        "page_self_claim": "无需页面版本门控；不按UA声称系统/版本豁免。来源绑定从采集契约取得，不能相信页面自报same_context=true。",
+        "attacker_forced_u": "改language或首项为未知标签、空数组、缺值或不可读可使U；按原因单列覆盖损失。仅追加尾项（包含扩展或非法类型）不能强制本首项关系U；尾项异常以诊断保留，样本不能消失。",
+        "reference_mutation": "两端均来自JS，可被一起改写；Native Locale不作为兜底真值。",
+        "coverage_reporting": {
+          "denominator": "保留所有预期记录，分别报告T/F/U/FAILED；U按reason和部署范围拆分，单独列因门控损失的覆盖率。",
+          "comparison": "不得用适用域缩小后的条件分母与旧全分母直接宣称误报改善；没有新真实正常材料不能验证真实误报改善。",
+          "training": "本轮不fit、不评价真实clean/attack，不修改或重算历史模型。"
+        }
+      },
+      "possible_interventions_detected": [
+        "单独改变language、单独改变列表首项、改变首项顺序却未同步language导致的自洽破坏。"
+      ],
+      "not_detected": [
+        "一致改变language及首项；真实语言偏好是否正确；App UI、系统设置或Native locale是否同步；HTTP Accept-Language逐请求覆盖。",
+        "只修改非首项且仍合法的fallback/偏好列表不会使本公式T。"
+      ],
+      "trainable_parameters": {
+        "parameters": [],
+        "constraint": "固定解析与首项关系无fit；后续选择/权重只使用各train分区；不按补检攻击调解析器或词表。"
+      },
+      "information_relation": {
+        "kind": "SAME_LAYER_SELF_CONSISTENCY_NOT_CROSS_LAYER",
+        "independent_hardware_truth": false
+      },
+      "deployment_applicability": {
+        "CONTROLLED_HOST": "已确认字段来自同一次canonical getNavigatorFeatures同步调用，观测状态有效，即可用于同层自洽。无需Native locale，不要求Host/系统语言与Web相等。",
+        "GENERAL_APP_WEBVIEW": "可用于可运行同一来源探针的页面；页面或SDK自己的两份不同时间缓存不满足此范围。不能把JS观测当不可伪造真值。"
+      },
+      "old_rule_ids": [
+        "W06"
+      ],
+      "old_identity_references": [
+        "CONTROL:app.web_data.navigator_layer.languages:LE:1.0:NEGATIVE",
+        "V2SINGLE:WEB_PRIMARY_ABSENT_WEB_LIST",
+        "V2REL:LANG_NATIVE_WEB_PRIMARY_DIFFERS",
+        "V2REL:LANG_NATIVE_PRIMARY_ABSENT_WEB_LIST"
+      ],
+      "model_evaluation": "NOT_PERFORMED",
+      "input_contract": {
+        "record_fields": "features / field_status / field_quality；不接受label、phase、attack config作为输入",
+        "source_binding": "由集成端现有来源/采集版本登记提供可信适配契约；不是页面自报same_context/observed即可放行。新增配对/运行元数据按proposed_metadata另立版本。",
+        "schema_version_policy": "已声明格式非法/不支持的序列化schema=FAILED；运行内核版本未知/API缺失通常U，具体按候选范围；语言/报告状态不做不必要内核门控。"
+      },
+      "U_reasons": [
+        "SOURCE_UNAVAILABLE",
+        "SOURCE_CONTEXT_UNPAIRED",
+        "MISSING_OR_INVALID_LANGUAGE_INPUT",
+        "UNSUPPORTED_OR_INVALID_FIRST_LANGUAGE_TAG"
+      ],
+      "example_default_assumptions": "除该例明确覆盖的缺失/失败条件外，假定共同envelope和候选所列必要observed/status、来源配对门控成立。gate/trusted_binding/same_sync_source只是人工例的简写，不是允许从网页接收的真实通行布尔值。"
+    },
+    {
+      "candidate_id": "RSR-TZ-FIXED-v1",
+      "version": "1.0.0",
+      "family": "TIMEZONE",
+      "name": "固定Native时区快照与Web偏移差异（复用B身份）",
+      "old_rule_ids": [
+        "W04"
+      ],
+      "old_atom_ids": [
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS"
+      ],
+      "reuse_atom_id": "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS",
+      "purpose": "精确复述并复用已有固定时区域差异，避免把Web offset>0解释为普适异常；不声称动态时区同刻关系已可计算。",
+      "inputs": [
+        {
+          "source": "TimeZone.getDefault().id",
+          "unit": "string, exact case-sensitive fixed-zone grammar",
+          "scope": "Java进程默认时区快照",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.android_native_data.locale_timezone_layer.native_timezone_id\"]",
+          "status_path": "$.field_status[\"app.android_native_data.locale_timezone_layer.native_timezone_id\"]",
+          "quality_path": "$.field_quality[\"app.android_native_data.locale_timezone_layer.native_timezone_id\"]",
+          "raw_path": "android_native_data.locale_timezone_layer.native_timezone_id",
+          "type": "string"
+        },
+        {
+          "source": "TimeZone.getDefault().rawOffset / 60000",
+          "unit": "integer minutes EAST of UTC",
+          "scope": "标准偏移，不包含DST",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.android_native_data.locale_timezone_layer.native_timezone_offset_min\"]",
+          "status_path": "$.field_status[\"app.android_native_data.locale_timezone_layer.native_timezone_offset_min\"]",
+          "quality_path": "$.field_quality[\"app.android_native_data.locale_timezone_layer.native_timezone_offset_min\"]",
+          "raw_path": "android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "type": "number"
+        },
+        {
+          "source": "new Date().getTimezoneOffset()",
+          "unit": "integer minutes WEST of UTC",
+          "scope": "Web当前Date时刻",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.web_data.execution_layer.timezone_offset\"]",
+          "status_path": "$.field_status[\"app.web_data.execution_layer.timezone_offset\"]",
+          "quality_path": "$.field_quality[\"app.web_data.execution_layer.timezone_offset\"]",
+          "raw_path": "web_data.execution_layer.timezone_offset",
+          "type": "number"
+        }
+      ],
+      "trust_assumptions": [
+        "Native字段来自独立Host采集，不能由待检查页面自报。",
+        "当前ID/rawOffset是两次getDefault调用，未构成原子快照；先用ID可解偏移与raw一致门控排除明显混采，但一致不证明生命周期配对。",
+        "此数值关系本身可比较两个观测；要将T解释为违背共享时区预期，需要额外可审查的稳定/传播前提，不能从session_id推定。"
+      ],
+      "normalization": {
+        "aliases_zero": [
+          "GMT",
+          "UTC",
+          "Etc/UTC",
+          "Etc/GMT",
+          "Z"
+        ],
+        "signed_grammar": "(?:(?:GMT|UTC))?([+-])(\\d{2}):(\\d{2}), hours<=23, minutes<=59; + means EAST",
+        "etc_grammar": "Etc/GMT([+-])(\\d{1,2}), hours<=14; POSIX sign reversed",
+        "other_ids": "U_UNSUPPORTED_DYNAMIC_OR_UNKNOWN_ZONE; no zone-name lookup, case-folding, DST inference or timestamp guessing",
+        "numbers": "finite int/float excluding bool; both integral; abs(WebOffset)<1440; NativeRaw==parsed fixed minutes"
+      },
+      "formula": "m = existing fixed_offset(native_id); if any original observed/type/domain gate fails: U; otherwise T iff m != -web_offset, else F. Reuse timezone_difference() without new atom or selection weight.",
+      "pseudocode": [
+        "require original observed()/observed_value for all 3 fields else U_MISSING_OR_UNOBSERVED",
+        "m = V2_B_RELATIONS_V1.fixed_offset(native_id)",
+        "if m is None or numeric/type/integral/range checks fail or native_raw != m: U_UNSUPPORTED_OR_INCONSISTENT_INPUT",
+        "return T if m != -web_offset else F"
+      ],
+      "fixed_parameters": {
+        "source": "LOC-022 existing fixed_offset/timezone_difference",
+        "learned": false,
+        "minutes_per_hour": 60,
+        "milliseconds_per_minute": 60000,
+        "web_abs_limit_exclusive": 1440,
+        "id_grammar": "exact reuse; do not change alias set under reused ID"
+      },
+      "normal_counterexamples_and_boundaries": [
+        "Native固定UTC而renderer仍用UTC+1，可T且正常；门控并不证明默认时区传播已经同步。",
+        "America/New_York的raw -300和夏令时Web 240必须U；不得按-raw推出Web应为300。",
+        "Etc/GMT+5与GMT-05:00均代表向西5小时；同偏移不证明同地区。"
+      ],
+      "existing_data_support": {
+        "classification": "DUPLICATES_EXISTING_SEMANTICS",
+        "reason": "LOC-022中已有同一字段、固定语法和公式；不能把重新命名算新增家族增益。动态同刻方案仍需要reference_epoch_ms、Native getOffset(reference_epoch_ms)、Web同刻offset和时区/tzdata来源。"
+      },
+      "implementation_changes": [
+        "复用已有V2REL原子和别名；只在设计/说明层纠正目的及正常T解释。",
+        "若未来扩动态域，另立版本并新增同刻/current-offset元数据，不改变历史B身份。"
+      ],
+      "blockers": [
+        "GENERAL_APP_WEBVIEW未集成独立Native来源时U；动态同刻关系未采集必要字段；既有快照不足以证明共享时区传播完成。"
+      ],
+      "gate_trust_review": {
+        "page_can_force_u": "若接受页面自报Native ID，能将其改动态区强制U；因此禁止网页提供门控Native源。Web无效值仍可导致U，须保留覆盖损失。",
+        "native_host_mutability": "Java默认时区本来可被业务配置；若Native进程受控，参照也可改，未假定不可变。",
+        "coverage_reporting": "保留全部预期样本及按U原因/容器/来源分母；不得删动态区或将覆盖缩窄称为低误报。"
+      },
+      "specification_examples": [
+        {
+          "inputs": {
+            "native_id": "GMT+08:00",
+            "native_raw": 480,
+            "web_offset": -480
+          },
+          "expected_state": "F",
+          "reason": "同向转换后相等，固定域无需猜测DST。",
+          "example_id": "TZ-E01",
+          "scenario_class": "NORMAL_COMPATIBLE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_id": "UTC",
+            "native_raw": 0,
+            "web_offset": 60
+          },
+          "expected_state": "T",
+          "reason": "偏移不同；也可能是正常不同进程配置，不作攻击标签。",
+          "example_id": "TZ-E02",
+          "scenario_class": "DEFINED_DEVIATION",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_id": "America/New_York",
+            "native_raw": -300,
+            "web_offset": 240
+          },
+          "expected_state": "U",
+          "reason": "动态区/DST不能由raw恢复Web时刻偏移。",
+          "example_id": "TZ-E03",
+          "scenario_class": "MISSING_EVIDENCE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_id": "UTC",
+            "native_raw": 0,
+            "web_offset": "0"
+          },
+          "expected_state": "U",
+          "reason": "数字字符串不自动转换。",
+          "example_id": "TZ-E04",
+          "scenario_class": "ILLEGAL_TYPE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_id": "Etc/GMT+5",
+            "native_raw": -300,
+            "web_offset": 300
+          },
+          "expected_state": "F",
+          "reason": "POSIX反号规则。",
+          "example_id": "TZ-E05",
+          "scenario_class": "ALIAS_BOUNDARY",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_id": "UTC",
+            "native_raw": 60,
+            "web_offset": 0
+          },
+          "expected_state": "U",
+          "reason": "Native ID/raw不一致，不把它硬解释为Web偏差。",
+          "example_id": "TZ-E06",
+          "scenario_class": "INCONSISTENT_NATIVE_SNAPSHOT",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "TIMEZONE-FAILED-SCHEMA",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario_class": "VALIDATION_FAILURE",
+          "inputs": {
+            "field_status": "UNREGISTERED_ENUM"
+          },
+          "expected_state": "FAILED",
+          "reason": "INVALID_STATUS_ENUM",
+          "real_sample": false,
+          "executed": false
+        }
+      ],
+      "validation_mode": "SPECIFICATION_EXAMPLES_ONLY_NOT_EXECUTED_ON_RECORDS",
+      "source_ids": [
+        "LOC-006",
+        "LOC-009",
+        "LOC-022",
+        "OFF-006",
+        "OFF-007",
+        "OFF-025",
+        "OFF-026",
+        "OFF-027",
+        "OFF-028",
+        "OFF-029",
+        "OFF-051",
+        "OFF-052",
+        "RSR-LOC-001",
+        "RSR-LOC-006",
+        "RSR-LOC-003"
+      ],
+      "state_semantics": {
+        "T": "固定Native快照偏移与Web当前观测反号后不同；可由正常不同默认时区或生命周期引起，不是攻击真值。",
+        "F": "该偏移关系相等；不证明时区ID相同、地理位置相同或无操纵。",
+        "U": "缺字段/未observed、动态或未知时区、非法类型、Native ID/raw不一致、来源不可取得。不得U=F。",
+        "FAILED": "候选执行器异常、非法envelope/声明schema/状态枚举或内部矛盾结构验证失败；evaluation_status=FAILED，不进入T/F/U逻辑。源采集runtime_error、正常不适用、版本/来源证据缺失仍U。"
+      },
+      "deployment_applicability": {
+        "CONTROLLED_HOST": "现有输入足以计算B窄域的观测差异；Host须独立绑定Native和Web采集来源。将差异当作共同默认时区预期的偏离，还要求阶段内默认时区稳定且相关renderer刷新已完成。",
+        "GENERAL_APP_WEBVIEW": "只有集成Native/Host采集并能说明来源/生命周期的第三方容器可算；纯页面无法取得Native参照。正常进程与renderer时区差异可能导致T，不是App名称豁免。"
+      },
+      "possible_interventions_detected": [
+        "只改变Web当前偏移且改变后偏离Native固定快照的可观测差异；只能报告关系差异。"
+      ],
+      "not_detected": [
+        "Native/Web一致改变",
+        "保留相同偏移但改变时区ID或地区",
+        "动态时区域所有干预（U）",
+        "无变化或改变后恰与Native偏移一致"
+      ],
+      "trainable_parameters": {
+        "parameters": [],
+        "constraint": "关系本身无需训练。未来是否被选择仍由获授权训练折的原策略决定，不强制入选。"
+      },
+      "information_relation": {
+        "kind": "CROSS_LAYER_VALUE_RELATION_BUT_EXISTING_IDENTITY; not independent hardware truth",
+        "independent_hardware_truth": false
+      },
+      "applicability": {
+        "container": "有上述原始字段的Android Native + Web上下文；语法不由UA识别",
+        "versions": "复用 V2_B_RELATIONS_V1；Java/ECMA偏移语义；不将Chromium133的刷新路径推广至所有版本",
+        "reference_instant": "Web Date生成时刻；Native限定语法上固定偏移，故其有效偏移不依赖时刻；没有用rawOffset代替动态区getOffset(t)。"
+      },
+      "old_identity_references": [
+        "CONTROL:app.web_data.execution_layer.timezone_offset:LE:0.0:NEGATIVE",
+        "V2REL:FIXED_NATIVE_VS_WEB_OFFSET_DIFFERS"
+      ],
+      "runtime_validation": "NOT_PERFORMED",
+      "model_evaluation": "NOT_PERFORMED",
+      "proposed_metadata": [],
+      "input_contract": {
+        "record_fields": "features / field_status / field_quality；不接受label、phase、attack config作为输入",
+        "source_binding": "由集成端现有来源/采集版本登记提供可信适配契约；不是页面自报same_context/observed即可放行。新增配对/运行元数据按proposed_metadata另立版本。",
+        "schema_version_policy": "已声明格式非法/不支持的序列化schema=FAILED；运行内核版本未知/API缺失通常U，具体按候选范围；语言/报告状态不做不必要内核门控。"
+      },
+      "U_reasons": [
+        "MISSING_OR_UNOBSERVED",
+        "UNSUPPORTED_DYNAMIC_OR_UNKNOWN_ZONE",
+        "INVALID_NUMERIC_TYPE_OR_RANGE",
+        "NATIVE_ID_RAW_INCONSISTENT",
+        "SOURCE_UNAVAILABLE"
+      ],
+      "identity_scope_clarification": "RSR模板是设计文档标识，不发新selectable atom；数值有效域完全复用B。来源信任与生命周期限定解释，不暗中更改旧B门控。未来若把新增来源门控编成不同状态映射，必须另立gate/representation版本，不能仍以原atom宣称等价。",
+      "example_default_assumptions": "除该例明确覆盖的缺失/失败条件外，假定共同envelope和候选所列必要observed/status、来源配对门控成立。gate/trusted_binding/same_sync_source只是人工例的简写，不是允许从网页接收的真实通行布尔值。"
+    },
+    {
+      "candidate_id": "RSR-MEM-QUANTIZED-v1",
+      "version": "1.0.0",
+      "family": "MEMORY",
+      "name": "指定实现输入的量化内存暴露差异（条件规格，历史输入尚不足）",
+      "old_rule_ids": [
+        "W05"
+      ],
+      "old_atom_ids": [
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "UNFITTED_CONTROL:V2REL.MEMORY_WEB_NATIVE_RATIO"
+      ],
+      "purpose": "用已审查实现的输入路径和固定量化语义描述关系偏差；保留B比例负结果，不学习新比例或任意容差。",
+      "inputs": [
+        {
+          "source": "ActivityManager.MemoryInfo.totalMem / (1024^3)",
+          "unit": "GiB; binary64",
+          "scope": "Android kernel-accessible total memory read",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.android_native_data.memory_layer.total_memory_gb",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.android_native_data.memory_layer.total_memory_gb\"]",
+          "status_path": "$.field_status[\"app.android_native_data.memory_layer.total_memory_gb\"]",
+          "quality_path": "$.field_quality[\"app.android_native_data.memory_layer.total_memory_gb\"]",
+          "raw_path": "android_native_data.memory_layer.total_memory_gb",
+          "type": "number"
+        },
+        {
+          "source": "navigator.deviceMemory || 0",
+          "unit": "GiB-like quantized float; zero is unavailable sentinel",
+          "scope": "Web realm secure-context API / process initialized cache",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.web_data.navigator_layer.device_memory",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.web_data.navigator_layer.device_memory\"]",
+          "status_path": "$.field_status[\"app.web_data.navigator_layer.device_memory\"]",
+          "quality_path": "$.field_quality[\"app.web_data.navigator_layer.device_memory\"]",
+          "raw_path": "web_data.navigator_layer.device_memory",
+          "type": "number"
+        },
+        {
+          "source": "Host WebView package metadata",
+          "unit": "exact version string",
+          "scope": "container metadata",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.webview_data.kernel_container_layer.webview_provider_version",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "status_path": "$.field_status[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "quality_path": "$.field_quality[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "raw_path": "webview_data.kernel_container_layer.webview_provider_version",
+          "type": "string"
+        },
+        {
+          "source": "Host WebView package metadata",
+          "unit": "package string",
+          "scope": "container metadata",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.webview_data.kernel_container_layer.webview_provider_package",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.webview_data.kernel_container_layer.webview_provider_package\"]",
+          "status_path": "$.field_status[\"app.webview_data.kernel_container_layer.webview_provider_package\"]",
+          "quality_path": "$.field_quality[\"app.webview_data.kernel_container_layer.webview_provider_package\"]",
+          "raw_path": "webview_data.kernel_container_layer.webview_provider_package",
+          "type": "string"
+        },
+        {
+          "source": "Build.VERSION.SDK_INT",
+          "unit": "integer API level",
+          "scope": "OS metadata",
+          "required": true,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.android_native_data.build_fingerprint_layer.os_api_level",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.android_native_data.build_fingerprint_layer.os_api_level\"]",
+          "status_path": "$.field_status[\"app.android_native_data.build_fingerprint_layer.os_api_level\"]",
+          "quality_path": "$.field_quality[\"app.android_native_data.build_fingerprint_layer.os_api_level\"]",
+          "raw_path": "android_native_data.build_fingerprint_layer.os_api_level",
+          "type": "number"
+        },
+        {
+          "source": "ActivityManager.MemoryInfo.lowMemory",
+          "unit": "boolean pressure state; NOT Chromium enable-low-end switch",
+          "scope": "context only",
+          "required": false,
+          "status_requirement": "field_status=observed and field_quality=observed_value",
+          "field": "app.android_native_data.memory_layer.is_low_memory",
+          "exists_in_current_catalog": true,
+          "value_path": "$.features[\"app.android_native_data.memory_layer.is_low_memory\"]",
+          "status_path": "$.field_status[\"app.android_native_data.memory_layer.is_low_memory\"]",
+          "quality_path": "$.field_quality[\"app.android_native_data.memory_layer.is_low_memory\"]",
+          "raw_path": "android_native_data.memory_layer.is_low_memory",
+          "type": "boolean"
+        }
+      ],
+      "trust_assumptions": [
+        "Native和Host未在威胁模型内被完全控制；若两端同改，关系无法认证真实RAM。",
+        "包名/version元数据从Host取得而非页面UA；即使可信也不自动证明商业二进制等同上游tag。",
+        "浏览器原始总内存有初始化缓存，Native是另一次读取；必须证明对应时期可比较，不能因同session而假定。",
+        "ActivityManager.lowMemory是动态内存压力，不能代替Chromium命令行enable-low-end模式；自然IsLowEndDevice判别也不等同强制512MiB分支。"
+      ],
+      "normalization": {
+        "native_bytes": "只有确认原转换链且g为有限正数非bool，B=g*2^30恰为正整数且B<=2^53时可恢复；不得任意round或加容差。",
+        "page_mapping": "S=floor(B/P_div)*P_mul；若已证两页尺度相等且B整页，可化为S=B；未证不能直接跳过。",
+        "effective_input": "若enable_low_end=true：83令E=512*2^20，124/133令E=min(512*2^20,S)；若enable_low_end=false：三版均E=S；模式未知、test override存在或未知均U。",
+        "mib_conversion": "M=floor(E/2^20), require 1<=M<=2^31-1; matches integer /1024/1024 before quantization.",
+        "web": "finite positive numeric excluding bool; 0/absent legacy sentinel U; do not replace with available-memory field.",
+        "lower_limit": "审查量化函数没有显式0.25下限；不凭通用规范添加未实现下限。"
+      },
+      "formula": "REFERENCE_ONLY_UNTIL_MAPPING_CONTRACT: L=2^floor(log2(M)); H=2*L; R=L if M-L<=H-M else H; Q=min(R/1024,8). With all verified mapping/type/domain gates, T iff Web.device_memory != Q; else F. Without the mapping contract, U: do NOT evaluate Q(Native) on historical rows.",
+      "pseudocode": [
+        "if missing/untrusted mapping_contract or unsupported exact implementation: U_MAPPING_PRECONDITIONS_UNKNOWN",
+        "if observed/type/unit/roundtrip/cache/page/mode gates fail: U_<specific reason>",
+        "recover B; map through bionic page divisor and sysconf multiplier to S; apply version-specific explicit low-end branch to E",
+        "M = integer_floor(E / 1048576); if not 1 <= M <= 2147483647: U_REFERENCE_DOMAIN",
+        "L = highest_power_of_two_not_greater_than(M); H=2*L; R=L if M-L <= H-M else H; Q=min(R/1024,8)",
+        "return T if web_value != Q else F; never tune an epsilon or ratio threshold"
+      ],
+      "fixed_parameters": {
+        "source": "OFF-030/OFF-031/OFF-032 and SMT-CHR*-MB/MODE/RAM, SMT-AOSP*-RAM-PATH",
+        "bytes_per_mib": 1048576,
+        "bytes_per_gib": 1073741824,
+        "nearest_power_of_two_ties": "LOWER",
+        "upper_gib": 8,
+        "lower_gib": "NO_EXPLICIT_CLAMP_IN_REVIEWED_IMPLEMENTATION",
+        "comparison_tolerance": 0,
+        "forced_low_end_mib": 512,
+        "scope": "exact reviewed implementation only",
+        "source_ids": [
+          "OFF-030",
+          "OFF-031",
+          "OFF-032",
+          "SMT-CHR83-MODE",
+          "SMT-CHR83-RAM",
+          "SMT-CHR83-MB",
+          "SMT-CHR124-MODE",
+          "SMT-CHR124-RAM",
+          "SMT-CHR124-MB",
+          "SMT-CHR133-MODE",
+          "SMT-CHR133-RAM",
+          "SMT-CHR133-MB",
+          "SMT-AOSP11-RAM-PATH",
+          "SMT-AOSP15-RAM-PATH",
+          "SMT-AOSP16-RAM-PATH"
+        ]
+      },
+      "normal_counterexamples_and_boundaries": [
+        "4/8档为正常量化可能值，deviceMemory>2没有攻击含义。",
+        "3GiB的完整源输入正好中点，三已查tag向下量化为2；6GiB中点向下为4，不能按普通四舍五入写成8。",
+        "83强制low-end输入512MiB不取min；124/133取min。模式机制是必要输入前提，不把用户主动启用该选项扩成本轮正常默认反例。",
+        "原生is_low_memory=false不证明Chromium强制模式关闭。",
+        "Native/kernel保留内存不是随意容差理由：此链本来查询kernel可见总量，不以设备包装RAM替代。"
+      ],
+      "existing_data_support": {
+        "classification": "NEEDS_COLLECTION_METADATA",
+        "reason": "源码已给出条件映射和量化公式，因此不再笼统BLOCKED_SEMANTIC_MAPPING；但现有保存的Native总内存/Host包版本/Web值不足以证明商业构建等价、低端/测试覆盖模式、页尺度及初始化缓存期对应。当前档案一律不能因仅有数值就批准公式执行。"
+      },
+      "implementation_changes": [
+        "以后另行授权时可先实现不读真实记录的quantizer纯函数和输入状态类型；以SPECIFICATION_EXAMPLES覆盖中点/上限/截断。",
+        "将trusted mapping contract与原特征分离注册；历史记录未有契约保持U，不回填假字段。",
+        "跨层适配器在契约满足后才接入；新增采集元数据另命名，不与纯语义表示变更混名。"
+      ],
+      "blockers": [
+        "现有输入不含可信模式、页尺度、等价构建和缓存总量对应契约；未进行真实跨层映射验证。",
+        "未验证新真实正常材料，不能宣称误报改善；不重新试B的历史比例。"
+      ],
+      "gate_trust_review": {
+        "page_can_force_u": "网页自称未知版本/low-end开关不得成为可信门控；使用Host证据。Web删除API或改非法值仍可使U，保留覆盖分母。",
+        "native_host_mutability": "Host配置和Native参照可被有权限主体改动；威胁范围须声明，门控通过不是安全证明。",
+        "coverage_reporting": "报告预期样本总数、可比/T/F/U/FAILED与各U原因；不排除未知版本后宣称低误报。"
+      },
+      "specification_examples": [
+        {
+          "assumed_mapping_contract": "完整、可信、已审查的133/AOSP16路径；P_div=P_mul=4096；no overrides；总量稳定",
+          "inputs": {
+            "native_gib": 4.0,
+            "web_gib": 4.0
+          },
+          "derived_reference": {
+            "M": 4096,
+            "Q": 4
+          },
+          "expected_state": "F",
+          "reason": "只按定义推导，不是新增正常记录。",
+          "example_id": "MEM-E01",
+          "scenario_class": "NORMAL_COMPATIBLE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "assumed_mapping_contract": "同MEM-E01完整契约",
+          "inputs": {
+            "native_gib": 4.0,
+            "web_gib": 8.0
+          },
+          "derived_reference": {
+            "M": 4096,
+            "Q": 4
+          },
+          "expected_state": "T",
+          "reason": "暴露8偏离期望4，仍不是攻击真值。",
+          "example_id": "MEM-E02",
+          "scenario_class": "DEFINED_DEVIATION",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_gib": 4.0,
+            "web_gib": 4.0,
+            "provider_version": "133.0.6943.137"
+          },
+          "expected_state": "U",
+          "reason": "仅版本字符串+相同数值不证明模式、页尺度、缓存/构建契约；不计算比较。",
+          "example_id": "MEM-E03",
+          "scenario_class": "MISSING_EVIDENCE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "assumed_mapping_contract": "同MEM-E01完整契约",
+          "inputs": {
+            "native_gib": true,
+            "web_gib": 4.0
+          },
+          "expected_state": "U",
+          "reason": "bool不得当1GiB。",
+          "example_id": "MEM-E04",
+          "scenario_class": "ILLEGAL_TYPE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "assumed_mapping_contract": "同MEM-E01完整契约",
+          "inputs": {
+            "native_gib": 3.0,
+            "web_gib": 2.0
+          },
+          "derived_reference": {
+            "M": 3072,
+            "Q": 2
+          },
+          "expected_state": "F",
+          "reason": "中点取下界；不新增经验阈值。",
+          "example_id": "MEM-E05",
+          "scenario_class": "ROUNDING_BOUNDARY",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "assumed_mapping_contract": "同MEM-E01完整契约",
+          "inputs": {
+            "native_gib": 32.0,
+            "web_gib": 8.0
+          },
+          "derived_reference": {
+            "M": 32768,
+            "Q": 8
+          },
+          "expected_state": "F",
+          "reason": "固定tag封顶8，仅说明量化一致。",
+          "example_id": "MEM-E06",
+          "scenario_class": "SATURATION_BOUNDARY",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "inputs": {
+            "native_gib": 4.0,
+            "web_gib": 4.0,
+            "provider_version": "unreviewed"
+          },
+          "expected_state": "U",
+          "reason": "不把三版本相同源码推广全部内核。",
+          "example_id": "MEM-E07",
+          "scenario_class": "UNKNOWN_VERSION",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "assumed_mapping_contract": "完整可信133契约，明确enable-low-end=true；此为边界示例不是本轮正常默认材料",
+          "inputs": {
+            "native_gib": 4.0,
+            "web_gib": 0.5
+          },
+          "derived_reference": {
+            "effective_input_mib": 512,
+            "Q": 0.5
+          },
+          "expected_state": "F",
+          "reason": "依据已声明路径，不将低端开关与Android内存压力混淆。",
+          "example_id": "MEM-E08",
+          "scenario_class": "DECLARED_LOW_END_BOUNDARY",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MEMORY-FAILED-SCHEMA",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "scenario_class": "VALIDATION_FAILURE",
+          "inputs": {
+            "field_status": "UNREGISTERED_ENUM"
+          },
+          "expected_state": "FAILED",
+          "reason": "INVALID_STATUS_ENUM",
+          "real_sample": false,
+          "executed": false
+        }
+      ],
+      "validation_mode": "SPECIFICATION_EXAMPLES_ONLY_NOT_EXECUTED_ON_RECORDS",
+      "historical_relation_note": "B编码后的V2REL:MEMORY_WEB_NATIVE_RATIO:LE:{threshold}按原train编码器逐一保留；这里不发明一个全局阈值atom，登记的是源码UNFITTED_CONTROL模板身份。",
+      "source_ids": [
+        "LOC-006",
+        "LOC-008",
+        "LOC-013",
+        "LOC-021",
+        "LOC-022",
+        "LOC-027",
+        "OFF-009",
+        "OFF-010",
+        "OFF-030",
+        "OFF-031",
+        "OFF-032",
+        "OFF-033",
+        "OFF-034",
+        "SMT-CHR83-MODE",
+        "SMT-CHR83-RAM",
+        "SMT-CHR83-MB",
+        "SMT-CHR124-MODE",
+        "SMT-CHR124-RAM",
+        "SMT-CHR124-MB",
+        "SMT-CHR133-MODE",
+        "SMT-CHR133-RAM",
+        "SMT-CHR133-MB",
+        "SMT-AOSP11-RAM-PATH",
+        "SMT-AOSP15-RAM-PATH",
+        "SMT-AOSP16-RAM-PATH",
+        "RSR-LOC-001",
+        "RSR-LOC-006",
+        "RSR-LOC-003"
+      ],
+      "state_semantics": {
+        "T": "在全部映射前提已证时，Web暴露偏离该实现输入的量化值；仍不是攻击标签。",
+        "F": "符合声明路径的量化值；同档多种真实内存、一致改写或上限遮蔽仍无法识别。",
+        "U": "历史映射契约缺失、构建/模式/页尺度/缓存时期未知、API缺失或零占位、非法类型/不能无损恢复Native字节、未审查版本；保留具体原因。",
+        "FAILED": "候选执行器异常、非法envelope/声明schema/状态枚举或内部矛盾结构验证失败；evaluation_status=FAILED，不进入T/F/U逻辑。源采集runtime_error、正常不适用、版本/来源证据缺失仍U。"
+      },
+      "deployment_applicability": {
+        "CONTROLLED_HOST": "可先实现纯量化参照/输入状态检查；只有独立Host能提供已审查构建与运行配置、页尺度及缓存总量稳定契约后，才启用跨层比较。当前已保存字段未包含该契约。",
+        "GENERAL_APP_WEBVIEW": "普通页面无法取得可信Native参照或内核模式；未集成可信Host且不能说明内核路径时U，不按App名豁免。"
+      },
+      "possible_interventions_detected": [
+        "在可信未改Native/模式/构建和可比较缓存前提下，只改Web deviceMemory到不同量化档位的关系偏差。"
+      ],
+      "not_detected": [
+        "两端一致改写",
+        "真实总RAM变化但仍落同量化档位",
+        "8GiB封顶以上的差异",
+        "正式改变已声明模式且暴露符合它",
+        "操纵门控造成U（需显示覆盖损失）",
+        "Native/Host参照同时受控"
+      ],
+      "trainable_parameters": {
+        "parameters": [],
+        "constraint": "量化/页转换/模式不能通过train或全历史样本拟合。未来候选选择仅own-train；与历史B比例阈值保持不同身份。"
+      },
+      "information_relation": {
+        "kind": "CROSS_LAYER_TRANSFORMATION_OF_A_COMMON_KERNEL_SOURCE; two acquisition paths, not independent hardware identity evidence or a copied Host field",
+        "independent_hardware_truth": false
+      },
+      "applicability": {
+        "source_reference_versions": [
+          "Chromium 83.0.4103.106",
+          "Chromium 124.0.6367.219",
+          "Chromium 133.0.6943.137",
+          "AOSP android-11.0.0_r1",
+          "AOSP android-15.0.0_r1",
+          "AOSP android-16.0.0_r1"
+        ],
+        "scope": "这些是上游公式参考，不是以商业包版本字符串自动批准构建等价；未证明映射契约时返回U。",
+        "runtime_scope": "同一稳定kernel总RAM可见性及初始化期；不是当前availMem、广告RAM或JS堆。"
+      },
+      "old_identity_references": [
+        "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+        "UNFITTED_CONTROL:V2REL.MEMORY_WEB_NATIVE_RATIO"
+      ],
+      "runtime_validation": "NOT_PERFORMED",
+      "model_evaluation": "NOT_PERFORMED",
+      "proposed_metadata": [
+        {
+          "path": "deployment_evidence.memory_mapping_contract.implementation_binding_ref",
+          "type": "string",
+          "unit": "metadata",
+          "source": "独立Host/部署登记指向审查过的AOSP+bionic+Chromium构建映射，不以包版本代替",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.engine_source_version",
+          "type": "string",
+          "unit": "metadata",
+          "source": "与实现绑定一致的精确源码版本；目前只接受83.0.4103.106/124.0.6367.219/133.0.6943.137进入公式，其他或未知值为U_UNSUPPORTED_IMPLEMENTATION，不是非法序列化enum。",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.page_divisor_bytes",
+          "type": "positive integer",
+          "unit": "bytes",
+          "source": "已审bionic get_phys_pages实际使用的页除数",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.page_multiplier_bytes",
+          "type": "positive integer",
+          "unit": "bytes",
+          "source": "已审Chromium sysconf(_SC_PAGESIZE)实际页乘数",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.low_end_override",
+          "type": "enum ENABLED/DISABLED/UNKNOWN",
+          "unit": "metadata",
+          "source": "Chromium显式enable-low-end-device-mode状态；UNKNOWN为U",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.test_override",
+          "type": "enum ABSENT/PRESENT/UNKNOWN",
+          "unit": "metadata",
+          "source": "SysInfo与Blink测试输入覆盖；PRESENT或UNKNOWN为U",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.stable_kernel_total_binding_ref",
+          "type": "string",
+          "unit": "metadata",
+          "source": "Native读数和Chromium缓存初始化对应同一稳定kernel总量的来源说明",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.native_conversion_binding_ref",
+          "type": "string",
+          "unit": "metadata",
+          "source": "原字节到binary64 GiB与保存链可无损恢复的契约；不允许凭相等数值批准",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        },
+        {
+          "path": "deployment_evidence.memory_mapping_contract.source_binding_status",
+          "type": "enum VERIFIED/UNKNOWN",
+          "unit": "metadata",
+          "source": "独立配置/来源登记结果；页面自报不满足",
+          "required": true,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "exists_in_current_catalog": false
+        }
+      ],
+      "mapping_contract_requirements": [
+        "可信Host配置/构建来源绑定到此次Native/renderer；不能只认页面UA版本",
+        "Native sysinfo与Chromium缓存初始化看到同一稳定kernel总量，或明示其不可比",
+        "bionic get_phys_pages除数P_div和Chromium sysconf page size P_mul，正整数且构建可解释",
+        "Chromium enable-low-end-device-mode状态；124/133测试override与Blink测试输入覆盖明确未启用",
+        "浮点GiB可无损恢复Native原始byte整数的转换链",
+        "API读取状态和容器/版本/安全上下文可用性"
+      ],
+      "formula_binding": {
+        "B": "native_gib*2^30; exact source conversion required",
+        "P_div": "deployment_evidence.memory_mapping_contract.page_divisor_bytes",
+        "P_mul": "deployment_evidence.memory_mapping_contract.page_multiplier_bytes",
+        "version": "deployment_evidence.memory_mapping_contract.engine_source_version",
+        "enable_low_end": "low_end_override == ENABLED",
+        "all_gates": "source_binding_status VERIFIED; refs valid; test_override ABSENT; low_end_override known; implementation binding accepted; exact byte recovery"
+      },
+      "input_contract": {
+        "record_fields": "features / field_status / field_quality；不接受label、phase、attack config作为输入",
+        "source_binding": "由集成端现有来源/采集版本登记提供可信适配契约；不是页面自报same_context/observed即可放行。新增配对/运行元数据按proposed_metadata另立版本。",
+        "schema_version_policy": "已声明格式非法/不支持的序列化schema=FAILED；运行内核版本未知/API缺失通常U，具体按候选范围；语言/报告状态不做不必要内核门控。"
+      },
+      "U_reasons": [
+        "MAPPING_PRECONDITIONS_UNKNOWN",
+        "SOURCE_UNAVAILABLE",
+        "UNSUPPORTED_IMPLEMENTATION",
+        "MODE_UNKNOWN",
+        "TEST_OVERRIDE_PRESENT_OR_UNKNOWN",
+        "PAGE_SCALE_UNKNOWN",
+        "CACHE_EPOCH_INCOMPARABLE",
+        "NATIVE_BYTES_NOT_EXACTLY_RECOVERABLE",
+        "WEB_SENTINEL_OR_INVALID",
+        "REFERENCE_DOMAIN"
+      ],
+      "U_reason_precedence": [
+        "SOURCE_UNAVAILABLE",
+        "MAPPING_PRECONDITIONS_UNKNOWN",
+        "UNSUPPORTED_IMPLEMENTATION",
+        "MODE_UNKNOWN",
+        "TEST_OVERRIDE_PRESENT_OR_UNKNOWN",
+        "PAGE_SCALE_UNKNOWN",
+        "CACHE_EPOCH_INCOMPARABLE",
+        "NATIVE_BYTES_NOT_EXACTLY_RECOVERABLE",
+        "WEB_SENTINEL_OR_INVALID",
+        "REFERENCE_DOMAIN"
+      ],
+      "example_default_assumptions": "除该例明确覆盖的缺失/失败条件外，假定共同envelope和候选所列必要observed/status、来源配对门控成立。gate/trusted_binding/same_sync_source只是人工例的简写，不是允许从网页接收的真实通行布尔值。"
+    },
+    {
+      "candidate_id": "RSR-MIME-EXPECTED-v1",
+      "version": "1.0.0",
+      "family": "MIME",
+      "purpose": "在已声明并有受信Host来源支持的 Chromium Android WebView 133.0.6943.137 实现域中，报告 MIME 计数偏离源码预期0。",
+      "old_rule_ids": [
+        "W02"
+      ],
+      "old_atom_ids": [
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+      ],
+      "old_literal_ids": [
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE"
+      ],
+      "source_ids": [
+        "LOC-010",
+        "LOC-017",
+        "OFF-015",
+        "OFF-037",
+        "OFF-038",
+        "OFF-039",
+        "OFF-040",
+        "OFF-041",
+        "OFF-042",
+        "OFF-043",
+        "OFF-044",
+        "OFF-048",
+        "OFF-049",
+        "RSR-LOC-MW-001",
+        "RSR-LOC-MW-002",
+        "RSR-LOC-MW-003",
+        "RSR-LOC-MW-004",
+        "RSR-LOC-MW-005",
+        "RSR-LOC-MW-006",
+        "RSR-LOC-MW-007",
+        "RSR-LOC-MW-008",
+        "RSR-LOC-MW-009",
+        "RSR-LOC-001",
+        "RSR-LOC-006"
+      ],
+      "inputs": [
+        {
+          "field": "app.web_data.automation_surface_layer.mime_types_count",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.web_data.automation_surface_layer.mime_types_count\"]",
+          "quality_path": "$.field_quality[\"app.web_data.automation_surface_layer.mime_types_count\"]",
+          "raw_path": "web_data.automation_surface_layer.mime_types_count",
+          "type": "number",
+          "unit": "非负整数项数",
+          "source": "navigator.mimeTypes ? navigator.mimeTypes.length : 0",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": true,
+          "value_path": "$.features[\"app.web_data.automation_surface_layer.mime_types_count\"]"
+        },
+        {
+          "field": "app.webview_data.kernel_container_layer.webview_provider_package",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.webview_data.kernel_container_layer.webview_provider_package\"]",
+          "quality_path": "$.field_quality[\"app.webview_data.kernel_container_layer.webview_provider_package\"]",
+          "raw_path": "webview_data.kernel_container_layer.webview_provider_package",
+          "type": "string",
+          "unit": "package name",
+          "source": "WebView.getCurrentWebViewPackage().packageName",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": true,
+          "value_path": "$.features[\"app.webview_data.kernel_container_layer.webview_provider_package\"]"
+        },
+        {
+          "field": "app.webview_data.kernel_container_layer.webview_provider_version",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "quality_path": "$.field_quality[\"app.webview_data.kernel_container_layer.webview_provider_version\"]",
+          "raw_path": "webview_data.kernel_container_layer.webview_provider_version",
+          "type": "string",
+          "unit": "完整版本字符串",
+          "source": "WebView.getCurrentWebViewPackage().versionName",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": true,
+          "value_path": "$.features[\"app.webview_data.kernel_container_layer.webview_provider_version\"]"
+        },
+        {
+          "field": "app.web_data.automation_surface_layer.plugins_count",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.web_data.automation_surface_layer.plugins_count\"]",
+          "quality_path": "$.field_quality[\"app.web_data.automation_surface_layer.plugins_count\"]",
+          "raw_path": "web_data.automation_surface_layer.plugins_count",
+          "type": "number",
+          "unit": "非负整数项数",
+          "source": "navigator.plugins.length",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": false,
+          "value_path": "$.features[\"app.web_data.automation_surface_layer.plugins_count\"]"
+        },
+        {
+          "field": "app.web_data.automation_surface_layer.plugins_hash",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.web_data.automation_surface_layer.plugins_hash\"]",
+          "quality_path": "$.field_quality[\"app.web_data.automation_surface_layer.plugins_hash\"]",
+          "raw_path": "web_data.automation_surface_layer.plugins_hash",
+          "type": "string",
+          "unit": "不透明摘要",
+          "source": "同一插件枚举排序后hash",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": false,
+          "value_path": "$.features[\"app.web_data.automation_surface_layer.plugins_hash\"]"
+        },
+        {
+          "field": "app.web_data.automation_surface_layer.mime_types_hash",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.web_data.automation_surface_layer.mime_types_hash\"]",
+          "quality_path": "$.field_quality[\"app.web_data.automation_surface_layer.mime_types_hash\"]",
+          "raw_path": "web_data.automation_surface_layer.mime_types_hash",
+          "type": "string",
+          "unit": "不透明摘要",
+          "source": "同一MIME枚举排序后hash",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": false,
+          "value_path": "$.features[\"app.web_data.automation_surface_layer.mime_types_hash\"]"
+        }
+      ],
+      "proposed_metadata": [
+        {
+          "path": "deployment_evidence.container_implementation_binding",
+          "exists_in_current_catalog": false,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "type": "object",
+          "meaning": "评估器外部固定、独立于被测页面的部署契约，包含container=ANDROID_WEBVIEW，exact_engine_version，Host获取来源，适用provider构建与已审源码路径的对应说明、未知厂商补丁状态、collector版本关联；不要求密码学证明，但单独版本字符串不够。"
+        }
+      ],
+      "deployment_applicability": {
+        "CONTROLLED_HOST": "可由集成者从当前进程真实WebView provider取得package+完整version，并独立于页面回传保存；声明当前威胁模型下Host来源可信、所用构建保留已核实现。仅当前源码路径不能证明所有历史APK已满足。缺此声明/绑定输出U。",
+        "GENERAL_APP_WEBVIEW": "只有第三方集成Host提供同等来源、容器与构建映射时才可用；仅网页UA、页面自报版本、App名称均不够，输出U。"
+      },
+      "applicability": {
+        "supported_container": "Android Chromium WebView",
+        "exact_supported_versions": [
+          "133.0.6943.137"
+        ],
+        "partial_evidence_only_versions": [
+          "83.0.4103.106",
+          "124.0.6367.219"
+        ],
+        "not_supported_by_this_spec": [
+          "仅major=133",
+          "任意其他小版本",
+          "未知厂商修改",
+          "其他内核",
+          "桌面Chrome",
+          "未来版本"
+        ],
+        "version_matching": "完整version逐字等于登记版本；不从UA token补造；provider package不是App白名单，也不是独立可信证明。",
+        "closure": "133: AwSettings plugins_enabled=false -> WebView.ApplyWebPreferences.SetPluginsEnabled -> FrameLoader.AllowPlugins=false -> LocalFrame.GetPluginData=null -> DOMPluginArray空 -> DOMMimeTypeArray固定与旧分支均空。83/124仅部分链，不自动纳入。"
+      },
+      "trust_assumptions": [
+        "provider字段由可信Host从当前进程API读取并与被测WebView容器相连，不能仅依赖页面复制件。",
+        "声明威胁模型允许以Host实现绑定作为条件参照；Native/Host可被进程Hook、伪造payload或错误集成改变，故不是硬件真值。",
+        "所用构建保留已核133实现；版本号本身不能排除厂商补丁。"
+      ],
+      "gate_order": [
+        "验证候选配置与输入记录envelope；结构错误FAILED。",
+        "读取所需field status/quality；缺失或非observed/observed_value输出U并记所有可得原因。",
+        "检查mime count为非bool的有限非负整数、provider为非空字符串；普通非法操作数U(INVALID_COUNT/INVALID_PROVIDER_VALUE)。",
+        "检查外部独立的容器/provider/source-to-build绑定与Host可信前提；不足U(UNTRUSTED_PROVIDER_BINDING)。",
+        "严格检查登记完整版本与容器，其他版本U(VERSION_UNREGISTERED/CONTAINER_UNSUPPORTED)。",
+        "比较mime count与固定预期0；不使用plugins或hash作反向缺失门控。"
+      ],
+      "normalization": "不把字符串0转换成数值，不把bool当整数；不trim或解析UA推断内核；计数没有单位换算。",
+      "formula": "T iff gates_pass AND mime_types_count != 0; F iff gates_pass AND mime_types_count == 0; otherwise U/FAILED as specified.",
+      "state_semantics": {
+        "T": "通过门控且已保存MIME计数非零，偏离所声明133实现预期；不说明其原因是攻击。",
+        "F": "通过门控且已保存MIME计数为0；只是投影符合预期，不能证明API存在、成员正确或没有改写。",
+        "U": "当前无法定义关系或缺少证据；保留 reason 与原样本，不转 F、不删除分母。",
+        "FAILED": "候选执行器异常、非法envelope/声明schema/状态枚举或内部矛盾结构验证失败；evaluation_status=FAILED，不进入T/F/U逻辑。源采集runtime_error、正常不适用、版本/来源证据缺失仍U。"
+      },
+      "U_reasons": [
+        "MISSING_FIELD",
+        "SOURCE_STATUS_RUNTIME_ERROR",
+        "SOURCE_STATUS_UNSUPPORTED_BY_OS",
+        "SOURCE_QUALITY_UNAVAILABLE",
+        "INVALID_COUNT",
+        "UNTRUSTED_PROVIDER_BINDING",
+        "VERSION_UNREGISTERED",
+        "CONTAINER_UNSUPPORTED"
+      ],
+      "fixed_parameters": {
+        "expected_mime_count": 0,
+        "source_ids": [
+          "OFF-015",
+          "OFF-037",
+          "OFF-039",
+          "OFF-040",
+          "OFF-048",
+          "OFF-049"
+        ],
+        "version_scope": "133.0.6943.137 only"
+      },
+      "trainable_parameters": {
+        "parameters": [],
+        "constraint": "公式与有效域固定；未来是否选入模型仍只能在已授权train中选择，不能用clean/attack表现调版本门控。"
+      },
+      "normal_counterexamples_and_boundaries": [
+        "桌面PDF兼容非零属于域外U，不冒充此Android版本正常反例。",
+        "83/124部分链同样U；不存在已证明本窄域普通App默认非零反例，但不是全市场false保证。",
+        "canonical对缺失/falsy mimeTypes保存0且observed；F只说明保存投影为0。",
+        "plugin_probe_error只说明摘要构建失败，count在此前可已读成功；当前普通automation status不足以精确定位哪个getter/枚举失败。"
+      ],
+      "possible_interventions_detected": [
+        "在受信版本/容器门控未变时，把网页MIME枚举投影改为非零的干预。"
+      ],
+      "not_detected": [
+        "仍返回0的改写",
+        "API删除或不可见导致当前采集投影0",
+        "保持计数0/不改变计数的其他干预",
+        "Host及Web同步伪造",
+        "篡改版本或信任证据迫使U",
+        "未知厂商/版本的行为"
+      ],
+      "information_relation": {
+        "kind": "WEB_IMPLEMENTATION_EXPECTATION_WITH_HOST_DOMAIN_GATE",
+        "independent_cross_layer_value_relation": false,
+        "explanation": "Host只确定实现适用域；未比较两个独立MIME来源。plugins/count/hash来自同一网页接口，不是独立跨层证据。"
+      },
+      "existing_semantics_overlap": "门控通过且count合法时，数值谓词与旧 W02 的 LE:0 NEGATIVE完全相同。新身份只用于显式容器/版本/信任门控与原因，不计为新的独立信息；如只改解释必须复用旧原子。",
+      "existing_data_support": {
+        "classification": "NEEDS_COLLECTION_METADATA",
+        "reason": "数量与Host provider字段已有，但App177保存投影没有受信实现绑定；当前源码和provider版本字符串不能证明历史构建/页面回传可信。完整现有数据不足以无条件应用。",
+        "immediately_implementable": "可写纯规格解析、状态与门控；不能因此重算历史预测。",
+        "conditional_existing_scope": "将来若已有外部、非标签驱动的受控部署绑定可正式关联某已保存记录，计数运算无需新设备；关联前保持U。"
+      },
+      "implementation_changes": [
+        "新增版本化语义模块与契约；不改旧W02或其模型。",
+        "未来如授权，独立Host保存provider来源/实现绑定，不能从Web UA填补。",
+        "若要研究PDF成员关系，另需原始members与pdfViewerEnabled采集；本模板不提出该扩展。"
+      ],
+      "blockers": [
+        "无法由当前数量/hash恢复MIME和plugin成员。",
+        "pdfViewerEnabled未保存，不能计算其与成员/数量的对应关系。",
+        "需要独立于页面的provider构建/容器绑定；83/124完整链未闭合。"
+      ],
+      "specification_examples": [
+        {
+          "example_id": "MIME-NORMAL-133",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "trusted_binding": true,
+            "container": "ANDROID_WEBVIEW",
+            "version": "133.0.6943.137",
+            "mime_types_count": 0,
+            "source_status": "observed"
+          },
+          "expected_state": "F",
+          "reason": "明确域内保存计数符合0；不是新增实测normal。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MIME-DEVIATION-133",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "trusted_binding": true,
+            "container": "ANDROID_WEBVIEW",
+            "version": "133.0.6943.137",
+            "mime_types_count": 2,
+            "source_status": "observed"
+          },
+          "expected_state": "T",
+          "reason": "按定义非零；不判攻击。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MIME-U-SELFCLAIM",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "trusted_binding": false,
+            "container": "ANDROID_WEBVIEW",
+            "version": "133.0.6943.137",
+            "mime_types_count": 2
+          },
+          "expected_state": "U",
+          "reason": "UNTRUSTED_PROVIDER_BINDING",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MIME-U-PARTIAL124",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "trusted_binding": true,
+            "container": "ANDROID_WEBVIEW",
+            "version": "124.0.6367.219",
+            "mime_types_count": 0
+          },
+          "expected_state": "U",
+          "reason": "VERSION_UNREGISTERED；部分链不当完整适用证据。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MIME-U-TYPE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "trusted_binding": true,
+            "container": "ANDROID_WEBVIEW",
+            "version": "133.0.6943.137",
+            "mime_types_count": true
+          },
+          "expected_state": "U",
+          "reason": "INVALID_COUNT；bool不可作1。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MIME-U-DESKTOP-NORMAL",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "trusted_binding": true,
+            "container": "DESKTOP_CHROMIUM",
+            "version": "133.0.6943.137",
+            "mime_types_count": 2
+          },
+          "expected_state": "U",
+          "reason": "CONTAINER_UNSUPPORTED；正常桌面PDF场景不在本域。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "MIME-FAILED-SCHEMA",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "record_envelope_valid": false
+          },
+          "expected_state": "FAILED",
+          "reason": "INVALID_SERIALIZED_RECORD_ENVELOPE",
+          "real_sample": false,
+          "executed": false
+        }
+      ],
+      "local_code_verification": [
+        {
+          "path": "web_probe/canonical_web_probe.js",
+          "lines": [
+            305,
+            315
+          ],
+          "claim": "fallback automation值 false/0。",
+          "source_id": "RSR-LOC-MW-001"
+        },
+        {
+          "path": "web_probe/canonical_web_probe.js",
+          "lines": [
+            580,
+            611
+          ],
+          "claim": "webdriver strict true投影；count默认0；仅摘要内部catch写plugin_probe_error。",
+          "source_id": "RSR-LOC-MW-001"
+        },
+        {
+          "path": "web_probe/canonical_web_probe.js",
+          "lines": [
+            777,
+            787
+          ],
+          "claim": "同步probe外抛异常保存runtime_error并fallback。",
+          "source_id": "RSR-LOC-MW-001"
+        },
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt",
+          "lines": [
+            35,
+            105
+          ],
+          "claim": "probe automation runtime_error传播到各field status。",
+          "source_id": "RSR-LOC-MW-002"
+        },
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+          "lines": [
+            206,
+            252
+          ],
+          "claim": "回传probe_statuses交给FieldStatusReporter保存。",
+          "source_id": "RSR-LOC-MW-003"
+        },
+        {
+          "path": "hybridguard_agent/research/manipulation_eval/adapter.py",
+          "lines": [
+            124,
+            129
+          ],
+          "claim": "非observed来源quality=source_unavailable；仅deviceMemory/hardwareConcurrency特殊sentinel。",
+          "source_id": "RSR-LOC-MW-004"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/matrix.py",
+          "lines": [
+            77,
+            101
+          ],
+          "claim": "来源非observed及非法值不可用；不把false等同源码API存在。",
+          "source_id": "RSR-LOC-MW-005"
+        }
+      ],
+      "gate_trust_review": {
+        "page_self_claimed_metadata_allowed": false,
+        "attacker_can_force_U": "若攻击者能修改Host来源、版本值或使证据丢失，能触发U；不能把由此少报警计为改善。",
+        "response": "样本留在expected denominator；单列VERSION_UNREGISTERED、UNTRUSTED_PROVIDER_BINDING、SOURCE_UNAVAILABLE覆盖损失；需要按威胁模型说明已超出Host可信假设。"
+      },
+      "old_identity_references": [
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+        "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE"
+      ],
+      "runtime_validation": "NOT_PERFORMED",
+      "model_evaluation": "NOT_PERFORMED",
+      "input_contract": {
+        "record_fields": "features / field_status / field_quality；不接受label、phase、attack config作为输入",
+        "source_binding": "由集成端现有来源/采集版本登记提供可信适配契约；不是页面自报same_context/observed即可放行。新增配对/运行元数据按proposed_metadata另立版本。",
+        "schema_version_policy": "已声明格式非法/不支持的序列化schema=FAILED；运行内核版本未知/API缺失通常U，具体按候选范围；语言/报告状态不做不必要内核门控。"
+      },
+      "example_default_assumptions": "除该例明确覆盖的缺失/失败条件外，假定共同envelope和候选所列必要observed/status、来源配对门控成立。gate/trusted_binding/same_sync_source只是人工例的简写，不是允许从网页接收的真实通行布尔值。"
+    },
+    {
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "version": "1.0.0",
+      "family": "WEBDRIVER",
+      "purpose": "表达当前JS realm所报告webdriver布尔状态，并显式区分API缺失、源读取失败、历史非true投影不确定性；不由此证明恶意或真实引擎自动化状态。",
+      "old_rule_ids": [
+        "W03"
+      ],
+      "old_atom_ids": [
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True"
+      ],
+      "old_literal_ids": [
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE"
+      ],
+      "source_ids": [
+        "LOC-010",
+        "LOC-018",
+        "OFF-012",
+        "OFF-016",
+        "OFF-045",
+        "RSR-LOC-MW-001",
+        "RSR-LOC-MW-002",
+        "RSR-LOC-MW-003",
+        "RSR-LOC-MW-004",
+        "RSR-LOC-MW-005",
+        "RSR-LOC-MW-006",
+        "RSR-LOC-MW-007",
+        "RSR-LOC-MW-008",
+        "RSR-LOC-MW-009",
+        "RSR-LOC-001",
+        "RSR-LOC-006",
+        "RSR-LOC-007"
+      ],
+      "inputs": [
+        {
+          "field": "app.web_data.automation_surface_layer.webdriver",
+          "exists_in_current_catalog": true,
+          "status_path": "$.field_status[\"app.web_data.automation_surface_layer.webdriver\"]",
+          "quality_path": "$.field_quality[\"app.web_data.automation_surface_layer.webdriver\"]",
+          "raw_path": "web_data.automation_surface_layer.webdriver",
+          "type": "boolean",
+          "unit": "布尔strict-true投影",
+          "source": "navigator.webdriver === true",
+          "scope": "当前采集页面/当前 payload；不保证未被改写",
+          "required": false,
+          "value_path": "$.features[\"app.web_data.automation_surface_layer.webdriver\"]",
+          "required_in_modes": [
+            "legacy_projection_v1"
+          ],
+          "role": "legacy唯一值操作数；raw mode不依赖此兼容bool或其automation组状态"
+        }
+      ],
+      "proposed_metadata": [
+        {
+          "path": "web_data.automation_surface_layer.webdriver_observation",
+          "exists_in_current_catalog": false,
+          "status": "PROPOSED_NOT_COLLECTED",
+          "type": "object",
+          "meaning": "同一realm内分开记录存在性读取与单次getter读取：api_present:boolean|null、presence_read_status:observed/runtime_error、value_read_status:observed/runtime_error/not_attempted、value_type:typeof结果|null、boolean_value:boolean|null、observer_revision、realm_binding。本对象尚未存在于177字段或保存schema。",
+          "member_schema": {
+            "api_present": {
+              "type": "boolean|null",
+              "meaning": "in检查结果；presence异常为null"
+            },
+            "presence_read_status": {
+              "type": "enum observed/runtime_error"
+            },
+            "value_read_status": {
+              "type": "enum observed/runtime_error/not_attempted"
+            },
+            "value_type": {
+              "type": "string|null",
+              "meaning": "getter成功时typeof原始值；未读取/失败null"
+            },
+            "boolean_value": {
+              "type": "boolean|null",
+              "meaning": "仅typeof boolean保存值，其他null"
+            },
+            "observer_revision": {
+              "type": "registered string",
+              "meaning": "采集契约版本，不由页面自行批准"
+            },
+            "realm_binding": {
+              "type": "string",
+              "meaning": "同一observer源约束下的realm关联；不是原生getter真实性证明"
+            }
+          }
+        }
+      ],
+      "deployment_applicability": {
+        "CONTROLLED_HOST": "当前保存的observed true可报告T；false只报告历史投影不确定U。完整F需新版本观察记录明确API存在且getter返回布尔false。Host可保证调用路径和realm绑定，但不保证JS属性未被改写。",
+        "GENERAL_APP_WEBVIEW": "同样只能说明页面报告。若有集成collector保留单次读取的原始状态，按相同规则解释；无法接入时缺证据U。不得用App名或所谓兼容模式免除。"
+      },
+      "applicability": {
+        "observation_scope": "普通页面Window navigator的webdriver报告值；不把Web Worker或非标准代理对象等自动当同一接口。",
+        "known_engine_evidence": "Chromium Android WebView 133.0.6943.137 getter与运行特性路径已核；W3C规定状态含义。83/124未在本设计补查webdriver完整路径。",
+        "version_policy": "候选T/F只解释可观察的布尔报告，不由版本推断默认值或自动化真实性，因此不使用页面自报版本作强制U开关。容器/版本未知时仍可报告有类型的API值，但engine_state_attribution=UNVERIFIED；若要宣称真实内核automation状态需额外已核实现/可信执行前提，本候选不作该宣称。",
+        "missing_api": "U(API_ABSENT)，不是false。"
+      },
+      "trust_assumptions": [
+        "collector记录同一realm同一次getter结果，presence/type/value不能从不同读数拼接。",
+        "观察路径未在入库时被伪造；即便成立，JS realm属性自身仍可能被重定义，T/F仅指报告值。",
+        "未来presence与raw_type由collector计算并有版本来源；不接受被测页面提供的“可信”标志。"
+      ],
+      "legacy_projection_audit": {
+        "api_absent": "navigator.webdriver读取undefined -> strict comparison false -> automation observed，无法恢复不存在。",
+        "api_boolean_false": "false -> false -> observed；与API absent不可逆合并。",
+        "api_nonboolean": "0、null、字符串false/true等所有非boolean true -> false -> observed；也不可由历史false恢复类型。",
+        "getter_throws": "getAutomationFeatures最外层抛错；safeSyncProbe automation=runtime_error，整组fallback webdriver=false；MainActivity/FieldStatusReporter将runtime_error保存，adapter quality=source_unavailable，matrix不可用U。不是与observed false完全合并。",
+        "later_count_read_throws": "webdriver即便已读true，后续plugins/mime count外抛使整个automation fallback false/runtime_error，故无法从失败记录恢复那次webdriver原值。",
+        "hash_enumeration_throws": "内部catch仅写plugin_probe_error；automation仍observed，之前webdriver布尔投影保留。不能由hash异常推断webdriver getter失败。"
+      },
+      "gate_order": [
+        "验证声明schema、mode、相应输入envelope和状态枚举；非法结构或互相矛盾的record为FAILED；未知运行内核不是schema错误。",
+        "按已登记观察契约选择mode。legacy模式仅依赖旧bool的field_status/quality：源错误或非observed/observed_value为U，即使存有fallback false。",
+        "legacy值严格true->T；严格false->U(LEGACY_NONTRUE_PROJECTION_AMBIGUOUS)；其他类型->U(INVALID_BOOLEAN_VALUE)。",
+        "raw模式只读取新observation及其来源/realm绑定；缺对象或绑定U。旧compatibility bool缺失或automation组因稍后MIME读取失败，都不阻断已独立保存的raw webdriver记录。",
+        "raw先检查presence_read_status，再api_present，再value_read_status、value_type、boolean_value；存在性检查和getter是独立读操作。presence失败、API absent、getter失败、nonboolean或来源不可比均按具体原因U。",
+        "raw presence observed且API存在、getter observed且typeof boolean、来源与realm绑定有效，则严格true=T、false=F。错误契约/内部矛盾结构为FAILED，候选本身异常FAILED。"
+      ],
+      "normalization": "不进行truthy转换；新记录getter只读一次并保存typeof；无字符串转bool；legacy值必须严格布尔。",
+      "formula": "new-schema: T iff presence_read_status=observed && api_present=true && value_read_status=observed && value_type=boolean && boolean_value===true && same_realm_binding; F iff same gates && boolean_value===false. legacy: T iff observed/observed_value && saved_webdriver is true; saved_webdriver is false -> U(LEGACY_NONTRUE_PROJECTION_AMBIGUOUS). API absent、presence/getter失败或不可比 -> U; contradictory serialized record or evaluator exception -> FAILED.",
+      "state_semantics": {
+        "T": "当前JS realm报告的webdriver值严格为true；依据API原义可描述为报告自动化控制状态，不证明状态真实、动机或攻击。",
+        "F": "新观察模式明确API存在、getter成功且返回布尔false；仅表示该realm报告false，不证明无自动化。",
+        "U": "当前无法定义关系或缺少证据；保留 reason 与原样本，不转 F、不删除分母。",
+        "FAILED": "候选执行器异常、非法envelope/声明schema/状态枚举或内部矛盾结构验证失败；evaluation_status=FAILED，不进入T/F/U逻辑。源采集runtime_error、正常不适用、版本/来源证据缺失仍U。"
+      },
+      "U_reasons": [
+        "MISSING_FIELD",
+        "MISSING_MEASUREMENT_STATE",
+        "SOURCE_STATUS_RUNTIME_ERROR",
+        "SOURCE_STATUS_TIMEOUT",
+        "API_ABSENT",
+        "NONBOOLEAN_API_VALUE",
+        "LEGACY_NONTRUE_PROJECTION_AMBIGUOUS",
+        "MISSING_REALM_BINDING",
+        "PRESENCE_READ_ERROR",
+        "VALUE_READ_ERROR",
+        "OBSERVATION_NOT_COMPARABLE",
+        "MISSING_OBSERVATION_METADATA",
+        "INVALID_BOOLEAN_VALUE"
+      ],
+      "fixed_parameters": {
+        "true_comparison": "strict boolean true",
+        "false_comparison": "strict boolean false only with new raw observation",
+        "source_ids": [
+          "OFF-012",
+          "OFF-016",
+          "LOC-010"
+        ]
+      },
+      "trainable_parameters": {
+        "parameters": [],
+        "constraint": "状态含义不拟合；未来选入模型仍需授权train-only选择，禁止以真/假调整历史attack标签。"
+      },
+      "normal_counterexamples_and_boundaries": [
+        "本轮未找到普通发行App默认true路径，不能推出所有正常App永远false。",
+        "测试/外部自动化属于已排除F类，不作本轮普通App正常默认反例。",
+        "debuggable、JS bridge、evaluateJavascript或安装测试依赖均不等价当前true。",
+        "API absent、非boolean返回值、getter失败分别保留原因；历史false无法逆推这三类中的前两类。"
+      ],
+      "possible_interventions_detected": [
+        "使同一realm明确报告true的属性/运行模式变化；只能说明报告值。"
+      ],
+      "not_detected": [
+        "自动化状态被getter覆盖为false",
+        "自动化但未设置报告标记",
+        "Host和页面一致伪造观察记录",
+        "API删除/异常导致U",
+        "任何不影响该报告值的干预",
+        "不识别恶意意图"
+      ],
+      "information_relation": {
+        "kind": "SINGLE_WEB_STATE_OBSERVATION",
+        "independent_cross_layer_value_relation": false,
+        "explanation": "只有同层布尔报告与其读数元数据；不能作为独立跨层贡献。"
+      },
+      "existing_semantics_overlap": "legacy observed true分支与旧 W03完全重合；旧F现在必须分成UNKNOWN与未来已知false。新identity是状态表达版本变化，不是新检测机制；只保留strict true二值解释时应复用旧原子，不能重复计票。",
+      "existing_data_support": {
+        "classification": "NEEDS_COLLECTION_METADATA",
+        "reason": "完整API存在/原始typeof/false证据缺失；旧false投影不可逆。已有status足以保留读取失败U，与observed false不混为一谈。",
+        "immediately_implementable": "不新增设备即可设计并实现legacy迁移解析：true=T、false=U(legacy ambiguous)、非observed=U；必须独立命名，保留旧W03基线和原分数。",
+        "future_scope": "新metadata只在未来另授权采集版本中形成；本轮不改collector。"
+      },
+      "implementation_changes": [
+        "新增纯状态解释器与规格fixture；绝不修改旧CONTROL bool atom的历史值。",
+        "未来另授权修改canonical_web_probe.js时，分开保存presence检查与一次raw getter结果（presence_read_status/value_read_status），独立于后续plugin/MIME探针失败；旧bool继续兼容保存，新增schema/adapter版本。",
+        "对同一source/状态版本采用别名或排重，禁止旧W03和新true分支当两份证据。"
+      ],
+      "blockers": [
+        "历史observed false无法恢复API不存在、原始false或其他nontrue类型。",
+        "旧runtime_error无法区分webdriver getter异常与稍后plugin/MIME getter导致整组fallback。",
+        "当前源码不能证明全部历史APK拥有相同status传播。"
+      ],
+      "specification_examples": [
+        {
+          "example_id": "WEBDRIVER-NORMAL-FALSE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": true,
+            "value_type": "boolean",
+            "boolean_value": false,
+            "realm_binding": "same-read",
+            "presence_read_status": "observed",
+            "value_read_status": "observed"
+          },
+          "expected_state": "F",
+          "reason": "正常兼容报告false；只是规格场景。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-REPORTED-TRUE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": true,
+            "value_type": "boolean",
+            "boolean_value": true,
+            "realm_binding": "same-read",
+            "presence_read_status": "observed",
+            "value_read_status": "observed"
+          },
+          "expected_state": "T",
+          "reason": "报告true，不裁决攻击、不声称是正常默认反例。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-LEGACY-FALSE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "legacy",
+            "webdriver": false,
+            "field_status": "observed",
+            "field_quality": "observed_value"
+          },
+          "expected_state": "U",
+          "reason": "LEGACY_NONTRUE_PROJECTION_AMBIGUOUS",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-READ-ERROR",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "legacy",
+            "webdriver": false,
+            "field_status": "runtime_error",
+            "field_quality": "source_unavailable"
+          },
+          "expected_state": "U",
+          "reason": "SOURCE_STATUS_RUNTIME_ERROR；不是候选执行器FAILED。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-API-ABSENT",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": false,
+            "value_type": null,
+            "boolean_value": null,
+            "realm_binding": "same-read",
+            "presence_read_status": "observed",
+            "value_read_status": "not_attempted"
+          },
+          "expected_state": "U",
+          "reason": "API_ABSENT",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-NONBOOLEAN",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": true,
+            "value_type": "string",
+            "boolean_value": null,
+            "realm_binding": "same-read",
+            "presence_read_status": "observed",
+            "value_read_status": "observed"
+          },
+          "expected_state": "U",
+          "reason": "NONBOOLEAN_API_VALUE",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-UNKNOWN-ENGINE",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": true,
+            "value_type": "boolean",
+            "boolean_value": false,
+            "realm_binding": "same-read",
+            "engine_version": null,
+            "presence_read_status": "observed",
+            "value_read_status": "observed"
+          },
+          "expected_state": "F",
+          "engine_state_attribution": "UNVERIFIED",
+          "reason": "仅报告布尔状态可定义；不以未知版本倒推出原生automation=false。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-FAILED-CONTRADICTION",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": false,
+            "value_type": "boolean",
+            "boolean_value": true,
+            "presence_read_status": "observed",
+            "value_read_status": "not_attempted"
+          },
+          "expected_state": "FAILED",
+          "reason": "INCONSISTENT_OBSERVATION_RECORD；数据验证失败而非正常不适用。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-PRESENCE-ERROR",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": null,
+            "presence_read_status": "runtime_error",
+            "value_read_status": "not_attempted",
+            "value_type": null,
+            "boolean_value": null,
+            "realm_binding": "same-read"
+          },
+          "expected_state": "U",
+          "reason": "PRESENCE_READ_ERROR；存在性检查异常不能当API_ABSENT。",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-RAW-GETTER-ERROR",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": true,
+            "presence_read_status": "observed",
+            "value_read_status": "runtime_error",
+            "value_type": null,
+            "boolean_value": null,
+            "realm_binding": "same-observer"
+          },
+          "expected_state": "U",
+          "reason": "VALUE_READ_ERROR;不同于presence检查失败及API缺失",
+          "real_sample": false,
+          "executed": false
+        },
+        {
+          "example_id": "WEBDRIVER-RAW-INDEPENDENT-OF-OLD-GROUP",
+          "kind": "SPECIFICATION_EXAMPLES",
+          "inputs": {
+            "schema": "proposed-raw-state-v1",
+            "api_present": true,
+            "presence_read_status": "observed",
+            "value_read_status": "observed",
+            "value_type": "boolean",
+            "boolean_value": false,
+            "realm_binding": "same-observer",
+            "legacy_bool": false,
+            "legacy_field_status": "runtime_error",
+            "legacy_error_reason": "later MIME getter failed"
+          },
+          "expected_state": "F",
+          "reason": "raw自身读取成功；旧兼容automation组失败不覆盖原始状态。仅为未来采集契约规格例。",
+          "real_sample": false,
+          "executed": false
+        }
+      ],
+      "local_code_verification": [
+        {
+          "path": "web_probe/canonical_web_probe.js",
+          "lines": [
+            305,
+            315
+          ],
+          "claim": "fallback automation值 false/0。",
+          "source_id": "RSR-LOC-MW-001"
+        },
+        {
+          "path": "web_probe/canonical_web_probe.js",
+          "lines": [
+            580,
+            611
+          ],
+          "claim": "webdriver strict true投影；count默认0；仅摘要内部catch写plugin_probe_error。",
+          "source_id": "RSR-LOC-MW-001"
+        },
+        {
+          "path": "web_probe/canonical_web_probe.js",
+          "lines": [
+            777,
+            787
+          ],
+          "claim": "同步probe外抛异常保存runtime_error并fallback。",
+          "source_id": "RSR-LOC-MW-001"
+        },
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt",
+          "lines": [
+            35,
+            105
+          ],
+          "claim": "probe automation runtime_error传播到各field status。",
+          "source_id": "RSR-LOC-MW-002"
+        },
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+          "lines": [
+            206,
+            252
+          ],
+          "claim": "回传probe_statuses交给FieldStatusReporter保存。",
+          "source_id": "RSR-LOC-MW-003"
+        },
+        {
+          "path": "hybridguard_agent/research/manipulation_eval/adapter.py",
+          "lines": [
+            124,
+            129
+          ],
+          "claim": "非observed来源quality=source_unavailable；仅deviceMemory/hardwareConcurrency特殊sentinel。",
+          "source_id": "RSR-LOC-MW-004"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/matrix.py",
+          "lines": [
+            77,
+            101
+          ],
+          "claim": "来源非observed及非法值不可用；不把false等同源码API存在。",
+          "source_id": "RSR-LOC-MW-005"
+        }
+      ],
+      "observation_pseudocode": [
+        "在同一realm捕获navigator引用；仅做读取，不写属性。先try { api_present = ('webdriver' in navigator); presence_read_status='observed' } catch { presence_read_status='runtime_error'; api_present=null; value_read_status='not_attempted' }。此存在性检查包含继承属性，Proxy/宿主检查异常不得当absence。",
+        "presence失败 -> U(PRESENCE_READ_ERROR)。api_present=false -> U(API_ABSENT)，getter不读、value_read_status='not_attempted'。",
+        "api_present=true时getter仅读一次：try { raw = navigator.webdriver; value_read_status='observed'; value_type=typeof raw; boolean_value=(typeof raw==='boolean'?raw:null) } catch { value_read_status='runtime_error'; value_type=null; boolean_value=null }。",
+        "getter异常 -> U(VALUE_READ_ERROR)；nonboolean -> U(NONBOOLEAN_API_VALUE)；bool true->T、false->F。存在性与getter是两次独立观察，记录共同realm和紧邻观察，不能保证观察之间无页面竞态或getter未被改写。若检测到realm变化/观察不一致，U(OBSERVATION_NOT_COMPARABLE)；不把它包装成原子化读取或原生getter证明。"
+      ],
+      "gate_trust_review": {
+        "page_self_claimed_trust_allowed": false,
+        "attacker_can_force_U": "能删属性、使getter抛错或伪造观察记录者可造成U；能返回false者可造成新模式F，均是明确blindspot。",
+        "native_host_trust": "此候选不使用Native真值。若未来使用Host观测来源作为路径凭据，进程Hook/Host篡改仍可能破坏，必须记录威胁模型。",
+        "coverage_reporting": "按当前legacy_false、API_ABSENT、read_failure、缺schema、invalid_type分项保留U分母；不把F或U当正常。"
+      },
+      "old_identity_references": [
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+        "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True:POSITIVE"
+      ],
+      "runtime_validation": "NOT_PERFORMED",
+      "model_evaluation": "NOT_PERFORMED",
+      "input_contract": {
+        "record_fields": "features / field_status / field_quality；不接受label、phase、attack config作为输入",
+        "source_binding": "由集成端现有来源/采集版本登记提供可信适配契约；不是页面自报same_context/observed即可放行。新增配对/运行元数据按proposed_metadata另立版本。",
+        "schema_version_policy": "已声明格式非法/不支持的序列化schema=FAILED；运行内核版本未知/API缺失通常U，具体按候选范围；语言/报告状态不做不必要内核门控。"
+      },
+      "selector_compatibility_note": "旧support要求triplet三阶段均T/F。legacy false->U可使该triplet不贡献complete support，可能导致候选不入池；不放宽support保入选，不把未选中当语义无效，未计算真实材料。",
+      "example_default_assumptions": "除该例明确覆盖的缺失/失败条件外，假定共同envelope和候选所列必要observed/status、来源配对门控成立。gate/trusted_binding/same_sync_source只是人工例的简写，不是允许从网页接收的真实通行布尔值。",
+      "mode_contract": {
+        "legacy_projection_v1": "例中schema=legacy；读取旧features/status/quality；不得猜raw值",
+        "raw_observation_v1": "例中schema=proposed-raw-state-v1；读取proposed webdriver_observation及它自己的存在性/getter状态、来源/realm绑定；忽略旧兼容bool及其automation组错误",
+        "selection": "由外部注册的collector/observation schema决定，不能因某模式结果不利而回退；原始模式缺对象U(MISSING_OBSERVATION_METADATA)，非法声明schema或mode FAILED。"
+      }
+    }
+  ]
+}

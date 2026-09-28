@@ -1,0 +1,767 @@
+{
+  "schema_version": "rsr-additional-sources-v1",
+  "source_count": 28,
+  "parent_source_register": "../normal_app_behavior_review/SOURCE_REGISTER.json",
+  "purpose": "只登记本轮新定位，未复制190条旧来源；外部链每一文件的版本与最小结论见locator。",
+  "sources": [
+    {
+      "source_id": "SMT-CHR83-MODE",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 83.0.4103.106 base/system/sys_info.cc",
+      "version": "83.0.4103.106",
+      "url": "https://github.com/chromium/chromium/blob/83.0.4103.106/base/system/sys_info.cc#L24-L37",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/83.0.4103.106/base/system/sys_info.cc",
+      "locator": {
+        "file": "base/system/sys_info.cc",
+        "line_ranges": [
+          [
+            24,
+            37
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemory通常返回实现值；enable-low-end-device-mode在83强制512MiB，在124/133为min(512MiB,实现值)；124/133另有测试override分支。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR83-RAM",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 83.0.4103.106 base/system/sys_info_linux.cc",
+      "version": "83.0.4103.106",
+      "url": "https://github.com/chromium/chromium/blob/83.0.4103.106/base/system/sys_info_linux.cc#L24-L49",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/83.0.4103.106/base/system/sys_info_linux.cc",
+      "locator": {
+        "file": "base/system/sys_info_linux.cc",
+        "line_ranges": [
+          [
+            24,
+            49
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemoryImpl缓存sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE)；不是availMem。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR83-MB",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 83.0.4103.106 base/system/sys_info.h",
+      "version": "83.0.4103.106",
+      "url": "https://github.com/chromium/chromium/blob/83.0.4103.106/base/system/sys_info.h#L49-L52",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/83.0.4103.106/base/system/sys_info.h",
+      "locator": {
+        "file": "base/system/sys_info.h",
+        "line_ranges": [
+          [
+            49,
+            52
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemoryMB先将字节整数除1024再除1024，随后转换int；MiB小数在量化前丢弃。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR124-MODE",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 124.0.6367.219 base/system/sys_info.cc",
+      "version": "124.0.6367.219",
+      "url": "https://github.com/chromium/chromium/blob/124.0.6367.219/base/system/sys_info.cc#L42-L60",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/124.0.6367.219/base/system/sys_info.cc",
+      "locator": {
+        "file": "base/system/sys_info.cc",
+        "line_ranges": [
+          [
+            42,
+            60
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemory通常返回实现值；enable-low-end-device-mode在83强制512MiB，在124/133为min(512MiB,实现值)；124/133另有测试override分支。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR124-RAM",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 124.0.6367.219 base/system/sys_info_linux.cc",
+      "version": "124.0.6367.219",
+      "url": "https://github.com/chromium/chromium/blob/124.0.6367.219/base/system/sys_info_linux.cc#L28-L51",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/124.0.6367.219/base/system/sys_info_linux.cc",
+      "locator": {
+        "file": "base/system/sys_info_linux.cc",
+        "line_ranges": [
+          [
+            28,
+            51
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemoryImpl缓存sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE)；不是availMem。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR124-MB",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 124.0.6367.219 base/system/sys_info.h",
+      "version": "124.0.6367.219",
+      "url": "https://github.com/chromium/chromium/blob/124.0.6367.219/base/system/sys_info.h#L89-L92",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/124.0.6367.219/base/system/sys_info.h",
+      "locator": {
+        "file": "base/system/sys_info.h",
+        "line_ranges": [
+          [
+            89,
+            92
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemoryMB先将字节整数除1024再除1024，随后转换int；MiB小数在量化前丢弃。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR133-MODE",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 133.0.6943.137 base/system/sys_info.cc",
+      "version": "133.0.6943.137",
+      "url": "https://github.com/chromium/chromium/blob/133.0.6943.137/base/system/sys_info.cc#L40-L58",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/133.0.6943.137/base/system/sys_info.cc",
+      "locator": {
+        "file": "base/system/sys_info.cc",
+        "line_ranges": [
+          [
+            40,
+            58
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemory通常返回实现值；enable-low-end-device-mode在83强制512MiB，在124/133为min(512MiB,实现值)；124/133另有测试override分支。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR133-RAM",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 133.0.6943.137 base/system/sys_info_linux.cc",
+      "version": "133.0.6943.137",
+      "url": "https://github.com/chromium/chromium/blob/133.0.6943.137/base/system/sys_info_linux.cc#L28-L52",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/133.0.6943.137/base/system/sys_info_linux.cc",
+      "locator": {
+        "file": "base/system/sys_info_linux.cc",
+        "line_ranges": [
+          [
+            28,
+            52
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemoryImpl缓存sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE)；不是availMem。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-CHR133-MB",
+      "kind": "PINNED_ENGINE_SOURCE",
+      "title": "Chromium 133.0.6943.137 base/system/sys_info.h",
+      "version": "133.0.6943.137",
+      "url": "https://github.com/chromium/chromium/blob/133.0.6943.137/base/system/sys_info.h#L89-L92",
+      "retrieval_url": "https://raw.githubusercontent.com/chromium/chromium/133.0.6943.137/base/system/sys_info.h",
+      "locator": {
+        "file": "base/system/sys_info.h",
+        "line_ranges": [
+          [
+            89,
+            92
+          ]
+        ]
+      },
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "AmountOfPhysicalMemoryMB先将字节整数除1024再除1024，随后转换int；MiB小数在量化前丢弃。",
+      "does_not_establish": "固定上游源码不证明商业WebView构建、运行开关、历史缓存时刻或页面观测均符合该路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-AOSP11-RAM-PATH",
+      "kind": "PINNED_PLATFORM_SOURCE_CHAIN",
+      "title": "AOSP android-11.0.0_r1 totalMem与bionic物理页路径",
+      "version": "android-11.0.0_r1",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r1/services/core/java/com/android/server/am/ProcessList.java#L1578-L1589",
+      "locator": [
+        {
+          "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r1/services/core/java/com/android/server/am/ProcessList.java#L1578-L1589",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-11.0.0_r1/services/core/java/com/android/server/am/ProcessList.java",
+          "file": "services/core/java/com/android/server/am/ProcessList.java",
+          "line_ranges": [
+            [
+              1578,
+              1589
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r1/core/jni/android_util_Process.cpp#L691-L700",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-11.0.0_r1/core/jni/android_util_Process.cpp",
+          "file": "core/jni/android_util_Process.cpp",
+          "line_ranges": [
+            [
+              691,
+              700
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_bionic/blob/android-11.0.0_r1/libc/bionic/sysconf.cpp#L88-L94",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_bionic/android-11.0.0_r1/libc/bionic/sysconf.cpp",
+          "file": "libc/bionic/sysconf.cpp",
+          "line_ranges": [
+            [
+              88,
+              94
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_bionic/blob/android-11.0.0_r1/libc/bionic/sysinfo.cpp#L79-L84",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_bionic/android-11.0.0_r1/libc/bionic/sysinfo.cpp",
+          "file": "libc/bionic/sysinfo.cpp",
+          "line_ranges": [
+            [
+              79,
+              84
+            ]
+          ],
+          "access_status": "ACCESSED"
+        }
+      ],
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "ProcessList令totalMem=Process.getTotalMemory；JNI返回sysinfo.totalram*mem_unit；bionic _SC_PHYS_PAGES调get_phys_pages，以同一sysinfo总量除页大小。AOSP11除PAGE_SIZE，15/16除page_size()；_SC_PAGESIZE另由AT_PAGESZ/getpagesize取得，具体构建需确认两页尺度一致。",
+      "does_not_establish": "不证明采集设备固件是该AOSP tag；不证明厂商修改、跨进程可见总量及初始化时刻相同。不将Debug/MemInfoReader误当此次totalMem主路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-AOSP15-RAM-PATH",
+      "kind": "PINNED_PLATFORM_SOURCE_CHAIN",
+      "title": "AOSP android-15.0.0_r1 totalMem与bionic物理页路径",
+      "version": "android-15.0.0_r1",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/services/core/java/com/android/server/am/ProcessList.java#L1731-L1742",
+      "locator": [
+        {
+          "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/services/core/java/com/android/server/am/ProcessList.java#L1731-L1742",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-15.0.0_r1/services/core/java/com/android/server/am/ProcessList.java",
+          "file": "services/core/java/com/android/server/am/ProcessList.java",
+          "line_ranges": [
+            [
+              1731,
+              1742
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/jni/android_util_Process.cpp#L678-L687",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-15.0.0_r1/core/jni/android_util_Process.cpp",
+          "file": "core/jni/android_util_Process.cpp",
+          "line_ranges": [
+            [
+              678,
+              687
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_bionic/blob/android-15.0.0_r1/libc/bionic/sysconf.cpp#L191-L197",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_bionic/android-15.0.0_r1/libc/bionic/sysconf.cpp",
+          "file": "libc/bionic/sysconf.cpp",
+          "line_ranges": [
+            [
+              191,
+              197
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_bionic/blob/android-15.0.0_r1/libc/bionic/sysinfo.cpp#L65-L70",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_bionic/android-15.0.0_r1/libc/bionic/sysinfo.cpp",
+          "file": "libc/bionic/sysinfo.cpp",
+          "line_ranges": [
+            [
+              65,
+              70
+            ]
+          ],
+          "access_status": "ACCESSED"
+        }
+      ],
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "ProcessList令totalMem=Process.getTotalMemory；JNI返回sysinfo.totalram*mem_unit；bionic _SC_PHYS_PAGES调get_phys_pages，以同一sysinfo总量除页大小。AOSP11除PAGE_SIZE，15/16除page_size()；_SC_PAGESIZE另由AT_PAGESZ/getpagesize取得，具体构建需确认两页尺度一致。",
+      "does_not_establish": "不证明采集设备固件是该AOSP tag；不证明厂商修改、跨进程可见总量及初始化时刻相同。不将Debug/MemInfoReader误当此次totalMem主路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "SMT-AOSP16-RAM-PATH",
+      "kind": "PINNED_PLATFORM_SOURCE_CHAIN",
+      "title": "AOSP android-16.0.0_r1 totalMem与bionic物理页路径",
+      "version": "android-16.0.0_r1",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-16.0.0_r1/services/core/java/com/android/server/am/ProcessList.java#L1733-L1744",
+      "locator": [
+        {
+          "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-16.0.0_r1/services/core/java/com/android/server/am/ProcessList.java#L1733-L1744",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-16.0.0_r1/services/core/java/com/android/server/am/ProcessList.java",
+          "file": "services/core/java/com/android/server/am/ProcessList.java",
+          "line_ranges": [
+            [
+              1733,
+              1744
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-16.0.0_r1/core/jni/android_util_Process.cpp#L679-L688",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-16.0.0_r1/core/jni/android_util_Process.cpp",
+          "file": "core/jni/android_util_Process.cpp",
+          "line_ranges": [
+            [
+              679,
+              688
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_bionic/blob/android-16.0.0_r1/libc/bionic/sysconf.cpp#L191-L197",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_bionic/android-16.0.0_r1/libc/bionic/sysconf.cpp",
+          "file": "libc/bionic/sysconf.cpp",
+          "line_ranges": [
+            [
+              191,
+              197
+            ]
+          ],
+          "access_status": "ACCESSED"
+        },
+        {
+          "url": "https://github.com/aosp-mirror/platform_bionic/blob/android-16.0.0_r1/libc/bionic/sysinfo.cpp#L65-L70",
+          "retrieval_url": "https://raw.githubusercontent.com/aosp-mirror/platform_bionic/android-16.0.0_r1/libc/bionic/sysinfo.cpp",
+          "file": "libc/bionic/sysinfo.cpp",
+          "line_ranges": [
+            [
+              65,
+              70
+            ]
+          ],
+          "access_status": "ACCESSED"
+        }
+      ],
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED",
+      "minimum_claim": "ProcessList令totalMem=Process.getTotalMemory；JNI返回sysinfo.totalram*mem_unit；bionic _SC_PHYS_PAGES调get_phys_pages，以同一sysinfo总量除页大小。AOSP11除PAGE_SIZE，15/16除page_size()；_SC_PAGESIZE另由AT_PAGESZ/getpagesize取得，具体构建需确认两页尺度一致。",
+      "does_not_establish": "不证明采集设备固件是该AOSP tag；不证明厂商修改、跨进程可见总量及初始化时刻相同。不将Debug/MemInfoReader误当此次totalMem主路径。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-001",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "web_probe/canonical_web_probe.js",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            306,
+            315
+          ],
+          [
+            580,
+            611
+          ],
+          [
+            777,
+            787
+          ],
+          [
+            740,
+            765
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/web_probe/canonical_web_probe.js#L306",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "webdriver严格true投影、整组fallback、内部摘要异常和字段状态分开。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-002",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            35,
+            71
+          ],
+          [
+            82,
+            105
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#L35",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "把automation probe失败传播到其所有字段status；fallback值本身不覆盖失败状态。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-003",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            206,
+            252
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#L206",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "接收网页probe_statuses并交给FieldStatusReporter构建最终collection_status。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-004",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "hybridguard_agent/research/manipulation_eval/adapter.py",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            124,
+            129
+          ],
+          [
+            192,
+            213
+          ],
+          [
+            229,
+            247
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/research/manipulation_eval/adapter.py#L124",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "非observed转source_unavailable；保存features/status/quality，验证固定记录契约。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-005",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "hybridguard_agent/research/rule_learning/matrix.py",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            77,
+            101
+          ],
+          [
+            305,
+            317
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/research/rule_learning/matrix.py#L77",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "来源不可用为U，执行异常FAILED；字段类型和质量逐项处理。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-006",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            219,
+            240
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt#L219",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "Host provider来自WebView.getCurrentWebViewPackage；低于API26保留占位，未证明实现绑定可信。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-007",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            64,
+            76
+          ],
+          [
+            129,
+            146
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js#L64",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "Host provider数据由JS组装回传；probe diagnostics独立回传。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-008",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/CollectionManifestBuilder.kt",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            34,
+            39
+          ],
+          [
+            59,
+            79
+          ],
+          [
+            94,
+            100
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/CollectionManifestBuilder.kt#L34",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "原生manifest有provider包/version副本和采集上下文；不是177推理字段的独立真实性证明。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-MW-009",
+      "kind": "CURRENT_REPOSITORY_SOURCE",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            95,
+            100
+          ],
+          [
+            167,
+            170
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv#L95",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "当前MIME/count/hash/webdriver和provider字段存在；无raw webdriver observation或PDF布尔字段。",
+      "does_not_establish": "当前静态源码不能证明历史APK所有行为，也不是模型或App运行验证。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-001",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "hybridguard_agent/research/rule_learning/contracts.py",
+      "local_path": "hybridguard_agent/research/rule_learning/contracts.py",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            34,
+            63
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/research/rule_learning/contracts.py#L34",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "T/F/U状态、NOT和AND/OR、FAILED的序列化契约",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-002",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "hybridguard_agent/research/rule_learning/baselines.py",
+      "local_path": "hybridguard_agent/research/rule_learning/baselines.py",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            53,
+            91
+          ],
+          [
+            117,
+            136
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/research/rule_learning/baselines.py#L53",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "按normalized_identity归并别名与数值阈值极性；不修改原身份",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-003",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            198,
+            254
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#L198",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "webview/web来自页面回传；android_native_data来自Host结果；timestamp是组包时刻",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-004",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json",
+      "local_path": "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            1,
+            22
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json#L1",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "未来固定GREEDY_OR OP05与原预算/目标参数；不是新授权",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-005",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/final_model_comparison.json",
+      "local_path": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/final_model_comparison.json",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            1,
+            14
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/final_model_comparison.json#L1",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "已保存W0/R_KEEP最终结构/阈值一致，非算法全局等价",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-006",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "hybridguard_agent/config/rule_learning_v1_20260924/study_protocol.json",
+      "local_path": "hybridguard_agent/config/rule_learning_v1_20260924/study_protocol.json",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            1,
+            18
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/config/rule_learning_v1_20260924/study_protocol.json#L1",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "旧inference payload只允许固定五键，禁止阶段标签及采集身份等作为特征",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_id": "RSR-LOC-007",
+      "kind": "CURRENT_REPOSITORY_SOURCE_OR_CONTRACT",
+      "title": "hybridguard_agent/research/rule_learning/selector.py",
+      "local_path": "hybridguard_agent/research/rule_learning/selector.py",
+      "version": "c7e43762b429c0d3f7a0ee0e77101691b10b6be4",
+      "locator": {
+        "line_ranges": [
+          [
+            100,
+            119
+          ]
+        ]
+      },
+      "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/c7e43762b429c0d3f7a0ee0e77101691b10b6be4/hybridguard_agent/research/rule_learning/selector.py#L100",
+      "accessed_date": "2026-09-28",
+      "access_status": "ACCESSED_LOCAL",
+      "minimum_claim": "support要求triplet三阶段T/F，完整可用与true attack支持均仅train计算",
+      "does_not_establish": "静态契约/结构读取，不是App或模型执行验证，也不是历史APK证明。",
+      "runtime_validation": "NOT_PERFORMED"
+    }
+  ]
+}
