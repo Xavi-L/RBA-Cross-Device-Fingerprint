@@ -1,0 +1,53 @@
+{
+  "schema_version": "rsr-input-readiness-audit-v1",
+  "rules_frozen_before_real_readiness_execution": true,
+  "starting_head": "1e34677f307fc33b0552dde0dc6a14c77018cb66",
+  "required_ancestor": "1e34677f307fc33b0552dde0dc6a14c77018cb66",
+  "authority": "hybridguard_agent/artifacts/discriminative_rule_learning_v2_20260925/C_confirmation/input_manifest.json",
+  "scope_key": "supervised_ids",
+  "expected_denominator": 162,
+  "source_index": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/DATA_INDEX.json",
+  "raw_reference_root": "hybridguard-browser-fingerprint-research",
+  "candidate_versions": {"RSR-LANG-FIRST-v1": "1.0.0", "RSR-WEBDRIVER-STATE-v1": "1.0.0"},
+  "input_schema_version": "rsr-input-v1",
+  "source_binding_version": "rsr-source-binding-v1",
+  "gate_versions": {"LANGUAGE": "rsr-language-first-gate-v1", "WEBDRIVER_LEGACY": "rsr-webdriver-legacy-gate-v1", "WEBDRIVER_RAW": "rsr-webdriver-raw-gate-v1"},
+  "source_states": {
+    "SUPPORTED_BY_EXISTING_LINEAGE": "Exact record references plus registered collection/build/adapter evidence support this limited observation scope; no claim of unmodified values or binary attestation.",
+    "CONDITIONAL_ASSUMPTION": "A specific necessary collection or transformation premise remains unsupported.",
+    "UNRESOLVED": "Necessary identity or collection-scope evidence is absent or unreadable.",
+    "CONFLICT": "Explicit record identities, mappings, registered source metadata, or preserved inputs disagree."
+  },
+  "input_states": {
+    "COMPLETE": "Necessary original values and legal explicit status/quality are retained with correct structural types. Known non-observed statuses remain unchanged and are reported separately.",
+    "MISSING": "A necessary value, state, or raw observation member is absent.",
+    "LOSSY": "An evidenced transformation has discarded required information and no precisely linked upstream recovery exists.",
+    "MALFORMED": "Present containers, primitive types, or state/quality enums violate the declared input contract."
+  },
+  "readiness_rules": {
+    "READY": "Source is SUPPORTED_BY_EXISTING_LINEAGE and input is COMPLETE with exact source/adapter transfer checks passing.",
+    "CONDITIONAL": "Input is COMPLETE but source is CONDITIONAL_ASSUMPTION; no effective SourceBinding is constructed.",
+    "BLOCKED": "All other combinations. Source and input axes plus multiple nonexclusive reasons remain visible."
+  },
+  "mapping": {
+    "app.web_data.navigator_layer.language": "web_data.navigator_layer.language",
+    "app.web_data.navigator_layer.languages": "web_data.navigator_layer.languages",
+    "app.web_data.automation_surface_layer.webdriver": "web_data.automation_surface_layer.webdriver"
+  },
+  "rules": [
+    "Resolve only authoritative supervised_ids by exact opaque_id, registered line reference, candidate_id and session_id. Never infer identity from filenames, time or value similarity.",
+    "Keep missing authoritative IDs in every mode denominator; report duplicate or malformed authority entries without substituting another population.",
+    "Read cache_lineage_ref to S02 input_manifest_ref; R04 features are already computed atoms and must never masquerade as raw fields.",
+    "Compare each retained field only with its own upstream version for value/type/order preservation; never compare language against languages[0], normalize language tags, or compute candidate states.",
+    "Raw collection_status is explicit; S02 field_quality is derived by the registered adapter. Preserve the stored S02 status/quality without pretending quality was raw-collected.",
+    "A strict boolean webdriver false is valid legacy input, not an exclusion. Do not infer raw false, existence, typeof or realm from it.",
+    "Source checks use only exact references, collection/build metadata and registered code evidence. Labels, phase, tools, interventions and prediction outputs never enter these decisions or transferred payloads.",
+    "Construct SourceBinding only for a supported registered mode, with existing evidence references and exact source-group membership. Unknown or conditional sources never get an effective binding.",
+    "Raw observation absence is independent of legacy availability. No reconstruction or JS execution is permitted.",
+    "Freeze record decisions before joining existing phase/config/environment metadata for descriptive coverage strata. These already exposed materials do not regain blinded status."
+  ],
+  "permitted_execution": "Read-only identity/structure/source audit and in-memory type/value/status-preserving projection; synthetic tests separately.",
+  "forbidden_execution": ["real candidate evaluation", "real language comparison", "real webdriver state interpretation", "fit", "model prediction", "batch", "new collection"],
+  "output_policy": "Default complete JSON to stdout; explicit output directory exclusively creates INPUT_MANIFEST.jsonl and SUMMARY.json, refusing existing targets.",
+  "limits": ["No new candidate T/F/U distribution", "No TPR/FPR/accuracy or new decision coverage", "No historical label adjudication", "No cryptographic or binary equivalence claim"]
+}

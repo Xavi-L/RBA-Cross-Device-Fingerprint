@@ -1,0 +1,2223 @@
+{
+  "schema_version": "rsr-source-bindings-v1",
+  "registration_basis": "Bounded historical source/build/session/adapter evidence reviewed before record readiness classification.",
+  "source_history_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+  "adapter_history_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+  "release_lock_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+  "evidence": [
+    {
+      "evidence_id": "E01",
+      "path": "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+      "lines": [
+        5,
+        10,
+        19,
+        37,
+        73,
+        85
+      ],
+      "claim": "Build registration explicitly ties source commit plus control patch to app10 and APK/catalog declared identifiers. Identifiers were compared as saved strings, not rehashed."
+    },
+    {
+      "evidence_id": "E02",
+      "path": "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+      "lines": [
+        1,
+        16,
+        46,
+        72,
+        79,
+        90
+      ],
+      "claim": "Patch changes build version and MainActivity control/debug/deadline/loading. No change to expanded_probe getNavigatorFeatures/getAutomationFeatures or FieldStatusReporter expressions."
+    },
+    {
+      "evidence_id": "E03",
+      "git_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+      "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html",
+      "ranges": [
+        [
+          154,
+          156
+        ],
+        [
+          187,
+          197
+        ],
+        [
+          259,
+          276
+        ],
+        [
+          338,
+          346
+        ],
+        [
+          391,
+          408
+        ],
+        [
+          625,
+          672
+        ],
+        [
+          799,
+          811
+        ],
+        [
+          847,
+          855
+        ]
+      ],
+      "claim": "Same synchronous nav reference supplies language and ordered slice languages; automation uses strict-true and grouped fallback. The group can lose original webdriver read if another initial property access throws."
+    },
+    {
+      "evidence_id": "E04",
+      "git_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+      "path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt",
+      "ranges": [
+        [
+          47,
+          58
+        ],
+        [
+          84,
+          107
+        ]
+      ],
+      "claim": "Related field status follows layer/probe failure; navigator and automation groups mapped explicitly."
+    },
+    {
+      "evidence_id": "E05",
+      "git_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+      "path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+      "ranges": [
+        [
+          113,
+          121
+        ],
+        [
+          145,
+          192
+        ]
+      ],
+      "claim": "Parses JSON; preserves web_data object; adds probe statuses and field-status report to per-session payload without language ordering transformations."
+    },
+    {
+      "evidence_id": "E06",
+      "git_commit": "b3d8badee44577787bdcd3cb22d70a155b1bb613",
+      "path": "hybridguard_agent/research/manipulation_eval/adapter.py",
+      "ranges": [
+        [
+          124,
+          129
+        ],
+        [
+          132,
+          208
+        ],
+        [
+          304,
+          328
+        ]
+      ],
+      "claim": "Adapter checks exact explicit source state and value aliases, deep-copies values, maps without sort/dedup; quality is derived from source status, not a native raw quality record."
+    },
+    {
+      "evidence_id": "E07",
+      "path": "hybridguard_agent/evidence/extractor.py",
+      "ranges": [
+        [
+          55,
+          78
+        ],
+        [
+          96,
+          126
+        ]
+      ],
+      "claim": "Read only: normalization flattens object keys, treats arrays as leaves, does not sort language arrays; adapter already validates source enum before string preservation."
+    }
+  ],
+  "groups": [
+    {
+      "source_group_id": "20260823_api36_rule_boundary_cdp_platform_only_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_platform_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_api36_rule_boundary_cdp_resource_pair_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_resource_pair_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_resource_pair_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_resource_pair_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_resource_pair_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_resource_pair_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_api36_rule_boundary_cdp_ua_only_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_only_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_only_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_ua_platform_desktop_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_api36_rule_boundary_cdp_webdriver_only_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_cdp_api30_controlled_v2",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v2/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v2/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 30,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "83.0.4103.106",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v2/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v2/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api30_controlled_v2/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_cdp_api35_controlled_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api35_controlled_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api35_controlled_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 35,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "124.0.6367.219",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api35_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api35_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api35_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_cdp_api36_controlled_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api36_controlled_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api36_controlled_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api36_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api36_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_cdp_api36_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_playwright_api36_controlled_v2",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v2/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v2/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v2/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v2/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_playwright_api36_controlled_v2/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_puppeteer_api30_controlled_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_puppeteer_api30_controlled_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_puppeteer_api30_controlled_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 30,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "83.0.4103.106",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_puppeteer_api30_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_puppeteer_api30_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_puppeteer_api30_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_stealth_api30_controlled_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api30_controlled_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api30_controlled_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 30,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "83.0.4103.106",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api30_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api30_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api30_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_stealth_api35_controlled_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api35_controlled_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api35_controlled_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 35,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "124.0.6367.219",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api35_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api35_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api35_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260823_stealth_api36_controlled_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api36_controlled_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api36_controlled_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api36_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api36_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_stealth_api36_controlled_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260824_api36_cdp_emulation_v5_screen_metrics_only_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_screen_metrics_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_cdp_emulation_v5_timezone_only_v1_rerun1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260824_api36_stealth_languages_only_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260824_api36_stealth_plugins_mime_v1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_plugins_mime_v1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_plugins_mime_v1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_plugins_mime_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_plugins_mime_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_plugins_mime_v1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    },
+    {
+      "source_group_id": "20260824_api36_stealth_webgl_pair_v1_rerun1",
+      "expected_target_count": 9,
+      "raw_paths": [
+        "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_webgl_pair_v1_rerun1/raw_payloads.jsonl"
+      ],
+      "paired_run_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_webgl_pair_v1_rerun1/paired_triplet_run.json",
+      "featureapp_registration": {
+        "upstream_commit": "3a16d89363c86f7ad487c5b12c764521390ea44c",
+        "schema_version": "expanded-v2.2-status",
+        "app_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "app_version_code": 10,
+        "apk_sha256": "dcec14f708ec17b3e5e8a8f32af6089d146f048e4d25081a0e8a7058d7faafbb",
+        "field_catalog_sha256": "5eb8fcefb9ca6abf865f7097df348084c6ce8b76f3b9396ea12a88f3c39f040d",
+        "webview_control_contract": "webview-control-v1"
+      },
+      "raw_metadata_requirements": {
+        "collector_app": "featureapp",
+        "schema_version": "expanded-v2.2-status",
+        "collection_manifest.android_api": 36,
+        "collection_manifest.api_compatibility_mode": "guarded_modern_api",
+        "collection_manifest.collection_protocol_version": "featureapp-collection-protocol-v2",
+        "collection_manifest.collector_package": "com.example.hybridguard.featureapp",
+        "collection_manifest.collector_version_code": 10,
+        "collection_manifest.collector_version_name": "1.6.3-expanded-v2.2-webview-control",
+        "collection_manifest.manifest_schema_version": "device-profile-manifest-v1",
+        "collection_manifest.schema_version": "expanded-v2.2-status",
+        "collection_manifest.webview_provider_package": "com.google.android.webview",
+        "collection_manifest.webview_provider_version": "133.0.6943.137",
+        "collection_status.status_schema_version": "field-status-v1"
+      },
+      "session_metadata_links": {
+        "schema_version": "schema_version",
+        "app_version_name": "collection_manifest.collector_version_name",
+        "app_version_code": "collection_manifest.collector_version_code",
+        "runtime_context": "collection_manifest.runtime_context",
+        "webview_provider_version": "collection_manifest.webview_provider_version"
+      },
+      "raw_metadata_links": [
+        [
+          "webview_data.host_security_layer.app_package_name",
+          "collection_manifest.collector_package"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_name",
+          "collection_manifest.collector_version_name"
+        ],
+        [
+          "webview_data.host_security_layer.app_version_code",
+          "collection_manifest.collector_version_code"
+        ]
+      ],
+      "release_lock_comparison_recorded": {
+        "upstream_commit": true,
+        "schema_version": true,
+        "app_version_name": true,
+        "app_version_code": true,
+        "apk_registered_identifier": true,
+        "catalog_registered_identifier": true,
+        "control_contract": true,
+        "run_raw_file_reference": true
+      },
+      "modes": {
+        "LANGUAGE": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "navigator_sync_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_webgl_pair_v1_rerun1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Same-call same Navigator observation path as collected, preserving ordered array, including permitted intervention; no truth guarantee and no native-vs-hook provenance guarantee. Empty/default inputs still subject to input readiness axis."
+        },
+        "WEBDRIVER_LEGACY": {
+          "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+          "binding_scope": "webdriver_legacy_projection_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_webgl_pair_v1_rerun1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": "Exact collected strict-true projection and its group-derived status/adapter quality are understood; legacy false remains admissible if required inputs retained."
+        },
+        "WEBDRIVER_RAW": {
+          "source_status": "UNRESOLVED",
+          "binding_scope": "webdriver_raw_observation_v1",
+          "evidence_refs": [
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_webgl_pair_v1_rerun1/paired_triplet_run.json",
+            "hybridguard-browser-fingerprint-research/execution_log/evidence/featureapp_current_release_lock_v1.json",
+            "hybridguard-browser-fingerprint-research/execution_log/patches/week8_featureapp_webview_control/featureapp_webview_control.patch",
+            "android_app/HybridGuard/featureapp/src/main/assets/expanded_probe.html#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/FieldStatusReporter.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt#git=3a16d89363c86f7ad487c5b12c764521390ea44c",
+            "hybridguard_agent/research/manipulation_eval/adapter.py#git=b3d8badee44577787bdcd3cb22d70a155b1bb613",
+            "hybridguard_agent/evidence/extractor.py"
+          ],
+          "supported_scope": null,
+          "missing_evidence": [
+            "per-read raw observation contract",
+            "observer revision / realm association"
+          ],
+          "limitation": "Source of legacy projection is supported, but no observer revision/realm or per-read raw observation association exists; do not construct a raw binding."
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Not a present-day rebuild or per-device binary attestation; saved build/session/source registration provides limited collection-path support.",
+    "language || empty string and languages || empty array erase some falsey original-type distinctions; array slice preserves retained order.",
+    "No candidate functions, normalization/equality relation evaluation, old extractor invocation, fit, predict, App, or collection executed.",
+    "No new digests computed. Existing raw and run registrations may contain labels/effect facts; only explicit source keys drive checks.",
+    "SOURCE_BINDING declares the observed collection path, never the honesty of observed values.",
+    "Existing APK/catalog identifiers are saved registration strings; this audit did not hash or rebuild APKs.",
+    "No condition or label-dependent source exclusion. Raw absence does not block legacy."
+  ]
+}
