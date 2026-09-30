@@ -1,0 +1,105 @@
+FeatureApp 1.6.5 原始 webdriver 观察交付说明
+
+用途
+本版本供 Android 真机或模拟器中的 FeatureApp 采集使用。它补充 webdriver
+原始观察，供后续规则语义验证。现已完成本机单模拟器环境的31条受控采集验收，
+包括两项指定干预及撤销恢复；未重新训练规则或测量整体检出率提升。
+首次交给攻击侧时仍应作为接入验证版本，在对方环境验收后再用于后续批次。
+
+版本与兼容性
+应用包名：com.example.hybridguard.featureapp
+versionCode：12
+versionName：1.6.5-expanded-v2.2-webdriver-raw
+最低 Android API：21
+固定信号合同仍为 expanded-v2.2-status，Native 84 + WebView 26 + Web 67 = 177。
+语言字符串和语言列表原序、旧 web_data.automation_surface_layer.webdriver 布尔字段均保留。
+独立浏览器 Browser67 默认不启用新增观察；共享探针的默认字段和行为不变。
+共享文件更新会改变 bundle 摘要。主仓库后端已明确兼容旧部署与本次新 bundle 两个
+身份，其他摘要仍拒绝。本轮未部署网站或后端；今后若同步发布浏览器探针副本，
+须先使用带这项兼容变更的后端，不能把新 public 副本直接配到仍只接受旧摘要的服务。
+
+新增数据
+App 顶层增加 collection_observations，独立于 177 字段及其 field-status 计数：
+{
+  "observation_schema_version": "app-web-observations-v1",
+  "webdriver": {
+    "api_present": true,
+    "presence_read_status": "observed",
+    "value_read_status": "observed",
+    "value_type": "boolean",
+    "boolean_value": false,
+    "observer_revision": "app-webdriver-observer-v1",
+    "realm_binding": "featureapp:<本次 session_id>:main-frame"
+  }
+}
+以上仅为结构示例，不是真实设备测量。
+
+presence 检查成功且属性存在时，getter 只读一次；类型和严格布尔值取自同次读取。
+属性不存在或 presence 检查失败时不读 getter；缺失/错误对应显式 null 与状态，
+不会补造成原始 false。属性存在但值是 undefined 时 value_type=undefined，
+boolean_value=null。字符串、数字等非布尔值只保存类型，不序列化任意返回对象。
+其他 automation 子字段读取失败不会擦除已经取得的原始观察。
+整页未完成、超时或 bridge 失败时可能没有 collection_observations；缺失不算正常。
+realm_binding 是本次 App 主 frame 采集的关联标识，不证明 getter 未被干预；
+presence 检查和 getter 读取是顺序操作，不宣称原子性。
+
+与既有规则模块的衔接
+raw_observation_v1 的输入适配需显式把 collection_observations.webdriver 映射到
+web_data.automation_surface_layer.webdriver_observation，并提供经过采集链路核对的
+SourceBinding。本版本没有自动升级旧数据、自动从载荷构造可信绑定或接入训练。
+原始布尔 false 才可能判 F；缺失、非布尔、读取异常仍应按现有语义保留 U/FAILED。
+不能预设补采后必然补回历史漏检。
+
+攻击侧控制入口
+默认启动：WebView 调试关闭，直接打开 expanded_probe.html，15 秒采集超时。
+显式开启下列 intent extras 可供原有攻击工具连接同一个 App WebView：
+  com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG   boolean true
+  com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL boolean true
+  com.example.hybridguard.featureapp.PROBE_DELAY_MS          long 60000
+等待模式先停在 about:blank，由工具完成连接/注入并导航到
+file:///android_asset/expanded_probe.html。超时可配置范围为 15000 至 120000 毫秒；
+它是等待采集的 deadline，不是任意启动延时。调试与等待均须显式开启。
+已有 COLLECT_ENDPOINT、RUNTIME_CONTEXT、COLLECTION_ROUND、DEVICE_MANIFEST_ID
+传参仍由当前 App 使用；三态实验必须由调用方管理独立 session 和一致环境。
+
+本地接收端与安装
+交付 APK 按本地受控采集配置构建，默认接收地址为
+http://127.0.0.1:8000/api/collect/fingerprint；browser-ticket、browser-pairs 和
+浏览器探针地址也指向同一本地 8000 端口，不依赖现有云采集服务。
+在实际使用的 ADB 目标上配置 adb reverse tcp:8000 tcp:8000，或通过已有
+COLLECT_ENDPOINT 参数指定同学自己的接收端；运行依赖与接收端由操作方准备。
+主仓库现有 /api/collect/fingerprint 已保留新对象于原始归档、合并数据和导出行。
+若使用其他 receiver/精简适配器，必须先确认 collection_observations 未被过滤。
+本版本未扩展 /api/agent/analyze 的输入白名单，不能把新增元数据直接当模型特征。
+
+安装包为 debug 构建，同包名覆盖安装仍受现有安装签名限制。如出现
+INSTALL_FAILED_UPDATE_INCOMPATIBLE，不要为绕过错误直接卸载旧采集环境；
+可先用独立测试 AVD 接入，或由操作方使用原签名重新构建。保留旧版 APK 和实验记录。
+
+旧攻击仓库的版本登记
+hybridguard-browser-fingerprint-research 当前冻结脚本绑定旧 code 10 APK，检查版本、
+APK 身份、字段目录及采集 schema。仅设置新 APK 路径不足以通过旧发布锁。
+这次未改该仓库的任何源码或历史 release lock。正式新采集需要独立的新版本配置
+和输出目录。本次主仓库编排使用独立的新版本协议完成了低层工具接入；攻击侧
+仍需登记自己的新发布配置，不能把这次本机验收视为旧冻结入口已兼容。
+旧仓库部分静态控制检查还匹配旧 MainActivity 的源码写法与旧 worktree 路径；
+新版使用等价配置 helper，需要在新版本接入时适配这些检查。本次验证了低层
+runner，尚未改写或验证旧冻结入口对新版的兼容性。
+不得改旧锁冒充原批次，不得把新 APK 产生的样本直接续写到历史 162 条实验中。
+
+攻击侧首次接入验收
+1. 在独立输出目录记录 App code 12、WebView 版本、环境身份及本次配置。
+2. 先无攻击采一条，确认 177 个 field-status 及 collection_observations 原样落盘。
+3. 检查 raw 类型与状态，不要求所有 WebView 都必须返回原始 boolean false。
+4. 同环境采 clean_pre、attack、clean_post，分别验证工具执行、字段变化和撤销恢复；
+   另外的无攻击时间对照不能标成攻击样本。
+5. 将新批次与旧版独立保存。模拟器结果不等同于正常真机 App 的总体误报率。
+
+构建与验收状态
+精确构建参数、APK 文件信息、测试结果及剩余接入事项见 release_manifest.json。
+本机运行验收见 RUNTIME_ACCEPTANCE.json 和 runtime-report.txt；完整原始包、回执
+和逐命令记录保存在主仓库 featureapp_webdriver_runtime_v1 的本轮 runs 目录。
+source_changes.patch 是相对于主仓库已提交基线的本轮源代码补丁，包含新增源码和
+聚焦测试。应用前须核对 manifest 中的基线；APK构建时使用基线加该补丁，
+不能仅引用基线提交号声称它已包含这些新改动。最终源码与验收记录由本轮提交保存。
+本说明与 APK 由本地主仓库工作区生成；本轮未向同学发送文件，未修改攻击侧仓库。

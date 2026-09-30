@@ -1,0 +1,75 @@
+FeatureApp 1.6.5 本机受控采集验收
+
+结论
+2026 年 9 月 30 日，使用专用全新 ARM64 模拟器、Android API 36、WebView
+134.0.6998.135 与 FeatureApp code 12，完成固定的 31 个采集位置。
+31 个唯一 App session 全部取得原始包、导出行和接收回执，177 个字段状态完整，
+webdriver 原始观察元数据全程保留。两项指定干预均观察到目标变化与撤销恢复。
+这些是新的单环境开发证据；本轮没有调用候选求值、规则选择器 fit 或模型 predict。
+
+固定计划与实测
+1. 链路检查：1 条，原始 webdriver 为存在且读取成功的 boolean false；
+   language=en-US，languages=[en-US]。
+2. 无攻击时间对照：3 轮，每轮 clean_pre/control_mid/clean_post，共 9 条。
+   两项指定观察在各轮前、中、后均一致；webdriver 均为原始 boolean false。
+3. 调试连接对照：1 轮，共 3 条。中间态显式开启 WebView 调试、等待 CDP 连接，
+   只完成 Page.enable 和 Page.navigate，不设置属性、不注入脚本。两项观察不变。
+4. webdriver 单项干预：3 轮，共 9 条。每轮原始 boolean false → true → false；
+   3 个 active 均观察到声明的 true，语言字符串及列表未发生指定字段变化。
+5. 语言单项干预：3 轮，共 9 条。每轮 language 保持 en-US，languages 从
+   [en-US] → [fr-FR, fr] → [en-US]，即首项一致 → 不一致 → 恢复一致；
+   3 个 active 均观察到声明的列表，webdriver 保持原始 boolean false。
+
+本轮 webdriver 原始值总计 28 个 boolean false、3 个 boolean true，未知 0、
+观察结构失败 0。这里的计数是原始采集状态，不能写成模型准确率或总体误报率。
+10 组完整三态对照中，所核对的 webdriver 原始元组及语言字段均在 post 回到 pre；
+比较时排除了每次 session 不同而必然变化的 realm_binding。
+
+实施与证据位置
+protocol.json 定义本轮31位置；runs/20260930_local_api36_1_v1/plan.json 保存执行计划，
+protocol_snapshot.json 与 release_snapshot.json 保存采集前快照。脚本拒绝重复运行
+已有阶段或覆盖既有 attempt，异常记录后停止，不因结果不好自动重试。
+backend/raw_expanded_payloads.jsonl 的 canonical_received_payload 是 App 原始包；
+backend/expanded_collected_data.jsonl 是已有后端展平导出，不能冒充原始包。
+backend/collection_receipts.jsonl、sessions.jsonl、attempts/ 下的逐命令输出和六份
+攻击工具日志保留执行对应关系。SUMMARY.json 为自动汇总；AUDIT.json 为独立核对。
+
+攻击实现直接调用未修改的研究仓库低层 runner，配置为 cdp_webdriver_only_v1 和
+stealth_languages_only_v1。工具依赖版本沿用该仓库已有锁定版本，具体包和传递依赖
+记录在 runtime-package.json / runtime-package-lock.json。macOS 的 curl.exe shim
+仅转发到系统 curl；它不改变注入逻辑。所有工具日志和采集输出均写入主仓库新目录。
+本轮单独登记新版 App，未使用或改写旧 code 10 formal release lock。
+
+接收端仅使用隔离数据目录、127.0.0.1:8000、一个 worker，无 reload。专用模拟器与
+接收端已正常退出，collection_batches.jsonl 记录 closed_cleanly。
+App 原有 Browser 配对伴随流程产生31次 ticket、31次App回执绑定、31次stage事件；
+本轮未完成独立 Browser67 采集，没有把这些事件作为额外样本或 paired244。
+
+保留的预检失败
+首次编排初始化错误地把字段目录中的4个包装字段也计入177信号，因此在任何设备
+launch、协议快照或采集 attempt 之前停止。按三层信号前缀过滤后实际为177；
+失败输出及修复记录保留在 preflight-catalog-check-failed.log / preflight-repair.json。
+此后 smoke只运行一次，正式31位置无失败或重采。6项编排分析边界测试通过。
+98条命令记录中92条返回0，另6条均是低层工具已移除端口转发后，外层再次清理
+同一转发所报的 listener not found（9222与9226各3次）。原始错误保留，
+它们不是采集失败；逐条对应关系见 AUDIT.json 的 nonzero_commands。
+
+对研究结论的作用
+新版采集器可以在当前环境区分真正的原始 false 与缺失、非布尔值、读取错误，
+提供新 webdriver 条件所需的完整前后对照；但本次未出现的缺失/错误情况仍需保留 U，
+不能规定其他 WebView 也必须暴露 boolean false。
+历史162条仍只有旧 strict-true 投影，不能用本次正常 false 回填历史未知。
+语言干预在本环境可重复，但该干预同时改变列表长度；本轮不能证明首项规则的检出
+能力胜过旧长度规则，也未覆盖正常多语言 App 的误报问题。
+调试连接对照支持本环境下两个指定观察并非仅因 CDP 连接而改变；它不完全匹配
+Puppeteer 的全部内部行为，也不证明全部177个字段均未变化。
+31条来自同一环境、同一安装，不能当作31台设备或跨环境泛化证据。新的完整正例
+可以进入后续数据接入讨论，但需先登记新旧观察模式和环境分组，不能直接拼到旧162条
+里重新报“提升”。原有R_KEEP整体检出率本轮未重测，提升幅度为尚未评估。
+
+交付与复用
+本机已验证的APK仍为 featureapp_webdriver_raw_v1 中 code12 同一文件；该交付包将附
+本报告和运行验收摘要，供攻击侧接入。对方仍需登记新版发布配置、确认其接收端不丢
+collection_observations；旧冻结脚本不能只替换APK路径。原研究仓库保持未修改。
+后续在新环境运行需新建协议/output_dir，安装独立依赖并改为实际绝对路径，不能复用
+本轮阶段标记。本脚本在macOS验证，其他宿主系统的进程管理需另行检查。

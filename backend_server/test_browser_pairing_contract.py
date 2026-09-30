@@ -577,6 +577,36 @@ class BrowserPairingContractTests(unittest.TestCase):
                 first["receipt"]["browser_receipt_id"],
             )
 
+    def test_current_and_previous_probe_bundles_accept_only_the_two_pinned_identities(self):
+        manifest = json.loads((Path(__file__).resolve().parents[1]
+                               / "browser_probe_site/public/probe/manifest.json").read_text(encoding="utf-8"))
+        current = manifest["sha256"]
+        previous = "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
+        self.assertEqual(main.BROWSER_WEB_PROBE_SHA256, current)
+        self.assertEqual(main.BROWSER_COMPATIBLE_WEB_PROBE_SHA256, {previous, current})
+        for label, bundle_hash, accepted in (("previous", previous, True), ("current", current, True),
+                                             ("unregistered", "0" * 64, False)):
+            with self.subTest(bundle=label), self.isolated_backend() as (temp, _):
+                ticket = self.issue()
+                data = browser_payload(ticket["pair_id"])
+                data["probe_metadata"]["core_bundle_sha256"] = bundle_hash
+                payload = main.BrowserFingerprintPayload(**data)
+                if accepted:
+                    result = main.store_browser_fingerprint(payload, ticket["browser_ticket"])
+                    self.assertTrue(result["receipt"]["stored_new_jsonl_row"])
+                    raw = self.jsonl_rows(temp / "raw_browser_payloads.jsonl")
+                    collected = self.jsonl_rows(temp / "browser_collected_data.jsonl")
+                    self.assertEqual((len(raw), len(collected)), (1, 1))
+                    self.assertEqual(raw[0]["canonical_received_payload"]["probe_metadata"]["core_bundle_sha256"], bundle_hash)
+                    self.assertEqual(collected[0]["collection_status"]["fixed_signal_count"], 67)
+                else:
+                    with self.assertRaises(main.HTTPException) as rejected:
+                        main.store_browser_fingerprint(payload, ticket["browser_ticket"])
+                    self.assertEqual(rejected.exception.status_code, 409)
+                    self.assertEqual(rejected.exception.detail["code"], "BROWSER_PROBE_CORE_HASH_MISMATCH")
+                    self.assertEqual(self.jsonl_rows(temp / "raw_browser_payloads.jsonl"), [])
+                    self.assertEqual(self.jsonl_rows(temp / "browser_collected_data.jsonl"), [])
+
     def test_probe_origin_and_core_hash_are_bound_to_deployed_bundle(self):
         with self.isolated_backend():
             ticket = self.issue()

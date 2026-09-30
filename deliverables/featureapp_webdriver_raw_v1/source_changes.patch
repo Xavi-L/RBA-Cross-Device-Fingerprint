@@ -1,0 +1,967 @@
+diff --git a/android_app/HybridGuard/featureapp/build.gradle.kts b/android_app/HybridGuard/featureapp/build.gradle.kts
+index 509e209..e3e8875 100644
+--- a/android_app/HybridGuard/featureapp/build.gradle.kts
++++ b/android_app/HybridGuard/featureapp/build.gradle.kts
+@@ -59,8 +59,8 @@ android {
+         applicationId = "com.example.hybridguard.featureapp"
+         minSdk = 21
+         targetSdk = 36
+-        versionCode = 11
+-        versionName = "1.6.4-expanded-v2.2-mtc-https"
++        versionCode = 12
++        versionName = "1.6.5-expanded-v2.2-webdriver-raw"
+ 
+         val configuredEndpoint = providers.gradleProperty("hybridguardCollectEndpoint")
+             .orElse("http://10.0.2.2:8000/api/collect/fingerprint")
+diff --git a/android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js b/android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js
+index 4dea257..f1cae1c 100644
+--- a/android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js
++++ b/android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js
+@@ -133,6 +133,9 @@
+                 probe_statuses: probeResult.probe_statuses
+             }
+         };
++        if (probeResult.collection_observations) {
++            payload.collection_observations = probeResult.collection_observations;
++        }
+         try {
+             setStatus("Handing expanded payload to Android uploader...");
+             global.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
+@@ -191,7 +194,12 @@
+         }).then(function () {
+             return global.HybridGuardWebProbe.collect({
+                 canvasContainer: canvasBox,
+-                onLog: log
++                onLog: log,
++                // Self-declared association with this App collection's main
++                // frame, not an assertion of native getter authenticity.
++                webdriverObservation: {
++                    realmBinding: "featureapp:" + currentSessionId + ":main-frame"
++                }
+             });
+         }).then(function (probeResult) {
+             var navigatorInfo = probeResult.web_data.navigator_layer;
+diff --git a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt
+index bcdb99c..c121a2b 100644
+--- a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt
++++ b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt
+@@ -78,6 +78,22 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_main)
+ 
++        val probeControl = WebViewProbeControl.resolve(
++            debuggingEnabled = intent.getBooleanExtra(
++                WebViewProbeControl.EXTRA_ENABLE_WEBVIEW_DEBUG, false
++            ),
++            waitForControl = intent.getBooleanExtra(
++                WebViewProbeControl.EXTRA_WAIT_FOR_WEBVIEW_CONTROL, false
++            ),
++            requestedDeadlineMs = intent.getLongExtra(
++                WebViewProbeControl.EXTRA_PROBE_DELAY_MS,
++                WebViewProbeControl.DEFAULT_DEADLINE_MS
++            )
++        )
++        // Explicitly reset the process-wide setting on each launch. Normal
++        // collection never inherits debugging from a controlled collection.
++        WebView.setWebContentsDebuggingEnabled(probeControl.debuggingEnabled)
++
+         sessionId = savedInstanceState?.getString(STATE_SESSION_ID)
+             ?: UUID.randomUUID().toString()
+         browserTicketRequestId =
+@@ -134,8 +150,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+         }
+ 
+         webView = findViewById(R.id.webview)
+-        configureWebView(webView)
+-        mainHandler.postDelayed(webProbeTimeout, WEB_PROBE_DEADLINE_MS)
++        configureWebView(webView, probeControl)
++        mainHandler.postDelayed(webProbeTimeout, probeControl.deadlineMs)
+     }
+ 
+     override fun onSaveInstanceState(outState: Bundle) {
+@@ -157,7 +173,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+     }
+ 
+     @SuppressLint("SetJavaScriptEnabled")
+-    private fun configureWebView(webView: WebView) {
++    private fun configureWebView(webView: WebView, probeControl: WebViewProbeControl) {
+         webView.settings.javaScriptEnabled = true
+         webView.settings.domStorageEnabled = true
+         webView.webViewClient = WebViewClient()
+@@ -167,7 +183,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+             ExpandedWebBridge(collector, sessionId, settingsSnapshot, this),
+             "AndroidBridge"
+         )
+-        webView.loadUrl("file:///android_asset/expanded_probe.html")
++        webView.loadUrl(probeControl.initialUrl)
+     }
+ 
+     override fun onExpandedPayload(payloadJson: String) {
+@@ -244,6 +260,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+                     }
+                 )
+             }
++            AppCollectionObservations.copyIfPresent(webPayload, featurePayload)
+             val collectionStatus = fieldStatusReporter.build(
+                 featurePayload,
+                 layerFailures,
+@@ -320,6 +337,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+                         put("collection_finished_at_ms", System.currentTimeMillis())
+                     }
+                 )
++            }.apply {
++                AppCollectionObservations.copyIfPresent(webPayload, this)
+             }.toString()
+             try {
+                 val emergencyPayloadPersisted = ExpandedUploadWorker.persistAndEnqueue(
+@@ -807,7 +826,6 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
+         private const val STATE_SESSION_ID = "state_session_id"
+         private const val STATE_BROWSER_TICKET_REQUEST_ID =
+             "state_browser_ticket_request_id"
+-        private const val WEB_PROBE_DEADLINE_MS = 15_000L
+         private const val BACKGROUND_HANDOFF_CHECK_MS = 2_000L
+         private const val BACKGROUND_HANDOFF_RETRY_MS = 10_000L
+         private const val BROWSER_FIRST_STAGE_DEADLINE_MS = 8_000L
+diff --git a/backend_server/main.py b/backend_server/main.py
+index 4b4c811..28d5be7 100644
+--- a/backend_server/main.py
++++ b/backend_server/main.py
+@@ -316,8 +316,15 @@ BROWSER_PAYLOAD_SCHEMA_VERSION = "browser-web-v1-status"
+ BROWSER_COLLECTOR_APP = "browserprobe"
+ BROWSER_WEB_PROBE_REVISION = "expanded-web-67-v1"
+ BROWSER_WEB_PROBE_SHA256 = (
+-    "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
++    "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004"
+ )
++# The App-only observer does not change the default Browser67 behavior or
++# revision. Keep the previously deployed bundle compatible while accepting
++# only these two exact public bundle identities, not arbitrary same-revision JS.
++BROWSER_COMPATIBLE_WEB_PROBE_SHA256 = frozenset({
++    BROWSER_WEB_PROBE_SHA256,
++    "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
++})
+ BROWSER_PROBE_METADATA_SCHEMA_VERSION = "browser-probe-metadata-v1"
+ BROWSER_ALLOWED_PROBE_ORIGINS = frozenset(
+     origin.strip().rstrip("/")
+@@ -1603,10 +1610,7 @@ def validate_and_normalize_browser_payload(
+     presented_core_sha256 = probe_metadata.get("core_bundle_sha256")
+     if (
+         not isinstance(presented_core_sha256, str)
+-        or not hmac.compare_digest(
+-            presented_core_sha256.lower(),
+-            BROWSER_WEB_PROBE_SHA256,
+-        )
++        or presented_core_sha256.lower() not in BROWSER_COMPATIBLE_WEB_PROBE_SHA256
+     ):
+         raise browser_protocol_error(
+             409,
+diff --git a/backend_server/test_browser_pairing_contract.py b/backend_server/test_browser_pairing_contract.py
+index 4d52778..d45af92 100644
+--- a/backend_server/test_browser_pairing_contract.py
++++ b/backend_server/test_browser_pairing_contract.py
+@@ -577,6 +577,36 @@ class BrowserPairingContractTests(unittest.TestCase):
+                 first["receipt"]["browser_receipt_id"],
+             )
+ 
++    def test_current_and_previous_probe_bundles_accept_only_the_two_pinned_identities(self):
++        manifest = json.loads((Path(__file__).resolve().parents[1]
++                               / "browser_probe_site/public/probe/manifest.json").read_text(encoding="utf-8"))
++        current = manifest["sha256"]
++        previous = "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
++        self.assertEqual(main.BROWSER_WEB_PROBE_SHA256, current)
++        self.assertEqual(main.BROWSER_COMPATIBLE_WEB_PROBE_SHA256, {previous, current})
++        for label, bundle_hash, accepted in (("previous", previous, True), ("current", current, True),
++                                             ("unregistered", "0" * 64, False)):
++            with self.subTest(bundle=label), self.isolated_backend() as (temp, _):
++                ticket = self.issue()
++                data = browser_payload(ticket["pair_id"])
++                data["probe_metadata"]["core_bundle_sha256"] = bundle_hash
++                payload = main.BrowserFingerprintPayload(**data)
++                if accepted:
++                    result = main.store_browser_fingerprint(payload, ticket["browser_ticket"])
++                    self.assertTrue(result["receipt"]["stored_new_jsonl_row"])
++                    raw = self.jsonl_rows(temp / "raw_browser_payloads.jsonl")
++                    collected = self.jsonl_rows(temp / "browser_collected_data.jsonl")
++                    self.assertEqual((len(raw), len(collected)), (1, 1))
++                    self.assertEqual(raw[0]["canonical_received_payload"]["probe_metadata"]["core_bundle_sha256"], bundle_hash)
++                    self.assertEqual(collected[0]["collection_status"]["fixed_signal_count"], 67)
++                else:
++                    with self.assertRaises(main.HTTPException) as rejected:
++                        main.store_browser_fingerprint(payload, ticket["browser_ticket"])
++                    self.assertEqual(rejected.exception.status_code, 409)
++                    self.assertEqual(rejected.exception.detail["code"], "BROWSER_PROBE_CORE_HASH_MISMATCH")
++                    self.assertEqual(self.jsonl_rows(temp / "raw_browser_payloads.jsonl"), [])
++                    self.assertEqual(self.jsonl_rows(temp / "browser_collected_data.jsonl"), [])
++
+     def test_probe_origin_and_core_hash_are_bound_to_deployed_bundle(self):
+         with self.isolated_backend():
+             ticket = self.issue()
+diff --git a/backend_server/test_collection_contract.py b/backend_server/test_collection_contract.py
+index 35d1c87..d1bdb31 100644
+--- a/backend_server/test_collection_contract.py
++++ b/backend_server/test_collection_contract.py
+@@ -126,6 +126,79 @@ class CollectionContractTests(unittest.TestCase):
+             self.assertEqual(closed_batch["receipt_count"], 2)
+             self.assertEqual(closed_batch["stored_new_jsonl_row_count"], 1)
+ 
++    def test_app_observations_preserve_false_null_and_legacy_across_storage_and_retry(self) -> None:
++        cases = {
++            "false": ("observed", "boolean", False),
++            "undefined": ("observed", "undefined", None),
++            "runtime_error": ("runtime_error", None, None),
++            "legacy": None,
++        }
++        for name, values in cases.items():
++            with self.subTest(observation=name), tempfile.TemporaryDirectory() as temp_dir:
++                temp = Path(temp_dir)
++                original_db = main.expanded_sessions_db
++                original_batch = main.active_collection_batch
++                main.expanded_sessions_db = {}
++                try:
++                    with mock.patch.multiple(
++                        main,
++                        EXPANDED_DB_FILE=temp / "expanded_merged_sessions.json",
++                        EXPANDED_COLLECTED_JSONL_FILE=temp / "expanded_collected_data.jsonl",
++                        COLLECTION_RECEIPTS_JSONL_FILE=temp / "collection_receipts.jsonl",
++                        RAW_EXPANDED_PAYLOADS_JSONL_FILE=temp / "raw_expanded_payloads.jsonl",
++                        COLLECTION_BATCHES_JSONL_FILE=temp / "collection_batches.jsonl",
++                        ACTIVE_COLLECTION_BATCH_STATE_FILE=temp / "active_collection_batch.json",
++                    ):
++                        main.start_collection_batch()
++                        payload = expanded_payload()
++                        payload["web_data"] = {"automation_surface_layer": {"webdriver": False}}
++                        if values is not None:
++                            read_status, value_type, boolean_value = values
++                            payload["collection_observations"] = {
++                                "observation_schema_version": "app-web-observations-v1",
++                                "webdriver": {
++                                    "api_present": True,
++                                    "presence_read_status": "observed",
++                                    "value_read_status": read_status,
++                                    "value_type": value_type,
++                                    "boolean_value": boolean_value,
++                                    "observer_revision": "app-webdriver-observer-v1",
++                                    "realm_binding": "featureapp:contract-test-session:main-frame",
++                                },
++                            }
++                        model = main.FingerprintPayload(**payload)
++                        first = asyncio.run(main.collect_fingerprint(model))
++                        second = asyncio.run(main.collect_fingerprint(model))
++                        main.close_active_collection_batch()
++                finally:
++                    main.expanded_sessions_db = original_db
++                    main.active_collection_batch = original_batch
++
++                raw_rows = [json.loads(line) for line in
++                            (temp / "raw_expanded_payloads.jsonl").read_text(encoding="utf-8").splitlines()]
++                flat_rows = [json.loads(line) for line in
++                             (temp / "expanded_collected_data.jsonl").read_text(encoding="utf-8").splitlines()]
++                receipts = [json.loads(line) for line in
++                            (temp / "collection_receipts.jsonl").read_text(encoding="utf-8").splitlines()]
++                merged = json.loads((temp / "expanded_merged_sessions.json").read_text(encoding="utf-8"))
++                self.assertEqual((len(raw_rows), len(flat_rows), len(receipts)), (1, 1, 2))
++                for saved in (raw_rows[0]["canonical_received_payload"], merged[payload["session_id"]], flat_rows[0]):
++                    if values is None:
++                        self.assertNotIn("collection_observations", saved)
++                    else:
++                        self.assertEqual(saved["collection_observations"], payload["collection_observations"])
++                        self.assertIs(saved["collection_observations"]["webdriver"]["boolean_value"], values[2])
++                    self.assertEqual(saved["collection_status"], payload["collection_status"])
++                    self.assertEqual(len(saved["collection_status"]["fields"]), 177)
++                self.assertIs(flat_rows[0]["web_data"]["webdriver"], False)
++                self.assertEqual(first["receipt"]["validation_warnings"], [])
++                self.assertTrue(first["receipt"]["raw_payload_archived"])
++                self.assertTrue(second["receipt"]["duplicate_payload"])
++                self.assertFalse(second["receipt"]["raw_payload_archived"])
++                self.assertFalse(second["receipt"]["stored_new_jsonl_row"])
++                self.assertEqual(first["receipt"]["payload_sha256"], second["receipt"]["payload_sha256"])
++                self.assertEqual([r["duplicate_payload"] for r in receipts], [False, True])
++
+ 
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/browser_probe_site/public/probe/canonical_web_probe.js b/browser_probe_site/public/probe/canonical_web_probe.js
+index 34b72f9..b3f294e 100644
+--- a/browser_probe_site/public/probe/canonical_web_probe.js
++++ b/browser_probe_site/public/probe/canonical_web_probe.js
+@@ -3,6 +3,7 @@
+ 
+     var REVISION = "expanded-web-67-v1";
+     var STATUS_SCHEMA_VERSION = "browser-field-status-v1";
++    var APP_WEBDRIVER_OBSERVER_REVISION = "app-webdriver-observer-v1";
+     var FIELD_PATHS = [
+         "web_data.audio_layer.audio_context_supported",
+         "web_data.audio_layer.audio_error",
+@@ -577,9 +578,53 @@
+         });
+     }
+ 
+-    function getAutomationFeatures() {
++    // App-only metadata. Presence and value reads are separate observations,
++    // not an atomic snapshot or proof that this realm exposes a native getter.
++    function observeWebdriver(realmBinding) {
++        var observation = {
++            api_present: null,
++            presence_read_status: "runtime_error",
++            value_read_status: "not_attempted",
++            value_type: null,
++            boolean_value: null,
++            observer_revision: APP_WEBDRIVER_OBSERVER_REVISION,
++            realm_binding: realmBinding
++        };
++        var observedNavigator;
++        try {
++            observedNavigator = navigator;
++            observation.api_present = "webdriver" in observedNavigator;
++            observation.presence_read_status = "observed";
++        } catch (_presenceError) {
++            return observation;
++        }
++        if (!observation.api_present) {
++            return observation;
++        }
++        try {
++            var value = observedNavigator.webdriver;
++            observation.value_type = typeof value;
++            observation.boolean_value = typeof value === "boolean" ? value : null;
++            observation.value_read_status = "observed";
++        } catch (_valueError) {
++            observation.value_read_status = "runtime_error";
++        }
++        return observation;
++    }
++
++    function getAutomationFeatures(webdriverObservation) {
+         var result = defaultAutomationFeatures();
+-        result.webdriver = navigator.webdriver === true;
++        if (webdriverObservation) {
++            if (webdriverObservation.presence_read_status === "runtime_error" ||
++                    webdriverObservation.value_read_status === "runtime_error") {
++                throw new Error("webdriver_observation_read_error");
++            }
++            // Reuse the one observed getter value; do not read it again for the
++            // legacy strict-true projection in the fixed 67-field contract.
++            result.webdriver = webdriverObservation.boolean_value === true;
++        } else {
++            result.webdriver = navigator.webdriver === true;
++        }
+         result.plugins_count = navigator.plugins ? navigator.plugins.length : 0;
+         result.mime_types_count = navigator.mimeTypes ? navigator.mimeTypes.length : 0;
+         try {
+@@ -769,6 +814,12 @@
+         options = options || {};
+         var probeStatuses = {};
+         var logger = typeof options.onLog === "function" ? options.onLog : function () {};
++        var webdriverObservationOptions = options.webdriverObservation;
++        if (webdriverObservationOptions &&
++                (typeof webdriverObservationOptions.realmBinding !== "string" ||
++                !webdriverObservationOptions.realmBinding.trim())) {
++            throw new Error("webdriver_observation_realm_binding_required");
++        }
+ 
+         function probeKey(name) {
+             return String(name || "unknown").toLowerCase().replace(/\s+/g, "_");
+@@ -822,8 +873,15 @@
+         var connectionInfo =
+             safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
+         var fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
+-        var automationInfo =
+-            safeSyncProbe("Automation", getAutomationFeatures, defaultAutomationFeatures);
++        // Keep this metadata independent of the Automation group's fallback:
++        // a later plugins/mimeTypes exception must not erase the observation.
++        var webdriverObservation = webdriverObservationOptions ?
++            observeWebdriver(webdriverObservationOptions.realmBinding) : null;
++        var automationInfo = safeSyncProbe(
++            "Automation",
++            function () { return getAutomationFeatures(webdriverObservation); },
++            defaultAutomationFeatures
++        );
+         var canvasHash = safeSyncProbe(
+             "Canvas",
+             function () {
+@@ -863,17 +921,25 @@
+                 automationInfo: automationInfo,
+                 canvasHash: canvasHash
+             });
+-            return {
++            var probeResult = {
+                 web_data: webData,
+                 probe_statuses: probeStatuses,
+                 collection_status: buildCollectionStatus(webData, probeStatuses)
+             };
++            if (webdriverObservation) {
++                probeResult.collection_observations = {
++                    observation_schema_version: "app-web-observations-v1",
++                    webdriver: webdriverObservation
++                };
++            }
++            return probeResult;
+         });
+     }
+ 
+     global.HybridGuardWebProbe = Object.freeze({
+         REVISION: REVISION,
+         STATUS_SCHEMA_VERSION: STATUS_SCHEMA_VERSION,
++        APP_WEBDRIVER_OBSERVER_REVISION: APP_WEBDRIVER_OBSERVER_REVISION,
+         FIELD_PATHS: Object.freeze(FIELD_PATHS.slice(0)),
+         sha256: sha256,
+         collect: collect,
+diff --git a/browser_probe_site/public/probe/manifest.json b/browser_probe_site/public/probe/manifest.json
+index 946cf82..dcd0974 100644
+--- a/browser_probe_site/public/probe/manifest.json
++++ b/browser_probe_site/public/probe/manifest.json
+@@ -2,5 +2,5 @@
+   "schema_version": "hybridguard-web-probe-bundle-v1",
+   "revision": "expanded-web-67-v1",
+   "signal_count": 67,
+-  "sha256": "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
++  "sha256": "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004"
+ }
+diff --git a/web_probe/canonical_web_probe.js b/web_probe/canonical_web_probe.js
+index 34b72f9..b3f294e 100644
+--- a/web_probe/canonical_web_probe.js
++++ b/web_probe/canonical_web_probe.js
+@@ -3,6 +3,7 @@
+ 
+     var REVISION = "expanded-web-67-v1";
+     var STATUS_SCHEMA_VERSION = "browser-field-status-v1";
++    var APP_WEBDRIVER_OBSERVER_REVISION = "app-webdriver-observer-v1";
+     var FIELD_PATHS = [
+         "web_data.audio_layer.audio_context_supported",
+         "web_data.audio_layer.audio_error",
+@@ -577,9 +578,53 @@
+         });
+     }
+ 
+-    function getAutomationFeatures() {
++    // App-only metadata. Presence and value reads are separate observations,
++    // not an atomic snapshot or proof that this realm exposes a native getter.
++    function observeWebdriver(realmBinding) {
++        var observation = {
++            api_present: null,
++            presence_read_status: "runtime_error",
++            value_read_status: "not_attempted",
++            value_type: null,
++            boolean_value: null,
++            observer_revision: APP_WEBDRIVER_OBSERVER_REVISION,
++            realm_binding: realmBinding
++        };
++        var observedNavigator;
++        try {
++            observedNavigator = navigator;
++            observation.api_present = "webdriver" in observedNavigator;
++            observation.presence_read_status = "observed";
++        } catch (_presenceError) {
++            return observation;
++        }
++        if (!observation.api_present) {
++            return observation;
++        }
++        try {
++            var value = observedNavigator.webdriver;
++            observation.value_type = typeof value;
++            observation.boolean_value = typeof value === "boolean" ? value : null;
++            observation.value_read_status = "observed";
++        } catch (_valueError) {
++            observation.value_read_status = "runtime_error";
++        }
++        return observation;
++    }
++
++    function getAutomationFeatures(webdriverObservation) {
+         var result = defaultAutomationFeatures();
+-        result.webdriver = navigator.webdriver === true;
++        if (webdriverObservation) {
++            if (webdriverObservation.presence_read_status === "runtime_error" ||
++                    webdriverObservation.value_read_status === "runtime_error") {
++                throw new Error("webdriver_observation_read_error");
++            }
++            // Reuse the one observed getter value; do not read it again for the
++            // legacy strict-true projection in the fixed 67-field contract.
++            result.webdriver = webdriverObservation.boolean_value === true;
++        } else {
++            result.webdriver = navigator.webdriver === true;
++        }
+         result.plugins_count = navigator.plugins ? navigator.plugins.length : 0;
+         result.mime_types_count = navigator.mimeTypes ? navigator.mimeTypes.length : 0;
+         try {
+@@ -769,6 +814,12 @@
+         options = options || {};
+         var probeStatuses = {};
+         var logger = typeof options.onLog === "function" ? options.onLog : function () {};
++        var webdriverObservationOptions = options.webdriverObservation;
++        if (webdriverObservationOptions &&
++                (typeof webdriverObservationOptions.realmBinding !== "string" ||
++                !webdriverObservationOptions.realmBinding.trim())) {
++            throw new Error("webdriver_observation_realm_binding_required");
++        }
+ 
+         function probeKey(name) {
+             return String(name || "unknown").toLowerCase().replace(/\s+/g, "_");
+@@ -822,8 +873,15 @@
+         var connectionInfo =
+             safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
+         var fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
+-        var automationInfo =
+-            safeSyncProbe("Automation", getAutomationFeatures, defaultAutomationFeatures);
++        // Keep this metadata independent of the Automation group's fallback:
++        // a later plugins/mimeTypes exception must not erase the observation.
++        var webdriverObservation = webdriverObservationOptions ?
++            observeWebdriver(webdriverObservationOptions.realmBinding) : null;
++        var automationInfo = safeSyncProbe(
++            "Automation",
++            function () { return getAutomationFeatures(webdriverObservation); },
++            defaultAutomationFeatures
++        );
+         var canvasHash = safeSyncProbe(
+             "Canvas",
+             function () {
+@@ -863,17 +921,25 @@
+                 automationInfo: automationInfo,
+                 canvasHash: canvasHash
+             });
+-            return {
++            var probeResult = {
+                 web_data: webData,
+                 probe_statuses: probeStatuses,
+                 collection_status: buildCollectionStatus(webData, probeStatuses)
+             };
++            if (webdriverObservation) {
++                probeResult.collection_observations = {
++                    observation_schema_version: "app-web-observations-v1",
++                    webdriver: webdriverObservation
++                };
++            }
++            return probeResult;
+         });
+     }
+ 
+     global.HybridGuardWebProbe = Object.freeze({
+         REVISION: REVISION,
+         STATUS_SCHEMA_VERSION: STATUS_SCHEMA_VERSION,
++        APP_WEBDRIVER_OBSERVER_REVISION: APP_WEBDRIVER_OBSERVER_REVISION,
+         FIELD_PATHS: Object.freeze(FIELD_PATHS.slice(0)),
+         sha256: sha256,
+         collect: collect,
+diff --git a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/AppCollectionObservations.kt b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/AppCollectionObservations.kt
+new file mode 100644
+index 0000000..23b0bd0
+--- /dev/null
++++ b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/AppCollectionObservations.kt
+@@ -0,0 +1,12 @@
++package com.example.hybridguard.featureapp
++
++import org.json.JSONObject
++
++internal object AppCollectionObservations {
++    /** Preserve JS observations without creating missing values or certifying their origin. */
++    fun copyIfPresent(webPayload: JSONObject, appPayload: JSONObject) {
++        webPayload.optJSONObject("collection_observations")?.let { observations ->
++            appPayload.put("collection_observations", observations)
++        }
++    }
++}
+diff --git a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/WebViewProbeControl.kt b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/WebViewProbeControl.kt
+new file mode 100644
+index 0000000..83cd7e6
+--- /dev/null
++++ b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/WebViewProbeControl.kt
+@@ -0,0 +1,33 @@
++package com.example.hybridguard.featureapp
++
++/** Opt-in controls shared with the frozen WebView collection runner. */
++internal data class WebViewProbeControl private constructor(
++    val debuggingEnabled: Boolean,
++    val waitForControl: Boolean,
++    val deadlineMs: Long
++) {
++    val initialUrl: String
++        get() = if (waitForControl) "about:blank" else PROBE_URL
++
++    companion object {
++        const val EXTRA_ENABLE_WEBVIEW_DEBUG =
++            "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG"
++        const val EXTRA_WAIT_FOR_WEBVIEW_CONTROL =
++            "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL"
++        const val EXTRA_PROBE_DELAY_MS =
++            "com.example.hybridguard.featureapp.PROBE_DELAY_MS"
++        const val DEFAULT_DEADLINE_MS = 15_000L
++        const val MAX_DEADLINE_MS = 120_000L
++        private const val PROBE_URL = "file:///android_asset/expanded_probe.html"
++
++        fun resolve(
++            debuggingEnabled: Boolean = false,
++            waitForControl: Boolean = false,
++            requestedDeadlineMs: Long = DEFAULT_DEADLINE_MS
++        ): WebViewProbeControl = WebViewProbeControl(
++            debuggingEnabled = debuggingEnabled,
++            waitForControl = waitForControl,
++            deadlineMs = requestedDeadlineMs.coerceIn(DEFAULT_DEADLINE_MS, MAX_DEADLINE_MS)
++        )
++    }
++}
+diff --git a/android_app/HybridGuard/featureapp/src/test/java/com/example/hybridguard/featureapp/WebViewProbeControlTest.kt b/android_app/HybridGuard/featureapp/src/test/java/com/example/hybridguard/featureapp/WebViewProbeControlTest.kt
+new file mode 100644
+index 0000000..1e4dfb4
+--- /dev/null
++++ b/android_app/HybridGuard/featureapp/src/test/java/com/example/hybridguard/featureapp/WebViewProbeControlTest.kt
+@@ -0,0 +1,116 @@
++package com.example.hybridguard.featureapp
++
++import org.json.JSONArray
++import org.json.JSONObject
++import org.junit.Assert.assertEquals
++import org.junit.Assert.assertFalse
++import org.junit.Assert.assertSame
++import org.junit.Assert.assertTrue
++import org.junit.Test
++
++class WebViewProbeControlTest {
++    @Test
++    fun defaultLaunchLoadsProbeWithDebuggingDisabled() {
++        val control = WebViewProbeControl.resolve()
++
++        assertFalse(control.debuggingEnabled)
++        assertFalse(control.waitForControl)
++        assertEquals(15_000L, control.deadlineMs)
++        assertEquals("file:///android_asset/expanded_probe.html", control.initialUrl)
++    }
++
++    @Test
++    fun frozenRunnerCanWaitForNavigationWithSixtySecondDeadline() {
++        val control = WebViewProbeControl.resolve(true, true, 60_000L)
++
++        assertTrue(control.debuggingEnabled)
++        assertTrue(control.waitForControl)
++        assertEquals(60_000L, control.deadlineMs)
++        assertEquals("about:blank", control.initialUrl)
++    }
++
++    @Test
++    fun waitingDoesNotImplicitlyEnableDebugging() {
++        val control = WebViewProbeControl.resolve(waitForControl = true)
++
++        assertFalse(control.debuggingEnabled)
++        assertEquals("about:blank", control.initialUrl)
++        assertEquals(15_000L, control.deadlineMs)
++    }
++
++    @Test
++    fun debuggingDoesNotImplicitlyDelayProbeNavigation() {
++        val control = WebViewProbeControl.resolve(debuggingEnabled = true)
++
++        assertTrue(control.debuggingEnabled)
++        assertEquals("file:///android_asset/expanded_probe.html", control.initialUrl)
++    }
++
++    @Test
++    fun deadlineIsClampedWithoutOverflow() {
++        for (requested in listOf(Long.MIN_VALUE, -1L, 0L, 14_999L, 15_000L)) {
++            assertEquals(15_000L, WebViewProbeControl.resolve(requestedDeadlineMs = requested).deadlineMs)
++        }
++        assertEquals(119_999L, WebViewProbeControl.resolve(requestedDeadlineMs = 119_999L).deadlineMs)
++        for (requested in listOf(120_000L, 120_001L, Long.MAX_VALUE)) {
++            assertEquals(120_000L, WebViewProbeControl.resolve(requestedDeadlineMs = requested).deadlineMs)
++        }
++    }
++
++    @Test
++    fun observationObjectIsForwardedWithoutReinterpretingRawStates() {
++        val observations = JSONObject().apply {
++            put("observation_schema_version", "app-web-observations-v1")
++            put("webdriver", JSONObject().apply {
++                put("api_present", true)
++                put("presence_read_status", "observed")
++                put("value_read_status", "observed")
++                put("value_type", "boolean")
++                put("boolean_value", false)
++                put("observer_revision", "test-observer")
++                put("realm_binding", "featureapp:test-session:main-frame")
++            })
++            put("unrecognized_extension", JSONObject.NULL)
++        }
++        val payload = JSONObject().put("collection_observations", observations)
++        val finalPayload = JSONObject().put("session_id", "test-session")
++
++        AppCollectionObservations.copyIfPresent(payload, finalPayload)
++
++        assertSame(observations, finalPayload.getJSONObject("collection_observations"))
++        val persisted = JSONObject(finalPayload.toString()).getJSONObject("collection_observations")
++        assertFalse(persisted.getJSONObject("webdriver").getBoolean("boolean_value"))
++        assertTrue(persisted.has("unrecognized_extension"))
++        assertTrue(persisted.isNull("unrecognized_extension"))
++        assertEquals("test-session", finalPayload.getString("session_id"))
++    }
++
++    @Test
++    fun missingOrNonObjectObservationsAreNotFabricated() {
++        val inputs = listOf(
++            JSONObject(),
++            JSONObject().put("collection_observations", JSONObject.NULL),
++            JSONObject().put("collection_observations", false),
++            JSONObject().put("collection_observations", "{}"),
++            JSONObject().put("collection_observations", JSONArray())
++        )
++        for (input in inputs) {
++            val finalPayload = JSONObject()
++            AppCollectionObservations.copyIfPresent(input, finalPayload)
++            assertFalse(finalPayload.has("collection_observations"))
++        }
++    }
++
++    @Test
++    fun incompleteObservationObjectRemainsIncomplete() {
++        val observations = JSONObject()
++        val finalPayload = JSONObject()
++
++        AppCollectionObservations.copyIfPresent(
++            JSONObject().put("collection_observations", observations), finalPayload
++        )
++
++        assertSame(observations, finalPayload.getJSONObject("collection_observations"))
++        assertEquals(0, finalPayload.getJSONObject("collection_observations").length())
++    }
++}
+diff --git a/browser_probe_site/tests/webdriver-observation.test.mjs b/browser_probe_site/tests/webdriver-observation.test.mjs
+new file mode 100644
+index 0000000..381a53d
+--- /dev/null
++++ b/browser_probe_site/tests/webdriver-observation.test.mjs
+@@ -0,0 +1,237 @@
++import assert from "node:assert/strict";
++import { readFile } from "node:fs/promises";
++import test from "node:test";
++import vm from "node:vm";
++import { parse } from "acorn";
++
++const canonicalSource = await readFile(
++  new URL("../../web_probe/canonical_web_probe.js", import.meta.url), "utf8",
++);
++const appAdapterSource = await readFile(new URL(
++  "../../android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js",
++  import.meta.url,
++), "utf8");
++const catalog = await readFile(new URL(
++  "../../android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
++  import.meta.url,
++), "utf8");
++const realmBinding = "featureapp:fixture-session:main-frame";
++const appOptions = { webdriverObservation: { realmBinding } };
++const plain = (value) => JSON.parse(JSON.stringify(value));
++
++// All browser/bridge values here are synthetic. Unrelated expensive probes are
++// deliberately unavailable; tests exercise the public collector and adapter.
++function harness(navigator, { hostError = false } = {}) {
++  const elements = Object.fromEntries(["status", "subtitle", "log", "canvasBox"].map(
++    (id) => [id, { textContent: "", appendChild() {}, scrollTop: 0, scrollHeight: 0 }],
++  ));
++  const payloads = [];
++  let onLoad;
++  const sandbox = {
++    navigator,
++    screen: { width: 100, height: 200 },
++    performance: { now: () => 1 },
++    Intl: { DateTimeFormat() { throw new Error("unrelated synthetic probe unavailable"); } },
++    document: {
++      getElementById: (id) => elements[id],
++      createElement: (name) => name === "canvas" ? { getContext: () => null } : {},
++    },
++    setTimeout: (callback, delay) => setTimeout(callback, delay === 100 ? 0 : delay),
++    clearTimeout,
++    AndroidBridge: {
++      getSessionId: () => "fixture-session",
++      getWebViewHostFeatures() {
++        if (hostError) throw new Error("synthetic host failure");
++        return "{}";
++      },
++      submitExpandedPayload: (body) => payloads.push(JSON.parse(body)),
++    },
++    addEventListener(name, listener) {
++      if (name === "load") onLoad = listener;
++    },
++  };
++  sandbox.window = sandbox;
++  vm.createContext(sandbox);
++  vm.runInContext(canonicalSource, sandbox);
++  return {
++    core: sandbox.HybridGuardWebProbe,
++    payloads,
++    async runAdapter() {
++      vm.runInContext(appAdapterSource, sandbox);
++      await onLoad();
++    },
++  };
++}
++
++function navigatorWithGetter(getter, { presence = true, presenceError = false } = {}) {
++  const events = [];
++  const target = { userAgent: "synthetic", plugins: [], mimeTypes: [] };
++  const navigator = new Proxy(target, {
++    has(object, key) {
++      if (key !== "webdriver") return key in object;
++      events.push("presence");
++      if (presenceError) throw new Error("synthetic presence failure");
++      return presence;
++    },
++    get(object, key) {
++      if (key !== "webdriver") return object[key];
++      events.push("getter");
++      return getter();
++    },
++  });
++  return { navigator, target, events };
++}
++
++function expectedObservation(overrides = {}) {
++  return {
++    api_present: true,
++    presence_read_status: "observed",
++    value_read_status: "observed",
++    value_type: "boolean",
++    boolean_value: true,
++    observer_revision: "app-webdriver-observer-v1",
++    realm_binding: realmBinding,
++    ...overrides,
++  };
++}
++
++function observed(result) {
++  assert.equal(result.collection_observations.observation_schema_version,
++    "app-web-observations-v1");
++  return plain(result.collection_observations.webdriver);
++}
++
++test("App and shared probe retain ES5 syntax and exact 177/67 field catalogs", () => {
++  for (const source of [canonicalSource, appAdapterSource]) {
++    assert.doesNotThrow(() => parse(source, { ecmaVersion: 5, sourceType: "script" }));
++  }
++  const fields = catalog.trim().split(/\r?\n/).slice(1).map((line) => line.split(",")[0]);
++  const { core } = harness({});
++  assert.equal(fields.filter((field) => /^(android_native_data|webview_data|web_data)\./.test(field)).length, 177);
++  assert.deepEqual(Array.from(core.FIELD_PATHS), fields.filter((field) => field.startsWith("web_data.")));
++  assert.equal(core.FIELD_PATHS.length, 67);
++  assert.equal(core.REVISION, "expanded-web-67-v1");
++});
++
++test("Browser67 default does not check presence or return App observation metadata", async () => {
++  const fixture = navigatorWithGetter(() => true, { presenceError: true });
++  const result = await harness(fixture.navigator).core.collect();
++  assert.deepEqual(fixture.events, ["getter"]);
++  assert.deepEqual(Object.keys(result).sort(), ["collection_status", "probe_statuses", "web_data"]);
++  assert.equal(result.web_data.automation_surface_layer.webdriver, true);
++  assert.equal(result.collection_status.fixed_signal_count, 67);
++  assert.equal(Object.keys(result.collection_status.fields).length, 67);
++});
++
++test("App captures booleans and derives strict-true from the same single read", async (t) => {
++  for (const value of [true, false]) {
++    await t.test(String(value), async () => {
++      let reads = 0;
++      const fixture = navigatorWithGetter(() => ++reads === 1 ? value : !value);
++      const result = await harness(fixture.navigator).core.collect({
++        webdriverObservation: { realmBinding, observerRevision: "ignored-caller-revision" },
++      });
++      assert.deepEqual(fixture.events, ["presence", "getter"]);
++      assert.deepEqual(observed(result), expectedObservation({ boolean_value: value }));
++      assert.equal(result.web_data.automation_surface_layer.webdriver, value);
++      assert.equal(result.collection_status.fixed_signal_count, 67);
++      assert.equal(Object.keys(result.web_data.automation_surface_layer).length, 6);
++    });
++  }
++});
++
++test("nonboolean getter types serialize with explicit null and never become true", async (t) => {
++  const circular = {};
++  circular.self = circular;
++  const cases = [undefined, null, 1, "true", new Boolean(true), circular, Symbol("fixture"), 1n, () => true];
++  for (const [index, value] of cases.entries()) {
++    await t.test(`${index}: ${typeof value}`, async () => {
++      const fixture = navigatorWithGetter(() => value);
++      const result = await harness(fixture.navigator).core.collect(appOptions);
++      assert.deepEqual(fixture.events, ["presence", "getter"]);
++      assert.deepEqual(observed(result), expectedObservation({
++        value_type: typeof value, boolean_value: null,
++      }));
++      assert.equal(result.web_data.automation_surface_layer.webdriver, false);
++    });
++  }
++});
++
++test("API absence and presence error skip the getter and preserve distinct states", async (t) => {
++  for (const presenceError of [false, true]) {
++    await t.test(presenceError ? "presence error" : "absent", async () => {
++      const fixture = navigatorWithGetter(() => { throw new Error("must not run"); }, {
++        presence: false, presenceError,
++      });
++      const result = await harness(fixture.navigator).core.collect(appOptions);
++      assert.deepEqual(fixture.events, ["presence"]);
++      assert.deepEqual(observed(result), expectedObservation({
++        api_present: presenceError ? null : false,
++        presence_read_status: presenceError ? "runtime_error" : "observed",
++        value_read_status: "not_attempted", value_type: null, boolean_value: null,
++      }));
++      assert.equal(result.web_data.automation_surface_layer.webdriver, false);
++      assert.equal(result.probe_statuses.automation, presenceError ? "runtime_error" : "observed");
++    });
++  }
++});
++
++test("getter failure survives the legacy Automation fallback without a retry", async () => {
++  const fixture = navigatorWithGetter(() => { throw new Error("synthetic getter failure"); });
++  const result = await harness(fixture.navigator).core.collect(appOptions);
++  assert.deepEqual(fixture.events, ["presence", "getter"]);
++  assert.deepEqual(observed(result), expectedObservation({
++    value_read_status: "runtime_error", value_type: null, boolean_value: null,
++  }));
++  assert.equal(result.probe_statuses.automation, "runtime_error");
++  assert.equal(result.web_data.automation_surface_layer.webdriver, false);
++});
++
++test("later plugin or mime failure cannot erase the independent raw observation", async (t) => {
++  for (const failingField of ["plugins", "mimeTypes"]) {
++    await t.test(failingField, async () => {
++      const fixture = navigatorWithGetter(() => true);
++      Object.defineProperty(fixture.target, failingField, {
++        get() { throw new Error("synthetic plugin property failure"); },
++      });
++      const result = await harness(fixture.navigator).core.collect(appOptions);
++      assert.deepEqual(fixture.events, ["presence", "getter"]);
++      assert.deepEqual(observed(result), expectedObservation());
++      assert.equal(result.probe_statuses.automation, "runtime_error");
++      // Preserve the pre-existing whole-group fallback for the legacy field.
++      assert.equal(result.web_data.automation_surface_layer.webdriver, false);
++    });
++  }
++});
++
++test("App opt-in rejects missing context before reading webdriver", () => {
++  const fixture = navigatorWithGetter(() => true);
++  const { core } = harness(fixture.navigator);
++  for (const options of [{}, { realmBinding: " " }, { realmBinding: 42 }]) {
++    assert.throws(() => core.collect({ webdriverObservation: options }),
++      /webdriver_observation_realm_binding_required/);
++  }
++  assert.deepEqual(fixture.events, []);
++});
++
++test("FeatureApp adapter opts in and hands off metadata outside the fixed field tree", async () => {
++  const fixture = navigatorWithGetter(() => undefined);
++  const app = harness(fixture.navigator);
++  await app.runAdapter();
++  assert.equal(app.payloads.length, 1);
++  const payload = app.payloads[0];
++  assert.deepEqual(observed(payload), expectedObservation({ value_type: "undefined", boolean_value: null }));
++  assert.equal(payload.session_id, "fixture-session");
++  assert.equal(payload.web_data.automation_surface_layer.webdriver, false);
++  assert.equal(Object.keys(payload.web_data.automation_surface_layer).length, 6);
++  assert.deepEqual(fixture.events, ["presence", "getter"]);
++});
++
++test("App bridge fallback does not fabricate a raw observation", async () => {
++  const fixture = navigatorWithGetter(() => true);
++  const app = harness(fixture.navigator, { hostError: true });
++  await app.runAdapter();
++  assert.equal(app.payloads.length, 1);
++  assert.equal("collection_observations" in app.payloads[0], false);
++  assert.deepEqual(fixture.events, []);
++});

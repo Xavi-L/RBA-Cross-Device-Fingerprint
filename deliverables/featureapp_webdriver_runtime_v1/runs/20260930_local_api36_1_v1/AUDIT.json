@@ -1,0 +1,886 @@
+{
+  "audit_schema_version": "featureapp-webdriver-runtime-independent-audit-v1",
+  "audited_at_utc": "2026-09-30T12:07:42.928115+00:00",
+  "status": "PASS",
+  "scope": "Independent readback of this new output only; no collector, semantic candidate, detector, fit or prediction invoked. No digest recomputation.",
+  "lifecycle_status": "PASS",
+  "counts": {
+    "planned_positions": 31,
+    "unique_sessions": 31,
+    "raw_archives": 31,
+    "exports": 31,
+    "receipts": 31,
+    "merged_sessions": 31,
+    "accepted_attempts": 31,
+    "by_group": {
+      "smoke": 1,
+      "no_attack": 9,
+      "debug_transport_control": 3,
+      "webdriver": 9,
+      "language": 9
+    },
+    "raw_webdriver_classes": {
+      "BOOLEAN_FALSE": 28,
+      "BOOLEAN_TRUE": 3
+    },
+    "raw_webdriver_unknown_or_failed": 0,
+    "command_receipts": 98,
+    "completed_commands": 92,
+    "redundant_forward_cleanup_nonzero": 6
+  },
+  "stable_identity": {
+    "android_api": 36,
+    "collector_install_id": "3bf8a19e-d4e5-445e-bf3e-d791618e8a87",
+    "collector_package": "com.example.hybridguard.featureapp",
+    "collector_version_code": 12,
+    "collector_version_name": "1.6.5-expanded-v2.2-webdriver-raw",
+    "device_manifest_id": "codex-local-api36-1-raw-v1",
+    "webview_provider_package": "com.google.android.webview",
+    "webview_provider_version": "134.0.6998.135"
+  },
+  "record_linkage": "Session/receipt/batch/stored payload identity strings and raw byte offsets checked; receipt payload digests compared as stored identifiers, not recomputed.",
+  "checks": {
+    "exact_frozen_31_position_plan": true,
+    "sessions_exact_order_and_step_set": true,
+    "31_unique_nonempty_sessions": true,
+    "all_saved_accepted_without_issues": true,
+    "raw_exact_31_session_bijection": true,
+    "exports_exact_31_session_bijection": true,
+    "receipts_exact_31_session_bijection": true,
+    "merged_exact_session_set": true,
+    "catalog_has_exact_177_signal_paths": true,
+    "smoke:envelope_receipt_link": true,
+    "smoke:receipt_closed_success": true,
+    "smoke:payload_metadata_all_paths_preserved": true,
+    "smoke:flat_signal_values_preserved": true,
+    "smoke:manifest_and_attempt_binding": true,
+    "smoke:raw_byte_offset": true,
+    "smoke:177_status_contract": true,
+    "smoke:webdriver_raw_shape_and_binding": true,
+    "smoke:required_values_observed": true,
+    "smoke:described_values_match_raw": true,
+    "smoke:classification_matches_saved": true,
+    "no_attack-r1-clean_pre:envelope_receipt_link": true,
+    "no_attack-r1-clean_pre:receipt_closed_success": true,
+    "no_attack-r1-clean_pre:payload_metadata_all_paths_preserved": true,
+    "no_attack-r1-clean_pre:flat_signal_values_preserved": true,
+    "no_attack-r1-clean_pre:manifest_and_attempt_binding": true,
+    "no_attack-r1-clean_pre:raw_byte_offset": true,
+    "no_attack-r1-clean_pre:177_status_contract": true,
+    "no_attack-r1-clean_pre:webdriver_raw_shape_and_binding": true,
+    "no_attack-r1-clean_pre:required_values_observed": true,
+    "no_attack-r1-clean_pre:described_values_match_raw": true,
+    "no_attack-r1-clean_pre:classification_matches_saved": true,
+    "no_attack-r1-control_mid:envelope_receipt_link": true,
+    "no_attack-r1-control_mid:receipt_closed_success": true,
+    "no_attack-r1-control_mid:payload_metadata_all_paths_preserved": true,
+    "no_attack-r1-control_mid:flat_signal_values_preserved": true,
+    "no_attack-r1-control_mid:manifest_and_attempt_binding": true,
+    "no_attack-r1-control_mid:raw_byte_offset": true,
+    "no_attack-r1-control_mid:177_status_contract": true,
+    "no_attack-r1-control_mid:webdriver_raw_shape_and_binding": true,
+    "no_attack-r1-control_mid:required_values_observed": true,
+    "no_attack-r1-control_mid:described_values_match_raw": true,
+    "no_attack-r1-control_mid:classification_matches_saved": true,
+    "no_attack-r1-clean_post:envelope_receipt_link": true,
+    "no_attack-r1-clean_post:receipt_closed_success": true,
+    "no_attack-r1-clean_post:payload_metadata_all_paths_preserved": true,
+    "no_attack-r1-clean_post:flat_signal_values_preserved": true,
+    "no_attack-r1-clean_post:manifest_and_attempt_binding": true,
+    "no_attack-r1-clean_post:raw_byte_offset": true,
+    "no_attack-r1-clean_post:177_status_contract": true,
+    "no_attack-r1-clean_post:webdriver_raw_shape_and_binding": true,
+    "no_attack-r1-clean_post:required_values_observed": true,
+    "no_attack-r1-clean_post:described_values_match_raw": true,
+    "no_attack-r1-clean_post:classification_matches_saved": true,
+    "no_attack-r2-clean_pre:envelope_receipt_link": true,
+    "no_attack-r2-clean_pre:receipt_closed_success": true,
+    "no_attack-r2-clean_pre:payload_metadata_all_paths_preserved": true,
+    "no_attack-r2-clean_pre:flat_signal_values_preserved": true,
+    "no_attack-r2-clean_pre:manifest_and_attempt_binding": true,
+    "no_attack-r2-clean_pre:raw_byte_offset": true,
+    "no_attack-r2-clean_pre:177_status_contract": true,
+    "no_attack-r2-clean_pre:webdriver_raw_shape_and_binding": true,
+    "no_attack-r2-clean_pre:required_values_observed": true,
+    "no_attack-r2-clean_pre:described_values_match_raw": true,
+    "no_attack-r2-clean_pre:classification_matches_saved": true,
+    "no_attack-r2-control_mid:envelope_receipt_link": true,
+    "no_attack-r2-control_mid:receipt_closed_success": true,
+    "no_attack-r2-control_mid:payload_metadata_all_paths_preserved": true,
+    "no_attack-r2-control_mid:flat_signal_values_preserved": true,
+    "no_attack-r2-control_mid:manifest_and_attempt_binding": true,
+    "no_attack-r2-control_mid:raw_byte_offset": true,
+    "no_attack-r2-control_mid:177_status_contract": true,
+    "no_attack-r2-control_mid:webdriver_raw_shape_and_binding": true,
+    "no_attack-r2-control_mid:required_values_observed": true,
+    "no_attack-r2-control_mid:described_values_match_raw": true,
+    "no_attack-r2-control_mid:classification_matches_saved": true,
+    "no_attack-r2-clean_post:envelope_receipt_link": true,
+    "no_attack-r2-clean_post:receipt_closed_success": true,
+    "no_attack-r2-clean_post:payload_metadata_all_paths_preserved": true,
+    "no_attack-r2-clean_post:flat_signal_values_preserved": true,
+    "no_attack-r2-clean_post:manifest_and_attempt_binding": true,
+    "no_attack-r2-clean_post:raw_byte_offset": true,
+    "no_attack-r2-clean_post:177_status_contract": true,
+    "no_attack-r2-clean_post:webdriver_raw_shape_and_binding": true,
+    "no_attack-r2-clean_post:required_values_observed": true,
+    "no_attack-r2-clean_post:described_values_match_raw": true,
+    "no_attack-r2-clean_post:classification_matches_saved": true,
+    "no_attack-r3-clean_pre:envelope_receipt_link": true,
+    "no_attack-r3-clean_pre:receipt_closed_success": true,
+    "no_attack-r3-clean_pre:payload_metadata_all_paths_preserved": true,
+    "no_attack-r3-clean_pre:flat_signal_values_preserved": true,
+    "no_attack-r3-clean_pre:manifest_and_attempt_binding": true,
+    "no_attack-r3-clean_pre:raw_byte_offset": true,
+    "no_attack-r3-clean_pre:177_status_contract": true,
+    "no_attack-r3-clean_pre:webdriver_raw_shape_and_binding": true,
+    "no_attack-r3-clean_pre:required_values_observed": true,
+    "no_attack-r3-clean_pre:described_values_match_raw": true,
+    "no_attack-r3-clean_pre:classification_matches_saved": true,
+    "no_attack-r3-control_mid:envelope_receipt_link": true,
+    "no_attack-r3-control_mid:receipt_closed_success": true,
+    "no_attack-r3-control_mid:payload_metadata_all_paths_preserved": true,
+    "no_attack-r3-control_mid:flat_signal_values_preserved": true,
+    "no_attack-r3-control_mid:manifest_and_attempt_binding": true,
+    "no_attack-r3-control_mid:raw_byte_offset": true,
+    "no_attack-r3-control_mid:177_status_contract": true,
+    "no_attack-r3-control_mid:webdriver_raw_shape_and_binding": true,
+    "no_attack-r3-control_mid:required_values_observed": true,
+    "no_attack-r3-control_mid:described_values_match_raw": true,
+    "no_attack-r3-control_mid:classification_matches_saved": true,
+    "no_attack-r3-clean_post:envelope_receipt_link": true,
+    "no_attack-r3-clean_post:receipt_closed_success": true,
+    "no_attack-r3-clean_post:payload_metadata_all_paths_preserved": true,
+    "no_attack-r3-clean_post:flat_signal_values_preserved": true,
+    "no_attack-r3-clean_post:manifest_and_attempt_binding": true,
+    "no_attack-r3-clean_post:raw_byte_offset": true,
+    "no_attack-r3-clean_post:177_status_contract": true,
+    "no_attack-r3-clean_post:webdriver_raw_shape_and_binding": true,
+    "no_attack-r3-clean_post:required_values_observed": true,
+    "no_attack-r3-clean_post:described_values_match_raw": true,
+    "no_attack-r3-clean_post:classification_matches_saved": true,
+    "debug_transport_control-r1-clean_pre:envelope_receipt_link": true,
+    "debug_transport_control-r1-clean_pre:receipt_closed_success": true,
+    "debug_transport_control-r1-clean_pre:payload_metadata_all_paths_preserved": true,
+    "debug_transport_control-r1-clean_pre:flat_signal_values_preserved": true,
+    "debug_transport_control-r1-clean_pre:manifest_and_attempt_binding": true,
+    "debug_transport_control-r1-clean_pre:raw_byte_offset": true,
+    "debug_transport_control-r1-clean_pre:177_status_contract": true,
+    "debug_transport_control-r1-clean_pre:webdriver_raw_shape_and_binding": true,
+    "debug_transport_control-r1-clean_pre:required_values_observed": true,
+    "debug_transport_control-r1-clean_pre:described_values_match_raw": true,
+    "debug_transport_control-r1-clean_pre:classification_matches_saved": true,
+    "debug_transport_control-r1-control_mid:envelope_receipt_link": true,
+    "debug_transport_control-r1-control_mid:receipt_closed_success": true,
+    "debug_transport_control-r1-control_mid:payload_metadata_all_paths_preserved": true,
+    "debug_transport_control-r1-control_mid:flat_signal_values_preserved": true,
+    "debug_transport_control-r1-control_mid:manifest_and_attempt_binding": true,
+    "debug_transport_control-r1-control_mid:raw_byte_offset": true,
+    "debug_transport_control-r1-control_mid:177_status_contract": true,
+    "debug_transport_control-r1-control_mid:webdriver_raw_shape_and_binding": true,
+    "debug_transport_control-r1-control_mid:required_values_observed": true,
+    "debug_transport_control-r1-control_mid:described_values_match_raw": true,
+    "debug_transport_control-r1-control_mid:classification_matches_saved": true,
+    "debug_transport_control-r1-clean_post:envelope_receipt_link": true,
+    "debug_transport_control-r1-clean_post:receipt_closed_success": true,
+    "debug_transport_control-r1-clean_post:payload_metadata_all_paths_preserved": true,
+    "debug_transport_control-r1-clean_post:flat_signal_values_preserved": true,
+    "debug_transport_control-r1-clean_post:manifest_and_attempt_binding": true,
+    "debug_transport_control-r1-clean_post:raw_byte_offset": true,
+    "debug_transport_control-r1-clean_post:177_status_contract": true,
+    "debug_transport_control-r1-clean_post:webdriver_raw_shape_and_binding": true,
+    "debug_transport_control-r1-clean_post:required_values_observed": true,
+    "debug_transport_control-r1-clean_post:described_values_match_raw": true,
+    "debug_transport_control-r1-clean_post:classification_matches_saved": true,
+    "webdriver-r1-clean_pre:envelope_receipt_link": true,
+    "webdriver-r1-clean_pre:receipt_closed_success": true,
+    "webdriver-r1-clean_pre:payload_metadata_all_paths_preserved": true,
+    "webdriver-r1-clean_pre:flat_signal_values_preserved": true,
+    "webdriver-r1-clean_pre:manifest_and_attempt_binding": true,
+    "webdriver-r1-clean_pre:raw_byte_offset": true,
+    "webdriver-r1-clean_pre:177_status_contract": true,
+    "webdriver-r1-clean_pre:webdriver_raw_shape_and_binding": true,
+    "webdriver-r1-clean_pre:required_values_observed": true,
+    "webdriver-r1-clean_pre:described_values_match_raw": true,
+    "webdriver-r1-clean_pre:classification_matches_saved": true,
+    "webdriver-r1-attack:envelope_receipt_link": true,
+    "webdriver-r1-attack:receipt_closed_success": true,
+    "webdriver-r1-attack:payload_metadata_all_paths_preserved": true,
+    "webdriver-r1-attack:flat_signal_values_preserved": true,
+    "webdriver-r1-attack:manifest_and_attempt_binding": true,
+    "webdriver-r1-attack:raw_byte_offset": true,
+    "webdriver-r1-attack:177_status_contract": true,
+    "webdriver-r1-attack:webdriver_raw_shape_and_binding": true,
+    "webdriver-r1-attack:required_values_observed": true,
+    "webdriver-r1-attack:described_values_match_raw": true,
+    "webdriver-r1-attack:classification_matches_saved": true,
+    "webdriver-r1-clean_post:envelope_receipt_link": true,
+    "webdriver-r1-clean_post:receipt_closed_success": true,
+    "webdriver-r1-clean_post:payload_metadata_all_paths_preserved": true,
+    "webdriver-r1-clean_post:flat_signal_values_preserved": true,
+    "webdriver-r1-clean_post:manifest_and_attempt_binding": true,
+    "webdriver-r1-clean_post:raw_byte_offset": true,
+    "webdriver-r1-clean_post:177_status_contract": true,
+    "webdriver-r1-clean_post:webdriver_raw_shape_and_binding": true,
+    "webdriver-r1-clean_post:required_values_observed": true,
+    "webdriver-r1-clean_post:described_values_match_raw": true,
+    "webdriver-r1-clean_post:classification_matches_saved": true,
+    "webdriver-r2-clean_pre:envelope_receipt_link": true,
+    "webdriver-r2-clean_pre:receipt_closed_success": true,
+    "webdriver-r2-clean_pre:payload_metadata_all_paths_preserved": true,
+    "webdriver-r2-clean_pre:flat_signal_values_preserved": true,
+    "webdriver-r2-clean_pre:manifest_and_attempt_binding": true,
+    "webdriver-r2-clean_pre:raw_byte_offset": true,
+    "webdriver-r2-clean_pre:177_status_contract": true,
+    "webdriver-r2-clean_pre:webdriver_raw_shape_and_binding": true,
+    "webdriver-r2-clean_pre:required_values_observed": true,
+    "webdriver-r2-clean_pre:described_values_match_raw": true,
+    "webdriver-r2-clean_pre:classification_matches_saved": true,
+    "webdriver-r2-attack:envelope_receipt_link": true,
+    "webdriver-r2-attack:receipt_closed_success": true,
+    "webdriver-r2-attack:payload_metadata_all_paths_preserved": true,
+    "webdriver-r2-attack:flat_signal_values_preserved": true,
+    "webdriver-r2-attack:manifest_and_attempt_binding": true,
+    "webdriver-r2-attack:raw_byte_offset": true,
+    "webdriver-r2-attack:177_status_contract": true,
+    "webdriver-r2-attack:webdriver_raw_shape_and_binding": true,
+    "webdriver-r2-attack:required_values_observed": true,
+    "webdriver-r2-attack:described_values_match_raw": true,
+    "webdriver-r2-attack:classification_matches_saved": true,
+    "webdriver-r2-clean_post:envelope_receipt_link": true,
+    "webdriver-r2-clean_post:receipt_closed_success": true,
+    "webdriver-r2-clean_post:payload_metadata_all_paths_preserved": true,
+    "webdriver-r2-clean_post:flat_signal_values_preserved": true,
+    "webdriver-r2-clean_post:manifest_and_attempt_binding": true,
+    "webdriver-r2-clean_post:raw_byte_offset": true,
+    "webdriver-r2-clean_post:177_status_contract": true,
+    "webdriver-r2-clean_post:webdriver_raw_shape_and_binding": true,
+    "webdriver-r2-clean_post:required_values_observed": true,
+    "webdriver-r2-clean_post:described_values_match_raw": true,
+    "webdriver-r2-clean_post:classification_matches_saved": true,
+    "webdriver-r3-clean_pre:envelope_receipt_link": true,
+    "webdriver-r3-clean_pre:receipt_closed_success": true,
+    "webdriver-r3-clean_pre:payload_metadata_all_paths_preserved": true,
+    "webdriver-r3-clean_pre:flat_signal_values_preserved": true,
+    "webdriver-r3-clean_pre:manifest_and_attempt_binding": true,
+    "webdriver-r3-clean_pre:raw_byte_offset": true,
+    "webdriver-r3-clean_pre:177_status_contract": true,
+    "webdriver-r3-clean_pre:webdriver_raw_shape_and_binding": true,
+    "webdriver-r3-clean_pre:required_values_observed": true,
+    "webdriver-r3-clean_pre:described_values_match_raw": true,
+    "webdriver-r3-clean_pre:classification_matches_saved": true,
+    "webdriver-r3-attack:envelope_receipt_link": true,
+    "webdriver-r3-attack:receipt_closed_success": true,
+    "webdriver-r3-attack:payload_metadata_all_paths_preserved": true,
+    "webdriver-r3-attack:flat_signal_values_preserved": true,
+    "webdriver-r3-attack:manifest_and_attempt_binding": true,
+    "webdriver-r3-attack:raw_byte_offset": true,
+    "webdriver-r3-attack:177_status_contract": true,
+    "webdriver-r3-attack:webdriver_raw_shape_and_binding": true,
+    "webdriver-r3-attack:required_values_observed": true,
+    "webdriver-r3-attack:described_values_match_raw": true,
+    "webdriver-r3-attack:classification_matches_saved": true,
+    "webdriver-r3-clean_post:envelope_receipt_link": true,
+    "webdriver-r3-clean_post:receipt_closed_success": true,
+    "webdriver-r3-clean_post:payload_metadata_all_paths_preserved": true,
+    "webdriver-r3-clean_post:flat_signal_values_preserved": true,
+    "webdriver-r3-clean_post:manifest_and_attempt_binding": true,
+    "webdriver-r3-clean_post:raw_byte_offset": true,
+    "webdriver-r3-clean_post:177_status_contract": true,
+    "webdriver-r3-clean_post:webdriver_raw_shape_and_binding": true,
+    "webdriver-r3-clean_post:required_values_observed": true,
+    "webdriver-r3-clean_post:described_values_match_raw": true,
+    "webdriver-r3-clean_post:classification_matches_saved": true,
+    "language-r1-clean_pre:envelope_receipt_link": true,
+    "language-r1-clean_pre:receipt_closed_success": true,
+    "language-r1-clean_pre:payload_metadata_all_paths_preserved": true,
+    "language-r1-clean_pre:flat_signal_values_preserved": true,
+    "language-r1-clean_pre:manifest_and_attempt_binding": true,
+    "language-r1-clean_pre:raw_byte_offset": true,
+    "language-r1-clean_pre:177_status_contract": true,
+    "language-r1-clean_pre:webdriver_raw_shape_and_binding": true,
+    "language-r1-clean_pre:required_values_observed": true,
+    "language-r1-clean_pre:described_values_match_raw": true,
+    "language-r1-clean_pre:classification_matches_saved": true,
+    "language-r1-attack:envelope_receipt_link": true,
+    "language-r1-attack:receipt_closed_success": true,
+    "language-r1-attack:payload_metadata_all_paths_preserved": true,
+    "language-r1-attack:flat_signal_values_preserved": true,
+    "language-r1-attack:manifest_and_attempt_binding": true,
+    "language-r1-attack:raw_byte_offset": true,
+    "language-r1-attack:177_status_contract": true,
+    "language-r1-attack:webdriver_raw_shape_and_binding": true,
+    "language-r1-attack:required_values_observed": true,
+    "language-r1-attack:described_values_match_raw": true,
+    "language-r1-attack:classification_matches_saved": true,
+    "language-r1-clean_post:envelope_receipt_link": true,
+    "language-r1-clean_post:receipt_closed_success": true,
+    "language-r1-clean_post:payload_metadata_all_paths_preserved": true,
+    "language-r1-clean_post:flat_signal_values_preserved": true,
+    "language-r1-clean_post:manifest_and_attempt_binding": true,
+    "language-r1-clean_post:raw_byte_offset": true,
+    "language-r1-clean_post:177_status_contract": true,
+    "language-r1-clean_post:webdriver_raw_shape_and_binding": true,
+    "language-r1-clean_post:required_values_observed": true,
+    "language-r1-clean_post:described_values_match_raw": true,
+    "language-r1-clean_post:classification_matches_saved": true,
+    "language-r2-clean_pre:envelope_receipt_link": true,
+    "language-r2-clean_pre:receipt_closed_success": true,
+    "language-r2-clean_pre:payload_metadata_all_paths_preserved": true,
+    "language-r2-clean_pre:flat_signal_values_preserved": true,
+    "language-r2-clean_pre:manifest_and_attempt_binding": true,
+    "language-r2-clean_pre:raw_byte_offset": true,
+    "language-r2-clean_pre:177_status_contract": true,
+    "language-r2-clean_pre:webdriver_raw_shape_and_binding": true,
+    "language-r2-clean_pre:required_values_observed": true,
+    "language-r2-clean_pre:described_values_match_raw": true,
+    "language-r2-clean_pre:classification_matches_saved": true,
+    "language-r2-attack:envelope_receipt_link": true,
+    "language-r2-attack:receipt_closed_success": true,
+    "language-r2-attack:payload_metadata_all_paths_preserved": true,
+    "language-r2-attack:flat_signal_values_preserved": true,
+    "language-r2-attack:manifest_and_attempt_binding": true,
+    "language-r2-attack:raw_byte_offset": true,
+    "language-r2-attack:177_status_contract": true,
+    "language-r2-attack:webdriver_raw_shape_and_binding": true,
+    "language-r2-attack:required_values_observed": true,
+    "language-r2-attack:described_values_match_raw": true,
+    "language-r2-attack:classification_matches_saved": true,
+    "language-r2-clean_post:envelope_receipt_link": true,
+    "language-r2-clean_post:receipt_closed_success": true,
+    "language-r2-clean_post:payload_metadata_all_paths_preserved": true,
+    "language-r2-clean_post:flat_signal_values_preserved": true,
+    "language-r2-clean_post:manifest_and_attempt_binding": true,
+    "language-r2-clean_post:raw_byte_offset": true,
+    "language-r2-clean_post:177_status_contract": true,
+    "language-r2-clean_post:webdriver_raw_shape_and_binding": true,
+    "language-r2-clean_post:required_values_observed": true,
+    "language-r2-clean_post:described_values_match_raw": true,
+    "language-r2-clean_post:classification_matches_saved": true,
+    "language-r3-clean_pre:envelope_receipt_link": true,
+    "language-r3-clean_pre:receipt_closed_success": true,
+    "language-r3-clean_pre:payload_metadata_all_paths_preserved": true,
+    "language-r3-clean_pre:flat_signal_values_preserved": true,
+    "language-r3-clean_pre:manifest_and_attempt_binding": true,
+    "language-r3-clean_pre:raw_byte_offset": true,
+    "language-r3-clean_pre:177_status_contract": true,
+    "language-r3-clean_pre:webdriver_raw_shape_and_binding": true,
+    "language-r3-clean_pre:required_values_observed": true,
+    "language-r3-clean_pre:described_values_match_raw": true,
+    "language-r3-clean_pre:classification_matches_saved": true,
+    "language-r3-attack:envelope_receipt_link": true,
+    "language-r3-attack:receipt_closed_success": true,
+    "language-r3-attack:payload_metadata_all_paths_preserved": true,
+    "language-r3-attack:flat_signal_values_preserved": true,
+    "language-r3-attack:manifest_and_attempt_binding": true,
+    "language-r3-attack:raw_byte_offset": true,
+    "language-r3-attack:177_status_contract": true,
+    "language-r3-attack:webdriver_raw_shape_and_binding": true,
+    "language-r3-attack:required_values_observed": true,
+    "language-r3-attack:described_values_match_raw": true,
+    "language-r3-attack:classification_matches_saved": true,
+    "language-r3-clean_post:envelope_receipt_link": true,
+    "language-r3-clean_post:receipt_closed_success": true,
+    "language-r3-clean_post:payload_metadata_all_paths_preserved": true,
+    "language-r3-clean_post:flat_signal_values_preserved": true,
+    "language-r3-clean_post:manifest_and_attempt_binding": true,
+    "language-r3-clean_post:raw_byte_offset": true,
+    "language-r3-clean_post:177_status_contract": true,
+    "language-r3-clean_post:webdriver_raw_shape_and_binding": true,
+    "language-r3-clean_post:required_values_observed": true,
+    "language-r3-clean_post:described_values_match_raw": true,
+    "language-r3-clean_post:classification_matches_saved": true,
+    "one_stable_environment_identity": true,
+    "expected_new_app_environment": true,
+    "no_attack-r1:expected_observed_pattern": true,
+    "no_attack-r1:raw_tuple_restored": true,
+    "no_attack-r1:summary_matches_raw": true,
+    "no_attack-r2:expected_observed_pattern": true,
+    "no_attack-r2:raw_tuple_restored": true,
+    "no_attack-r2:summary_matches_raw": true,
+    "no_attack-r3:expected_observed_pattern": true,
+    "no_attack-r3:raw_tuple_restored": true,
+    "no_attack-r3:summary_matches_raw": true,
+    "debug_transport_control-r1:expected_observed_pattern": true,
+    "debug_transport_control-r1:raw_tuple_restored": true,
+    "debug_transport_control-r1:summary_matches_raw": true,
+    "webdriver-r1:expected_observed_pattern": true,
+    "webdriver-r1:raw_tuple_restored": true,
+    "webdriver-r1:summary_matches_raw": true,
+    "webdriver-r2:expected_observed_pattern": true,
+    "webdriver-r2:raw_tuple_restored": true,
+    "webdriver-r2:summary_matches_raw": true,
+    "webdriver-r3:expected_observed_pattern": true,
+    "webdriver-r3:raw_tuple_restored": true,
+    "webdriver-r3:summary_matches_raw": true,
+    "language-r1:expected_observed_pattern": true,
+    "language-r1:raw_tuple_restored": true,
+    "language-r1:summary_matches_raw": true,
+    "language-r2:expected_observed_pattern": true,
+    "language-r2:raw_tuple_restored": true,
+    "language-r2:summary_matches_raw": true,
+    "language-r3:expected_observed_pattern": true,
+    "language-r3:raw_tuple_restored": true,
+    "language-r3:summary_matches_raw": true,
+    "debug_transport_control_has_no_injection": true,
+    "webdriver-r1-attack:one_attack_receipt": true,
+    "webdriver-r1-attack:attack_receipt_exact_binding": true,
+    "webdriver-r1-attack:only_declared_mutation": true,
+    "webdriver-r2-attack:one_attack_receipt": true,
+    "webdriver-r2-attack:attack_receipt_exact_binding": true,
+    "webdriver-r2-attack:only_declared_mutation": true,
+    "webdriver-r3-attack:one_attack_receipt": true,
+    "webdriver-r3-attack:attack_receipt_exact_binding": true,
+    "webdriver-r3-attack:only_declared_mutation": true,
+    "language-r1-attack:one_attack_receipt": true,
+    "language-r1-attack:attack_receipt_exact_binding": true,
+    "language-r1-attack:only_declared_mutation": true,
+    "language-r1-attack:only_language_stealth_evasion": true,
+    "language-r2-attack:one_attack_receipt": true,
+    "language-r2-attack:attack_receipt_exact_binding": true,
+    "language-r2-attack:only_declared_mutation": true,
+    "language-r2-attack:only_language_stealth_evasion": true,
+    "language-r3-attack:one_attack_receipt": true,
+    "language-r3-attack:attack_receipt_exact_binding": true,
+    "language-r3-attack:only_declared_mutation": true,
+    "language-r3-attack:only_language_stealth_evasion": true,
+    "exact_six_attack_receipts": true,
+    "attempts/language-r1-attack/command-074.json:expected_cleanup_only": true,
+    "attempts/language-r2-attack/command-083.json:expected_cleanup_only": true,
+    "attempts/language-r3-attack/command-092.json:expected_cleanup_only": true,
+    "attempts/webdriver-r1-attack/command-047.json:expected_cleanup_only": true,
+    "attempts/webdriver-r2-attack/command-056.json:expected_cleanup_only": true,
+    "attempts/webdriver-r3-attack/command-065.json:expected_cleanup_only": true,
+    "98_commands_with_six_redundant_forward_removals": true,
+    "summary_full_counts_match": true,
+    "one_smoke_attempt": true,
+    "preflight_failure_retained_before_orchestrator_collection": true
+  },
+  "failed_checks": [],
+  "triplets": [
+    {
+      "group": "no_attack",
+      "round": 1,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "no_attack",
+      "round": 2,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "no_attack",
+      "round": 3,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "debug_transport_control",
+      "round": 1,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "webdriver",
+      "round": 1,
+      "webdriver_boolean_values": [
+        false,
+        true,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "webdriver",
+      "round": 2,
+      "webdriver_boolean_values": [
+        false,
+        true,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "webdriver",
+      "round": 3,
+      "webdriver_boolean_values": [
+        false,
+        true,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "language",
+      "round": 1,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "fr-FR",
+          "fr"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "language",
+      "round": 2,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "fr-FR",
+          "fr"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    },
+    {
+      "group": "language",
+      "round": 3,
+      "webdriver_boolean_values": [
+        false,
+        false,
+        false
+      ],
+      "language_values": [
+        "en-US",
+        "en-US",
+        "en-US"
+      ],
+      "ordered_languages_values": [
+        [
+          "en-US"
+        ],
+        [
+          "fr-FR",
+          "fr"
+        ],
+        [
+          "en-US"
+        ]
+      ],
+      "raw_tuple_restored_excluding_realm": true
+    }
+  ],
+  "debug_transport_no_injection": "COMPLETED_NO_INJECTION",
+  "attack_receipts": [
+    {
+      "step_id": "webdriver-r1-attack",
+      "configuration": "cdp_webdriver_only_v1",
+      "session_id": "da66d081-6cc0-46da-98aa-045778cbed79",
+      "status": "MEASURED",
+      "injected": {
+        "webdriver": true
+      },
+      "declared_observable_fields": [
+        "webdriver"
+      ]
+    },
+    {
+      "step_id": "webdriver-r2-attack",
+      "configuration": "cdp_webdriver_only_v1",
+      "session_id": "54f4982a-bad8-4118-a68e-c769333a9021",
+      "status": "MEASURED",
+      "injected": {
+        "webdriver": true
+      },
+      "declared_observable_fields": [
+        "webdriver"
+      ]
+    },
+    {
+      "step_id": "webdriver-r3-attack",
+      "configuration": "cdp_webdriver_only_v1",
+      "session_id": "48c71050-981f-4d3b-9aff-c629bde83be5",
+      "status": "MEASURED",
+      "injected": {
+        "webdriver": true
+      },
+      "declared_observable_fields": [
+        "webdriver"
+      ]
+    },
+    {
+      "step_id": "language-r1-attack",
+      "configuration": "stealth_languages_only_v1",
+      "session_id": "036e0e9d-b526-43c9-ab28-8c7bb67e9a32",
+      "status": "MEASURED",
+      "injected": {
+        "languages": [
+          "fr-FR",
+          "fr"
+        ]
+      },
+      "declared_observable_fields": [
+        "languages"
+      ]
+    },
+    {
+      "step_id": "language-r2-attack",
+      "configuration": "stealth_languages_only_v1",
+      "session_id": "bb7f7753-08c2-4f95-9768-48acca2ff692",
+      "status": "MEASURED",
+      "injected": {
+        "languages": [
+          "fr-FR",
+          "fr"
+        ]
+      },
+      "declared_observable_fields": [
+        "languages"
+      ]
+    },
+    {
+      "step_id": "language-r3-attack",
+      "configuration": "stealth_languages_only_v1",
+      "session_id": "96b03031-1b39-4c2d-9d84-71be369a89b2",
+      "status": "MEASURED",
+      "injected": {
+        "languages": [
+          "fr-FR",
+          "fr"
+        ]
+      },
+      "declared_observable_fields": [
+        "languages"
+      ]
+    }
+  ],
+  "nonzero_commands": [
+    {
+      "path": "attempts/language-r1-attack/command-074.json",
+      "return_code": 1,
+      "stderr": "adb: error: listener 'tcp:9226' not found",
+      "classification": "REDUNDANT_FORWARD_REMOVAL_LISTENER_ALREADY_ABSENT"
+    },
+    {
+      "path": "attempts/language-r2-attack/command-083.json",
+      "return_code": 1,
+      "stderr": "adb: error: listener 'tcp:9226' not found",
+      "classification": "REDUNDANT_FORWARD_REMOVAL_LISTENER_ALREADY_ABSENT"
+    },
+    {
+      "path": "attempts/language-r3-attack/command-092.json",
+      "return_code": 1,
+      "stderr": "adb: error: listener 'tcp:9226' not found",
+      "classification": "REDUNDANT_FORWARD_REMOVAL_LISTENER_ALREADY_ABSENT"
+    },
+    {
+      "path": "attempts/webdriver-r1-attack/command-047.json",
+      "return_code": 1,
+      "stderr": "adb: error: listener 'tcp:9222' not found",
+      "classification": "REDUNDANT_FORWARD_REMOVAL_LISTENER_ALREADY_ABSENT"
+    },
+    {
+      "path": "attempts/webdriver-r2-attack/command-056.json",
+      "return_code": 1,
+      "stderr": "adb: error: listener 'tcp:9222' not found",
+      "classification": "REDUNDANT_FORWARD_REMOVAL_LISTENER_ALREADY_ABSENT"
+    },
+    {
+      "path": "attempts/webdriver-r3-attack/command-065.json",
+      "return_code": 1,
+      "stderr": "adb: error: listener 'tcp:9222' not found",
+      "classification": "REDUNDANT_FORWARD_REMOVAL_LISTENER_ALREADY_ABSENT"
+    }
+  ],
+  "preflight": {
+    "retained_failure": "preflight-catalog-check-failed.log",
+    "repair_record": "preflight-repair.json",
+    "failed_before_orchestrator_collection_launch": true,
+    "smoke_collection_count": 1
+  },
+  "limitations": [
+    "One new API36 emulator environment, not independent physical devices or a population false-positive/generalization estimate.",
+    "No-attack and CDP transport control contain only these saved observations; zero unknown observed here does not establish all WebViews return Boolean false.",
+    "CDP attach/navigation control does not match every Puppeteer internal operation.",
+    "Repeated samples from one environment do not repair the historical leave-one-environment fold with no positive language training examples.",
+    "Historical 162 observations and confirmation materials were not accessed or appended."
+  ],
+  "lifecycle_verification": {
+    "verified_at_utc": "2026-09-30T12:11:20.502631+00:00",
+    "backend": {
+      "status": "PASS",
+      "evidence": [
+        "backend/collection_batches.jsonl:last event",
+        "receiver.log:shutdown tail",
+        "backend/active_collection_batch.json:absent"
+      ],
+      "collection_batch_id": "hgbatch-v1-20260930T115142451408Z-1f741df742",
+      "event": "closed",
+      "lifecycle_status": "closed_cleanly",
+      "ended_at": "2026-09-30T12:05:00.583809Z",
+      "ended_at_source": "graceful_shutdown_hook",
+      "receipt_count": 31,
+      "stored_new_jsonl_row_count": 31,
+      "server_process_id": 88173,
+      "shutdown_complete_logged": true,
+      "active_batch_marker_absent": true
+    },
+    "emulator": {
+      "status": "OPERATOR_CONFIRMED_STOPPED",
+      "serial": "emulator-5580",
+      "evidence_source": "Parent operator reports adb emu kill and original process handle exit 0; not inferred from backend logs."
+    }
+  }
+}

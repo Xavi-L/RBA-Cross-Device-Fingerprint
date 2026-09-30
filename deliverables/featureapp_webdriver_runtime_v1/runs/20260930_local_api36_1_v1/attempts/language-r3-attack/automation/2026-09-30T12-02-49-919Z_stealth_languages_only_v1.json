@@ -1,0 +1,57 @@
+{
+  "runId": "2026-09-30T12-02-49-919Z_stealth_languages_only_v1",
+  "toolId": "stealth_languages_only_v1",
+  "configurationId": "stealth_languages_only_v1",
+  "executionClientId": "stealth",
+  "configId": "w9-stealth-boundary-languages-only-v1",
+  "declaredObservableFields": [
+    "languages"
+  ],
+  "declaredStealthEvasions": [
+    {
+      "id": "navigator.languages",
+      "options": {
+        "languages": [
+          "fr-FR",
+          "fr"
+        ]
+      }
+    }
+  ],
+  "stealthRuntime": {
+    "package_name": "puppeteer-extra-plugin-stealth",
+    "package_version": "2.11.2",
+    "package_json_sha256": "ef93d0ba07836e4f2152e986c8b2043e6e7fbabe59a86c30352369075619d3b2"
+  },
+  "toolName": "puppeteer-extra-plugin-stealth",
+  "status": "MEASURED",
+  "reason": "",
+  "serial": "emulator-5580",
+  "pid": "8472",
+  "socket": "webview_devtools_remote_8472",
+  "injected": {
+    "languages": [
+      "fr-FR",
+      "fr"
+    ]
+  },
+  "freshSessionIds": [
+    "96b03031-1b39-4c2d-9d84-71be369a89b2"
+  ],
+  "measuredSessionIds": [
+    "96b03031-1b39-4c2d-9d84-71be369a89b2"
+  ],
+  "automationEvidence": {
+    "protocol": "puppeteer-extra-stealth-evasions-over-cdp",
+    "targetId": "6AADD59F24F16A8948075FD11D545110",
+    "enabledEvasions": [
+      "navigator.languages"
+    ],
+    "navigation": "puppeteer-Connection-Page.navigate"
+  },
+  "collectionManifest": {
+    "runtimeContext": "20260930_local_api36_1_v1:language-r3-attack",
+    "collectionRound": 3,
+    "deviceManifestId": "codex-local-api36-1-raw-v1"
+  }
+}

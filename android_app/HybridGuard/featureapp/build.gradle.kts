@@ -59,8 +59,8 @@ android {
         applicationId = "com.example.hybridguard.featureapp"
         minSdk = 21
         targetSdk = 36
-        versionCode = 11
-        versionName = "1.6.4-expanded-v2.2-mtc-https"
+        versionCode = 12
+        versionName = "1.6.5-expanded-v2.2-webdriver-raw"
 
         val configuredEndpoint = providers.gradleProperty("hybridguardCollectEndpoint")
             .orElse("http://10.0.2.2:8000/api/collect/fingerprint")

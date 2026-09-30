@@ -78,6 +78,22 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val probeControl = WebViewProbeControl.resolve(
+            debuggingEnabled = intent.getBooleanExtra(
+                WebViewProbeControl.EXTRA_ENABLE_WEBVIEW_DEBUG, false
+            ),
+            waitForControl = intent.getBooleanExtra(
+                WebViewProbeControl.EXTRA_WAIT_FOR_WEBVIEW_CONTROL, false
+            ),
+            requestedDeadlineMs = intent.getLongExtra(
+                WebViewProbeControl.EXTRA_PROBE_DELAY_MS,
+                WebViewProbeControl.DEFAULT_DEADLINE_MS
+            )
+        )
+        // Explicitly reset the process-wide setting on each launch. Normal
+        // collection never inherits debugging from a controlled collection.
+        WebView.setWebContentsDebuggingEnabled(probeControl.debuggingEnabled)
+
         sessionId = savedInstanceState?.getString(STATE_SESSION_ID)
             ?: UUID.randomUUID().toString()
         browserTicketRequestId =
@@ -134,8 +150,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         }
 
         webView = findViewById(R.id.webview)
-        configureWebView(webView)
-        mainHandler.postDelayed(webProbeTimeout, WEB_PROBE_DEADLINE_MS)
+        configureWebView(webView, probeControl)
+        mainHandler.postDelayed(webProbeTimeout, probeControl.deadlineMs)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -157,7 +173,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private fun configureWebView(webView: WebView) {
+    private fun configureWebView(webView: WebView, probeControl: WebViewProbeControl) {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         webView.webViewClient = WebViewClient()
@@ -167,7 +183,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
             ExpandedWebBridge(collector, sessionId, settingsSnapshot, this),
             "AndroidBridge"
         )
-        webView.loadUrl("file:///android_asset/expanded_probe.html")
+        webView.loadUrl(probeControl.initialUrl)
     }
 
     override fun onExpandedPayload(payloadJson: String) {
@@ -244,6 +260,7 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
                     }
                 )
             }
+            AppCollectionObservations.copyIfPresent(webPayload, featurePayload)
             val collectionStatus = fieldStatusReporter.build(
                 featurePayload,
                 layerFailures,
@@ -320,6 +337,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
                         put("collection_finished_at_ms", System.currentTimeMillis())
                     }
                 )
+            }.apply {
+                AppCollectionObservations.copyIfPresent(webPayload, this)
             }.toString()
             try {
                 val emergencyPayloadPersisted = ExpandedUploadWorker.persistAndEnqueue(
@@ -807,7 +826,6 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         private const val STATE_SESSION_ID = "state_session_id"
         private const val STATE_BROWSER_TICKET_REQUEST_ID =
             "state_browser_ticket_request_id"
-        private const val WEB_PROBE_DEADLINE_MS = 15_000L
         private const val BACKGROUND_HANDOFF_CHECK_MS = 2_000L
         private const val BACKGROUND_HANDOFF_RETRY_MS = 10_000L
         private const val BROWSER_FIRST_STAGE_DEADLINE_MS = 8_000L

@@ -133,6 +133,9 @@
                 probe_statuses: probeResult.probe_statuses
             }
         };
+        if (probeResult.collection_observations) {
+            payload.collection_observations = probeResult.collection_observations;
+        }
         try {
             setStatus("Handing expanded payload to Android uploader...");
             global.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
@@ -191,7 +194,12 @@
         }).then(function () {
             return global.HybridGuardWebProbe.collect({
                 canvasContainer: canvasBox,
-                onLog: log
+                onLog: log,
+                // Self-declared association with this App collection's main
+                // frame, not an assertion of native getter authenticity.
+                webdriverObservation: {
+                    realmBinding: "featureapp:" + currentSessionId + ":main-frame"
+                }
             });
         }).then(function (probeResult) {
             var navigatorInfo = probeResult.web_data.navigator_layer;

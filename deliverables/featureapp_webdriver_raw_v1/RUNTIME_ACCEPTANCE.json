@@ -1,0 +1,86 @@
+{
+  "acceptance_schema_version": "featureapp-local-runtime-acceptance-v1",
+  "status": "LOCAL_RUNTIME_ACCEPTANCE_COMPLETE_PEER_ACCEPTANCE_PENDING",
+  "scope": "LOCAL_DEVELOPMENT_COLLECTION_ACCEPTANCE",
+  "run_id": "20260930_local_api36_1_v1",
+  "version_code": 12,
+  "environment": {
+    "android_api": 36,
+    "abi": "arm64-v8a",
+    "webview_package": "com.google.android.webview",
+    "webview_version": "134.0.6998.135",
+    "distinct_environment_count": 1,
+    "physical_device": false
+  },
+  "sample_counts": {
+    "planned_app_sessions": 31,
+    "accepted_app_sessions": 31,
+    "failed_app_sessions": 0,
+    "smoke": 1,
+    "no_attack": 9,
+    "debug_transport_control": 3,
+    "webdriver_intervention": 9,
+    "language_intervention": 9,
+    "independent_browser67_samples": 0
+  },
+  "raw_webdriver_counts": {
+    "boolean_false": 28,
+    "boolean_true": 3,
+    "unknown": 0,
+    "malformed": 0
+  },
+  "observed_changes": {
+    "webdriver": {
+      "rounds": 3,
+      "sequence_each_round": [
+        false,
+        true,
+        false
+      ]
+    },
+    "language": {
+      "rounds": 3,
+      "language_each_state": "en-US",
+      "languages_sequence_each_round": [
+        [
+          "en-US"
+        ],
+        [
+          "fr-FR",
+          "fr"
+        ],
+        [
+          "en-US"
+        ]
+      ]
+    },
+    "restored_triplets": 10
+  },
+  "commands": {
+    "total": 98,
+    "return_code_zero": 92,
+    "redundant_forward_removal_already_absent": 6
+  },
+  "lifecycle": {
+    "receiver": "closed_cleanly",
+    "emulator": "OPERATOR_CONFIRMED_STOPPED"
+  },
+  "evidence": {
+    "report_in_package": "runtime-report.txt",
+    "repository_report": "../featureapp_webdriver_runtime_v1/REPORT.txt",
+    "repository_run": "../featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1",
+    "audit": "../featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/AUDIT.json"
+  },
+  "attack_repository_modified": false,
+  "existing_formal_release_lock_updated": false,
+  "detector_training_or_prediction_performed": false,
+  "overall_detection_improvement": "NOT_EVALUATED",
+  "peer_environment_acceptance": "PENDING",
+  "limitations": [
+    "One emulator environment and one installation; not a population FPR or generalization estimate.",
+    "Language intervention changes both first entry and list length; it does not distinguish the two rule variants.",
+    "Historical samples are unchanged; no unknown observation is backfilled.",
+    "Default independent Browser67 collection was not completed; App events are not paired244.",
+    "Peer environment needs a new release configuration and acceptance; the historical formal release lock is unchanged."
+  ]
+}

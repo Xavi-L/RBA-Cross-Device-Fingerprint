@@ -316,8 +316,15 @@ BROWSER_PAYLOAD_SCHEMA_VERSION = "browser-web-v1-status"
 BROWSER_COLLECTOR_APP = "browserprobe"
 BROWSER_WEB_PROBE_REVISION = "expanded-web-67-v1"
 BROWSER_WEB_PROBE_SHA256 = (
-    "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
+    "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004"
 )
+# The App-only observer does not change the default Browser67 behavior or
+# revision. Keep the previously deployed bundle compatible while accepting
+# only these two exact public bundle identities, not arbitrary same-revision JS.
+BROWSER_COMPATIBLE_WEB_PROBE_SHA256 = frozenset({
+    BROWSER_WEB_PROBE_SHA256,
+    "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
+})
 BROWSER_PROBE_METADATA_SCHEMA_VERSION = "browser-probe-metadata-v1"
 BROWSER_ALLOWED_PROBE_ORIGINS = frozenset(
     origin.strip().rstrip("/")
@@ -1603,10 +1610,7 @@ def validate_and_normalize_browser_payload(
     presented_core_sha256 = probe_metadata.get("core_bundle_sha256")
     if (
         not isinstance(presented_core_sha256, str)
-        or not hmac.compare_digest(
-            presented_core_sha256.lower(),
-            BROWSER_WEB_PROBE_SHA256,
-        )
+        or presented_core_sha256.lower() not in BROWSER_COMPATIBLE_WEB_PROBE_SHA256
     ):
         raise browser_protocol_error(
             409,

@@ -3,6 +3,7 @@
 
     var REVISION = "expanded-web-67-v1";
     var STATUS_SCHEMA_VERSION = "browser-field-status-v1";
+    var APP_WEBDRIVER_OBSERVER_REVISION = "app-webdriver-observer-v1";
     var FIELD_PATHS = [
         "web_data.audio_layer.audio_context_supported",
         "web_data.audio_layer.audio_error",
@@ -577,9 +578,53 @@
         });
     }
 
-    function getAutomationFeatures() {
+    // App-only metadata. Presence and value reads are separate observations,
+    // not an atomic snapshot or proof that this realm exposes a native getter.
+    function observeWebdriver(realmBinding) {
+        var observation = {
+            api_present: null,
+            presence_read_status: "runtime_error",
+            value_read_status: "not_attempted",
+            value_type: null,
+            boolean_value: null,
+            observer_revision: APP_WEBDRIVER_OBSERVER_REVISION,
+            realm_binding: realmBinding
+        };
+        var observedNavigator;
+        try {
+            observedNavigator = navigator;
+            observation.api_present = "webdriver" in observedNavigator;
+            observation.presence_read_status = "observed";
+        } catch (_presenceError) {
+            return observation;
+        }
+        if (!observation.api_present) {
+            return observation;
+        }
+        try {
+            var value = observedNavigator.webdriver;
+            observation.value_type = typeof value;
+            observation.boolean_value = typeof value === "boolean" ? value : null;
+            observation.value_read_status = "observed";
+        } catch (_valueError) {
+            observation.value_read_status = "runtime_error";
+        }
+        return observation;
+    }
+
+    function getAutomationFeatures(webdriverObservation) {
         var result = defaultAutomationFeatures();
-        result.webdriver = navigator.webdriver === true;
+        if (webdriverObservation) {
+            if (webdriverObservation.presence_read_status === "runtime_error" ||
+                    webdriverObservation.value_read_status === "runtime_error") {
+                throw new Error("webdriver_observation_read_error");
+            }
+            // Reuse the one observed getter value; do not read it again for the
+            // legacy strict-true projection in the fixed 67-field contract.
+            result.webdriver = webdriverObservation.boolean_value === true;
+        } else {
+            result.webdriver = navigator.webdriver === true;
+        }
         result.plugins_count = navigator.plugins ? navigator.plugins.length : 0;
         result.mime_types_count = navigator.mimeTypes ? navigator.mimeTypes.length : 0;
         try {
@@ -769,6 +814,12 @@
         options = options || {};
         var probeStatuses = {};
         var logger = typeof options.onLog === "function" ? options.onLog : function () {};
+        var webdriverObservationOptions = options.webdriverObservation;
+        if (webdriverObservationOptions &&
+                (typeof webdriverObservationOptions.realmBinding !== "string" ||
+                !webdriverObservationOptions.realmBinding.trim())) {
+            throw new Error("webdriver_observation_realm_binding_required");
+        }
 
         function probeKey(name) {
             return String(name || "unknown").toLowerCase().replace(/\s+/g, "_");
@@ -822,8 +873,15 @@
         var connectionInfo =
             safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
         var fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
-        var automationInfo =
-            safeSyncProbe("Automation", getAutomationFeatures, defaultAutomationFeatures);
+        // Keep this metadata independent of the Automation group's fallback:
+        // a later plugins/mimeTypes exception must not erase the observation.
+        var webdriverObservation = webdriverObservationOptions ?
+            observeWebdriver(webdriverObservationOptions.realmBinding) : null;
+        var automationInfo = safeSyncProbe(
+            "Automation",
+            function () { return getAutomationFeatures(webdriverObservation); },
+            defaultAutomationFeatures
+        );
         var canvasHash = safeSyncProbe(
             "Canvas",
             function () {
@@ -863,17 +921,25 @@
                 automationInfo: automationInfo,
                 canvasHash: canvasHash
             });
-            return {
+            var probeResult = {
                 web_data: webData,
                 probe_statuses: probeStatuses,
                 collection_status: buildCollectionStatus(webData, probeStatuses)
             };
+            if (webdriverObservation) {
+                probeResult.collection_observations = {
+                    observation_schema_version: "app-web-observations-v1",
+                    webdriver: webdriverObservation
+                };
+            }
+            return probeResult;
         });
     }
 
     global.HybridGuardWebProbe = Object.freeze({
         REVISION: REVISION,
         STATUS_SCHEMA_VERSION: STATUS_SCHEMA_VERSION,
+        APP_WEBDRIVER_OBSERVER_REVISION: APP_WEBDRIVER_OBSERVER_REVISION,
         FIELD_PATHS: Object.freeze(FIELD_PATHS.slice(0)),
         sha256: sha256,
         collect: collect,

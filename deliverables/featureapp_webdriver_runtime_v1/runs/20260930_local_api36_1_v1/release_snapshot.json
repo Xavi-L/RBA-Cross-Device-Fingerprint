@@ -1,0 +1,126 @@
+{
+  "handoff_schema_version": "featureapp-webdriver-raw-handoff-v1",
+  "created_at_utc": "2026-09-30T11:39:46.479180+00:00",
+  "status": "BUILT_CONTRACT_TESTED_RUNTIME_ACCEPTANCE_PENDING",
+  "application_id": "com.example.hybridguard.featureapp",
+  "version_code": 12,
+  "version_name": "1.6.5-expanded-v2.2-webdriver-raw",
+  "min_sdk": 21,
+  "target_sdk": 36,
+  "schema_version": "expanded-v2.2-status",
+  "fixed_signal_count": 177,
+  "observation_schema_version": "app-web-observations-v1",
+  "observer_revision": "app-webdriver-observer-v1",
+  "observation_payload_path": "collection_observations.webdriver",
+  "source": {
+    "base_commit": "6b8fc28d3a88da01301bec8bb71f6a3c016f17a5",
+    "state": "UNCOMMITTED_WORKTREE_PATCH",
+    "patch_file": "source_changes.patch",
+    "files": [
+      "android_app/HybridGuard/featureapp/build.gradle.kts",
+      "android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js",
+      "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt",
+      "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/AppCollectionObservations.kt",
+      "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/WebViewProbeControl.kt",
+      "android_app/HybridGuard/featureapp/src/test/java/com/example/hybridguard/featureapp/WebViewProbeControlTest.kt",
+      "web_probe/canonical_web_probe.js",
+      "browser_probe_site/public/probe/canonical_web_probe.js",
+      "browser_probe_site/public/probe/manifest.json",
+      "browser_probe_site/tests/webdriver-observation.test.mjs",
+      "backend_server/main.py",
+      "backend_server/test_collection_contract.py",
+      "backend_server/test_browser_pairing_contract.py"
+    ]
+  },
+  "apk": {
+    "path": "featureapp-1.6.5-webdriver-raw-debug.apk",
+    "variant": "debug",
+    "size_bytes": 6837721,
+    "sha256": "910ab60c0b190fa53f4c741731346b9baa5e6c0a6a311d698783b25c50e13183",
+    "assets_match_source": true,
+    "manifest_version_verified_with_aapt": true
+  },
+  "field_catalog": {
+    "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+    "sha256": "564ecdbb509768b6fab541ada2572083f0e7438fb27ca5e3662187cf53eb96bd",
+    "changed": false
+  },
+  "browser_bundle_compatibility": {
+    "current": "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004",
+    "previous": "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd",
+    "deployment_performed": false
+  },
+  "build": {
+    "working_directory": "android_app/HybridGuard",
+    "java_home_on_build_host": "/Applications/Android Studio.app/Contents/jbr/Contents/Home",
+    "tasks": [
+      ":featureapp:assembleDebug",
+      ":featureapp:lintDebug",
+      ":featureapp:testDebugUnitTest"
+    ],
+    "gradle_properties": {
+      "hybridguardCollectEndpoint": "http://127.0.0.1:8000/api/collect/fingerprint",
+      "hybridguardRequirePublicEndpoints": "false",
+      "hybridguardBrowserTicketEndpoint": "http://127.0.0.1:8000/api/collect/browser-ticket",
+      "hybridguardBrowserPairPollBaseUrl": "http://127.0.0.1:8000/api/collect/browser-pairs",
+      "hybridguardBrowserProbeBaseUrl": "http://127.0.0.1:8000/"
+    },
+    "result": "PASS",
+    "log": "build.log"
+  },
+  "checks": {
+    "node_contracts": {
+      "passed": 35,
+      "failed": 0,
+      "command": "node --test browser_probe_site/tests/probe-contract.test.mjs browser_probe_site/tests/webdriver-observation.test.mjs",
+      "log": "node-tests.log"
+    },
+    "android_unit": {
+      "passed": 41,
+      "failed": 0,
+      "skipped": 0,
+      "new_control_and_metadata_tests": 8,
+      "reports": [
+        "checks/TEST-com.example.hybridguard.featureapp.BrowserLaunchDecisionTest.xml",
+        "checks/TEST-com.example.hybridguard.featureapp.BrowserPairContractTest.xml",
+        "checks/TEST-com.example.hybridguard.featureapp.CollectionTlsTest.xml",
+        "checks/TEST-com.example.hybridguard.featureapp.ExpandedUploadReceiptTest.xml",
+        "checks/TEST-com.example.hybridguard.featureapp.WebViewProbeControlTest.xml"
+      ]
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 48,
+      "report": "checks/lint-results-debug.xml"
+    },
+    "backend_collection_contract": {
+      "passed": 3,
+      "new_method_subtests": 4,
+      "data_scope": "TemporaryDirectory"
+    },
+    "backend_browser_pairing_contract": {
+      "passed": 14,
+      "new_method_subtests": 3,
+      "data_scope": "TemporaryDirectory"
+    }
+  },
+  "not_performed": [
+    "physical_device_collection",
+    "emulator_runtime_collection",
+    "attack_runner_integration",
+    "new_training_or_prediction",
+    "peer_delivery",
+    "deployment",
+    "git_commit_or_push"
+  ],
+  "attack_repository": {
+    "head": "9698e8dfeb450094d99c46bdcff15283c995e3b3",
+    "modified": false,
+    "existing_release_lock_compatible_with_new_apk": false
+  },
+  "notes": [
+    "This is a handoff manifest, not a replacement for the frozen attack release lock.",
+    "New same-environment runtime acceptance and a new release configuration are required before formal collection.",
+    "No old sample is converted into a raw observation."
+  ]
+}
