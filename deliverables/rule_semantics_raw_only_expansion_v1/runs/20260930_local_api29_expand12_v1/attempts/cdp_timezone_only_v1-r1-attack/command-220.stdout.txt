@@ -1,0 +1,300 @@
+{
+  "runId": "2026-09-30T14-35-41-257Z_cdp_timezone_only_v1",
+  "toolId": "cdp_timezone_only_v1",
+  "configurationId": "cdp_timezone_only_v1",
+  "executionClientId": "cdp",
+  "configId": "w10-cdp-emulation-timezone-only-v1",
+  "declaredObservableFields": [
+    "timezone_id",
+    "timezone_offset"
+  ],
+  "declaredStealthEvasions": null,
+  "declaredCdpEmulation": {
+    "contractVersion": "cdp-emulation-v1",
+    "applyCommands": [
+      {
+        "method": "Emulation.setTimezoneOverride",
+        "params": {
+          "timezoneId": "America/Los_Angeles"
+        }
+      }
+    ],
+    "rollbackCommands": [
+      {
+        "method": "Emulation.setTimezoneOverride",
+        "params": {
+          "timezoneId": ""
+        }
+      }
+    ],
+    "targetUrl": "file:///android_asset/expanded_probe.html"
+  },
+  "cdpEmulation": {
+    "contract": {
+      "contractVersion": "cdp-emulation-v1",
+      "applyCommands": [
+        {
+          "method": "Emulation.setTimezoneOverride",
+          "params": {
+            "timezoneId": "America/Los_Angeles"
+          }
+        }
+      ],
+      "rollbackCommands": [
+        {
+          "method": "Emulation.setTimezoneOverride",
+          "params": {
+            "timezoneId": ""
+          }
+        }
+      ],
+      "targetUrl": "file:///android_asset/expanded_probe.html"
+    },
+    "cdp_version": {
+      "Browser": "Chrome/91.0.4472.114",
+      "Protocol-Version": "1.3",
+      "WebKit-Version": "537.36 (@4bb19460e8d88c3446b360b0df8fd991fee49c0b)"
+    },
+    "target": {
+      "id": "4810ED80B20C79376DA563B2F7C4FA90",
+      "type": "page",
+      "url": "about:blank",
+      "debugger_url": "ws://127.0.0.1:9333/devtools/page/4810ED80B20C79376DA563B2F7C4FA90"
+    },
+    "apply_command_responses": [
+      {
+        "id": 1,
+        "phase": "setup",
+        "method": "Page.enable",
+        "params": {},
+        "requested_at": "2026-09-30T14:35:43.994Z",
+        "response": {
+          "id": 1,
+          "result": {}
+        },
+        "ok": true
+      },
+      {
+        "id": 2,
+        "phase": "baseline",
+        "method": "Runtime.evaluate",
+        "params": {
+          "expression": "(() => {\n  const safe = (fn) => { try { return fn(); } catch (_) { return null; } };\n  const viewport = safe(() => window.visualViewport);\n  return JSON.stringify({\n    timezone: {\n      id: safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone),\n      offset_minutes: safe(() => new Date().getTimezoneOffset()),\n    },\n    screen: {\n      width: safe(() => screen.width),\n      height: safe(() => screen.height),\n      avail_width: safe(() => screen.availWidth),\n      avail_height: safe(() => screen.availHeight),\n      device_pixel_ratio: safe(() => window.devicePixelRatio),\n      inner_width: safe(() => window.innerWidth),\n      inner_height: safe(() => window.innerHeight),\n      outer_width: safe(() => window.outerWidth),\n      outer_height: safe(() => window.outerHeight),\n      visual_viewport_width: viewport ? safe(() => viewport.width) : null,\n      visual_viewport_height: viewport ? safe(() => viewport.height) : null,\n    },\n  });\n})()",
+          "awaitPromise": true,
+          "returnByValue": true
+        },
+        "requested_at": "2026-09-30T14:35:43.995Z",
+        "response": {
+          "id": 2,
+          "result": {
+            "result": {
+              "type": "string",
+              "value": "{\"timezone\":{\"id\":\"Asia/Shanghai\",\"offset_minutes\":-480},\"screen\":{\"width\":412,\"height\":915,\"avail_width\":412,\"avail_height\":915,\"device_pixel_ratio\":2.625,\"inner_width\":412,\"inner_height\":639,\"outer_width\":412,\"outer_height\":639,\"visual_viewport_width\":412.19049072265625,\"visual_viewport_height\":639.2380981445312}}"
+            }
+          }
+        },
+        "ok": true
+      },
+      {
+        "id": 3,
+        "phase": "apply",
+        "method": "Emulation.setTimezoneOverride",
+        "params": {
+          "timezoneId": "America/Los_Angeles"
+        },
+        "requested_at": "2026-09-30T14:35:44.003Z",
+        "response": {
+          "id": 3,
+          "result": {}
+        },
+        "ok": true
+      },
+      {
+        "id": 4,
+        "phase": "active",
+        "method": "Runtime.evaluate",
+        "params": {
+          "expression": "(() => {\n  const safe = (fn) => { try { return fn(); } catch (_) { return null; } };\n  const viewport = safe(() => window.visualViewport);\n  return JSON.stringify({\n    timezone: {\n      id: safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone),\n      offset_minutes: safe(() => new Date().getTimezoneOffset()),\n    },\n    screen: {\n      width: safe(() => screen.width),\n      height: safe(() => screen.height),\n      avail_width: safe(() => screen.availWidth),\n      avail_height: safe(() => screen.availHeight),\n      device_pixel_ratio: safe(() => window.devicePixelRatio),\n      inner_width: safe(() => window.innerWidth),\n      inner_height: safe(() => window.innerHeight),\n      outer_width: safe(() => window.outerWidth),\n      outer_height: safe(() => window.outerHeight),\n      visual_viewport_width: viewport ? safe(() => viewport.width) : null,\n      visual_viewport_height: viewport ? safe(() => viewport.height) : null,\n    },\n  });\n})()",
+          "awaitPromise": true,
+          "returnByValue": true
+        },
+        "requested_at": "2026-09-30T14:35:44.003Z",
+        "response": {
+          "id": 4,
+          "result": {
+            "result": {
+              "type": "string",
+              "value": "{\"timezone\":{\"id\":\"America/Los_Angeles\",\"offset_minutes\":420},\"screen\":{\"width\":412,\"height\":915,\"avail_width\":412,\"avail_height\":915,\"device_pixel_ratio\":2.625,\"inner_width\":412,\"inner_height\":639,\"outer_width\":412,\"outer_height\":639,\"visual_viewport_width\":412.19049072265625,\"visual_viewport_height\":639.2380981445312}}"
+            }
+          }
+        },
+        "ok": true
+      },
+      {
+        "id": 5,
+        "phase": "navigate",
+        "method": "Page.navigate",
+        "params": {
+          "url": "file:///android_asset/expanded_probe.html"
+        },
+        "requested_at": "2026-09-30T14:35:44.004Z",
+        "response": {
+          "id": 5,
+          "result": {
+            "frameId": "4810ED80B20C79376DA563B2F7C4FA90",
+            "loaderId": "33109CAF472B67DA67C2E0C11F10A7B7"
+          }
+        },
+        "ok": true
+      }
+    ],
+    "rollback_command_responses": [
+      {
+        "id": 6,
+        "phase": "rollback",
+        "method": "Emulation.setTimezoneOverride",
+        "params": {
+          "timezoneId": ""
+        },
+        "requested_at": "2026-09-30T14:35:46.295Z",
+        "response": {
+          "id": 6,
+          "result": {}
+        },
+        "ok": true
+      },
+      {
+        "id": 7,
+        "phase": "post_rollback",
+        "method": "Runtime.evaluate",
+        "params": {
+          "expression": "(() => {\n  const safe = (fn) => { try { return fn(); } catch (_) { return null; } };\n  const viewport = safe(() => window.visualViewport);\n  return JSON.stringify({\n    timezone: {\n      id: safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone),\n      offset_minutes: safe(() => new Date().getTimezoneOffset()),\n    },\n    screen: {\n      width: safe(() => screen.width),\n      height: safe(() => screen.height),\n      avail_width: safe(() => screen.availWidth),\n      avail_height: safe(() => screen.availHeight),\n      device_pixel_ratio: safe(() => window.devicePixelRatio),\n      inner_width: safe(() => window.innerWidth),\n      inner_height: safe(() => window.innerHeight),\n      outer_width: safe(() => window.outerWidth),\n      outer_height: safe(() => window.outerHeight),\n      visual_viewport_width: viewport ? safe(() => viewport.width) : null,\n      visual_viewport_height: viewport ? safe(() => viewport.height) : null,\n    },\n  });\n})()",
+          "awaitPromise": true,
+          "returnByValue": true
+        },
+        "requested_at": "2026-09-30T14:35:46.297Z",
+        "response": {
+          "id": 7,
+          "result": {
+            "result": {
+              "type": "string",
+              "value": "{\"timezone\":{\"id\":\"Asia/Shanghai\",\"offset_minutes\":-480},\"screen\":{\"width\":412,\"height\":915,\"avail_width\":412,\"avail_height\":915,\"device_pixel_ratio\":2.625,\"inner_width\":412,\"inner_height\":639,\"outer_width\":412,\"outer_height\":639,\"visual_viewport_width\":412.19049072265625,\"visual_viewport_height\":639.2380981445312}}"
+            }
+          }
+        },
+        "ok": true
+      }
+    ],
+    "baseline_runtime_observation": {
+      "timezone": {
+        "id": "Asia/Shanghai",
+        "offset_minutes": -480
+      },
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "avail_width": 412,
+        "avail_height": 915,
+        "device_pixel_ratio": 2.625,
+        "inner_width": 412,
+        "inner_height": 639,
+        "outer_width": 412,
+        "outer_height": 639,
+        "visual_viewport_width": 412.19049072265625,
+        "visual_viewport_height": 639.2380981445312
+      }
+    },
+    "active_runtime_observation": {
+      "timezone": {
+        "id": "America/Los_Angeles",
+        "offset_minutes": 420
+      },
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "avail_width": 412,
+        "avail_height": 915,
+        "device_pixel_ratio": 2.625,
+        "inner_width": 412,
+        "inner_height": 639,
+        "outer_width": 412,
+        "outer_height": 639,
+        "visual_viewport_width": 412.19049072265625,
+        "visual_viewport_height": 639.2380981445312
+      }
+    },
+    "post_rollback_runtime_observation": {
+      "timezone": {
+        "id": "Asia/Shanghai",
+        "offset_minutes": -480
+      },
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "avail_width": 412,
+        "avail_height": 915,
+        "device_pixel_ratio": 2.625,
+        "inner_width": 412,
+        "inner_height": 639,
+        "outer_width": 412,
+        "outer_height": 639,
+        "visual_viewport_width": 412.19049072265625,
+        "visual_viewport_height": 639.2380981445312
+      }
+    },
+    "active_runtime_profile_verification": {
+      "verified": true,
+      "expected": {
+        "timezone_id": "America/Los_Angeles",
+        "timezone_offset": 420
+      },
+      "observed": {
+        "timezone_id": "America/Los_Angeles",
+        "timezone_offset": 420,
+        "avail_width": 412,
+        "avail_height": 915,
+        "device_pixel_ratio": 2.625,
+        "inner_width": 412,
+        "inner_height": 639,
+        "outer_width": 412,
+        "outer_height": 639,
+        "screen_resolution_logical": "412x915",
+        "visual_viewport_width": 412.19049072265625,
+        "visual_viewport_height": 639.2380981445312
+      }
+    },
+    "rollback": {
+      "rollback_commands_ok": true,
+      "post_runtime_matches_baseline": true,
+      "rollback_verified": true
+    }
+  },
+  "automationRunner": "week10_cdp_emulation_runner_v5.mjs",
+  "stealthRuntime": null,
+  "toolName": "Chrome DevTools Protocol",
+  "status": "MEASURED",
+  "reason": "",
+  "serial": "emulator-5582",
+  "injected": {
+    "timezoneId": "America/Los_Angeles",
+    "timezoneOffset": 420
+  },
+  "freshSessionIds": [
+    "586a1175-8ae5-4529-aa8a-540564a74ba8"
+  ],
+  "measuredSessionIds": [
+    "586a1175-8ae5-4529-aa8a-540564a74ba8"
+  ],
+  "automationEvidence": {
+    "protocol": "raw-cdp-emulation-v1",
+    "targetId": "4810ED80B20C79376DA563B2F7C4FA90",
+    "targetUrlBeforeNavigation": "about:blank",
+    "navigation": "cdp-Page.navigate-after-emulation-apply"
+  },
+  "collectionManifest": {
+    "runtimeContext": "20260930_local_api29_expand12_v1:cdp_timezone_only_v1-r1-attack",
+    "collectionRound": 1,
+    "deviceManifestId": "codex-local-api29-raw-v1"
+  },
+  "logPath": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api29_expand12_v1/attempts/cdp_timezone_only_v1-r1-attack/automation/2026-09-30T14-35-41-257Z_cdp_timezone_only_v1.json"
+}

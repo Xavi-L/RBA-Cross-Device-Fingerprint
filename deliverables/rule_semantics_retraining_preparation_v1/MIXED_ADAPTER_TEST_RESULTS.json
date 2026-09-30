@@ -1,0 +1,36 @@
+{
+  "schema_version": "rsr-mixed-adapter-synthetic-test-results-v1",
+  "status": "PASS",
+  "command": "python3 -B -m unittest hybridguard_agent.tests.test_rule_semantics_mixed_retraining -v",
+  "passed": 8,
+  "failed": 0,
+  "observed_final_runner_output": {
+    "tests_run": 8,
+    "elapsed_seconds": 0.027,
+    "result": "OK"
+  },
+  "scope": "SYNTHETIC_ENGINEERING_TESTS_ONLY",
+  "inputs": "Hand-built synthetic fixture records; no historical or local-campaign inputs were loaded.",
+  "real_fit_calls": 0,
+  "real_prediction_calls": 0,
+  "synthetic_execution": "The tests exercised both sparse and retention adapters, temporary synthetic model save/load, and synthetic prediction mode gates. Synthetic fits and predictions are engineering verification, not experiment results.",
+  "coverage": [
+    "BASE and combination atom definitions and explicit mixed webdriver provenance",
+    "T/F/U/FAILED transfer and source modes excluded from features",
+    "Exact train members, external source modes and cached-cell mode agreement",
+    "Sparse-to-retention encoder reuse and source-mode manifest preservation",
+    "Rejection of mismatched initialization, study identity and legacy-only model metadata",
+    "Synthetic model save/load and explicit prediction-mode validation",
+    "Failure recording without retry or fallback"
+  ],
+  "earlier_test_assertion_repair": {
+    "initial_tests_run": 8,
+    "initial_failure_entries": 2,
+    "location": "Two group subtests of the synthetic model save/load round-trip check",
+    "cause": "The test compared Python dictionaries directly; JSON serialization changes nested tuples into lists even when the serialized model content is equivalent.",
+    "repair": "Compare json.dumps(..., sort_keys=True) for the two model dictionaries, following the existing model round-trip testing convention.",
+    "implementation_math_changed": false,
+    "classification": "TEST_ASSERTION_REPAIR_NOT_REAL_TRAINING_FAILURE"
+  },
+  "evidence_note": "This file summarizes test executions already observed by the agent. It is not fabricated per-test stdout and was written without another test run."
+}

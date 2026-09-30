@@ -1,0 +1,950 @@
+{
+  "schema_version": "rsr-preparation-independent-audit-v1",
+  "audited_at_utc": "2026-09-30T12:37:50.648223+00:00",
+  "status": "PASS",
+  "scope": "Independent direct reading of saved preparation outputs, historical162 references and runtime raw envelopes. Only saved-cell counting and structural comparisons; no candidate evaluator, train encoder, selector, fit or model predict calls.",
+  "checks_passed": 151,
+  "failed_checks": [],
+  "counts": {
+    "runtime_inputs": 31,
+    "W0_base_rows": 31,
+    "W0_atoms_each": 48,
+    "W0_cells": 1488,
+    "saved_candidate_cells": 93,
+    "historical_preserved_rows": 162,
+    "new_proposed_rows": 18,
+    "auxiliary_excluded_rows": 13,
+    "proposed_supervised_total": 180,
+    "triplets": 60,
+    "configurations": 14,
+    "environments": 4,
+    "jobs_proposed": 16,
+    "OOF_positions_proposed": 360
+  },
+  "W0_saved_cell_evaluation_status_counts": {
+    "OK": 1488
+  },
+  "W0_saved_cell_available_counts": {
+    "true": 1488
+  },
+  "new_saved_mode_counts": {
+    "default": {
+      "F": 28,
+      "T": 3
+    },
+    "raw_observation_v1": {
+      "F": 28,
+      "T": 3
+    },
+    "legacy_projection_v1": {
+      "U": 28,
+      "T": 3
+    }
+  },
+  "positive_train_support_independent": [
+    {
+      "fold_id": "MIXED-LOEO-v1-01",
+      "heldout_environment": "codex-local-api36-1-raw-v1",
+      "train_n": 162,
+      "test_n": 18,
+      "positive_candidates": [
+        {
+          "candidate_id": "RSR-LANG-FIRST-v1",
+          "complete_available_triplets": 54,
+          "true_attack_triplets": 3,
+          "support_bundles": 1,
+          "support_environments": 1,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 108,
+          "op05_clean_budget": 5,
+          "single_literal_within_clean_budget": true
+        },
+        {
+          "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+          "complete_available_triplets": 0,
+          "true_attack_triplets": 0,
+          "support_bundles": 0,
+          "support_environments": 0,
+          "meets_count_support": false,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 108,
+          "op05_clean_budget": 5,
+          "single_literal_within_clean_budget": true
+        }
+      ]
+    },
+    {
+      "fold_id": "MIXED-LOEO-v1-02",
+      "heldout_environment": "env-001",
+      "train_n": 153,
+      "test_n": 27,
+      "positive_candidates": [
+        {
+          "candidate_id": "RSR-LANG-FIRST-v1",
+          "complete_available_triplets": 51,
+          "true_attack_triplets": 6,
+          "support_bundles": 2,
+          "support_environments": 2,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 102,
+          "op05_clean_budget": 5,
+          "single_literal_within_clean_budget": true
+        },
+        {
+          "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+          "complete_available_triplets": 6,
+          "true_attack_triplets": 3,
+          "support_bundles": 1,
+          "support_environments": 1,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 102,
+          "op05_clean_budget": 5,
+          "single_literal_within_clean_budget": true
+        }
+      ]
+    },
+    {
+      "fold_id": "MIXED-LOEO-v1-03",
+      "heldout_environment": "env-002",
+      "train_n": 162,
+      "test_n": 18,
+      "positive_candidates": [
+        {
+          "candidate_id": "RSR-LANG-FIRST-v1",
+          "complete_available_triplets": 54,
+          "true_attack_triplets": 6,
+          "support_bundles": 2,
+          "support_environments": 2,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 108,
+          "op05_clean_budget": 5,
+          "single_literal_within_clean_budget": true
+        },
+        {
+          "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+          "complete_available_triplets": 6,
+          "true_attack_triplets": 3,
+          "support_bundles": 1,
+          "support_environments": 1,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 108,
+          "op05_clean_budget": 5,
+          "single_literal_within_clean_budget": true
+        }
+      ]
+    },
+    {
+      "fold_id": "MIXED-LOEO-v1-04",
+      "heldout_environment": "env-003",
+      "train_n": 63,
+      "test_n": 117,
+      "positive_candidates": [
+        {
+          "candidate_id": "RSR-LANG-FIRST-v1",
+          "complete_available_triplets": 21,
+          "true_attack_triplets": 3,
+          "support_bundles": 1,
+          "support_environments": 1,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 42,
+          "op05_clean_budget": 2,
+          "single_literal_within_clean_budget": true
+        },
+        {
+          "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+          "complete_available_triplets": 6,
+          "true_attack_triplets": 3,
+          "support_bundles": 1,
+          "support_environments": 1,
+          "meets_count_support": true,
+          "single_literal_clean_alerts": 0,
+          "train_clean_n": 42,
+          "op05_clean_budget": 2,
+          "single_literal_within_clean_budget": true
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check": "unique_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "unique_1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "unique_2",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "unique_3",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "unique_4",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "31_runtime_id_sets_match",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "18_supervised_13_auxiliary_proposed_only",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "target_scope_labels_6_positives_12_controls",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "auxiliary_role_counts",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_smoke",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_smoke",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_smoke",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r1-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r1-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r1-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r2-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r2-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r2-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r3-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r3-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r3-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_no_attack-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_no_attack-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_no_attack-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_debug_transport_control-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_debug_transport_control-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_debug_transport_control-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_debug_transport_control-r1-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_debug_transport_control-r1-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_debug_transport_control-r1-control_mid",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_debug_transport_control-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_debug_transport_control-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_debug_transport_control-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r1-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r1-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r1-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r2-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r2-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r2-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r3-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r3-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r3-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_webdriver-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_webdriver-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_webdriver-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r1-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r1-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r1-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r1-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r1-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r2-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r2-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r2-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r2-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r2-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r3-clean_pre",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r3-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r3-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r3-attack",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_linkage_language-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "177_exact_value_status_copy_language-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw_observation_metadata_copy_language-r3-clean_post",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "31_times_48_exact_W0_base_atoms_unfitted",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "93_unique_candidate_mode_cells",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "saved_mode_counts_and_zero_backfill",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "180_exact_historical_plus_proposed_members",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "historical_legacy_results_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "14_configuration_4_environment_groups",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_all31_one_environment",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "4fold_exact_once_OOF",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_disjoint_complete_codex-local-api36-1-raw-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_bundle_triplet_session_whole_codex-local-api36-1-raw-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_disjoint_complete_env-001",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_bundle_triplet_session_whole_env-001",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_disjoint_complete_env-002",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_bundle_triplet_session_whole_env-002",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_disjoint_complete_env-003",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "fold_bundle_triplet_session_whole_env-003",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "16_jobs_matching_groups_stages_and_no_execution",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "same_input_init_and_predictions_MIXED-LOEO-v1-01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "same_input_init_and_predictions_MIXED-LOEO-v1-02",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "same_input_init_and_predictions_MIXED-LOEO-v1-03",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "same_input_init_and_predictions_MIXED-LOEO-v1-04",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "360_future_predictions_fit_counts_zero",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-01RSR-LANG-FIRST-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-01RSR-LANG-FIRST-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-01RSR-LANG-FIRST-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-01RSR-WEBDRIVER-STATE-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-01RSR-WEBDRIVER-STATE-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-01RSR-WEBDRIVER-STATE-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-02RSR-LANG-FIRST-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-02RSR-LANG-FIRST-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-02RSR-LANG-FIRST-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-02RSR-WEBDRIVER-STATE-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-02RSR-WEBDRIVER-STATE-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-02RSR-WEBDRIVER-STATE-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-03RSR-LANG-FIRST-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-03RSR-LANG-FIRST-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-03RSR-LANG-FIRST-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-03RSR-WEBDRIVER-STATE-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-03RSR-WEBDRIVER-STATE-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-03RSR-WEBDRIVER-STATE-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-04RSR-LANG-FIRST-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-04RSR-LANG-FIRST-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-04RSR-LANG-FIRST-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_structural_training_triplets_MIXED-LOEO-v1-04RSR-WEBDRIVER-STATE-v1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-04RSR-WEBDRIVER-STATE-v1POSITIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "support_matches_MIXED-LOEO-v1-04RSR-WEBDRIVER-STATE-v1NEGATIVE",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "group_config_review_bound",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "no_model_or_trial_artifacts_under_prepared",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "future_execution_gate_preserved",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "fit_calls_by_auditor": 0,
+  "model_prediction_calls_by_auditor": 0,
+  "candidate_calls_by_auditor": 0,
+  "numeric_threshold_fit_calls_by_auditor": 0,
+  "new_collection_calls_by_auditor": 0,
+  "readiness": "DATA_AND_PROTOCOL_PREPARATION_COMPLETE_REQUIRES_REVIEW_AND_NEW_EXECUTION_ENTRY",
+  "gates_before_fit": [
+    "Authorize and freeze mixed observation modes and target-scoped proposed labels.",
+    "Register new mixed-mode execution identity and implement/check the worker; existing historical runners are not authorized raw-mode execution entrances.",
+    "Recheck shared budget before consuming any of the proposed16fits; current preparation reserves/consumes zero."
+  ],
+  "remaining_scientific_limits": [
+    "Only one raw environment. Holding it out leaves webdriver zero complete usable training triplets, despite18 historical T attack cells.",
+    "The other three folds have6 webdriver-complete triplets and3 positive complete attack triplets, clearing minimum count support only; selection and overall improvement remain unmeasured.",
+    "Language positive count support clears all four folds. Its new attack profile also changes list length, so no isolated first-item advantage can be inferred.",
+    "Four source-association groups are not verified independent physical devices; all material is exposed retrospective development.",
+    "W0 base-cell presence and structure were independently checked; the auditor did not rerun the five catalog predicates or any other candidate."
+  ],
+  "overall_improvement": "NOT_EVALUATED"
+}

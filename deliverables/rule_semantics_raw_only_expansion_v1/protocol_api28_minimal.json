@@ -1,0 +1,38 @@
+{
+  "protocol_version": "featureapp-webdriver-runtime-v1",
+  "campaign_id": "20260930_local_api28_minimal_v1",
+  "scope": "LOCAL_RAW_ONLY_CROSS_ENVIRONMENT_FEASIBILITY",
+  "serial": "emulator-5584",
+  "device_manifest_id": "codex-local-api28-raw-v1",
+  "endpoint": "http://127.0.0.1:8000/api/collect/fingerprint",
+  "paths": {
+    "root": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
+    "output_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api28_minimal_v1",
+    "adb": "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+    "node": "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+    "tool_node_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/runtime/tool_node",
+    "curl_bin_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/runtime/bin",
+    "release_manifest": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_raw_v1/release_manifest.json"
+  },
+  "planned_positions": 31,
+  "plan": {
+    "smoke": 1,
+    "no_attack": 9,
+    "debug_transport_control": 3,
+    "cdp_webdriver_only_v1": 9,
+    "stealth_languages_only_v1": 9
+  },
+  "sample_policy": {
+    "independent_physical_devices": 0,
+    "append_to_historical_162": false,
+    "fit_or_predict": false,
+    "count_unknown_and_failure": true,
+    "retry_policy": "retain_attempt_and_stop_campaign; no automatic retries"
+  },
+  "control_limit": "CDP no-injection control is not a fully matched Puppeteer implementation control.",
+  "environment_choice": {
+    "system_image": "android-28/google_apis/arm64-v8a",
+    "selection_reason": "Already-installed distinct Android API; new userdata; choice made before observing collected fields.",
+    "fallback_policy": "Preserve failures; no automatic sample replacement."
+  }
+}

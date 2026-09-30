@@ -1,0 +1,17 @@
+{
+  "step_id": "language-r1-attack",
+  "group": "language",
+  "round": 1,
+  "phase": "attack",
+  "configuration": "stealth_languages_only_v1",
+  "debug_transport_only": false,
+  "runtime_context": "20260930_local_api28_minimal_v1:language-r1-attack",
+  "started_at": "2026-09-30T14:10:05.033540+00:00",
+  "status": "FAILED",
+  "file_start_offsets": {
+    "raw": 519792,
+    "export": 493825
+  },
+  "error": "Command failed (FAILED): command-072",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py\", line 219, in collect\n    evidence = self.run_injection(step, step_dir)\n  File \"/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py\", line 179, in run_injection\n    self.command([self.paths[\"node\"], self.paths[\"runner\"], step[\"configuration\"]],\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                 step_dir, env={**os.environ, **overrides}, timeout=150)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py\", line 133, in command\n    raise RuntimeError(f\"Command failed ({receipt['status']}): {prefix.name}\")\nRuntimeError: Command failed (FAILED): command-072\n"
+}

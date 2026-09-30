@@ -1,0 +1,56 @@
+{
+  "protocol_version": "raw-only-expansion-rollback-measurement-v2",
+  "campaign_id": "20260930_local_api30_repair4_v2",
+  "scope": "LOCAL_RAW_ONLY_CROSS_ENVIRONMENT_FEASIBILITY",
+  "serial": "emulator-5586",
+  "device_manifest_id": "codex-local-api30-raw-v1",
+  "endpoint": "http://127.0.0.1:8000/api/collect/fingerprint",
+  "paths": {
+    "root": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
+    "output_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api30_repair4_v2",
+    "adb": "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+    "node": "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+    "tool_node_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runtime/tool_node",
+    "curl_bin_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/runtime/bin",
+    "release_manifest": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_raw_v1/release_manifest.json",
+    "runner": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research/execution_log/tools/week6_webview_automation_runner.mjs",
+    "backend_jsonl": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api30_repair4_v2/backend/expanded_collected_data.jsonl",
+    "raw_jsonl": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api30_repair4_v2/backend/raw_expanded_payloads.jsonl"
+  },
+  "planned_positions": 37,
+  "plan": {
+    "resume_smoke": 1,
+    "additional_configurations": 4,
+    "rounds_per_configuration": 3,
+    "paired_stages": 36
+  },
+  "sample_policy": {
+    "independent_physical_devices": 0,
+    "append_to_historical_162": false,
+    "fit_or_predict": false,
+    "count_unknown_and_failure": true,
+    "retry_policy": "retain failure and stop this environment campaign; no automatic retries"
+  },
+  "control_limit": "CDP no-injection control is not a fully matched Puppeteer implementation control.",
+  "environment_choice": {
+    "system_image": "android-30/google_apis/arm64-v8a revision16",
+    "selection_reason": "New Android version; pinned official package selected before collecting runtime field values.",
+    "source_ref": "IMAGE_DOWNLOAD.json",
+    "dedicated_new_userdata": true,
+    "fallback_policy": "Preserve all attempts; no automatic retries"
+  },
+  "additional_configurations": [
+    "cdp_timezone_only_v1",
+    "cdp_screen_metrics_only_v1",
+    "stealth_webgl_pair_v1",
+    "stealth_plugins_mime_v1"
+  ],
+  "expected_collector_install_id": "96beb9ae-38be-48c4-b988-93d345857453",
+  "source_campaign": "deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api30_minimal_v1",
+  "runner_overrides": {
+    "cdp_timezone_only_v1": "week10_cdp_emulation_runtime_v2.mjs",
+    "cdp_screen_metrics_only_v1": "week10_cdp_emulation_runtime_v2.mjs"
+  },
+  "measurement_amendment_ref": "deliverables/rule_semantics_raw_only_expansion_v1/ROLLBACK_PROTOCOL_AMENDMENT.md",
+  "prior_failed_campaign": "deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api30_expand12_v1"
+}

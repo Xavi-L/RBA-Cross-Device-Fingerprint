@@ -1,0 +1,55 @@
+{
+  "runId": "2026-09-30T14-32-47-853Z_stealth",
+  "toolId": "stealth",
+  "configurationId": "stealth",
+  "executionClientId": "stealth",
+  "configId": "w6-tool-058-legacy-default-v1",
+  "declaredObservableFields": [
+    "hardware_concurrency",
+    "webgl_vendor",
+    "webgl_renderer",
+    "languages",
+    "plugins_count"
+  ],
+  "declaredStealthEvasions": null,
+  "stealthRuntime": {
+    "package_name": "puppeteer-extra-plugin-stealth",
+    "package_version": "2.11.2",
+    "package_json_sha256": "ef93d0ba07836e4f2152e986c8b2043e6e7fbabe59a86c30352369075619d3b2"
+  },
+  "toolName": "puppeteer-extra-plugin-stealth",
+  "status": "MEASURED",
+  "reason": "",
+  "serial": "emulator-5582",
+  "pid": "6749",
+  "socket": "webview_devtools_remote_6749",
+  "injected": {
+    "hardwareConcurrency": 12,
+    "webglVendor": "Google Inc. (NVIDIA)",
+    "webglRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+  },
+  "freshSessionIds": [
+    "67022fcd-0320-4e5d-b4ef-5380cb748ffb"
+  ],
+  "measuredSessionIds": [
+    "67022fcd-0320-4e5d-b4ef-5380cb748ffb"
+  ],
+  "automationEvidence": {
+    "protocol": "puppeteer-extra-stealth-evasions-over-cdp",
+    "targetId": "60F6297903BD484BA6EC236F6706D205",
+    "enabledEvasions": [
+      "navigator.webdriver",
+      "navigator.hardwareConcurrency",
+      "navigator.languages",
+      "navigator.plugins",
+      "webgl.vendor",
+      "user-agent-override"
+    ],
+    "navigation": "puppeteer-Connection-Page.navigate"
+  },
+  "collectionManifest": {
+    "runtimeContext": "20260930_local_api29_expand12_v1:stealth-r1-attack",
+    "collectionRound": 1,
+    "deviceManifestId": "codex-local-api29-raw-v1"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "protocol_version": "raw-only-expansion-rollback-measurement-v2",
+  "campaign_id": "20260930_local_api29_repair4_v2",
+  "scope": "LOCAL_RAW_ONLY_CROSS_ENVIRONMENT_FEASIBILITY",
+  "serial": "emulator-5582",
+  "device_manifest_id": "codex-local-api29-raw-v1",
+  "endpoint": "http://127.0.0.1:8000/api/collect/fingerprint",
+  "paths": {
+    "root": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint",
+    "output_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api29_repair4_v2",
+    "adb": "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+    "node": "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+    "tool_node_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/runtime/tool_node",
+    "curl_bin_dir": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/runtime/bin",
+    "release_manifest": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_raw_v1/release_manifest.json",
+    "runner": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/hybridguard-browser-fingerprint-research/execution_log/tools/week6_webview_automation_runner.mjs"
+  },
+  "planned_positions": 37,
+  "plan": {
+    "resume_smoke": 1,
+    "additional_configurations": 4,
+    "rounds_per_configuration": 3,
+    "paired_stages": 36
+  },
+  "sample_policy": {
+    "independent_physical_devices": 0,
+    "append_to_historical_162": false,
+    "fit_or_predict": false,
+    "count_unknown_and_failure": true,
+    "retry_policy": "retain failure and stop this environment campaign; no automatic retries"
+  },
+  "control_limit": "CDP no-injection control is not a fully matched Puppeteer implementation control.",
+  "environment_choice": {
+    "system_image": "android-29/google_apis/arm64-v8a",
+    "selection_reason": "Already-installed ARM image with Android version different from existing API36 campaign; fresh dedicated userdata.",
+    "existing_reference_campaign": "20260930_local_api36_1_v1",
+    "fallback_policy": "Retain any setup/collection failure; no automatic sample retries or replacement."
+  },
+  "additional_configurations": [
+    "cdp_timezone_only_v1",
+    "cdp_screen_metrics_only_v1",
+    "stealth_webgl_pair_v1",
+    "stealth_plugins_mime_v1"
+  ],
+  "expected_collector_install_id": "659fc779-080f-4a56-9516-4e4a6997009e",
+  "source_campaign": "deliverables/featureapp_webdriver_raw_multienv_v1/runs/20260930_local_api29_v1",
+  "runner_overrides": {
+    "cdp_timezone_only_v1": "week10_cdp_emulation_runtime_v2.mjs",
+    "cdp_screen_metrics_only_v1": "week10_cdp_emulation_runtime_v2.mjs"
+  },
+  "measurement_amendment_ref": "deliverables/rule_semantics_raw_only_expansion_v1/ROLLBACK_PROTOCOL_AMENDMENT.md",
+  "prior_failed_campaign": "deliverables/rule_semantics_raw_only_expansion_v1/runs/20260930_local_api29_expand12_v1"
+}

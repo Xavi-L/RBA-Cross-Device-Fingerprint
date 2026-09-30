@@ -1,0 +1,14 @@
+START cdp_timezone_only_v1-r1-clean_pre
+Traceback (most recent call last):
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/run_expansion.py", line 136, in <module>
+    campaign.collect(step)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/run_expansion.py", line 96, in collect
+    super().collect(step)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 224, in collect
+    (raw_offset, raw), exported = self.wait_for_payload(step, starts)
+                                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 207, in wait_for_payload
+    raise RuntimeError("No unique fresh raw/export pair arrived before the deadline")
+RuntimeError: No unique fresh raw/export pair arrived before the deadline

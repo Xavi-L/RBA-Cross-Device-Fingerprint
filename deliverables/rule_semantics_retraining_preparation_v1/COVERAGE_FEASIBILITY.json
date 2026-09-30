@@ -1,0 +1,338 @@
+{
+  "schema_version": "rsr-clean-coverage-feasibility-v1",
+  "created_at_utc": "2026-09-30T12:46:00.196826+00:00",
+  "status": "PROVED_INFEASIBLE_FOR_PRIMARY_OR_CONTAINING_NEW_WEBDRIVER",
+  "scope": "Necessary-bound proof on frozen saved training cells and the unchanged primary OR-of-single-literals constraints; no model enumeration, fit, predict or candidate evaluation.",
+  "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+  "assumptions_verified": {
+    "primary_is_OR_of_single_literals": true,
+    "negative_unknown_remains_unknown": true,
+    "OR_unknown_without_any_true_remains_unknown": true,
+    "defined_means_T_or_F": true,
+    "any_clean_T_counts_as_alarm": true,
+    "min_decision_coverage_per_phase": 0.8,
+    "clean_budget_formula": "floor(0.05 * all_train_clean_rows)",
+    "no_failed_candidate_clean_cells": true
+  },
+  "proof": {
+    "notation": "n_p = clean phase size; k_p = WD-defined cells in that phase; B = total clean alarm budget.",
+    "upper_bound": "For either WD polarity as a singleton OR clause, coverage_p <= min(n_p, k_p + B) / n_p. This generously gives each phase the entire shared budget.",
+    "necessary_unknown_alarm_lower_bound": "sum_p max(0, ceil(0.8*n_p) - k_p)",
+    "stronger_total_alarm_lower_bound": "necessary_unknown_alarm_lower_bound + number_of_known_WD_T_clean_rows_after_polarity",
+    "reason": "At a row where the included WD clause is U, an OR can never be F. It is defined only if another clause is T; then the model raises a clean alarm. Every covered WD-unknown clean row therefore consumes one unit of the shared clean alarm budget.",
+    "counterexample_boundaries": [
+      "This claim applies to the frozen primary OR of singleton literals. An AND that masks U is a different grammar and is not evaluated or authorized here.",
+      "Removing the new WD clause, changing U handling, changing the coverage definition, changing train population or relaxing clean/coverage budgets changes the problem. No such modification was performed.",
+      "The proof does not say the entire combination group has no feasible model; it can select an OR without the new WD clause.",
+      "The proof establishes a train-constraint obstruction, not detector performance or truth of attack labels."
+    ]
+  },
+  "folds": [
+    {
+      "fold_id": "MIXED-LOEO-v1-01",
+      "heldout_environment": "codex-local-api36-1-raw-v1",
+      "train_rows": 162,
+      "train_clean_rows": 108,
+      "clean_budget": 5,
+      "phases": [
+        {
+          "phase": "clean_pre",
+          "n": 54,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 0,
+            "U": 54,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 0,
+          "required_defined_for_80_percent": 44,
+          "defined_count_upper_bound_using_entire_clean_budget": 5,
+          "coverage_upper_bound": {
+            "numerator": 5,
+            "denominator": 54,
+            "value": 0.09259259259259259
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 44,
+          "phase_coverage_upper_bound_below_requirement": true
+        },
+        {
+          "phase": "clean_post",
+          "n": 54,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 0,
+            "U": 54,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 0,
+          "required_defined_for_80_percent": 44,
+          "defined_count_upper_bound_using_entire_clean_budget": 5,
+          "coverage_upper_bound": {
+            "numerator": 5,
+            "denominator": 54,
+            "value": 0.09259259259259259
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 44,
+          "phase_coverage_upper_bound_below_requirement": true
+        }
+      ],
+      "unknown_clean_coverage_alarm_lower_bound": 88,
+      "polarities": [
+        {
+          "polarity": "POSITIVE",
+          "forced_known_webdriver_clean_alerts": 0,
+          "minimum_total_clean_alarms_necessary": 88,
+          "clean_budget": 5,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        },
+        {
+          "polarity": "NEGATIVE",
+          "forced_known_webdriver_clean_alerts": 0,
+          "minimum_total_clean_alarms_necessary": 88,
+          "clean_budget": 5,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        }
+      ],
+      "any_legal_primary_or_containing_new_webdriver_is_infeasible": true
+    },
+    {
+      "fold_id": "MIXED-LOEO-v1-02",
+      "heldout_environment": "env-001",
+      "train_rows": 153,
+      "train_clean_rows": 102,
+      "clean_budget": 5,
+      "phases": [
+        {
+          "phase": "clean_pre",
+          "n": 51,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 6,
+            "U": 45,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 6,
+          "required_defined_for_80_percent": 41,
+          "defined_count_upper_bound_using_entire_clean_budget": 11,
+          "coverage_upper_bound": {
+            "numerator": 11,
+            "denominator": 51,
+            "value": 0.21568627450980393
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 35,
+          "phase_coverage_upper_bound_below_requirement": true
+        },
+        {
+          "phase": "clean_post",
+          "n": 51,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 6,
+            "U": 45,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 6,
+          "required_defined_for_80_percent": 41,
+          "defined_count_upper_bound_using_entire_clean_budget": 11,
+          "coverage_upper_bound": {
+            "numerator": 11,
+            "denominator": 51,
+            "value": 0.21568627450980393
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 35,
+          "phase_coverage_upper_bound_below_requirement": true
+        }
+      ],
+      "unknown_clean_coverage_alarm_lower_bound": 70,
+      "polarities": [
+        {
+          "polarity": "POSITIVE",
+          "forced_known_webdriver_clean_alerts": 0,
+          "minimum_total_clean_alarms_necessary": 70,
+          "clean_budget": 5,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        },
+        {
+          "polarity": "NEGATIVE",
+          "forced_known_webdriver_clean_alerts": 12,
+          "minimum_total_clean_alarms_necessary": 82,
+          "clean_budget": 5,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        }
+      ],
+      "any_legal_primary_or_containing_new_webdriver_is_infeasible": true
+    },
+    {
+      "fold_id": "MIXED-LOEO-v1-03",
+      "heldout_environment": "env-002",
+      "train_rows": 162,
+      "train_clean_rows": 108,
+      "clean_budget": 5,
+      "phases": [
+        {
+          "phase": "clean_pre",
+          "n": 54,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 6,
+            "U": 48,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 6,
+          "required_defined_for_80_percent": 44,
+          "defined_count_upper_bound_using_entire_clean_budget": 11,
+          "coverage_upper_bound": {
+            "numerator": 11,
+            "denominator": 54,
+            "value": 0.2037037037037037
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 38,
+          "phase_coverage_upper_bound_below_requirement": true
+        },
+        {
+          "phase": "clean_post",
+          "n": 54,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 6,
+            "U": 48,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 6,
+          "required_defined_for_80_percent": 44,
+          "defined_count_upper_bound_using_entire_clean_budget": 11,
+          "coverage_upper_bound": {
+            "numerator": 11,
+            "denominator": 54,
+            "value": 0.2037037037037037
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 38,
+          "phase_coverage_upper_bound_below_requirement": true
+        }
+      ],
+      "unknown_clean_coverage_alarm_lower_bound": 76,
+      "polarities": [
+        {
+          "polarity": "POSITIVE",
+          "forced_known_webdriver_clean_alerts": 0,
+          "minimum_total_clean_alarms_necessary": 76,
+          "clean_budget": 5,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        },
+        {
+          "polarity": "NEGATIVE",
+          "forced_known_webdriver_clean_alerts": 12,
+          "minimum_total_clean_alarms_necessary": 88,
+          "clean_budget": 5,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        }
+      ],
+      "any_legal_primary_or_containing_new_webdriver_is_infeasible": true
+    },
+    {
+      "fold_id": "MIXED-LOEO-v1-04",
+      "heldout_environment": "env-003",
+      "train_rows": 63,
+      "train_clean_rows": 42,
+      "clean_budget": 2,
+      "phases": [
+        {
+          "phase": "clean_pre",
+          "n": 21,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 6,
+            "U": 15,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 6,
+          "required_defined_for_80_percent": 17,
+          "defined_count_upper_bound_using_entire_clean_budget": 8,
+          "coverage_upper_bound": {
+            "numerator": 8,
+            "denominator": 21,
+            "value": 0.38095238095238093
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 11,
+          "phase_coverage_upper_bound_below_requirement": true
+        },
+        {
+          "phase": "clean_post",
+          "n": 21,
+          "webdriver_state_counts": {
+            "T": 0,
+            "F": 6,
+            "U": 15,
+            "FAILED": 0
+          },
+          "known_webdriver_count": 6,
+          "required_defined_for_80_percent": 17,
+          "defined_count_upper_bound_using_entire_clean_budget": 8,
+          "coverage_upper_bound": {
+            "numerator": 8,
+            "denominator": 21,
+            "value": 0.38095238095238093
+          },
+          "unknown_positions_that_must_become_alerts_at_least": 11,
+          "phase_coverage_upper_bound_below_requirement": true
+        }
+      ],
+      "unknown_clean_coverage_alarm_lower_bound": 22,
+      "polarities": [
+        {
+          "polarity": "POSITIVE",
+          "forced_known_webdriver_clean_alerts": 0,
+          "minimum_total_clean_alarms_necessary": 22,
+          "clean_budget": 2,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        },
+        {
+          "polarity": "NEGATIVE",
+          "forced_known_webdriver_clean_alerts": 12,
+          "minimum_total_clean_alarms_necessary": 34,
+          "clean_budget": 2,
+          "infeasible_by_necessary_alarm_bound": true,
+          "infeasible_by_per_phase_coverage_bound": true
+        }
+      ],
+      "any_legal_primary_or_containing_new_webdriver_is_infeasible": true
+    }
+  ],
+  "pretraining_consequence": {
+    "new_webdriver_inclusion_objective": "BLOCKED_BY_FIXED_COVERAGE_AND_CLEAN_BUDGET",
+    "data_adapter_and_split_preparation": "VALID_BUT_INSUFFICIENT_TO_ENABLE_NEW_WEBDRIVER_SELECTION",
+    "unchanged16_fit_main_plan": "MUST_NOT_BE_DESCRIBED_AS_CAPABLE_OF_LEARNING_NEW_WEBDRIVER; no fitting started; discuss an explicit next protocol choice before consuming budget",
+    "do_not_automatically": [
+      "relax_coverage",
+      "relax_clean_budget",
+      "treat_U_as_F",
+      "backfill_historical_raw_false",
+      "change_OR_to_gated_logic",
+      "drop_unfavorable_historical_clean_rows",
+      "start16fits"
+    ]
+  },
+  "evidence_refs": [
+    "hybridguard_agent/research/rule_learning/contracts.py:negate,logic",
+    "hybridguard_agent/research/rule_learning/selector.py:TrainProblem.score",
+    "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json#/constraints",
+    "hybridguard_agent/config/rule_learning_v1_20260924/candidate_grammar.json#/composition",
+    "deliverables/rule_semantics_retraining_preparation_v1/prepared/SPLIT_PLAN.json",
+    "deliverables/rule_semantics_retraining_preparation_v1/prepared/ADMISSION_MANIFEST.jsonl",
+    "deliverables/rule_semantics_retraining_preparation_v1/prepared/CANDIDATE_RESULTS.jsonl",
+    "deliverables/rule_semantics_candidate_evaluation/CANDIDATE_RESULTS.jsonl",
+    "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/DATA_INDEX.json"
+  ],
+  "fit_calls": 0,
+  "model_prediction_calls": 0,
+  "candidate_evaluations": 0,
+  "numeric_threshold_fit_calls": 0,
+  "overall_improvement": "NOT_EVALUATED"
+}

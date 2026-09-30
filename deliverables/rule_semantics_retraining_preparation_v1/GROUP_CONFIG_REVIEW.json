@@ -1,0 +1,174 @@
+{
+  "schema_version": "rsr-group-config-review-v1",
+  "status": "SUPPORTED_FOR_PROPOSED_DEVELOPMENT_SPLIT",
+  "scope": "Read-only identity-association and configuration review; not a fit authorization, independent-device certification or generalization result.",
+  "environment_group_id": "codex-local-api36-1-raw-v1",
+  "new_environment": {
+    "stable_identity": {
+      "android_api": 36,
+      "collector_install_id": "3bf8a19e-d4e5-445e-bf3e-d791618e8a87",
+      "collector_package": "com.example.hybridguard.featureapp",
+      "collector_version_code": 12,
+      "collector_version_name": "1.6.5-expanded-v2.2-webdriver-raw",
+      "device_manifest_id": "codex-local-api36-1-raw-v1",
+      "webview_provider_package": "com.google.android.webview",
+      "webview_provider_version": "134.0.6998.135"
+    },
+    "avd_id": "Codex_Webdriver_Raw_API36_1",
+    "model": "sdk_gphone64_arm64",
+    "device": "emu64a",
+    "architecture": "arm64-v8a",
+    "dedicated_new_userdata_recorded": true,
+    "all_runtime_rows_in_group": 31,
+    "proposed_supervised_rows": 18,
+    "auxiliary_rows_outside_fit": 13
+  },
+  "historical_environment_groups": [
+    {
+      "group_id": "env-001",
+      "collector_install_ids": [
+        "e76b8e94-ee71-4246-8aeb-21a6f97b499b"
+      ],
+      "device_aliases": [
+        "api30-c9-research-emulator-01"
+      ]
+    },
+    {
+      "group_id": "env-002",
+      "collector_install_ids": [
+        "347ff2a9-1a75-48ad-9411-e6cad1b0eef9"
+      ],
+      "device_aliases": [
+        "hybridguard-api35-research-avd-v1"
+      ]
+    },
+    {
+      "group_id": "env-003",
+      "collector_install_ids": [
+        "0492da06-a60e-4b63-8a36-c59bb6078953"
+      ],
+      "device_aliases": [
+        "api36-research-emulator-01",
+        "hybridguard-api36-research-avd-v1"
+      ]
+    }
+  ],
+  "association_review": {
+    "policy": "Use transitive closure over explicit install/stable-key/alias/run-capture edges. Same Android API/model/adb serial/backend is not by itself an identity link.",
+    "checked_new_keys": [
+      "3bf8a19e-d4e5-445e-bf3e-d791618e8a87",
+      "codex-local-api36-1-raw-v1",
+      "Codex_Webdriver_Raw_API36_1"
+    ],
+    "explicit_historical_matches": [],
+    "explicit_edge_to_historical_group_found": false,
+    "new_distinct_install_observed": true,
+    "new_model_architecture_distinct_from_relevant_historical_env003": true,
+    "historical_env003_model": "sdk_gphone64_x86_64",
+    "historical_env003_device": "emu64xa",
+    "missing_unverifiable_identity_dimensions": [
+      "No independent physical-device identity was established.",
+      "No new provider-stable-profile or externally certified stable-key identity was supplied.",
+      "Shared Android/WebView components and collector implementation may induce dependence despite no explicit identity edge."
+    ],
+    "decision": "Keep all 31 local records in one proposed new association group. Reopen grouping if any later explicit alias, stable-key, cloned-userdata or capture edge joins a historical group.",
+    "evidence_refs": [
+      "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/environment_group_registry.json#/groups",
+      "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/environment_group_registry.json#/association_edges",
+      "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/GROUP_GENERATION.json#/source_rules",
+      "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/AUDIT.json#/stable_identity",
+      "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/backend/raw_expanded_payloads.jsonl#canonical_received_payload.collection_manifest",
+      "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/environment.json#/dedicated_new_userdata",
+      "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/avd_config.ini",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/paired_triplet_run.json#/stable_device_identity",
+      "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/paired_triplet_run.json#/stable_device_identity"
+    ]
+  },
+  "config_mappings": [
+    {
+      "runtime_group": "webdriver",
+      "configuration_id": "cdp_webdriver_only_v1",
+      "config_id": "w9-rule-boundary-cdp-webdriver-only-v1",
+      "equivalence_status": "SUPPORTED_TARGET_PROFILE_EQUIVALENCE",
+      "declared_observable_fields": [
+        "webdriver"
+      ],
+      "injection_profile": {
+        "webdriver": true
+      },
+      "stealth_evasions": null,
+      "stealth_package_version": null,
+      "same_full_runtime_environment_claim": false,
+      "new_execution_refs": [
+        "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/webdriver-r1-attack/automation/2026-09-30T12-01-47-336Z_cdp_webdriver_only_v1.json",
+        "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/webdriver-r2-attack/automation/2026-09-30T12-02-01-191Z_cdp_webdriver_only_v1.json",
+        "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/webdriver-r3-attack/automation/2026-09-30T12-02-13-528Z_cdp_webdriver_only_v1.json"
+      ],
+      "historical_config_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260823_api36_rule_boundary_cdp_webdriver_only_v1/paired_triplet_run.json#/tool",
+      "historical_config_fields_checked": [
+        "configuration_id",
+        "config_id",
+        "observable_fields",
+        "injection_profile"
+      ],
+      "mapping_policy": "Reuse the existing config_id for the same declared target/profile. Keep collector, WebView, architecture, host and runtime revisions in sidecars; no independent mechanism equivalence claim."
+    },
+    {
+      "runtime_group": "language",
+      "configuration_id": "stealth_languages_only_v1",
+      "config_id": "w9-stealth-boundary-languages-only-v1",
+      "equivalence_status": "SUPPORTED_TARGET_PROFILE_EQUIVALENCE",
+      "declared_observable_fields": [
+        "languages"
+      ],
+      "injection_profile": {
+        "languages": [
+          "fr-FR",
+          "fr"
+        ]
+      },
+      "stealth_evasions": [
+        {
+          "id": "navigator.languages",
+          "options": {
+            "languages": [
+              "fr-FR",
+              "fr"
+            ]
+          }
+        }
+      ],
+      "stealth_package_version": "2.11.2",
+      "same_full_runtime_environment_claim": false,
+      "new_execution_refs": [
+        "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/language-r1-attack/automation/2026-09-30T12-02-25-584Z_stealth_languages_only_v1.json",
+        "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/language-r2-attack/automation/2026-09-30T12-02-37-695Z_stealth_languages_only_v1.json",
+        "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/language-r3-attack/automation/2026-09-30T12-02-49-919Z_stealth_languages_only_v1.json"
+      ],
+      "historical_config_ref": "hybridguard-browser-fingerprint-research/execution_log/evidence/20260824_api36_stealth_languages_only_v1/paired_triplet_run.json#/tool",
+      "historical_config_fields_checked": [
+        "configuration_id",
+        "config_id",
+        "observable_fields",
+        "injection_profile",
+        "stealth_evasions",
+        "runtime_dependency_contract.package_version"
+      ],
+      "mapping_policy": "Reuse the existing config_id for the same declared target/profile. Keep collector, WebView, architecture, host and runtime revisions in sidecars; no independent mechanism equivalence claim."
+    }
+  ],
+  "historical_config_count": 14,
+  "proposed_mixed_config_count": 14,
+  "independent_physical_devices": false,
+  "independent_physical_device_claim": false,
+  "current_fit_permission": "DENIED_PREPARATION_ONLY",
+  "fit_calls": 0,
+  "model_prediction_calls": 0,
+  "new_collection_calls": 0,
+  "limitations": [
+    "Target/profile equivalence is not equivalence of the complete intervention runtime or collection environment.",
+    "The new source group contains one installation and one emulator; rounds/sessions/configs are not separate environments.",
+    "The labels and split are proposed retrospective development inputs, not independent confirmation.",
+    "No hash/signature recomputation was used; conclusions derive from saved records and exact declared-value comparisons."
+  ]
+}

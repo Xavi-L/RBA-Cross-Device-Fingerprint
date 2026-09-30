@@ -1,0 +1,55 @@
+{
+  "api": 29,
+  "started_at": "2026-09-30T14:47:42.874729+00:00",
+  "status": "COMPLETE",
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/manage_runtime.py",
+        "--config",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/protocol_api29_repair4.json"
+      ],
+      "returncode": 0,
+      "log": "setup-console.log"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/run_expansion.py",
+        "--config",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/protocol_api29_repair4.json",
+        "--stage",
+        "smoke"
+      ],
+      "returncode": 0,
+      "log": "smoke-console.log"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/run_expansion.py",
+        "--config",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/protocol_api29_repair4.json",
+        "--stage",
+        "campaign"
+      ],
+      "returncode": 0,
+      "log": "campaign-console.log"
+    }
+  ],
+  "emulator_pid": 28922,
+  "receiver_pid": 28968,
+  "emulator_kill": {
+    "returncode": 0,
+    "stdout": "OK: killing emulator, bye bye\nOK\n",
+    "stderr": ""
+  },
+  "finished_at": "2026-09-30T14:50:35.242492+00:00",
+  "receiver_returncode": 0,
+  "emulator_returncode": 0,
+  "receiver_graceful_shutdown_observed": true
+}

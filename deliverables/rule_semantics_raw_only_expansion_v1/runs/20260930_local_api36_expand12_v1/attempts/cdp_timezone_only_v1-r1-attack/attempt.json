@@ -1,0 +1,22 @@
+{
+  "step_id": "cdp_timezone_only_v1-r1-attack",
+  "group": "cdp_timezone_only_v1",
+  "round": 1,
+  "phase": "attack",
+  "configuration": "cdp_timezone_only_v1",
+  "debug_transport_only": false,
+  "runtime_context": "20260930_local_api36_expand12_v1:cdp_timezone_only_v1-r1-attack",
+  "started_at": "2026-09-30T14:42:25.603425+00:00",
+  "status": "FAILED",
+  "file_start_offsets": {
+    "raw": 1661519,
+    "export": 1577973
+  },
+  "error": "Low-level runner did not observe its declared profile: ROLLBACK_FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py\", line 219, in collect\n    evidence = self.run_injection(step, step_dir)\n  File \"/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/rule_semantics_raw_only_expansion_v1/run_expansion.py\", line 64, in run_injection\n    receipt = super().run_injection(step,step_dir)\n  File \"/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py\", line 186, in run_injection\n    raise RuntimeError(f\"Low-level runner did not observe its declared profile: {result.get('status')}\")\nRuntimeError: Low-level runner did not observe its declared profile: ROLLBACK_FAILED\n",
+  "finished_at": "2026-09-30T14:42:30.962607+00:00",
+  "file_end_offsets": {
+    "raw": 1683994,
+    "export": 1599319
+  }
+}

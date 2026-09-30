@@ -1,0 +1,62 @@
+START no_attack-r1-clean_pre
+ACCEPT no_attack-r1-clean_pre 30d43fb6-212f-46fe-b271-3c9194f77b85
+START no_attack-r1-control_mid
+ACCEPT no_attack-r1-control_mid 755b608d-8c4d-46ba-a073-37235dd8a239
+START no_attack-r1-clean_post
+ACCEPT no_attack-r1-clean_post 8bfb190a-7b97-416f-a7e1-7b843ee67def
+START no_attack-r2-clean_pre
+ACCEPT no_attack-r2-clean_pre 5e6c17cb-da72-4f81-b39f-00031fb8bb37
+START no_attack-r2-control_mid
+ACCEPT no_attack-r2-control_mid e0b9989a-94f3-4879-9901-3b924af0af35
+START no_attack-r2-clean_post
+ACCEPT no_attack-r2-clean_post 1ae3a63d-5a39-45ca-a5e5-0e1f87b6f33d
+START no_attack-r3-clean_pre
+ACCEPT no_attack-r3-clean_pre 2baee7d8-1c72-4e1d-9be0-677223dce9bd
+START no_attack-r3-control_mid
+ACCEPT no_attack-r3-control_mid 0c0d9232-f70c-41d8-96ff-b043b8e34e96
+START no_attack-r3-clean_post
+ACCEPT no_attack-r3-clean_post 9ccd9688-8486-4ada-822b-8b569f2a6a84
+START debug_transport_control-r1-clean_pre
+ACCEPT debug_transport_control-r1-clean_pre 146e0435-83fd-472c-87cd-84a436df157c
+START debug_transport_control-r1-control_mid
+ACCEPT debug_transport_control-r1-control_mid 9d70710c-b946-402c-93f0-ff3dc3fe45c8
+START debug_transport_control-r1-clean_post
+ACCEPT debug_transport_control-r1-clean_post 26e27f01-688f-440b-84f4-ee2b9280ad03
+START webdriver-r1-clean_pre
+ACCEPT webdriver-r1-clean_pre 52fa874b-5cff-48f3-bced-baf98170d36f
+START webdriver-r1-attack
+ACCEPT webdriver-r1-attack 9367d1e3-7e75-4587-9c38-7ac1807d7c2b
+START webdriver-r1-clean_post
+ACCEPT webdriver-r1-clean_post 415c7c98-c571-406a-9be3-585beb56af17
+START webdriver-r2-clean_pre
+ACCEPT webdriver-r2-clean_pre d4bc86a5-b5f1-4626-9479-4f414a20a709
+START webdriver-r2-attack
+ACCEPT webdriver-r2-attack f3dbfc1d-f9d0-46a9-8a04-4421770a5719
+START webdriver-r2-clean_post
+ACCEPT webdriver-r2-clean_post 908b62d8-d689-4d90-ade2-35f73ebab17b
+START webdriver-r3-clean_pre
+ACCEPT webdriver-r3-clean_pre 3c86f73e-6b58-46dc-84de-4826a8e3e355
+START webdriver-r3-attack
+ACCEPT webdriver-r3-attack 5efd5675-82db-4acc-9d94-82ae64efd3c8
+START webdriver-r3-clean_post
+ACCEPT webdriver-r3-clean_post 6e8d8ad2-1c41-48e0-8e13-a48b0dd827ab
+START language-r1-clean_pre
+ACCEPT language-r1-clean_pre 35de8cb3-b8bb-4468-a799-0f814862d281
+START language-r1-attack
+Traceback (most recent call last):
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 297, in <module>
+    main()
+    ~~~~^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 291, in main
+    campaign.collect(step)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 219, in collect
+    evidence = self.run_injection(step, step_dir)
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 179, in run_injection
+    self.command([self.paths["node"], self.paths["runner"], step["configuration"]],
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 step_dir, env={**os.environ, **overrides}, timeout=150)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/featureapp_webdriver_runtime_v1/run_local_campaign.py", line 133, in command
+    raise RuntimeError(f"Command failed ({receipt['status']}): {prefix.name}")
+RuntimeError: Command failed (FAILED): command-072

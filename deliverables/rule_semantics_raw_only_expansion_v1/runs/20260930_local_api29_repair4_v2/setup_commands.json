@@ -1,0 +1,90 @@
+[
+  {
+    "argv": [
+      "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+      "-s",
+      "emulator-5582",
+      "shell",
+      "getprop",
+      "sys.boot_completed"
+    ],
+    "returncode": 0,
+    "stdout": "1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+      "-s",
+      "emulator-5582",
+      "shell",
+      "getprop",
+      "ro.build.version.sdk"
+    ],
+    "returncode": 0,
+    "stdout": "29\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+      "-s",
+      "emulator-5582",
+      "shell",
+      "getprop",
+      "ro.build.version.release"
+    ],
+    "returncode": 0,
+    "stdout": "10\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+      "-s",
+      "emulator-5582",
+      "shell",
+      "dumpsys",
+      "webviewupdate"
+    ],
+    "returncode": 0,
+    "stdout": "Current WebView Update Service state\n  Fallback logic enabled: false\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 29\n  Minimum WebView version code: 447211484\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211484, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+      "-s",
+      "emulator-5582",
+      "shell",
+      "dumpsys",
+      "package",
+      "com.example.hybridguard.featureapp"
+    ],
+    "returncode": 0,
+    "stdout": "Activity Resolver Table:\n  Non-Data Actions:\n      android.intent.action.MAIN:\n        9fd5c96 com.example.hybridguard.featureapp/.MainActivity filter 80bf3fe\n          Action: \"android.intent.action.MAIN\"\n          Category: \"android.intent.category.LAUNCHER\"\n\nReceiver Resolver Table:\n  Non-Data Actions:\n      android.intent.action.BATTERY_OKAY:\n        51a5017 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 445f5ac\n          Action: \"android.intent.action.BATTERY_OKAY\"\n          Action: \"android.intent.action.BATTERY_LOW\"\n      android.intent.action.ACTION_POWER_DISCONNECTED:\n        9654c04 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 5e2775f\n          Action: \"android.intent.action.ACTION_POWER_CONNECTED\"\n          Action: \"android.intent.action.ACTION_POWER_DISCONNECTED\"\n      androidx.profileinstaller.action.SAVE_PROFILE:\n        c62c5ed com.example.hybridguard.featureapp/androidx.profileinstaller.ProfileInstallReceiver filter 49f4e44\n          Action: \"androidx.profileinstaller.action.SAVE_PROFILE\"\n      android.intent.action.DEVICE_STORAGE_LOW:\n        aaac22 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter 1ac3275\n          Action: \"android.intent.action.DEVICE_STORAGE_LOW\"\n          Action: \"android.intent.action.DEVICE_STORAGE_OK\"\n      android.net.conn.CONNECTIVITY_CHANGE:\n        d69d6b3 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy filter 92f520a\n          Action: \"android.net.conn.CONNECTIVITY_CHANGE\"\n      android.intent.action.DEVICE_STORAGE_OK:\n        aaac22 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter 1ac3275\n          Action: \"android.intent.action.DEVICE_STORAGE_LOW\"\n          Action: \"android.intent.action.DEVICE_STORAGE_OK\"\n      androidx.profileinstaller.action.INSTALL_PROFILE:\n        c62c5ed com.example.hybridguard.featureapp/androidx.profileinstaller.ProfileInstallReceiver filter 47884d6\n          Action: \"androidx.profileinstaller.action.INSTALL_PROFILE\"\n      android.intent.action.BATTERY_LOW:\n        51a5017 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 445f5ac\n          Action: \"android.intent.action.BATTERY_OKAY\"\n          Action: \"android.intent.action.BATTERY_LOW\"\n      android.intent.action.TIMEZONE_CHANGED:\n        6ed2470 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 1e12a7b\n          Action: \"android.intent.action.BOOT_COMPLETED\"\n          Action: \"android.intent.action.TIME_SET\"\n          Action: \"android.intent.action.TIMEZONE_CHANGED\"\n      android.intent.action.TIME_SET:\n        6ed2470 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 1e12a7b\n          Action: \"android.intent.action.BOOT_COMPLETED\"\n          Action: \"android.intent.action.TIME_SET\"\n          Action: \"android.intent.action.TIMEZONE_CHANGED\"\n      androidx.profileinstaller.action.SKIP_FILE:\n        c62c5ed com.example.hybridguard.featureapp/androidx.profileinstaller.ProfileInstallReceiver filter 34df357\n          Action: \"androidx.profileinstaller.action.SKIP_FILE\"\n      androidx.profileinstaller.action.BENCHMARK_OPERATION:\n        c62c5ed com.example.hybridguard.featureapp/androidx.profileinstaller.ProfileInstallReceiver filter e453b2d\n          Action: \"androidx.profileinstaller.action.BENCHMARK_OPERATION\"\n      android.intent.action.BOOT_COMPLETED:\n        6ed2470 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 1e12a7b\n          Action: \"android.intent.action.BOOT_COMPLETED\"\n          Action: \"android.intent.action.TIME_SET\"\n          Action: \"android.intent.action.TIMEZONE_CHANGED\"\n      android.intent.action.ACTION_POWER_CONNECTED:\n        9654c04 com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 5e2775f\n          Action: \"android.intent.action.ACTION_POWER_CONNECTED\"\n          Action: \"android.intent.action.ACTION_POWER_DISCONNECTED\"\n      androidx.work.diagnostics.REQUEST_DIAGNOSTICS:\n        2b2d3e9 com.example.hybridguard.featureapp/androidx.work.impl.diagnostics.DiagnosticsReceiver filter 49a80f1\n          Action: \"androidx.work.diagnostics.REQUEST_DIAGNOSTICS\"\n      androidx.work.impl.background.systemalarm.UpdateProxies:\n        1eb686e com.example.hybridguard.featureapp/androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver filter df2c098\n          Action: \"androidx.work.impl.background.systemalarm.UpdateProxies\"\n\nPermissions:\n  Permission [com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (e212b0f):\n    sourcePackage=com.example.hybridguard.featureapp\n    uid=10144 gids=null type=0 prot=signature\n    perm=Permission{bd8179c com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}\n    packageSetting=PackageSetting{dbc5a5 com.example.hybridguard.featureapp/10144}\n\nRegistered ContentProviders:\n  com.example.hybridguard.featureapp/androidx.startup.InitializationProvider:\n    Provider{6699d7a com.example.hybridguard.featureapp/androidx.startup.InitializationProvider}\n\nContentProvider Authorities:\n  [com.example.hybridguard.featureapp.androidx-startup]:\n    Provider{6699d7a com.example.hybridguard.featureapp/androidx.startup.InitializationProvider}\n      applicationInfo=ApplicationInfo{f4f692b com.example.hybridguard.featureapp}\n\nKey Set Manager:\n  [com.example.hybridguard.featureapp]\n      Signing KeySets: 29\n\nPackages:\n  Package [com.example.hybridguard.featureapp] (dbc5a5):\n    userId=10144\n    pkg=Package{91d1188 com.example.hybridguard.featureapp}\n    codePath=/data/app/com.example.hybridguard.featureapp-EPnkfuGCgSfE8ZjoR6kbUw==\n    resourcePath=/data/app/com.example.hybridguard.featureapp-EPnkfuGCgSfE8ZjoR6kbUw==\n    legacyNativeLibraryDir=/data/app/com.example.hybridguard.featureapp-EPnkfuGCgSfE8ZjoR6kbUw==/lib\n    primaryCpuAbi=null\n    secondaryCpuAbi=null\n    versionCode=12 minSdk=21 targetSdk=36\n    versionName=1.6.5-expanded-v2.2-webdriver-raw\n    splits=[base]\n    apkSigningVersion=2\n    applicationInfo=ApplicationInfo{f4f692b com.example.hybridguard.featureapp}\n    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]\n    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE ]\n    dataDir=/data/user/0/com.example.hybridguard.featureapp\n    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]\n    timeStamp=2026-09-30 21:32:58\n    firstInstallTime=2026-09-30 21:32:58\n    lastUpdateTime=2026-09-30 21:32:58\n    signatures=PackageSignatures{3e81721 version:2, signatures:[b936dc11], past signatures:[]}\n    installPermissionsFixed=true\n    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]\n    declared permissions:\n      com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature, INSTALLED\n    requested permissions:\n      android.permission.INTERNET\n      android.permission.ACCESS_NETWORK_STATE\n      android.permission.WAKE_LOCK\n      android.permission.RECEIVE_BOOT_COMPLETED\n      android.permission.FOREGROUND_SERVICE\n      com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION\n    install permissions:\n      android.permission.FOREGROUND_SERVICE: granted=true\n      android.permission.RECEIVE_BOOT_COMPLETED: granted=true\n      com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true\n      android.permission.INTERNET: granted=true\n      android.permission.ACCESS_NETWORK_STATE: granted=true\n      android.permission.WAKE_LOCK: granted=true\n    User 0: ceDataInode=132081 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false\n      gids=[3003]\n      runtime permissions:\n      enabledComponents:\n        androidx.work.impl.background.systemalarm.RescheduleReceiver\n        androidx.work.impl.background.systemjob.SystemJobService\n\nPackage Changes:\n  Sequence number=0\n\n\nDexopt state:\n  [com.example.hybridguard.featureapp]\n    path: /data/app/com.example.hybridguard.featureapp-EPnkfuGCgSfE8ZjoR6kbUw==/base.apk\n      arm64: [status=verify] [reason=boot]\n\n\nCompiler stats:\n  [com.example.hybridguard.featureapp]\n    (No recorded stats)\n\nActive APEX packages:\n\n\nInactive APEX packages:\n\n\nFactory APEX packages:\n\n\n  APEX session state:\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+      "-s",
+      "emulator-5582",
+      "reverse",
+      "tcp:8000",
+      "tcp:8000"
+    ],
+    "returncode": 0,
+    "stdout": "8000\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "v24.3.0\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,228 @@
+{
+  "schema_version": "rule-semantics-source-admission-review-v1",
+  "status": "SUPPORTED_FOR_SEPARATE_LOCAL_DEVELOPMENT_PREPARATION",
+  "review_method": "Independent direct readback of saved plan, sessions, raw envelopes, collection receipts and per-attempt execution records; source implementation inspection. No candidate, detector, fit, predict, collection or digest recomputation.",
+  "source_root": "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1",
+  "actual_counts": {
+    "planned_positions": 31,
+    "unique_app_sessions": 31,
+    "raw_envelopes": 31,
+    "accepted_collection_receipts": 31,
+    "registered_receipt_and_attempt_bindings": 31,
+    "environments": 1,
+    "collector_installs": 1,
+    "complete_triplets": 10,
+    "target_intervention_triplets": 6,
+    "additional_control_triplets": 4,
+    "role_counts": {
+      "SMOKE_ONLY": 1,
+      "ADDITIONAL_LOCAL_CONTROL": 12,
+      "PAIRED_BASELINE_OR_RESTORATION": 12,
+      "CONTROLLED_TARGET_INTERVENTION_ACTIVE": 6
+    },
+    "webdriver_raw_reported_boolean_counts": {
+      "false": 28,
+      "true": 3
+    },
+    "language_status_observed": 31,
+    "languages_status_observed": 31,
+    "source_field_quality_map_present": 0
+  },
+  "verified_source_identity": {
+    "device_manifest_id": "codex-local-api36-1-raw-v1",
+    "collector_install_id": "3bf8a19e-d4e5-445e-bf3e-d791618e8a87",
+    "collector_package": "com.example.hybridguard.featureapp",
+    "collector_version_name": "1.6.5-expanded-v2.2-webdriver-raw",
+    "collector_version_code": 12,
+    "android_api": 36,
+    "webview_provider_package": "com.google.android.webview",
+    "webview_provider_version": "134.0.6998.135"
+  },
+  "supported_roles": {
+    "CONTROLLED_TARGET_INTERVENTION_ACTIVE": {
+      "count": 6,
+      "interpretation": "3 cdp_webdriver_only_v1 and 3 stealth_languages_only_v1 active sessions, with independent execution/session matching and observed declared field change. Supports a controlled target-manipulation activity label only.",
+      "general_attack_truth": "NOT_ADJUDICATED"
+    },
+    "PAIRED_BASELINE_OR_RESTORATION": {
+      "count": 12,
+      "interpretation": "clean_pre and clean_post around the six target interventions; direct-launch source path, target observation restoration verified.",
+      "normal_population_truth": "NOT_ESTABLISHED"
+    },
+    "ADDITIONAL_LOCAL_CONTROL": {
+      "count": 12,
+      "interpretation": "9 no-attack temporal controls and 3 debug-transport triplet records; only middle debug record uses no-injection CDP attach/navigation.",
+      "normal_population_truth": "NOT_ESTABLISHED"
+    },
+    "SMOKE_ONLY": {
+      "count": 1,
+      "interpretation": "Exclude from training and scored denominators; collector acceptance smoke only."
+    }
+  },
+  "label_admission_policy": {
+    "future_task_label_if_explicitly_frozen": "controlled_target_manipulation_present",
+    "potential_positive_rows": 6,
+    "potential_baseline_control_rows": 24,
+    "exclude_smoke": 1,
+    "formal_binary_label_currently_assigned": false,
+    "requirements": "Keep task-specific activity labels in evaluation metadata. Do not infer ground truth from a candidate relation or classifier outcome. Do not upgrade any baseline/control to population benign truth."
+  },
+  "grouping_recommendation": {
+    "environment_group_id": "codex-local-api36-1-raw-v1",
+    "minimum_no_split_unit": "all 31 records share one environment/install and must not straddle train/test folds",
+    "triplet_id_template": "20260930_local_api36_1_v1:<group>:r<round>",
+    "triplet_groups": {
+      "no_attack": 3,
+      "debug_transport_control": 1,
+      "webdriver": 3,
+      "language": 3
+    },
+    "smoke_triplet_id": null,
+    "do_not_use_as_environment_groups": [
+      "session_id",
+      "round",
+      "triplet_id",
+      "intervention configuration"
+    ],
+    "limits": "A held-out environment with only one new collection environment cannot yield a new-data-only cross-environment training/evaluation split."
+  },
+  "input_adaptation_review": {
+    "language": {
+      "source_value_paths": [
+        "web_data.navigator_layer.language",
+        "web_data.navigator_layer.languages"
+      ],
+      "source_status_paths": [
+        "collection_status.fields.web_data.navigator_layer.language",
+        "collection_status.fields.web_data.navigator_layer.languages"
+      ],
+      "target_feature_paths": [
+        "app.web_data.navigator_layer.language",
+        "app.web_data.navigator_layer.languages"
+      ],
+      "target_scope": "navigator_sync_v1",
+      "quality_is_adapter_derived": true,
+      "quality_derivation": "Reuse manipulation_eval.adapter.quality_for after ordinary type/status validation; observed nonmissing language values are observed_value. Preserve status and list order. Quality is not a collector-supplied field.",
+      "source_semantics": "Same synchronous getNavigatorFeatures call with cached nav object; not an atomic read or proof of native getter authenticity."
+    },
+    "webdriver_raw": {
+      "source_value_path": "collection_observations.webdriver",
+      "observation_schema_version": "app-web-observations-v1",
+      "target_value_path": "web_data.automation_surface_layer.webdriver_observation",
+      "target_scope": "webdriver_raw_observation_v1",
+      "copy_policy": "Copy only the seven required members without filling, coercing or collapsing false/null/absent/error. Preserve missing members for later U/FAILED handling.",
+      "observer_revision": "app-webdriver-observer-v1",
+      "realm_binding_template": "featureapp:<registered_session_id>:main-frame",
+      "source_semantics": "Presence and value are separate observations of the same cached navigator object; getter once when present. Association is not authenticity and raw false is only a reported false."
+    }
+  },
+  "source_registration_recommendation": {
+    "source_group_id": "featureapp_raw_local_api36_20260930_v1",
+    "source_status": "SUPPORTED_BY_EXISTING_LINEAGE",
+    "reader_revision": "featureapp-raw-observation-adapter-v1",
+    "reader_revision_placement": "Preparation registry metadata only; it is not a SourceBinding constructor field. The observer_revision is app-webdriver-observer-v1.",
+    "binding_version": "rsr-source-binding-v1",
+    "input_schema_version": "rsr-input-v1",
+    "per_session_binding_rule": "Generate caller-owned registration from the reviewed manifest, plan, raw archive offset, receipt and attempt join; compare page metadata to registered observer and realm. Never construct trust from page realm metadata alone.",
+    "existing_constructor": "SourceBinding(source_contract_id, observation_scope, observer_revision=None, realm_binding=None, binding_version=rsr-source-binding-v1)",
+    "existing_registration_constructor": "make_source_binding requires modes[MODE].source_status=SUPPORTED_BY_EXISTING_LINEAGE, nonempty evidence_refs, matching binding_scope, and source_group_id."
+  },
+  "source_evidence_refs": [
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/plan.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/sessions.jsonl",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/backend/raw_expanded_payloads.jsonl",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/backend/collection_receipts.jsonl",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/protocol_snapshot.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/release_snapshot.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/debug_transport_control-r1-control_mid/control_receipt.json",
+    "web_probe/canonical_web_probe.js:getNavigatorFeatures,observeWebdriver,getAutomationFeatures,collect",
+    "android_app/HybridGuard/featureapp/src/main/assets/expanded_webview_adapter.js:runProbe,getSessionId,webdriverObservation.realmBinding",
+    "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/AppCollectionObservations.kt:copyIfPresent",
+    "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt:sessionId,AppCollectionObservations.copyIfPresent",
+    "backend_server/main.py:canonical_received_payload raw archive",
+    "hybridguard_agent/research/manipulation_eval/adapter.py:adapt_payload,quality_for",
+    "hybridguard_agent/research/rule_semantics_input_readiness.py:make_source_binding",
+    "hybridguard_agent/research/rule_semantics_revision_v1/contracts.py:SourceBinding"
+  ],
+  "active_execution_evidence_refs": [
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/webdriver-r1-attack/automation/2026-09-30T12-01-47-336Z_cdp_webdriver_only_v1.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/webdriver-r2-attack/automation/2026-09-30T12-02-01-191Z_cdp_webdriver_only_v1.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/webdriver-r3-attack/automation/2026-09-30T12-02-13-528Z_cdp_webdriver_only_v1.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/language-r1-attack/automation/2026-09-30T12-02-25-584Z_stealth_languages_only_v1.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/language-r2-attack/automation/2026-09-30T12-02-37-695Z_stealth_languages_only_v1.json",
+    "deliverables/featureapp_webdriver_runtime_v1/runs/20260930_local_api36_1_v1/attempts/language-r3-attack/automation/2026-09-30T12-02-49-919Z_stealth_languages_only_v1.json"
+  ],
+  "limitations": [
+    "The registered protocol scope was local collection acceptance, not a pre-frozen formal training dataset; future admission must be declared explicitly and separately.",
+    "Only one emulator environment and one install; no physical device or independent confirmation material. Repeats are not independent devices.",
+    "The languages injection changes both first item and list length. These three positives cannot distinguish the new first-item condition from the historical length condition.",
+    "No normal multi-language App cases, API-absence cases, getter-error cases or nonboolean webdriver observations occur in these 31 records.",
+    "No-injection CDP control does not reproduce all Puppeteer internal behavior; the checked stability claim concerns the two target observations, not all 177 fields.",
+    "Do not backfill historical strict-true-projection false values into raw false; keep historical and new observation modes separate.",
+    "No generalized attack truth, population FPR, training benefit or overall detection-rate change was measured.",
+    "No formal binary label, candidate evaluation, model training or prediction was performed by this review."
+  ],
+  "app177_base_input_structural_check": {
+    "status": "PASS",
+    "entry_point": "hybridguard_agent.research.manipulation_eval.adapter.adapt_payload",
+    "actual_adapt_calls": 31,
+    "adapted_rows": 31,
+    "failed_rows": 0,
+    "fields_per_row": 177,
+    "feature_status_quality_keysets_identical": true,
+    "record_schema_version": "hybridguard-mtc-observation-v2",
+    "adapter_version": "app177-triplet-adapter-v1",
+    "field_quality_counts": {
+      "observed_value": 5487
+    },
+    "output_saved": false,
+    "candidate_calls": 0,
+    "fit_calls": 0,
+    "predict_calls": 0,
+    "scope": "Pure App177 conversion and structural coverage only. No detector or predicate measurement performed."
+  },
+  "w0_base_atom_construction_review": {
+    "definition_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R04_freeze_r1/data/definitions.json#single_surface_allowlists.app_web67",
+    "base_input_atom_count": 48,
+    "catalog_condition_atoms": 5,
+    "fixed_equality_atoms": 16,
+    "unfitted_numeric_measurement_atoms": 27,
+    "distinct_control_source_fields": 38,
+    "all_required_source_fields": 38,
+    "all_31_rows_contain_required_fields": true,
+    "required_field_status_quality": "All 1178 required field observations have observed / observed_value; availability under predicate-specific domains was not evaluated.",
+    "catalog_atom_ids": [
+      "CAT:NW-006",
+      "CAT:NW-007",
+      "CAT:OFFDER-TOUCH-001",
+      "CAT:P3-COLOR-APP",
+      "CAT:WVWEB-004"
+    ],
+    "legacy_cache_entry_point": {
+      "entry": "rule_learning.freeze.cache_rows",
+      "supports_new_raw_rows": false,
+      "reason": "Only repackages existing fixed R02 matrices and sidecars keyed by historical opaque IDs. It performs no raw extraction and has no input parameter for newly admitted records."
+    },
+    "reusable_stateless_primitives": [
+      {
+        "entry": "rule_learning.matrix.extract_atom(candidate, rule, payload)",
+        "purpose": "Measure each of the 5 exact catalog definitions from the adapted current payload, with original polarity and U/FAILED rules. No cached historical result can be substituted for a new record.",
+        "performed_in_this_review": false
+      },
+      {
+        "entry": "rule_learning.matrix.mask + control_input(payload, spec)",
+        "purpose": "Mask to app_web67, use fixed parser/typed-state interpretation. Form 16 fixed equality cells using the frozen equals values; preserve 27 raw numeric/list-length controls without fitting thresholds.",
+        "performed_in_this_review": false
+      }
+    ],
+    "existing_combined_entry": {
+      "entry": "rule_learning_v2.c_probes.measure",
+      "does_fit_or_predict_inside_measure": false,
+      "exact_W0_only": false,
+      "reason": "Its source reads frozen metadata and computes W0 plus all selectable core catalog atoms for C0 structural probes. The enclosing c_probes.run loads models and predicts, so run is out of scope. Do not use a probe-scoped runner as the new dataset admission runner."
+    },
+    "required_new_integration": "Add an exact-allowlist new-data measurement wrapper using the existing primitives, carrying the new source/data index and separate evaluation metadata. It must assert exact 48 base input atom keys for W0, then apply the separately frozen rule-semantics variant adjustment. Never call cache_rows to pretend the new records are historical cache rows.",
+    "numeric_boundary": "Threshold estimation is a fit operation. Keep UNFITTED_CONTROL values raw now; later fit thresholds only on each explicitly registered own-train partition.",
+    "readiness": "App177 structural coverage PASS; W0 base cell measurement and new-data runner integration NOT_EXECUTED and still required before a formal retraining dispatch."
+  }
+}

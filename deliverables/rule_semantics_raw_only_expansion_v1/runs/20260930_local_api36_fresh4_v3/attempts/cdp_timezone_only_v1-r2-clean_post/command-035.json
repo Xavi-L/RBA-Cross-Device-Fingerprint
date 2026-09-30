@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+    "-s",
+    "emulator-5580",
+    "shell",
+    "am",
+    "start",
+    "-S",
+    "-W",
+    "-n",
+    "com.example.hybridguard.featureapp/.MainActivity",
+    "--es",
+    "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+    "http://127.0.0.1:8000/api/collect/fingerprint",
+    "--es",
+    "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+    "20260930_local_api36_fresh4_v3:cdp_timezone_only_v1-r2-clean_post",
+    "--ei",
+    "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+    "2",
+    "--es",
+    "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+    "codex-local-api36-1-raw-v1"
+  ],
+  "started_at": "2026-09-30T15:10:08.496367+00:00",
+  "timeout_seconds": 35,
+  "status": "COMPLETED",
+  "return_code": 0,
+  "finished_at": "2026-09-30T15:10:09.801796+00:00"
+}
