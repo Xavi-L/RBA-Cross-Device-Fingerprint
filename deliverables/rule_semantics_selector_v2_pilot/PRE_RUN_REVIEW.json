@@ -1,0 +1,35 @@
+{
+  "reviewed_at": "2026-09-30T16:25:23.813078+00:00",
+  "status": "PASS",
+  "execution_not_started_at_review": true,
+  "base_commit": "13a5ce2ff6708c3b2005c27eb0107a638df4ac55",
+  "registered_source_files": [
+    "hybridguard_agent/research/rule_learning_v2/semantic_selection.py",
+    "hybridguard_agent/research/rule_semantics_selector_v2.py",
+    "hybridguard_agent/tests/test_semantic_selection_v2.py",
+    "hybridguard_agent/tests/test_rule_semantics_selector_v2.py",
+    "deliverables/rule_semantics_selector_v2_pilot/run_pilot.py",
+    "deliverables/rule_semantics_selector_v2_pilot/test_runner.py"
+  ],
+  "source_snapshot": "source_snapshot/",
+  "synthetic_tests": {
+    "selector_core": 13,
+    "adapter_after_review_fix": 5,
+    "runner_fake_engine": 6,
+    "total": 24,
+    "all_passed": true,
+    "real_fit_or_prediction_calls": 0
+  },
+  "reviewer": "independent v2_protocol_review agent; root gate check",
+  "finding": "P2: adapter audit signal grouping retained display-ID shortcuts",
+  "resolution": "Audit, manifest and initialization checks now all derive groups from semantic_catalog; collision regression test passes.",
+  "remaining_blockers": [],
+  "checks": [
+    "Exact 378 raw IDs, source modes, three outer folds and original constraints",
+    "Own-fold saved sparse initializer only; no encoder refit in retention",
+    "Six fit / 378 new prediction budget; shared fit count 189 and remaining 11",
+    "Explicit user authorization matches jobs and IDs",
+    "No heldout labels before frozen predictions; no baseline reads before all new jobs close",
+    "No actual experiment has started; no retries authorized"
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "schema_version": "selector-v2-independent-result-review-v1",
+  "reviewed_at": "2026-09-30T16:28:28.950729+00:00",
+  "status": "PASS",
+  "reviewer": "v2_protocol_review",
+  "scope": "Read-only inspection and independent aggregation of saved models, predictions, training traces, receipts, access logs, original sidecars, protocol and source snapshots. Only this review file was written.",
+  "new_fit_calls": 0,
+  "new_prediction_calls": 0,
+  "tests_rerun": 0,
+  "model_and_prediction_checks": "PASS",
+  "folds": [
+    {
+      "fold_id": "RAW-LOEO-v1-01",
+      "prediction_ids_exact": true,
+      "prediction_count": 126,
+      "phase_counts": {
+        "attack": 42,
+        "clean_pre": 42,
+        "clean_post": 42
+      },
+      "attack_alerts": 36,
+      "attack_n": 42,
+      "clean_alerts": 0,
+      "new_conditions_in_sparse": {
+        "RSR-LANG-FIRST-v1": true,
+        "RSR-WEBDRIVER-STATE-v1": true
+      },
+      "new_conditions_in_retention": {
+        "RSR-LANG-FIRST-v1": true,
+        "RSR-WEBDRIVER-STATE-v1": true
+      },
+      "retention_operation_counts": {},
+      "D_initial": 1.2857142857142858,
+      "D_final": 1.2857142857142858,
+      "rules": 6,
+      "complexity": 12,
+      "unchanged_from_sparse": true
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-02",
+      "prediction_ids_exact": true,
+      "prediction_count": 126,
+      "phase_counts": {
+        "clean_pre": 42,
+        "clean_post": 42,
+        "attack": 42
+      },
+      "attack_alerts": 36,
+      "attack_n": 42,
+      "clean_alerts": 0,
+      "new_conditions_in_sparse": {
+        "RSR-LANG-FIRST-v1": true,
+        "RSR-WEBDRIVER-STATE-v1": true
+      },
+      "new_conditions_in_retention": {
+        "RSR-LANG-FIRST-v1": true,
+        "RSR-WEBDRIVER-STATE-v1": true
+      },
+      "retention_operation_counts": {},
+      "D_initial": 1.2857142857142858,
+      "D_final": 1.2857142857142858,
+      "rules": 6,
+      "complexity": 12,
+      "unchanged_from_sparse": true
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-03",
+      "prediction_ids_exact": true,
+      "prediction_count": 126,
+      "phase_counts": {
+        "clean_pre": 42,
+        "attack": 42,
+        "clean_post": 42
+      },
+      "attack_alerts": 36,
+      "attack_n": 42,
+      "clean_alerts": 0,
+      "new_conditions_in_sparse": {
+        "RSR-LANG-FIRST-v1": true,
+        "RSR-WEBDRIVER-STATE-v1": true
+      },
+      "new_conditions_in_retention": {
+        "RSR-LANG-FIRST-v1": true,
+        "RSR-WEBDRIVER-STATE-v1": true
+      },
+      "retention_operation_counts": {},
+      "D_initial": 1.2857142857142858,
+      "D_final": 1.2857142857142858,
+      "rules": 6,
+      "complexity": 12,
+      "unchanged_from_sparse": true
+    }
+  ],
+  "new_scheme": {
+    "attack_alerts": 108,
+    "attack_n": 126,
+    "clean_alerts": 0,
+    "clean_n": 252,
+    "defined": 378,
+    "expected": 378,
+    "configurations": {
+      "w10-cdp-emulation-screen-metrics-only-v1": {
+        "attack_alerts": 0,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w10-cdp-emulation-timezone-only-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w6-tool-054-legacy-default-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w6-tool-055-legacy-default-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w6-tool-056-legacy-default-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w6-tool-058-legacy-default-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-rule-boundary-cdp-platform-only-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-rule-boundary-cdp-resource-pair-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-rule-boundary-cdp-ua-only-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-rule-boundary-cdp-ua-platform-desktop-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-rule-boundary-cdp-webdriver-only-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-stealth-boundary-languages-only-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-stealth-boundary-plugins-mime-v1": {
+        "attack_alerts": 9,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      },
+      "w9-stealth-boundary-webgl-pair-v1": {
+        "attack_alerts": 0,
+        "attack_n": 9,
+        "clean_alerts": 0,
+        "clean_n": 18
+      }
+    }
+  },
+  "comparisons": {
+    "BASE": {
+      "changed_count": 0,
+      "attack_alert_delta": 0,
+      "config_alert_deltas": {},
+      "all_configurations_nondegrading": true,
+      "saved_prediction_reuse_only": true
+    },
+    "PRIOR_COMBINATION": {
+      "changed_count": 18,
+      "attack_alert_delta": 0,
+      "config_alert_deltas": {
+        "w9-rule-boundary-cdp-webdriver-only-v1": 9,
+        "w10-cdp-emulation-screen-metrics-only-v1": -9
+      },
+      "all_configurations_nondegrading": false,
+      "saved_prediction_reuse_only": true
+    }
+  },
+  "retention_swap_count": 0,
+  "retention_addition_count": 0,
+  "interpretation": "Both new positive conditions were selected during sparse initialization in every fold. Retention made no actual additions or swaps. This real pilot does not demonstrate an effect of the swap mechanism; that mechanism has synthetic boundary coverage only. No net gain over either reference. New predictions exactly match BASE. Relative to the prior combination, the new scheme loses 9 screen-metric detections and gains 9 webdriver detections.",
+  "source_checks": [
+    {
+      "path": "hybridguard_agent/research/rule_learning_v2/semantic_selection.py",
+      "same_bytes_as_prerun_snapshot": true,
+      "live_mtime_not_after_run_start": true
+    },
+    {
+      "path": "hybridguard_agent/research/rule_semantics_selector_v2.py",
+      "same_bytes_as_prerun_snapshot": true,
+      "live_mtime_not_after_run_start": true
+    },
+    {
+      "path": "hybridguard_agent/tests/test_semantic_selection_v2.py",
+      "same_bytes_as_prerun_snapshot": true,
+      "live_mtime_not_after_run_start": true
+    },
+    {
+      "path": "hybridguard_agent/tests/test_rule_semantics_selector_v2.py",
+      "same_bytes_as_prerun_snapshot": true,
+      "live_mtime_not_after_run_start": true
+    },
+    {
+      "path": "deliverables/rule_semantics_selector_v2_pilot/run_pilot.py",
+      "same_bytes_as_prerun_snapshot": true,
+      "live_mtime_not_after_run_start": true
+    },
+    {
+      "path": "deliverables/rule_semantics_selector_v2_pilot/test_runner.py",
+      "same_bytes_as_prerun_snapshot": true,
+      "live_mtime_not_after_run_start": true
+    }
+  ],
+  "no_post_run_registered_source_change_observed": true,
+  "source_check_method": "One direct byte comparison per registered source file against its pre-run snapshot plus modification time not after RUN_STARTED; no cryptographic checks.",
+  "budget": {
+    "fit_jobs": 6,
+    "prediction_calls": 378,
+    "cumulative_fit_jobs": 195,
+    "remaining_research_fits": 5,
+    "retries": 0,
+    "baseline_fit_calls": 0,
+    "baseline_prediction_calls": 0
+  },
+  "protocol_consistency": "PASS: fixed source/folds/constraints, six-clause cap, same-fold encoder reuse, guarded access order, independent old-output comparison, no retries.",
+  "limitations": [
+    "Exposed retrospective development cohort; not independent confirmation.",
+    "Same host and three emulator environments with two WebView versions; no population normal-App FPR estimate.",
+    "Training swap nonregression is not held-out nonregression versus prior combination.",
+    "Source checks establish present source matches the pre-run copy; they are not a tamper-proof history proof."
+  ],
+  "findings": []
+}

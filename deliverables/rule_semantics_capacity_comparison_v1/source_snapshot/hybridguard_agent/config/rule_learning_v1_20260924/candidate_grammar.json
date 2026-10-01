@@ -1,0 +1,30 @@
+{
+  "schema_version": "rule-learning-candidate-grammar-v1",
+  "candidate_version": "r01-atoms-v1",
+  "inventory": {"catalog_status": "ACTIVE", "count": 57, "ledger": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/CANDIDATE_LEDGER.jsonl", "source_counts": {"E": 23, "O_u": 9, "H": 14, "C": 11}, "selection_by_full_data_outcomes": false},
+  "relation_types": ["CROSS_SURFACE_RELATION", "SAME_SURFACE_MULTIFIELD", "COLLECTOR_CONSISTENCY", "DEPLOYMENT_POLICY", "SINGLE_FIELD_CONTEXT", "OTHER_DIAGNOSTIC"],
+  "pools": {
+    "core": {"relation_types": ["CROSS_SURFACE_RELATION"], "required_min_surfaces": 2, "excluded_reason": "NOT_A_RELATION_BETWEEN_OBSERVATION_SURFACES"},
+    "single_surface": {"surfaces": ["native84", "app_web67", "host26"], "include_catalog_relations": true, "include_encoder": "SINGLE_SURFACE_TRAIN_ENCODER_V1", "mask_before_derivation": true},
+    "diagnostic": {"learnable_in_primary": false, "keep_all_57_records": true},
+    "browser_dependent": {"current_role": "DISCOVERY_REFERENCE_ONLY", "supervised_App177": "STRUCTURALLY_UNAVAILABLE", "fabricate_or_join_external_browser": false}
+  },
+  "literal": {"fields": {"atom_id": "string", "polarity": "enum:POSITIVE,NEGATIVE"}, "polarity_choices": ["POSITIVE", "NEGATIVE"], "negative_U": "U", "missingness_literal": false, "predicate_parameters": "FROZEN_CATALOG_VALUES_NO_THRESHOLD_SEARCH"},
+  "composition": {"primary": "OR_OF_SINGLE_LITERALS", "extension": "OR_OF_AND_CLAUSES", "max_clause_length_primary": 1, "max_clause_length_extension": 2, "max_selected_clauses": 6, "max_selected_literals": 12, "max_distinct_atoms": 12, "max_clauses_per_family": 2, "allow_empty_clause": false, "allow_same_atom_both_polarities": false, "allow_duplicate_literal": false, "allow_duplicate_clause": false, "allow_same_family_in_AND": false, "allow_subsumed_clause": false, "selection_order_matters": false, "finite_clause_order": "LEXICOGRAPHIC_ATOM_ID_THEN_POLARITY", "max_candidate_clauses": 4096, "overflow": "BRANCH_NOT_RUN_SEARCH_SPACE_EXCEEDS_CAP_NO_LABEL_RANK_TRUNCATION"},
+  "duplicates": {"identity_basis": "EXPRESSION_PARAMETERS_MEASUREMENT_DOMAIN_AND_NORMALIZED_DEVIATION_POLARITY", "common_domain_only_equivalence_is_global_equivalence": false, "core_equivalent_pairs": [["NW-002", "OFFDER-OS-001"], ["NVW-002", "OFFDER-OS-002"]], "canonical_within_allowed_sources": "LEXICOGRAPHIC_RULE_ID", "canonical_condition": "DEVIATION", "canonical_positive_literal": "use row.direct_OR_deviation_polarity; canonical negative uses its opposite; U unchanged", "equal_domain_requirement": "same R01 app_android_major or system_android_major profile; reject alias merge if value/availability/reason domain differs", "source_membership_adds_independent_support": false, "mixed_clause_sources": "UNION_OF_SELECTED_ORIGINAL_ATOM_SOURCES", "keep_all_alias_ids": true},
+  "direct_OR_baseline": {"pool": "core", "polarity": "PER_ATOM_DEVIATION_POLARITY_IN_LEDGER", "includes_both_polarities": false, "max_selected_clauses": null, "cap_exemption_reason": "UNSELECTED_ALL_CORE_BASELINE_REPORT_ACTUAL_COMPLEXITY", "train_support_filter": false, "measurement_contract": "r01-measurement-v1"},
+  "new_encoder": {
+    "id": "SINGLE_SURFACE_TRAIN_ENCODER_V1",
+    "provenance": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+    "implementation_status": "DECLARED_ONLY_R02_R03_REQUIRED",
+    "field_list_ref": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/SINGLE_SURFACE_FIELDS.json",
+    "boolean": {"operator": "EQ", "value": true},
+    "number": {"operator": "LE", "threshold_quantiles": [0.25, 0.5, 0.75], "quantile_interpolation": "LINEAR_AT_INDEX_(N_MINUS_1)*Q", "threshold_fit_rows": "TRAIN_CURRENT_STAGE_OBSERVED_VALUES_ONLY", "deduplicate_equal_thresholds": true, "max_thresholds_per_field": 3},
+    "string_parsers": {"ua_class": {"implementation_ref": "hybridguard_agent/evidence/extractor.py::_ua_class", "categories": ["script_client", "desktop_or_headless", "android_browser", "android_webview"], "unknown": "U"}, "platform_class": {"implementation_ref": "hybridguard_agent/evidence/extractor.py::_platform_class", "categories": ["android", "mobile_or_ambiguous", "desktop"], "unknown": "U"}},
+    "array_transform": {"operator": "LENGTH", "input": "app.web_data.navigator_layer.languages", "element_type": "nonempty_string", "thresholds": "SAME_TRAIN_QUANTILES_AS_NUMBER"},
+    "forbidden": ["opaque identifiers", "hash strings", "arbitrary string vocabulary", "error fields", "absolute timestamps", "install times", "uptime", "field missingness as attack feature"],
+    "max_literals_per_surface": 512,
+    "overflow": "NOT_RUN_NO_OUTCOME_BASED_TRUNCATION",
+    "controls_interpretation": "SINGLE_SURFACE_PREDICTIVE_INFORMATION_INCLUDING_DOMAIN_SHORTCUTS_NOT_CROSS_SURFACE_CONTRIBUTION"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-01T04:15:50.120828+00:00",
+  "execution_not_started_at_review": true,
+  "base_commit": "13a5ce2ff6708c3b2005c27eb0107a638df4ac55",
+  "registered_source_files": [
+    "hybridguard_agent/research/rule_learning_v2/capacity.py",
+    "hybridguard_agent/research/rule_semantics_capacity.py",
+    "hybridguard_agent/tests/test_rule_semantics_capacity.py",
+    "deliverables/rule_semantics_capacity_comparison_v1/run_comparison.py",
+    "deliverables/rule_semantics_capacity_comparison_v1/test_runner.py",
+    "hybridguard_agent/research/rule_learning_v2/semantic_selection.py",
+    "hybridguard_agent/research/rule_learning/models.py",
+    "hybridguard_agent/research/rule_learning/selector.py",
+    "hybridguard_agent/research/rule_learning/predictor.py",
+    "hybridguard_agent/research/rule_learning_v2/adapter.py",
+    "hybridguard_agent/research/rule_learning_v2/retention.py",
+    "hybridguard_agent/research/rule_semantics_selector_v2.py",
+    "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json",
+    "hybridguard_agent/config/rule_learning_v1_20260924/candidate_grammar.json"
+  ],
+  "synthetic_tests": {
+    "capacity_and_adapter": 6,
+    "fake_runner": 7,
+    "all_final_cases_pass": true,
+    "real_fit_calls": 0,
+    "test_assertion_repair": "Initial serialization test compared tuple containers to JSON-loaded lists; changed test to canonical JSON comparison and reran that one case successfully. Engine unchanged by this repair."
+  },
+  "checks": [
+    "Contract gate PASS with exact 378 members and folds",
+    "Only capacity controls and experiment/schema bindings differ from six-rule adapter",
+    "Original six-rule model validation remains strict; seven allowed only under new schema/profile; eight rejected",
+    "Synthetic first six greedy trace steps, encoder and support identical to six-rule reference",
+    "Retained initializer is own-fold CAP7 only; zero encoder refit",
+    "Raw mode, unknown and failed states preserved",
+    "Fake runner authorization, source, capacity, budget amendment, freeze access ordering, timeout and no retry checks passed",
+    "Old six registered pilot sources unchanged",
+    "No new candidate family, no WebGL change, no real fit or prediction before source freeze"
+  ],
+  "remaining_blockers": []
+}

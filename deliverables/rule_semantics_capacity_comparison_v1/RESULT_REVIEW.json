@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "review_method": "Saved-artifact cross-check; no fresh model evaluation or optimizer calls.",
+  "new_fit_calls": 0,
+  "new_prediction_calls": 0,
+  "source_snapshots_match": true,
+  "registered_source_files_checked": 14,
+  "fits_and_predictions_accounted": {
+    "fits": 6,
+    "predictions": 378
+  },
+  "folds": [
+    {
+      "fold_id": "RAW-LOEO-v1-01",
+      "heldout_environment": "codex-local-api29-raw-v1",
+      "train_members_encoder_atoms_support_and_semantic_catalog_match_CAP6": true,
+      "first_six_sparse_steps_match_CAP6": true,
+      "seventh_added_clause": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625:NEGATIVE",
+      "clauses": 7,
+      "complexity": 14,
+      "retention_additions": 0,
+      "retention_swaps": 0,
+      "own_fold_initialization_without_refit": true
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-02",
+      "heldout_environment": "codex-local-api30-raw-v1",
+      "train_members_encoder_atoms_support_and_semantic_catalog_match_CAP6": true,
+      "first_six_sparse_steps_match_CAP6": true,
+      "seventh_added_clause": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625:NEGATIVE",
+      "clauses": 7,
+      "complexity": 14,
+      "retention_additions": 0,
+      "retention_swaps": 0,
+      "own_fold_initialization_without_refit": true
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-03",
+      "heldout_environment": "codex-local-api36-1-raw-v1",
+      "train_members_encoder_atoms_support_and_semantic_catalog_match_CAP6": true,
+      "first_six_sparse_steps_match_CAP6": true,
+      "seventh_added_clause": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625:NEGATIVE",
+      "clauses": 7,
+      "complexity": 14,
+      "retention_additions": 0,
+      "retention_swaps": 0,
+      "own_fold_initialization_without_refit": true
+    }
+  ],
+  "comparisons": {
+    "CAP6": {
+      "changed_decisions": 9,
+      "gains_by_config": {
+        "w10-cdp-emulation-screen-metrics-only-v1": 9
+      },
+      "attack_regressions": [],
+      "new_clean_alerts": 0,
+      "coverage_loss": 0
+    },
+    "BASE": {
+      "changed_decisions": 9,
+      "gains_by_config": {
+        "w10-cdp-emulation-screen-metrics-only-v1": 9
+      },
+      "attack_regressions": [],
+      "new_clean_alerts": 0,
+      "coverage_loss": 0
+    },
+    "PRIOR_COMBINATION": {
+      "changed_decisions": 9,
+      "gains_by_config": {
+        "w9-rule-boundary-cdp-webdriver-only-v1": 9
+      },
+      "attack_regressions": [],
+      "new_clean_alerts": 0,
+      "coverage_loss": 0
+    }
+  },
+  "findings": []
+}

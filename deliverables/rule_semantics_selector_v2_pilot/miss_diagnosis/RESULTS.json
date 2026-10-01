@@ -1,0 +1,989 @@
+{
+  "status": "DIAGNOSIS_COMPLETE",
+  "evaluation_role": "POST_HOC_EXPOSED_DEVELOPMENT_DIAGNOSIS",
+  "scope": "Step 1 only. Saved thresholds/support/trace and closed predictions; no search, refit, new model or altered-model heldout evaluation.",
+  "execution_account": {
+    "new_fit_calls": 0,
+    "new_threshold_fit_calls": 0,
+    "new_model_prediction_api_calls": 0,
+    "new_candidate_semantic_evaluator_calls": 0,
+    "diagnostic_arithmetic": "Stored thresholds reapplied to train inputs; specified DPR candidate marginal/constraint/tie calculations. These are post-hoc train explanations, not new fitted results.",
+    "cumulative_fit_jobs_unchanged": 195,
+    "remaining_old_protocol_fits_unchanged": 5
+  },
+  "checks": [
+    {
+      "fold_id": "RAW-LOEO-v1-01",
+      "all_saved_literal_support_counts_match": 122,
+      "saved_greedy_trace_steps_match": 6,
+      "saved_train_model_score_and_states_match": true,
+      "closed_outer_predictions_equal_saved_evaluation_rows": true
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-02",
+      "all_saved_literal_support_counts_match": 122,
+      "saved_greedy_trace_steps_match": 6,
+      "saved_train_model_score_and_states_match": true,
+      "closed_outer_predictions_equal_saved_evaluation_rows": true
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-03",
+      "all_saved_literal_support_counts_match": 104,
+      "saved_greedy_trace_steps_match": 6,
+      "saved_train_model_score_and_states_match": true,
+      "closed_outer_predictions_equal_saved_evaluation_rows": true
+    }
+  ],
+  "folds": [
+    {
+      "fold_id": "RAW-LOEO-v1-01",
+      "heldout_environment": "codex-local-api29-raw-v1",
+      "train_n": 252,
+      "encoded_atom_count": 61,
+      "literal_count": 122,
+      "saved_train_model": {
+        "macro_tpr": {
+          "numerator": 6,
+          "denominator": 7,
+          "value": 0.8571428571428571
+        },
+        "objective": {
+          "numerator": 279,
+          "denominator": 350,
+          "value": 0.7971428571428572
+        },
+        "complexity": 12,
+        "clauses": 6,
+        "clean_alarms": 0,
+        "clean_budget": 8,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "feasible": true,
+        "constraint_failures": []
+      },
+      "screen_DPR_train_marginal_ids": [
+        "rawonly-64019345-b650-4cf7-ac68-9a9e02402c62",
+        "rawonly-72a4983c-12d3-49b1-b40e-016b6ca97faa",
+        "rawonly-a7469176-98ce-49cc-8202-3202f3372c3e",
+        "rawonly-c34e9a60-d8f9-4ab0-a261-19d27ba0469e",
+        "rawonly-e840172f-e959-4283-9002-cffb45c70b0d",
+        "rawonly-f0659432-e820-40bd-ab4d-8414be4e818a"
+      ],
+      "screen_DPR_hypothetical_addition_train_only": {
+        "macro_tpr": {
+          "numerator": 13,
+          "denominator": 14,
+          "value": 0.9285714285714286
+        },
+        "objective": {
+          "numerator": 601,
+          "denominator": 700,
+          "value": 0.8585714285714285
+        },
+        "complexity": 14,
+        "clauses": 7,
+        "clean_alarms": 0,
+        "clean_budget": 8,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "feasible": false,
+        "constraint_failures": [
+          "MAX_CLAUSES",
+          "MAX_OBJECTIVE_COMPLEXITY"
+        ]
+      },
+      "screen_one_for_one_train_loss": [
+        {
+          "removed_clause_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-1ea073ef-f97c-448b-a092-e15cf5e451a5",
+            "rawonly-38b6fa9d-5cdf-497b-b14a-63767be4a961",
+            "rawonly-560cb7a3-e3ed-4053-9f85-ed9f6992b391",
+            "rawonly-5a63f3c4-fadc-4380-afc8-cbd63f7af955",
+            "rawonly-5c9ee412-cb98-4c1e-8a75-5fba80262d54",
+            "rawonly-6e3ef6e9-8b0e-4147-9d7e-cbea27ae2b58",
+            "rawonly-9dfbb537-52bd-4657-88f4-31b03435beb5",
+            "rawonly-a66484ac-22fe-4dd3-a05b-0e776bdd21e5",
+            "rawonly-c6cefb73-2deb-4d64-9f86-9d9ee04e841a",
+            "rawonly-d04fe53a-ce5b-4d40-9699-00c2491a0fb0",
+            "rawonly-e7ba84a7-1558-4ee7-b8a1-c3b9e82be973",
+            "rawonly-fb94c1c0-e1ee-46b8-bc7e-41e558de0a8a"
+          ],
+          "lost_configurations": {
+            "w9-stealth-boundary-plugins-mime-v1": 6,
+            "w6-tool-058-legacy-default-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "RSR-WEBDRIVER-STATE-v1:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-411012bd-5686-45db-bb80-c915747b09bf",
+            "rawonly-48c71050-981f-4d3b-9aff-c629bde83be5",
+            "rawonly-54f4982a-bad8-4118-a68e-c769333a9021",
+            "rawonly-6e1eeff6-1ced-4cf9-802c-36441e8ed5b4",
+            "rawonly-c7fc6b21-139e-4ff6-b44f-a6de8047152f",
+            "rawonly-da66d081-6cc0-46da-98aa-045778cbed79"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-webdriver-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-03ceba25-ecfe-435e-a511-6d8b5c04431e",
+            "rawonly-530cb319-8b97-4b98-85a5-0a8436d35b4e",
+            "rawonly-70b0244d-42ae-4423-894c-c9198b2a8c2d",
+            "rawonly-c60d0fbe-82e4-4d70-ae31-6d39a378395f",
+            "rawonly-d109060e-50e5-4764-801d-06e916bcc69d",
+            "rawonly-d880c189-6ed6-4b8e-83d5-3bf57054a6a5"
+          ],
+          "lost_configurations": {
+            "w10-cdp-emulation-timezone-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-1a7ad58e-6217-47da-8cac-fd10ab1ff750",
+            "rawonly-7d2215b3-6edd-4308-b543-6a79dfd84b5f",
+            "rawonly-b8dc3968-1001-4e65-9b6a-166fd080776b",
+            "rawonly-bae7e8bf-ad39-44cd-a982-7f8c34dbdbe7",
+            "rawonly-c0b2a6e7-8da0-43f0-9b08-1fd5a5f984bf",
+            "rawonly-de9796f0-0c5b-4683-ae7b-c1726aaf0642"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-resource-pair-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "RSR-LANG-FIRST-v1:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-036e0e9d-b526-43c9-ab28-8c7bb67e9a32",
+            "rawonly-2ac99c8c-ca1a-4e42-a151-9b0a243a780c",
+            "rawonly-50b32532-fe1f-4c05-babe-f87868e015c4",
+            "rawonly-6f2384ec-a153-4b3c-9744-7ef378e4d88b",
+            "rawonly-96b03031-1b39-4c2d-9d84-71be369a89b2",
+            "rawonly-bb7f7753-08c2-4f95-9768-48acca2ff692"
+          ],
+          "lost_configurations": {
+            "w9-stealth-boundary-languages-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CAT:NW-006:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-06364f55-ec37-4b25-b779-f9ed78c8ecf3",
+            "rawonly-0b8fa2d9-3553-4d4b-9d68-cb2a24d3dbd0",
+            "rawonly-1fb25324-89b3-427b-936f-b457663a2249",
+            "rawonly-2584a01b-cd7a-48fb-b2a2-fe865256beeb",
+            "rawonly-38c76d77-c262-41ae-8944-cc309fb043b3",
+            "rawonly-52be4f4c-8e89-4080-9c61-25701739702f",
+            "rawonly-5d5004b3-d2da-45d6-b470-71881c603da5",
+            "rawonly-945745fb-85c3-40dd-98a5-194823f66f42",
+            "rawonly-a633cf03-9538-4d9e-ab2c-78626c16f35c",
+            "rawonly-abecaaf8-8919-4303-a15c-c2447a8ed4b1",
+            "rawonly-af4fb203-8cec-43c6-9e37-d5041240b60b",
+            "rawonly-bf9fbf7e-3b44-4408-9a75-734171ea563b",
+            "rawonly-c593b309-b111-41d8-8b42-517430794674",
+            "rawonly-c70fe016-e4ba-4dcf-8885-3576c640a99e",
+            "rawonly-d651d0f2-42e3-443d-bfbe-cbda4698df38",
+            "rawonly-dd25d67d-a279-41e6-85e0-91f3485d6ce1",
+            "rawonly-e10510b4-fbd7-427a-af37-a49524676cb8",
+            "rawonly-e915f664-e191-4a97-8ac5-2e7520d877ff"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-ua-platform-desktop-v1": 6,
+            "w9-rule-boundary-cdp-ua-only-v1": 6,
+            "w9-rule-boundary-cdp-platform-only-v1": 6
+          }
+        }
+      ],
+      "screen_same_group_selected": [],
+      "webgl_triggering_literal_count": 74,
+      "webgl_triggering_literal_min_clean_alarms": 44,
+      "webgl_OR_clean_bound_exceeds_budget": true,
+      "webgl_paired_encoded_differences_train_only": [
+        {
+          "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+          "clean_pre": [],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ],
+          "clean_post": []
+        },
+        {
+          "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ],
+          "clean_post": []
+        },
+        {
+          "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+          "clean_pre": [],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.6"
+          ]
+        }
+      ],
+      "saved_outer_target_decisions": {
+        "NEW_SCHEME": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "NO_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        },
+        "BASE": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "NO_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        },
+        "PRIOR_COMBINATION": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "MANIPULATION_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        }
+      }
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-02",
+      "heldout_environment": "codex-local-api30-raw-v1",
+      "train_n": 252,
+      "encoded_atom_count": 61,
+      "literal_count": 122,
+      "saved_train_model": {
+        "macro_tpr": {
+          "numerator": 6,
+          "denominator": 7,
+          "value": 0.8571428571428571
+        },
+        "objective": {
+          "numerator": 279,
+          "denominator": 350,
+          "value": 0.7971428571428572
+        },
+        "complexity": 12,
+        "clauses": 6,
+        "clean_alarms": 0,
+        "clean_budget": 8,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "feasible": true,
+        "constraint_failures": []
+      },
+      "screen_DPR_train_marginal_ids": [
+        "rawonly-67692b4f-cd30-4e4c-9436-71631c5e1517",
+        "rawonly-72a4983c-12d3-49b1-b40e-016b6ca97faa",
+        "rawonly-a12c2c94-b2b8-47dc-adfe-adf7218e0c31",
+        "rawonly-a7469176-98ce-49cc-8202-3202f3372c3e",
+        "rawonly-c34e9a60-d8f9-4ab0-a261-19d27ba0469e",
+        "rawonly-fe6d6904-3056-4f00-949e-074e4651689e"
+      ],
+      "screen_DPR_hypothetical_addition_train_only": {
+        "macro_tpr": {
+          "numerator": 13,
+          "denominator": 14,
+          "value": 0.9285714285714286
+        },
+        "objective": {
+          "numerator": 601,
+          "denominator": 700,
+          "value": 0.8585714285714285
+        },
+        "complexity": 14,
+        "clauses": 7,
+        "clean_alarms": 0,
+        "clean_budget": 8,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "feasible": false,
+        "constraint_failures": [
+          "MAX_CLAUSES",
+          "MAX_OBJECTIVE_COMPLEXITY"
+        ]
+      },
+      "screen_one_for_one_train_loss": [
+        {
+          "removed_clause_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-02e3fad1-de66-4cf3-bdb3-0159d085b758",
+            "rawonly-1ea073ef-f97c-448b-a092-e15cf5e451a5",
+            "rawonly-560cb7a3-e3ed-4053-9f85-ed9f6992b391",
+            "rawonly-561f1d84-84d8-4b4d-bf66-65d0c23881d8",
+            "rawonly-67022fcd-0320-4e5d-b4ef-5380cb748ffb",
+            "rawonly-9dfbb537-52bd-4657-88f4-31b03435beb5",
+            "rawonly-a06be89a-5894-469a-af14-ad336ccbf0c7",
+            "rawonly-a660dbeb-adbc-4fdf-9ed6-d5ffbcebbee6",
+            "rawonly-a66484ac-22fe-4dd3-a05b-0e776bdd21e5",
+            "rawonly-c6cefb73-2deb-4d64-9f86-9d9ee04e841a",
+            "rawonly-d84c49e1-0c99-4da3-8cd5-eb5cdf5cb6d3",
+            "rawonly-fb94c1c0-e1ee-46b8-bc7e-41e558de0a8a"
+          ],
+          "lost_configurations": {
+            "w9-stealth-boundary-plugins-mime-v1": 6,
+            "w6-tool-058-legacy-default-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "RSR-WEBDRIVER-STATE-v1:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-4283b01c-56c0-400c-94c1-c319c40b8103",
+            "rawonly-48c71050-981f-4d3b-9aff-c629bde83be5",
+            "rawonly-54f4982a-bad8-4118-a68e-c769333a9021",
+            "rawonly-ab1061a1-46b5-4b71-a955-e2101790f6c8",
+            "rawonly-c483deba-9ff3-44ca-ac44-9806941781ac",
+            "rawonly-da66d081-6cc0-46da-98aa-045778cbed79"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-webdriver-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-03ceba25-ecfe-435e-a511-6d8b5c04431e",
+            "rawonly-2e2a36a0-b699-451d-a7bd-14c87067fe62",
+            "rawonly-530cb319-8b97-4b98-85a5-0a8436d35b4e",
+            "rawonly-b48c8e7e-4d81-414c-91fd-2d2940532648",
+            "rawonly-b70c4053-08fb-4876-81eb-84c54ba86a5a",
+            "rawonly-d880c189-6ed6-4b8e-83d5-3bf57054a6a5"
+          ],
+          "lost_configurations": {
+            "w10-cdp-emulation-timezone-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-1a7ad58e-6217-47da-8cac-fd10ab1ff750",
+            "rawonly-96039022-5ec4-4caa-b14a-ae3ad44145e5",
+            "rawonly-b8dc3968-1001-4e65-9b6a-166fd080776b",
+            "rawonly-c0b2a6e7-8da0-43f0-9b08-1fd5a5f984bf",
+            "rawonly-c58527a9-3f49-4de6-b299-bd6e8704b248",
+            "rawonly-e31ee86e-eb86-451f-b27b-871f9c287c99"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-resource-pair-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "RSR-LANG-FIRST-v1:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-036e0e9d-b526-43c9-ab28-8c7bb67e9a32",
+            "rawonly-11577259-e15d-4497-8c13-85a16e68bc39",
+            "rawonly-7e9e18c0-869f-4abb-962d-8f65b4e4231a",
+            "rawonly-92881fa0-8c4a-4641-85fa-5a3a40e3b492",
+            "rawonly-96b03031-1b39-4c2d-9d84-71be369a89b2",
+            "rawonly-bb7f7753-08c2-4f95-9768-48acca2ff692"
+          ],
+          "lost_configurations": {
+            "w9-stealth-boundary-languages-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CAT:NW-006:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-06364f55-ec37-4b25-b779-f9ed78c8ecf3",
+            "rawonly-0b8fa2d9-3553-4d4b-9d68-cb2a24d3dbd0",
+            "rawonly-2e2a1b8b-2064-467b-8f7a-07adbf8590fc",
+            "rawonly-3c26db33-9adc-48d3-aed8-54866cc0124a",
+            "rawonly-5232382e-2f7c-4377-aeae-0787fa107af9",
+            "rawonly-52be4f4c-8e89-4080-9c61-25701739702f",
+            "rawonly-af4fb203-8cec-43c6-9e37-d5041240b60b",
+            "rawonly-b1cbfe44-4b18-40dd-a044-4724bcd6d287",
+            "rawonly-b6ef0e58-45c1-4b97-a677-1da682413a2a",
+            "rawonly-bf9fbf7e-3b44-4408-9a75-734171ea563b",
+            "rawonly-c593b309-b111-41d8-8b42-517430794674",
+            "rawonly-c70fe016-e4ba-4dcf-8885-3576c640a99e",
+            "rawonly-d0e1e466-fb42-4cfe-aee9-d006d04fa9b1",
+            "rawonly-d4805dea-0085-4574-b578-dd0f159b7391",
+            "rawonly-d651d0f2-42e3-443d-bfbe-cbda4698df38",
+            "rawonly-e3341c11-4fb9-4bd3-aa53-85d0a5276eae",
+            "rawonly-e915f664-e191-4a97-8ac5-2e7520d877ff",
+            "rawonly-fd8343cf-3fc7-41fd-bcf3-722957d06213"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-ua-platform-desktop-v1": 6,
+            "w9-rule-boundary-cdp-ua-only-v1": 6,
+            "w9-rule-boundary-cdp-platform-only-v1": 6
+          }
+        }
+      ],
+      "screen_same_group_selected": [],
+      "webgl_triggering_literal_count": 74,
+      "webgl_triggering_literal_min_clean_alarms": 44,
+      "webgl_OR_clean_bound_exceeds_budget": true,
+      "webgl_paired_encoded_differences_train_only": [
+        {
+          "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+          "clean_pre": [],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+          "clean_pre": [],
+          "clean_post": []
+        },
+        {
+          "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": []
+        }
+      ],
+      "saved_outer_target_decisions": {
+        "NEW_SCHEME": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "NO_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        },
+        "BASE": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "NO_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        },
+        "PRIOR_COMBINATION": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "MANIPULATION_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        }
+      }
+    },
+    {
+      "fold_id": "RAW-LOEO-v1-03",
+      "heldout_environment": "codex-local-api36-1-raw-v1",
+      "train_n": 252,
+      "encoded_atom_count": 52,
+      "literal_count": 104,
+      "saved_train_model": {
+        "macro_tpr": {
+          "numerator": 6,
+          "denominator": 7,
+          "value": 0.8571428571428571
+        },
+        "objective": {
+          "numerator": 279,
+          "denominator": 350,
+          "value": 0.7971428571428572
+        },
+        "complexity": 12,
+        "clauses": 6,
+        "clean_alarms": 0,
+        "clean_budget": 8,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "feasible": true,
+        "constraint_failures": []
+      },
+      "screen_DPR_train_marginal_ids": [
+        "rawonly-64019345-b650-4cf7-ac68-9a9e02402c62",
+        "rawonly-67692b4f-cd30-4e4c-9436-71631c5e1517",
+        "rawonly-a12c2c94-b2b8-47dc-adfe-adf7218e0c31",
+        "rawonly-e840172f-e959-4283-9002-cffb45c70b0d",
+        "rawonly-f0659432-e820-40bd-ab4d-8414be4e818a",
+        "rawonly-fe6d6904-3056-4f00-949e-074e4651689e"
+      ],
+      "screen_DPR_hypothetical_addition_train_only": {
+        "macro_tpr": {
+          "numerator": 13,
+          "denominator": 14,
+          "value": 0.9285714285714286
+        },
+        "objective": {
+          "numerator": 601,
+          "denominator": 700,
+          "value": 0.8585714285714285
+        },
+        "complexity": 14,
+        "clauses": 7,
+        "clean_alarms": 0,
+        "clean_budget": 8,
+        "coverage": {
+          "clean_pre": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "attack": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "clean_post": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "minimum_coverage": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "feasible": false,
+        "constraint_failures": [
+          "MAX_CLAUSES",
+          "MAX_OBJECTIVE_COMPLEXITY"
+        ]
+      },
+      "screen_one_for_one_train_loss": [
+        {
+          "removed_clause_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-02e3fad1-de66-4cf3-bdb3-0159d085b758",
+            "rawonly-38b6fa9d-5cdf-497b-b14a-63767be4a961",
+            "rawonly-561f1d84-84d8-4b4d-bf66-65d0c23881d8",
+            "rawonly-5a63f3c4-fadc-4380-afc8-cbd63f7af955",
+            "rawonly-5c9ee412-cb98-4c1e-8a75-5fba80262d54",
+            "rawonly-67022fcd-0320-4e5d-b4ef-5380cb748ffb",
+            "rawonly-6e3ef6e9-8b0e-4147-9d7e-cbea27ae2b58",
+            "rawonly-a06be89a-5894-469a-af14-ad336ccbf0c7",
+            "rawonly-a660dbeb-adbc-4fdf-9ed6-d5ffbcebbee6",
+            "rawonly-d04fe53a-ce5b-4d40-9699-00c2491a0fb0",
+            "rawonly-d84c49e1-0c99-4da3-8cd5-eb5cdf5cb6d3",
+            "rawonly-e7ba84a7-1558-4ee7-b8a1-c3b9e82be973"
+          ],
+          "lost_configurations": {
+            "w9-stealth-boundary-plugins-mime-v1": 6,
+            "w6-tool-058-legacy-default-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "RSR-WEBDRIVER-STATE-v1:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-411012bd-5686-45db-bb80-c915747b09bf",
+            "rawonly-4283b01c-56c0-400c-94c1-c319c40b8103",
+            "rawonly-6e1eeff6-1ced-4cf9-802c-36441e8ed5b4",
+            "rawonly-ab1061a1-46b5-4b71-a955-e2101790f6c8",
+            "rawonly-c483deba-9ff3-44ca-ac44-9806941781ac",
+            "rawonly-c7fc6b21-139e-4ff6-b44f-a6de8047152f"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-webdriver-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-2e2a36a0-b699-451d-a7bd-14c87067fe62",
+            "rawonly-70b0244d-42ae-4423-894c-c9198b2a8c2d",
+            "rawonly-b48c8e7e-4d81-414c-91fd-2d2940532648",
+            "rawonly-b70c4053-08fb-4876-81eb-84c54ba86a5a",
+            "rawonly-c60d0fbe-82e4-4d70-ae31-6d39a378395f",
+            "rawonly-d109060e-50e5-4764-801d-06e916bcc69d"
+          ],
+          "lost_configurations": {
+            "w10-cdp-emulation-timezone-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0:NEGATIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-7d2215b3-6edd-4308-b543-6a79dfd84b5f",
+            "rawonly-96039022-5ec4-4caa-b14a-ae3ad44145e5",
+            "rawonly-bae7e8bf-ad39-44cd-a982-7f8c34dbdbe7",
+            "rawonly-c58527a9-3f49-4de6-b299-bd6e8704b248",
+            "rawonly-de9796f0-0c5b-4683-ae7b-c1726aaf0642",
+            "rawonly-e31ee86e-eb86-451f-b27b-871f9c287c99"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-resource-pair-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "RSR-LANG-FIRST-v1:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-11577259-e15d-4497-8c13-85a16e68bc39",
+            "rawonly-2ac99c8c-ca1a-4e42-a151-9b0a243a780c",
+            "rawonly-50b32532-fe1f-4c05-babe-f87868e015c4",
+            "rawonly-6f2384ec-a153-4b3c-9744-7ef378e4d88b",
+            "rawonly-7e9e18c0-869f-4abb-962d-8f65b4e4231a",
+            "rawonly-92881fa0-8c4a-4641-85fa-5a3a40e3b492"
+          ],
+          "lost_configurations": {
+            "w9-stealth-boundary-languages-only-v1": 6
+          }
+        },
+        {
+          "removed_clause_id": "CAT:NW-006:POSITIVE",
+          "lost_train_attack_ids_if_replaced_by_DPR": [
+            "rawonly-1fb25324-89b3-427b-936f-b457663a2249",
+            "rawonly-2584a01b-cd7a-48fb-b2a2-fe865256beeb",
+            "rawonly-2e2a1b8b-2064-467b-8f7a-07adbf8590fc",
+            "rawonly-38c76d77-c262-41ae-8944-cc309fb043b3",
+            "rawonly-3c26db33-9adc-48d3-aed8-54866cc0124a",
+            "rawonly-5232382e-2f7c-4377-aeae-0787fa107af9",
+            "rawonly-5d5004b3-d2da-45d6-b470-71881c603da5",
+            "rawonly-945745fb-85c3-40dd-98a5-194823f66f42",
+            "rawonly-a633cf03-9538-4d9e-ab2c-78626c16f35c",
+            "rawonly-abecaaf8-8919-4303-a15c-c2447a8ed4b1",
+            "rawonly-b1cbfe44-4b18-40dd-a044-4724bcd6d287",
+            "rawonly-b6ef0e58-45c1-4b97-a677-1da682413a2a",
+            "rawonly-d0e1e466-fb42-4cfe-aee9-d006d04fa9b1",
+            "rawonly-d4805dea-0085-4574-b578-dd0f159b7391",
+            "rawonly-dd25d67d-a279-41e6-85e0-91f3485d6ce1",
+            "rawonly-e10510b4-fbd7-427a-af37-a49524676cb8",
+            "rawonly-e3341c11-4fb9-4bd3-aa53-85d0a5276eae",
+            "rawonly-fd8343cf-3fc7-41fd-bcf3-722957d06213"
+          ],
+          "lost_configurations": {
+            "w9-rule-boundary-cdp-platform-only-v1": 6,
+            "w9-rule-boundary-cdp-ua-platform-desktop-v1": 6,
+            "w9-rule-boundary-cdp-ua-only-v1": 6
+          }
+        }
+      ],
+      "screen_same_group_selected": [],
+      "webgl_triggering_literal_count": 55,
+      "webgl_triggering_literal_min_clean_alarms": 45,
+      "webgl_OR_clean_bound_exceeds_budget": true,
+      "webgl_paired_encoded_differences_train_only": [
+        {
+          "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+          "clean_pre": [],
+          "clean_post": []
+        },
+        {
+          "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": []
+        },
+        {
+          "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+          "clean_pre": [],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ]
+        },
+        {
+          "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+          "clean_pre": [],
+          "clean_post": []
+        },
+        {
+          "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+          "clean_pre": [
+            "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+          ],
+          "clean_post": []
+        }
+      ],
+      "saved_outer_target_decisions": {
+        "NEW_SCHEME": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "NO_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        },
+        "BASE": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "NO_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        },
+        "PRIOR_COMBINATION": {
+          "w10-cdp-emulation-screen-metrics-only-v1": {
+            "MANIPULATION_ALERT": 3
+          },
+          "w9-stealth-boundary-webgl-pair-v1": {
+            "NO_ALERT": 3
+          }
+        }
+      }
+    }
+  ],
+  "raw_target_rows": 54,
+  "webgl_raw_triplets": [
+    {
+      "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api36-1-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api30-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r3",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r1",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    },
+    {
+      "triplet_id": "codex-local-api29-raw-v1:w9-stealth-boundary-webgl-pair-v1:r2",
+      "changed_graphics_fields_in_inspected_set": [
+        "webgl_vendor",
+        "webgl_renderer"
+      ],
+      "five_inspected_graphics_fields_restored": true
+    }
+  ],
+  "GPU_relations_outside_W0": [
+    {
+      "atom_id": "CAT:NW-005",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "in_W0_allowlist": false,
+      "field_refs": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ]
+    },
+    {
+      "atom_id": "CAT:OFFDER-GPU-001",
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ],
+      "in_W0_allowlist": false,
+      "field_refs": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ]
+    }
+  ],
+  "findings": {
+    "screen": "Supported clean-safe DPR condition has positive train marginal gain; rejected by tie order then six-clause/twelve-complexity limit. No currently selected clause can be swapped for DPR without losing some train attack detections.",
+    "webgl": "Vendor/renderer changes are absent from W0 atoms. Every existing literal firing on any train WebGL attack exceeds the clean budget by itself, so increasing singleton-OR capacity alone cannot fix these train misses."
+  }
+}
