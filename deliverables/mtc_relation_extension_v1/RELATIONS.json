@@ -1,0 +1,171 @@
+{
+  "version": "mtc-relation-candidate-adapter-v1",
+  "base_candidate_count": 50,
+  "base_definitions_unchanged": true,
+  "base_adapter_version": "mtc-constrained-webgl50-input-adapter-v2",
+  "relation_atoms": [
+    {
+      "atom_id": "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1",
+      "family": "SCREEN_VIEWPORT_RELATION",
+      "surfaces": [
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_RELATION_V1"
+      ],
+      "aliases": [
+        "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "field_refs": [
+          "app.web_data.screen_layer.inner_width",
+          "app.web_data.screen_layer.inner_height",
+          "app.web_data.screen_layer.visual_viewport_width",
+          "app.web_data.screen_layer.visual_viewport_height",
+          "app.web_data.screen_layer.visual_viewport_scale"
+        ],
+        "relation_version": "mtc-screen-relations-v1",
+        "signal_group": "display_geometry",
+        "semantic_quality": 0,
+        "condition": {
+          "operator": "VISUAL_VIEWPORT_EXCEEDS_LAYOUT_AT_SCALE_GE_ONE",
+          "operands": [
+            "app.web_data.screen_layer.inner_width",
+            "app.web_data.screen_layer.inner_height",
+            "app.web_data.screen_layer.visual_viewport_width",
+            "app.web_data.screen_layer.visual_viewport_height",
+            "app.web_data.screen_layer.visual_viewport_scale"
+          ],
+          "parameters": {
+            "minimum_visual_scale": 1.0,
+            "css_pixel_rounding_tolerance": 1.0,
+            "axes": "OR",
+            "parameter_fitting": "NONE"
+          }
+        },
+        "units": "CSS pixels; visual_viewport_scale is dimensionless",
+        "evidence_scope": "SAME_WEB_PROBE_NOT_INDEPENDENT_CROSS_LAYER",
+        "source_refs": [
+          "web_probe/canonical_web_probe.js:368",
+          "https://drafts.csswg.org/cssom-view/#dom-window-innerwidth",
+          "https://drafts.csswg.org/cssom-view/#the-visualviewport-interface"
+        ]
+      }
+    },
+    {
+      "atom_id": "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE",
+      "family": "MTC_RESOURCE_RELATION",
+      "surfaces": [
+        "native84",
+        "app_web67"
+      ],
+      "sources": [
+        "RESEARCHER_PROPOSED_MTC_RELATION_V1"
+      ],
+      "aliases": [
+        "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE"
+      ],
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "field": "app.android_native_data.memory_layer.total_memory_gb",
+        "field_refs": [
+          "app.android_native_data.memory_layer.total_memory_gb",
+          "app.web_data.navigator_layer.device_memory"
+        ],
+        "relation_version": "mtc-resource-relations-v1",
+        "signal_group": "memory_capacity",
+        "condition": {
+          "operator": "WEB_MEMORY_ABOVE_NATIVE_POWER_OF_TWO_UPPER_ENVELOPE",
+          "operands": [
+            "app.android_native_data.memory_layer.total_memory_gb",
+            "app.web_data.navigator_layer.device_memory"
+          ],
+          "parameters": {
+            "units": "GiB",
+            "native_minimum_gib": 0.25,
+            "bound": "smallest_power_of_two_greater_than_or_equal_to_native",
+            "comparison": "strict_greater_than",
+            "learned_parameters": false,
+            "lower_web_exposures": "allowed",
+            "browser_upper_cap": "not_assumed",
+            "domain": "same_current_Android_App_record_with_WebView_numeric_observations"
+          }
+        },
+        "basis": "RESOURCE_REVIEW.md; Android kernel total and Chromium power-of-two exposure",
+        "interpretation": "research_relation_deviation_not_universal_attack_evidence"
+      }
+    }
+  ],
+  "parameters": {
+    "version": "mtc-relation-candidate-adapter-v1",
+    "fitted": false,
+    "parameter_fit_calls": 0,
+    "templates": {
+      "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1": {
+        "field_refs": [
+          "app.web_data.screen_layer.inner_width",
+          "app.web_data.screen_layer.inner_height",
+          "app.web_data.screen_layer.visual_viewport_width",
+          "app.web_data.screen_layer.visual_viewport_height",
+          "app.web_data.screen_layer.visual_viewport_scale"
+        ],
+        "relation_version": "mtc-screen-relations-v1",
+        "signal_group": "display_geometry",
+        "semantic_quality": 0,
+        "condition": {
+          "operator": "VISUAL_VIEWPORT_EXCEEDS_LAYOUT_AT_SCALE_GE_ONE",
+          "operands": [
+            "app.web_data.screen_layer.inner_width",
+            "app.web_data.screen_layer.inner_height",
+            "app.web_data.screen_layer.visual_viewport_width",
+            "app.web_data.screen_layer.visual_viewport_height",
+            "app.web_data.screen_layer.visual_viewport_scale"
+          ],
+          "parameters": {
+            "minimum_visual_scale": 1.0,
+            "css_pixel_rounding_tolerance": 1.0,
+            "axes": "OR",
+            "parameter_fitting": "NONE"
+          }
+        },
+        "units": "CSS pixels; visual_viewport_scale is dimensionless",
+        "evidence_scope": "SAME_WEB_PROBE_NOT_INDEPENDENT_CROSS_LAYER",
+        "source_refs": [
+          "web_probe/canonical_web_probe.js:368",
+          "https://drafts.csswg.org/cssom-view/#dom-window-innerwidth",
+          "https://drafts.csswg.org/cssom-view/#the-visualviewport-interface"
+        ]
+      },
+      "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE": {
+        "field": "app.android_native_data.memory_layer.total_memory_gb",
+        "field_refs": [
+          "app.android_native_data.memory_layer.total_memory_gb",
+          "app.web_data.navigator_layer.device_memory"
+        ],
+        "relation_version": "mtc-resource-relations-v1",
+        "signal_group": "memory_capacity",
+        "condition": {
+          "operator": "WEB_MEMORY_ABOVE_NATIVE_POWER_OF_TWO_UPPER_ENVELOPE",
+          "operands": [
+            "app.android_native_data.memory_layer.total_memory_gb",
+            "app.web_data.navigator_layer.device_memory"
+          ],
+          "parameters": {
+            "units": "GiB",
+            "native_minimum_gib": 0.25,
+            "bound": "smallest_power_of_two_greater_than_or_equal_to_native",
+            "comparison": "strict_greater_than",
+            "learned_parameters": false,
+            "lower_web_exposures": "allowed",
+            "browser_upper_cap": "not_assumed",
+            "domain": "same_current_Android_App_record_with_WebView_numeric_observations"
+          }
+        },
+        "basis": "RESOURCE_REVIEW.md; Android kernel total and Chromium power-of-two exposure",
+        "interpretation": "research_relation_deviation_not_universal_attack_evidence"
+      }
+    }
+  },
+  "no_source_or_label_features": true
+}

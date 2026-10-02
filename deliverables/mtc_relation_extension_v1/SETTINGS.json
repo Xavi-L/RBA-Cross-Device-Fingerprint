@@ -1,0 +1,44 @@
+{
+  "experiment_id": "mtc-relation-extension-v1",
+  "reference_commit": "5fbd3f6ef5b2a7db3973f032379ded924c46e38b",
+  "created_at": "2026-10-02T12:16:23.929899+00:00",
+  "membership_and_baseline_settings": "deliverables/mtc_constrained_reselection_v1/SETTINGS.json",
+  "baseline_models": "deliverables/mtc_constrained_reselection_v1/models.json",
+  "baseline_predictions": "deliverables/mtc_constrained_reselection_v1/predictions.jsonl.gz",
+  "schemes": [
+    "B",
+    "B_REL"
+  ],
+  "new_fit_stages": [
+    "SPARSE",
+    "RETENTION"
+  ],
+  "planned_fit_calls": 6,
+  "primary_mtc_subsets": [
+    "discovery",
+    "development",
+    "reserved_validation"
+  ],
+  "supplementary_replay": false,
+  "normal_budget": {
+    "controlled": 0.05,
+    "mtc": 0.05,
+    "rounding": "floor separately"
+  },
+  "minimum_mtc_candidate_coverage": 0.9,
+  "minimum_mtc_decision_coverage": 0.9,
+  "max_clauses": 8,
+  "max_complexity": 16,
+  "objective": "original config macro detection - 0.005 complexity; unchanged semantic ordering and R_KEEP",
+  "old_encoder": "controlled own-fold train quantiles; exact equality with saved B encoder required",
+  "relation_parameters": "fixed semantic constants only; no learned tolerance",
+  "template_limit": {
+    "screen": 2,
+    "resources": 2,
+    "total": 4
+  },
+  "normal_basis_reference": "deliverables/mtc_cap8_replay_v1/DATA_NOTES.md",
+  "no_fit_on_mtc_development_or_reserved": true,
+  "evaluation_role": "DEVELOPMENT_ON_PREVIOUSLY_USED_GROUPED_DATA",
+  "no_A_refit_or_prediction": true
+}
