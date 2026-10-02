@@ -110,7 +110,7 @@ test("App and shared probe retain ES5 syntax and exact 177/67 field catalogs", (
   assert.equal(fields.filter((field) => /^(android_native_data|webview_data|web_data)\./.test(field)).length, 177);
   assert.deepEqual(Array.from(core.FIELD_PATHS), fields.filter((field) => field.startsWith("web_data.")));
   assert.equal(core.FIELD_PATHS.length, 67);
-  assert.equal(core.REVISION, "expanded-web-67-v1");
+  assert.equal(core.REVISION, "expanded-web-67-v2");
 });
 
 test("Browser67 default does not check presence or return App observation metadata", async () => {
@@ -233,5 +233,7 @@ test("App bridge fallback does not fabricate a raw observation", async () => {
   await app.runAdapter();
   assert.equal(app.payloads.length, 1);
   assert.equal("collection_observations" in app.payloads[0], false);
+  assert.equal(app.payloads[0].collection_diagnostics.probe_statuses.webgl2, "runtime_error");
+  assert.equal(app.payloads[0].collection_diagnostics.probe_statuses.webgl, "runtime_error");
   assert.deepEqual(fixture.events, []);
 });

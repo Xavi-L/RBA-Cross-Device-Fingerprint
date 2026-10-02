@@ -1,0 +1,27 @@
+{
+  "role": "STATIC_CONTRACT_DIAGNOSIS_NOT_MODEL_PREDICTION",
+  "inputs": "Hand-specified F and U, not scored historical model or training cohort",
+  "normal_false_OR_unknown": "U",
+  "valid_conflict_OR_unknown": "T",
+  "existing_nonregression_reasons_for_defined_to_unknown": [
+    "DEFINED_SAMPLE_BECAME_UNKNOWN_OR_FAILED"
+  ],
+  "configured_min_decision_coverage": 0.8,
+  "new_candidate_standalone_defined_clean_pre": {
+    "defined": 6,
+    "total": 8
+  },
+  "new_candidate_standalone_defined_clean_post": {
+    "defined": 6,
+    "total": 8
+  },
+  "note": "These two 6/8 values describe only the new observation on this small validation matrix, not any trained-model coverage. The OR example shows a possible integration failure, not a measured regression of the existing model.",
+  "source_refs": [
+    "hybridguard_agent/research/rule_learning/contracts.py:49",
+    "hybridguard_agent/research/rule_learning/selector.py:162",
+    "hybridguard_agent/research/rule_learning_v2/semantic_selection.py:226",
+    "hybridguard_agent/config/rule_learning_v1_20260924/learning_search_space.json:8"
+  ],
+  "model_fits": 0,
+  "model_predictions": 0
+}

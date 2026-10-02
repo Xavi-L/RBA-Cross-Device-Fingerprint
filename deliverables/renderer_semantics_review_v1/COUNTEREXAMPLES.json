@@ -1,0 +1,68 @@
+{
+  "review_id": "renderer-semantics-review-v1",
+  "policy": "类别不可混用：运行观察、官方静态路径、合成边界和未验证假设分别记录；本文件不是新数据集或标签表。",
+  "cases": [
+    {
+      "id": "CE-01",
+      "kind": "STATIC_SUPPORTED_PATH",
+      "claim": "同一 backend renderer 经 ANGLE 包装后与裸驱动文本可以不同，家族仍相同。",
+      "sources": ["angle_context", "angle_android_setup", "angle_readme"],
+      "relevance": "否定跨实现上下文必须逐字相等的普遍前提；支持保留较窄家族语义。",
+      "limit": "没有在当前 App 的 Native/WebView 两条链上实测这一不同返回；合成样例只验证已有解析器。"
+    },
+    {
+      "id": "CE-02",
+      "kind": "STATIC_SUPPORTED_PATH",
+      "claim": "ANGLE GL 后端对部分 AMD renderer 删除 DRM/内核等细节；官方单元测试明确包含该转换。",
+      "sources": ["angle_display_gl", "angle_display_gl_tests"],
+      "relevance": "正常隐私/兼容处理可以造成原文差异，不应以原文差异代表家族矛盾。",
+      "limit": "源例属于 Linux/AMD GL 路径；不是已测 Android 真机反例，也未运行上游 C++ 测试。"
+    },
+    {
+      "id": "CE-03",
+      "kind": "STATIC_SUPPORTED_PATH",
+      "claim": "ANGLE renderer 的版本组成部分取决于 isWebGL；正常 WebGL 与非 WebGL 上下文可能有不同版本粒度。",
+      "sources": ["angle_context", "angle_display_gl", "angle_display_gl_tests"],
+      "relevance": "即使都经过 ANGLE，也不能默认完整文本必须相等。",
+      "limit": "这是条件性源码推导，不证明当前 WebView 二进制采用该后端或触发这个分支。"
+    },
+    {
+      "id": "CE-04",
+      "kind": "DOCUMENTED_NORMAL_PATH_NOT_RUNTIME_CAPTURE",
+      "claim": "官方 Android Emulator 设置文档允许 Windows ANGLE Direct3D 后端；当前加速页记录 angle / angle_indirect 的弃用版本。",
+      "sources": ["android_emulator_settings", "android_emulator_acceleration", "angle_renderer_d3d11"],
+      "relevance": "Android 客体与 Windows 图形后端可以存在正常关系；Direct3D 词本身不足以完成攻击归因。",
+      "limit": "未采集 Windows 宿主，也未贯通证明所选 Emulator/WebView 版本必把宿主 Direct3D 字符串暴露到 Web 字段；该字段级现场反例仍待验证。"
+    },
+    {
+      "id": "CE-05",
+      "kind": "STATIC_SUPPORTED_UNAVAILABLE_VALUE",
+      "claim": "debug renderer 扩展是否暴露由浏览器决定；本仓库无扩展时保留 Unknown，而不是自动得到硬件身份。",
+      "sources": ["khronos_debug_renderer", "chromium134_webgl", "local_web_probe"],
+      "relevance": "observed 状态与语义可用性不是同一门槛；Native vs Unknown 不能变成不一致告警。",
+      "limit": "本轮 20 条记录没有这种不可用情况；以合成边界检查保留 UNKNOWN。"
+    },
+    {
+      "id": "CE-06",
+      "kind": "PREVIOUS_RUNTIME_OBSERVATION",
+      "claim": "同一 Mac 下 host / SwiftShader 是两条正常控制路径；具名 renderer、扩展数和视口可随路径变化。两条路径各自的正常 Native/Web renderer 都相等，均无 Direct3D 标记。",
+      "sources": ["local_paired_results"],
+      "relevance": "证明部分能力差异是正常路径差异；并未提供正常原文不等或正常 Direct3D 的本机实测反例。",
+      "limit": "同一宿主、同一 WebView、两条虚拟渲染路径；14 份正常/恢复不是 14 台独立设备。"
+    },
+    {
+      "id": "CE-07",
+      "kind": "SYNTHETIC_BOUNDARY_CASE",
+      "claim": "具名家族相同/不同、未知、多家族、软件、占位、错误状态和错误类型均应遵守当前 v2 契约。",
+      "sources": ["local_role_gate", "local_gpu_parameters"],
+      "relevance": "BOUNDARY_CASES.json 显式区分有效关系、弃权和角色限制；不会改变实际实验样本数。",
+      "limit": "合成输入既不是真实正常设备数据，也不是新的攻击证据；不得并入训练或指标分母。"
+    }
+  ],
+  "unverified": [
+    "当前 App 在正常 Android 硬件上 Native/Web 具名家族不同是否发生及其频率。",
+    "当前或指定历史版本 Windows Emulator/WebView 的正常 Direct3D 字段暴露。",
+    "Apple/NVIDIA 家族范围扩展在合法转译、多 GPU 等条件下的误报边界。",
+    "本机 WebView 二进制与 Chromium 134 标签及其 ANGLE revision 的构建一致性。"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "kind": "POST_RUN_EXPLANATION_OF_PREDECLARED_HYPOTHESES",
+  "original_joint_feasibility_unchanged": "NOT_ESTABLISHED",
+  "original_joint_separated_triplets": 2,
+  "H2_local_mechanism_supported": true,
+  "hypotheses": {
+    "H1_extension_gate": {
+      "webgl": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "COUNTEREXAMPLE": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      },
+      "webgl2": {
+        "clean_pre": {
+          "UNKNOWN": 2,
+          "MATCH": 2
+        },
+        "attack": {
+          "COUNTEREXAMPLE": 4
+        },
+        "clean_post": {
+          "UNKNOWN": 2,
+          "MATCH": 2
+        }
+      }
+    },
+    "H2_argument_coercion": {
+      "webgl": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "COUNTEREXAMPLE": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      },
+      "webgl2": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "COUNTEREXAMPLE": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      }
+    },
+    "capability_positive_control": {
+      "webgl": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "MATCH": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      },
+      "webgl2": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "MATCH": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      }
+    },
+    "drawing_positive_control": {
+      "webgl": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "MATCH": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      },
+      "webgl2": {
+        "clean_pre": {
+          "MATCH": 4
+        },
+        "attack": {
+          "MATCH": 4
+        },
+        "clean_post": {
+          "MATCH": 4
+        }
+      }
+    }
+  },
+  "first_query_preexisting_error_records": [
+    {
+      "path": "api36_host",
+      "phase": "clean_pre",
+      "round": 1,
+      "session_id": "8eb5dcbf-9723-4f4f-b6c5-c0c87a839c9e",
+      "context": "webgl2",
+      "pre_errors": [
+        1280
+      ],
+      "drained": true,
+      "observed_query_value": null,
+      "observed_query_error": 1280
+    },
+    {
+      "path": "api36_host",
+      "phase": "attack",
+      "round": 1,
+      "session_id": "7617e5fc-7d50-4b01-a73d-0a79168ea9b6",
+      "context": "webgl2",
+      "pre_errors": [
+        1280
+      ],
+      "drained": true,
+      "observed_query_value": "Google Inc. (NVIDIA)",
+      "observed_query_error": 1280
+    },
+    {
+      "path": "api36_host",
+      "phase": "clean_post",
+      "round": 1,
+      "session_id": "f178b31f-4d41-4eb5-8503-8b35f447ed53",
+      "context": "webgl2",
+      "pre_errors": [
+        1280
+      ],
+      "drained": true,
+      "observed_query_value": null,
+      "observed_query_error": 1280
+    },
+    {
+      "path": "api36_host",
+      "phase": "clean_pre",
+      "round": 2,
+      "session_id": "3fc1da97-45a4-4012-8036-4e12766193c1",
+      "context": "webgl2",
+      "pre_errors": [
+        1280
+      ],
+      "drained": true,
+      "observed_query_value": null,
+      "observed_query_error": 1280
+    },
+    {
+      "path": "api36_host",
+      "phase": "attack",
+      "round": 2,
+      "session_id": "027b88bd-462e-4d92-af8d-442f87ebfa2e",
+      "context": "webgl2",
+      "pre_errors": [
+        1280
+      ],
+      "drained": true,
+      "observed_query_value": "Google Inc. (NVIDIA)",
+      "observed_query_error": 1280
+    },
+    {
+      "path": "api36_host",
+      "phase": "clean_post",
+      "round": 2,
+      "session_id": "2052e1b8-d84e-44af-8509-e07b7dc3ee5c",
+      "context": "webgl2",
+      "pre_errors": [
+        1280
+      ],
+      "drained": true,
+      "observed_query_value": null,
+      "observed_query_error": 1280
+    }
+  ],
+  "diagnosis": "All six host/WebGL2 contexts have INVALID_ENUM queued before the first vendor query, including both clean phases. The frozen classifier keeps this query UNKNOWN despite draining. The exact producing initialization/driver call is not isolated.",
+  "not_changed": [
+    "raw observations",
+    "frozen classifier",
+    "protocol",
+    "joint acceptance",
+    "model results"
+  ],
+  "interpretation": "H2 is a predeclared individual hypothesis, not a replacement acceptance criterion. This only supports versioned observation design for one plugin configuration; it does not establish population FPR/TPR or current selector improvement."
+}

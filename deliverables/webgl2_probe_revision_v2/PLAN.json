@@ -1,0 +1,18 @@
+{
+  "purpose": "Correct collector semantics and check benign emulator graphics paths; no model experiment",
+  "source_base_commit": "512ac0b7cfddd2691144ba8d959ca7d8a7635ba0",
+  "probe_revision": "expanded-web-67-v2",
+  "app_version_code": 13,
+  "matrix": [
+    {"api": 36, "gpu": "auto", "launches": 3},
+    {"api": 36, "gpu": "host", "launches": 3},
+    {"api": 36, "gpu": "swiftshader", "launches": 3},
+    {"api": 29, "gpu": "swiftshader", "launches": 1},
+    {"api": 30, "gpu": "swiftshader", "launches": 1}
+  ],
+  "limits": {"boot_seconds": 120, "capture_seconds": 45, "cell_attempts": 1},
+  "isolation": "Owned existing AVDs in read-only mode; one local receiver worker; dedicated data directory per cell; all APK endpoints local",
+  "interpretation": "Requested GPU mode is not proof of actual hardware path. Record renderers and emulator logs. Repeated launches are not independent devices.",
+  "exclusions": ["attack tools", "WebView control/injection", "model fit or prediction", "historical false backfill", "real-device FPR estimate", "public deployment", "independent confirmation material"],
+  "failure_policy": "Retain failed cells without automatic retries; continue independent matrix cells"
+}

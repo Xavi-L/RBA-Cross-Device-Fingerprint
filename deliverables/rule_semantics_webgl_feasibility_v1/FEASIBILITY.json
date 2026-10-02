@@ -1,0 +1,67 @@
+{
+  "review_role": "Post-hoc candidate feasibility on exposed development inputs; not a performance experiment",
+  "candidates_admitted_for_retraining": [],
+  "items": [
+    {
+      "id": "NW-005",
+      "scope": "Existing v2 Native/App Web named-hardware-family relation",
+      "current_role": "alert_candidate",
+      "status": "NOT_APPLICABLE_ON_ALL_CURRENT_RECORDS",
+      "relation_supported": 0,
+      "relation_not_applicable": 378,
+      "risk_eligible": 0,
+      "reason": "Every Native renderer contains SwiftShader; software rendering is excluded from this hardware-family relation.",
+      "additional_boundary": "The existing family list is adreno/mali/powervr/tegra/vivante. NVIDIA in the Web attack string is not a recognized family in this parser. Do not turn unknown into a mismatch or extend the list only to match this attack.",
+      "next_requirement": "Evidence with comparable named hardware families and justified parser coverage; current all-software data cannot evaluate that hypothesis. Physical-path identity is NOT a v2 prerequisite for limited research risk."
+    },
+    {
+      "id": "OFFDER-GPU-001",
+      "scope": "Existing Windows/Direct3D backend vocabulary observation",
+      "current_role": "observation_only",
+      "status": "NOT_ELIGIBLE_AS_STANDALONE_RISK_CONDITION",
+      "relation_not_applicable": 378,
+      "risk_not_eligible": 378,
+      "diagnostic_lexical_occurrence": {"attack": 18, "attack_n": 126, "clean": 0, "clean_n": 252},
+      "reason": "Software exclusion makes the existing relation inapplicable here. Independently, v2 does not give this backend marker a risk role, even on synthetic non-software inputs.",
+      "next_requirement": "Do not remove the software gate to obtain an apparent detection gain. A new research hypothesis would require separately justified semantics and benign rendering-path controls."
+    },
+    {
+      "id": "EXACT_NATIVE_WEB_RENDERER_INEQUALITY_DIAGNOSTIC",
+      "scope": "Raw string comparison only; not registered for selection",
+      "status": "NOT_JUSTIFIED_AS_GENERAL_ALERT",
+      "diagnostic_occurrence": {"attack": 18, "attack_n": 126, "clean": 0, "clean_n": 252},
+      "reason": "Native GLES and WebGL use separate contexts and may use different drivers or wrappers. Same-family Adreno and ANGLE-wrapped Adreno are a tested counterexample to treating exact spelling inequality as a hardware conflict.",
+      "next_requirement": "Semantic normalization and legitimate path controls; exact equality on current software baselines is not a general invariant."
+    },
+    {
+      "id": "WEB_VENDOR_RENDERER_NAME_COHERENCE_HYPOTHESIS",
+      "scope": "Potential App Web single-surface comparison",
+      "status": "NO_VALIDATED_COMPARISON_RULE_OR_CURRENT_CONFLICT_EVIDENCE",
+      "reason": "The changed vendor and renderer both report NVIDIA. The vendor field can identify a driver supplier or wrapper rather than the hardware family; no validated naming-equivalence parser was introduced or evaluated.",
+      "next_requirement": "Define meaningful comparable tokens and unknown states from broader benign implementations before considering a rule."
+    },
+    {
+      "id": "EXISTING_WEBGL_NUMERIC_CAPABILITIES",
+      "scope": "Extension count, texture size, viewport limits and line-width range",
+      "status": "NO_WITHIN_TRIPLET_DISCRIMINATING_CHANGE",
+      "reason": "These fields do not change in any of the 126 graphics triplets. Extension count distinguishes API/WebView environments, not the WebGL intervention within an environment.",
+      "next_requirement": "Do not learn an environment identifier as evidence that the renderer intervention occurred."
+    },
+    {
+      "id": "WEBGL2_SUPPORTED_CAPABILITY",
+      "scope": "Historical webgl2_supported flag",
+      "status": "BLOCKED_BY_COLLECTOR_CONTEXT_REUSE",
+      "historical_false_count": 378,
+      "reason": "The probe creates WebGL1 before requesting WebGL2 on the same canvas. Desktop browser reproduction shows false on the reused canvas and true on a fresh canvas.",
+      "next_requirement": "Version a separate-canvas collector fix and validate it. Do not rewrite historical flags or infer Android WebGL2 capability from the desktop reproduction."
+    },
+    {
+      "id": "TEMPORAL_GRAPHICS_CHANGE_DIAGNOSTIC",
+      "scope": "Pre/intervention/post sequence, a different input task",
+      "status": "NOT_A_SINGLE_OBSERVATION_CANDIDATE",
+      "changed_then_restored_triplets": 18,
+      "reason": "Paired transitions establish observed intervention effects in this controlled study. A deployed single observation does not have a trusted clean reference or future clean_post.",
+      "next_requirement": "A separately declared temporal-reference task and benign configuration-change controls; never use phase labels or clean_post as present-time detector features."
+    }
+  ]
+}

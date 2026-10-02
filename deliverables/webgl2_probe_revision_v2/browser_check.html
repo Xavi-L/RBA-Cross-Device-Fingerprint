@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>WebGL2 collector v2 check</title>
+<h1>WebGL2 collector v2 check</h1>
+<p>Local verification only. This page does not upload collected data.</p>
+<pre id="result">Collecting...</pre>
+<script src="../../web_probe/canonical_web_probe.js"></script>
+<script>
+(async function () {
+  try {
+    const oldCanvas = document.createElement("canvas");
+    const gl1 = oldCanvas.getContext("webgl") || oldCanvas.getContext("experimental-webgl");
+    const oldSameCanvasResult = !!oldCanvas.getContext("webgl2");
+    const freshCanvasResult = !!document.createElement("canvas").getContext("webgl2");
+    const result = await HybridGuardWebProbe.collect();
+    const output = {
+      captured_at: new Date().toISOString(),
+      user_agent: navigator.userAgent,
+      revision: HybridGuardWebProbe.REVISION,
+      webgl1_created: !!gl1,
+      legacy_same_canvas_webgl2: oldSameCanvasResult,
+      fresh_canvas_webgl2: freshCanvasResult,
+      actual_v2_webgl2: result.web_data.graphics_layer.webgl2_supported,
+      actual_v2_webgl2_status: result.collection_status.fields["web_data.graphics_layer.webgl2_supported"],
+      fixed_signal_count: result.collection_status.fixed_signal_count,
+      graphics: result.web_data.graphics_layer
+    };
+    output.pass = output.revision === "expanded-web-67-v2" &&
+      output.actual_v2_webgl2_status === "observed" &&
+      output.actual_v2_webgl2 === freshCanvasResult && output.fixed_signal_count === 67;
+    document.getElementById("result").textContent = JSON.stringify(output, null, 2);
+  } catch (error) {
+    document.getElementById("result").textContent = JSON.stringify({ pass: false, error: String(error) });
+  }
+}());
+</script>

@@ -1,0 +1,106 @@
+{
+  "scope_record_version": "webgl-parameter-environment-scope-v1",
+  "milestone": "2-environment-validation",
+  "execution": "COMPLETE",
+  "full_matrix_gate": "NOT_ESTABLISHED_FOR_FULL_MATRIX",
+  "evaluator_revision": "webgl-parameter-equivalence-v1",
+  "observation_scope": "fresh-webgl-contexts-v1",
+  "source_contract_changed": false,
+  "tested_configurations": [
+    {
+      "cell": "api29_swiftshader",
+      "android_api": 29,
+      "rendering_path": "swiftshader",
+      "webview_package": "com.google.android.webview",
+      "webview_version": "91.0.4472.114",
+      "triplets": 2,
+      "full_envelope_gate": "PASS"
+    },
+    {
+      "cell": "api30_swiftshader",
+      "android_api": 30,
+      "rendering_path": "swiftshader",
+      "webview_package": "com.google.android.webview",
+      "webview_version": "91.0.4472.114",
+      "triplets": 2,
+      "full_envelope_gate": "PASS"
+    },
+    {
+      "cell": "api36_host",
+      "android_api": 36,
+      "rendering_path": "host",
+      "webview_package": "com.google.android.webview",
+      "webview_version": "134.0.6998.135",
+      "triplets": 2,
+      "full_envelope_gate": "NOT_ESTABLISHED"
+    },
+    {
+      "cell": "api36_swiftshader",
+      "android_api": 36,
+      "rendering_path": "swiftshader",
+      "webview_package": "com.google.android.webview",
+      "webview_version": "134.0.6998.135",
+      "triplets": 2,
+      "full_envelope_gate": "PASS"
+    }
+  ],
+  "full_envelope_validated_configurations": [
+    "api29_swiftshader",
+    "api30_swiftshader",
+    "api36_swiftshader"
+  ],
+  "limited_configuration": {
+    "cell": "api36_host",
+    "webgl1": {
+      "normal_and_restored_matches": 4,
+      "attack_counterexamples": 2
+    },
+    "webgl2": {
+      "unknown_observations": 6,
+      "reason": "PREFLIGHT_ERRORS",
+      "observed_errors": [
+        1280
+      ],
+      "drained": true
+    },
+    "aggregate": {
+      "normal_and_restored_unknown": 4,
+      "attack_counterexamples": 2
+    },
+    "cause": "NOT_ESTABLISHED; error occurs in both clean and attack stages"
+  },
+  "conclusions": {
+    "webgl1_subresults": {
+      "normal_and_restored_matches": 16,
+      "attack_counterexamples": 8,
+      "unknown": 0
+    },
+    "full_observation": {
+      "normal_and_restored_matches": 12,
+      "normal_and_restored_unknown": 4,
+      "attack_counterexamples": 8
+    },
+    "gpu_identity_verified": false,
+    "general_benign_apps_validated": false,
+    "physical_device_fpr": "NOT_EVALUATED"
+  },
+  "next_candidate_proposal": {
+    "status": "PROPOSAL_FROM_EXPOSED_DEVELOPMENT_EVIDENCE_NOT_REGISTERED",
+    "semantics": "A separately versioned WebGL1 parameter-equivalence candidate consuming the validated envelope contexts.webgl result. Continue recording WebGL2 and preserve the original full-envelope UNKNOWN.",
+    "reason": "WebGL1 subresults are usable in all measured configurations; the full two-context aggregate loses clean definedness on host. Neither error suppression nor UNKNOWN-to-FALSE conversion is justified.",
+    "requirements": [
+      "Explicit candidate scope, version and provenance binding; malformed envelope or unavailable WebGL1 stays UNKNOWN",
+      "Persist the same-session observation through App/backend and research input paths with absent/error states preserved",
+      "Register/compile only after source and applicability admission; keep OS/API/provider/rendering strings out of the learned decision condition",
+      "Validate the proposed candidate prospectively on fresh same-version normal/attack/restoration data, including all intended comparison attack configurations",
+      "Use a newly frozen comparable training/evaluation cohort with both baseline and candidate inputs; never backfill the old 378 rows or use only this one attack configuration for a whole-model gain claim"
+    ],
+    "historical_full_envelope_result_may_be_relabelled": false,
+    "next_step_implemented": false
+  },
+  "selector_registration": "NOT_REGISTERED",
+  "model_fits": 0,
+  "model_predictions": 0,
+  "overall_model_improvement": "NOT_EVALUATED",
+  "independent_confirmation": "NOT_ACCESSED"
+}

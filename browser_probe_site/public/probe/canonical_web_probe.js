@@ -1,7 +1,7 @@
 (function (global) {
     "use strict";
 
-    var REVISION = "expanded-web-67-v1";
+    var REVISION = "expanded-web-67-v2";
     var STATUS_SCHEMA_VERSION = "browser-field-status-v1";
     var APP_WEBDRIVER_OBSERVER_REVISION = "app-webdriver-observer-v1";
     var FIELD_PATHS = [
@@ -322,10 +322,8 @@
     function getWebGLInfo() {
         var canvas = document.createElement("canvas");
         var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-        var gl2 = canvas.getContext("webgl2");
         var info = defaultWebGLInfo();
         info.context_available = !!gl;
-        info.webgl2_supported = !!gl2;
         if (gl) {
             var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
             if (debugInfo) {
@@ -340,6 +338,12 @@
                 arrayFrom(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE) || []).join("-");
         }
         return info;
+    }
+
+    function getWebGL2Support() {
+        // A canvas already bound to WebGL1 cannot create a WebGL2 context.
+        // This records context creation in the current environment, not GPU capability.
+        return !!document.createElement("canvas").getContext("webgl2");
     }
 
     function getNavigatorFeatures() {
@@ -722,6 +726,9 @@
     }
 
     function probeNameForField(fieldPath) {
+        if (fieldPath === "web_data.graphics_layer.webgl2_supported") {
+            return "webgl2";
+        }
         if (/\.canvas_hash$/.test(fieldPath)) {
             return "canvas";
         }
@@ -861,7 +868,10 @@
         }
 
         var webglInfo = safeSyncProbe("WebGL", getWebGLInfo, defaultWebGLInfo);
-        if (!webglInfo.context_available) {
+        webglInfo.webgl2_supported = safeSyncProbe(
+            "WebGL2", getWebGL2Support, function () { return false; }
+        );
+        if (!webglInfo.context_available && probeStatuses.webgl === "observed") {
             probeStatuses.webgl = "not_applicable";
             logger("WebGL context unavailable; emitted canonical fallback values", "bad");
         }

@@ -48,6 +48,11 @@ def _typed(value):
 
 def _saved_semantics(atom, field, refs):
     p = atom.provenance
+    # Opt-in extension only; the structural keys and scores of all previous
+    # atoms are unchanged. WebGL1 receives no new quality/selection bonus.
+    from ..webgl1_selector_integration import FIELD as WEBGL1_FIELD, registered_semantics
+    if field == WEBGL1_FIELD:
+        return registered_semantics(atom, field, refs)
     common = (p.get("semantic_version") == "1.0.0"
               and p.get("input_schema_version") == "rsr-input-v1"
               and p.get("input_origin") == "SAVED_CANDIDATE_RESULTS_NO_REEVALUATION")

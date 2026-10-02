@@ -1,0 +1,40 @@
+--- previous/attach_probe.mjs
+
++++ current/attach_probe.mjs
+
+@@ -13,7 +13,7 @@
+
+ const [mode, receiptPath] = process.argv.slice(2);
+ if (!["clean", "attack"].includes(mode) || !receiptPath) throw new Error("Expected clean|attack and receipt path");
+ const receipt = {status: "STARTED", mode, started_at: new Date().toISOString(),
+-  adapter: "paired-puppeteer-connection-v1", commands: [], enabled_evasions: []};
++  adapter: "behavior-puppeteer-connection-v1", commands: [], enabled_evasions: []};
+ fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + "\n", {flag: "wx"});
+ const save = () => fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + "\n");
+ let connection;
+@@ -69,7 +69,23 @@
+
+     receipt.options = protocol.intervention.options;
+   }
+   receipt.navigation = await send("Page.navigate", {url: "file:///android_asset/expanded_probe.html"});
+-  receipt.status = "NAVIGATED";
++  let ready = false;
++  for (let i = 0; i < protocol.limits.behavior_ready_seconds * 5; i++) {
++    const state = await send("Runtime.evaluate", {expression:
++      "location.href === 'file:///android_asset/expanded_probe.html' && document.readyState === 'complete' && !!window.HybridGuardWebProbe && !!window.AndroidBridge", returnByValue: true});
++    if (state.result.value === true) { ready = true; break; }
++    await new Promise(resolve => setTimeout(resolve, 200));
++  }
++  if (!ready) throw new Error("Behavior target did not become ready");
++  const expression = fs.readFileSync(path.join(here, "probe.js"), "utf8") + "\nhybridGuardBehaviorFeasibilityProbe();";
++  const measured = await send("Runtime.evaluate", {expression, returnByValue: true,
++    awaitPromise: true, timeout: protocol.limits.behavior_call_ms});
++  if (!measured.result.value || measured.result.value.schema !== protocol.sidecar_schema)
++    throw new Error("Behavior sidecar missing or invalid");
++  fs.writeFileSync(path.join(path.dirname(receiptPath), "BEHAVIOR.json"),
++    JSON.stringify(measured.result.value, null, 2) + "\n", {flag: "wx"});
++  receipt.behavior_session_id = measured.result.value.session_id;
++  receipt.status = "MEASURED_AND_NAVIGATED";
+   receipt.note = "Command completion alone is not measured effect; raw payload and post restoration checked separately";
+ } catch (error) {
+   receipt.status = "FAILED";

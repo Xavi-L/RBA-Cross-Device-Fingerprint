@@ -8,6 +8,8 @@ const destinationUrl = new URL("../public/probe/canonical_web_probe.js", import.
 const manifestUrl = new URL("../public/probe/manifest.json", import.meta.url);
 const canonicalBytes = await readFile(canonicalUrl);
 const sha256 = createHash("sha256").update(canonicalBytes).digest("hex");
+const revision = canonicalBytes.toString("utf8").match(/^    var REVISION = "([^"]+)";$/m)?.[1];
+if (!revision) throw new Error("Canonical probe revision is missing");
 
 await mkdir(dirname(fileURLToPath(destinationUrl)), { recursive: true });
 await copyFile(canonicalUrl, destinationUrl);
@@ -16,7 +18,7 @@ await writeFile(
   `${JSON.stringify(
     {
       schema_version: "hybridguard-web-probe-bundle-v1",
-      revision: "expanded-web-67-v1",
+      revision,
       signal_count: 67,
       sha256,
     },

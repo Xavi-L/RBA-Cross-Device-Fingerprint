@@ -1,0 +1,102 @@
+{
+  "status": "COMPLETE_WITH_CAPTURE_LIMITATIONS",
+  "planned_captures": 11,
+  "received_captures": 9,
+  "fully_observed_177": 9,
+  "webgl2_true_observed": 9,
+  "cells": [
+    {
+      "cell": "api36_auto",
+      "planned": 3,
+      "captured": 3,
+      "status": "COMPLETE",
+      "error": null,
+      "activity_reuse_warnings": []
+    },
+    {
+      "cell": "api36_host",
+      "planned": 3,
+      "captured": 2,
+      "status": "FAILED_OR_INCOMPLETE",
+      "error": "TimeoutError: Capture 3 exceeded 45 seconds",
+      "activity_reuse_warnings": [
+        3
+      ]
+    },
+    {
+      "cell": "api36_swiftshader",
+      "planned": 3,
+      "captured": 2,
+      "status": "FAILED_OR_INCOMPLETE",
+      "error": "TimeoutError: Capture 3 exceeded 45 seconds",
+      "activity_reuse_warnings": [
+        3
+      ]
+    },
+    {
+      "cell": "api29_swiftshader",
+      "planned": 1,
+      "captured": 1,
+      "status": "COMPLETE",
+      "error": null,
+      "activity_reuse_warnings": []
+    },
+    {
+      "cell": "api30_swiftshader",
+      "planned": 1,
+      "captured": 1,
+      "status": "COMPLETE",
+      "error": null,
+      "activity_reuse_warnings": []
+    }
+  ],
+  "observations": {
+    "lexical_web_desktop_backend_marker": {
+      "F": 9
+    },
+    "native_web_renderer_text_unequal": {
+      "F": 9
+    },
+    "native_renderer_alias_equal": {
+      "T": 9
+    },
+    "native_software_token": {
+      "T": 7,
+      "F": 2
+    },
+    "web_software_token": {
+      "T": 7,
+      "F": 2
+    }
+  },
+  "relations": {
+    "NW-005": {
+      "relation_applicability": {
+        "NOT_APPLICABLE": 7,
+        "UNKNOWN": 2
+      },
+      "risk_candidate_eligibility": {
+        "NOT_APPLICABLE": 7,
+        "UNKNOWN": 2
+      }
+    },
+    "OFFDER-GPU-001": {
+      "relation_applicability": {
+        "NOT_APPLICABLE": 7,
+        "SUPPORTED": 2
+      },
+      "risk_candidate_eligibility": {
+        "NOT_ELIGIBLE": 9
+      }
+    }
+  },
+  "new_alert_candidates": 0,
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "limits": [
+    "Same Mac host; repeated launches are not independent devices",
+    "Declared benign controls are not independently adjudicated population labels",
+    "No real-device FPR, attack TPR, or model gain estimate from these controls",
+    "Historical v1 false values remain unchanged and semantically separate"
+  ]
+}

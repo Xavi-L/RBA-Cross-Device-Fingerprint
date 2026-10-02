@@ -1,0 +1,141 @@
+{
+  "started_at": "2026-10-02T05:48:28.752878+00:00",
+  "protocol": {
+    "protocol_version": "webgl1-default-collection-selector-integration-v1",
+    "scope": "APP_DEFAULT_COLLECTION_TO_SELECTOR_INPUT_LOCAL_SMOKE",
+    "source_base_commit": "512ac0b7cfddd2691144ba8d959ca7d8a7635ba0",
+    "collector": {
+      "version_code": 14,
+      "version_name": "1.6.7-expanded-v2.2-webgl1",
+      "probe_revision": "expanded-web-67-v2",
+      "schema_version": "expanded-v2.2-status",
+      "fixed_signal_count": 177,
+      "apk": "deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+    },
+    "matrix": [
+      {
+        "api": 29,
+        "gpu": "swiftshader",
+        "triplets": 1,
+        "avd_home": "deliverables/featureapp_webdriver_raw_multienv_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API29"
+      },
+      {
+        "api": 30,
+        "gpu": "swiftshader",
+        "triplets": 1,
+        "avd_home": "deliverables/rule_semantics_raw_only_expansion_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API30"
+      },
+      {
+        "api": 36,
+        "gpu": "host",
+        "triplets": 1,
+        "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API36_1"
+      },
+      {
+        "api": 36,
+        "gpu": "swiftshader",
+        "triplets": 1,
+        "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API36_1"
+      }
+    ],
+    "phases": [
+      "clean_pre",
+      "attack",
+      "clean_post"
+    ],
+    "planned_payloads": 12,
+    "intervention": {
+      "configuration_id": "stealth_webgl_pair_v1",
+      "config_id": "w9-stealth-boundary-webgl-pair-v1",
+      "plugin": "puppeteer-extra-plugin-stealth",
+      "version": "2.11.2",
+      "puppeteer_core_version": "25.3.0",
+      "evasion": "webgl.vendor",
+      "options": {
+        "vendor": "Google Inc. (NVIDIA)",
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+      },
+      "expected_fields": [
+        "web_data.graphics_layer.webgl_vendor",
+        "web_data.graphics_layer.webgl_renderer"
+      ],
+      "local_adapter": "Same installed evasion and Puppeteer Connection adapter as the existing attack runner; launch, fresh-process checks and collection are managed here. No modification to attack repository."
+    },
+    "controls": {
+      "matched_triplet": "Fresh App process and same CDP navigation every phase. Only attack loads the existing webgl.vendor plugin. Observer is packaged and called by the App automatically; never injected or manually called through CDP.",
+      "restoration": "Both canonical target fields and WebGL1 observation restore. Other 10 graphics fields unchanged. Preserve full WebGL2 diagnostics without gating this candidate on WebGL2."
+    },
+    "analysis": {
+      "primary_relation": "Frozen independent WebGL1 candidate state, based on the unchanged envelope WebGL1 result. Also report original full-envelope state unchanged.",
+      "three_state": "Preflight errors, unavailable/lost contexts or extension, query errors, failed control, unstable numeric reads or missing/binding-invalid records remain UNKNOWN; never impute normal.",
+      "positive_triplet": "Complete bound observation, verified target effect, raw and sidecar restoration, other 10 graphics fields unchanged, canonical WebGL1 link, candidate F/T/F.",
+      "environment_gate": "All planned triplets in an environment satisfy positive_triplet; report per-context UNKNOWN even if aggregate is COUNTEREXAMPLE.",
+      "overall_gate": "All 8 planned triplets in all 4 preselected cells satisfy candidate positive_triplet; original full-envelope gate is reported separately without relabeling.",
+      "inference_boundary": "One Mac, existing emulator system images and one plugin configuration. No physical-device, Windows-host, broad benign-App, GPU identity or independent TPR/FPR claims.",
+      "excluded": [
+        "candidate registration",
+        "default collector/backend contract changes",
+        "historical row backfill",
+        "model fit",
+        "model predict",
+        "independent confirmation",
+        "attack repository modification"
+      ],
+      "admission": "Pass supports subsequent formal collection/input integration and candidate registration work. No selector entry, fit/predict or overall improvement claim in this run."
+    },
+    "runtime": {
+      "receiver_port": 8765,
+      "cdp_port": 9226,
+      "emulator_port": 5670,
+      "workers": 1,
+      "read_only_avd": true
+    },
+    "limits": {
+      "boot_seconds": 120,
+      "capture_seconds": 45,
+      "attempts_per_position": 1,
+      "observer_ready_seconds": 12,
+      "observer_call_ms": 10000
+    },
+    "failure_policy": "Save partial observations and errors; stop failed path, continue independent path; no silent retry or replacement",
+    "interpretation": "Local integration smoke in four existing emulator configurations, one triplet per configuration; not model improvement, independent confirmation, normal App FPR or coverage of unseen attacks.",
+    "planned_triplets": 4,
+    "observer": {
+      "schema": "webgl-parameter-equivalence-observation-v1",
+      "revision": "webgl-parameter-observer-v1",
+      "scope": "fresh-webgl-contexts-v1",
+      "source": "web_probe/webgl_parameter_observer.js",
+      "evaluator": "hybridguard_agent/research/webgl_parameter_equivalence.py",
+      "evaluator_revision": "webgl-parameter-equivalence-v1"
+    },
+    "candidate": {
+      "candidate_revision": "webgl1-parameter-equivalence-candidate-v1",
+      "candidate_scope": "webgl1-vendor-renderer-numeric-string-equivalence",
+      "source": "hybridguard_agent/research/webgl1_parameter_candidate.py"
+    },
+    "frozen_at": "2026-10-02T05:45:44.849900+00:00",
+    "acceptance": [
+      "12/12 new raw and exported records, 177 field catalog unchanged",
+      "Wrapper and full observation identical in raw archive, merged session, flattened export",
+      "WebGL1 candidate F/T/F in four triplets; report all U/failure results",
+      "Attack target effect and clean_post restoration verified, other 10 graphics fields unchanged",
+      "Source registration, external session and semantic catalog accepted; saved cells pass existing clause execution without fit"
+    ],
+    "model_operations": {
+      "fits": 0,
+      "predictions": 0,
+      "formal_retraining": "NOT_RUN",
+      "old_observation_backfill": "FORBIDDEN"
+    },
+    "registration": {
+      "source": "hybridguard_agent/research/webgl1_selector_integration.py",
+      "version": "webgl1-selector-integration-v1",
+      "candidate_id": "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1"
+    }
+  },
+  "apk_probe_matches_source": true
+}

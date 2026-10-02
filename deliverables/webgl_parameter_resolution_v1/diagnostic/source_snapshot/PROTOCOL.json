@@ -1,0 +1,132 @@
+{
+  "protocol_version": "webgl-parameter-localization-v1",
+  "scope": "LOCAL_ERROR_LOCALIZATION_NOT_CANDIDATE_VALIDATION",
+  "source_base_commit": "512ac0b7cfddd2691144ba8d959ca7d8a7635ba0",
+  "collector": {
+    "version_code": 13,
+    "version_name": "1.6.6-expanded-v2.2-webgl2-probe",
+    "probe_revision": "expanded-web-67-v2",
+    "schema_version": "expanded-v2.2-status",
+    "fixed_signal_count": 177,
+    "apk": "deliverables/webgl2_probe_revision_v2/runtime/featureapp-v13-local-only.apk"
+  },
+  "matrix": [
+    {
+      "api": 36,
+      "gpu": "host",
+      "triplets": 2,
+      "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API36_1"
+    },
+    {
+      "api": 36,
+      "gpu": "swiftshader",
+      "triplets": 2,
+      "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API36_1"
+    }
+  ],
+  "phases": [
+    "clean_pre",
+    "attack",
+    "clean_post"
+  ],
+  "planned_payloads": 12,
+  "intervention": {
+    "configuration_id": "stealth_webgl_pair_v1",
+    "config_id": "w9-stealth-boundary-webgl-pair-v1",
+    "plugin": "puppeteer-extra-plugin-stealth",
+    "version": "2.11.2",
+    "puppeteer_core_version": "25.3.0",
+    "evasion": "webgl.vendor",
+    "options": {
+      "vendor": "Google Inc. (NVIDIA)",
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+    },
+    "expected_fields": [
+      "web_data.graphics_layer.webgl_vendor",
+      "web_data.graphics_layer.webgl_renderer"
+    ],
+    "local_adapter": "Same installed evasion and Puppeteer Connection adapter as the existing attack runner; launch, fresh-process checks and collection are managed here. No modification to attack repository."
+  },
+  "controls": {
+    "matched_triplet": "Fresh App process each phase; identical CDP navigation and standalone observer; only attack phase loads existing webgl.vendor evasion.",
+    "restoration": "New process without plugin, not in-place unpatching.",
+    "context_isolation": "Two fresh 8x8 canvases per observation, WebGL1 then WebGL2.",
+    "positive_control": "MAX_VERTEX_ATTRIBS numeric/string/numeric, positive integral result with clean error and context status.",
+    "probe_order": "Enable debug renderer extension, record preflight, control triple, vendor triple, renderer triple, final context-loss state. Unmodified versioned observer v1.",
+    "binding": "Record session before/after and main-frame URL alongside observation; compare them to independently received raw App session and construct expected realm from that raw session.",
+    "environment": "Verify actual Android API and WebView package/version from dumpsys and raw manifest. Freeze them per cell; different APIs need not imply different WebView versions."
+  },
+  "analysis": {
+    "primary_relation": "Unmodified full evaluate_observation envelope; MATCH only if both contexts and both parameters pass; valid COUNTEREXAMPLE may coexist with UNKNOWN in another context.",
+    "three_state": "Preflight errors, unavailable/lost contexts or extension, query errors, failed control, unstable numeric reads or missing/binding-invalid records remain UNKNOWN; never impute normal.",
+    "positive_triplet": "Original control checks are reported but diagnostic localization has no all-green requirement.",
+    "environment_gate": "All planned triplets in an environment satisfy positive_triplet; report per-context UNKNOWN even if aggregate is COUNTEREXAMPLE.",
+    "overall_gate": "Diagnostic only: locate earliest observed error and verify context/path/stage dependence. Do not promote the original full-envelope outcome.",
+    "inference_boundary": "One Mac, existing emulator system images and one plugin configuration. No physical-device, Windows-host, broad benign-App, GPU identity or independent TPR/FPR claims.",
+    "excluded": [
+      "candidate registration",
+      "default collector/backend contract changes",
+      "historical row backfill",
+      "model fit",
+      "model predict",
+      "independent confirmation",
+      "attack repository modification"
+    ],
+    "admission": "A passing local gate permits the next integration/data-admission step for the measured configurations; it does not admit a selector candidate or training cohort."
+  },
+  "runtime": {
+    "receiver_port": 8765,
+    "cdp_port": 9226,
+    "emulator_port": 5670,
+    "workers": 1,
+    "read_only_avd": true
+  },
+  "limits": {
+    "boot_seconds": 120,
+    "capture_seconds": 45,
+    "attempts_per_position": 1,
+    "observer_ready_seconds": 12,
+    "observer_call_ms": 15000
+  },
+  "failure_policy": "Save partial observations and errors; stop failed path, continue independent path; no silent retry or replacement",
+  "interpretation": "Four previously runnable configurations, two triplets each. API29/30 previously both WebView91 and API36 WebView134; actual versions verified anew. This is a bounded compatibility/repeatability check, not a statistical sample or model-call budget. API29/30 host paths are outside this matrix.",
+  "planned_triplets": 4,
+  "observer": {
+    "schema": "webgl-parameter-equivalence-observation-v1",
+    "revision": "webgl-parameter-observer-v1",
+    "scope": "fresh-webgl-contexts-v1",
+    "source": "web_probe/webgl_parameter_observer.js",
+    "evaluator": "hybridguard_agent/research/webgl_parameter_equivalence.py",
+    "evaluator_revision": "webgl-parameter-equivalence-v1"
+  },
+  "diagnostic": {
+    "script": "diagnostic.js",
+    "schema": "webgl-error-localization-v1",
+    "locations": [
+      "about:blank",
+      "file:///android_asset/expanded_probe.html"
+    ],
+    "profiles": [
+      "error_first",
+      "extension_first",
+      "observer_order"
+    ],
+    "context_types": [
+      "webgl",
+      "webgl2"
+    ],
+    "policy": "Fresh context per profile; drain errors after each operation and record exact operation order. Compare the untouched v1 observer separately. Diagnostic draining cannot replace v1 preflight quality or turn UNKNOWN into MATCH.",
+    "profiles_by_location": {
+      "about:blank": [
+        "error_first"
+      ],
+      "file:///android_asset/expanded_probe.html": [
+        "error_first",
+        "extension_first",
+        "observer_order"
+      ]
+    }
+  }
+}

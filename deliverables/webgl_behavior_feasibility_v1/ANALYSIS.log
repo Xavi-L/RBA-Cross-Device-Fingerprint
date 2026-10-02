@@ -1,0 +1,144 @@
+{
+  "status": "COMPLETE",
+  "planned_payloads": 12,
+  "captured_payloads": 12,
+  "fully_observed_177": 12,
+  "planned_triplets": 4,
+  "complete_triplets": 4,
+  "measured_effect_triplets": 4,
+  "raw_restored_triplets": 4,
+  "sidecar_restored_triplets": 4,
+  "behavior_separated_triplets": 2,
+  "non_target_graphics_unchanged_triplets": 4,
+  "feasibility": "NOT_ESTABLISHED",
+  "by_phase": {
+    "clean_pre": {
+      "collections": 4,
+      "contexts": {
+        "webgl": {
+          "extension_gate": {
+            "MATCH": 4
+          },
+          "argument_coercion": {
+            "MATCH": 4
+          },
+          "capability_control": {
+            "MATCH": 4
+          },
+          "render_control": {
+            "MATCH": 4
+          },
+          "behavior_relation": {
+            "MATCH": 4
+          }
+        },
+        "webgl2": {
+          "extension_gate": {
+            "UNKNOWN": 2,
+            "MATCH": 2
+          },
+          "argument_coercion": {
+            "MATCH": 4
+          },
+          "capability_control": {
+            "MATCH": 4
+          },
+          "render_control": {
+            "MATCH": 4
+          },
+          "behavior_relation": {
+            "UNKNOWN": 2,
+            "MATCH": 2
+          }
+        }
+      }
+    },
+    "attack": {
+      "collections": 4,
+      "contexts": {
+        "webgl": {
+          "extension_gate": {
+            "COUNTEREXAMPLE": 4
+          },
+          "argument_coercion": {
+            "COUNTEREXAMPLE": 4
+          },
+          "capability_control": {
+            "MATCH": 4
+          },
+          "render_control": {
+            "MATCH": 4
+          },
+          "behavior_relation": {
+            "COUNTEREXAMPLE": 4
+          }
+        },
+        "webgl2": {
+          "extension_gate": {
+            "COUNTEREXAMPLE": 4
+          },
+          "argument_coercion": {
+            "COUNTEREXAMPLE": 4
+          },
+          "capability_control": {
+            "MATCH": 4
+          },
+          "render_control": {
+            "MATCH": 4
+          },
+          "behavior_relation": {
+            "COUNTEREXAMPLE": 4
+          }
+        }
+      }
+    },
+    "clean_post": {
+      "collections": 4,
+      "contexts": {
+        "webgl": {
+          "extension_gate": {
+            "MATCH": 4
+          },
+          "argument_coercion": {
+            "MATCH": 4
+          },
+          "capability_control": {
+            "MATCH": 4
+          },
+          "render_control": {
+            "MATCH": 4
+          },
+          "behavior_relation": {
+            "MATCH": 4
+          }
+        },
+        "webgl2": {
+          "extension_gate": {
+            "UNKNOWN": 2,
+            "MATCH": 2
+          },
+          "argument_coercion": {
+            "MATCH": 4
+          },
+          "capability_control": {
+            "MATCH": 4
+          },
+          "render_control": {
+            "MATCH": 4
+          },
+          "behavior_relation": {
+            "UNKNOWN": 2,
+            "MATCH": 2
+          }
+        }
+      }
+    }
+  },
+  "failures": [],
+  "model_fits": 0,
+  "model_predictions": 0,
+  "new_registered_alert_candidates": 0,
+  "independent_confirmation": "NOT_ACCESSED",
+  "overall_model_improvement": "NOT_EVALUATED",
+  "boundary": "One existing plugin configuration, one Mac, one WebView version, two rendering paths; phase counts are not independent TPR/FPR. Extension gating and argument coercion share one implementation defect."
+}

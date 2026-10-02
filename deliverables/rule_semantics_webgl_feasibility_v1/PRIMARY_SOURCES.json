@@ -1,0 +1,52 @@
+{
+  "reviewed_on": "2026-10-01",
+  "method": "Live primary-document review; summaries are semantic support, not official attack verdicts.",
+  "sources": [
+    {
+      "id": "webgl-debug-renderer-info",
+      "url": "https://registry.khronos.org/webgl/extensions/WEBGL_debug_renderer_info/",
+      "version": "Revision 8, last modified 2014-07-15",
+      "verified": true,
+      "supports": "Extension queries underlying graphics-driver descriptions. Ordinary renderer/vendor strings may be masked for privacy; extension exposure is a browser choice.",
+      "does_not_support": "Physical GPU attestation, exact Native/Web string equality, or declaring a vendor an attack."
+    },
+    {
+      "id": "chromium-swiftshader",
+      "url": "https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md",
+      "version": "Live main document; immutable revision not pinned",
+      "verified": true,
+      "supports": "SwiftShader renders using the CPU. Chromium distinguishes a GLES-driver mode from WebGL fallback mode.",
+      "does_not_support": "All Native/Web contexts use the same physical hardware, or software rendering is an attack."
+    },
+    {
+      "id": "angle-platforms",
+      "url": "https://chromium.googlesource.com/angle/angle/+/main/README.md",
+      "version": "Live main document; immutable revision not pinned",
+      "verified": true,
+      "supports": "ANGLE translates GLES to several backends; the platform table includes Android GLES/Vulkan and desktop backends.",
+      "does_not_support": "ANGLE alone identifies Windows or manipulation; a reported backend string proves physical host or authorization."
+    },
+    {
+      "id": "android-emulator-graphics",
+      "url": "https://developer.android.com/studio/run/emulator-acceleration#accel-graphics",
+      "version": "Live graphics-acceleration documentation",
+      "verified": true,
+      "supports": "Emulator rendering may use host GPU or supported software modes, including SwiftShader and ANGLE combinations.",
+      "does_not_support": "The device's guest Android OS uniquely determines physical GPU or renderer vocabulary."
+    },
+    {
+      "id": "html-canvas-context-mode",
+      "url": "https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext",
+      "version": "Living Standard retrieved 2026-10-01",
+      "verified": true,
+      "supports": "A canvas initialized with one context type cannot be used to probe a different context type; getContext returns null for incompatible context mode.",
+      "does_not_support": "A false result from the existing same-canvas probe establishes lack of device WebGL2 capability."
+    }
+  ],
+  "retrieval_limitations": [
+    {
+      "url": "https://registry.khronos.org/OpenGL-Refpages/es2.0/xhtml/glGetString.xml",
+      "result": "Browser research tool rejected application/xml; not used as a verified source. Native API calls are verified directly in repository collector source."
+    }
+  ]
+}

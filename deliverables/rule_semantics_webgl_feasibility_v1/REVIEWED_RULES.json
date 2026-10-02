@@ -1,0 +1,331 @@
+{
+  "scopes": [
+    {
+      "rule_id": "NW-005",
+      "provenance_group": "E",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "native_app_gpu_family",
+      "applicability_id": "scope-v2:NW-005",
+      "profile": "gpu_family",
+      "decision_role": "alert_candidate",
+      "relation_required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "both renderers resolve to exactly one existing named hardware family",
+        "no masked renderer",
+        "no software-renderer token"
+      ],
+      "risk_conditions": [
+        "reported family-coherence hypothesis only, no physical-path identity claim"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering",
+          "measurement_requirements": [
+            "meaningful unmasked renderers",
+            "software cannot be used as a hardware-family comparison",
+            "unique named families for NW-005"
+          ],
+          "risk_scope_requirements": [
+            "reported cross-renderer family coherence, not physical-path identity"
+          ],
+          "attribution_only": [
+            "actual physical/host/remote/hybrid route and its authorization"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:NW-005",
+        "rule_id": "NW-005",
+        "profile": "gpu",
+        "required_fields": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ],
+        "conditions": [
+          "unmasked meaningful renderer strings",
+          "Native hardware family unambiguous",
+          "software/host/remote or hybrid rendering exclusions established",
+          "ANGLE alone never a contradiction"
+        ],
+        "unobservable_alert_preconditions": [
+          "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {
+          "families": [
+            "adreno",
+            "mali",
+            "powervr",
+            "tegra",
+            "vivante"
+          ],
+          "software_tokens": [
+            "swiftshader",
+            "llvmpipe",
+            "softpipe",
+            "swrast"
+          ]
+        }
+      }
+    },
+    {
+      "rule_id": "OFFDER-GPU-001",
+      "provenance_group": "O_u",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "OFFDER-GPU-001",
+      "applicability_id": "scope-v2:OFFDER-GPU-001",
+      "profile": "gpu_backend_marker",
+      "decision_role": "observation_only",
+      "relation_required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "additional_risk_required_fields": [],
+      "relation_applicability": {
+        "statuses": [
+          "SUPPORTED",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Current observations can be evaluated under the declared literal relation semantics, not attack truth."
+      },
+      "risk_candidate_eligibility": {
+        "statuses": [
+          "ELIGIBLE",
+          "NOT_ELIGIBLE",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "meaning": "Eligible to supply a research-risk clue if a relation conflict occurs; eligibility also holds for consistent inputs."
+      },
+      "attribution_certainty": {
+        "status": "UNKNOWN",
+        "meaning": "Allowed current fields cannot establish attack, authorization or intent."
+      },
+      "measurement_requirements": [
+        "registered, observed, typed, finite and non-sentinel operands",
+        "profile-specific parsing/product/identity constraints"
+      ],
+      "relation_conditions": [
+        "typed meaningful current Native/EGL/WebGL strings",
+        "software and masking exclusions retained"
+      ],
+      "risk_conditions": [
+        "NOT_ELIGIBLE: backend marker alone lacks an independent comparable identity claim"
+      ],
+      "legacy_scope_authority": "Used only for profiles prefixed retained:, never to veto a reviewed v2 candidate.",
+      "precondition_classification": [
+        {
+          "old_condition": "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering",
+          "measurement_requirements": [
+            "meaningful unmasked renderers",
+            "software cannot be used as a hardware-family comparison",
+            "unique named families for NW-005"
+          ],
+          "risk_scope_requirements": [
+            "reported cross-renderer family coherence, not physical-path identity"
+          ],
+          "attribution_only": [
+            "actual physical/host/remote/hybrid route and its authorization"
+          ],
+          "insufficient_risk_basis": [
+            "backend marker alone has no independent identity-coherence implication"
+          ]
+        }
+      ],
+      "legacy_observation_scope": {
+        "applicability_id": "scope:OFFDER-GPU-001",
+        "rule_id": "OFFDER-GPU-001",
+        "profile": "gpu",
+        "required_fields": [
+          "app.android_native_data.graphics_layer.egl_renderer",
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer",
+          "app.web_data.graphics_layer.webgl_vendor"
+        ],
+        "predicate_dependencies": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.android_native_data.graphics_layer.egl_renderer",
+          "app.web_data.graphics_layer.webgl_vendor",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ],
+        "conditions": [
+          "unmasked meaningful renderer strings",
+          "Native hardware family unambiguous",
+          "software/host/remote or hybrid rendering exclusions established",
+          "ANGLE alone never a contradiction"
+        ],
+        "unobservable_alert_preconditions": [
+          "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+        ],
+        "scope_gate_executable": true,
+        "alert_prerequisites_fully_executable": false,
+        "missing_or_unverifiable_state": "UNKNOWN",
+        "decision_role": "observation_only",
+        "parameters": {}
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "rule_id": "NW-005",
+      "provenance_group": "E",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "native_app_gpu_family",
+      "catalog_version": "paired244-runtime-catalog-v3",
+      "predicate": "gpu_family",
+      "parameters": {
+        "families": [
+          "adreno",
+          "mali",
+          "powervr",
+          "tegra",
+          "vivante"
+        ],
+        "software_tokens": [
+          "swiftshader",
+          "llvmpipe",
+          "softpipe",
+          "swrast"
+        ]
+      },
+      "dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-GPU-001",
+      "provenance_group": "O_u",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "OFFDER-GPU-001",
+      "catalog_version": "paired244-runtime-catalog-v3",
+      "predicate": "android_gpu_not_windows_direct3d_v1",
+      "parameters": {},
+      "dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ]
+    }
+  ],
+  "W0_definition_atoms": [
+    {
+      "aliases": [
+        "NW-005"
+      ],
+      "atom_id": "CAT:NW-005",
+      "family": "native_app_gpu_family",
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.android_native_data.graphics_layer.native_gpu_renderer",
+            "app.web_data.graphics_layer.webgl_renderer"
+          ],
+          "operator": "EQ_UNAMBIGUOUS_HARDWARE_FAMILIES",
+          "parameters": {
+            "families": [
+              "adreno",
+              "mali",
+              "powervr",
+              "tegra",
+              "vivante"
+            ],
+            "software_tokens": [
+              "swiftshader",
+              "llvmpipe",
+              "softpipe",
+              "swrast"
+            ]
+          }
+        },
+        "field_refs": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ]
+      },
+      "sources": [
+        "E"
+      ],
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ]
+    },
+    {
+      "aliases": [
+        "OFFDER-GPU-001"
+      ],
+      "atom_id": "CAT:OFFDER-GPU-001",
+      "family": "native_app_gpu_family",
+      "orientation": "CATALOG_CONDITION",
+      "provenance": {
+        "condition": {
+          "operands": [
+            "app.android_native_data.graphics_layer.native_gpu_renderer",
+            "app.android_native_data.graphics_layer.egl_renderer",
+            "app.web_data.graphics_layer.webgl_vendor",
+            "app.web_data.graphics_layer.webgl_renderer"
+          ],
+          "operator": "NO_DESKTOP_WEBGL_BACKEND_TOKEN",
+          "parameters": {}
+        },
+        "field_refs": [
+          "app.android_native_data.graphics_layer.native_gpu_renderer",
+          "app.android_native_data.graphics_layer.egl_renderer",
+          "app.web_data.graphics_layer.webgl_vendor",
+          "app.web_data.graphics_layer.webgl_renderer"
+        ]
+      },
+      "sources": [
+        "O_u"
+      ],
+      "surfaces": [
+        "app_web67",
+        "native84"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "candidate_revision": "webgl1-parameter-equivalence-candidate-v1",
+  "candidate_scope": "webgl1-vendor-renderer-numeric-string-equivalence",
+  "status": "COMPLETE",
+  "candidate_gate": "PASS_FROZEN_CANDIDATE_LOCAL_MATRIX",
+  "planned_payloads": 24,
+  "captured_payloads": 24,
+  "planned_triplets": 8,
+  "positive_candidate_triplets": 8,
+  "by_phase": {
+    "clean_pre": {
+      "F": 8
+    },
+    "attack": {
+      "T": 8
+    },
+    "clean_post": {
+      "F": 8
+    }
+  },
+  "unknown_rows": 0,
+  "original_full_envelope_gate": "NOT_ESTABLISHED_FOR_FULL_MATRIX",
+  "original_full_envelope_positive_triplets": 6,
+  "environments": [
+    {
+      "cell": "api29_swiftshader",
+      "environment_identity": {
+        "collector_install_id": "261c80b1-6065-4d71-8fc3-3c9bbf1e9e3d",
+        "android_api": 29,
+        "webview_provider_package": "com.google.android.webview",
+        "webview_provider_version": "91.0.4472.114"
+      },
+      "candidate_gate": "PASS",
+      "by_phase": {
+        "clean_pre": {
+          "F": 2
+        },
+        "attack": {
+          "T": 2
+        },
+        "clean_post": {
+          "F": 2
+        }
+      },
+      "original_full_envelope_gate": "PASS"
+    },
+    {
+      "cell": "api30_swiftshader",
+      "environment_identity": {
+        "collector_install_id": "1f4db9d3-4098-4de6-bd41-31ae43d197cd",
+        "android_api": 30,
+        "webview_provider_package": "com.google.android.webview",
+        "webview_provider_version": "91.0.4472.114"
+      },
+      "candidate_gate": "PASS",
+      "by_phase": {
+        "clean_pre": {
+          "F": 2
+        },
+        "attack": {
+          "T": 2
+        },
+        "clean_post": {
+          "F": 2
+        }
+      },
+      "original_full_envelope_gate": "PASS"
+    },
+    {
+      "cell": "api36_host",
+      "environment_identity": {
+        "collector_install_id": "4bb5effe-10dd-469c-8539-6671a8f682cd",
+        "android_api": 36,
+        "webview_provider_package": "com.google.android.webview",
+        "webview_provider_version": "134.0.6998.135"
+      },
+      "candidate_gate": "PASS",
+      "by_phase": {
+        "clean_pre": {
+          "F": 2
+        },
+        "attack": {
+          "T": 2
+        },
+        "clean_post": {
+          "F": 2
+        }
+      },
+      "original_full_envelope_gate": "NOT_ESTABLISHED"
+    },
+    {
+      "cell": "api36_swiftshader",
+      "environment_identity": {
+        "collector_install_id": "ef7efe72-892c-404c-a78c-6e15c4d36a88",
+        "android_api": 36,
+        "webview_provider_package": "com.google.android.webview",
+        "webview_provider_version": "134.0.6998.135"
+      },
+      "candidate_gate": "PASS",
+      "by_phase": {
+        "clean_pre": {
+          "F": 2
+        },
+        "attack": {
+          "T": 2
+        },
+        "clean_post": {
+          "F": 2
+        }
+      },
+      "original_full_envelope_gate": "PASS"
+    }
+  ],
+  "fresh_sessions_verified": true,
+  "contract_frozen_before_capture": true,
+  "selector_registration": "NOT_REGISTERED",
+  "model_fits": 0,
+  "model_predictions": 0,
+  "overall_model_improvement": "NOT_EVALUATED",
+  "independent_confirmation": "NOT_ACCESSED",
+  "next_gate": "Supports formal collection/input integration and candidate registration work within the tested scope; broader comparison data and selector admission are still required before training.",
+  "limits": "One Mac, emulator configs, WebView91/134 and one existing plugin configuration. New captures validate a development contract, not unseen attack tools or normal apps.",
+  "scope_counterexample": "An attack affecting only WebGL2 can be missed by this candidate. That is outside the predicate; do not claim coverage of all WebGL manipulation."
+}

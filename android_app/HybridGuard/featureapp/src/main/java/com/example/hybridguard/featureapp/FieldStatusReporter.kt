@@ -81,31 +81,6 @@ class FieldStatusReporter(private val context: Context) {
         else -> null
     }
 
-    private fun probeFailure(fieldPath: String, probeStatuses: JSONObject): String? {
-        val probeName = when {
-            fieldPath.startsWith("webview_data.bridge_routing_layer.") -> "jsbridge"
-            fieldPath.startsWith("webview_data.") -> "webview_host"
-            fieldPath.startsWith("web_data.navigator_layer.") -> "navigator"
-            fieldPath.startsWith("web_data.screen_layer.") -> "screen"
-            fieldPath.endsWith(".canvas_hash") -> "canvas"
-            fieldPath.startsWith("web_data.graphics_layer.") -> "webgl"
-            fieldPath.startsWith("web_data.execution_layer.") -> "execution"
-            fieldPath.startsWith("web_data.network_api_layer.") -> "connection"
-            fieldPath.startsWith("web_data.audio_layer.") -> "audio"
-            fieldPath.startsWith("web_data.font_layer.") -> "font"
-            fieldPath.startsWith("web_data.permissions_layer.") -> "permissions"
-            fieldPath.startsWith("web_data.automation_surface_layer.") -> "automation"
-            else -> return null
-        }
-        return when (probeStatuses.optString(probeName, "observed")) {
-            "timeout" -> "timeout"
-            "permission_denied" -> "permission_denied"
-            "not_applicable" -> "not_applicable"
-            "runtime_error" -> "runtime_error"
-            else -> null
-        }
-    }
-
     private fun hasObservedValue(root: JSONObject, fieldPath: String): Boolean {
         var current: Any = root
         for (part in fieldPath.split('.')) {
@@ -127,6 +102,32 @@ class FieldStatusReporter(private val context: Context) {
     }
 
     companion object {
+        internal fun probeFailure(fieldPath: String, probeStatuses: JSONObject): String? {
+            val probeName = when {
+                fieldPath.startsWith("webview_data.bridge_routing_layer.") -> "jsbridge"
+                fieldPath.startsWith("webview_data.") -> "webview_host"
+                fieldPath.startsWith("web_data.navigator_layer.") -> "navigator"
+                fieldPath.startsWith("web_data.screen_layer.") -> "screen"
+                fieldPath.endsWith(".canvas_hash") -> "canvas"
+                fieldPath == "web_data.graphics_layer.webgl2_supported" -> "webgl2"
+                fieldPath.startsWith("web_data.graphics_layer.") -> "webgl"
+                fieldPath.startsWith("web_data.execution_layer.") -> "execution"
+                fieldPath.startsWith("web_data.network_api_layer.") -> "connection"
+                fieldPath.startsWith("web_data.audio_layer.") -> "audio"
+                fieldPath.startsWith("web_data.font_layer.") -> "font"
+                fieldPath.startsWith("web_data.permissions_layer.") -> "permissions"
+                fieldPath.startsWith("web_data.automation_surface_layer.") -> "automation"
+                else -> return null
+            }
+            return when (probeStatuses.optString(probeName, "observed")) {
+                "timeout" -> "timeout"
+                "permission_denied" -> "permission_denied"
+                "not_applicable" -> "not_applicable"
+                "runtime_error" -> "runtime_error"
+                else -> null
+            }
+        }
+
         const val STATUS_SCHEMA_VERSION = "field-status-v1"
         const val FIXED_SIGNAL_COUNT = 177
         private const val FIELD_CATALOG_ASSET = "expanded_v2_field_catalog.csv"

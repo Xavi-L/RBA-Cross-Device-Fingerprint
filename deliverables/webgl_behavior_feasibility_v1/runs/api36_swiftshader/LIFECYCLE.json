@@ -1,0 +1,1052 @@
+{
+  "api": 36,
+  "gpu": "swiftshader",
+  "triplets": 2,
+  "started_at": "2026-10-01T08:00:17.377343+00:00",
+  "status": "COMPLETE",
+  "captures": [
+    {
+      "step_id": "r1-clean_pre",
+      "phase": "clean_pre",
+      "round": 1,
+      "controlled": true,
+      "raw_line": 1,
+      "session_id": "5f8ed1f5-2dd1-413f-9a62-02d9586a44ea"
+    },
+    {
+      "step_id": "r1-attack",
+      "phase": "attack",
+      "round": 1,
+      "controlled": true,
+      "raw_line": 2,
+      "session_id": "aeb7b189-2bc6-45b7-85d1-7826b1d188e5"
+    },
+    {
+      "step_id": "r1-clean_post",
+      "phase": "clean_post",
+      "round": 1,
+      "controlled": true,
+      "raw_line": 3,
+      "session_id": "4f8c2c3e-3b99-4e15-91a9-dd624911aced"
+    },
+    {
+      "step_id": "r2-clean_pre",
+      "phase": "clean_pre",
+      "round": 2,
+      "controlled": true,
+      "raw_line": 4,
+      "session_id": "210035f7-96fe-4862-96aa-31209c20d4bd"
+    },
+    {
+      "step_id": "r2-attack",
+      "phase": "attack",
+      "round": 2,
+      "controlled": true,
+      "raw_line": 5,
+      "session_id": "41721736-5c4c-42bf-9ba1-f0e10ffa677a"
+    },
+    {
+      "step_id": "r2-clean_post",
+      "phase": "clean_post",
+      "round": 2,
+      "controlled": true,
+      "raw_line": 6,
+      "session_id": "a7f230ea-2586-4d7d-a697-a6895c122cff"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "log": "android-api.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "dumpsys",
+        "webviewupdate"
+      ],
+      "returncode": 0,
+      "log": "webview-provider.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "install",
+        "-r",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl2_probe_revision_v2/runtime/featureapp-v13-local-only.apk"
+      ],
+      "returncode": 0,
+      "log": "install.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pm",
+        "clear",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "clear-ephemeral-app-data.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "reverse",
+        "tcp:8765",
+        "tcp:8765"
+      ],
+      "returncode": 0,
+      "log": "reverse.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/stop.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/process-0.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/process-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "webgl-behavior-swiftshader:r1-clean_pre",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl-behavior-api36-swiftshader",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/start.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/pid.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/sockets.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "tcp:9226",
+        "localabstract:webview_devtools_remote_2022"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/forward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/attach_probe.mjs",
+        "clean",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/runs/api36_swiftshader/attempts/r1-clean_pre/AUTOMATION.json"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/attach.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/stop-final.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "--remove",
+        "tcp:9226"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_pre/unforward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/stop.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/process-0.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/process-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "webgl-behavior-swiftshader:r1-attack",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl-behavior-api36-swiftshader",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/start.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/pid.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/sockets.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "tcp:9226",
+        "localabstract:webview_devtools_remote_2575"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/forward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/attach_probe.mjs",
+        "attack",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/runs/api36_swiftshader/attempts/r1-attack/AUTOMATION.json"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/attach.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/stop-final.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "--remove",
+        "tcp:9226"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-attack/unforward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/stop.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/process-0.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/process-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "webgl-behavior-swiftshader:r1-clean_post",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl-behavior-api36-swiftshader",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/start.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/pid.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/sockets.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "tcp:9226",
+        "localabstract:webview_devtools_remote_3032"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/forward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/attach_probe.mjs",
+        "clean",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/runs/api36_swiftshader/attempts/r1-clean_post/AUTOMATION.json"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/attach.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/stop-final.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "--remove",
+        "tcp:9226"
+      ],
+      "returncode": 0,
+      "log": "attempts/r1-clean_post/unforward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/stop.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/process-0.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/process-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "webgl-behavior-swiftshader:r2-clean_pre",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl-behavior-api36-swiftshader",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "2",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/start.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/pid.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/sockets.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "tcp:9226",
+        "localabstract:webview_devtools_remote_3424"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/forward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/attach_probe.mjs",
+        "clean",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/runs/api36_swiftshader/attempts/r2-clean_pre/AUTOMATION.json"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/attach.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/stop-final.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "--remove",
+        "tcp:9226"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_pre/unforward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/stop.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/process-0.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/process-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "webgl-behavior-swiftshader:r2-attack",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl-behavior-api36-swiftshader",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "2",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/start.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/pid.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/sockets.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "tcp:9226",
+        "localabstract:webview_devtools_remote_3753"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/forward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/attach_probe.mjs",
+        "attack",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/runs/api36_swiftshader/attempts/r2-attack/AUTOMATION.json"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/attach.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/stop-final.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "--remove",
+        "tcp:9226"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-attack/unforward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/stop.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/process-0.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "ps",
+        "-A",
+        "-o",
+        "PID,NAME"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/process-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "webgl-behavior-swiftshader:r2-clean_post",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl-behavior-api36-swiftshader",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "2",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/start.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/pid.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/sockets.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "tcp:9226",
+        "localabstract:webview_devtools_remote_4080"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/forward.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/89098_1790677689989/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/attach_probe.mjs",
+        "clean",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl_behavior_feasibility_v1/runs/api36_swiftshader/attempts/r2-clean_post/AUTOMATION.json"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/attach.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/stop-final.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "forward",
+        "--remove",
+        "tcp:9226"
+      ],
+      "returncode": 0,
+      "log": "attempts/r2-clean_post/unforward.log"
+    }
+  ],
+  "emulator_command": [
+    "/Users/xavier/Library/Android/sdk/emulator/emulator",
+    "-avd",
+    "Codex_Webdriver_Raw_API36_1",
+    "-port",
+    "5670",
+    "-read-only",
+    "-no-window",
+    "-no-audio",
+    "-no-snapshot",
+    "-no-boot-anim",
+    "-gpu",
+    "swiftshader"
+  ],
+  "emulator_pid": 66044,
+  "receiver_command": [
+    "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+    "-B",
+    "-m",
+    "uvicorn",
+    "main:app",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8765",
+    "--workers",
+    "1"
+  ],
+  "receiver_pid": 66106,
+  "environment_identity": {
+    "collector_install_id": "5558bede-eafa-437d-9d6c-860a7746eaac",
+    "android_api": 36,
+    "webview_provider_package": "com.google.android.webview",
+    "webview_provider_version": "134.0.6998.135"
+  },
+  "receiver_returncode": 0,
+  "emulator_returncode": 0,
+  "finished_at": "2026-10-01T08:01:38.960124+00:00"
+}

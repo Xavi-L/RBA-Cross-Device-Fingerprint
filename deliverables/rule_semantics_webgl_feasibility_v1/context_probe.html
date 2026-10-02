@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>WebGL canvas 上下文最小复现</title>
+<style>body{font:16px system-ui;max-width:900px;margin:40px auto}pre{white-space:pre-wrap;background:#f3f4f6;padding:20px}</style>
+<h1>同一 canvas 与独立 canvas 的 WebGL2 探测</h1>
+<p>仅验证浏览器上下文创建行为，不采集指纹字符串，不上传数据，不代表 Android 设备能力。</p>
+<pre id="result">运行中</pre>
+<script>
+(() => {
+  // Match canonical_web_probe.js getWebGLInfo's context creation order.
+  const shared = document.createElement("canvas");
+  const gl = shared.getContext("webgl") || shared.getContext("experimental-webgl");
+  const gl2AfterGl1 = shared.getContext("webgl2");
+  const separate = document.createElement("canvas");
+  const gl2Fresh = separate.getContext("webgl2");
+  const reverse = document.createElement("canvas");
+  const gl2First = reverse.getContext("webgl2");
+  const gl1AfterGl2 = reverse.getContext("webgl");
+  const result = {
+    experiment: "canvas-context-mode-minimal-reproduction-v1",
+    observed_at: new Date().toISOString(),
+    environment: "Codex in-app desktop browser; not Android WebView",
+    first_webgl_available: !!gl,
+    webgl2_on_same_canvas_after_webgl: !!gl2AfterGl1,
+    webgl2_on_fresh_canvas: !!gl2Fresh,
+    webgl2_first_on_third_canvas: !!gl2First,
+    webgl_on_same_canvas_after_webgl2: !!gl1AfterGl2,
+    outcome: gl && !gl2AfterGl1 && gl2Fresh ? "CONTEXT_REUSE_FALSE_NEGATIVE_REPRODUCED" : "INCONCLUSIVE_FOR_FALSE_NEGATIVE",
+    standard: "https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-getcontext"
+  };
+  document.getElementById("result").textContent = JSON.stringify(result, null, 2);
+  for (const ctx of [gl, gl2Fresh, gl2First]) {
+    const extension = ctx && ctx.getExtension("WEBGL_lose_context");
+    if (extension) extension.loseContext();
+  }
+})();
+</script>
+</html>

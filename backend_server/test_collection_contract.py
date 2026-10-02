@@ -154,8 +154,19 @@ class CollectionContractTests(unittest.TestCase):
                         payload["web_data"] = {"automation_surface_layer": {"webdriver": False}}
                         if values is not None:
                             read_status, value_type, boolean_value = values
+                            fixture = json.loads((Path(__file__).resolve().parents[1] /
+                                "hybridguard_agent/tests/fixtures/webgl_parameter_equivalence_v1/observer_examples.json").read_text())
+                            webgl = next(c["observation"] for c in fixture["cases"] if c["id"] == "normal")
+                            webgl["realm_binding"] = "featureapp:contract-test-session:main-frame"
+                            webgl["contexts"][1]["preflight"]["errors"] = [1280]
                             payload["collection_observations"] = {
                                 "observation_schema_version": "app-web-observations-v1",
+                                "webgl_parameter": {
+                                    "collection_revision": "featureapp-webgl-parameter-collection-v1",
+                                    "read_status": read_status,
+                                    "observation": webgl if read_status == "observed" else None,
+                                    "reason": None if read_status == "observed" else "synthetic_failure",
+                                },
                                 "webdriver": {
                                     "api_present": True,
                                     "presence_read_status": "observed",

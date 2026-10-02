@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-10-01T06:37:39.632333+00:00",
+  "plan": {
+    "purpose": "Separate operational verification of fresh Activity launch after two original launch-reuse failures",
+    "basis": "Original host and swiftshader start-3.log both say Activity not started; existing raw expansion runner already has process-absent-then-am-start-S-W-v1",
+    "changes": "Observe process absent twice, then use am start -S -W and reject Activity reuse immediately",
+    "matrix": [
+      {
+        "api": 36,
+        "gpu": "host",
+        "launches": 3
+      },
+      {
+        "api": 36,
+        "gpu": "swiftshader",
+        "launches": 3
+      }
+    ],
+    "limits": {
+      "boot_seconds": 120,
+      "capture_seconds": 45,
+      "cell_attempts": 1
+    },
+    "policy": "Separate diagnostic amendment; preserve original 9/11 outcome. No further retries if this verification fails. Same local APK and isolated receiver; no attacks or training."
+  }
+}

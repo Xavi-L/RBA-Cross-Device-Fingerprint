@@ -1,0 +1,10 @@
+{
+  "kind": "ANALYSIS_ADAPTER_FIELD_SCOPE_FIX",
+  "original_source_retained": "source_snapshot/analyze.py",
+  "reason": "Raw Web graphics has 8 keys including canvas. The predeclared existing graphics scope is 12 fields: 5 Native plus 7 Web, excluding canvas. The initial analyzer accidentally read the Web dictionary alone while requiring 10 non-target fields.",
+  "change": "Read the same 12 graphics fields used by the prior graphics audit and keep the predeclared target/restoration/non-target checks.",
+  "collection_changed": false,
+  "candidate_or_acceptance_changed": false,
+  "failed_rows_replaced": false,
+  "timing": "Before first full analysis; all original captures and the initial analyzer source retained."
+}

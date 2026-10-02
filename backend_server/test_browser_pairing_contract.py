@@ -577,18 +577,31 @@ class BrowserPairingContractTests(unittest.TestCase):
                 first["receipt"]["browser_receipt_id"],
             )
 
-    def test_current_and_previous_probe_bundles_accept_only_the_two_pinned_identities(self):
+    def test_probe_bundles_are_pinned_to_their_own_revision(self):
         manifest = json.loads((Path(__file__).resolve().parents[1]
                                / "browser_probe_site/public/probe/manifest.json").read_text(encoding="utf-8"))
         current = manifest["sha256"]
         previous = "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
+        observer = "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004"
+        legacy_revision = "expanded-web-67-v1"
+        revision = manifest["revision"]
         self.assertEqual(main.BROWSER_WEB_PROBE_SHA256, current)
-        self.assertEqual(main.BROWSER_COMPATIBLE_WEB_PROBE_SHA256, {previous, current})
-        for label, bundle_hash, accepted in (("previous", previous, True), ("current", current, True),
-                                             ("unregistered", "0" * 64, False)):
+        self.assertEqual(main.BROWSER_WEB_PROBE_HASHES_BY_REVISION, {
+            legacy_revision: {previous, observer}, revision: {current},
+        })
+        for label, ticket_revision, bundle_hash, accepted in (
+            ("previous", legacy_revision, previous, True),
+            ("observer", legacy_revision, observer, True),
+            ("current", revision, current, True),
+            ("v1_claims_v2", revision, observer, False),
+            ("v2_claims_v1", legacy_revision, current, False),
+            ("unregistered", revision, "0" * 64, False),
+        ):
             with self.subTest(bundle=label), self.isolated_backend() as (temp, _):
-                ticket = self.issue()
+                ticket = self.issue(self.ticket_request(web_probe_revision=ticket_revision))
                 data = browser_payload(ticket["pair_id"])
+                data["web_probe_revision"] = ticket_revision
+                data["probe_metadata"]["core_revision"] = ticket_revision
                 data["probe_metadata"]["core_bundle_sha256"] = bundle_hash
                 payload = main.BrowserFingerprintPayload(**data)
                 if accepted:
@@ -606,6 +619,13 @@ class BrowserPairingContractTests(unittest.TestCase):
                     self.assertEqual(rejected.exception.detail["code"], "BROWSER_PROBE_CORE_HASH_MISMATCH")
                     self.assertEqual(self.jsonl_rows(temp / "raw_browser_payloads.jsonl"), [])
                     self.assertEqual(self.jsonl_rows(temp / "browser_collected_data.jsonl"), [])
+
+    def test_unknown_probe_revision_cannot_issue_ticket(self):
+        with self.isolated_backend():
+            with self.assertRaises(main.HTTPException) as rejected:
+                self.issue(self.ticket_request(web_probe_revision="expanded-web-67-v999"))
+            self.assertEqual(rejected.exception.status_code, 422)
+            self.assertEqual(rejected.exception.detail["code"], "WEB_PROBE_REVISION_UNSUPPORTED")
 
     def test_probe_origin_and_core_hash_are_bound_to_deployed_bundle(self):
         with self.isolated_backend():

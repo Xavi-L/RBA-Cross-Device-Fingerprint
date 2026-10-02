@@ -1,0 +1,36 @@
+{
+  "candidate_revision": "webgl1-parameter-equivalence-candidate-v1",
+  "candidate_scope": "webgl1-vendor-renderer-numeric-string-equivalence",
+  "frozen_at": "2026-10-01T18:21:00.804789+00:00",
+  "role": "EXPOSED_DEVELOPMENT_CANDIDATE_PROSPECTIVE_LOCAL_VALIDATION",
+  "source": "hybridguard_agent/research/webgl1_parameter_candidate.py",
+  "observation_schema": "webgl-parameter-equivalence-observation-v1",
+  "observer_revision": "webgl-parameter-observer-v1",
+  "envelope_evaluator_revision": "webgl-parameter-equivalence-v1",
+  "decision": "Use only the validated WebGL1 subresult of the unchanged full observation. T=verified stable numeric/string conflict; F=all requested WebGL1 comparisons match; U=missing, invalid, failed or unstable WebGL1/envelope. F is not a device-safety or WebGL2 assertion.",
+  "quality_guards": [
+    "External raw-session realm binding",
+    "Original envelope versions, scope and ordered context set",
+    "WebGL1 context and extension observed and available",
+    "WebGL1 initialization error queue empty and context not lost",
+    "MAX_VERTEX_ATTRIBS numeric/string/numeric control matches",
+    "Vendor/renderer arguments, types, statuses and errors valid; stable numeric endpoints"
+  ],
+  "webgl2_policy": "Always retain raw observation and full v1 outcome. Neither WebGL2 counterexamples nor UNKNOWN supply this candidate state.",
+  "scope_counterexample": "An attack affecting only WebGL2 can be missed by this candidate. That is outside the predicate; do not claim coverage of all WebGL manipulation.",
+  "selection_basis": "LOCALIZATION.json: initialization error is visible before observer extension/parameter reads, confined to API36 host WebGL2 in the measured profiles; no error observed in WebGL1.",
+  "root_cause_limit": "Exact WebView/ANGLE/driver cause not identified. No error suppression or native driver fix claimed.",
+  "next_validation": "New App installs/processes/sessions on all four preselected environments, 2 normal-attack-restoration triplets each, 24 payloads; frozen before this validation begins.",
+  "acceptance": [
+    "All 24 positions captured and session-bound; no replacement",
+    "All 8 triplets have raw target effect, raw/sidecar restoration, other 10 graphics fields unchanged and canonical WebGL1 linkage",
+    "Candidate states F,T,F in all 8 triplets and no candidate U",
+    "Report unchanged full v1 outcomes separately; they are allowed to retain the known UNKNOWN"
+  ],
+  "not_authorized_by_pass": [
+    "Selector registration or model fit performed automatically",
+    "Imputing old 378 rows",
+    "Claiming model improvement, physical-device FPR or independent confirmation"
+  ],
+  "inference_scope": "One Mac, emulator configs, WebView91/134 and one existing plugin configuration. New captures validate a development contract, not unseen attack tools or normal apps."
+}

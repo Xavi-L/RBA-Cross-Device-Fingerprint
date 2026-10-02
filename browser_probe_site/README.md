@@ -3,7 +3,18 @@
 这是 App 显式选择设备上一个合格可用浏览器后访问的纯静态页面，不要求用户预先
 设置默认浏览器。它与 App WebView 共用仓库根
 `web_probe/canonical_web_probe.js`，因此 Web 层固定为同一套 67 字段、同一版本
-`expanded-web-67-v1`，页面本身不复制采集算法。
+`expanded-web-67-v2`，页面本身不复制采集算法。
+
+v2 用独立 canvas 创建 WebGL2 上下文，修复 v1 在 WebGL1 已占用的 canvas 上
+探测 WebGL2 而得到 false 的问题。`webgl2_supported` 表示本次环境能否创建
+WebGL2 上下文：返回 null 是 observed/false，抛异常是 runtime_error/false；
+后者的 false 仅为回退值。WebGL1 与 WebGL2 分别报告状态。固定 67/177 字段不变。
+历史 v1 的 false 不能据此改写为 true，也不能与 v2 混作同语义的训练输入。
+
+升级应先更新后端的版本及 bundle 对照，再同步发布 App v13 与网页 v2。
+后端保留两份已登记的 v1 bundle，仅按其原版本接收，拒绝跨版本冒认；
+旧 App 请求 v1 ticket 后若打开 v2 网页，版本校验会拒绝该配对，需升级 App
+或使用独立保留的 v1 网页。这里说明发布顺序，不代表已部署公网。
 
 公网入口：
 

@@ -1,0 +1,16 @@
+{
+  "kind": "SYNTHETIC_BOUNDARY_CASES_NOT_EXPERIMENTAL_SAMPLES",
+  "purpose": "Exercise the existing v2 relation contract only. No model fit/predict, new rule, hardware label or metric denominator.",
+  "cases": [
+    {"id":"B01","native":"Adreno (TM) 615","web":"ANGLE (Qualcomm, Adreno (TM) 615, OpenGL ES 3.2)","text_unequal":"T","marker":"F","family_outcome":"MATCH","family_eligibility":"ELIGIBLE","backend_outcome":"MATCH","meaning":"Same reported family despite wrapper inequality; source-supported construction, not a collected pair."},
+    {"id":"B02","native":"Adreno (TM) 615","web":"Mali-G78","text_unequal":"T","marker":"F","family_outcome":"COUNTEREXAMPLE","family_eligibility":"ELIGIBLE","backend_outcome":"MATCH","meaning":"Different known families; attribution still UNKNOWN."},
+    {"id":"B03","native":"Apple M4","web":"NVIDIA GeForce GTX 1660","text_unequal":"T","marker":"F","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"MATCH","meaning":"Do not expand the family vocabulary to make this case qualify."},
+    {"id":"B04","native":"Adreno Mali","web":"Adreno (TM) 615","text_unequal":"T","marker":"F","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"MATCH","meaning":"Ambiguous multi-family operand must abstain."},
+    {"id":"B05","native":"SwiftShader","web":"ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)","text_unequal":"T","marker":"T","family_outcome":"NOT_APPLICABLE","family_eligibility":"NOT_APPLICABLE","backend_outcome":"NOT_APPLICABLE","meaning":"Lexical diagnostic may be true while existing relations exclude software rendering."},
+    {"id":"B06","native":"Adreno (TM) 615","web":"Unknown","text_unequal":"U","marker":"U","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"UNKNOWN","meaning":"An observed sentinel is not a meaningful renderer."},
+    {"id":"B07","native":"Adreno (TM) 615","web":"Mali-G78","web_status":"runtime_error","text_unequal":"U","marker":"U","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"UNKNOWN","meaning":"Non-observed value cannot be used even when the text looks valid."},
+    {"id":"B08","native":"Adreno (TM) 615","web":123,"text_unequal":"U","marker":"U","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"UNKNOWN","meaning":"Wrong type does not enter comparison."},
+    {"id":"B09","native":"ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)","web":"ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)","text_unequal":"F","marker":"T","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"COUNTEREXAMPLE","meaning":"Synthetic equal desktop-backend strings: marker observation is not Native/Web inequality; this is not a Windows runtime capture."},
+    {"id":"B10","native":"Adreno (TM) 615","web":"Mali-G78","web_status":"STATUS_MISSING","text_unequal":"U","marker":"U","family_outcome":"UNKNOWN","family_eligibility":"UNKNOWN","backend_outcome":"UNKNOWN","meaning":"Presence of a renderer key cannot supply a missing observation status."}
+  ]
+}

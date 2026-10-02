@@ -1,0 +1,91 @@
+{
+  "atom": {
+    "atom_id": "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1",
+    "family": "webgl_parameter_equivalence",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "REGISTERED_WEBGL_PARAMETER_OBSERVATION_V1"
+    ],
+    "aliases": [
+      "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1"
+    ],
+    "orientation": "SAVED_SEMANTIC_STATE",
+    "provenance": {
+      "field": "app.collection_observations.webgl_parameter.observation",
+      "field_refs": [
+        "app.collection_observations.webgl_parameter.observation"
+      ],
+      "signal_group": "graphics_identity",
+      "candidate_id": "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1",
+      "candidate_revision": "webgl1-parameter-equivalence-candidate-v1",
+      "candidate_scope": "webgl1-vendor-renderer-numeric-string-equivalence",
+      "registration_version": "webgl1-selector-integration-v1",
+      "input_schema_version": "webgl-parameter-equivalence-observation-v1",
+      "observer_revision": "webgl-parameter-observer-v1",
+      "evaluator_revision": "webgl-parameter-equivalence-v1",
+      "collection_revision": "featureapp-webgl-parameter-collection-v1",
+      "gate_version": "webgl1-parameter-quality-gate-v1",
+      "mode": "featureapp_main_frame_raw_v1",
+      "input_origin": "SAVED_CANDIDATE_RESULTS_NO_REEVALUATION",
+      "independent_cross_layer_evidence": false
+    }
+  },
+  "semantics": {
+    "key": [
+      "app.collection_observations.webgl_parameter.observation",
+      "SAVED_SEMANTIC_STATE",
+      {
+        "operator": "STABLE_NUMERIC_VS_NUMERIC_STRING_NEQ",
+        "operands": [
+          "app.collection_observations.webgl_parameter.observation"
+        ],
+        "context": "webgl",
+        "parameters": [
+          37445,
+          37446
+        ],
+        "control_parameter": 34921,
+        "sequence": [
+          "numeric_before",
+          "numeric_string",
+          "numeric_after"
+        ],
+        "parameter_aggregation": "T_IF_ANY_VALID_CONFLICT_F_IF_BOTH_MATCH_ELSE_U",
+        "webgl2_decision_contribution": false
+      },
+      {
+        "candidate_revision": "webgl1-parameter-equivalence-candidate-v1",
+        "candidate_scope": "webgl1-vendor-renderer-numeric-string-equivalence",
+        "registration_version": "webgl1-selector-integration-v1",
+        "input_schema_version": "webgl-parameter-equivalence-observation-v1",
+        "observer_revision": "webgl-parameter-observer-v1",
+        "evaluator_revision": "webgl-parameter-equivalence-v1",
+        "collection_revision": "featureapp-webgl-parameter-collection-v1",
+        "gate_version": "webgl1-parameter-quality-gate-v1",
+        "mode": "featureapp_main_frame_raw_v1",
+        "input_origin": "SAVED_CANDIDATE_RESULTS_NO_REEVALUATION",
+        "external_source_and_session_required": true,
+        "original_full_envelope_required": true,
+        "preflight_errors": "EMPTY",
+        "context_and_extension": "OBSERVED_AVAILABLE",
+        "per_parameter_queries": "OBSERVED_TYPED_ERROR_FREE",
+        "per_parameter_numeric_endpoints": "STABLE",
+        "control": "MATCH",
+        "global_gate_failure": "U",
+        "invalid_or_unstable_parameter": "U",
+        "valid_parameter_conflict_survives_other_parameter_unknown": true
+      }
+    ],
+    "quality": 0,
+    "signal_group": "graphics_identity"
+  },
+  "source_registration": {
+    "source_reference": "deliverables/webgl1_selector_integration_v1/PROTOCOL.json",
+    "collector_version_code": 14,
+    "collector_version_name": "1.6.7-expanded-v2.2-webgl1",
+    "collection_revision": "featureapp-webgl-parameter-collection-v1"
+  },
+  "role": "OPT_IN_REGISTERED_CANDIDATE_NOT_SELECTED_MODEL_RULE"
+}

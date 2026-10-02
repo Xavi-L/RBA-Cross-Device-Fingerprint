@@ -1,0 +1,97 @@
+{
+  "started_at": "2026-10-01T07:59:26.652483+00:00",
+  "protocol": {
+    "protocol_version": "webgl-behavior-feasibility-v1",
+    "scope": "LOCAL_BEHAVIOR_CONTRACT_FEASIBILITY_NOT_MODEL_EVALUATION",
+    "source_base_commit": "512ac0b7cfddd2691144ba8d959ca7d8a7635ba0",
+    "attack_repository_commit": "9698e8dfeb450094d99c46bdcff15283c995e3b3",
+    "collector": {
+      "version_code": 13,
+      "version_name": "1.6.6-expanded-v2.2-webgl2-probe",
+      "probe_revision": "expanded-web-67-v2",
+      "schema_version": "expanded-v2.2-status",
+      "fixed_signal_count": 177,
+      "apk": "deliverables/webgl2_probe_revision_v2/runtime/featureapp-v13-local-only.apk"
+    },
+    "matrix": [
+      {
+        "api": 36,
+        "gpu": "host",
+        "triplets": 2
+      },
+      {
+        "api": 36,
+        "gpu": "swiftshader",
+        "triplets": 2
+      }
+    ],
+    "phases": [
+      "clean_pre",
+      "attack",
+      "clean_post"
+    ],
+    "planned_payloads": 12,
+    "intervention": {
+      "configuration_id": "stealth_webgl_pair_v1",
+      "config_id": "w9-stealth-boundary-webgl-pair-v1",
+      "plugin": "puppeteer-extra-plugin-stealth",
+      "version": "2.11.2",
+      "puppeteer_core_version": "25.3.0",
+      "evasion": "webgl.vendor",
+      "options": {
+        "vendor": "Google Inc. (NVIDIA)",
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+      },
+      "expected_fields": [
+        "web_data.graphics_layer.webgl_vendor",
+        "web_data.graphics_layer.webgl_renderer"
+      ],
+      "local_adapter": "Same installed evasion and Puppeteer Connection adapter as the existing attack runner; launch, fresh-process checks and collection are managed here. No modification to attack repository."
+    },
+    "controls": {
+      "matched_triplet": "Fresh App process each phase; same CDP navigation and same unmodified behavior probe. Only attack phase loads the existing webgl.vendor plugin.",
+      "restoration": "New process with no plugin, not in-place unpatching.",
+      "context_isolation": "Two fresh 8x8 canvases per phase, WebGL1 and WebGL2; no debug-renderer extension enable before disabled queries.",
+      "positive_controls": "MAX_VERTEX_ATTRIBS numeric/string equality plus last-valid/first-invalid index errors, and real GLSL shader draw/readPixels.",
+      "probe_order": "Disabled extension numeric queries, enable extension, numeric/string/numeric queries, capability control, real draw; synchronous within each context."
+    },
+    "analysis": {
+      "hypotheses": [
+        "H1: disabled debug extension enum returns null + INVALID_ENUM",
+        "H2: enabled stable getParameter numeric/string/numeric arguments return the same value with NO_ERROR",
+        "H3 control: the real 8x8 red draw and MAX_VERTEX_ATTRIBS boundary succeed in both phases, not a GPU model classifier"
+      ],
+      "positive_result": "Counterexample in the attack phase with usable matching positive controls, MATCH in clean_pre and clean_post, and target string change bound to the same collection session.",
+      "three_state": "Unavailable/lost contexts, stale errors, exceptions, temporal drift, missing samples or failed controls are UNKNOWN, never a normal pass.",
+      "inference_boundary": "These tests identify API contract divergence under one plugin configuration, not GPU identity, attack attribution, TPR/FPR or model improvement. H1/H2 are correlated manifestations, not independent mechanisms.",
+      "excluded": [
+        "new rule admission",
+        "production collector changes",
+        "historical row backfill",
+        "model fit",
+        "model predict",
+        "independent confirmation",
+        "attack repository modification"
+      ],
+      "admission": "Successful feasibility would justify a versioned observation design and broader legitimate-control review before any selector experiment."
+    },
+    "runtime": {
+      "receiver_port": 8765,
+      "cdp_port": 9226,
+      "emulator_port": 5670,
+      "workers": 1,
+      "read_only_avd": true
+    },
+    "limits": {
+      "boot_seconds": 120,
+      "capture_seconds": 45,
+      "attempts_per_position": 1,
+      "behavior_ready_seconds": 12,
+      "behavior_call_ms": 10000
+    },
+    "failure_policy": "Save partial observations and errors; stop failed path, continue independent path; no silent retry or replacement",
+    "interpretation": "Two graphics paths on one Mac, two triplets per path. Runs chosen for bounded repeatability, not a statistical sample size or arbitrary model-call budget.",
+    "sidecar_schema": "webgl-behavior-probe-v1"
+  },
+  "apk_probe_matches_source": true
+}

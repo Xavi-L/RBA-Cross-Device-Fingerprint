@@ -314,17 +314,19 @@ BROWSER_PAIR_SCHEMA_VERSION = "browser-pair-v1"
 BROWSER_TOKEN_SCHEMA_VERSION = "browser-pair-token-v1"
 BROWSER_PAYLOAD_SCHEMA_VERSION = "browser-web-v1-status"
 BROWSER_COLLECTOR_APP = "browserprobe"
-BROWSER_WEB_PROBE_REVISION = "expanded-web-67-v1"
+BROWSER_WEB_PROBE_REVISION = "expanded-web-67-v2"
 BROWSER_WEB_PROBE_SHA256 = (
-    "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004"
+    "a747c8cfc0ca916c02071e632da476bbbf60983bfbd46dcd25ef6bdfb16f3412"
 )
-# The App-only observer does not change the default Browser67 behavior or
-# revision. Keep the previously deployed bundle compatible while accepting
-# only these two exact public bundle identities, not arbitrary same-revision JS.
-BROWSER_COMPATIBLE_WEB_PROBE_SHA256 = frozenset({
-    BROWSER_WEB_PROBE_SHA256,
-    "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd"
-})
+# Preserve legacy collection without allowing a v1 bundle to claim corrected
+# v2 WebGL2 semantics. Tickets and submitted bundles must use the same revision.
+BROWSER_WEB_PROBE_HASHES_BY_REVISION = {
+    "expanded-web-67-v1": frozenset({
+        "b5a0f14afcf9c8c43cd2e50018c145170ed22f592a849de428482a57d92a9004",
+        "c9c2523e9f044396e7e307a9d569bcb8a0fb69904596c122f8691d918211b9fd",
+    }),
+    BROWSER_WEB_PROBE_REVISION: frozenset({BROWSER_WEB_PROBE_SHA256}),
+}
 BROWSER_PROBE_METADATA_SCHEMA_VERSION = "browser-probe-metadata-v1"
 BROWSER_ALLOWED_PROBE_ORIGINS = frozenset(
     origin.strip().rstrip("/")
@@ -1260,11 +1262,11 @@ def issue_browser_ticket_for_upload_url(
                 "APP_RECEIPT_TICKET_REQUEST_MISMATCH",
                 "The durable App receipt does not carry this ticket_request_id.",
             )
-    if payload.web_probe_revision != BROWSER_WEB_PROBE_REVISION:
+    if payload.web_probe_revision not in BROWSER_WEB_PROBE_HASHES_BY_REVISION:
         raise browser_protocol_error(
             422,
             "WEB_PROBE_REVISION_UNSUPPORTED",
-            f"web_probe_revision must be {BROWSER_WEB_PROBE_REVISION}.",
+            "web_probe_revision is not a registered canonical probe revision.",
         )
     browser_probe_base_url = validate_browser_probe_base_url(payload.browser_probe_base_url)
     request_data = model_to_dict(payload, exclude_none=True)
@@ -1610,7 +1612,9 @@ def validate_and_normalize_browser_payload(
     presented_core_sha256 = probe_metadata.get("core_bundle_sha256")
     if (
         not isinstance(presented_core_sha256, str)
-        or presented_core_sha256.lower() not in BROWSER_COMPATIBLE_WEB_PROBE_SHA256
+        or presented_core_sha256.lower() not in BROWSER_WEB_PROBE_HASHES_BY_REVISION.get(
+            pair["web_probe_revision"], frozenset()
+        )
     ):
         raise browser_protocol_error(
             409,

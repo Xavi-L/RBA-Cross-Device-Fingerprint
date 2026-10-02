@@ -1,0 +1,98 @@
+{
+  "review_id": "renderer-semantics-review-v1",
+  "date": "2026-10-01",
+  "status": "COMPLETE_NO_NEW_ALERT_CANDIDATE",
+  "model_fits": 0,
+  "model_predictions": 0,
+  "new_alert_candidates": 0,
+  "registry_changed": false,
+  "input_boundary": "Current W0 is App Web-only. Cross Native/App Web relations require a separately versioned input contract; this review does not change that contract.",
+  "cards": [
+    {
+      "id": "RENDERER-TEXT-NEQ",
+      "title": "Native / Web renderer 原文不相等",
+      "candidate_expression": "usable(native_gpu_renderer) and usable(webgl_renderer) and native_gpu_renderer != webgl_renderer",
+      "decision": "REJECT_AS_STANDALONE_ALERT_RETAIN_DIAGNOSTIC",
+      "role": "observation_only",
+      "relation_meaning": "两个采集上下文返回的 renderer 文本不同；不等同于 GPU 家族不同、物理 GPU 不同或攻击。",
+      "required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "applicability": [
+        "两项都为 observed、类型为字符串且非空、非占位值，才可做文本比较。",
+        "Native 与 App Web 必须属于同一有效采集会话；不得拿不同设备或前后两个正常配置作单行矛盾。",
+        "只记录 T/F/U；T 是文本差异，不是模型告警。"
+      ],
+      "unknown_handling": "缺失、非 observed、错误类型、Unknown/masked/redacted 等值输出 U；不得强制转为相等或不等。",
+      "strongest_support": "既有成对记录中，6 次干预均不同，14 次无插件采集均相同；GLES 参考也说明 renderer 通常对应硬件平台配置，不能说此字段毫无身份信息。",
+      "strongest_counterevidence": "ANGLE 正常构造包装字符串、移除逗号，且 WebGL 与非 WebGL 可包含不同粒度的版本信息；GL 后端还有 renderer 裁剪逻辑。不同实现上下文之间没有逐字相等保证。",
+      "evidence_sources": ["khronos_gles_getstring", "khronos_debug_renderer", "angle_context", "angle_display_gl", "angle_display_gl_tests", "angle_android_setup", "local_native_collector", "local_web_probe", "local_paired_results"],
+      "counterexample_cases": ["CE-01", "CE-02", "CE-03", "CE-05"],
+      "reconsideration_requirements": [
+        "先提出可复核的声明语义或规范化关系，不能只把不同包装的字符串硬凑成相等。",
+        "保留合法不同驱动/上下文以及软件、未知、裁剪的边界；声明范围之外应弃权。",
+        "若引入跨层信息，另行定义输入版本与固定基线，不能冒充 W0 同输入改进。"
+      ],
+      "current_runtime_normal_inequality_counterexamples": 0,
+      "caveat": "静态支持的正常差异路径不写成已在本机采集的正常反例；14 条观察未触发也不是 FPR=0。"
+    },
+    {
+      "id": "ANDROID-WEB-DESKTOP-BACKEND-MARKER",
+      "title": "Android App Web renderer/vendor 出现 Direct3D 或 Windows 标记",
+      "candidate_expression": "usable(webgl_vendor) and usable(webgl_renderer) and contains_any(lower(vendor + renderer), ['direct3d', 'd3d11', 'd3d12', 'windows'])",
+      "decision": "RETAIN_OBSERVATION_ONLY_NO_ROLE_PROMOTION",
+      "role": "observation_only",
+      "existing_rule": "OFFDER-GPU-001",
+      "relation_meaning": "Web 图形声明中存在指定后端文本；不直接判断 Android 客体是否合法使用 Windows 宿主渲染路径。",
+      "required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "applicability": [
+        "既有 OFFDER-GPU-001 仍使用 v2 四项字段门槛，非 observed、占位和类型错误仍 UNKNOWN。",
+        "既有契约遇到软件渲染 token 为 NOT_APPLICABLE；独立文本诊断可记录标记，但不得绕过该门槛加入模型。",
+        "即使关系为 COUNTEREXAMPLE，风险候选状态仍为 NOT_ELIGIBLE。"
+      ],
+      "unknown_handling": "缺失或不可靠输入保留 UNKNOWN；软件路径保留 NOT_APPLICABLE；不能把它们计成正常通过。",
+      "strongest_support": "ANGLE 平台矩阵列出的 Android 后端是 GLES/Vulkan，Direct3D 属 Windows 后端；本批 6 次插件修改均写入 Direct3D11。",
+      "strongest_counterevidence": "Android Emulator 官方设置文档列出 Windows ANGLE Direct3D 正常选项；当前加速文档同时将 angle / angle_indirect 标为已弃用。客体 Android 不等于宿主 Android，历史合法路径不能用客户端 OS 字段排除。",
+      "evidence_sources": ["angle_readme", "angle_renderer_d3d11", "android_emulator_settings", "android_emulator_acceleration", "local_role_gate", "local_paired_results"],
+      "counterexample_cases": ["CE-04", "CE-05", "CE-06"],
+      "reconsideration_requirements": [
+        "明确目标产品是否包含模拟器、转译和宿主渲染，产品边界不能由可变的 UA 自行证明。",
+        "若要宣称特定环境中的后端冲突，需有独立于这个关键词的环境/声明依据及合法对照。",
+        "需要 Windows 正常路径的最小采集来确认字段暴露；目前只有官方文档与源码支持，未测该运行链。"
+      ],
+      "current_runtime_normal_direct3d_counterexamples": 0,
+      "caveat": "没有证明当前 Mac / WebView 134 会在正常状态输出 Direct3D；也不把旧 ANGLE 选项说成当前推荐或跨版本均可用。"
+    },
+    {
+      "id": "NW-005-EXISTING-SCOPE",
+      "title": "保留现有具名 GPU 家族声明一致性研究候选",
+      "decision": "RETAIN_EXISTING_V2_SCOPE_NO_NEW_ADMISSION",
+      "role": "alert_candidate",
+      "existing_rule": "NW-005",
+      "relation_meaning": "比较两个 renderer 中报告的具名硬件家族，风险线索与攻击归因分开。",
+      "required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "applicability": [
+        "使用当前 v2 契约和既有解析器；两个操作数各自恰好解析为一个已支持家族。",
+        "已支持家族为 adreno、mali、powervr、tegra、vivante；本轮不加入 Apple / NVIDIA / AMD / Intel。",
+        "无软件渲染 token、无 masked/redacted、字段 observed 且类型与值有效。",
+        "沿用报告身份一致性的语义，不重新添加 v1 的同物理渲染路径证明前置条件。"
+      ],
+      "unknown_handling": "未知或多家族为 UNKNOWN，软件路径为 NOT_APPLICABLE，攻击归因仍 UNKNOWN。ELIGIBLE 也可能对应 MATCH，不等于告警。",
+      "strongest_support": "正常包装不必改变具名 GPU 家族；现有关系能区分同家族包装差异和两个已知家族冲突。",
+      "strongest_counterevidence": "当前已测 host 是 Apple 未知范围，软件路径被排除；本轮没有正常硬件家族冲突的现场数据，不能据合成样例宣称检出能力或零误报。",
+      "evidence_sources": ["local_role_gate", "local_gpu_parameters", "angle_context", "local_paired_results", "local_historical_feasibility"],
+      "counterexample_cases": ["CE-01", "CE-06", "CE-07"],
+      "current_paired_scope": {"UNKNOWN": 10, "NOT_APPLICABLE": 10},
+      "caveat": "既有 378 条历史数据 Native 均为 SwiftShader；不能通过删软件排除项、加 Apple/NVIDIA 家族或加入插件特定字符串来追求补回 9 条。"
+    }
+  ]
+}

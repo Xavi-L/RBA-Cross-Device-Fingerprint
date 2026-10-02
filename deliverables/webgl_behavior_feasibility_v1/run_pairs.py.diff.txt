@@ -1,0 +1,58 @@
+--- previous/run_pairs.py
+
++++ current/run_pairs.py
+
+@@ -1,5 +1,5 @@
+
+ #!/usr/bin/env python3
+-"""Run the registered local WebGL-only intervention on two owned renderer paths."""
++"""Bounded WebGL behavior sidecar run, adapted from webgl2_paired_paths_v1."""
+ import csv
+ from datetime import datetime, timezone
+ import json
+@@ -38,7 +38,7 @@
+
+ 
+ 
+ def plan(cell):
+-    steps = [{"step_id": "ordinary", "phase": "ordinary", "round": 1, "controlled": False}]
++    steps = []
+     for number in range(1, cell["triplets"] + 1):
+         for phase in ("clean_pre", "attack", "clean_post"):
+             steps.append({"step_id": f"r{number}-{phase}", "phase": phase, "round": number, "controlled": True})
+@@ -143,8 +143,8 @@
+
+                     time.sleep(0.2)
+                 if stable != 2:
+                     raise RuntimeError("Previous App process did not exit")
+-                context = f"webgl2-paired-{cell['gpu']}:{step['step_id']}"
+-                device = f"webgl2-paired-api36-{cell['gpu']}"
++                context = f"webgl-behavior-{cell['gpu']}:{step['step_id']}"
++                device = f"webgl-behavior-api36-{cell['gpu']}"
+                 args = ["shell", "am", "start", "-S", "-W", "-n", PACKAGE + "/.MainActivity",
+                         "--es", PACKAGE + ".COLLECT_ENDPOINT", endpoint,
+                         "--es", PACKAGE + ".RUNTIME_CONTEXT", context,
+@@ -193,6 +193,11 @@
+
+                 identity = current
+                 if payload["session_id"] in [r["session_id"] for r in record["captures"]]:
+                     raise RuntimeError("Session reused")
++                behavior = json.loads((step_dir / "BEHAVIOR.json").read_text())
++                assert behavior["schema"] == protocol["sidecar_schema"]
++                assert behavior["session_id"] == behavior["session_id_after"] == payload["session_id"]
++                assert behavior["canonical_probe_revision"] == protocol["collector"]["probe_revision"]
++                assert [c["type"] for c in behavior["contexts"]] == ["webgl", "webgl2"]
+                 saved = {**step, "raw_line": previous + 1, "session_id": payload["session_id"]}
+                 record["captures"].append(saved)
+                 attempt.update(status="CAPTURED", **saved)
+@@ -233,5 +238,9 @@
+
+         if apk.read("assets/canonical_web_probe.js") != (ROOT / "web_probe/canonical_web_probe.js").read_bytes():
+             raise RuntimeError("APK canonical probe differs from current source")
+     write(HERE / "STARTED.json", {"started_at": now(), "protocol": protocol, "apk_probe_matches_source": True}, True)
++    snapshot = HERE / "source_snapshot"
++    snapshot.mkdir(exist_ok=False)
++    for name in ("PROTOCOL.json", "probe.js", "classify.py", "attach_probe.mjs", "run_pairs.py"):
++        shutil.copyfile(HERE / name, snapshot / name)
+     results = [run_cell(cell, protocol) for cell in protocol["matrix"]]
+     write(HERE / "FINISHED.json", {"finished_at": now(), "paths": results}, True)

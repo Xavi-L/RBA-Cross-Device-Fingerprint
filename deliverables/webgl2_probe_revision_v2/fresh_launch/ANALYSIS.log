@@ -1,0 +1,74 @@
+{
+  "status": "COMPLETE",
+  "planned_captures": 6,
+  "received_captures": 6,
+  "fully_observed_177": 6,
+  "webgl2_true_observed": 6,
+  "cells": [
+    {
+      "cell": "api36_host",
+      "planned": 3,
+      "captured": 3,
+      "status": "COMPLETE",
+      "error": null,
+      "activity_reuse_warnings": []
+    },
+    {
+      "cell": "api36_swiftshader",
+      "planned": 3,
+      "captured": 3,
+      "status": "COMPLETE",
+      "error": null,
+      "activity_reuse_warnings": []
+    }
+  ],
+  "observations": {
+    "lexical_web_desktop_backend_marker": {
+      "F": 6
+    },
+    "native_web_renderer_text_unequal": {
+      "F": 6
+    },
+    "native_renderer_alias_equal": {
+      "T": 6
+    },
+    "native_software_token": {
+      "F": 3,
+      "T": 3
+    },
+    "web_software_token": {
+      "F": 3,
+      "T": 3
+    }
+  },
+  "relations": {
+    "NW-005": {
+      "relation_applicability": {
+        "UNKNOWN": 3,
+        "NOT_APPLICABLE": 3
+      },
+      "risk_candidate_eligibility": {
+        "UNKNOWN": 3,
+        "NOT_APPLICABLE": 3
+      }
+    },
+    "OFFDER-GPU-001": {
+      "relation_applicability": {
+        "SUPPORTED": 3,
+        "NOT_APPLICABLE": 3
+      },
+      "risk_candidate_eligibility": {
+        "NOT_ELIGIBLE": 6
+      }
+    }
+  },
+  "new_alert_candidates": 0,
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "limits": [
+    "Same Mac host; repeated launches are not independent devices",
+    "Declared benign controls are not independently adjudicated population labels",
+    "No real-device FPR, attack TPR, or model gain estimate from these controls",
+    "Historical v1 false values remain unchanged and semantically separate"
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "review_id": "renderer-semantics-review-v1",
+  "source_selection": "Primary specifications, pinned upstream code, and explicitly identified existing local artifacts only. No third-party blog used.",
+  "binary_provenance": "NOT_VERIFIED; matching WebView version string selected Chromium tag, not proof of actual build linkage.",
+  "sources": [
+    {
+      "id": "chromium134_deps",
+      "url": "https://raw.githubusercontent.com/chromium/chromium/134.0.6998.135/DEPS",
+      "revision": "134.0.6998.135",
+      "retrieved_at": "2026-10-01T07:22:54.520820+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/chromium134_deps.txt",
+      "lines": 5632,
+      "root": "review",
+      "claim": "Chromium 134.0.6998.135 的源码标签将 ANGLE 固定在指定 revision；仅用于选择审计源码。",
+      "limitation": "不能替代 WebView 二进制构建证明。",
+      "anchors": [
+        {
+          "line": 291,
+          "contains": "'angle_revision':"
+        }
+      ],
+      "browse_url": "https://github.com/chromium/chromium/blob/134.0.6998.135/DEPS"
+    },
+    {
+      "id": "angle_context",
+      "url": "https://raw.githubusercontent.com/google/angle/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/Context.cpp",
+      "revision": "914c97c116e09ef01a99fbbbe9cd28cda56552c7",
+      "retrieved_at": "2026-10-01T07:22:56.396875+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/angle_context.txt",
+      "lines": 10790,
+      "root": "review",
+      "claim": "ANGLE 正常包装 vendor/renderer/version、移除逗号；版本完整性取决于 isWebGL。",
+      "limitation": "只证明实现语义与条件分支，不证明当前设备走该分支。",
+      "anchors": [
+        {
+          "line": 3394,
+          "contains": "void Context::initRendererString()"
+        },
+        {
+          "line": 3411,
+          "contains": "getBackendVersionString(!isWebGL())"
+        },
+        {
+          "line": 3420,
+          "contains": "frontendRendererString << \"ANGLE (\""
+        }
+      ],
+      "browse_url": "https://github.com/google/angle/blob/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/Context.cpp"
+    },
+    {
+      "id": "angle_display_gl",
+      "url": "https://raw.githubusercontent.com/google/angle/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/renderer/gl/DisplayGL.cpp",
+      "revision": "914c97c116e09ef01a99fbbbe9cd28cda56552c7",
+      "retrieved_at": "2026-10-01T07:22:57.655502+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/angle_display_gl.txt",
+      "lines": 199,
+      "root": "review",
+      "claim": "GL 后端支持 renderer 细节裁剪和 full/limited version 两种格式。",
+      "limitation": "AMD renderer 裁剪由 backend feature 控制；不可泛化成所有 Android 都裁剪。",
+      "anchors": [
+        {
+          "line": 36,
+          "contains": "std::string SanitizeRendererString"
+        },
+        {
+          "line": 56,
+          "contains": "std::string SanitizeVersionString"
+        },
+        {
+          "line": 179,
+          "contains": "sanitizeAMDGPURendererString"
+        }
+      ],
+      "browse_url": "https://github.com/google/angle/blob/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/renderer/gl/DisplayGL.cpp"
+    },
+    {
+      "id": "angle_display_gl_tests",
+      "url": "https://raw.githubusercontent.com/google/angle/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/renderer/gl/DisplayGL_unittest.cpp",
+      "revision": "914c97c116e09ef01a99fbbbe9cd28cda56552c7",
+      "retrieved_at": "2026-10-01T07:22:58.608610+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/angle_display_gl_tests.txt",
+      "lines": 124,
+      "root": "review",
+      "claim": "上游用例包含 AMD renderer 裁剪和完整/精简版本两类期望。",
+      "limitation": "只读了测试代码，没有在本机编译运行上游测试。",
+      "anchors": [
+        {
+          "line": 47,
+          "contains": "TEST(DisplayGLTest, SanitizeRendererStringRadeonTM)"
+        },
+        {
+          "line": 113,
+          "contains": "TEST(DisplayGLTest, SanitizeVersionStringOpenGLESPresentLimited)"
+        }
+      ],
+      "browse_url": "https://github.com/google/angle/blob/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/renderer/gl/DisplayGL_unittest.cpp"
+    },
+    {
+      "id": "angle_renderer_d3d11",
+      "url": "https://raw.githubusercontent.com/google/angle/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/renderer/d3d/d3d11/Renderer11.cpp",
+      "revision": "914c97c116e09ef01a99fbbbe9cd28cda56552c7",
+      "retrieved_at": "2026-10-01T07:22:59.915383+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/angle_renderer_d3d11.txt",
+      "lines": 4488,
+      "root": "review",
+      "claim": "Direct3D11 backend 在正常 renderer 描述中加入 Direct3D11 标记。",
+      "limitation": "这是后端自述，不是 Android 客体暴露到 Web 的完整运行证明。",
+      "anchors": [
+        {
+          "line": 2285,
+          "contains": "std::string Renderer11::getRendererDescription() const"
+        },
+        {
+          "line": 2291,
+          "contains": "rendererString << \" Direct3D11\""
+        }
+      ],
+      "browse_url": "https://github.com/google/angle/blob/914c97c116e09ef01a99fbbbe9cd28cda56552c7/src/libANGLE/renderer/d3d/d3d11/Renderer11.cpp"
+    },
+    {
+      "id": "angle_readme",
+      "url": "https://raw.githubusercontent.com/google/angle/914c97c116e09ef01a99fbbbe9cd28cda56552c7/README.md",
+      "revision": "914c97c116e09ef01a99fbbbe9cd28cda56552c7",
+      "retrieved_at": "2026-10-01T07:23:01.190223+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/angle_readme.txt",
+      "lines": 139,
+      "root": "review",
+      "claim": "平台矩阵列出 Windows Direct3D 与 Android GLES/Vulkan；ANGLE 不是 Windows 专属。",
+      "limitation": "Android 客体可以位于其他宿主之上；平台矩阵不等于所有嵌套渲染路径的保证。",
+      "anchors": [
+        {
+          "line": 25,
+          "contains": "### Platform support via backing renderers"
+        },
+        {
+          "line": 29,
+          "contains": "| Windows "
+        },
+        {
+          "line": 34,
+          "contains": "| Android "
+        }
+      ],
+      "browse_url": "https://github.com/google/angle/blob/914c97c116e09ef01a99fbbbe9cd28cda56552c7/README.md"
+    },
+    {
+      "id": "angle_android_setup",
+      "url": "https://raw.githubusercontent.com/google/angle/914c97c116e09ef01a99fbbbe9cd28cda56552c7/doc/DevSetupAndroid.md",
+      "revision": "914c97c116e09ef01a99fbbbe9cd28cda56552c7",
+      "retrieved_at": "2026-10-01T07:29:45.957007+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/angle_android_setup.txt",
+      "lines": 283,
+      "root": "review",
+      "claim": "ANGLE 可作为 Android GLES driver，存在应用级 native/angle/default 选择。",
+      "limitation": "说明合法开发路径；不证明本机应用实际启用或普通发布设备均能这样配置。",
+      "anchors": [
+        {
+          "line": 66,
+          "contains": "## Using ANGLE as the Android OpenGL ES driver"
+        },
+        {
+          "line": 114,
+          "contains": "## ANGLE driver choices"
+        }
+      ],
+      "browse_url": "https://github.com/google/angle/blob/914c97c116e09ef01a99fbbbe9cd28cda56552c7/doc/DevSetupAndroid.md"
+    },
+    {
+      "id": "chromium134_webgl",
+      "url": "https://raw.githubusercontent.com/chromium/chromium/134.0.6998.135/third_party/blink/renderer/modules/webgl/webgl_rendering_context_base.cc",
+      "revision": "134.0.6998.135",
+      "retrieved_at": "2026-10-01T07:23:02.314447+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/chromium134_webgl.txt",
+      "lines": 9008,
+      "root": "review",
+      "claim": "启用 debug renderer 扩展后，unmasked renderer 读取当前 WebGL 上下文的 GL_RENDERER。",
+      "limitation": "不能把 generic WebKit WebGL 与本仓库采集的 unmasked 字段混为一谈；实际下层返回由运行图形栈决定。",
+      "anchors": [
+        {
+          "line": 3853,
+          "contains": "case WebGLDebugRendererInfo::kUnmaskedRendererWebgl:"
+        }
+      ],
+      "browse_url": "https://github.com/chromium/chromium/blob/134.0.6998.135/third_party/blink/renderer/modules/webgl/webgl_rendering_context_base.cc"
+    },
+    {
+      "id": "khronos_debug_renderer",
+      "url": "https://registry.khronos.org/webgl/extensions/WEBGL_debug_renderer_info/",
+      "revision": "Revision 8; specification date 2014-07-15",
+      "retrieved_at": "2026-10-01T07:23:04.370662+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/khronos_debug_renderer.txt",
+      "lines": 56,
+      "root": "review",
+      "claim": "扩展查询的是下层图形驱动声明；浏览器需考虑是否向普通页面暴露。",
+      "limitation": "unmasked 不表示经过独立物理硬件认证；扩展的存在也非无条件。",
+      "anchors": [
+        {
+          "line": 6,
+          "contains": "<h2 class=\"no-toc\">Overview</h2>"
+        },
+        {
+          "line": 25,
+          "contains": "The following pname arguments"
+        },
+        {
+          "line": 45,
+          "contains": "User agents (web browsers)"
+        }
+      ],
+      "browse_url": "https://registry.khronos.org/webgl/extensions/WEBGL_debug_renderer_info/"
+    },
+    {
+      "id": "khronos_gles_getstring",
+      "url": "https://registry.khronos.org/OpenGL-Refpages/es2.0/xhtml/glGetString.xml",
+      "revision": "OpenGL ES 2.0 reference; live page",
+      "retrieved_at": "2026-10-01T07:23:05.805069+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/khronos_gles_getstring.txt",
+      "lines": 57,
+      "root": "review",
+      "claim": "glGetString 描述当前 GL connection；参考文档确实主张 vendor+renderer 可识别平台且跨 release 稳定。",
+      "limitation": "不能跳过这一支持身份识别的反向证据；从同实现平台描述推导跨不同驱动/浏览器上下文逐字相等，仍缺少依据。",
+      "anchors": [
+        {
+          "line": 9,
+          "contains": "describing some aspect of the current GL connection."
+        },
+        {
+          "line": 32,
+          "contains": "uniquely specify"
+        }
+      ],
+      "browse_url": "https://registry.khronos.org/OpenGL-Refpages/es2.0/xhtml/glGetString.xml"
+    },
+    {
+      "id": "android_emulator_settings",
+      "url": "https://developer.android.com/studio/run/devsite-two-way-merge-new",
+      "revision": "Live documentation; includes legacy Windows ANGLE option",
+      "retrieved_at": "2026-10-01T07:29:47.248240+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/android_emulator_settings.txt",
+      "lines": 9850,
+      "root": "review",
+      "claim": "官方设置文档列出 Windows ANGLE Direct3D 正常模拟器选项。",
+      "limitation": "该页面包含历史选项；结合当前加速文档的弃用信息阅读，不代表当前推荐模式。",
+      "anchors": [
+        {
+          "line": 8629,
+          "contains": "ANGLE Direct3D"
+        }
+      ],
+      "browse_url": "https://developer.android.com/studio/run/devsite-two-way-merge-new"
+    },
+    {
+      "id": "android_emulator_acceleration",
+      "url": "https://developer.android.com/studio/run/emulator-acceleration",
+      "revision": "Live documentation; includes deprecated GPU modes",
+      "retrieved_at": "2026-10-01T07:29:48.691669+00:00",
+      "status": "RETRIEVED",
+      "local_path": "sources/android_emulator_acceleration.txt",
+      "lines": 10884,
+      "root": "review",
+      "claim": "模拟器图形后端依赖宿主；文档明确 angle 27.0.2 与 angle_indirect 34.2.14 起弃用。",
+      "limitation": "仅确认文档与版本限制，没有在当前 Windows emulator 实测。",
+      "anchors": [
+        {
+          "line": 9242,
+          "contains": "Deprecated in version 27.0.2"
+        },
+        {
+          "line": 9243,
+          "contains": "Deprecated in version 34.2.14"
+        }
+      ],
+      "browse_url": "https://developer.android.com/studio/run/emulator-acceleration"
+    },
+    {
+      "id": "local_native_collector",
+      "root": "repository",
+      "local_path": "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "Native 独立 EGL pbuffer context；native_gpu_renderer 与 egl_renderer 同源同一次 GL_RENDERER 读取。",
+      "limitation": "两个键不是两项独立硬件证据。",
+      "anchors": [
+        {
+          "line": 392,
+          "contains": "val glRenderer = GLES20.glGetString"
+        },
+        {
+          "line": 395,
+          "contains": "result.put(\"egl_renderer\", glRenderer"
+        }
+      ]
+    },
+    {
+      "id": "local_web_probe",
+      "root": "repository",
+      "local_path": "web_probe/canonical_web_probe.js",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "WebGL1 读取 unmasked renderer；无扩展时保留 Unknown，WebGL2 用另一个 canvas。",
+      "limitation": "当前工作树 v2 代码，尚未提交；不能替历史 v1 数据修值。",
+      "anchors": [
+        {
+          "line": 206,
+          "contains": "function defaultWebGLInfo()"
+        },
+        {
+          "line": 322,
+          "contains": "function getWebGLInfo()"
+        },
+        {
+          "line": 343,
+          "contains": "function getWebGL2Support()"
+        }
+      ]
+    },
+    {
+      "id": "local_role_gate",
+      "root": "repository",
+      "local_path": "hybridguard_agent/config/formal_manipulation_role_gate_v2/applicability_policy.json",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "NW-005 是家族声明一致性研究候选，OFFDER-GPU-001 是观察项；物理路径属于归因问题。",
+      "limitation": "本轮只读，不扩大输入或改变决策角色。",
+      "anchors": [
+        {
+          "line": 283,
+          "contains": "\"rule_id\": \"NW-005\""
+        },
+        {
+          "line": 326,
+          "contains": "reported family-coherence hypothesis only"
+        },
+        {
+          "line": 1906,
+          "contains": "\"rule_id\": \"OFFDER-GPU-001\""
+        }
+      ]
+    },
+    {
+      "id": "local_gpu_parameters",
+      "root": "repository",
+      "local_path": "hybridguard_agent/research/manipulation_eval/provenance.py",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "当前家族及软件 token 的封闭范围。",
+      "limitation": "未因本批结果扩展到 Apple/NVIDIA。",
+      "anchors": [
+        {
+          "line": 39,
+          "contains": "GPU_PARAMS ="
+        }
+      ]
+    },
+    {
+      "id": "local_paired_results",
+      "root": "repository",
+      "local_path": "deliverables/webgl2_paired_paths_v1/ROWS.json",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "既有 20 份实测行的图形字段、会话、原始文件和阶段引用。",
+      "limitation": "本轮复核投影，不是新采集或独立测试。",
+      "anchors": []
+    },
+    {
+      "id": "local_historical_feasibility",
+      "root": "repository",
+      "local_path": "deliverables/rule_semantics_webgl_feasibility_v1/REPORT.md",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "历史 378 行全为 Native 软件渲染，剩余 WebGL 单项漏检为 9 条。",
+      "limitation": "旧数据不因新审计变成硬件族比较的合格数据。",
+      "anchors": []
+    },
+    {
+      "id": "local_cap7_results",
+      "root": "repository",
+      "local_path": "deliverables/rule_semantics_capacity_comparison_v1/RESULTS.json",
+      "revision": "working tree inspected 2026-10-01; source review does not modify this file",
+      "claim": "最近 CAP7 指标 117/126，内部对照 0/252，CAP6 108/126。",
+      "limitation": "开发材料结果，不是独立确认或真实用户 FPR。",
+      "anchors": []
+    }
+  ]
+}

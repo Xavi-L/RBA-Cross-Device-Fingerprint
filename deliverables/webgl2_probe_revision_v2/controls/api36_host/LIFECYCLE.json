@@ -1,0 +1,245 @@
+{
+  "api": 36,
+  "gpu": "host",
+  "launches": 3,
+  "started_at": "2026-10-01T06:29:43.451826+00:00",
+  "status": "FAILED_OR_INCOMPLETE",
+  "commands": [
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "log": "android-api.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "dumpsys",
+        "webviewupdate"
+      ],
+      "returncode": 0,
+      "log": "webview-provider.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "install",
+        "-r",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/android_app/HybridGuard/featureapp/build/outputs/apk/debug/featureapp-debug.apk"
+      ],
+      "returncode": 0,
+      "log": "install.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "pm",
+        "clear",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "clear-ephemeral-app-data.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "dumpsys",
+        "package",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "installed-package.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "reverse",
+        "tcp:8765",
+        "tcp:8765"
+      ],
+      "returncode": 0,
+      "log": "reverse.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "stop-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "benign-webgl2-api36_host",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl2-control-api36_host",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1"
+      ],
+      "returncode": 0,
+      "log": "start-1.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "stop-2.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "benign-webgl2-api36_host",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl2-control-api36_host",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "2"
+      ],
+      "returncode": 0,
+      "log": "start-2.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "log": "stop-3.log"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5670",
+        "shell",
+        "am",
+        "start",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8765/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "benign-webgl2-api36_host",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "webgl2-control-api36_host",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "3"
+      ],
+      "returncode": 0,
+      "log": "start-3.log"
+    }
+  ],
+  "captures": [
+    {
+      "launch": 1,
+      "raw_line": 1,
+      "session_id": "72353ab3-9e2e-4808-917a-33fa79553987"
+    },
+    {
+      "launch": 2,
+      "raw_line": 2,
+      "session_id": "8cf90f2d-98cd-4ad0-a42e-d4909540e8f2"
+    }
+  ],
+  "emulator_command": [
+    "/Users/xavier/Library/Android/sdk/emulator/emulator",
+    "-avd",
+    "Codex_Webdriver_Raw_API36_1",
+    "-port",
+    "5670",
+    "-read-only",
+    "-no-window",
+    "-no-audio",
+    "-no-snapshot",
+    "-no-boot-anim",
+    "-gpu",
+    "host"
+  ],
+  "emulator_pid": 55701,
+  "receiver_command": [
+    "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+    "-B",
+    "-m",
+    "uvicorn",
+    "main:app",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8765",
+    "--workers",
+    "1"
+  ],
+  "receiver_pid": 55870,
+  "error": "TimeoutError: Capture 3 exceeded 45 seconds",
+  "receiver_returncode": 0,
+  "emulator_returncode": 0,
+  "finished_at": "2026-10-01T06:30:57.110298+00:00"
+}
