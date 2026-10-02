@@ -1,0 +1,107 @@
+{
+  "protocol_version": "webgl1-cap8-same-cohort-development-v1",
+  "experiment_id": "webgl1-cap8-comparison-v1",
+  "registered_at": "2026-10-02T07:18:09.749398+00:00",
+  "source_base_commit": "9923cc74a4f3d359388ebcb40e5d104d05053941",
+  "authorization": "User: 先提交推送，再进行下一步验证; accepts prior proposal for both BASE49 and WEBGL50 at capacity eight on the same data and folds.",
+  "scope": "EXPOSED_INTERNAL_DEVELOPMENT_CAPACITY_FOLLOWUP",
+  "question": "Does the same selector at eight clauses preserve both screen-only and WebGL-only coverage without regressions on this exposed development cohort?",
+  "known_before_run": {
+    "source_experiment": "webgl1-fresh-cap7-comparison-v1",
+    "BASE49_attack_alerts": 117,
+    "WEBGL50_attack_alerts": 117,
+    "attack_n": 126,
+    "clean_alerts_both": 0,
+    "clean_n": 252,
+    "webgl_gain": 9,
+    "screen_loss": 9,
+    "cap8_outcome": "NOT_EVALUATED_AT_REGISTRATION"
+  },
+  "source": {
+    "directory": "deliverables/webgl1_fresh_comparison_v1/prepared",
+    "protocol": "deliverables/webgl1_fresh_comparison_v1/PROTOCOL.json",
+    "experiment_id": "webgl1-fresh-cap7-comparison-v1",
+    "input_readiness": "WEBGL1_FRESH_INPUTS_READY",
+    "source_evaluation_role": "EXPOSED_INTERNAL_DEVELOPMENT_FRESH_COHORT_COMPARISON",
+    "primary_n": 378,
+    "attack_n": 126,
+    "paired_control_n": 252,
+    "excluded_smoke_n": 3,
+    "new_records_collected": 0,
+    "input_preparation_rerun": false,
+    "candidate_evaluation_rerun": false,
+    "labels_and_membership": "Exact already independently admitted source cohort; no filtering/relabeling from candidate or prior detector outcomes"
+  },
+  "groups": {
+    "BASE49": "Existing 49 semantic candidates including language first and raw webdriver replacement",
+    "WEBGL50": "BASE49 plus registered saved WebGL1 equivalence candidate only"
+  },
+  "capacity": {
+    "profile_id": "W0_CAPACITY_8_V1",
+    "max_clauses": 8,
+    "max_complexity": 16,
+    "max_additions": 8,
+    "max_literals": 12,
+    "max_distinct_atoms": 12,
+    "max_clauses_per_family": 2
+  },
+  "capacity_change_basis": "One literal clause costs two; max_complexity 16 and grammar max_selected_clauses 8 are needed with max_clauses/max_additions 8. Both groups change identically.",
+  "unchanged": [
+    "W0 representation",
+    "GREEDY_SEMANTIC_V2 then R_KEEP_SWAP_V2",
+    "OP05",
+    "support and coverage requirements",
+    "score and complexity penalty",
+    "semantic preference and tie order",
+    "candidate semantics",
+    "per-family/literal/atom limits",
+    "train-only numeric threshold fitting",
+    "U and FAILED handling"
+  ],
+  "folds": {
+    "reuse_exact_source_folds": true,
+    "n": 3,
+    "type": "LEAVE_ONE_ENVIRONMENT_OUT",
+    "train_n_per_fold": 252,
+    "test_n_per_fold": 126,
+    "group_boundaries": "Whole environment, installation, bundle and triplet stay together"
+  },
+  "training": {
+    "source_models_reused": false,
+    "source_predictions_used_for_training": false,
+    "initialization": "Own new CAP8 group/fold GREEDY only, then own R_KEEP; reject CAP7/cross-group/cross-fold initializer",
+    "new_fit_calls": 12,
+    "new_prediction_calls": 756,
+    "count_basis": "2 pools x 3 folds x 2 fitted stages; 6 final models x 126 heldout predictions",
+    "max_worker_seconds": 90,
+    "max_total_seconds": 1080,
+    "failure": "Stop remaining jobs; preserve durable attempted counts and failure; no retry, tuning or extra full-data fit",
+    "access_order": "Train members only, save/reload/freeze model, heldout input, close all predictions, join heldout labels"
+  },
+  "analysis": {
+    "primary": "CAP8 WEBGL50 versus CAP8 BASE49 on matched samples",
+    "secondary": "After all new jobs close, compare each pool against saved CAP7 predictions; no extra fit/predict calls",
+    "fairness_audits": [
+      "Within CAP8 shared encoded basis differs only by registered WebGL1 candidate",
+      "Across capacities within each pool: identical members/folds, complete encoder, encoded atoms, support and semantic catalog"
+    ],
+    "report": [
+      "Total and per-configuration/per-environment detection",
+      "Paired control alarms",
+      "Defined coverage, unknown and failed",
+      "New and lost individual attack detections",
+      "New control alarms and newly undefined rows",
+      "Actual selected clauses and language/webdriver/WebGL/DPR selection"
+    ],
+    "improvement_condition": "Within CAP8, total detection increases with no per-configuration regression, no new control alarms and no lost defined output. Capacity diagnostic separately reports each pool CAP7 to CAP8, including losses.",
+    "all_failures_retained": true
+  },
+  "stop_boundary": "One registered CAP8 comparison and saved-result audit only. No automatic CAP9, selector retuning, WebGL2 revision, recollection or independent confirmation.",
+  "limitations": [
+    "CAP7 outcomes were exposed before this follow-up was designed; not independent confirmation",
+    "Same Mac, three SwiftShader Android emulators and two WebView versions, existing 14 configurations",
+    "Controls are direct App launches, not perfectly matched debug transport controls",
+    "No new real-device or normal App population FPR evidence",
+    "A positive result is internal feasibility, not proof of global optimality or unseen-tool generalization"
+  ]
+}
