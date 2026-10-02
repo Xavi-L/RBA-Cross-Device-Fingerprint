@@ -1,0 +1,65 @@
+{
+  "schema_version": "mtc-engineering-corrections-v1",
+  "reason": "Historical collector -1 sentinels were marked observed_value by the P1 projection and incorrectly treated as measured numbers by the initial candidate adapter. Correct absence semantics only; no outcome-based feature removal.",
+  "initial_attempt": {
+    "fit_calls": 12,
+    "encoder_fit_calls": 3,
+    "archive": "attempt_01_pre_sentinel_fix.tar.gz",
+    "new_evaluation_had_already_run": true
+  },
+  "final_attempt": {
+    "planned_fit_calls": 12,
+    "planned_encoder_fit_calls": 3,
+    "actual_fit_calls": 12,
+    "actual_encoder_fit_calls": 3,
+    "all_fits_closed": true
+  },
+  "actual_fit_calls_total_expected": 24,
+  "method_changes": [],
+  "fixed_settings_unchanged": true,
+  "threshold_generation_unchanged": true,
+  "candidate_pool_unchanged": true,
+  "normal_labels_and_members_unchanged": true,
+  "adapter_version": "mtc-constrained-webgl50-input-adapter-v2",
+  "sentinel_reason": "HISTORICAL_COLLECTOR_MINUS_ONE_UNAVAILABLE",
+  "affected_discovery_base_candidates": {
+    "audio_output_latency": 26,
+    "downlink_mbps": 32,
+    "rtt_ms": 32,
+    "visual_viewport_width": 32,
+    "visual_viewport_height": 32,
+    "visual_viewport_scale": 32
+  },
+  "discovery_denominator": 630,
+  "legacy_sentinel_field_paths": [
+    "app.web_data.audio_layer.audio_output_latency",
+    "app.web_data.audio_layer.audio_sample_rate",
+    "app.web_data.graphics_layer.webgl_max_texture_size",
+    "app.web_data.network_api_layer.downlink_mbps",
+    "app.web_data.network_api_layer.rtt_ms",
+    "app.web_data.screen_layer.avail_height",
+    "app.web_data.screen_layer.avail_width",
+    "app.web_data.screen_layer.color_depth",
+    "app.web_data.screen_layer.device_pixel_ratio",
+    "app.web_data.screen_layer.inner_height",
+    "app.web_data.screen_layer.inner_width",
+    "app.web_data.screen_layer.orientation_angle",
+    "app.web_data.screen_layer.outer_height",
+    "app.web_data.screen_layer.outer_width",
+    "app.web_data.screen_layer.pixel_depth",
+    "app.web_data.screen_layer.visual_viewport_height",
+    "app.web_data.screen_layer.visual_viewport_scale",
+    "app.web_data.screen_layer.visual_viewport_width"
+  ],
+  "controlled_raw_path_changed": false,
+  "controlled_sentinel_rows": 0,
+  "actual_fit_calls_total": 24,
+  "actual_encoder_fit_calls_total": 6,
+  "saved_result_comparison_after_fix": {
+    "aligned_predictions": 16272,
+    "changed_final_decisions": 0,
+    "unchanged_selected_clause_sets": 12,
+    "unchanged_fold_encoders": 3,
+    "note": "Missing-observation semantics and candidate availability changed; same fixed selection settings produced unchanged selected clauses and final decisions. Initial and final model identities remain distinct."
+  }
+}

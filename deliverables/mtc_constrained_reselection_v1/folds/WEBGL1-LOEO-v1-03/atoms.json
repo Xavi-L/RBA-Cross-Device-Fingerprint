@@ -1,0 +1,1153 @@
+[
+  {
+    "atom_id": "CAT:NW-006",
+    "family": "app_surface",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "E"
+    ],
+    "aliases": [
+      "NW-006"
+    ],
+    "orientation": "CATALOG_CONDITION",
+    "provenance": {
+      "condition": {
+        "operands": [
+          "app.web_data.navigator_layer.platform",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+        "parameters": {}
+      },
+      "field_refs": [
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ]
+    }
+  },
+  {
+    "atom_id": "CAT:NW-007",
+    "family": "mobile_touch",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "E"
+    ],
+    "aliases": [
+      "NW-007"
+    ],
+    "orientation": "CATALOG_CONDITION",
+    "provenance": {
+      "condition": {
+        "operands": [
+          "app.web_data.navigator_layer.max_touch_points",
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "operator": "ANDROID_MOBILE_UA_AND_TOUCH_EQ_ZERO",
+        "parameters": {}
+      },
+      "field_refs": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ]
+    }
+  },
+  {
+    "atom_id": "CAT:OFFDER-TOUCH-001",
+    "family": "mobile_touch",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "O_u"
+    ],
+    "aliases": [
+      "OFFDER-TOUCH-001"
+    ],
+    "orientation": "CATALOG_CONDITION",
+    "provenance": {
+      "condition": {
+        "operands": [
+          "app.web_data.navigator_layer.user_agent",
+          "app.web_data.navigator_layer.max_touch_points"
+        ],
+        "operator": "TOUCH_GT_ZERO_GIVEN_ANDROID_MOBILE_UA",
+        "parameters": {}
+      },
+      "field_refs": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.max_touch_points"
+      ]
+    }
+  },
+  {
+    "atom_id": "CAT:P3-COLOR-APP",
+    "family": "P3-COLOR-APP",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "H"
+    ],
+    "aliases": [
+      "P3-COLOR-APP"
+    ],
+    "orientation": "CATALOG_CONDITION",
+    "provenance": {
+      "condition": {
+        "operands": [
+          "app.web_data.screen_layer.color_depth",
+          "app.web_data.screen_layer.pixel_depth"
+        ],
+        "operator": "TYPED_SEMANTIC_EQUAL",
+        "parameters": {}
+      },
+      "field_refs": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ]
+    }
+  },
+  {
+    "atom_id": "CAT:WVWEB-004",
+    "family": "app_surface",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "E"
+    ],
+    "aliases": [
+      "WVWEB-004"
+    ],
+    "orientation": "CATALOG_CONDITION",
+    "provenance": {
+      "condition": {
+        "operands": [
+          "app.web_data.navigator_layer.user_agent"
+        ],
+        "operator": "UA_CLASS_EQ_SCRIPT_CLIENT",
+        "parameters": {}
+      },
+      "field_refs": [
+        "app.web_data.navigator_layer.user_agent"
+      ]
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_context_supported",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+      "control_input_column": 48,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.audio_layer.audio_context_supported",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.execution_layer.local_storage_available",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+      "control_input_column": 54,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.execution_layer.local_storage_available",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.execution_layer.session_storage_available",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+      "control_input_column": 55,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.execution_layer.session_storage_available",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl2_supported",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+      "control_input_column": 58,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.graphics_layer.webgl2_supported",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.cookie_enabled",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+      "control_input_column": 61,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.navigator_layer.cookie_enabled",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.online",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.online:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+      "control_input_column": 65,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.navigator_layer.online",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.network_api_layer.save_data",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.save_data:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+      "control_input_column": 68,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.network_api_layer.save_data",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+    "family": "CONTROL_FIELD:app.web_data.permissions_layer.permissions_api_supported",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+      "control_input_column": 69,
+      "encoder": "BOOL_EQ_TRUE",
+      "equals": true,
+      "field": "app.web_data.permissions_layer.permissions_api_supported",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+      "control_input_column": 99,
+      "encoder": "UA_CLASS",
+      "equals": "script_client",
+      "field": "app.web_data.navigator_layer.user_agent",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+      "control_input_column": 99,
+      "encoder": "UA_CLASS",
+      "equals": "desktop_or_headless",
+      "field": "app.web_data.navigator_layer.user_agent",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+      "control_input_column": 99,
+      "encoder": "UA_CLASS",
+      "equals": "android_browser",
+      "field": "app.web_data.navigator_layer.user_agent",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.user_agent",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+      "control_input_column": 99,
+      "encoder": "UA_CLASS",
+      "equals": "android_webview",
+      "field": "app.web_data.navigator_layer.user_agent",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.platform",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.platform:EQ:android"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+      "control_input_column": 100,
+      "encoder": "PLATFORM_CLASS",
+      "equals": "android",
+      "field": "app.web_data.navigator_layer.platform",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.platform",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+      "control_input_column": 100,
+      "encoder": "PLATFORM_CLASS",
+      "equals": "mobile_or_ambiguous",
+      "field": "app.web_data.navigator_layer.platform",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.platform",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop"
+    ],
+    "orientation": "CONTROL_EQUALITY",
+    "provenance": {
+      "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+      "control_input_column": 100,
+      "encoder": "PLATFORM_CLASS",
+      "equals": "desktop",
+      "field": "app.web_data.navigator_layer.platform",
+      "fit_required": false,
+      "predicate_version": "r01-fixed-control-equality-v1",
+      "provenance_group": "PROJECT_CONTROL_NOT_E_Ou_H_C",
+      "surface": "app_web67"
+    }
+  },
+  {
+    "atom_id": "RSR-WEBDRIVER-STATE-v1",
+    "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.webdriver",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "RSR-WEBDRIVER-STATE-v1"
+    ],
+    "orientation": "SAVED_SEMANTIC_STATE",
+    "provenance": {
+      "field_refs": [
+        "app.web_data.automation_surface_layer.webdriver"
+      ],
+      "field": "app.web_data.automation_surface_layer.webdriver",
+      "signal_group": "automation_flag",
+      "candidate_id": "RSR-WEBDRIVER-STATE-v1",
+      "semantic_version": "1.0.0",
+      "mode": "PER_RECORD_EXPLICIT_LEGACY_OR_RAW",
+      "input_schema_version": "rsr-input-v1",
+      "gate_version": "rsr-webdriver-per-record-explicit-mode-gate-v1",
+      "input_origin": "SAVED_CANDIDATE_RESULTS_NO_REEVALUATION",
+      "same_field_family_as": "CONTROL:app.web_data.automation_surface_layer.webdriver:EQ:True",
+      "independent_cross_layer_evidence": false,
+      "mode_gate_versions": {
+        "legacy_projection_v1": "rsr-webdriver-legacy-gate-v1",
+        "raw_observation_v1": "rsr-webdriver-raw-gate-v1"
+      },
+      "source_mode_schema_version": "rsr-mixed-source-modes-v1",
+      "source_mode_use": "EXTERNAL_PROVENANCE_NOT_FEATURE"
+    }
+  },
+  {
+    "atom_id": "RSR-LANG-FIRST-v1",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "RSR-LANG-FIRST-v1"
+    ],
+    "orientation": "SAVED_SEMANTIC_STATE",
+    "provenance": {
+      "field_refs": [
+        "app.web_data.navigator_layer.language",
+        "app.web_data.navigator_layer.languages"
+      ],
+      "field": "app.web_data.navigator_layer.languages",
+      "signal_group": "language_preferences",
+      "candidate_id": "RSR-LANG-FIRST-v1",
+      "semantic_version": "1.0.0",
+      "mode": "default",
+      "input_schema_version": "rsr-input-v1",
+      "gate_version": "rsr-language-first-gate-v1",
+      "input_origin": "SAVED_CANDIDATE_RESULTS_NO_REEVALUATION",
+      "same_field_family_as": "UNFITTED_CONTROL:app.web_data.navigator_layer.languages",
+      "independent_cross_layer_evidence": false
+    }
+  },
+  {
+    "atom_id": "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1",
+    "family": "webgl_parameter_equivalence",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "REGISTERED_WEBGL_PARAMETER_OBSERVATION_V1"
+    ],
+    "aliases": [
+      "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1"
+    ],
+    "orientation": "SAVED_SEMANTIC_STATE",
+    "provenance": {
+      "field": "app.collection_observations.webgl_parameter.observation",
+      "field_refs": [
+        "app.collection_observations.webgl_parameter.observation"
+      ],
+      "signal_group": "graphics_identity",
+      "candidate_id": "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1",
+      "candidate_revision": "webgl1-parameter-equivalence-candidate-v1",
+      "candidate_scope": "webgl1-vendor-renderer-numeric-string-equivalence",
+      "registration_version": "webgl1-selector-integration-v1",
+      "input_schema_version": "webgl-parameter-equivalence-observation-v1",
+      "observer_revision": "webgl-parameter-observer-v1",
+      "evaluator_revision": "webgl-parameter-equivalence-v1",
+      "collection_revision": "featureapp-webgl-parameter-collection-v1",
+      "gate_version": "webgl1-parameter-quality-gate-v1",
+      "mode": "featureapp_main_frame_raw_v1",
+      "input_origin": "SAVED_CANDIDATE_RESULTS_NO_REEVALUATION",
+      "independent_cross_layer_evidence": false
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155",
+    "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_output_latency",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.audio_layer.audio_output_latency",
+      "threshold": 0.046439909297052155
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.047210884353741496",
+    "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_output_latency",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.047210884353741496"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.audio_layer.audio_output_latency",
+      "threshold": 0.047210884353741496
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.04798185941043084",
+    "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_output_latency",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.04798185941043084"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.audio_layer.audio_output_latency",
+      "threshold": 0.04798185941043084
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0",
+    "family": "CONTROL_FIELD:app.web_data.audio_layer.audio_sample_rate",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.audio_layer.audio_sample_rate",
+      "threshold": 44100.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+    "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.mime_types_count",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.automation_surface_layer.mime_types_count",
+      "threshold": 0.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0",
+    "family": "CONTROL_FIELD:app.web_data.automation_surface_layer.plugins_count",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.automation_surface_layer.plugins_count",
+      "threshold": 0.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+    "family": "CONTROL_FIELD:app.web_data.execution_layer.timezone_offset",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.execution_layer.timezone_offset",
+      "threshold": -480.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0",
+    "family": "CONTROL_FIELD:app.web_data.font_layer.font_probe_count",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.font_layer.font_probe_count",
+      "threshold": 5.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:21.0",
+    "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl_extensions_count",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:21.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.graphics_layer.webgl_extensions_count",
+      "threshold": 21.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0",
+    "family": "CONTROL_FIELD:app.web_data.graphics_layer.webgl_max_texture_size",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.graphics_layer.webgl_max_texture_size",
+      "threshold": 4096.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.device_memory",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.navigator_layer.device_memory",
+      "threshold": 2.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:1.0",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.hardware_concurrency",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:1.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.navigator_layer.hardware_concurrency",
+      "threshold": 1.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.max_touch_points",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.navigator_layer.max_touch_points",
+      "threshold": 5.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4",
+    "family": "CONTROL_FIELD:app.web_data.network_api_layer.downlink_mbps",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.4"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.network_api_layer.downlink_mbps",
+      "threshold": 9.4
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0",
+    "family": "CONTROL_FIELD:app.web_data.network_api_layer.downlink_mbps",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.network_api_layer.downlink_mbps",
+      "threshold": 10.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0",
+    "family": "CONTROL_FIELD:app.web_data.network_api_layer.rtt_ms",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.network_api_layer.rtt_ms",
+      "threshold": 0.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:915.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.avail_height",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.avail_height:LE:915.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.avail_height",
+      "threshold": 915.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.avail_width",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.avail_width",
+      "threshold": 412.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.color_depth",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.color_depth",
+      "threshold": 24.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.device_pixel_ratio",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.device_pixel_ratio",
+      "threshold": 2.625
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:639.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.inner_height",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.inner_height:LE:639.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.inner_height",
+      "threshold": 639.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.inner_width",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.inner_width",
+      "threshold": 412.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.orientation_angle",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.orientation_angle",
+      "threshold": 0.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:639.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.outer_height",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.outer_height:LE:639.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.outer_height",
+      "threshold": 639.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.outer_width",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.outer_width",
+      "threshold": 412.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.pixel_depth",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.pixel_depth",
+      "threshold": 24.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:639.2380981445312",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_height",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:639.2380981445312"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.visual_viewport_height",
+      "threshold": 639.2380981445312
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_scale",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.visual_viewport_scale",
+      "threshold": 1.0
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625",
+    "family": "CONTROL_FIELD:app.web_data.screen_layer.visual_viewport_width",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.screen_layer.visual_viewport_width",
+      "threshold": 412.19049072265625
+    }
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+    "family": "CONTROL_FIELD:app.web_data.navigator_layer.languages",
+    "surfaces": [
+      "app_web67"
+    ],
+    "sources": [
+      "PROJECT_CONTROL_NOT_E_Ou_H_C"
+    ],
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+    ],
+    "orientation": "CONTROL_LE",
+    "provenance": {
+      "field": "app.web_data.navigator_layer.languages",
+      "threshold": 1.0
+    }
+  }
+]
