@@ -5,12 +5,16 @@
     var subtitleEl = document.getElementById("subtitle");
     var logEl = document.getElementById("log");
     var canvasBox = document.getElementById("canvasBox");
+    var geometrySamplingPending = false;
+    var geometryReadiness = { status: "not_checked", reason: null };
 
     function setStatus(text) {
+        if (geometrySamplingPending) { return; }
         statusEl.textContent = text;
     }
 
     function log(text, cls) {
+        if (geometrySamplingPending) { return; }
         var paragraph = document.createElement("p");
         paragraph.className = "line" + (cls ? " " + cls : "");
         paragraph.textContent = text;
@@ -102,6 +106,8 @@
     }
 
     function updateProbeUi(status, detail, cls) {
+        // Android only calls this after geometry has completed or timed out.
+        geometrySamplingPending = false;
         setStatus(status);
         if (detail) {
             subtitleEl.textContent = detail;
@@ -110,8 +116,40 @@
     }
 
     global.HybridGuardProbe = {
-        updateResult: updateProbeUi
+        updateResult: updateProbeUi,
+        captureWebViewGeometry: function (request) {
+            if (!global.HybridGuardWebViewGeometry) {
+                throw new Error("geometry_observer_module_missing");
+            }
+            return global.HybridGuardWebViewGeometry.capture(request);
+        }
     };
+
+    function awaitGeometryReadiness() {
+        var attempts = 0;
+        function check() {
+            attempts += 1;
+            try {
+                if (!global.AndroidBridge || typeof global.AndroidBridge.isGeometryReady !== "function") {
+                    geometryReadiness = { status: "unsupported", reason: "host_readiness_api_missing", attempts: attempts };
+                    return Promise.resolve();
+                }
+                if (global.AndroidBridge.isGeometryReady()) {
+                    geometryReadiness = { status: "observed", reason: null, attempts: attempts };
+                    return Promise.resolve();
+                }
+            } catch (error) {
+                geometryReadiness = { status: "runtime_error", reason: String(error), attempts: attempts };
+                return Promise.resolve();
+            }
+            if (attempts >= 80) {
+                geometryReadiness = { status: "timeout", reason: "host_not_ready_after_bounded_wait", attempts: attempts };
+                return Promise.resolve();
+            }
+            return sleep(50).then(check);
+        }
+        return check();
+    }
 
     // Auxiliary raw evidence, outside the fixed 177/67 field trees. The
     // observer records both contexts; offline candidate scope is WebGL1.
@@ -164,14 +202,19 @@
                 probe_statuses: probeResult.probe_statuses
             }
         };
-        if (probeResult.collection_observations) {
-            payload.collection_observations = probeResult.collection_observations;
-        }
+        payload.collection_observations = probeResult.collection_observations || {
+            observation_schema_version: "app-web-observations-v1"
+        };
+        payload.collection_observations.geometry_document_id = global.HybridGuardWebViewGeometry ?
+            global.HybridGuardWebViewGeometry.documentId : null;
+        payload.collection_observations.geometry_readiness = geometryReadiness;
         try {
             setStatus("Handing expanded payload to Android uploader...");
+            log("Expanded payload handing to uploader", "good");
+            geometrySamplingPending = true;
             global.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
-            log("Expanded payload handed to uploader", "good");
         } catch (error) {
+            geometrySamplingPending = false;
             log(
                 "Android uploader handoff failed: " +
                     global.HybridGuardWebProbe.describeError(error),
@@ -202,7 +245,7 @@
         };
 
         setStatus("Establishing JSBridge connection...");
-        return sleep(100).then(function () {
+        return awaitGeometryReadiness().then(function () { return sleep(100); }).then(function () {
             if (
                 !global.AndroidBridge ||
                 !global.AndroidBridge.getSessionId ||

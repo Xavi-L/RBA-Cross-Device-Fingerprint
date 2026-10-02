@@ -1,0 +1,123 @@
+{
+  "version": "screen-only-cdp-v1",
+  "started_at": "2026-10-02T15:44:17.399Z",
+  "status": "COMPLETED",
+  "active_screen_override": false,
+  "parameters": null,
+  "commands": [
+    {
+      "id": 1,
+      "method": "Page.enable",
+      "params": {},
+      "result": {}
+    },
+    {
+      "id": 2,
+      "method": "Emulation.clearDeviceMetricsOverride",
+      "params": {},
+      "result": {}
+    },
+    {
+      "id": 3,
+      "method": "Page.navigate",
+      "params": {
+        "url": "file:///android_asset/expanded_probe.html"
+      },
+      "result": {
+        "frameId": "E745F1793D5F91E0F91469BBC5DCF98E",
+        "loaderId": "7AD895104825DD37764C604B9F2256AF"
+      }
+    },
+    {
+      "id": 4,
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "({inner_width:innerWidth,inner_height:innerHeight,screen_width:screen.width,screen_height:screen.height,dpr:devicePixelRatio,visual_width:visualViewport?.width,visual_height:visualViewport?.height,visual_scale:visualViewport?.scale,user_agent:navigator.userAgent,hardware_concurrency:navigator.hardwareConcurrency,device_memory:navigator.deviceMemory})",
+        "returnByValue": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "inner_width": 411,
+            "inner_height": 710,
+            "screen_width": 412,
+            "screen_height": 915,
+            "dpr": 2.625,
+            "visual_width": 329.1428527832031,
+            "visual_height": 568.3809814453125,
+            "visual_scale": 1.25,
+            "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+            "hardware_concurrency": 1,
+            "device_memory": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "method": "Emulation.clearDeviceMetricsOverride",
+      "params": {},
+      "result": {}
+    },
+    {
+      "id": 6,
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "({inner_width:innerWidth,inner_height:innerHeight,screen_width:screen.width,screen_height:screen.height,dpr:devicePixelRatio,visual_width:visualViewport?.width,visual_height:visualViewport?.height,visual_scale:visualViewport?.scale,user_agent:navigator.userAgent,hardware_concurrency:navigator.hardwareConcurrency,device_memory:navigator.deviceMemory})",
+        "returnByValue": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "inner_width": 411,
+            "inner_height": 710,
+            "screen_width": 412,
+            "screen_height": 915,
+            "dpr": 2.625,
+            "visual_width": 329.1428527832031,
+            "visual_height": 568.3809814453125,
+            "visual_scale": 1.25,
+            "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+            "hardware_concurrency": 1,
+            "device_memory": 2
+          }
+        }
+      }
+    }
+  ],
+  "rollback_status": "COMPLETED",
+  "apply_status": "COMPLETED",
+  "raw_receipt": {
+    "session_id": "6071bbc6-51f7-4811-887e-1825fd76ed09",
+    "received_before_rollback": true
+  },
+  "current_runtime_observation": {
+    "inner_width": 411,
+    "inner_height": 710,
+    "screen_width": 412,
+    "screen_height": 915,
+    "dpr": 2.625,
+    "visual_width": 329.1428527832031,
+    "visual_height": 568.3809814453125,
+    "visual_scale": 1.25,
+    "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+    "hardware_concurrency": 1,
+    "device_memory": 2
+  },
+  "after_rollback_runtime_observation": {
+    "inner_width": 411,
+    "inner_height": 710,
+    "screen_width": 412,
+    "screen_height": 915,
+    "dpr": 2.625,
+    "visual_width": 329.1428527832031,
+    "visual_height": 568.3809814453125,
+    "visual_scale": 1.25,
+    "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+    "hardware_concurrency": 1,
+    "device_memory": 2
+  },
+  "finished_at": "2026-10-02T15:44:18.692Z"
+}

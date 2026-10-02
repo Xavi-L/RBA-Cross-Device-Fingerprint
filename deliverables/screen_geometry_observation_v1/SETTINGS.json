@@ -1,0 +1,166 @@
+{
+  "environments": [
+    {
+      "environment_group_id": "api29_swiftshader",
+      "android_api": 29,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api29_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/featureapp_webdriver_raw_multienv_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API29",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "91.0.4472.114"
+    },
+    {
+      "environment_group_id": "api30_swiftshader",
+      "android_api": 30,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api30_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/rule_semantics_raw_only_expansion_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API30",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "91.0.4472.114"
+    },
+    {
+      "environment_group_id": "api36_swiftshader",
+      "android_api": 36,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api36_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API36_1",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "134.0.6998.135"
+    }
+  ],
+  "ports": {
+    "emulator": 5680,
+    "receiver": 8000,
+    "cdp": 9222
+  },
+  "limits": {
+    "boot_seconds": 120,
+    "position_seconds": 100,
+    "environment_seconds": 2400
+  },
+  "experiment_id": "screen-geometry-observation-v1",
+  "base_commit": "f03036516bcd95d1018540eca03d3d3bea35f62b",
+  "model_fit_calls": 0,
+  "types": [
+    "L1",
+    "L2",
+    "L3",
+    "A"
+  ],
+  "rounds": 2,
+  "phases": [
+    "clean_pre",
+    "change",
+    "clean_post"
+  ],
+  "planned_records": 72,
+  "attempts_per_position": 1,
+  "collector": {
+    "application_id": "com.example.hybridguard.featureapp",
+    "version_code": 15,
+    "version_name": "1.6.8-expanded-v2.2-geometry",
+    "schema_version": "expanded-v2.2-status",
+    "fixed_signal_count": 177,
+    "apk": {
+      "path": "deliverables/screen_geometry_observation_v1/runtime/featureapp-v15-geometry-local-only.apk"
+    }
+  },
+  "geometry_schema_version": "webview-geometry-v1",
+  "screen_configuration": {
+    "id": "cdp_screen_metrics_only_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setDeviceMetricsOverride",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_cdp_emulation_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-cdp-emulation-rule-boundary-api36-v5",
+    "automationRunner": "week10_cdp_emulation_runner_v5.mjs",
+    "configId": "w10-cdp-emulation-screen-metrics-only-v1",
+    "expectedMutations": [
+      "web_data.screen_layer.avail_width",
+      "web_data.screen_layer.avail_height",
+      "web_data.screen_layer.device_pixel_ratio",
+      "web_data.screen_layer.inner_width",
+      "web_data.screen_layer.inner_height",
+      "web_data.screen_layer.outer_width",
+      "web_data.screen_layer.outer_height",
+      "web_data.screen_layer.screen_resolution_logical",
+      "web_data.screen_layer.visual_viewport_width",
+      "web_data.screen_layer.visual_viewport_height"
+    ],
+    "observableFields": [
+      "avail_width",
+      "avail_height",
+      "device_pixel_ratio",
+      "inner_width",
+      "inner_height",
+      "outer_width",
+      "outer_height",
+      "screen_resolution_logical",
+      "visual_viewport_width",
+      "visual_viewport_height"
+    ],
+    "cdpEmulation": {
+      "contractVersion": "cdp-emulation-v1",
+      "applyCommands": [
+        {
+          "method": "Emulation.setDeviceMetricsOverride",
+          "params": {
+            "width": 393,
+            "height": 851,
+            "deviceScaleFactor": 2.75,
+            "mobile": true,
+            "screenWidth": 393,
+            "screenHeight": 851,
+            "positionX": 0,
+            "positionY": 0
+          }
+        }
+      ],
+      "rollbackCommands": [
+        {
+          "method": "Emulation.clearDeviceMetricsOverride",
+          "params": {}
+        }
+      ],
+      "targetUrl": "file:///android_asset/expanded_probe.html"
+    },
+    "profile": {
+      "availWidth": 393,
+      "availHeight": 851,
+      "devicePixelRatio": 2.75,
+      "innerWidth": 393,
+      "innerHeight": 851,
+      "outerWidth": 393,
+      "outerHeight": 851,
+      "screenResolutionLogical": "393x851",
+      "visualViewportWidth": 393.1428527832031,
+      "visualViewportHeight": 851.047607421875
+    },
+    "runner": "week10_cdp_emulation_runner_v5.mjs"
+  },
+  "operations": {
+    "L1": "Android system accelerometer_rotation=0, user_rotation 0/1/0, observed actual orientation required",
+    "L2": "Android information panel visibility visible/gone/visible; actual WebView bounds required",
+    "L3": "WebView.zoomBy once at factor1.25 during changed document; same zoom-enabled WebSettings in all three phases",
+    "A": "Exact saved Emulation.setDeviceMetricsOverride, held through raw upload, explicit clear then fresh restoration"
+  },
+  "geometry_module_attempt_limit": 2,
+  "geometry_module_timeout_ms": 5000,
+  "zoom_factor": 1.25,
+  "normal_evidence": "Normal flow and actual operation/current existing fields; geometry missing does not remove normal label",
+  "failure_policy": "Retain every planned position; no score-based retry or substitution",
+  "smoke": {
+    "purpose": "engineering only; excluded from formal results",
+    "maximum_records": 6,
+    "environments": [
+      "api29_swiftshader"
+    ]
+  }
+}

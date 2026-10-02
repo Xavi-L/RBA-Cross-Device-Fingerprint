@@ -1,0 +1,6 @@
+// Keep the user's existing dirty Android build outputs untouched.
+gradle.beforeProject { p ->
+    def destination = System.getProperty('geometryBuildRoot')
+    if (!destination) throw new GradleException('geometryBuildRoot must name an isolated output directory')
+    p.layout.buildDirectory.set(new File(destination, p.path == ':' ? 'root' : p.path.substring(1).replace(':', '/')))
+}

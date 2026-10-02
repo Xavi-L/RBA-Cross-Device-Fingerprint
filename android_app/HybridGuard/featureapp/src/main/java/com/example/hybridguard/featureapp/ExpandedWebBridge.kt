@@ -12,7 +12,11 @@ class ExpandedWebBridge(
 ) {
     interface Listener {
         fun onExpandedPayload(payloadJson: String)
+        fun isGeometryReady(): Boolean
     }
+
+    @JavascriptInterface
+    fun isGeometryReady(): Boolean = listener.isGeometryReady()
 
     @JavascriptInterface
     fun getSessionId(): String = sessionId

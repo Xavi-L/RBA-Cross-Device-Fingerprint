@@ -1,0 +1,12 @@
+{
+  "scope": "ENGINEERING_SMOKE_ONLY",
+  "issue": "Evaluator assumed dumpsys input SurfaceOrientation has a single entry; it enumerates multiple input devices. Raw physical rotation, Host orientation and collector were correct.",
+  "initial_confirmation_count": 0,
+  "initial_recovery": {
+    "RECOVERY_NOT_VERIFIED": 2
+  },
+  "correction": "Require requested orientation among observed input orientations plus current Host configuration orientation when available; retain all source readings.",
+  "rule_formula_changed": false,
+  "additional_collections": 0,
+  "formal_collection_affected": false
+}

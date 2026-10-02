@@ -1,0 +1,41 @@
+{
+  "status": "FROZEN",
+  "frozen_at": "2026-10-02T15:34:11.441468+00:00",
+  "model_fit_calls": 0,
+  "formal_planned_records": 72,
+  "new_relations": {
+    "version": "screen-geometry-relations-v1",
+    "template_count": 1,
+    "model_fit_calls": 0,
+    "atom_id": "SCREEN_GEOMETRY:WEB_PHYSICAL_VIEWPORT_EXCEEDS_HOST:v1",
+    "formula": "visual_axis_css * device_pixel_ratio * visual_viewport_scale > host_content_axis_px + tolerance_px",
+    "host_content": "view_bounds_minus_padding_no_inset_subtraction",
+    "tolerance_px": {
+      "edge_rounding_px": 2.0,
+      "float32_epsilon": 1.1920928955078125e-07,
+      "relative_rounding_operations": 4,
+      "formula": "2 + 4 * 2**-23 * max(abs(projected_px), abs(host_content_px), 1)"
+    },
+    "axes": "OR",
+    "parameter_fitting": "NONE",
+    "scale_source": "current_sync_Web_DPR_times_visualViewport.scale",
+    "host_callback_scale_use": "diagnostic_only_not_default_or_fallback",
+    "source_surfaces": [
+      "current_android_webview",
+      "current_sync_web_geometry"
+    ],
+    "identity_view_transform_required": true,
+    "webview_padding_domain": "all_four_observed_zero; nonzero WebView rendering semantics not established",
+    "same_current_document_and_host_stable_window_required": true
+  },
+  "comparators": [
+    "legacy inner_height > 710",
+    "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1"
+  ],
+  "legacy_and_new_snapshots": "separate; no mixed operand vectors",
+  "engineering_smoke_records": 6,
+  "engineering_smoke_used_for_training": false,
+  "change_after_formal_results": "forbidden within this version",
+  "geometry_schema_version": "webview-geometry-v1",
+  "apk_version_code": 15
+}

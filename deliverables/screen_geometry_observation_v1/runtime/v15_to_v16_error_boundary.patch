@@ -1,0 +1,179 @@
+--- a/android_app/HybridGuard/featureapp/build.gradle.kts
++++ b/android_app/HybridGuard/featureapp/build.gradle.kts
+@@ -59,8 +59,8 @@
+         applicationId = "com.example.hybridguard.featureapp"
+         minSdk = 21
+         targetSdk = 36
+-        versionCode = 15
+-        versionName = "1.6.8-expanded-v2.2-geometry"
++        versionCode = 16
++        versionName = "1.6.9-expanded-v2.2-geometry"
+ 
+         val configuredEndpoint = providers.gradleProperty("hybridguardCollectEndpoint")
+             .orElse("http://10.0.2.2:8000/api/collect/fingerprint")
+--- a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt
++++ b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/MainActivity.kt
+@@ -132,7 +132,7 @@
+             ).apply {
+                 put("upload_endpoint_origin", ExpandedUploadTransport.endpointOrigin(collectEndpoint))
+                 put("web_probe_revision", BuildConfig.WEB_PROBE_REVISION)
+-                put("geometry_observer_version", "featureapp-geometry-v1")
++                put("geometry_observer_version", "featureapp-geometry-v1.1")
+                 put("recreated_from_session_id", savedInstanceState?.getString(STATE_SESSION_ID) ?: JSONObject.NULL)
+             }
+         } catch (e: Exception) {
+--- a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/WebViewGeometryObserver.kt
++++ b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/WebViewGeometryObserver.kt
+@@ -105,7 +105,13 @@
+             .put("document_generation", startedGeneration)
+         attempts.put(entry)
+         attemptToken = observationId
+-        val before = hostSnapshot()
++        val before = GeometryReadBoundary.readIfCurrent(
++            { callback != null && policy.callbackIsCurrent(startedGeneration) },
++            "host_before_snapshot", ::hostSnapshot
++        ) { reason ->
++            entry.put("read_status", "runtime_error").put("reason", reason)
++            finish("runtime_error", reason)
++        } ?: return
+         entry.put("host_before", before)
+         val request = JSONObject().put("session_id", sessionId)
+             .put("webview_instance_id", instanceId).put("document_generation", startedGeneration)
+@@ -132,9 +138,16 @@
+                     entry.put("read_status", "unavailable").put("reason", "stale_document_callback")
+                     finish("unavailable", "stale_document_callback"); return@evaluateJavascript
+                 }
+-                val after = hostSnapshot()
+-                entry.put("host_after", after)
+                 try {
++                    // This runs later on the main Looper; the dispatch try cannot catch it.
++                    val after = GeometryReadBoundary.readIfCurrent(
++                        { callback != null && policy.callbackIsCurrent(startedGeneration) },
++                        "host_after_snapshot", ::hostSnapshot
++                    ) { reason ->
++                        entry.put("read_status", "runtime_error").put("reason", reason)
++                        retryOrFinish(entry)
++                    } ?: return@evaluateJavascript
++                    entry.put("host_after", after)
+                     val decoded = JSONTokener(encoded ?: "null").nextValue()
+                     val web = when (decoded) {
+                         is JSONObject -> decoded
+@@ -168,6 +181,8 @@
+     }
+ 
+     private fun retryOrFinish(entry: JSONObject) {
++        // A late callback cannot schedule another read after completion/navigation.
++        if (callback == null || !policy.callbackIsCurrent(startedGeneration)) return
+         if (attempts.length() < GeometrySamplingPolicy.MAX_ATTEMPTS) handler.postDelayed({ attempt() }, GeometrySamplingPolicy.QUIET_MS)
+         else finish(entry.optString("read_status", "unavailable"), entry.optString("reason", "attempt_limit_reached"))
+     }
+@@ -183,7 +198,7 @@
+         handler.removeCallbacks(overallTimeout)
+         if (!policy.finishOnce()) return
+         val result = JSONObject().put("schema_version", "webview-geometry-v1")
+-            .put("collector_version", "featureapp-geometry-v1").put("read_status", status)
++            .put("collector_version", "featureapp-geometry-v1.1").put("read_status", status)
+             .put("reason", reason ?: JSONObject.NULL).put("session_id", sessionId)
+             .put("webview_instance_id", instanceId).put("document_generation", startedGeneration)
+             .put("document_id", expectedDocumentId ?: JSONObject.NULL)
+--- a/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/GeometrySamplingPolicy.kt
++++ b/android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/GeometrySamplingPolicy.kt
+@@ -63,3 +63,20 @@
+             binding.optInt("attempt_id", -1) == attemptId
+     }
+ }
++
++/** The guard is inside each async callback, not merely around evaluateJavascript dispatch. */
++internal object GeometryReadBoundary {
++    fun <T : Any> readIfCurrent(
++        isCurrent: () -> Boolean,
++        stage: String,
++        read: () -> T,
++        onFailure: (String) -> Unit
++    ): T? {
++        if (!isCurrent()) return null
++        return try { read() }
++        catch (error: Exception) {
++            onFailure("${stage}_${error.javaClass.simpleName}")
++            null
++        }
++    }
++}
+--- /dev/null
++++ b/android_app/HybridGuard/featureapp/src/test/java/com/example/hybridguard/featureapp/GeometryReadBoundaryTest.kt
+@@ -0,0 +1,75 @@
++package com.example.hybridguard.featureapp
++
++import org.junit.Assert.*
++import org.junit.Test
++
++class GeometryReadBoundaryTest {
++    @Test fun hostBeforeExceptionCompletesOnceWithoutLosingFailureReason() {
++        val policy = GeometrySamplingPolicy()
++        val generation = policy.navigate()
++        assertTrue(policy.acceptPayload())
++        val failures = mutableListOf<String>()
++        var completions = 0
++        fun complete() { if (policy.finishOnce()) completions += 1 }
++        val snapshot = GeometryReadBoundary.readIfCurrent(
++            { policy.callbackIsCurrent(generation) }, "host_before_snapshot",
++            { throw IllegalStateException("injected Android getter failure") }
++        ) { reason -> failures.add(reason); complete() }
++        assertNull(snapshot)
++        assertEquals(listOf("host_before_snapshot_IllegalStateException"), failures)
++        // Timeout/destroy after the failure cannot deliver the legacy payload twice.
++        complete(); policy.destroy(); complete()
++        assertEquals(1, completions)
++    }
++
++    @Test fun hostAfterFailureRemainsBoundedAndLateCallbackDoesNotRead() {
++        val policy = GeometrySamplingPolicy()
++        val generation = policy.navigate()
++        assertTrue(policy.acceptPayload())
++        val failures = mutableListOf<String>()
++        var reads = 0
++        var completions = 0
++        repeat(GeometrySamplingPolicy.MAX_ATTEMPTS) {
++            assertNull(GeometryReadBoundary.readIfCurrent(
++                { policy.callbackIsCurrent(generation) }, "host_after_snapshot",
++                { reads += 1; throw IllegalArgumentException("injected asynchronous getter failure") }
++            ) { reason ->
++                failures.add(reason)
++                if (failures.size == GeometrySamplingPolicy.MAX_ATTEMPTS && policy.finishOnce()) completions += 1
++            })
++        }
++        assertEquals(2, reads)
++        assertEquals(2, failures.size)
++        assertTrue(failures.all { it == "host_after_snapshot_IllegalArgumentException" })
++        assertEquals(1, completions)
++        GeometryReadBoundary.readIfCurrent(
++            { policy.callbackIsCurrent(generation) }, "host_after_snapshot",
++            { reads += 1; "late value" }
++        ) { fail("completed callback must not fail again") }
++        assertEquals(2, reads)
++        assertFalse(policy.finishOnce())
++    }
++
++    @Test fun replacedDocumentAndDestroyedActivityDoNotInvokeGetter() {
++        val policy = GeometrySamplingPolicy()
++        val oldGeneration = policy.navigate()
++        policy.navigate()
++        fun readOld() = GeometryReadBoundary.readIfCurrent(
++            { policy.callbackIsCurrent(oldGeneration) }, "host_after_snapshot",
++            { fail("stale callback must not access the View"); "unreachable" }
++        ) { fail("stale callback must not create a new failure") }
++        assertNull(readOld())
++        policy.destroy()
++        assertNull(readOld())
++    }
++
++    @Test fun successfulReadIsPassedThroughWithoutChangingMeasuredValues() {
++        val measured = linkedMapOf("width_px" to 393, "height_px" to 851)
++        var readCount = 0
++        val returned = GeometryReadBoundary.readIfCurrent(
++            { true }, "host_after_snapshot", { readCount += 1; measured }
++        ) { fail("normal getter must not produce failure") }
++        assertSame(measured, returned)
++        assertEquals(1, readCount)
++    }
++}

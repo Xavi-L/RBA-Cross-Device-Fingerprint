@@ -8,6 +8,9 @@ import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
+import android.view.View
+import android.graphics.Bitmap
+import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import java.util.Collections
@@ -21,7 +24,10 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
 
     private lateinit var sessionId: String
     private lateinit var browserTicketRequestId: String
+    private val payloadAcceptanceLock = Any()
     private val payloadAccepted = AtomicBoolean(false)
+    private val uploadAssemblyStarted = AtomicBoolean(false)
+    @Volatile private var acceptedPayload: PendingGeometryPayload? = null
     private val preparedFallbackReceiptIds =
         Collections.synchronizedSet(HashSet<String>())
     private val handledBrowserPairIds =
@@ -37,11 +43,20 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
     private lateinit var nativeDataLayered: JSONObject
     private lateinit var collectionManifest: JSONObject
     private lateinit var fieldStatusReporter: FieldStatusReporter
-    private lateinit var sessionText: TextView
-    private lateinit var uploadText: TextView
-    private lateinit var statusText: TextView
+    private lateinit var sessionText: SamplingSafeText
+    private lateinit var uploadText: SamplingSafeText
+    private lateinit var statusText: SamplingSafeText
     private lateinit var webView: WebView
     private lateinit var collectEndpoint: String
+    private val geometryPolicy = GeometrySamplingPolicy()
+    private lateinit var geometryObserver: WebViewGeometryObserver
+    private val geometryReady = AtomicBoolean(false)
+    private var geometrySampling = false
+    @Volatile private var destroyedForGeometry = false
+    private var deferredProbeUi: (() -> Unit)? = null
+    private val geometryOperationReceipt = JSONObject()
+    private var zoomFinishedGeneration = -1L
+
     private val webProbeTimeout = Runnable {
         acceptAndUpload(
             webPayload = JSONObject(),
@@ -94,14 +109,13 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         // collection never inherits debugging from a controlled collection.
         WebView.setWebContentsDebuggingEnabled(probeControl.debuggingEnabled)
 
-        sessionId = savedInstanceState?.getString(STATE_SESSION_ID)
-            ?: UUID.randomUUID().toString()
-        browserTicketRequestId =
-            savedInstanceState?.getString(STATE_BROWSER_TICKET_REQUEST_ID)
-                ?: UUID.randomUUID().toString()
-        sessionText = findViewById(R.id.sessionText)
-        uploadText = findViewById(R.id.uploadText)
-        statusText = findViewById(R.id.statusText)
+        // A recreated Activity recollects Native data and owns a new WebView/document.
+        // It therefore receives a new collection identity, never reuses the prior snapshot.
+        sessionId = UUID.randomUUID().toString()
+        browserTicketRequestId = UUID.randomUUID().toString()
+        sessionText = SamplingSafeText(findViewById(R.id.sessionText)) { geometrySampling }
+        uploadText = SamplingSafeText(findViewById(R.id.uploadText)) { geometrySampling }
+        statusText = SamplingSafeText(findViewById(R.id.statusText)) { geometrySampling }
         sessionText.text = "Session: $sessionId"
 
         collector = ExpandedFingerprintCollector(this)
@@ -118,6 +132,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
             ).apply {
                 put("upload_endpoint_origin", ExpandedUploadTransport.endpointOrigin(collectEndpoint))
                 put("web_probe_revision", BuildConfig.WEB_PROBE_REVISION)
+                put("geometry_observer_version", "featureapp-geometry-v1.1")
+                put("recreated_from_session_id", savedInstanceState?.getString(STATE_SESSION_ID) ?: JSONObject.NULL)
             }
         } catch (e: Exception) {
             JSONObject().apply {
@@ -150,6 +166,12 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         }
 
         webView = findViewById(R.id.webview)
+        geometryObserver = WebViewGeometryObserver(webView, sessionId, geometryPolicy, geometryOperationReceipt)
+        val hideHeader = intent.getBooleanExtra(GeometryExperimentControl.EXTRA_HIDE_HEADER, false)
+        findViewById<View>(R.id.collectorInformationPanel).visibility = if (hideHeader) View.GONE else View.VISIBLE
+        geometryOperationReceipt.put("host_header_requested_hidden", hideHeader)
+            .put("host_header_actual_visibility", findViewById<View>(R.id.collectorInformationPanel).visibility)
+            .put("host_layout_operation", "android_view_visibility_before_layout")
         configureWebView(webView, probeControl)
         mainHandler.postDelayed(webProbeTimeout, probeControl.deadlineMs)
     }
@@ -176,7 +198,55 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
     private fun configureWebView(webView: WebView, probeControl: WebViewProbeControl) {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
-        webView.webViewClient = WebViewClient()
+        val zoomEnabled = intent.getBooleanExtra(GeometryExperimentControl.EXTRA_ENABLE_ZOOM, false)
+        if (zoomEnabled) {
+            webView.settings.setSupportZoom(true)
+            webView.settings.builtInZoomControls = true
+            webView.settings.displayZoomControls = false
+        }
+        val requestedZoom = intent.getFloatExtra(GeometryExperimentControl.EXTRA_ZOOM_FACTOR, 1f)
+        geometryOperationReceipt.put("zoom_controls_requested_enabled", zoomEnabled)
+            .put("zoom_factor_requested", if (requestedZoom.isFinite()) requestedZoom.toDouble() else JSONObject.NULL)
+            .put("zoom_operation", "WebView.zoomBy")
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageStarted(view: WebView, url: String?, favicon: Bitmap?) {
+                geometryReady.set(false)
+                geometryObserver.onNavigation()
+            }
+            override fun onPageFinished(view: WebView, url: String?) {
+                if (url != "file:///android_asset/expanded_probe.html") return
+                val generation = geometryPolicy.generation
+                if (zoomFinishedGeneration == generation) return
+                zoomFinishedGeneration = generation
+                geometryOperationReceipt.put("operation_document_generation", generation)
+                    .put("operation_elapsed_realtime_ms", SystemClock.elapsedRealtime())
+                try {
+                    when {
+                        !GeometryExperimentControl.validZoom(requestedZoom) ->
+                            geometryOperationReceipt.put("zoom_execution", "rejected_unsupported_factor")
+                        requestedZoom != 1f && !zoomEnabled ->
+                            geometryOperationReceipt.put("zoom_execution", "not_executed_zoom_controls_not_enabled")
+                        requestedZoom == 1f -> geometryOperationReceipt.put("zoom_execution", "matched_noop")
+                        else -> {
+                            view.zoomBy(requestedZoom)
+                            geometryOperationReceipt.put("zoom_execution", "invoked_void_api")
+                        }
+                    }
+                } catch (error: Exception) {
+                    geometryOperationReceipt.put("zoom_execution", "runtime_error")
+                        .put("zoom_error", error.javaClass.simpleName)
+                }
+                mainHandler.postDelayed({
+                    if (!destroyedForGeometry && geometryPolicy.generation == generation) {
+                        geometryReady.set(true)
+                        geometryOperationReceipt.put("ready_elapsed_realtime_ms", SystemClock.elapsedRealtime())
+                    }
+                }, GeometryExperimentControl.SETTLE_MS)
+            }
+            override fun onScaleChanged(view: WebView, oldScale: Float, newScale: Float) {
+                geometryObserver.onScaleChanged(oldScale, newScale)
+            }
+        }
 
         val settingsSnapshot = ExpandedFingerprintCollector.webViewSettingsSnapshot(webView)
         webView.addJavascriptInterface(
@@ -185,6 +255,8 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         )
         webView.loadUrl(probeControl.initialUrl)
     }
+
+    override fun isGeometryReady(): Boolean = geometryReady.get()
 
     override fun onExpandedPayload(payloadJson: String) {
         try {
@@ -203,11 +275,36 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         extraLayerFailures: Map<String, String>,
         fallbackReason: String
     ) {
-        if (!payloadAccepted.compareAndSet(false, true)) {
-            return
+        synchronized(payloadAcceptanceLock) {
+            if (destroyedForGeometry || !payloadAccepted.compareAndSet(false, true)) return
+            acceptedPayload = PendingGeometryPayload(webPayload, extraLayerFailures, fallbackReason)
         }
         mainHandler.removeCallbacks(webProbeTimeout)
+        // JavascriptInterface is a bridge thread. Post once; never synchronously wait on UI/JS.
+        mainHandler.post {
+            if (destroyedForGeometry || !geometryPolicy.acceptPayload()) return@post
+            geometrySampling = true
+            mainHandler.removeCallbacks(pendingBrowserHandoffCheck)
+            val documentId = webPayload.optJSONObject("collection_observations")
+                ?.optString("geometry_document_id")?.takeIf(String::isNotBlank)
+            geometryObserver.collect(documentId) { observation ->
+                val observations = webPayload.optJSONObject("collection_observations") ?: JSONObject()
+                observations.put("webview_geometry", observation)
+                webPayload.put("collection_observations", observations)
+                geometrySampling = false
+                sessionText.flush(); uploadText.flush(); statusText.flush()
+                deferredProbeUi?.let { pending -> deferredProbeUi = null; pending() }
+                assembleAndUpload(webPayload, extraLayerFailures, fallbackReason)
+            }
+        }
+    }
 
+    private fun assembleAndUpload(
+        webPayload: JSONObject,
+        extraLayerFailures: Map<String, String>,
+        fallbackReason: String
+    ) {
+        if (!uploadAssemblyStarted.compareAndSet(false, true)) return
         runOnUiThread {
             uploadText.text = "Uploading"
             statusText.text = "Expanded three-layer payload collected. Uploading raw features."
@@ -790,7 +887,37 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
             lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
     }
 
+    override fun onDestroy() {
+        synchronized(payloadAcceptanceLock) { destroyedForGeometry = true }
+        geometryReady.set(false)
+        mainHandler.removeCallbacks(webProbeTimeout)
+        mainHandler.removeCallbacks(pendingBrowserHandoffCheck)
+        if (::geometryObserver.isInitialized) geometryObserver.destroy()
+        acceptedPayload?.let { pending ->
+            if (!uploadAssemblyStarted.get()) {
+                val observations = pending.payload.optJSONObject("collection_observations") ?: JSONObject()
+                observations.put("webview_geometry", JSONObject()
+                    .put("schema_version", "webview-geometry-v1")
+                    .put("session_id", sessionId).put("read_status", "unavailable")
+                    .put("reason", "activity_destroyed_before_geometry_dispatch"))
+                pending.payload.put("collection_observations", observations)
+                geometrySampling = false
+                assembleAndUpload(pending.payload, pending.failures, pending.reason)
+            }
+        }
+        if (::webView.isInitialized) {
+            webView.removeJavascriptInterface("AndroidBridge")
+            webView.destroy()
+        }
+        super.onDestroy()
+    }
+
     private fun updateProbeUi(status: String, detail: String, style: String) {
+        if (geometrySampling) {
+            deferredProbeUi = { updateProbeUi(status, detail, style) }
+            return
+        }
+        if (destroyedForGeometry) return
         val script = """
             window.HybridGuardProbe && window.HybridGuardProbe.updateResult(
                 ${JSONObject.quote(status)},
@@ -800,6 +927,19 @@ class MainActivity : AppCompatActivity(), ExpandedWebBridge.Listener {
         """.trimIndent()
         webView.evaluateJavascript(script, null)
     }
+
+    /** UI messages can complete from earlier asynchronous work; defer them during sampling. */
+    private class SamplingSafeText(private val view: TextView, private val frozen: () -> Boolean) {
+        private var pending: CharSequence? = null
+        var text: CharSequence
+            get() = view.text
+            set(value) { if (frozen()) pending = value else view.text = value }
+        fun flush() { pending?.let { view.text = it }; pending = null }
+    }
+
+    private data class PendingGeometryPayload(
+        val payload: JSONObject, val failures: Map<String, String>, val reason: String
+    )
 
     private data class UploadStatus(
         val uploaded: Boolean,
