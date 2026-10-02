@@ -1,0 +1,24 @@
+{
+  "actual_model_fits": 6,
+  "model_fit_reruns": 0,
+  "actual_local_records": 36,
+  "local_recollection_calls": 0,
+  "changes": [
+    {
+      "timing": "before_first_fit",
+      "change": "Raw source non-object guard retains corrupt MTC entries as FAILED; dedicated regression tests added after fitting",
+      "valid_record_semantics_changed": false
+    },
+    {
+      "timing": "before_final_local_evaluation",
+      "change": "Local evaluator accepts baseline_model_ids/new_model_ids freeze schema and counts INSUFFICIENT_EVIDENCE under actual predictor name",
+      "training_or_collection_changed": false
+    },
+    {
+      "timing": "test_development",
+      "change": "Old candidate registry size assertion uses approved_atoms(definitions), because definitions is a dictionary, not an atom list",
+      "implementation_changed": false
+    }
+  ],
+  "model_rules_thresholds_budgets_order_or_tz_semantics_tuned_after_evaluation": false
+}

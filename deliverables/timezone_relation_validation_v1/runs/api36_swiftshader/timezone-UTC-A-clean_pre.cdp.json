@@ -1,0 +1,156 @@
+{
+  "version": "timezone-only-cdp-v1",
+  "status": "COMPLETED",
+  "target_timezone": null,
+  "changed_domains": [],
+  "started_at": "2026-10-02T14:22:00.276Z",
+  "commands": [
+    {
+      "id": 1,
+      "method": "Page.enable",
+      "params": {},
+      "result": {}
+    },
+    {
+      "id": 2,
+      "method": "Emulation.setTimezoneOverride",
+      "params": {
+        "timezoneId": ""
+      },
+      "result": {}
+    },
+    {
+      "id": 3,
+      "method": "Page.navigate",
+      "params": {
+        "url": "file:///android_asset/expanded_probe.html"
+      },
+      "result": {
+        "frameId": "CCF767845862D66931DCDC9844AD0DBF",
+        "loaderId": "FEF673C8DAF9EF5754A3534B9D2E5906"
+      }
+    },
+    {
+      "id": 4,
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "({timezone_id:Intl.DateTimeFormat().resolvedOptions().timeZone,timezone_offset:new Date().getTimezoneOffset(),timestamp_ms:Date.now(),device_memory:navigator.deviceMemory,hardware_concurrency:navigator.hardwareConcurrency,user_agent:navigator.userAgent,platform:navigator.platform,language:navigator.language,languages:Array.from(navigator.languages),webdriver:navigator.webdriver,screen_width:screen.width,screen_height:screen.height,dpr:devicePixelRatio,inner_width:innerWidth,inner_height:innerHeight})",
+        "returnByValue": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "timezone_id": "Asia/Shanghai",
+            "timezone_offset": -480,
+            "timestamp_ms": 1790950908225,
+            "device_memory": 2,
+            "hardware_concurrency": 1,
+            "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+            "platform": "Linux aarch64",
+            "language": "en-US",
+            "languages": [
+              "en-US"
+            ],
+            "webdriver": false,
+            "screen_width": 412,
+            "screen_height": 915,
+            "dpr": 2.625,
+            "inner_width": 411,
+            "inner_height": 710
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "method": "Emulation.setTimezoneOverride",
+      "params": {
+        "timezoneId": ""
+      },
+      "result": {}
+    },
+    {
+      "id": 6,
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "({timezone_id:Intl.DateTimeFormat().resolvedOptions().timeZone,timezone_offset:new Date().getTimezoneOffset(),timestamp_ms:Date.now(),device_memory:navigator.deviceMemory,hardware_concurrency:navigator.hardwareConcurrency,user_agent:navigator.userAgent,platform:navigator.platform,language:navigator.language,languages:Array.from(navigator.languages),webdriver:navigator.webdriver,screen_width:screen.width,screen_height:screen.height,dpr:devicePixelRatio,inner_width:innerWidth,inner_height:innerHeight})",
+        "returnByValue": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "timezone_id": "Asia/Shanghai",
+            "timezone_offset": -480,
+            "timestamp_ms": 1790950908761,
+            "device_memory": 2,
+            "hardware_concurrency": 1,
+            "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+            "platform": "Linux aarch64",
+            "language": "en-US",
+            "languages": [
+              "en-US"
+            ],
+            "webdriver": false,
+            "screen_width": 412,
+            "screen_height": 915,
+            "dpr": 2.625,
+            "inner_width": 411,
+            "inner_height": 710
+          }
+        }
+      }
+    }
+  ],
+  "target": {
+    "id": "CCF767845862D66931DCDC9844AD0DBF",
+    "url": "about:blank"
+  },
+  "rollback_status": "COMPLETED",
+  "apply_status": "COMPLETED",
+  "current_runtime_observation": {
+    "timezone_id": "Asia/Shanghai",
+    "timezone_offset": -480,
+    "timestamp_ms": 1790950908225,
+    "device_memory": 2,
+    "hardware_concurrency": 1,
+    "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+    "platform": "Linux aarch64",
+    "language": "en-US",
+    "languages": [
+      "en-US"
+    ],
+    "webdriver": false,
+    "screen_width": 412,
+    "screen_height": 915,
+    "dpr": 2.625,
+    "inner_width": 411,
+    "inner_height": 710
+  },
+  "raw_receipt": {
+    "session_id": "371beb5b-66ef-476e-8457-520ba6d9555a",
+    "received_before_rollback": true
+  },
+  "after_rollback_runtime_observation": {
+    "timezone_id": "Asia/Shanghai",
+    "timezone_offset": -480,
+    "timestamp_ms": 1790950908761,
+    "device_memory": 2,
+    "hardware_concurrency": 1,
+    "user_agent": "Mozilla/5.0 (Linux; Android 16; sdk_gphone64_arm64 Build/BE4B.251210.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/134.0.6998.135 Mobile Safari/537.36",
+    "platform": "Linux aarch64",
+    "language": "en-US",
+    "languages": [
+      "en-US"
+    ],
+    "webdriver": false,
+    "screen_width": 412,
+    "screen_height": 915,
+    "dpr": 2.625,
+    "inner_width": 411,
+    "inner_height": 710
+  },
+  "current_document_rollback": "CDP empty timezone override; owned App process exits and clean_post is independently collected",
+  "finished_at": "2026-10-02T14:22:02.252Z"
+}

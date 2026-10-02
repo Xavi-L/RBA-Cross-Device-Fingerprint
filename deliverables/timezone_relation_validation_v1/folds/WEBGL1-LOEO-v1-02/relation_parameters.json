@@ -1,0 +1,132 @@
+{
+  "version": "mtc-timezone-candidate-adapter-v1",
+  "fitted": false,
+  "parameter_fit_calls": 0,
+  "templates": {
+    "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1": {
+      "field_refs": [
+        "app.web_data.screen_layer.inner_width",
+        "app.web_data.screen_layer.inner_height",
+        "app.web_data.screen_layer.visual_viewport_width",
+        "app.web_data.screen_layer.visual_viewport_height",
+        "app.web_data.screen_layer.visual_viewport_scale"
+      ],
+      "relation_version": "mtc-screen-relations-v1",
+      "signal_group": "display_geometry",
+      "semantic_quality": 0,
+      "condition": {
+        "operator": "VISUAL_VIEWPORT_EXCEEDS_LAYOUT_AT_SCALE_GE_ONE",
+        "operands": [
+          "app.web_data.screen_layer.inner_width",
+          "app.web_data.screen_layer.inner_height",
+          "app.web_data.screen_layer.visual_viewport_width",
+          "app.web_data.screen_layer.visual_viewport_height",
+          "app.web_data.screen_layer.visual_viewport_scale"
+        ],
+        "parameters": {
+          "minimum_visual_scale": 1.0,
+          "css_pixel_rounding_tolerance": 1.0,
+          "axes": "OR",
+          "parameter_fitting": "NONE"
+        }
+      },
+      "units": "CSS pixels; visual_viewport_scale is dimensionless",
+      "evidence_scope": "SAME_WEB_PROBE_NOT_INDEPENDENT_CROSS_LAYER",
+      "source_refs": [
+        "web_probe/canonical_web_probe.js:368",
+        "https://drafts.csswg.org/cssom-view/#dom-window-innerwidth",
+        "https://drafts.csswg.org/cssom-view/#the-visualviewport-interface"
+      ]
+    },
+    "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE": {
+      "field": "app.android_native_data.memory_layer.total_memory_gb",
+      "field_refs": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "relation_version": "mtc-resource-relations-v1",
+      "signal_group": "memory_capacity",
+      "condition": {
+        "operator": "WEB_MEMORY_ABOVE_NATIVE_POWER_OF_TWO_UPPER_ENVELOPE",
+        "operands": [
+          "app.android_native_data.memory_layer.total_memory_gb",
+          "app.web_data.navigator_layer.device_memory"
+        ],
+        "parameters": {
+          "units": "GiB",
+          "native_minimum_gib": 0.25,
+          "bound": "smallest_power_of_two_greater_than_or_equal_to_native",
+          "comparison": "strict_greater_than",
+          "learned_parameters": false,
+          "lower_web_exposures": "allowed",
+          "browser_upper_cap": "not_assumed",
+          "domain": "same_current_Android_App_record_with_WebView_numeric_observations"
+        }
+      },
+      "basis": "RESOURCE_REVIEW.md; Android kernel total and Chromium power-of-two exposure",
+      "interpretation": "research_relation_deviation_not_universal_attack_evidence"
+    },
+    "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS": {
+      "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "metadata_refs": [
+        "collection_manifest.collection_started_at_ms",
+        "collection_diagnostics.collection_finished_at_ms"
+      ],
+      "relation_version": "mtc-timezone-relation-v1",
+      "signal_group": "timezone_semantics",
+      "condition": {
+        "operator": "NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+        "operands": [
+          "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "app.web_data.execution_layer.timezone_offset"
+        ],
+        "parameters": {
+          "version": "mtc-timezone-relation-v1",
+          "fitted": false,
+          "parameter_fit_calls": 0,
+          "tzdb_version": "2026c",
+          "library": "Python stdlib zoneinfo",
+          "time_basis": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "time_unit": "unix_epoch_milliseconds",
+          "native_offset_unit": "minutes_east_of_UTC_standard_only",
+          "web_offset_unit": "minutes_west_of_UTC_current",
+          "comparison": "exact_current_offset_difference",
+          "missing_date_fallback": "existing_fixed_offset_domain_only",
+          "web_timezone_id": "diagnostic_only_no_string_comparison",
+          "crossing_offset_transition": "U",
+          "learned_tolerance": null
+        }
+      },
+      "basis": "timezone_relation_validation_v1/SEMANTICS.md",
+      "interpretation": "research_relation_deviation_not_attack_truth"
+    }
+  },
+  "timezone": {
+    "version": "mtc-timezone-relation-v1",
+    "fitted": false,
+    "parameter_fit_calls": 0,
+    "tzdb_version": "2026c",
+    "library": "Python stdlib zoneinfo",
+    "time_basis": [
+      "collection_manifest.collection_started_at_ms",
+      "collection_diagnostics.collection_finished_at_ms"
+    ],
+    "time_unit": "unix_epoch_milliseconds",
+    "native_offset_unit": "minutes_east_of_UTC_standard_only",
+    "web_offset_unit": "minutes_west_of_UTC_current",
+    "comparison": "exact_current_offset_difference",
+    "missing_date_fallback": "existing_fixed_offset_domain_only",
+    "web_timezone_id": "diagnostic_only_no_string_comparison",
+    "crossing_offset_transition": "U",
+    "learned_tolerance": null
+  }
+}

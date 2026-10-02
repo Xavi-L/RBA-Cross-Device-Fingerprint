@@ -1,0 +1,1478 @@
+[
+  {
+    "sample_id": "mtc-pair-hgpair-v1-4317c8ba25b65fc2abb5cd37",
+    "fold_id": "WEBGL1-LOEO-v1-01",
+    "subset": "discovery",
+    "profile": {
+      "android_api": 28,
+      "android_release": "9",
+      "collector_install_id": "297a9e3a-916e-4152-abe7-d23d6488b931",
+      "manufacturer": "HTC",
+      "model": "HTC U11 plus"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": -420,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "Asia/Phnom_Penh",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": -420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": -420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": {
+          "status": "observed_device_interval",
+          "session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+          "started_at_ms": 1790043513876,
+          "finished_at_ms": 1790043518475,
+          "payload_timestamp_seconds": 1790043518,
+          "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627",
+          "source_fields": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "unit": "unix_epoch_milliseconds",
+          "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+          "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+          "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+        },
+        "expected_web_offset_min": -420.0,
+        "native_effective_offset_min": 420.0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "Asia/Phnom_Penh",
+        "web_timezone_offset_min": -420,
+        "web_timezone_id": "Asia/Phnom_Penh",
+        "native_standard_offset_min": 420,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-4317c8ba25b65fc2abb5cd37",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+        "app_session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+        "receipt_id": "add32d260ab26ef04dab984e",
+        "payload_id": "e4c6e28ba7274aa1102321a0082b061d09ad6c12c6adc9cd16f31953cbbfe9a0",
+        "app_raw_line": 1627,
+        "source_view": "paired_244",
+        "source_line": 979,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-f405df575df9b1041190e417",
+    "fold_id": "WEBGL1-LOEO-v1-01",
+    "subset": "discovery",
+    "profile": {
+      "android_api": 26,
+      "android_release": "8.0.0",
+      "collector_install_id": "f75fabba-3bbd-4057-ab99-c1c25ad31119",
+      "manufacturer": "HUAWEI",
+      "model": "LON-L29"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1525"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": 0,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "GMT",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 0,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": 0,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "GMT",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 0,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": 0,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "+00:00",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": "existing_syntactically_fixed_zone_no_date_required",
+        "expected_web_offset_min": 0,
+        "native_effective_offset_min": 0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "GMT",
+        "web_timezone_offset_min": 0,
+        "web_timezone_id": "+00:00",
+        "native_standard_offset_min": 0,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-f405df575df9b1041190e417",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "f1f3967b-f2ee-4158-abf5-041ae89b6cba",
+        "app_session_id": "f1f3967b-f2ee-4158-abf5-041ae89b6cba",
+        "receipt_id": "a08730c339c389dc4993210b",
+        "payload_id": "7b000c99325bc6453a6ed2ec1431f16d8adfaef4846ea6441d8ce6b249d9c41f",
+        "app_raw_line": 1525,
+        "source_view": "paired_244",
+        "source_line": 912,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1525"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-80bf24fd7b7f19393eace992",
+    "fold_id": "WEBGL1-LOEO-v1-01",
+    "subset": "reserved_validation",
+    "profile": {
+      "android_api": 31,
+      "android_release": "12",
+      "collector_install_id": "8d7c124f-7afd-4afa-989c-18c9e58005ae",
+      "manufacturer": "asus",
+      "model": "ASUS_I002D"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": -420,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "Asia/Phnom_Penh",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": -420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": -420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": {
+          "status": "observed_device_interval",
+          "session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+          "started_at_ms": 1790042316429,
+          "finished_at_ms": 1790042317805,
+          "payload_timestamp_seconds": 1790042317,
+          "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570",
+          "source_fields": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "unit": "unix_epoch_milliseconds",
+          "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+          "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+          "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+        },
+        "expected_web_offset_min": -420.0,
+        "native_effective_offset_min": 420.0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "Asia/Phnom_Penh",
+        "web_timezone_offset_min": -420,
+        "web_timezone_id": "Asia/Phnom_Penh",
+        "native_standard_offset_min": 420,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-80bf24fd7b7f19393eace992",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+        "app_session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+        "receipt_id": "c5d93c9c4ba0ee7679341ff0",
+        "payload_id": "f1f59b95bc717453226a0c787bfe613c50513124e57cb1ac3c31de8307d32dc3",
+        "app_raw_line": 1570,
+        "source_view": "paired_244",
+        "source_line": 938,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-4317c8ba25b65fc2abb5cd37",
+    "fold_id": "WEBGL1-LOEO-v1-02",
+    "subset": "discovery",
+    "profile": {
+      "android_api": 28,
+      "android_release": "9",
+      "collector_install_id": "297a9e3a-916e-4152-abe7-d23d6488b931",
+      "manufacturer": "HTC",
+      "model": "HTC U11 plus"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": -420,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "Asia/Phnom_Penh",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": -420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": -420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": {
+          "status": "observed_device_interval",
+          "session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+          "started_at_ms": 1790043513876,
+          "finished_at_ms": 1790043518475,
+          "payload_timestamp_seconds": 1790043518,
+          "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627",
+          "source_fields": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "unit": "unix_epoch_milliseconds",
+          "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+          "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+          "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+        },
+        "expected_web_offset_min": -420.0,
+        "native_effective_offset_min": 420.0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "Asia/Phnom_Penh",
+        "web_timezone_offset_min": -420,
+        "web_timezone_id": "Asia/Phnom_Penh",
+        "native_standard_offset_min": 420,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-4317c8ba25b65fc2abb5cd37",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+        "app_session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+        "receipt_id": "add32d260ab26ef04dab984e",
+        "payload_id": "e4c6e28ba7274aa1102321a0082b061d09ad6c12c6adc9cd16f31953cbbfe9a0",
+        "app_raw_line": 1627,
+        "source_view": "paired_244",
+        "source_line": 979,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-f405df575df9b1041190e417",
+    "fold_id": "WEBGL1-LOEO-v1-02",
+    "subset": "discovery",
+    "profile": {
+      "android_api": 26,
+      "android_release": "8.0.0",
+      "collector_install_id": "f75fabba-3bbd-4057-ab99-c1c25ad31119",
+      "manufacturer": "HUAWEI",
+      "model": "LON-L29"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1525"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": 0,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "GMT",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 0,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": 0,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "GMT",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 0,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": 0,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "+00:00",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": "existing_syntactically_fixed_zone_no_date_required",
+        "expected_web_offset_min": 0,
+        "native_effective_offset_min": 0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "GMT",
+        "web_timezone_offset_min": 0,
+        "web_timezone_id": "+00:00",
+        "native_standard_offset_min": 0,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-f405df575df9b1041190e417",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "f1f3967b-f2ee-4158-abf5-041ae89b6cba",
+        "app_session_id": "f1f3967b-f2ee-4158-abf5-041ae89b6cba",
+        "receipt_id": "a08730c339c389dc4993210b",
+        "payload_id": "7b000c99325bc6453a6ed2ec1431f16d8adfaef4846ea6441d8ce6b249d9c41f",
+        "app_raw_line": 1525,
+        "source_view": "paired_244",
+        "source_line": 912,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1525"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-80bf24fd7b7f19393eace992",
+    "fold_id": "WEBGL1-LOEO-v1-02",
+    "subset": "reserved_validation",
+    "profile": {
+      "android_api": 31,
+      "android_release": "12",
+      "collector_install_id": "8d7c124f-7afd-4afa-989c-18c9e58005ae",
+      "manufacturer": "asus",
+      "model": "ASUS_I002D"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": -420,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "Asia/Phnom_Penh",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": -420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": -420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": {
+          "status": "observed_device_interval",
+          "session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+          "started_at_ms": 1790042316429,
+          "finished_at_ms": 1790042317805,
+          "payload_timestamp_seconds": 1790042317,
+          "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570",
+          "source_fields": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "unit": "unix_epoch_milliseconds",
+          "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+          "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+          "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+        },
+        "expected_web_offset_min": -420.0,
+        "native_effective_offset_min": 420.0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "Asia/Phnom_Penh",
+        "web_timezone_offset_min": -420,
+        "web_timezone_id": "Asia/Phnom_Penh",
+        "native_standard_offset_min": 420,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-80bf24fd7b7f19393eace992",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+        "app_session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+        "receipt_id": "c5d93c9c4ba0ee7679341ff0",
+        "payload_id": "f1f59b95bc717453226a0c787bfe613c50513124e57cb1ac3c31de8307d32dc3",
+        "app_raw_line": 1570,
+        "source_view": "paired_244",
+        "source_line": 938,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-4317c8ba25b65fc2abb5cd37",
+    "fold_id": "WEBGL1-LOEO-v1-03",
+    "subset": "discovery",
+    "profile": {
+      "android_api": 28,
+      "android_release": "9",
+      "collector_install_id": "297a9e3a-916e-4152-abe7-d23d6488b931",
+      "manufacturer": "HTC",
+      "model": "HTC U11 plus"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": -420,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "Asia/Phnom_Penh",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": -420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": -420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": {
+          "status": "observed_device_interval",
+          "session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+          "started_at_ms": 1790043513876,
+          "finished_at_ms": 1790043518475,
+          "payload_timestamp_seconds": 1790043518,
+          "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627",
+          "source_fields": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "unit": "unix_epoch_milliseconds",
+          "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+          "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+          "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+        },
+        "expected_web_offset_min": -420.0,
+        "native_effective_offset_min": 420.0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "Asia/Phnom_Penh",
+        "web_timezone_offset_min": -420,
+        "web_timezone_id": "Asia/Phnom_Penh",
+        "native_standard_offset_min": 420,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-4317c8ba25b65fc2abb5cd37",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+        "app_session_id": "76320eff-9aef-4332-8a20-11fe4261b41d",
+        "receipt_id": "add32d260ab26ef04dab984e",
+        "payload_id": "e4c6e28ba7274aa1102321a0082b061d09ad6c12c6adc9cd16f31953cbbfe9a0",
+        "app_raw_line": 1627,
+        "source_view": "paired_244",
+        "source_line": 979,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1627"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-f405df575df9b1041190e417",
+    "fold_id": "WEBGL1-LOEO-v1-03",
+    "subset": "discovery",
+    "profile": {
+      "android_api": 26,
+      "android_release": "8.0.0",
+      "collector_install_id": "f75fabba-3bbd-4057-ab99-c1c25ad31119",
+      "manufacturer": "HUAWEI",
+      "model": "LON-L29"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1525"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": 0,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "GMT",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 0,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": 0,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "GMT",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 0,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": 0,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "+00:00",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": "existing_syntactically_fixed_zone_no_date_required",
+        "expected_web_offset_min": 0,
+        "native_effective_offset_min": 0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "GMT",
+        "web_timezone_offset_min": 0,
+        "web_timezone_id": "+00:00",
+        "native_standard_offset_min": 0,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-f405df575df9b1041190e417",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "f1f3967b-f2ee-4158-abf5-041ae89b6cba",
+        "app_session_id": "f1f3967b-f2ee-4158-abf5-041ae89b6cba",
+        "receipt_id": "a08730c339c389dc4993210b",
+        "payload_id": "7b000c99325bc6453a6ed2ec1431f16d8adfaef4846ea6441d8ce6b249d9c41f",
+        "app_raw_line": 1525,
+        "source_view": "paired_244",
+        "source_line": 912,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1525"
+      }
+    },
+    "new_triggered_rules": []
+  },
+  {
+    "sample_id": "mtc-pair-hgpair-v1-80bf24fd7b7f19393eace992",
+    "fold_id": "WEBGL1-LOEO-v1-03",
+    "subset": "reserved_validation",
+    "profile": {
+      "android_api": 31,
+      "android_release": "12",
+      "collector_install_id": "8d7c124f-7afd-4afa-989c-18c9e58005ae",
+      "manufacturer": "asus",
+      "model": "ASUS_I002D"
+    },
+    "normal_basis": {
+      "status": "research_normal_condition_supported",
+      "supported": true,
+      "basis_id": "mtc-routine-collection-research-normal-v1",
+      "reasons": [
+        "routine_mtc_task_and_matching_retained_raw_closed_batch"
+      ],
+      "evidence_refs": [
+        "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+        "deliverables/mtc_20260917/提测说明.md",
+        "deliverables/mtc_20260921_https/提测说明.md",
+        "backend_server/collection_backups/mtc_final_20260922/sources/collection_batches.jsonl",
+        "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570"
+      ],
+      "scope": "routine_collection_without_research_target_fingerprint_tampering",
+      "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+    },
+    "old_decision": "MANIPULATION_ALERT",
+    "new_decision": "NO_ALERT",
+    "old_timezone_trigger": [
+      {
+        "clause_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0:NEGATIVE",
+        "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+        "polarity": "NEGATIVE",
+        "state": "T",
+        "atom_state": "F",
+        "reason": "FROZEN_TRAIN_QUANTILE",
+        "fields": [
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "original_path": "web_data.execution_layer.timezone_offset",
+            "value_present": true,
+            "value": -420,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "triggered": true
+      }
+    ],
+    "timezone_relation": {
+      "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "field_refs": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "fields": [
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "value": "Asia/Phnom_Penh",
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+          "value": 420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        },
+        {
+          "field": "app.web_data.execution_layer.timezone_offset",
+          "value": -420,
+          "value_present": true,
+          "source_status": "observed",
+          "source_quality": "observed_value"
+        }
+      ],
+      "state": "F",
+      "reason": "TIMEZONE_CURRENT_OFFSETS_MATCH",
+      "available": true,
+      "evaluation_status": "OK",
+      "diagnostics": {
+        "relation_version": "mtc-timezone-relation-v1",
+        "tzdb_version": "2026c",
+        "fields": [
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "value": 420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_offset",
+            "value": -420,
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          },
+          {
+            "field": "app.web_data.execution_layer.timezone_id",
+            "value": "Asia/Phnom_Penh",
+            "value_present": true,
+            "source_status": "observed",
+            "source_quality": "observed_value"
+          }
+        ],
+        "date_basis": {
+          "status": "observed_device_interval",
+          "session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+          "started_at_ms": 1790042316429,
+          "finished_at_ms": 1790042317805,
+          "payload_timestamp_seconds": 1790042317,
+          "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570",
+          "source_fields": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "unit": "unix_epoch_milliseconds",
+          "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+          "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+          "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+        },
+        "expected_web_offset_min": -420.0,
+        "native_effective_offset_min": 420.0,
+        "native_raw_is_standard_only": true,
+        "native_timezone_id": "Asia/Phnom_Penh",
+        "web_timezone_offset_min": -420,
+        "web_timezone_id": "Asia/Phnom_Penh",
+        "native_standard_offset_min": 420,
+        "availability_category": "observed_comparable"
+      },
+      "source_binding": {
+        "sample_id": "mtc-pair-hgpair-v1-80bf24fd7b7f19393eace992",
+        "mode": "mtc_p1_legacy_app",
+        "quality_policy": "retained_p1_field_quality",
+        "session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+        "app_session_id": "3146b490-3bd0-47a2-8cc3-01fbd81abece",
+        "receipt_id": "c5d93c9c4ba0ee7679341ff0",
+        "payload_id": "f1f59b95bc717453226a0c787bfe613c50513124e57cb1ac3c31de8307d32dc3",
+        "app_raw_line": 1570,
+        "source_view": "paired_244",
+        "source_line": 938,
+        "collector_version_code": 11,
+        "collector_version_name": "1.6.4-expanded-v2.2-mtc-https",
+        "collection_source_commit": "134201114a8a15a682bb41ee94c796d14e550c9e",
+        "sync_probe_reference": "web_probe/canonical_web_probe.js#getScreenFeatures",
+        "binding_version": "mtc-relation-source-binding-v1",
+        "input_schema_version": "same-acquisition-app-fields-v1",
+        "binding_valid": true,
+        "same_app_record": true,
+        "web_fields_same_sync_probe": true,
+        "timezone_binding_version": "timezone-relation-source-binding-v1",
+        "timezone_raw_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1570"
+      }
+    },
+    "new_triggered_rules": []
+  }
+]

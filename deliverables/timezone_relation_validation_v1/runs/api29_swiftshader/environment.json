@@ -1,0 +1,4208 @@
+{
+  "environment": "api29_swiftshader",
+  "started_at": "2026-10-02T14:17:13.219014+00:00",
+  "status": "COMPLETE",
+  "planned": 12,
+  "attempts": 12,
+  "raw_records": 12,
+  "commands": [
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "adb: device 'emulator-5680' not found\n"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "adb: device offline\n"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "adb: device offline\n"
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "stdout": "29\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "dumpsys",
+        "webviewupdate"
+      ],
+      "returncode": 0,
+      "stdout": "Current WebView Update Service state\n  Fallback logic enabled: false\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 29\n  Minimum WebView version code: 447211484\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211484, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950638,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "help"
+      ],
+      "returncode": 255,
+      "stdout": "Alarm manager service (alarm) commands:\n  help\n    Print this help text.\n  set-time TIME\n    Set the system clock time to TIME where TIME is milliseconds\n    since the Epoch.\n  set-timezone TZ\n    Set the system timezone to TZ where TZ is an Olson id.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "install",
+        "-r",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+      ],
+      "returncode": 0,
+      "stdout": "Performing Streamed Install\nSuccess\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pm",
+        "clear",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "Success\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "dumpsys",
+        "package",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "resizeable, anyDensity]\n    timeStamp=2026-10-02 22:17:19\n    firstInstallTime=2026-09-30 21:32:58\n    lastUpdateTime=2026-10-02 22:17:19\n    signatures=PackageSignatures{ed49537 version:2, signatures:[b936dc11], past signatures:[]}\n    installPermissionsFixed=true\n    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]\n    declared permissions:\n      com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature, INSTALLED\n    requested permissions:\n      android.permission.INTERNET\n      android.permission.ACCESS_NETWORK_STATE\n      android.permission.WAKE_LOCK\n      android.permission.RECEIVE_BOOT_COMPLETED\n      android.permission.FOREGROUND_SERVICE\n      com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION\n    install permissions:\n      android.permission.FOREGROUND_SERVICE: granted=true\n      android.permission.RECEIVE_BOOT_COMPLETED: granted=true\n      com.example.hybridguard.featureapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true\n      android.permission.INTERNET: granted=true\n      android.permission.ACCESS_NETWORK_STATE: granted=true\n      android.permission.WAKE_LOCK: granted=true\n    User 0: ceDataInode=132081 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false\n      gids=[3003]\n      runtime permissions:\n      enabledComponents:\n        androidx.work.impl.background.systemalarm.RescheduleReceiver\n        androidx.work.impl.background.systemjob.SystemJobService\n\nPackage Changes:\n  Sequence number=1\n  User 0:\n    seq=0, package=com.example.hybridguard.featureapp\n\n\nDexopt state:\n  [com.example.hybridguard.featureapp]\n    path: /data/app/com.example.hybridguard.featureapp-dTIjG440vgjBWQ7qzh1EOg==/base.apk\n      arm64: [status=run-from-apk] [reason=unknown]\n\n\nCompiler stats:\n  [com.example.hybridguard.featureapp]\n    (No recorded stats)\n\nActive APEX packages:\n\n\nInactive APEX packages:\n\n\nFactory APEX packages:\n\n\n  APEX session state:\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "reverse",
+        "tcp:8000",
+        "tcp:8000"
+      ],
+      "returncode": 0,
+      "stdout": "8000\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "0"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950640,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950641,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-UTC-L-clean_pre",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 825\nWaitTime: 826\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "1843\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": " 00000002 00000000 00000000 0002 01  8359\n0000000000000000: 00000003 00000000 00000000 0005 03 27875\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000003 00000000 00000000 0005 03 30867 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0005 03 30701 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_1843"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-UTC-L-clean_pre.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "0",
+        "timezone-validation:api29_swiftshader:timezone-UTC-L-clean_pre"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950647,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "UTC"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "UTC\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950649,+0000,UTC\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "UTC\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950649,+0000,UTC\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-UTC-L-change",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 477\nWaitTime: 478\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "3391\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000002 00000000 00000000 0002 01  8359\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 34569\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_3391"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-UTC-L-change.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "29324",
+        "timezone-validation:api29_swiftshader:timezone-UTC-L-change"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "UTC\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950654,+0000,UTC\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950656,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950656,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-UTC-L-clean_post",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 470\nWaitTime: 472\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "3591\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000003 00000000 00000000 0005 03 35970\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0001 03 35963\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_3591"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-UTC-L-clean_post.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "58620",
+        "timezone-validation:api29_swiftshader:timezone-UTC-L-clean_post"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950661,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950663,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "1"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950665,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "0"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950665,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950665,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-UTC-A-clean_pre",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 494\nWaitTime: 496\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "3798\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000002 00000000 00000000 0002 01  8359\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 37512\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_3798"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-UTC-A-clean_pre.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "87946",
+        "timezone-validation:api29_swiftshader:timezone-UTC-A-clean_pre"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950670,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950671,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-UTC-A-change",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 482\nWaitTime: 491\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "3970\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000003 00000000 00000000 0001 03 38800\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0001 03 38794\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_3970"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-UTC-A-change.cdp.json",
+        "UTC",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "117272",
+        "timezone-validation:api29_swiftshader:timezone-UTC-A-change"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950676,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950677,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-UTC-A-clean_post",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 434\nWaitTime: 434\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "4121\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000003 00000000 00000000 0001 03 39685\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0001 03 39591\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_4121"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-UTC-A-clean_post.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "146583",
+        "timezone-validation:api29_swiftshader:timezone-UTC-A-clean_post"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950682,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950684,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "1"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950685,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "0"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950686,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950686,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-L-clean_pre",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 535\nWaitTime: 537\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "4326\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000002 00000000 00000000 0002 01  8359\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0001 03 41126\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_4326"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-America_Los_Angeles-L-clean_pre.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "175911",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-L-clean_pre"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950691,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "America/Los_Angeles"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "America/Los_Angeles\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950693,-0700,PDT\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "America/Los_Angeles\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950693,-0700,PDT\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-L-change",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 461\nWaitTime: 462\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "4495\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000003 00000000 00000000 0005 03 12633\n0000000000000000: 00000002 00000000 00000000 0002 01  8359\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_4495"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-America_Los_Angeles-L-change.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "205253",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-L-change"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "America/Los_Angeles\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950698,-0700,PDT\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950700,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950701,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-L-clean_post",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 344\nWaitTime: 344\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "4668\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000003 00000000 00000000 0005 03 43103\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0001 03 43090\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_4668"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-America_Los_Angeles-L-clean_post.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "234605",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-L-clean_post"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950705,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950707,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "1"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950709,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "0"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950709,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950709,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-A-clean_pre",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 338\nWaitTime: 341\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "4877\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000002 00000000 00000000 0002 01  8359\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0001 03 44885\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_4877"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-America_Los_Angeles-A-clean_pre.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "263948",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-A-clean_pre"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950714,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950715,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-A-change",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 357\nWaitTime: 358\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "5058\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0001 03 45656\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0001 03 45826\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_5058"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-America_Los_Angeles-A-change.cdp.json",
+        "America/Los_Angeles",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "293291",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-A-change"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950719,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950720,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "start",
+        "-S",
+        "-W",
+        "-n",
+        "com.example.hybridguard.featureapp/.MainActivity",
+        "--es",
+        "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+        "http://127.0.0.1:8000/api/collect/fingerprint",
+        "--es",
+        "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-A-clean_post",
+        "--ei",
+        "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+        "1",
+        "--es",
+        "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+        "timezone-validation-api29_swiftshader",
+        "--ez",
+        "com.example.hybridguard.featureapp.ENABLE_WEBVIEW_DEBUG",
+        "true",
+        "--ez",
+        "com.example.hybridguard.featureapp.WAIT_FOR_WEBVIEW_CONTROL",
+        "true",
+        "--el",
+        "com.example.hybridguard.featureapp.PROBE_DELAY_MS",
+        "60000"
+      ],
+      "returncode": 0,
+      "stdout": "Stopping: com.example.hybridguard.featureapp\nStarting: Intent { cmp=com.example.hybridguard.featureapp/.MainActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: com.example.hybridguard.featureapp/.MainActivity\nTotalTime: 366\nWaitTime: 367\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "5206\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cat",
+        "/proc/net/unix"
+      ],
+      "returncode": 0,
+      "stdout": " 00000003 00000000 00000000 0005 03 45011 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 23067\n0000000000000000: 00000002 00000000 00000000 0002 01 10479\n0000000000000000: 00000002 00000000 00000000 0002 01 32504\n0000000000000000: 00000003 00000000 00000000 0005 03 13436\n0000000000000000: 00000003 00000000 00000000 0005 03 13421\n0000000000000000: 00000003 00000000 00000000 0005 03 13256\n0000000000000000: 00000002 00000000 00000000 0002 01  8295\n0000000000000000: 00000003 00000000 00000000 0005 03 14325\n0000000000000000: 00000002 00000000 00000000 0002 01 11065\n0000000000000000: 00000002 00000000 00000000 0002 01 10529\n0000000000000000: 00000002 00000000 00000000 0002 01 10244\n0000000000000000: 00000003 00000000 00000000 0001 03 31455\n0000000000000000: 00000003 00000000 00000000 0005 03 21116\n0000000000000000: 00000003 00000000 00000000 0005 03 46493\n0000000000000000: 00000003 00000000 00000000 0005 03 20368\n0000000000000000: 00000002 00000000 00000000 0002 01 13395\n0000000000000000: 00000003 00000000 00000000 0005 03 13252 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0001 03 12591\n0000000000000000: 00000002 00000000 00000000 0002 01  9620\n0000000000000000: 00000002 00000000 00000000 0002 01 10610\n0000000000000000: 00000003 00000000 00000000 0005 03 20987 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12544\n0000000000000000: 00000002 00000000 00000000 0002 01 21611\n0000000000000000: 00000003 00000000 00000000 0005 03 23014\n0000000000000000: 00000003 00000000 00000000 0005 03 13855\n0000000000000000: 00000003 00000000 00000000 0005 03 13352 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 12803\n0000000000000000: 00000003 00000000 00000000 0005 03 12631\n0000000000000000: 00000003 00000000 00000000 0005 03 32267 @jdwp-control\n0000000000000000: 00000003 00000000 00000000 0005 03 26307\n0000000000000000: 00000003 00000000 00000000 0005 03 13243\n0000000000000000: 00000002 00000000 00000000 0002 01  8783\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "tcp:9222",
+        "localabstract:webview_devtools_remote_5206"
+      ],
+      "returncode": 0,
+      "stdout": "9222\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/timezone_cdp.mjs",
+        "http://127.0.0.1:9222",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/timezone-America_Los_Angeles-A-clean_post.cdp.json",
+        "noop",
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/timezone_relation_validation_v1/runs/api29_swiftshader/backend/raw_expanded_payloads.jsonl",
+        "322635",
+        "timezone-validation:api29_swiftshader:timezone-America_Los_Angeles-A-clean_post"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950725,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "forward",
+        "--remove",
+        "tcp:9222"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950727,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "1"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950728,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "cmd",
+        "alarm",
+        "set-timezone",
+        "Asia/Shanghai"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950730,+0800,CST\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "auto_time_zone",
+        "1"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "stdout": "Asia/Shanghai\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "auto_time_zone"
+      ],
+      "returncode": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5680",
+        "shell",
+        "date",
+        "+%s,%z,%Z"
+      ],
+      "returncode": 0,
+      "stdout": "1790950731,+0800,CST\n",
+      "stderr": ""
+    }
+  ],
+  "emulator_pid": 52362,
+  "emulator_command": [
+    "/Users/xavier/Library/Android/sdk/emulator/emulator",
+    "-avd",
+    "Codex_Webdriver_Raw_API29",
+    "-port",
+    "5680",
+    "-read-only",
+    "-no-window",
+    "-no-audio",
+    "-no-snapshot",
+    "-no-boot-anim",
+    "-gpu",
+    "swiftshader"
+  ],
+  "actual_android_api": "29",
+  "webview_provider": "Current WebView Update Service state\n  Fallback logic enabled: false\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 29\n  Minimum WebView version code: 447211484\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211484, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+  "original_system_settings": {
+    "timezone_id": "Asia/Shanghai",
+    "auto_time_zone": "1",
+    "device_date": "1790950638,+0800,CST",
+    "observed_at": "2026-10-02T14:17:19.500689+00:00"
+  },
+  "alarm_command_help": "Alarm manager service (alarm) commands:\n  help\n    Print this help text.\n  set-time TIME\n    Set the system clock time to TIME where TIME is milliseconds\n    since the Epoch.\n  set-timezone TZ\n    Set the system timezone to TZ where TZ is an Olson id.\n",
+  "system_timezone_change_supported": true,
+  "app_version_code": 14,
+  "app_version_name": "1.6.7-expanded-v2.2-webgl1",
+  "registered_before_collection_at": "2026-10-02T14:17:20.922538+00:00",
+  "read_only_owned_avd": true,
+  "receiver_pid": 52445,
+  "receiver_command": [
+    "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+    "-B",
+    "-m",
+    "uvicorn",
+    "main:app",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8000",
+    "--workers",
+    "1"
+  ],
+  "final_system_restoration": {
+    "started_at": "2026-10-02T14:18:49.335868+00:00",
+    "original": {
+      "timezone_id": "Asia/Shanghai",
+      "auto_time_zone": "1",
+      "device_date": "1790950638,+0800,CST",
+      "observed_at": "2026-10-02T14:17:19.500689+00:00"
+    },
+    "status": "RESTORED",
+    "zone_restore": {
+      "mechanism": "cmd alarm set-timezone",
+      "output": "",
+      "requested_zone": "Asia/Shanghai",
+      "status": "COMPLETED",
+      "after": {
+        "timezone_id": "Asia/Shanghai",
+        "auto_time_zone": "1",
+        "device_date": "1790950730,+0800,CST",
+        "observed_at": "2026-10-02T14:18:50.981362+00:00"
+      }
+    },
+    "after": {
+      "timezone_id": "Asia/Shanghai",
+      "auto_time_zone": "1",
+      "device_date": "1790950731,+0800,CST",
+      "observed_at": "2026-10-02T14:18:52.579397+00:00"
+    },
+    "finished_at": "2026-10-02T14:18:52.579436+00:00"
+  },
+  "receiver_returncode": 0,
+  "emulator_returncode": 0,
+  "finished_at": "2026-10-02T14:18:54.176501+00:00",
+  "owned_processes_exited": true
+}

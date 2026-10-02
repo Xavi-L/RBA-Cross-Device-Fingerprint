@@ -1,0 +1,441 @@
+{
+  "preflight": {
+    "checked_at": "2026-10-02T14:17:13.218147+00:00",
+    "emulator": "/Users/xavier/Library/Android/sdk/emulator/emulator",
+    "adb": "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+    "node": "/Users/xavier/.local/state/fnm_multishells/32589_1790932202788/bin/node",
+    "receiver_python_exists": true,
+    "apk_exists": true,
+    "environments": [
+      {
+        "environment_id": "api29_swiftshader",
+        "avd_config_exists": true,
+        "registered_webview_version": "91.0.4472.114"
+      },
+      {
+        "environment_id": "api30_swiftshader",
+        "avd_config_exists": true,
+        "registered_webview_version": "91.0.4472.114"
+      },
+      {
+        "environment_id": "api36_swiftshader",
+        "avd_config_exists": true,
+        "registered_webview_version": "134.0.6998.135"
+      }
+    ],
+    "ports_free": {
+      "5680": true,
+      "8000": true,
+      "9222": true,
+      "5681": true
+    },
+    "planned_per_environment": 12,
+    "read_only": true
+  },
+  "environments": [
+    {
+      "environment": "api29_swiftshader",
+      "started_at": "2026-10-02T14:17:13.219014+00:00",
+      "status": "COMPLETE",
+      "planned": 12,
+      "attempts": 12,
+      "raw_records": 12,
+      "emulator_pid": 52362,
+      "emulator_command": [
+        "/Users/xavier/Library/Android/sdk/emulator/emulator",
+        "-avd",
+        "Codex_Webdriver_Raw_API29",
+        "-port",
+        "5680",
+        "-read-only",
+        "-no-window",
+        "-no-audio",
+        "-no-snapshot",
+        "-no-boot-anim",
+        "-gpu",
+        "swiftshader"
+      ],
+      "actual_android_api": "29",
+      "webview_provider": "Current WebView Update Service state\n  Fallback logic enabled: false\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 29\n  Minimum WebView version code: 447211484\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211484, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+      "original_system_settings": {
+        "timezone_id": "Asia/Shanghai",
+        "auto_time_zone": "1",
+        "device_date": "1790950638,+0800,CST",
+        "observed_at": "2026-10-02T14:17:19.500689+00:00"
+      },
+      "alarm_command_help": "Alarm manager service (alarm) commands:\n  help\n    Print this help text.\n  set-time TIME\n    Set the system clock time to TIME where TIME is milliseconds\n    since the Epoch.\n  set-timezone TZ\n    Set the system timezone to TZ where TZ is an Olson id.\n",
+      "system_timezone_change_supported": true,
+      "app_version_code": 14,
+      "app_version_name": "1.6.7-expanded-v2.2-webgl1",
+      "registered_before_collection_at": "2026-10-02T14:17:20.922538+00:00",
+      "read_only_owned_avd": true,
+      "receiver_pid": 52445,
+      "receiver_command": [
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+        "-B",
+        "-m",
+        "uvicorn",
+        "main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--workers",
+        "1"
+      ],
+      "final_system_restoration": {
+        "started_at": "2026-10-02T14:18:49.335868+00:00",
+        "original": {
+          "timezone_id": "Asia/Shanghai",
+          "auto_time_zone": "1",
+          "device_date": "1790950638,+0800,CST",
+          "observed_at": "2026-10-02T14:17:19.500689+00:00"
+        },
+        "status": "RESTORED",
+        "zone_restore": {
+          "mechanism": "cmd alarm set-timezone",
+          "output": "",
+          "requested_zone": "Asia/Shanghai",
+          "status": "COMPLETED",
+          "after": {
+            "timezone_id": "Asia/Shanghai",
+            "auto_time_zone": "1",
+            "device_date": "1790950730,+0800,CST",
+            "observed_at": "2026-10-02T14:18:50.981362+00:00"
+          }
+        },
+        "after": {
+          "timezone_id": "Asia/Shanghai",
+          "auto_time_zone": "1",
+          "device_date": "1790950731,+0800,CST",
+          "observed_at": "2026-10-02T14:18:52.579397+00:00"
+        },
+        "finished_at": "2026-10-02T14:18:52.579436+00:00"
+      },
+      "receiver_returncode": 0,
+      "emulator_returncode": 0,
+      "finished_at": "2026-10-02T14:18:54.176501+00:00",
+      "owned_processes_exited": true
+    },
+    {
+      "environment": "api30_swiftshader",
+      "started_at": "2026-10-02T14:18:54.178707+00:00",
+      "status": "COMPLETE",
+      "planned": 12,
+      "attempts": 12,
+      "raw_records": 12,
+      "emulator_pid": 53568,
+      "emulator_command": [
+        "/Users/xavier/Library/Android/sdk/emulator/emulator",
+        "-avd",
+        "Codex_Webdriver_Raw_API30",
+        "-port",
+        "5680",
+        "-read-only",
+        "-no-window",
+        "-no-audio",
+        "-no-snapshot",
+        "-no-boot-anim",
+        "-gpu",
+        "swiftshader"
+      ],
+      "actual_android_api": "30",
+      "webview_provider": "Current WebView Update Service state\n  Fallback logic enabled: false\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 30\n  Minimum WebView version code: 447211484\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211484, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+      "original_system_settings": {
+        "timezone_id": "Asia/Shanghai",
+        "auto_time_zone": "1",
+        "device_date": "1790950747,+0800,CST",
+        "observed_at": "2026-10-02T14:19:07.721839+00:00"
+      },
+      "alarm_command_help": "Alarm manager service (alarm) commands:\n  help\n    Print this help text.\n  set-time TIME\n    Set the system clock time to TIME where TIME is milliseconds\n    since the Epoch.\n  set-timezone TZ\n    Set the system timezone to TZ where TZ is an Olson id.\n",
+      "system_timezone_change_supported": true,
+      "app_version_code": 14,
+      "app_version_name": "1.6.7-expanded-v2.2-webgl1",
+      "registered_before_collection_at": "2026-10-02T14:19:10.579664+00:00",
+      "read_only_owned_avd": true,
+      "receiver_pid": 53658,
+      "receiver_command": [
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+        "-B",
+        "-m",
+        "uvicorn",
+        "main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--workers",
+        "1"
+      ],
+      "final_system_restoration": {
+        "started_at": "2026-10-02T14:20:37.926874+00:00",
+        "original": {
+          "timezone_id": "Asia/Shanghai",
+          "auto_time_zone": "1",
+          "device_date": "1790950747,+0800,CST",
+          "observed_at": "2026-10-02T14:19:07.721839+00:00"
+        },
+        "status": "RESTORED",
+        "zone_restore": {
+          "mechanism": "cmd alarm set-timezone",
+          "output": "",
+          "requested_zone": "Asia/Shanghai",
+          "status": "COMPLETED",
+          "after": {
+            "timezone_id": "Asia/Shanghai",
+            "auto_time_zone": "1",
+            "device_date": "1790950839,+0800,CST",
+            "observed_at": "2026-10-02T14:20:39.510721+00:00"
+          }
+        },
+        "after": {
+          "timezone_id": "Asia/Shanghai",
+          "auto_time_zone": "1",
+          "device_date": "1790950840,+0800,CST",
+          "observed_at": "2026-10-02T14:20:41.113668+00:00"
+        },
+        "finished_at": "2026-10-02T14:20:41.113710+00:00"
+      },
+      "receiver_returncode": 0,
+      "emulator_returncode": 0,
+      "finished_at": "2026-10-02T14:20:42.196733+00:00",
+      "owned_processes_exited": true
+    },
+    {
+      "environment": "api36_swiftshader",
+      "started_at": "2026-10-02T14:20:42.198261+00:00",
+      "status": "COMPLETE",
+      "planned": 12,
+      "attempts": 12,
+      "raw_records": 12,
+      "emulator_pid": 55011,
+      "emulator_command": [
+        "/Users/xavier/Library/Android/sdk/emulator/emulator",
+        "-avd",
+        "Codex_Webdriver_Raw_API36_1",
+        "-port",
+        "5680",
+        "-read-only",
+        "-no-window",
+        "-no-audio",
+        "-no-snapshot",
+        "-no-boot-anim",
+        "-gpu",
+        "swiftshader"
+      ],
+      "actual_android_api": "36",
+      "webview_provider": "Current WebView Update Service state\n  Current WebView package (name, version): (com.google.android.webview, 134.0.6998.135)\n  Minimum targetSdkVersion: 33\n  Minimum WebView version code: 699813532\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 134.0.6998.135)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 134.0.6998.135, versionCode: 699813532, targetSdkVersion: 35) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+      "original_system_settings": {
+        "timezone_id": "Asia/Shanghai",
+        "auto_time_zone": "1",
+        "device_date": "1790950846,+0800,CST",
+        "observed_at": "2026-10-02T14:20:59.719446+00:00"
+      },
+      "alarm_command_help": "Alarm manager service (alarm) commands:\n  help\n    Print this help text.\n  set-time TIME\n    Set the system clock time to TIME where TIME is milliseconds\n    since the Epoch.\n  set-timezone TZ\n    Set the system timezone to TZ where TZ is an Olson id.\n  get-config-version\n    Returns an integer denoting the version of device_config keys the service is sync'ed to. As long as this returns the same version, the values of the config are guaranteed to remain the same.\n",
+      "system_timezone_change_supported": true,
+      "app_version_code": 14,
+      "app_version_name": "1.6.7-expanded-v2.2-webgl1",
+      "registered_before_collection_at": "2026-10-02T14:21:19.844852+00:00",
+      "read_only_owned_avd": true,
+      "receiver_pid": 55197,
+      "receiver_command": [
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+        "-B",
+        "-m",
+        "uvicorn",
+        "main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--workers",
+        "1"
+      ],
+      "final_system_restoration": {
+        "started_at": "2026-10-02T14:23:02.414101+00:00",
+        "original": {
+          "timezone_id": "Asia/Shanghai",
+          "auto_time_zone": "1",
+          "device_date": "1790950846,+0800,CST",
+          "observed_at": "2026-10-02T14:20:59.719446+00:00"
+        },
+        "status": "RESTORED",
+        "zone_restore": {
+          "mechanism": "cmd alarm set-timezone",
+          "output": "",
+          "requested_zone": "Asia/Shanghai",
+          "status": "COMPLETED",
+          "after": {
+            "timezone_id": "Asia/Shanghai",
+            "auto_time_zone": "1",
+            "device_date": "1790950970,+0800,CST",
+            "observed_at": "2026-10-02T14:23:04.021424+00:00"
+          }
+        },
+        "after": {
+          "timezone_id": "Asia/Shanghai",
+          "auto_time_zone": "1",
+          "device_date": "1790950972,+0800,CST",
+          "observed_at": "2026-10-02T14:23:05.637702+00:00"
+        },
+        "finished_at": "2026-10-02T14:23:05.637740+00:00"
+      },
+      "receiver_returncode": 0,
+      "emulator_returncode": 0,
+      "finished_at": "2026-10-02T14:23:07.012632+00:00",
+      "owned_processes_exited": true
+    }
+  ],
+  "finished_at": "2026-10-02T14:23:07.014439+00:00",
+  "planned_records": 36,
+  "actual_records": 36,
+  "collection_model_fit_calls": 0,
+  "model_freeze": {
+    "status": "FROZEN",
+    "actual_fit_calls": 6,
+    "frozen_at": "2026-10-02T14:15:50.772496+00:00",
+    "baseline_model_ids": [
+      "mtc-rel-32aa33c7ffce80569b002e12",
+      "mtc-rel-fe7d389097ff210ced2183f6",
+      "mtc-rel-67a2bd2c906851f14ec9bc5c"
+    ],
+    "new_model_ids": [
+      "mtc-rel-tz-6e10284c39b1b601ab406240",
+      "mtc-rel-tz-9c5fa0e310ba10a00e520b1c",
+      "mtc-rel-tz-4ae67bb9da899cc419dd525f"
+    ],
+    "parameters": {
+      "version": "mtc-timezone-candidate-adapter-v1",
+      "fitted": false,
+      "parameter_fit_calls": 0,
+      "templates": {
+        "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1": {
+          "field_refs": [
+            "app.web_data.screen_layer.inner_width",
+            "app.web_data.screen_layer.inner_height",
+            "app.web_data.screen_layer.visual_viewport_width",
+            "app.web_data.screen_layer.visual_viewport_height",
+            "app.web_data.screen_layer.visual_viewport_scale"
+          ],
+          "relation_version": "mtc-screen-relations-v1",
+          "signal_group": "display_geometry",
+          "semantic_quality": 0,
+          "condition": {
+            "operator": "VISUAL_VIEWPORT_EXCEEDS_LAYOUT_AT_SCALE_GE_ONE",
+            "operands": [
+              "app.web_data.screen_layer.inner_width",
+              "app.web_data.screen_layer.inner_height",
+              "app.web_data.screen_layer.visual_viewport_width",
+              "app.web_data.screen_layer.visual_viewport_height",
+              "app.web_data.screen_layer.visual_viewport_scale"
+            ],
+            "parameters": {
+              "minimum_visual_scale": 1.0,
+              "css_pixel_rounding_tolerance": 1.0,
+              "axes": "OR",
+              "parameter_fitting": "NONE"
+            }
+          },
+          "units": "CSS pixels; visual_viewport_scale is dimensionless",
+          "evidence_scope": "SAME_WEB_PROBE_NOT_INDEPENDENT_CROSS_LAYER",
+          "source_refs": [
+            "web_probe/canonical_web_probe.js:368",
+            "https://drafts.csswg.org/cssom-view/#dom-window-innerwidth",
+            "https://drafts.csswg.org/cssom-view/#the-visualviewport-interface"
+          ]
+        },
+        "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE": {
+          "field": "app.android_native_data.memory_layer.total_memory_gb",
+          "field_refs": [
+            "app.android_native_data.memory_layer.total_memory_gb",
+            "app.web_data.navigator_layer.device_memory"
+          ],
+          "relation_version": "mtc-resource-relations-v1",
+          "signal_group": "memory_capacity",
+          "condition": {
+            "operator": "WEB_MEMORY_ABOVE_NATIVE_POWER_OF_TWO_UPPER_ENVELOPE",
+            "operands": [
+              "app.android_native_data.memory_layer.total_memory_gb",
+              "app.web_data.navigator_layer.device_memory"
+            ],
+            "parameters": {
+              "units": "GiB",
+              "native_minimum_gib": 0.25,
+              "bound": "smallest_power_of_two_greater_than_or_equal_to_native",
+              "comparison": "strict_greater_than",
+              "learned_parameters": false,
+              "lower_web_exposures": "allowed",
+              "browser_upper_cap": "not_assumed",
+              "domain": "same_current_Android_App_record_with_WebView_numeric_observations"
+            }
+          },
+          "basis": "RESOURCE_REVIEW.md; Android kernel total and Chromium power-of-two exposure",
+          "interpretation": "research_relation_deviation_not_universal_attack_evidence"
+        },
+        "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS": {
+          "field": "app.android_native_data.locale_timezone_layer.native_timezone_id",
+          "field_refs": [
+            "app.android_native_data.locale_timezone_layer.native_timezone_id",
+            "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+            "app.web_data.execution_layer.timezone_offset"
+          ],
+          "metadata_refs": [
+            "collection_manifest.collection_started_at_ms",
+            "collection_diagnostics.collection_finished_at_ms"
+          ],
+          "relation_version": "mtc-timezone-relation-v1",
+          "signal_group": "timezone_semantics",
+          "condition": {
+            "operator": "NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+            "operands": [
+              "app.android_native_data.locale_timezone_layer.native_timezone_id",
+              "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+              "app.web_data.execution_layer.timezone_offset"
+            ],
+            "parameters": {
+              "version": "mtc-timezone-relation-v1",
+              "fitted": false,
+              "parameter_fit_calls": 0,
+              "tzdb_version": "2026c",
+              "library": "Python stdlib zoneinfo",
+              "time_basis": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "time_unit": "unix_epoch_milliseconds",
+              "native_offset_unit": "minutes_east_of_UTC_standard_only",
+              "web_offset_unit": "minutes_west_of_UTC_current",
+              "comparison": "exact_current_offset_difference",
+              "missing_date_fallback": "existing_fixed_offset_domain_only",
+              "web_timezone_id": "diagnostic_only_no_string_comparison",
+              "crossing_offset_transition": "U",
+              "learned_tolerance": null
+            }
+          },
+          "basis": "timezone_relation_validation_v1/SEMANTICS.md",
+          "interpretation": "research_relation_deviation_not_attack_truth"
+        }
+      },
+      "timezone": {
+        "version": "mtc-timezone-relation-v1",
+        "fitted": false,
+        "parameter_fit_calls": 0,
+        "tzdb_version": "2026c",
+        "library": "Python stdlib zoneinfo",
+        "time_basis": [
+          "collection_manifest.collection_started_at_ms",
+          "collection_diagnostics.collection_finished_at_ms"
+        ],
+        "time_unit": "unix_epoch_milliseconds",
+        "native_offset_unit": "minutes_east_of_UTC_standard_only",
+        "web_offset_unit": "minutes_west_of_UTC_current",
+        "comparison": "exact_current_offset_difference",
+        "missing_date_fallback": "existing_fixed_offset_domain_only",
+        "web_timezone_id": "diagnostic_only_no_string_comparison",
+        "crossing_offset_transition": "U",
+        "learned_tolerance": null
+      }
+    },
+    "all_models_fitted": true
+  }
+}

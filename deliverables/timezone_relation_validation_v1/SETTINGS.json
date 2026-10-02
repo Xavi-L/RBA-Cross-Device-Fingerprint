@@ -1,0 +1,110 @@
+{
+  "environments": [
+    {
+      "environment_group_id": "api29_swiftshader",
+      "android_api": 29,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api29_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/featureapp_webdriver_raw_multienv_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API29",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "91.0.4472.114"
+    },
+    {
+      "environment_group_id": "api30_swiftshader",
+      "android_api": 30,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api30_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/rule_semantics_raw_only_expansion_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API30",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "91.0.4472.114"
+    },
+    {
+      "environment_group_id": "api36_swiftshader",
+      "android_api": 36,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api36_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API36_1",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "134.0.6998.135"
+    }
+  ],
+  "collector": {
+    "handoff_schema_version": "webgl1-fresh-local-release-v1",
+    "application_id": "com.example.hybridguard.featureapp",
+    "version_code": 14,
+    "version_name": "1.6.7-expanded-v2.2-webgl1",
+    "schema_version": "expanded-v2.2-status",
+    "fixed_signal_count": 177,
+    "observation_schema_version": "app-web-observations-v1",
+    "observer_revision": "app-webdriver-observer-v1",
+    "web_probe_revision": "expanded-web-67-v2",
+    "webgl_collection_revision": "featureapp-webgl-parameter-collection-v1",
+    "webgl_observer_revision": "webgl-parameter-observer-v1",
+    "source_commit": "bdd0b11a915b3bf5028bb3600c21e8b7b10a1f54",
+    "apk": {
+      "path": "deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+    },
+    "field_catalog": {
+      "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"
+    }
+  },
+  "ports": {
+    "emulator": 5680,
+    "receiver": 8000,
+    "cdp": 9222
+  },
+  "limits": {
+    "boot_seconds": 120,
+    "position_seconds": 100,
+    "environment_seconds": 1800
+  },
+  "attempts_per_position": 1,
+  "extra_smoke_records": 0,
+  "failure_policy": "retain failed and unexecuted positions; do not repeat outcomes or replace environments",
+  "source_binding": "current App raw envelope session == payload session == observed receipt session; own new batch identity",
+  "experiment_id": "timezone-relation-validation-v1",
+  "base_commit": "b8394eb650f5c472a7d947169e28f787a5fb29ab",
+  "fixed_at": "2026-10-02T14:10:30.554917+00:00",
+  "membership_and_baseline_settings": "deliverables/mtc_constrained_reselection_v1/SETTINGS.json",
+  "baseline_models": "deliverables/mtc_relation_extension_v1/models.json",
+  "baseline_predictions": "deliverables/mtc_relation_extension_v1/predictions.jsonl.gz",
+  "new_fit_stages": [
+    "SPARSE",
+    "RETENTION"
+  ],
+  "planned_fit_calls": 6,
+  "relation_parameter_fit_calls": 0,
+  "targets_timezone": [
+    "UTC",
+    "America/Los_Angeles"
+  ],
+  "types": [
+    "L",
+    "A"
+  ],
+  "phases": [
+    "clean_pre",
+    "change",
+    "clean_post"
+  ],
+  "rounds": 1,
+  "planned_records": 36,
+  "new_candidate_count": 1,
+  "tzdb_version": "2026c",
+  "normal_budgets": {
+    "controlled": 0.05,
+    "mtc_discovery": 0.05
+  },
+  "mtc_candidate_evaluable_min": 0.9,
+  "mtc_model_coverage_min": 0.9,
+  "max_rules": 8,
+  "max_complexity": 16,
+  "date_policy": "Same App device acquisition range; fixed-offset legacy fallback only if missing; no received timestamp or today fallback",
+  "normal_evidence": "Observation and matched process/operation evidence; post requires successful restoration; phase alone insufficient",
+  "scope": "Previously used controlled and MTC development materials; 36 positions are repeated observations of three local environments",
+  "phases_same_flow": "fresh owned App process; matched CDP navigation/no-op/override and waits; restore settings after each trio",
+  "frozen_before_local_collection": true
+}
