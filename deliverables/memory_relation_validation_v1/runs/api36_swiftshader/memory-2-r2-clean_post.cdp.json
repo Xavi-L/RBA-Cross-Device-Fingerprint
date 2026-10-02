@@ -1,0 +1,73 @@
+{
+  "version": "memory-only-cdp-v1",
+  "status": "COMPLETED",
+  "target_gib": null,
+  "injected_properties": [],
+  "source": "void 0;",
+  "started_at": "2026-10-02T13:20:24.175Z",
+  "commands": [
+    {
+      "id": 1,
+      "method": "Page.enable",
+      "params": {},
+      "result": {}
+    },
+    {
+      "id": 2,
+      "method": "Page.addScriptToEvaluateOnNewDocument",
+      "params": {
+        "source": "void 0;"
+      },
+      "result": {
+        "identifier": "1"
+      }
+    },
+    {
+      "id": 3,
+      "method": "Page.navigate",
+      "params": {
+        "url": "file:///android_asset/expanded_probe.html"
+      },
+      "result": {
+        "frameId": "114D2AA8C8C610B3EFDC8289572EAD09",
+        "loaderId": "23450B6E0C63836C872EEA7920DAA37D"
+      }
+    },
+    {
+      "id": 4,
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "({deviceMemory:navigator.deviceMemory,hardwareConcurrency:navigator.hardwareConcurrency})",
+        "returnByValue": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "deviceMemory": 2,
+            "hardwareConcurrency": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "method": "Page.removeScriptToEvaluateOnNewDocument",
+      "params": {
+        "identifier": "1"
+      },
+      "result": {}
+    }
+  ],
+  "target": {
+    "id": "114D2AA8C8C610B3EFDC8289572EAD09",
+    "url": "about:blank"
+  },
+  "current_runtime_observation": {
+    "deviceMemory": 2,
+    "hardwareConcurrency": 1
+  },
+  "future_document_script_removed": true,
+  "current_document_rollback": "OWNED_APP_PROCESS_EXIT_REQUIRED; verify next clean_post payload",
+  "finished_at": "2026-10-02T13:20:25.276Z"
+}

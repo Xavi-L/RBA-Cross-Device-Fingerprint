@@ -1,0 +1,75 @@
+{
+  "version": "memory-only-cdp-v1",
+  "status": "COMPLETED",
+  "target_gib": 2,
+  "injected_properties": [
+    "navigator.deviceMemory"
+  ],
+  "source": "(() => { const value = 2;\n    Object.defineProperty(Navigator.prototype, 'deviceMemory', {configurable:true, get:() => value});\n    Object.defineProperty(navigator, 'deviceMemory', {configurable:true, get:() => value});\n  })();",
+  "started_at": "2026-10-02T13:15:08.487Z",
+  "commands": [
+    {
+      "id": 1,
+      "method": "Page.enable",
+      "params": {},
+      "result": {}
+    },
+    {
+      "id": 2,
+      "method": "Page.addScriptToEvaluateOnNewDocument",
+      "params": {
+        "source": "(() => { const value = 2;\n    Object.defineProperty(Navigator.prototype, 'deviceMemory', {configurable:true, get:() => value});\n    Object.defineProperty(navigator, 'deviceMemory', {configurable:true, get:() => value});\n  })();"
+      },
+      "result": {
+        "identifier": "1"
+      }
+    },
+    {
+      "id": 3,
+      "method": "Page.navigate",
+      "params": {
+        "url": "file:///android_asset/expanded_probe.html"
+      },
+      "result": {
+        "frameId": "B086E126A55D62EC31BDC36D80734B5C",
+        "loaderId": "90BF1C5AD327F6CB50B22678C090CB26"
+      }
+    },
+    {
+      "id": 4,
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "({deviceMemory:navigator.deviceMemory,hardwareConcurrency:navigator.hardwareConcurrency})",
+        "returnByValue": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "deviceMemory": 2,
+            "hardwareConcurrency": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "method": "Page.removeScriptToEvaluateOnNewDocument",
+      "params": {
+        "identifier": "1"
+      },
+      "result": {}
+    }
+  ],
+  "target": {
+    "id": "B086E126A55D62EC31BDC36D80734B5C",
+    "url": "about:blank"
+  },
+  "current_runtime_observation": {
+    "deviceMemory": 2,
+    "hardwareConcurrency": 1
+  },
+  "future_document_script_removed": true,
+  "current_document_rollback": "OWNED_APP_PROCESS_EXIT_REQUIRED; verify next clean_post payload",
+  "finished_at": "2026-10-02T13:15:09.589Z"
+}

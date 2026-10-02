@@ -1,0 +1,56 @@
+{
+  "tests_passed": 43,
+  "tests_failed": 0,
+  "python_tests": 40,
+  "javascript_tests": 3,
+  "new_tests": 23,
+  "existing_regression_tests": 20,
+  "test_commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest hybridguard_agent.tests.test_memory_relation_validation hybridguard_agent.tests.test_memory_validation_reporting hybridguard_agent.tests.test_mtc_resource_relations hybridguard_agent.tests.test_mtc_relation_sources -v",
+    "node --test deliverables/memory_relation_validation_v1/test_memory_only_cdp.mjs"
+  ],
+  "actual_commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 deliverables/memory_relation_validation_v1/evaluate.py historical",
+    "PYTHONDONTWRITEBYTECODE=1 python3 deliverables/memory_relation_validation_v1/collect.py",
+    "PYTHONDONTWRITEBYTECODE=1 python3 deliverables/memory_relation_validation_v1/evaluate.py new"
+  ],
+  "historical_planned_and_processed": 1269,
+  "historical_saved_relation_state_checks": 3051,
+  "new_planned_and_received": 72,
+  "new_distinct_current_app_sessions": 72,
+  "new_frozen_model_outputs": 432,
+  "intervention_attempts": 24,
+  "observable_target_changes": 18,
+  "no_observable_effect": 6,
+  "restored_triplets": 24,
+  "failed_operations": 0,
+  "source_binding_failures": 0,
+  "model_input_failures": 0,
+  "major_non_target_fields_checked": 44,
+  "triplets_with_observed_non_target_changes": 0,
+  "fit_calls": 0,
+  "parameter_changes": 0,
+  "collection_retries": 0,
+  "old_worktree_entries_retained": 209,
+  "historical_tracked_data_models_sources_results_changed": [],
+  "all_owned_emulators_and_receivers_exited": true,
+  "owned_ports_released": [
+    8000,
+    9222,
+    5680,
+    5681
+  ],
+  "base_HEAD": "6e5402a6d771460a426674f827be463a91a13492",
+  "engineering_notes": [
+    "Before collection, corrected test mock name to the existing prepare_fold API; no runtime or predicate change.",
+    "Before new-batch evaluation, corrected the saved prediction test fixture keys to configuration_id/stage; no data or score change.",
+    "Saved-only reporting distinguishes unavailable non-target checks from observed stability and retains all planned positions.",
+    "New-batch source references support output directories outside the repository using absolute paths; current saved outputs unchanged."
+  ],
+  "limitations": [
+    "Three pre-existing low-memory emulator environments, not independent physical devices.",
+    "All baseline Web values were 2; target 2 did not create observable changes. No real within-envelope changed or lowering case was collected.",
+    "R_WEB8 is a fixed comparison for this study, not a permanent browser invariant."
+  ],
+  "displayed_MTC_examples_checked_against_original_raw": 4
+}

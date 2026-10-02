@@ -1,0 +1,142 @@
+{
+  "experiment_id": "memory-relation-validation-v1",
+  "fixed_at": "2026-10-02T12:59:53.555593+00:00",
+  "base_commit": "6e5402a6d771460a426674f827be463a91a13492",
+  "model_training_calls": 0,
+  "conditions": {
+    "R_REL": {
+      "implementation": "hybridguard_agent/research/mtc_resource_relations.py",
+      "atom_id": "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE",
+      "changes": false
+    },
+    "R_WEB8": {
+      "field": "app.web_data.navigator_layer.device_memory",
+      "operator": "strict_greater_than",
+      "threshold_gib": 8,
+      "quality": "observed and observed_value and numeric finite positive",
+      "native_dependency": false,
+      "interpretation": "fixed comparator, not universal permanent browser limit"
+    }
+  },
+  "saved_models": [
+    {
+      "scheme": "B",
+      "fold_id": "WEBGL1-LOEO-v1-01",
+      "model_id": "mtc-reselection-39aee46093ce141ef5571686",
+      "path": "deliverables/mtc_constrained_reselection_v1/trials/B__WEBGL1-LOEO-v1-01__RETENTION/model.json"
+    },
+    {
+      "scheme": "B",
+      "fold_id": "WEBGL1-LOEO-v1-02",
+      "model_id": "mtc-reselection-535e5f2faef62bc7424f0b88",
+      "path": "deliverables/mtc_constrained_reselection_v1/trials/B__WEBGL1-LOEO-v1-02__RETENTION/model.json"
+    },
+    {
+      "scheme": "B",
+      "fold_id": "WEBGL1-LOEO-v1-03",
+      "model_id": "mtc-reselection-56248e6001dec90e6fd48ca8",
+      "path": "deliverables/mtc_constrained_reselection_v1/trials/B__WEBGL1-LOEO-v1-03__RETENTION/model.json"
+    },
+    {
+      "scheme": "B_REL",
+      "fold_id": "WEBGL1-LOEO-v1-01",
+      "model_id": "mtc-rel-32aa33c7ffce80569b002e12",
+      "path": "deliverables/mtc_relation_extension_v1/trials/B_REL__WEBGL1-LOEO-v1-01__RETENTION/model.json"
+    },
+    {
+      "scheme": "B_REL",
+      "fold_id": "WEBGL1-LOEO-v1-02",
+      "model_id": "mtc-rel-fe7d389097ff210ced2183f6",
+      "path": "deliverables/mtc_relation_extension_v1/trials/B_REL__WEBGL1-LOEO-v1-02__RETENTION/model.json"
+    },
+    {
+      "scheme": "B_REL",
+      "fold_id": "WEBGL1-LOEO-v1-03",
+      "model_id": "mtc-rel-67a2bd2c906851f14ec9bc5c",
+      "path": "deliverables/mtc_relation_extension_v1/trials/B_REL__WEBGL1-LOEO-v1-03__RETENTION/model.json"
+    }
+  ],
+  "historical_membership": "deliverables/mtc_constrained_reselection_v1/SETTINGS.json",
+  "environments": [
+    {
+      "environment_group_id": "api29_swiftshader",
+      "android_api": 29,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api29_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/featureapp_webdriver_raw_multienv_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API29",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "91.0.4472.114"
+    },
+    {
+      "environment_group_id": "api30_swiftshader",
+      "android_api": 30,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api30_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/rule_semantics_raw_only_expansion_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API30",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "91.0.4472.114"
+    },
+    {
+      "environment_group_id": "api36_swiftshader",
+      "android_api": 36,
+      "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api36_swiftshader",
+      "gpu": "swiftshader",
+      "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+      "avd_name": "Codex_Webdriver_Raw_API36_1",
+      "expected_webview_package": "com.google.android.webview",
+      "expected_webview_version": "134.0.6998.135"
+    }
+  ],
+  "collector": {
+    "handoff_schema_version": "webgl1-fresh-local-release-v1",
+    "application_id": "com.example.hybridguard.featureapp",
+    "version_code": 14,
+    "version_name": "1.6.7-expanded-v2.2-webgl1",
+    "schema_version": "expanded-v2.2-status",
+    "fixed_signal_count": 177,
+    "observation_schema_version": "app-web-observations-v1",
+    "observer_revision": "app-webdriver-observer-v1",
+    "web_probe_revision": "expanded-web-67-v2",
+    "webgl_collection_revision": "featureapp-webgl-parameter-collection-v1",
+    "webgl_observer_revision": "webgl-parameter-observer-v1",
+    "source_commit": "bdd0b11a915b3bf5028bb3600c21e8b7b10a1f54",
+    "apk": {
+      "path": "deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+    },
+    "field_catalog": {
+      "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"
+    }
+  },
+  "targets_gib": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "rounds": 2,
+  "phases": [
+    "clean_pre",
+    "attack",
+    "clean_post"
+  ],
+  "planned_records": 72,
+  "phases_same_flow": "fresh owned App process, debugging enabled, CDP Page.enable/addScript/no-op or memory-only/Page.navigate; identical wait and receipt",
+  "attempts_per_position": 1,
+  "extra_smoke_records": 0,
+  "failure_policy": "retain failed and unexecuted positions; do not repeat outcomes or replace environments",
+  "ports": {
+    "emulator": 5680,
+    "receiver": 8000,
+    "cdp": 9222
+  },
+  "limits": {
+    "boot_seconds": 120,
+    "position_seconds": 100,
+    "environment_seconds": 1800
+  },
+  "source_binding": "current App raw envelope session == payload session == observed receipt session; own new batch identity",
+  "intervention": "Only navigator.deviceMemory getter on Navigator.prototype and navigator; rollback by fresh process, also verify clean_post value",
+  "scope": "post-hoc historical comparison plus small local controlled observation; not new independent normal validation"
+}
