@@ -1,0 +1,3734 @@
+{
+  "finished_at": "2026-10-02T06:56:17.900679+00:00",
+  "environments": [
+    {
+      "environment_group_id": "api29_swiftshader",
+      "started_at": "2026-10-02T06:24:40.811014+00:00",
+      "status": "COMPLETE",
+      "commands": [
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "getprop",
+            "ro.build.version.sdk"
+          ],
+          "returncode": 0,
+          "log": "android-api.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "dumpsys",
+            "webviewupdate"
+          ],
+          "returncode": 0,
+          "log": "webview-provider.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "install",
+            "-r",
+            "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+          ],
+          "returncode": 0,
+          "log": "install.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "pm",
+            "clear",
+            "com.example.hybridguard.featureapp"
+          ],
+          "returncode": 0,
+          "log": "clear-owned-ephemeral-app-data.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "dumpsys",
+            "package",
+            "com.example.hybridguard.featureapp"
+          ],
+          "returncode": 0,
+          "log": "installed-package.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "reverse",
+            "tcp:8000",
+            "tcp:8000"
+          ],
+          "returncode": 0,
+          "log": "reverse.log"
+        }
+      ],
+      "emulator_command": [
+        "/Users/xavier/Library/Android/sdk/emulator/emulator",
+        "-avd",
+        "Codex_Webdriver_Raw_API29",
+        "-port",
+        "5670",
+        "-read-only",
+        "-no-window",
+        "-no-audio",
+        "-no-snapshot",
+        "-no-boot-anim",
+        "-gpu",
+        "swiftshader"
+      ],
+      "emulator_pid": 15122,
+      "receiver_command": [
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+        "-B",
+        "-m",
+        "uvicorn",
+        "main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--workers",
+        "1"
+      ],
+      "receiver_pid": 15237,
+      "summary": {
+        "planned_campaign_sessions": 126,
+        "planned_smoke_sessions": 1,
+        "saved_sessions": 127,
+        "accepted_sessions": 127,
+        "webdriver_value_classes_all_saved": {
+          "BOOLEAN_FALSE": 115,
+          "BOOLEAN_TRUE": 12
+        },
+        "triplets": [
+          {
+            "group": "cdp",
+            "round": 1,
+            "session_ids": [
+              "4a23303a-bc52-460f-81da-e4ecc212f9ad",
+              "237a908c-8692-44ae-b663-b5b61d632377",
+              "413b70b8-a775-4068-8dcd-82df5f17b9be"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp",
+            "round": 2,
+            "session_ids": [
+              "f0fccd24-d99f-4270-a1df-26020b86f86f",
+              "8e19c5a3-c9b8-4dc9-af5e-e31048b58e07",
+              "f599c467-b187-4b95-856c-7666b0ae0f8a"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp",
+            "round": 3,
+            "session_ids": [
+              "3c90c86d-c77e-4bab-96a4-8ea757a0c4cc",
+              "c65015b6-dc2f-4b77-b87e-fe580eb8234a",
+              "9504ef46-3097-4bad-ab29-83ffd296bb2e"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 1,
+            "session_ids": [
+              "75fc0df0-b899-4465-8880-7585078275a7",
+              "5a013d1d-5f40-4fea-a312-b829cf15d230",
+              "050e421d-8cea-4265-8dd1-104955c49873"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 2,
+            "session_ids": [
+              "78ef5426-5afb-4a6a-b749-d2efa727495f",
+              "52d35b12-09fe-4ec7-a86e-b4903afb2cf6",
+              "2b37b20c-a90f-44e7-ab02-91254bc3c2c2"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 3,
+            "session_ids": [
+              "fe1e9130-3bd1-433d-b937-348a18a8df05",
+              "e0ea69f8-34d4-46b1-9046-e1d2b42d8076",
+              "70e1f075-0dda-4441-bb91-14440f5903c4"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 1,
+            "session_ids": [
+              "549c6209-f400-4d5a-af2e-26d6951d1298",
+              "9d0b5f3a-1b49-4e53-973a-c0b4dcceb1d2",
+              "7cde6811-a159-40af-b152-f47df3ec056b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 2,
+            "session_ids": [
+              "29418605-19a9-4af0-9f73-0ca851c2e028",
+              "19087ce2-c09a-4725-87dc-df392437d0d9",
+              "2378a744-b3b3-4012-98d3-94eb12754a99"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 3,
+            "session_ids": [
+              "1faaad96-1aee-4f0c-8bd1-64c8def586c8",
+              "eea0988a-1cd0-4dd1-b936-94e803192c85",
+              "dfd0035a-3f62-41b7-872a-32233c6c1e90"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 1,
+            "session_ids": [
+              "c6d0b335-d854-4b49-9682-00960c50e417",
+              "cf40d45d-3479-49ea-b2a8-12ea87e85fc9",
+              "fbf62648-52b3-4b94-a46b-77b86cfa0b44"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 2,
+            "session_ids": [
+              "06278f6f-0e4c-4595-bd95-ddf985128d82",
+              "52cd3df0-56cc-458b-813f-558c2db08c66",
+              "af49e94a-ba2b-452c-a34c-e10bfecb528b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 3,
+            "session_ids": [
+              "7ec184ae-a177-4e4c-b8be-d74a016f7969",
+              "2075db46-3db5-4aae-9202-d2eea6ab91bb",
+              "55995779-979c-4062-b91d-d416238eb3b4"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 1,
+            "session_ids": [
+              "cecb95e0-776f-4a90-a722-f120ce431866",
+              "9f44a9a6-a720-4f69-a45e-c1740cf72cd1",
+              "0427baa8-9192-4465-921d-19798ba8ac8f"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 2,
+            "session_ids": [
+              "43a17d07-4168-4bb9-a417-5a2a90be6a74",
+              "e50f330c-a80d-40d6-917b-4f229e515a00",
+              "897e97fe-d74d-4f49-b8fb-d420d69f3adf"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 3,
+            "session_ids": [
+              "4e0d178d-4eed-406c-985b-495d7e0a9600",
+              "ccf72e93-29fb-4b6f-88aa-2d5e33320fce",
+              "8b89521a-de92-41fa-adff-7dd301a98f37"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 1,
+            "session_ids": [
+              "a5c64b21-7db3-4042-9d9c-39132fbd9d0d",
+              "87026801-a16f-4773-abc1-4d43290fe8a9",
+              "5de584b2-8b99-4d58-a0a1-44def77bb72d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 2,
+            "session_ids": [
+              "a9eed99b-4e36-4e74-8d71-830e9f9bc8ec",
+              "35794b04-2580-472a-9c82-33ca07831f5a",
+              "616c5718-1cd0-4eed-becd-20c1ad3a4f72"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 3,
+            "session_ids": [
+              "00509a99-cd8b-4cb7-af87-ab1fb81b07ff",
+              "ef5523fc-a6fa-479b-894b-ddc9038b7422",
+              "dcfdcb1e-51bf-4224-a85a-02282af81590"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 1,
+            "session_ids": [
+              "92bff921-b38e-43ba-8637-28441a44a493",
+              "a58f4d5e-72c2-4090-a09a-117306191629",
+              "532ab180-d09f-4d9b-9d2d-7041957cac94"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 2,
+            "session_ids": [
+              "4c1bdac2-7dfb-451b-b2eb-ca2420b47bb3",
+              "7515a1c1-654b-4400-89a4-2249a3fa72f9",
+              "122217db-481b-403b-ae3c-cf95c275150c"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 3,
+            "session_ids": [
+              "8ed184be-145c-409e-899b-4a5e2fb8d93a",
+              "1171cdd4-6858-4819-b4dd-60eed6672333",
+              "9d683b0e-c9b9-46df-ba5e-f57681505ede"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 1,
+            "session_ids": [
+              "284629e7-d693-47a8-b259-5f7e135aa5ae",
+              "ed2fc2d5-13d3-4ab6-ad19-ebc5e782ba2b",
+              "cb5358f8-2d34-40a4-91d6-86317134972b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 2,
+            "session_ids": [
+              "1ee854fb-d969-463c-8812-2497dfd57c30",
+              "5c1ef8e0-91c1-4968-9a7e-f4fc30d85cf7",
+              "c34144c5-9282-4e11-991d-f648483dd092"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 3,
+            "session_ids": [
+              "c46c0ef9-c4f6-46a2-b56f-c8bfa40cbfb7",
+              "3af3bc94-bcbf-4814-8737-11e5b03bc8fa",
+              "07b53871-c2d9-41ea-afeb-48715b5e5a87"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 1,
+            "session_ids": [
+              "005b544d-3756-46cd-8ba4-37ed96477c93",
+              "dc054460-72b4-4b7f-98bf-a51cf067be89",
+              "fb42d910-96f3-43a0-ba05-b0b0665e825c"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 2,
+            "session_ids": [
+              "a0cb897f-0839-445d-ba9a-f7afff7a919a",
+              "8074e4c2-2cd3-440b-87e6-bea6510e79c3",
+              "b4199803-550f-49c2-aae9-ba934d1f621d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 3,
+            "session_ids": [
+              "fee0b5d7-b2dc-4115-aaa2-1e7916ba9d7b",
+              "3373ac4b-b283-446f-8995-3cf186aae9f5",
+              "2d438845-0729-44cc-a123-0dc2e5959c3d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 1,
+            "session_ids": [
+              "ed30e46e-1c7f-4823-a1d0-8dd0942ac155",
+              "137d2d12-91da-4e93-9023-d463ebcba32f",
+              "e4233c31-922e-42b1-834e-17711b3da3c1"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 2,
+            "session_ids": [
+              "4a8869df-64d4-4a13-aeef-76b319b8b459",
+              "0f183283-83e4-45ac-bb9c-5dfcc2e482c1",
+              "f1714040-638c-4944-babb-9c6c319f96e6"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 3,
+            "session_ids": [
+              "67a0d6bd-872f-4a86-a80e-5eba6411d835",
+              "d8de3a05-8392-4d9e-8f0e-1ac3157d45fb",
+              "b2810d13-3d03-4772-adb2-e4dad6e73cc2"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 1,
+            "session_ids": [
+              "9d62dca7-63ae-41b5-985a-1a0caa765440",
+              "aa947ad6-cb5e-482c-8286-50058e23be96",
+              "3f5f40d3-95af-496a-be03-8789a8451ae9"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 2,
+            "session_ids": [
+              "67b19f9e-3dea-4291-80e5-7a82dae10bed",
+              "dfb69d5f-8de5-4d6c-9b1a-7e137823b148",
+              "663b1b53-1832-4874-b73e-dec00d369173"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 3,
+            "session_ids": [
+              "cbde7044-33b3-44c6-b5c4-0c01172016bb",
+              "88a53bf6-ab7b-4084-8872-4ddd8d8f4c93",
+              "42f732d0-24db-487a-a813-606dfc32a590"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 1,
+            "session_ids": [
+              "1b8762a1-7212-47fb-b50c-c9fb2dd06580",
+              "7054c62f-f816-4075-b1e7-61a8b80a1c69",
+              "b9358c01-f2cf-4a05-a252-134a6443fd1f"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 2,
+            "session_ids": [
+              "0c79d9e1-5b22-4323-800a-95ae802b31a6",
+              "48da70e2-dc25-4d74-8661-736524dc85ad",
+              "0ed6b99e-cefd-4a3a-b184-de029b3cae10"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 3,
+            "session_ids": [
+              "1cf76808-cfa4-45bb-a63f-44fea81313f3",
+              "fe0fce81-4e52-4c82-8352-35e753bdbc9b",
+              "56fcf7f3-8c09-45f4-bea0-05645aeea6e8"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 1,
+            "session_ids": [
+              "10fae85f-3f5d-4e97-b6e0-3c1a2f2c23c0",
+              "787c0c31-bf8d-452d-8e2a-0dd76981ddc7",
+              "db98a953-8193-4699-8fa6-a7e9b31fb9b4"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 2,
+            "session_ids": [
+              "c9912a99-2240-4f98-9d1b-11b833e1b858",
+              "d2618b41-7ef7-43ea-8a82-e9e8186ef5f2",
+              "9f164ab9-3a1c-4216-ae0e-5ab24c527adb"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 3,
+            "session_ids": [
+              "42f0eae9-1058-41ff-90de-fd55542fc703",
+              "d7ec900b-d1b4-4406-9512-5780f2238af5",
+              "99074d6a-d3b0-471e-a3b8-5ae5142e221b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 1,
+            "session_ids": [
+              "59a6ae20-444b-4e20-b17a-8733c8a8c648",
+              "666eac25-e42d-43b6-8116-32af3e3db972",
+              "bcda08d6-1e0d-491b-a453-1c755ed10427"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 2,
+            "session_ids": [
+              "fe4f02f2-c5d6-42e1-9013-09163cbf1485",
+              "3c491c94-68dc-422f-9aa7-a6c1392be8f5",
+              "77081031-a124-46ad-aaf2-8bdb2f8d2e80"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 3,
+            "session_ids": [
+              "8c5f295a-5566-4fde-8933-4c75cb81a8f5",
+              "0949dba2-0ca3-4232-a3ec-1aec2d1d19a9",
+              "a422aa78-7ed9-4d2f-890c-4f0adcc1dd17"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          }
+        ],
+        "scope": "New local development observations only; no candidate evaluation, fit, prediction, or population FPR estimate.",
+        "control_limit": "debug_transport_control matches CDP attach/navigation without injection, not all Puppeteer internals.",
+        "total_planned_sessions": 127,
+        "attempts_started": 127,
+        "failed_attempts": 0,
+        "incomplete_attempts": 0,
+        "not_attempted_positions": 0,
+        "raw_archive_rows": 127,
+        "complete_configuration_triplets": {
+          "cdp": 3,
+          "playwright": 3,
+          "puppeteer": 3,
+          "stealth": 3,
+          "cdp_webdriver_only_v1": 3,
+          "cdp_ua_only_v1": 3,
+          "cdp_platform_only_v1": 3,
+          "cdp_ua_platform_desktop_v1": 3,
+          "cdp_resource_pair_v1": 3,
+          "cdp_timezone_only_v1": 3,
+          "cdp_screen_metrics_only_v1": 3,
+          "stealth_webgl_pair_v1": 3,
+          "stealth_languages_only_v1": 3,
+          "stealth_plugins_mime_v1": 3
+        },
+        "status": "COMPLETE",
+        "analyzed_at": "2026-10-02T06:34:30.729573+00:00"
+      },
+      "receiver_returncode": 0,
+      "emulator_returncode": 0,
+      "finished_at": "2026-10-02T06:34:32.883464+00:00"
+    },
+    {
+      "environment_group_id": "api30_swiftshader",
+      "started_at": "2026-10-02T06:34:32.886119+00:00",
+      "status": "COMPLETE",
+      "commands": [
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "getprop",
+            "ro.build.version.sdk"
+          ],
+          "returncode": 0,
+          "log": "android-api.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "dumpsys",
+            "webviewupdate"
+          ],
+          "returncode": 0,
+          "log": "webview-provider.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "install",
+            "-r",
+            "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+          ],
+          "returncode": 0,
+          "log": "install.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "pm",
+            "clear",
+            "com.example.hybridguard.featureapp"
+          ],
+          "returncode": 0,
+          "log": "clear-owned-ephemeral-app-data.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "dumpsys",
+            "package",
+            "com.example.hybridguard.featureapp"
+          ],
+          "returncode": 0,
+          "log": "installed-package.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "reverse",
+            "tcp:8000",
+            "tcp:8000"
+          ],
+          "returncode": 0,
+          "log": "reverse.log"
+        }
+      ],
+      "emulator_command": [
+        "/Users/xavier/Library/Android/sdk/emulator/emulator",
+        "-avd",
+        "Codex_Webdriver_Raw_API30",
+        "-port",
+        "5670",
+        "-read-only",
+        "-no-window",
+        "-no-audio",
+        "-no-snapshot",
+        "-no-boot-anim",
+        "-gpu",
+        "swiftshader"
+      ],
+      "emulator_pid": 20553,
+      "receiver_command": [
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+        "-B",
+        "-m",
+        "uvicorn",
+        "main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--workers",
+        "1"
+      ],
+      "receiver_pid": 20605,
+      "summary": {
+        "planned_campaign_sessions": 126,
+        "planned_smoke_sessions": 1,
+        "saved_sessions": 127,
+        "accepted_sessions": 127,
+        "webdriver_value_classes_all_saved": {
+          "BOOLEAN_FALSE": 115,
+          "BOOLEAN_TRUE": 12
+        },
+        "triplets": [
+          {
+            "group": "cdp",
+            "round": 1,
+            "session_ids": [
+              "633ceea9-51a7-4fc5-ada9-45d6bf9c8519",
+              "bd1dfa7a-3f85-45b9-947a-0d380e81cbd7",
+              "54058fb8-9a8f-4375-a4f0-8b256f89dbfa"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp",
+            "round": 2,
+            "session_ids": [
+              "edf23c27-b8ad-4f30-b27b-abbc6a79c1a7",
+              "11598069-cf8d-4f5a-b3c9-888a7812844b",
+              "effa7bf3-28da-4729-a22e-48ba8b851ef5"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp",
+            "round": 3,
+            "session_ids": [
+              "8b343e4e-4db0-464e-ac1c-d58482352c2c",
+              "7fb4661f-cf12-4aa7-b74e-807deeaf5818",
+              "959d4797-e7ee-471e-981b-53f3e7076e1a"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 1,
+            "session_ids": [
+              "48ca32b4-6407-4ecd-8caf-36b4567c5b4b",
+              "3b301b2c-e1d7-4a29-9faf-fc3826a14909",
+              "6e47597e-8a1f-483f-975c-15acb801794d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 2,
+            "session_ids": [
+              "fa1df1b9-1260-41c9-b01d-987cbafbdc14",
+              "659004b7-9c54-4481-aac8-f95407777222",
+              "bb64e738-5f76-4014-98bf-22b0d88fd7f4"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 3,
+            "session_ids": [
+              "28b71e9d-cec2-4425-a3b0-b1b7d3395f28",
+              "3b42b201-76d9-4fb2-8129-9d1c393352f0",
+              "26e34e09-4af7-4e15-a47f-2803819b28a5"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 1,
+            "session_ids": [
+              "f55c27f6-b3c4-4dd7-b8fe-c243229aaff6",
+              "c549b484-760f-4873-9b24-b1eb639e027a",
+              "8b427137-d12b-42ff-b282-a1a69fe3c392"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 2,
+            "session_ids": [
+              "11f189fb-857a-483f-a5c4-1bdbb25291bb",
+              "5bd6b105-240b-44df-9b2a-2c34444d683f",
+              "4fd70cc1-3350-4a6a-b479-c19f7f9ebeb7"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 3,
+            "session_ids": [
+              "c47c9209-82fc-47eb-8ad3-c5bbfbe386ad",
+              "a96400af-c89c-45bc-af9b-36d8be874729",
+              "92214011-7bfc-47d0-aadb-fcc2f5bfc9be"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 1,
+            "session_ids": [
+              "be3e104d-35a8-4245-81d6-f8c90c788a83",
+              "7a95327f-6842-42e9-b980-a3585c857463",
+              "a7f1d520-9ad7-40ea-96d3-f359857a7751"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 2,
+            "session_ids": [
+              "ac922ff5-61c0-4664-ac09-fc5570360097",
+              "74f272ec-7e7c-4094-9398-126ab11d9531",
+              "36fd9f7d-2ebd-4106-8ad7-5bd742942f98"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 3,
+            "session_ids": [
+              "6946d225-6ffe-4a4c-979c-988f642b3b68",
+              "9e3f4830-2851-4806-9198-846b56ab91ca",
+              "42d3b58a-899a-4466-adbd-35603e695034"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 1,
+            "session_ids": [
+              "4f0a7a02-dc89-48d2-8029-834ee8250e27",
+              "6eb7f3e9-eb2b-4fa1-8812-6fc43fe836cf",
+              "844cd42c-5b08-43d0-80fd-de1b4a6f826d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 2,
+            "session_ids": [
+              "cf148ae1-e547-456b-a8ac-4f16b5c70430",
+              "447f4185-666e-49e8-9d33-15478db653b0",
+              "ac308bf0-ee55-4a51-a124-4cccfee584e6"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 3,
+            "session_ids": [
+              "2c1ee67c-4f78-4eb0-83fd-ba7cbad23669",
+              "85372c87-e1d8-42c1-9e4c-d987430461cd",
+              "a2644679-3a6b-49d2-9f27-2750f5e8549a"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 1,
+            "session_ids": [
+              "8e5cb6c8-e4e0-4679-a392-b2cb41d325bf",
+              "44640946-5382-4707-b70c-f7224214b120",
+              "da5d2c11-a4e7-4b17-ac19-e1ff3b937c84"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 2,
+            "session_ids": [
+              "4863654b-8289-4b7d-a4ff-34d1e39d8f9d",
+              "e7b9b812-3916-4c12-a5c5-baf6b1677249",
+              "a57219a4-b167-4683-9e2b-6d8d409a00bf"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 3,
+            "session_ids": [
+              "176342a0-5f92-443d-9b59-f7238fe28863",
+              "25d66dac-dac5-4766-b8cc-3237fc7fc6c1",
+              "2a98cf68-5f2e-4c5f-bb61-8e66158a824d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 1,
+            "session_ids": [
+              "befc64d8-e5d4-4d23-8150-64c99cdafb34",
+              "5492a9bf-3722-40cc-94c7-07b15319227e",
+              "e652c0ea-db58-454e-ae83-ebad7d1d5724"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 2,
+            "session_ids": [
+              "48e1f52f-6c92-4e71-96ee-b10933bb782e",
+              "4fe9edd4-9e10-4722-9b6b-60660950124f",
+              "205d998f-f9e6-429b-a93b-2f5d32d1f32c"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 3,
+            "session_ids": [
+              "0fd17ebc-e167-4279-9629-fcb5abff5990",
+              "1b726c9e-099e-4404-9e52-fddaecae5392",
+              "366f3ede-ddc6-4606-adff-ebf70e3658ca"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 1,
+            "session_ids": [
+              "9a94ae5e-a298-40db-b585-0e0041d7faec",
+              "163f65cc-c1c7-4270-91c0-62aca846458f",
+              "085c9290-053a-4e14-b972-252f4705018e"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 2,
+            "session_ids": [
+              "20391f6f-63b1-4aaf-b17a-18d58c0c4602",
+              "db147783-d3a4-4743-adfe-f633463cb32c",
+              "2f38f921-10df-4b2a-8a4b-3a360c2bd985"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 3,
+            "session_ids": [
+              "128fb686-9bf4-4eb2-bc28-21b6423ce509",
+              "f23ca4cb-aed1-4acd-8230-9249aeaf32fc",
+              "8208ac78-650b-4e09-a515-4525451bd189"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 1,
+            "session_ids": [
+              "28329564-4cb3-4689-8f9c-f343f5138f00",
+              "f3bcc4db-420e-4266-b35e-4aeb75d122a3",
+              "697671af-adbd-478f-9f56-7c1ad597b21a"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 2,
+            "session_ids": [
+              "a5ddecec-6a9d-4f98-b024-371ca371aa36",
+              "4c9af072-354a-4aaf-9a84-be1caf9bb3d6",
+              "24b93d87-f458-4b1c-a70c-b1bad6baa642"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 3,
+            "session_ids": [
+              "0d325c62-627e-49e0-ab0f-76430e25488a",
+              "7c1b3f9b-cc49-4474-8c23-303a6c6186d6",
+              "bc19ba14-c215-4324-ac5a-54cafd401597"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 1,
+            "session_ids": [
+              "54213773-4628-48ad-b887-41de46172c5b",
+              "cb6350e0-8f49-4b55-9858-cbe476129f86",
+              "bf0d863c-6218-4263-9faa-dec3e38fcda0"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 2,
+            "session_ids": [
+              "187f7ab3-8d90-4f24-a085-348994a86605",
+              "a6b04949-1826-46ec-a002-67d1af81a34c",
+              "1deac5c0-9990-41ab-bd61-2ec1ae33e1bb"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 3,
+            "session_ids": [
+              "ca8c3d36-2005-4004-b432-7fbd117d33f1",
+              "be131145-f586-41bf-9c36-ed51e1eef4d8",
+              "8813ec5a-e201-4906-9d96-434b7439dd17"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 1,
+            "session_ids": [
+              "7f873332-22ea-4793-8eda-54ea67a1f017",
+              "c471f564-e1df-4307-b457-4e059bb0a9ba",
+              "982a5b15-53ad-4b7c-bc25-0a06cce624f9"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 2,
+            "session_ids": [
+              "7bd98071-c422-4a2d-89d5-f93e7f04b3d5",
+              "5661355d-094e-4062-bf1e-6bfa547bf723",
+              "c9bfaad5-0ce0-48eb-a1d4-9c774d5f01da"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 3,
+            "session_ids": [
+              "a595edbc-c1c3-43a0-8707-05ee580dff5f",
+              "5d711f16-3b81-41ba-b7fb-52936ecb72fe",
+              "79585c42-2150-4ea3-8519-743982f6816f"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 1,
+            "session_ids": [
+              "79cd34a6-97ce-428f-a117-c0cb6e7ac5aa",
+              "b6d0ee34-5329-49a3-ac9e-ce5215fd538f",
+              "ea6c24d7-87bd-44c7-82d8-874f140cefa3"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 2,
+            "session_ids": [
+              "cfab26f6-5753-4299-8e1f-b8a6758b1f10",
+              "cdbc5c3c-10cb-4bea-97a7-352727d852d1",
+              "a112a14e-6dec-421a-9e04-a691fb1fcd23"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 3,
+            "session_ids": [
+              "e59b081a-9fd6-4633-a30c-6c1e878a5057",
+              "a0cbb38c-1946-4673-80ca-cbffd178998f",
+              "6e0c702e-68f1-4e17-9dc5-933c0674a8dd"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 1,
+            "session_ids": [
+              "4a3ebed7-3a99-4a0f-a296-ac8759b55d99",
+              "60cdc8f2-c5a4-405a-be9b-84421357de0c",
+              "fa9a1d3e-d817-4735-b29d-b399569bcc9d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 2,
+            "session_ids": [
+              "81c29d38-fee7-4e76-b408-feae6f5a0740",
+              "21c63899-86c2-4213-929e-c52b6b46f480",
+              "8124e3e3-76ac-4c5d-b89d-d34d9677d79c"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 3,
+            "session_ids": [
+              "de715505-d9ad-4ab8-8f72-c465f92f0fe0",
+              "c18d8d78-fc35-43f1-a0f7-fd175d035298",
+              "74e5f062-2214-48bc-8f54-2d6c66c0f831"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 1,
+            "session_ids": [
+              "693574d3-8ad2-46b8-8bab-8340de424209",
+              "7d9ff7dd-90ee-4e91-97c9-fb2402929ee2",
+              "ef74e189-bf87-4f44-b263-3800440f9a81"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 2,
+            "session_ids": [
+              "fe986063-f595-490a-9a29-5cc334f944bb",
+              "5f76cfb6-8bfa-498a-95cb-596b4302024e",
+              "e7e82367-178a-49b7-aafd-3024b21a88ec"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 3,
+            "session_ids": [
+              "caa3a8bf-2345-41db-ad25-df147269e120",
+              "5b4a9a74-63ac-4062-8635-2b891a1175b7",
+              "63903991-13f6-43d4-8fae-284a8bed9c4d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          }
+        ],
+        "scope": "New local development observations only; no candidate evaluation, fit, prediction, or population FPR estimate.",
+        "control_limit": "debug_transport_control matches CDP attach/navigation without injection, not all Puppeteer internals.",
+        "total_planned_sessions": 127,
+        "attempts_started": 127,
+        "failed_attempts": 0,
+        "incomplete_attempts": 0,
+        "not_attempted_positions": 0,
+        "raw_archive_rows": 127,
+        "complete_configuration_triplets": {
+          "cdp": 3,
+          "playwright": 3,
+          "puppeteer": 3,
+          "stealth": 3,
+          "cdp_webdriver_only_v1": 3,
+          "cdp_ua_only_v1": 3,
+          "cdp_platform_only_v1": 3,
+          "cdp_ua_platform_desktop_v1": 3,
+          "cdp_resource_pair_v1": 3,
+          "cdp_timezone_only_v1": 3,
+          "cdp_screen_metrics_only_v1": 3,
+          "stealth_webgl_pair_v1": 3,
+          "stealth_languages_only_v1": 3,
+          "stealth_plugins_mime_v1": 3
+        },
+        "status": "COMPLETE",
+        "analyzed_at": "2026-10-02T06:44:20.545160+00:00"
+      },
+      "receiver_returncode": 0,
+      "emulator_returncode": 0,
+      "finished_at": "2026-10-02T06:44:22.356760+00:00"
+    },
+    {
+      "environment_group_id": "api36_swiftshader",
+      "started_at": "2026-10-02T06:44:22.359059+00:00",
+      "status": "COMPLETE",
+      "commands": [
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "getprop",
+            "ro.build.version.sdk"
+          ],
+          "returncode": 0,
+          "log": "android-api.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "dumpsys",
+            "webviewupdate"
+          ],
+          "returncode": 0,
+          "log": "webview-provider.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "install",
+            "-r",
+            "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+          ],
+          "returncode": 0,
+          "log": "install.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "pm",
+            "clear",
+            "com.example.hybridguard.featureapp"
+          ],
+          "returncode": 0,
+          "log": "clear-owned-ephemeral-app-data.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "shell",
+            "dumpsys",
+            "package",
+            "com.example.hybridguard.featureapp"
+          ],
+          "returncode": 0,
+          "log": "installed-package.log"
+        },
+        {
+          "argv": [
+            "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5670",
+            "reverse",
+            "tcp:8000",
+            "tcp:8000"
+          ],
+          "returncode": 0,
+          "log": "reverse.log"
+        }
+      ],
+      "emulator_command": [
+        "/Users/xavier/Library/Android/sdk/emulator/emulator",
+        "-avd",
+        "Codex_Webdriver_Raw_API36_1",
+        "-port",
+        "5670",
+        "-read-only",
+        "-no-window",
+        "-no-audio",
+        "-no-snapshot",
+        "-no-boot-anim",
+        "-gpu",
+        "swiftshader"
+      ],
+      "emulator_pid": 24193,
+      "receiver_command": [
+        "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/backend_server/.venv-collection/bin/python",
+        "-B",
+        "-m",
+        "uvicorn",
+        "main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--workers",
+        "1"
+      ],
+      "receiver_pid": 24279,
+      "summary": {
+        "planned_campaign_sessions": 126,
+        "planned_smoke_sessions": 1,
+        "saved_sessions": 127,
+        "accepted_sessions": 127,
+        "webdriver_value_classes_all_saved": {
+          "BOOLEAN_FALSE": 115,
+          "BOOLEAN_TRUE": 12
+        },
+        "triplets": [
+          {
+            "group": "cdp",
+            "round": 1,
+            "session_ids": [
+              "02031b77-c35d-435e-8a1a-80acaa7449f6",
+              "deaa2ae4-0c60-4ce7-980b-5f034bef2ed0",
+              "d292768b-abc8-4aa6-8917-89e7b57e1789"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp",
+            "round": 2,
+            "session_ids": [
+              "deefd4da-1f74-49e1-bc52-888d0849fbd4",
+              "309dbff5-c66b-4b0d-9259-3bbaab3e1a8e",
+              "0d965024-a7e2-4d9f-916b-04d4a31e8b35"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp",
+            "round": 3,
+            "session_ids": [
+              "084c4a04-c6d4-4522-904a-b73d13d95af5",
+              "dccf5c00-2772-427f-87c8-166d073649b1",
+              "5bb94492-cc05-47fc-adef-c5c3d95a57c6"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 1,
+            "session_ids": [
+              "6ddbedd0-9bd3-43ed-94e7-8182a14b5948",
+              "26b92dcb-b425-49c1-91c2-5a11cebd016b",
+              "538ed422-d297-4c20-a7dd-c84bf1e56914"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 2,
+            "session_ids": [
+              "f5071581-645a-4282-ae44-6aaf87218bff",
+              "e0852b99-e03f-4783-97e7-feb3d4141a23",
+              "9a7d94b9-25d7-44ae-864b-ee6aca2e11f6"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "playwright",
+            "round": 3,
+            "session_ids": [
+              "47746184-f899-4b4d-ae7d-7d4ac5bfe84a",
+              "5863ebca-8659-4665-a5f5-b2e012ef6d3b",
+              "82c12b98-9783-4ca4-8bda-d2153bec0b2b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 1,
+            "session_ids": [
+              "741051f3-36a0-47f3-a18d-c96da500232f",
+              "6808d73b-dd22-48c4-89d9-65b320ad8926",
+              "af8a775a-038f-4eeb-b80d-073c48bdbcca"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 2,
+            "session_ids": [
+              "fed6d775-a94b-4492-af17-51a8cf6df273",
+              "7cebe2b4-854a-4876-924d-ff13d9b54a10",
+              "37fd1e14-6a0e-491e-bdf9-e3506dc4c82d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "puppeteer",
+            "round": 3,
+            "session_ids": [
+              "4573a12c-6afc-43fb-b5c4-2fea72cabce7",
+              "b43c5319-fd2e-41c3-a41d-350aefc785ee",
+              "76f0c4ff-8ce0-4fa4-baf9-908380200cee"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 1,
+            "session_ids": [
+              "303f9d5f-e931-442b-866a-8bce0eefcdc2",
+              "c0a4468f-01e8-40e7-916f-1a8f46028409",
+              "807271c4-5743-4320-8dc1-5a991450d844"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 2,
+            "session_ids": [
+              "38d03e38-e94d-4967-88d2-4baebd1cbbee",
+              "826683ad-7d7f-4516-86bd-7707c050e870",
+              "1411aa83-447f-4edd-a520-733d38a0c23b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth",
+            "round": 3,
+            "session_ids": [
+              "e9fb06a0-84b0-4f24-8f44-ca8d2ec35824",
+              "d78c8f36-f267-492f-845e-271db478344d",
+              "faaf0de0-2329-4c6b-857c-29d47557b16b"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 1,
+            "session_ids": [
+              "a968e2b6-af30-4f1e-b880-9091bf591648",
+              "68feefea-10d7-4a9b-a414-967a36de92b5",
+              "9545c5f9-a8f5-4a65-afee-135ff02110b4"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 2,
+            "session_ids": [
+              "b2fb930c-8e04-4ff4-9062-a8dab5f2cba4",
+              "9eba4bf9-e7fe-4aea-8a77-1eb0a0807fac",
+              "0a723cb8-7af9-4462-ad31-6e84b85c5e79"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_webdriver_only_v1",
+            "round": 3,
+            "session_ids": [
+              "e63d7f1e-6be1-463c-a3db-75f63c87e107",
+              "5bfa5995-c1ce-47ce-a5ce-618bb6c29dab",
+              "3ba3f57e-bc4f-456b-85e2-14aec32c54ed"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": false,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": false,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 1,
+            "session_ids": [
+              "0a1c5202-8c91-49fb-805e-4cb814d96a7d",
+              "ad47a05f-20f5-4faa-8817-a361109f1fea",
+              "e6a248b5-acfa-445a-b3bc-c73485cc708a"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 2,
+            "session_ids": [
+              "d152ec88-960c-4b76-92f1-4d31746b80e7",
+              "b5e228ca-6c33-4323-99d2-7e1a293b672e",
+              "eadce52b-4fc1-4ae8-9b74-f94bbb670c4f"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_only_v1",
+            "round": 3,
+            "session_ids": [
+              "37849b13-1d16-44dd-b5e1-31833551a941",
+              "e8e91b27-6927-406c-bfcd-3a7f5a2010f5",
+              "cd71571e-1dc3-4b2f-932c-bcb28ac14662"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 1,
+            "session_ids": [
+              "83d83c9d-2980-4742-a870-e387da0cfc02",
+              "29ba71d1-ee6f-4506-aa14-7c668fe42827",
+              "55df55ce-488d-4028-8657-514239370dd8"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 2,
+            "session_ids": [
+              "d1a06449-3374-4d3f-8400-b2f82e9646f7",
+              "cf316f34-f263-42cd-a9d7-37da3a4acf06",
+              "a5d88142-571a-4e0e-9515-735411e2d97d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_platform_only_v1",
+            "round": 3,
+            "session_ids": [
+              "4dae6afd-7d82-419d-914d-2c41a01f90ea",
+              "3687f34e-488f-4d1a-9450-bc2848a29e81",
+              "00ab668f-f287-4af3-8dbb-2c6a6809d803"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 1,
+            "session_ids": [
+              "86aea8d0-22ca-4a01-864a-497c2edf4fb6",
+              "1053b44c-40bd-4732-9c30-2f172ff67fbf",
+              "5bf64bac-bd6e-4feb-a7f5-3071ad96e5f2"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 2,
+            "session_ids": [
+              "d1363991-f58c-4247-9c5c-818bf55ecdf2",
+              "32e317a6-69ca-468b-938b-6d6113484dc5",
+              "1ec923bc-4c0d-4b0e-82c7-419d8e43d1b7"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_ua_platform_desktop_v1",
+            "round": 3,
+            "session_ids": [
+              "b3b88731-4d69-4df7-aab8-6bdab430c82c",
+              "4546cacb-d690-437a-8506-f39a3a705a87",
+              "486676f3-bf56-4f63-99c2-8a288e38643e"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 1,
+            "session_ids": [
+              "682416f2-bcb1-449d-94b9-306c269d8275",
+              "9ad06364-8bf4-4420-91d9-f23462df639d",
+              "09efceae-1fb2-4743-935a-361fd58e33ed"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 2,
+            "session_ids": [
+              "628f5723-7bcc-4816-89f1-f8c3181b0962",
+              "35d0479a-3a0a-481a-82eb-6b18e1fcafeb",
+              "212bae9f-b584-4516-a06d-3384fc60b4b7"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_resource_pair_v1",
+            "round": 3,
+            "session_ids": [
+              "4b3607af-9ba0-4aa6-9c84-c23f8fcc595a",
+              "566322bb-b443-4a1b-a556-543fd992d7ae",
+              "0fb79e60-7dd4-4cc3-b616-7733cb405b46"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 1,
+            "session_ids": [
+              "a9d8c68a-9b7e-4622-9d3f-55bb5416b145",
+              "905b3b27-81dc-47ec-af61-0a211bf18733",
+              "e37204c0-19ee-4e67-aaa3-8fc0f315bbe6"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 2,
+            "session_ids": [
+              "20fe7ad3-df3f-48e8-8637-4bc713ee7fde",
+              "b9f85002-238a-464d-84f6-f4ee55119ef6",
+              "75d40244-afdf-4303-b439-44572e63dd42"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_timezone_only_v1",
+            "round": 3,
+            "session_ids": [
+              "5e1f40e0-cef3-49a1-9fa0-4d6352f0a33a",
+              "03c16b29-f438-43bf-9251-29c36fee55e4",
+              "0b8bf5c7-e267-4ede-9d5c-6f24ee0b785d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 1,
+            "session_ids": [
+              "c6370eab-9f06-4543-b532-1f486f84db34",
+              "eaed3e03-9353-4ad1-baaa-942250fa3ee2",
+              "26917ed1-3328-405d-ac86-4ec0783df76c"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 2,
+            "session_ids": [
+              "5a8e8bc1-4e06-45da-8caf-1a1e2e3d7612",
+              "26b37391-195f-443c-8acb-aed02cc6bb6f",
+              "cc357867-1793-4e24-9fd9-077e950d75a2"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "cdp_screen_metrics_only_v1",
+            "round": 3,
+            "session_ids": [
+              "09e0de03-c82f-4497-80ff-fd05caf05671",
+              "c8bb538c-fd3e-4986-aaad-eb82b98ad6d2",
+              "fdc01f9d-b53a-4ffc-b7de-a1d37e271d9f"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 1,
+            "session_ids": [
+              "d4444c46-e0c7-475e-86fd-f8a79b599ae2",
+              "9acbd108-2a5d-4cb7-a348-413f60611bbd",
+              "09dd1770-16fd-496a-978b-3c1654b232a7"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 2,
+            "session_ids": [
+              "dd1b5be7-07e3-482d-a690-4379a43ee514",
+              "3b0878c4-03cb-4609-8aa9-9adf3c54c3d3",
+              "1c637f5d-115c-43ce-b8a3-51fa8f6e8f55"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_webgl_pair_v1",
+            "round": 3,
+            "session_ids": [
+              "9fba6b9a-0798-4c71-9b95-d6cc0c4f6a0f",
+              "ffbeb28e-f7a4-4ba8-9571-5dfbc0d230a7",
+              "49bb7e07-00e7-44f0-8f38-9d24f6068196"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 1,
+            "session_ids": [
+              "88cb2e7f-140b-4b5c-bd42-fc6fcb371e96",
+              "1aa16f5f-5e8a-454a-afd9-c45ec9abf297",
+              "4f3b873d-5715-4ca6-93e8-40b69152f399"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 2,
+            "session_ids": [
+              "a7fe2181-9b5b-473e-8a29-fc2d68d75a08",
+              "23d84f98-4c4c-46d8-92c9-58548335d800",
+              "59638fc4-19f4-42da-8e5b-4cbc826850af"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_languages_only_v1",
+            "round": 3,
+            "session_ids": [
+              "c95fdc88-b32f-49da-9f14-18f686171efd",
+              "c49c840e-a6d1-4ef1-b3c2-e2b781bcf428",
+              "707ab2f4-0f67-4bc5-9155-60e56b488132"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": false,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 1,
+            "session_ids": [
+              "e22999f9-e942-4246-95c7-355e2ca8f206",
+              "c54f7db1-133a-41aa-ae02-5bbc40e266c1",
+              "1eac5ca8-bead-4abb-9108-821a1ef0a350"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 2,
+            "session_ids": [
+              "bba7d051-3dce-4a8d-9346-5453547c5851",
+              "4621955c-420e-463a-b9f4-81596fbc3e75",
+              "534bd946-e779-470a-9ed9-cc76d8a94a2d"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          },
+          {
+            "group": "stealth_plugins_mime_v1",
+            "round": 3,
+            "session_ids": [
+              "9c5f3243-fdd6-4d51-8f56-d90bf8c90c8e",
+              "18c513da-7699-4151-8126-192de741ce0f",
+              "132f9199-5344-471e-bb3c-41e7f5359219"
+            ],
+            "status": "COMPLETE",
+            "pre_vs_middle": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            },
+            "pre_vs_post": {
+              "webdriver_known_values_equal": true,
+              "webdriver_comparison_status": "OBSERVED",
+              "webdriver_raw_tuple_equal_excluding_realm": true,
+              "webdriver_raw_tuple_comparison_status": "RECORDED_OBSERVATIONS",
+              "language_and_ordered_languages_equal": true,
+              "language_comparison_status": "OBSERVED"
+            }
+          }
+        ],
+        "scope": "New local development observations only; no candidate evaluation, fit, prediction, or population FPR estimate.",
+        "control_limit": "debug_transport_control matches CDP attach/navigation without injection, not all Puppeteer internals.",
+        "total_planned_sessions": 127,
+        "attempts_started": 127,
+        "failed_attempts": 0,
+        "incomplete_attempts": 0,
+        "not_attempted_positions": 0,
+        "raw_archive_rows": 127,
+        "complete_configuration_triplets": {
+          "cdp": 3,
+          "playwright": 3,
+          "puppeteer": 3,
+          "stealth": 3,
+          "cdp_webdriver_only_v1": 3,
+          "cdp_ua_only_v1": 3,
+          "cdp_platform_only_v1": 3,
+          "cdp_ua_platform_desktop_v1": 3,
+          "cdp_resource_pair_v1": 3,
+          "cdp_timezone_only_v1": 3,
+          "cdp_screen_metrics_only_v1": 3,
+          "stealth_webgl_pair_v1": 3,
+          "stealth_languages_only_v1": 3,
+          "stealth_plugins_mime_v1": 3
+        },
+        "status": "COMPLETE",
+        "analyzed_at": "2026-10-02T06:56:16.339244+00:00"
+      },
+      "receiver_returncode": 0,
+      "emulator_returncode": 0,
+      "finished_at": "2026-10-02T06:56:17.899253+00:00"
+    }
+  ]
+}

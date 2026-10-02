@@ -1,0 +1,490 @@
+{
+  "cdp": {
+    "id": "cdp",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "configId": "w6-tool-056-legacy-default-v1",
+    "sourceReference": "https://developer.chrome.com/docs/devtools/protocol/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_api_spoof",
+    "targetLayers": [
+      "Web"
+    ],
+    "expectedMutations": [
+      "web_data.automation_surface_layer.webdriver",
+      "web_data.navigator_layer.platform",
+      "web_data.navigator_layer.hardware_concurrency",
+      "web_data.navigator_layer.device_memory",
+      "web_data.navigator_layer.user_agent"
+    ],
+    "observableFields": [
+      "webdriver",
+      "platform",
+      "hardware_concurrency",
+      "device_memory",
+      "user_agent"
+    ],
+    "profile": {
+      "webdriver": true,
+      "platform": "Win32",
+      "hardwareConcurrency": 48,
+      "deviceMemory": 16,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "playwright": {
+    "id": "playwright",
+    "executionClientId": "playwright",
+    "name": "Playwright",
+    "configId": "w6-tool-054-legacy-default-v1",
+    "sourceReference": "https://playwright.dev/docs/api/class-android",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_automation_controlled_profile",
+    "targetLayers": [
+      "Web"
+    ],
+    "expectedMutations": [
+      "web_data.automation_surface_layer.webdriver",
+      "web_data.navigator_layer.platform",
+      "web_data.navigator_layer.hardware_concurrency",
+      "web_data.navigator_layer.device_memory",
+      "web_data.navigator_layer.user_agent"
+    ],
+    "observableFields": [
+      "webdriver",
+      "platform",
+      "hardware_concurrency",
+      "device_memory",
+      "user_agent"
+    ],
+    "profile": {
+      "webdriver": true,
+      "platform": "Linux x86_64",
+      "hardwareConcurrency": 16,
+      "deviceMemory": 8,
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "puppeteer": {
+    "id": "puppeteer",
+    "executionClientId": "puppeteer",
+    "name": "Puppeteer",
+    "configId": "w6-tool-055-legacy-default-v1",
+    "sourceReference": "https://pptr.dev/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_automation_controlled_profile",
+    "targetLayers": [
+      "Web"
+    ],
+    "expectedMutations": [
+      "web_data.automation_surface_layer.webdriver",
+      "web_data.navigator_layer.platform",
+      "web_data.navigator_layer.hardware_concurrency",
+      "web_data.navigator_layer.device_memory",
+      "web_data.navigator_layer.user_agent"
+    ],
+    "observableFields": [
+      "webdriver",
+      "platform",
+      "hardware_concurrency",
+      "device_memory",
+      "user_agent"
+    ],
+    "profile": {
+      "webdriver": true,
+      "platform": "MacIntel",
+      "hardwareConcurrency": 10,
+      "deviceMemory": 8,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "stealth": {
+    "id": "stealth",
+    "executionClientId": "stealth",
+    "name": "puppeteer-extra-plugin-stealth",
+    "configId": "w6-tool-058-legacy-default-v1",
+    "sourceReference": "https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_fingerprint_evasion",
+    "targetLayers": [
+      "Web"
+    ],
+    "expectedMutations": [
+      "web_data.navigator_layer.hardware_concurrency",
+      "web_data.graphics_layer.webgl_vendor",
+      "web_data.graphics_layer.webgl_renderer",
+      "web_data.navigator_layer.languages",
+      "web_data.automation_surface_layer.plugins_count"
+    ],
+    "observableFields": [
+      "hardware_concurrency",
+      "webgl_vendor",
+      "webgl_renderer",
+      "languages",
+      "plugins_count"
+    ],
+    "profile": {
+      "hardwareConcurrency": 12,
+      "webglVendor": "Google Inc. (NVIDIA)",
+      "webglRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "cdp_webdriver_only_v1": {
+    "id": "cdp_webdriver_only_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://developer.chrome.com/docs/devtools/protocol/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_api_spoof_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-rule-boundary-api36-v1",
+    "configId": "w9-rule-boundary-cdp-webdriver-only-v1",
+    "expectedMutations": [
+      "web_data.automation_surface_layer.webdriver"
+    ],
+    "observableFields": [
+      "webdriver"
+    ],
+    "profile": {
+      "webdriver": true
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "cdp_ua_only_v1": {
+    "id": "cdp_ua_only_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://developer.chrome.com/docs/devtools/protocol/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_api_spoof_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-rule-boundary-api36-v1",
+    "configId": "w9-rule-boundary-cdp-ua-only-v1",
+    "expectedMutations": [
+      "web_data.navigator_layer.user_agent"
+    ],
+    "observableFields": [
+      "user_agent"
+    ],
+    "profile": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "cdp_platform_only_v1": {
+    "id": "cdp_platform_only_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://developer.chrome.com/docs/devtools/protocol/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_api_spoof_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-rule-boundary-api36-v1",
+    "configId": "w9-rule-boundary-cdp-platform-only-v1",
+    "expectedMutations": [
+      "web_data.navigator_layer.platform"
+    ],
+    "observableFields": [
+      "platform"
+    ],
+    "profile": {
+      "platform": "Win32"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "cdp_ua_platform_desktop_v1": {
+    "id": "cdp_ua_platform_desktop_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://developer.chrome.com/docs/devtools/protocol/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_api_spoof_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-rule-boundary-api36-v1",
+    "configId": "w9-rule-boundary-cdp-ua-platform-desktop-v1",
+    "expectedMutations": [
+      "web_data.navigator_layer.platform",
+      "web_data.navigator_layer.user_agent"
+    ],
+    "observableFields": [
+      "platform",
+      "user_agent"
+    ],
+    "profile": {
+      "platform": "Win32",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "cdp_resource_pair_v1": {
+    "id": "cdp_resource_pair_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://developer.chrome.com/docs/devtools/protocol/",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_api_spoof_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-rule-boundary-api36-v1",
+    "configId": "w9-rule-boundary-cdp-resource-pair-v1",
+    "expectedMutations": [
+      "web_data.navigator_layer.hardware_concurrency",
+      "web_data.navigator_layer.device_memory"
+    ],
+    "observableFields": [
+      "hardware_concurrency",
+      "device_memory"
+    ],
+    "profile": {
+      "hardwareConcurrency": 48,
+      "deviceMemory": 16
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "cdp_timezone_only_v1": {
+    "id": "cdp_timezone_only_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setTimezoneOverride",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_cdp_emulation_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-cdp-emulation-rule-boundary-api36-v5",
+    "automationRunner": "week10_cdp_emulation_runner_v5.mjs",
+    "configId": "w10-cdp-emulation-timezone-only-v1",
+    "expectedMutations": [
+      "web_data.execution_layer.timezone_id",
+      "web_data.execution_layer.timezone_offset"
+    ],
+    "observableFields": [
+      "timezone_id",
+      "timezone_offset"
+    ],
+    "cdpEmulation": {
+      "contractVersion": "cdp-emulation-v1",
+      "applyCommands": [
+        {
+          "method": "Emulation.setTimezoneOverride",
+          "params": {
+            "timezoneId": "America/Los_Angeles"
+          }
+        }
+      ],
+      "rollbackCommands": [
+        {
+          "method": "Emulation.setTimezoneOverride",
+          "params": {
+            "timezoneId": ""
+          }
+        }
+      ],
+      "targetUrl": "file:///android_asset/expanded_probe.html"
+    },
+    "profile": {
+      "timezoneId": "America/Los_Angeles",
+      "timezoneOffset": 420
+    },
+    "runner": "week10_cdp_emulation_runner_v5.mjs"
+  },
+  "cdp_screen_metrics_only_v1": {
+    "id": "cdp_screen_metrics_only_v1",
+    "executionClientId": "cdp",
+    "name": "Chrome DevTools Protocol",
+    "sourceReference": "https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setDeviceMetricsOverride",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_cdp_emulation_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-cdp-emulation-rule-boundary-api36-v5",
+    "automationRunner": "week10_cdp_emulation_runner_v5.mjs",
+    "configId": "w10-cdp-emulation-screen-metrics-only-v1",
+    "expectedMutations": [
+      "web_data.screen_layer.avail_width",
+      "web_data.screen_layer.avail_height",
+      "web_data.screen_layer.device_pixel_ratio",
+      "web_data.screen_layer.inner_width",
+      "web_data.screen_layer.inner_height",
+      "web_data.screen_layer.outer_width",
+      "web_data.screen_layer.outer_height",
+      "web_data.screen_layer.screen_resolution_logical",
+      "web_data.screen_layer.visual_viewport_width",
+      "web_data.screen_layer.visual_viewport_height"
+    ],
+    "observableFields": [
+      "avail_width",
+      "avail_height",
+      "device_pixel_ratio",
+      "inner_width",
+      "inner_height",
+      "outer_width",
+      "outer_height",
+      "screen_resolution_logical",
+      "visual_viewport_width",
+      "visual_viewport_height"
+    ],
+    "cdpEmulation": {
+      "contractVersion": "cdp-emulation-v1",
+      "applyCommands": [
+        {
+          "method": "Emulation.setDeviceMetricsOverride",
+          "params": {
+            "width": 393,
+            "height": 851,
+            "deviceScaleFactor": 2.75,
+            "mobile": true,
+            "screenWidth": 393,
+            "screenHeight": 851,
+            "positionX": 0,
+            "positionY": 0
+          }
+        }
+      ],
+      "rollbackCommands": [
+        {
+          "method": "Emulation.clearDeviceMetricsOverride",
+          "params": {}
+        }
+      ],
+      "targetUrl": "file:///android_asset/expanded_probe.html"
+    },
+    "profile": {
+      "availWidth": 393,
+      "availHeight": 851,
+      "devicePixelRatio": 2.75,
+      "innerWidth": 393,
+      "innerHeight": 851,
+      "outerWidth": 393,
+      "outerHeight": 851,
+      "screenResolutionLogical": "393x851",
+      "visualViewportWidth": 393.1428527832031,
+      "visualViewportHeight": 851.047607421875
+    },
+    "runner": "week10_cdp_emulation_runner_v5.mjs"
+  },
+  "stealth_webgl_pair_v1": {
+    "id": "stealth_webgl_pair_v1",
+    "executionClientId": "stealth",
+    "name": "puppeteer-extra-plugin-stealth",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_fingerprint_evasion_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-stealth-rule-boundary-api36-v4",
+    "configId": "w9-stealth-boundary-webgl-pair-v1",
+    "sourceReference": "https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth/evasions/webgl.vendor",
+    "expectedMutations": [
+      "web_data.graphics_layer.webgl_vendor",
+      "web_data.graphics_layer.webgl_renderer"
+    ],
+    "observableFields": [
+      "webgl_vendor",
+      "webgl_renderer"
+    ],
+    "stealthEvasions": [
+      {
+        "id": "webgl.vendor",
+        "options": {
+          "vendor": "Google Inc. (NVIDIA)",
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+        }
+      }
+    ],
+    "profile": {
+      "webglVendor": "Google Inc. (NVIDIA)",
+      "webglRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660, Direct3D11)"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "stealth_languages_only_v1": {
+    "id": "stealth_languages_only_v1",
+    "executionClientId": "stealth",
+    "name": "puppeteer-extra-plugin-stealth",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_fingerprint_evasion_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-stealth-rule-boundary-api36-v4",
+    "configId": "w9-stealth-boundary-languages-only-v1",
+    "sourceReference": "https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth/evasions/navigator.languages",
+    "expectedMutations": [
+      "web_data.navigator_layer.languages"
+    ],
+    "observableFields": [
+      "languages"
+    ],
+    "stealthEvasions": [
+      {
+        "id": "navigator.languages",
+        "options": {
+          "languages": [
+            "fr-FR",
+            "fr"
+          ]
+        }
+      }
+    ],
+    "profile": {
+      "languages": [
+        "fr-FR",
+        "fr"
+      ]
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  },
+  "stealth_plugins_mime_v1": {
+    "id": "stealth_plugins_mime_v1",
+    "executionClientId": "stealth",
+    "name": "puppeteer-extra-plugin-stealth",
+    "attackFamily": "web_automation_or_spoofing",
+    "attackType": "browser_fingerprint_evasion_boundary",
+    "targetLayers": [
+      "Web"
+    ],
+    "boundaryCampaign": "teacher-stealth-rule-boundary-api36-v4",
+    "configId": "w9-stealth-boundary-plugins-mime-v1",
+    "sourceReference": "https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth/evasions/navigator.plugins",
+    "expectedMutations": [
+      "web_data.automation_surface_layer.plugins_count",
+      "web_data.automation_surface_layer.mime_types_count",
+      "web_data.automation_surface_layer.plugins_hash",
+      "web_data.automation_surface_layer.mime_types_hash"
+    ],
+    "observableFields": [
+      "plugins_count",
+      "mime_types_count",
+      "plugins_hash",
+      "mime_types_hash"
+    ],
+    "stealthEvasions": [
+      {
+        "id": "navigator.plugins",
+        "options": {}
+      }
+    ],
+    "profile": {
+      "pluginsCount": 3,
+      "mimeTypesCount": 4,
+      "pluginsHash": "95021813daab933c013871840f5980b90fc8907d274e73f3782c8ec023da8fe8",
+      "mimeTypesHash": "319c9298870d25c3b513bbc46733c786d1ebb3fa21b784ee4a8d88540a9a93e5"
+    },
+    "runner": "week6_webview_automation_runner.mjs"
+  }
+}

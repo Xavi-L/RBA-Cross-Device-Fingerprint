@@ -1,0 +1,159 @@
+{
+  "started_at": "2026-10-02T06:24:40.809291+00:00",
+  "protocol": {
+    "protocol_version": "webgl1-fresh-controlled-comparison-v1",
+    "experiment_id": "webgl1-fresh-cap7-comparison-v1",
+    "frozen_at": "2026-10-02T06:19:59.161718+00:00",
+    "source_base_commit": "bdd0b11a915b3bf5028bb3600c21e8b7b10a1f54",
+    "scope": "EXPOSED_INTERNAL_DEVELOPMENT_FRESH_COHORT_COMPARISON",
+    "authorization": "User: 先提交推送改动，然后开始下一步; follows authorized WebGL1 integration and stated next step of fresh same-data CAP7 comparison.",
+    "expected_primary_n": 378,
+    "expected_total_raw_n": 381,
+    "expected_attack_n": 126,
+    "expected_control_n": 252,
+    "rounds_per_configuration": 3,
+    "phases": [
+      "clean_pre",
+      "attack",
+      "clean_post"
+    ],
+    "smoke_per_environment": 1,
+    "configuration_ids": [
+      "cdp",
+      "playwright",
+      "puppeteer",
+      "stealth",
+      "cdp_webdriver_only_v1",
+      "cdp_ua_only_v1",
+      "cdp_platform_only_v1",
+      "cdp_ua_platform_desktop_v1",
+      "cdp_resource_pair_v1",
+      "cdp_timezone_only_v1",
+      "cdp_screen_metrics_only_v1",
+      "stealth_webgl_pair_v1",
+      "stealth_languages_only_v1",
+      "stealth_plugins_mime_v1"
+    ],
+    "configuration_registry": "CONFIGURATIONS.json",
+    "environments": [
+      {
+        "environment_group_id": "api29_swiftshader",
+        "android_api": 29,
+        "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api29_swiftshader",
+        "gpu": "swiftshader",
+        "avd_home": "deliverables/featureapp_webdriver_raw_multienv_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API29",
+        "expected_webview_package": "com.google.android.webview",
+        "expected_webview_version": "91.0.4472.114"
+      },
+      {
+        "environment_group_id": "api30_swiftshader",
+        "android_api": 30,
+        "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api30_swiftshader",
+        "gpu": "swiftshader",
+        "avd_home": "deliverables/rule_semantics_raw_only_expansion_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API30",
+        "expected_webview_package": "com.google.android.webview",
+        "expected_webview_version": "91.0.4472.114"
+      },
+      {
+        "environment_group_id": "api36_swiftshader",
+        "android_api": 36,
+        "run_path": "deliverables/webgl1_fresh_comparison_v1/runs/api36_swiftshader",
+        "gpu": "swiftshader",
+        "avd_home": "deliverables/featureapp_webdriver_runtime_v1/runtime/avd",
+        "avd_name": "Codex_Webdriver_Raw_API36_1",
+        "expected_webview_package": "com.google.android.webview",
+        "expected_webview_version": "134.0.6998.135"
+      }
+    ],
+    "collector": {
+      "handoff_schema_version": "webgl1-fresh-local-release-v1",
+      "application_id": "com.example.hybridguard.featureapp",
+      "version_code": 14,
+      "version_name": "1.6.7-expanded-v2.2-webgl1",
+      "schema_version": "expanded-v2.2-status",
+      "fixed_signal_count": 177,
+      "observation_schema_version": "app-web-observations-v1",
+      "observer_revision": "app-webdriver-observer-v1",
+      "web_probe_revision": "expanded-web-67-v2",
+      "webgl_collection_revision": "featureapp-webgl-parameter-collection-v1",
+      "webgl_observer_revision": "webgl-parameter-observer-v1",
+      "source_commit": "bdd0b11a915b3bf5028bb3600c21e8b7b10a1f54",
+      "apk": {
+        "path": "deliverables/webgl1_selector_integration_v1/runtime/featureapp-v14-local-only.apk"
+      },
+      "field_catalog": {
+        "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"
+      }
+    },
+    "installation_binding_rule": "FIRST_NEW_INSTALL_SMOKE_THEN_REQUIRE_STABLE",
+    "runtime": {
+      "emulator_port": 5670,
+      "serial": "emulator-5670",
+      "receiver_port": 8000,
+      "workers": 1,
+      "read_only_avd": true
+    },
+    "collection_policy": {
+      "fresh_process_every_position": true,
+      "attempts_per_position": 1,
+      "failure": "Retain failed and unattempted positions; stop that environment; continue independent preselected environments. No automatic retry, substitution or outcome-based recollection.",
+      "controls": "Same as prior comparison: clean phases use direct App launch without intervention/debug transport. Attack phases use original declared CDP/Playwright/Puppeteer/plugin runner. This is not a fully matched transport-control experiment.",
+      "webgl_observation": "Default packaged observer only; no manual observer injection. WebGL1 U is retained and is not an admission or attack-label condition."
+    },
+    "admission": {
+      "require_complete_design": true,
+      "execution": "Declared tool receipt/config/profile matches; unambiguous raw/export/receipt session and stable registered collector identity",
+      "effect": "Declared fields observed and typed, match declared profile, at least one declared field changes; all declared fields restore in clean_post; emulation rollback and paired restoration both required",
+      "independent_of": [
+        "candidate state",
+        "selector output",
+        "model score"
+      ],
+      "historical_rows": "NO_IMPUTATION_NO_APPEND",
+      "smoke": "Excluded from all training and metrics"
+    },
+    "comparison": {
+      "groups": [
+        "BASE49",
+        "WEBGL50"
+      ],
+      "base": "LANG_ADD_WD_REPLACE raw-only semantic CAP7 pool",
+      "difference": "WEBGL50 only adds registered WebGL1 candidate; no forced selection or bonus",
+      "folds": "LOEO three folds; same 378 members and split for both groups; 252 train and 126 heldout per fold; no installation/bundle/triplet split",
+      "stages": [
+        "GREEDY_SEMANTIC_V2",
+        "R_KEEP_SWAP_V2"
+      ],
+      "capacity": "W0_CAPACITY_7_V1",
+      "max_clauses": 7,
+      "max_complexity": 14,
+      "fit_jobs": 12,
+      "heldout_predictions": 756,
+      "worker_seconds": 90,
+      "total_worker_seconds": 1080,
+      "fit_failure": "Stop remaining jobs, retain failures and unexecuted jobs; no tuning or retry",
+      "primary": "Same fresh126 controlled attack positions; report paired counts, configuration macro, per-fold/config/sample gains and losses,252 controls, U/FAILED and defined coverage",
+      "selection_audit": [
+        "LANG_ID",
+        "WD_ID",
+        "WEBGL1_ID"
+      ],
+      "claim_gate": "Improvement requires more detections without new control alarms, reduced defined coverage or any configuration regression; otherwise report the observed tradeoff.",
+      "historical117of126": "Context only, never directly subtract across batches to infer gain",
+      "independent_confirmation": "NOT_ACCESSED"
+    },
+    "limits": {
+      "boot_seconds": 120,
+      "environment_seconds": 2700
+    }
+  },
+  "preflight": {
+    "status": "PASS",
+    "primary_positions": 378,
+    "smoke_positions": 3,
+    "apk_assets_match_reviewed_collector": true,
+    "registry_matches_existing_runners": true
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "runId": "2026-10-02T06-53-49-440Z_cdp_screen_metrics_only_v1",
+  "toolId": "cdp_screen_metrics_only_v1",
+  "configurationId": "cdp_screen_metrics_only_v1",
+  "executionClientId": "cdp",
+  "configId": "w10-cdp-emulation-screen-metrics-only-v1",
+  "declaredObservableFields": [
+    "avail_width",
+    "avail_height",
+    "device_pixel_ratio",
+    "inner_width",
+    "inner_height",
+    "outer_width",
+    "outer_height",
+    "screen_resolution_logical",
+    "visual_viewport_width",
+    "visual_viewport_height"
+  ],
+  "declaredStealthEvasions": null,
+  "declaredCdpEmulation": {
+    "contractVersion": "cdp-emulation-v1",
+    "applyCommands": [
+      {
+        "method": "Emulation.setDeviceMetricsOverride",
+        "params": {
+          "width": 393,
+          "height": 851,
+          "deviceScaleFactor": 2.75,
+          "mobile": true,
+          "screenWidth": 393,
+          "screenHeight": 851,
+          "positionX": 0,
+          "positionY": 0
+        }
+      }
+    ],
+    "rollbackCommands": [
+      {
+        "method": "Emulation.clearDeviceMetricsOverride",
+        "params": {}
+      }
+    ],
+    "targetUrl": "file:///android_asset/expanded_probe.html"
+  },
+  "cdpEmulation": {
+    "contract": {
+      "contractVersion": "cdp-emulation-v1",
+      "applyCommands": [
+        {
+          "method": "Emulation.setDeviceMetricsOverride",
+          "params": {
+            "width": 393,
+            "height": 851,
+            "deviceScaleFactor": 2.75,
+            "mobile": true,
+            "screenWidth": 393,
+            "screenHeight": 851,
+            "positionX": 0,
+            "positionY": 0
+          }
+        }
+      ],
+      "rollbackCommands": [
+        {
+          "method": "Emulation.clearDeviceMetricsOverride",
+          "params": {}
+        }
+      ],
+      "targetUrl": "file:///android_asset/expanded_probe.html"
+    },
+    "cdp_version": {
+      "Browser": "Chrome/134.0.6998.135",
+      "Protocol-Version": "1.3",
+      "WebKit-Version": "537.36 (@ce0f328d1efe65e6be766d7219387fff567ffdf5)"
+    },
+    "target": {
+      "id": "8100AFED0AF3CE32C9BFA222370909FD",
+      "type": "page",
+      "url": "about:blank",
+      "debugger_url": "ws://127.0.0.1:9333/devtools/page/8100AFED0AF3CE32C9BFA222370909FD"
+    },
+    "apply_command_responses": [
+      {
+        "id": 1,
+        "phase": "setup",
+        "method": "Page.enable",
+        "params": {},
+        "requested_at": "2026-10-02T06:53:52.160Z",
+        "response": {
+          "id": 1,
+          "result": {}
+        },
+        "ok": true
+      },
+      {
+        "id": 2,
+        "phase": "baseline",
+        "method": "Runtime.evaluate",
+        "params": {
+          "expression": "(() => {\n  const safe = (fn) => { try { return fn(); } catch (_) { return null; } };\n  const viewport = safe(() => window.visualViewport);\n  return JSON.stringify({\n    timezone: {\n      id: safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone),\n      offset_minutes: safe(() => new Date().getTimezoneOffset()),\n    },\n    screen: {\n      width: safe(() => screen.width),\n      height: safe(() => screen.height),\n      avail_width: safe(() => screen.availWidth),\n      avail_height: safe(() => screen.availHeight),\n      device_pixel_ratio: safe(() => window.devicePixelRatio),\n      inner_width: safe(() => window.innerWidth),\n      inner_height: safe(() => window.innerHeight),\n      outer_width: safe(() => window.outerWidth),\n      outer_height: safe(() => window.outerHeight),\n      visual_viewport_width: viewport ? safe(() => viewport.width) : null,\n      visual_viewport_height: viewport ? safe(() => viewport.height) : null,\n    },\n  });\n})()",
+          "awaitPromise": true,
+          "returnByValue": true
+        },
+        "requested_at": "2026-10-02T06:53:52.162Z",
+        "response": {
+          "id": 2,
+          "result": {
+            "result": {
+              "type": "string",
+              "value": "{\"timezone\":{\"id\":\"Asia/Shanghai\",\"offset_minutes\":-480},\"screen\":{\"width\":412,\"height\":915,\"avail_width\":412,\"avail_height\":915,\"device_pixel_ratio\":2.625,\"inner_width\":411,\"inner_height\":710,\"outer_width\":412,\"outer_height\":711,\"visual_viewport_width\":411.4285583496094,\"visual_viewport_height\":710.4761962890625}}"
+            }
+          }
+        },
+        "ok": true
+      },
+      {
+        "id": 3,
+        "phase": "apply",
+        "method": "Emulation.setDeviceMetricsOverride",
+        "params": {
+          "width": 393,
+          "height": 851,
+          "deviceScaleFactor": 2.75,
+          "mobile": true,
+          "screenWidth": 393,
+          "screenHeight": 851,
+          "positionX": 0,
+          "positionY": 0
+        },
+        "requested_at": "2026-10-02T06:53:52.172Z",
+        "response": {
+          "id": 3,
+          "result": {}
+        },
+        "ok": true
+      },
+      {
+        "id": 4,
+        "phase": "active",
+        "method": "Runtime.evaluate",
+        "params": {
+          "expression": "(() => {\n  const safe = (fn) => { try { return fn(); } catch (_) { return null; } };\n  const viewport = safe(() => window.visualViewport);\n  return JSON.stringify({\n    timezone: {\n      id: safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone),\n      offset_minutes: safe(() => new Date().getTimezoneOffset()),\n    },\n    screen: {\n      width: safe(() => screen.width),\n      height: safe(() => screen.height),\n      avail_width: safe(() => screen.availWidth),\n      avail_height: safe(() => screen.availHeight),\n      device_pixel_ratio: safe(() => window.devicePixelRatio),\n      inner_width: safe(() => window.innerWidth),\n      inner_height: safe(() => window.innerHeight),\n      outer_width: safe(() => window.outerWidth),\n      outer_height: safe(() => window.outerHeight),\n      visual_viewport_width: viewport ? safe(() => viewport.width) : null,\n      visual_viewport_height: viewport ? safe(() => viewport.height) : null,\n    },\n  });\n})()",
+          "awaitPromise": true,
+          "returnByValue": true
+        },
+        "requested_at": "2026-10-02T06:53:52.174Z",
+        "response": {
+          "id": 4,
+          "result": {
+            "result": {
+              "type": "string",
+              "value": "{\"timezone\":{\"id\":\"Asia/Shanghai\",\"offset_minutes\":-480},\"screen\":{\"width\":393,\"height\":851,\"avail_width\":393,\"avail_height\":851,\"device_pixel_ratio\":2.750000149011612,\"inner_width\":393,\"inner_height\":851,\"outer_width\":393,\"outer_height\":851,\"visual_viewport_width\":393.1428527832031,\"visual_viewport_height\":851.047607421875}}"
+            }
+          }
+        },
+        "ok": true
+      },
+      {
+        "id": 5,
+        "phase": "navigate",
+        "method": "Page.navigate",
+        "params": {
+          "url": "file:///android_asset/expanded_probe.html"
+        },
+        "requested_at": "2026-10-02T06:53:52.175Z",
+        "response": {
+          "id": 5,
+          "result": {
+            "frameId": "8100AFED0AF3CE32C9BFA222370909FD",
+            "loaderId": "732A794564CBCD0FD312D2B0B11A8780"
+          }
+        },
+        "ok": true
+      }
+    ],
+    "rollback_command_responses": [
+      {
+        "id": 6,
+        "phase": "rollback",
+        "method": "Emulation.clearDeviceMetricsOverride",
+        "params": {},
+        "requested_at": "2026-10-02T06:53:53.978Z",
+        "response": {
+          "id": 6,
+          "result": {}
+        },
+        "ok": true
+      },
+      {
+        "id": 7,
+        "phase": "post_rollback",
+        "method": "Runtime.evaluate",
+        "params": {
+          "expression": "(() => {\n  const safe = (fn) => { try { return fn(); } catch (_) { return null; } };\n  const viewport = safe(() => window.visualViewport);\n  return JSON.stringify({\n    timezone: {\n      id: safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone),\n      offset_minutes: safe(() => new Date().getTimezoneOffset()),\n    },\n    screen: {\n      width: safe(() => screen.width),\n      height: safe(() => screen.height),\n      avail_width: safe(() => screen.availWidth),\n      avail_height: safe(() => screen.availHeight),\n      device_pixel_ratio: safe(() => window.devicePixelRatio),\n      inner_width: safe(() => window.innerWidth),\n      inner_height: safe(() => window.innerHeight),\n      outer_width: safe(() => window.outerWidth),\n      outer_height: safe(() => window.outerHeight),\n      visual_viewport_width: viewport ? safe(() => viewport.width) : null,\n      visual_viewport_height: viewport ? safe(() => viewport.height) : null,\n    },\n  });\n})()",
+          "awaitPromise": true,
+          "returnByValue": true
+        },
+        "requested_at": "2026-10-02T06:53:54.028Z",
+        "response": {
+          "id": 7,
+          "result": {
+            "result": {
+              "type": "string",
+              "value": "{\"timezone\":{\"id\":\"Asia/Shanghai\",\"offset_minutes\":-480},\"screen\":{\"width\":412,\"height\":915,\"avail_width\":412,\"avail_height\":915,\"device_pixel_ratio\":2.625,\"inner_width\":411,\"inner_height\":710,\"outer_width\":412,\"outer_height\":711,\"visual_viewport_width\":411.047607421875,\"visual_viewport_height\":710.09521484375}}"
+            }
+          }
+        },
+        "ok": true
+      }
+    ],
+    "baseline_runtime_observation": {
+      "timezone": {
+        "id": "Asia/Shanghai",
+        "offset_minutes": -480
+      },
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "avail_width": 412,
+        "avail_height": 915,
+        "device_pixel_ratio": 2.625,
+        "inner_width": 411,
+        "inner_height": 710,
+        "outer_width": 412,
+        "outer_height": 711,
+        "visual_viewport_width": 411.4285583496094,
+        "visual_viewport_height": 710.4761962890625
+      }
+    },
+    "active_runtime_observation": {
+      "timezone": {
+        "id": "Asia/Shanghai",
+        "offset_minutes": -480
+      },
+      "screen": {
+        "width": 393,
+        "height": 851,
+        "avail_width": 393,
+        "avail_height": 851,
+        "device_pixel_ratio": 2.750000149011612,
+        "inner_width": 393,
+        "inner_height": 851,
+        "outer_width": 393,
+        "outer_height": 851,
+        "visual_viewport_width": 393.1428527832031,
+        "visual_viewport_height": 851.047607421875
+      }
+    },
+    "post_rollback_runtime_observation": {
+      "timezone": {
+        "id": "Asia/Shanghai",
+        "offset_minutes": -480
+      },
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "avail_width": 412,
+        "avail_height": 915,
+        "device_pixel_ratio": 2.625,
+        "inner_width": 411,
+        "inner_height": 710,
+        "outer_width": 412,
+        "outer_height": 711,
+        "visual_viewport_width": 411.047607421875,
+        "visual_viewport_height": 710.09521484375
+      }
+    },
+    "active_runtime_profile_verification": {
+      "verified": true,
+      "expected": {
+        "avail_width": 393,
+        "avail_height": 851,
+        "device_pixel_ratio": 2.75,
+        "inner_width": 393,
+        "inner_height": 851,
+        "outer_width": 393,
+        "outer_height": 851,
+        "screen_resolution_logical": "393x851",
+        "visual_viewport_width": 393.1428527832031,
+        "visual_viewport_height": 851.047607421875
+      },
+      "observed": {
+        "timezone_id": "Asia/Shanghai",
+        "timezone_offset": -480,
+        "avail_width": 393,
+        "avail_height": 851,
+        "device_pixel_ratio": 2.750000149011612,
+        "inner_width": 393,
+        "inner_height": 851,
+        "outer_width": 393,
+        "outer_height": 851,
+        "screen_resolution_logical": "393x851",
+        "visual_viewport_width": 393.1428527832031,
+        "visual_viewport_height": 851.047607421875
+      }
+    },
+    "rollback": {
+      "rollback_commands_ok": true,
+      "post_runtime_matches_baseline": false,
+      "rollback_verified": true,
+      "verification_contract": "cdp-runtime-rollback-plus-paired-restoration-v2",
+      "runtime_anchor_section": "screen",
+      "runtime_anchor_fields": [
+        "width",
+        "height",
+        "avail_width",
+        "avail_height",
+        "device_pixel_ratio"
+      ],
+      "runtime_anchors_restored": true,
+      "paired_payload_restoration_required": true,
+      "full_runtime_equality_observed": false,
+      "full_runtime_restoration_claimed": false
+    }
+  },
+  "automationRunner": "week10_cdp_emulation_runtime_v2.mjs",
+  "measurementRevision": "cdp-runtime-rollback-plus-paired-restoration-v2",
+  "stealthRuntime": null,
+  "toolName": "Chrome DevTools Protocol",
+  "status": "MEASURED",
+  "reason": "",
+  "serial": "emulator-5670",
+  "injected": {
+    "availWidth": 393,
+    "availHeight": 851,
+    "devicePixelRatio": 2.75,
+    "innerWidth": 393,
+    "innerHeight": 851,
+    "outerWidth": 393,
+    "outerHeight": 851,
+    "screenResolutionLogical": "393x851",
+    "visualViewportWidth": 393.1428527832031,
+    "visualViewportHeight": 851.047607421875
+  },
+  "freshSessionIds": [
+    "c8bb538c-fd3e-4986-aaad-eb82b98ad6d2"
+  ],
+  "measuredSessionIds": [
+    "c8bb538c-fd3e-4986-aaad-eb82b98ad6d2"
+  ],
+  "automationEvidence": {
+    "protocol": "raw-cdp-emulation-v1",
+    "targetId": "8100AFED0AF3CE32C9BFA222370909FD",
+    "targetUrlBeforeNavigation": "about:blank",
+    "navigation": "cdp-Page.navigate-after-emulation-apply"
+  },
+  "collectionManifest": {
+    "runtimeContext": "webgl1-fresh-api36_swiftshader-v1:cdp_screen_metrics_only_v1-r3-attack",
+    "collectionRound": 3,
+    "deviceManifestId": "webgl1-fresh-api36_swiftshader-v1"
+  },
+  "logPath": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/webgl1_fresh_comparison_v1/runs/api36_swiftshader/attempts/cdp_screen_metrics_only_v1-r3-attack/automation/2026-10-02T06-53-49-440Z_cdp_screen_metrics_only_v1.json"
+}

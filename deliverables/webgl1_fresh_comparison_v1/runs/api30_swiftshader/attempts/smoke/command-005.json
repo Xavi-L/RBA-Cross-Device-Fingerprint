@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/Users/xavier/Library/Android/sdk/platform-tools/adb",
+    "-s",
+    "emulator-5670",
+    "shell",
+    "am",
+    "start",
+    "-S",
+    "-W",
+    "-n",
+    "com.example.hybridguard.featureapp/.MainActivity",
+    "--es",
+    "com.example.hybridguard.featureapp.COLLECT_ENDPOINT",
+    "http://127.0.0.1:8000/api/collect/fingerprint",
+    "--es",
+    "com.example.hybridguard.featureapp.RUNTIME_CONTEXT",
+    "webgl1-fresh-api30_swiftshader-v1:smoke",
+    "--ei",
+    "com.example.hybridguard.featureapp.COLLECTION_ROUND",
+    "1",
+    "--es",
+    "com.example.hybridguard.featureapp.DEVICE_MANIFEST_ID",
+    "webgl1-fresh-api30_swiftshader-v1"
+  ],
+  "started_at": "2026-10-02T06:34:49.556577+00:00",
+  "timeout_seconds": 35,
+  "status": "COMPLETED",
+  "return_code": 0,
+  "finished_at": "2026-10-02T06:34:50.975779+00:00"
+}
