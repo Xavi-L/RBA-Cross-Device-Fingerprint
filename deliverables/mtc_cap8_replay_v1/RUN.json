@@ -1,0 +1,119 @@
+{
+  "adapter_version": "mtc-cap8-historical-replay-v1",
+  "finished_at": "2026-10-02T09:21:39.584349+00:00",
+  "evaluation_role": "SUPPLEMENTAL_REPLAY_ON_PREVIOUSLY_USED_MTC",
+  "inventory": {
+    "data_adapter_version": "mtc-cap8-data-v1",
+    "p2_registry": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl",
+    "p2_registry_rows": 1699,
+    "p2_registry_invalid_rows": 0,
+    "source_cutoff_utc": "2026-09-22T08:39:43.167513Z",
+    "view_declared_counts": {
+      "paired_244": 1028,
+      "app_only_177": 654,
+      "partial": 11,
+      "repeated_observations": 6,
+      "quarantine": 0
+    },
+    "view_physical_rows": {
+      "paired_244": 1028,
+      "app_only_177": 654,
+      "partial": 11,
+      "repeated_observations": 6,
+      "quarantine": 0
+    },
+    "view_readable_rows": {
+      "paired_244": 1028,
+      "app_only_177": 654,
+      "partial": 11,
+      "repeated_observations": 6,
+      "quarantine": 0
+    },
+    "subsets": {
+      "primary_representative": {
+        "planned": 891,
+        "readable": 891,
+        "load_failures": 0,
+        "normal_basis_supported": 891,
+        "model_os_combinations": 891,
+        "layers_missing_records": 0,
+        "split_counts": {
+          "discovery": 630,
+          "reserved_validation": 117,
+          "development": 144
+        }
+      },
+      "paired_repeat_observation": {
+        "planned": 137,
+        "readable": 137,
+        "load_failures": 0,
+        "normal_basis_supported": 137,
+        "model_os_combinations": 104,
+        "layers_missing_records": 0,
+        "split_counts": {
+          "discovery": 84,
+          "development": 35,
+          "reserved_validation": 18
+        }
+      },
+      "reserve_app_only_177": {
+        "planned": 654,
+        "readable": 654,
+        "load_failures": 0,
+        "normal_basis_supported": 654,
+        "model_os_combinations": 324,
+        "layers_missing_records": 0,
+        "split_counts": {
+          "development": 95,
+          "reserved_validation": 103,
+          "discovery": 456
+        }
+      },
+      "reserve_partial": {
+        "planned": 11,
+        "readable": 11,
+        "load_failures": 0,
+        "normal_basis_supported": 11,
+        "model_os_combinations": 2,
+        "layers_missing_records": 11,
+        "split_counts": {
+          "discovery": 9,
+          "reserved_validation": 2
+        }
+      },
+      "reserve_repeated_observations": {
+        "planned": 6,
+        "readable": 6,
+        "load_failures": 0,
+        "normal_basis_supported": 6,
+        "model_os_combinations": 5,
+        "layers_missing_records": 0,
+        "split_counts": {
+          "discovery": 6
+        }
+      }
+    },
+    "raw_app_rows": 1699,
+    "raw_app_readable_rows": 1699,
+    "normal_basis_id": "mtc-routine-collection-research-normal-v1",
+    "issue_count": 0,
+    "independent_physical_device_count": null,
+    "evaluation_kind": "supplementary_replay_on_previously_used_mtc_observations"
+  },
+  "issues": [],
+  "models_selected_before_predictions": true,
+  "new_training": false,
+  "rule_changes": false,
+  "validation": {
+    "tests_passed": 56,
+    "test_command": "python3 -m unittest hybridguard_agent.tests.test_mtc_cap8_replay hybridguard_agent.tests.test_mtc_cap8_summary hybridguard_agent.tests.test_rule_semantics_revision_v1",
+    "test_elapsed_seconds": 0.704,
+    "saved_predictions_checked": 5097,
+    "selected_rules_per_prediction": 8,
+    "original_values_status_quality_match": true,
+    "independent_numeric_threshold_and_final_or_check": "PASS",
+    "pre_existing_git_status_entries_retained": true,
+    "new_modifications_to_pre_existing_tracked_files": 0,
+    "real_replay_runs": 1
+  }
+}
