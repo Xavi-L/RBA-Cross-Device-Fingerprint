@@ -75,10 +75,16 @@ def launch_extras(op,s):
             '--ef',PACKAGE+'.GEOMETRY_ZOOM_FACTOR',str(s['zoom_factor'] if zoom and changed else 1.0)]
 
 def run_environment(s,env,out,smoke=False):
+    validate_settings(s)
+    return run_profile_environment(s,env,out,smoke=smoke)
+
+
+def run_profile_environment(s,env,out,smoke=False,profile=None):
     eid=env['environment_group_id'];run=out/'runs'/eid;run.mkdir(parents=True,exist_ok=False)
-    operations=[{**p,'status':'NOT_EXECUTED','cdp_status':'NOT_EXECUTED'} for p in positions(s,smoke)]
+    planned = profile['positions'][eid] if profile else positions(s,smoke)
+    operations=[{**p,'status':'NOT_EXECUTED','cdp_status':'NOT_EXECUTED'} for p in planned]
     life={'environment':eid,'started_at':now(),'status':'STARTED','planned':len(operations),'raw_records':0,'attempts':0,'commands':[],
-          'material_role':'ENGINEERING_SMOKE' if smoke else 'FROZEN_FORMAL_MATRIX'}
+          'material_role':'ENGINEERING_SMOKE' if smoke or profile else 'FROZEN_FORMAL_MATRIX'}
     def save():
         write(run/'environment.json',life)
         (run/'operations.jsonl').write_text(''.join(json.dumps(o,ensure_ascii=False)+'\n' for o in operations))
@@ -106,7 +112,7 @@ def run_environment(s,env,out,smoke=False):
         original=system_snapshot(cmd,adb);life['original_system_settings']=original
         cmd(adb+['install','-r',str(ROOT/s['collector']['apk']['path'])],timeout=60);cmd(adb+['shell','pm','clear',PACKAGE])
         package=cmd(adb+['shell','dumpsys','package',PACKAGE]);version=int(re.search(r'versionCode=(\d+)',package).group(1));name=re.search(r'versionName=(\S+)',package).group(1)
-        if version!=15 or name!=s['collector']['version_name']:raise ValueError('Installed APK version mismatch')
+        if version!=s['collector']['version_code'] or name!=s['collector']['version_name']:raise ValueError('Installed APK version mismatch')
         life.update(app_version_code=version,app_version_name=name,registered_before_collection_at=now(),read_only_owned_avd=True);save()
         cmd(adb+['reverse','tcp:8000','tcp:'+str(s['ports']['receiver'])])
         argv=[str(ROOT/'backend_server/.venv-collection/bin/python'),'-B','-m','uvicorn','main:app','--host','127.0.0.1','--port',str(s['ports']['receiver']),'--workers','1']
@@ -120,7 +126,7 @@ def run_environment(s,env,out,smoke=False):
         deadline=time.monotonic()+s['limits']['environment_seconds']
         for op in operations:
             if time.monotonic()>deadline:raise TimeoutError('Environment deadline')
-            context=('screen-geometry-smoke:' if smoke else 'screen-geometry:')+eid+':'+op['step_id']
+            context=(profile['context_prefix'] if profile else ('screen-geometry-smoke:' if smoke else 'screen-geometry:'))+eid+':'+op['step_id']
             archive=run/'backend/raw_expanded_payloads.jsonl';offset=archive.stat().st_size if archive.exists() else 0
             op.update(started_at=now(),status='STARTED');life['attempts']+=1
             print('START',eid,op['step_id'],flush=True)
@@ -132,16 +138,39 @@ def run_environment(s,env,out,smoke=False):
                 extras=launch_extras(op,s);op['host_operation_request']={'hide_header':op['process_type']=='L2' and op['phase']=='change','enable_zoom':op['process_type']=='L3','zoom_factor':s['zoom_factor'] if op['process_type']=='L3' and op['phase']=='change' else 1.0}
                 cmd(adb+['shell','am','start','-S','-W','-n',PACKAGE+'/.MainActivity','--es',PACKAGE+'.COLLECT_ENDPOINT','http://127.0.0.1:8000/api/collect/fingerprint',
                     '--es',PACKAGE+'.RUNTIME_CONTEXT',context,'--ei',PACKAGE+'.COLLECTION_ROUND',str(op['round']),
-                    '--es',PACKAGE+'.DEVICE_MANIFEST_ID',('screen-geometry-smoke-' if smoke else 'screen-geometry-')+eid,
-                    '--ez',PACKAGE+'.ENABLE_WEBVIEW_DEBUG','true','--ez',PACKAGE+'.WAIT_FOR_WEBVIEW_CONTROL','true','--el',PACKAGE+'.PROBE_DELAY_MS','60000',*extras])
+                    '--es',PACKAGE+'.DEVICE_MANIFEST_ID',(profile['identity_prefix'] if profile else ('screen-geometry-smoke-' if smoke else 'screen-geometry-'))+eid,
+                    *([] if op.get('control')=='default' else ['--ez',PACKAGE+'.ENABLE_WEBVIEW_DEBUG','true','--ez',PACKAGE+'.WAIT_FOR_WEBVIEW_CONTROL','true','--el',PACKAGE+'.PROBE_DELAY_MS','60000']),*extras])
                 time.sleep(2.5);pids=cmd(adb+['shell','pidof',PACKAGE]).split();sockets=cmd(adb+['shell','cat','/proc/net/unix'])
                 matching=[p for p in pids if 'webview_devtools_remote_'+p in sockets]
-                if len(matching)!=1:raise RuntimeError('One owned debugging socket required')
-                cmd(adb+['forward','tcp:'+str(s['ports']['cdp']),'localabstract:webview_devtools_remote_'+matching[0]]);forward_owned=True
+                op.update(owned_app_pid=pids[0] if len(pids)==1 else None,debug_socket_present=bool(matching))
                 receipt=run/(op['step_id']+'.cdp.json')
-                cmd([shutil.which('node'),str(HERE/'screen_cdp.mjs'),'http://127.0.0.1:'+str(s['ports']['cdp']),str(receipt),'active' if op['process_type']=='A' and op['phase']=='change' else 'noop',str(archive),str(offset),context],timeout=100)
-                cdp=read(receipt);op.update(cdp_status=cdp['status'],cdp_receipt=receipt.name,cdp_rollback_status=cdp.get('rollback_status'),owned_app_pid=matching[0])
-                if cdp['status']!='COMPLETED':raise RuntimeError('CDP failed')
+                if op.get('control')=='default':
+                    if matching:raise RuntimeError('Default launch has a debugging socket; its source is not inferred')
+                    receipt_data={'version':'featureapp-default-start-v1','started_at':now(),'debug_socket_present':False,
+                                  'status':'STARTED','commands':[], 'control_extras_absent':True}
+                    write(receipt,receipt_data)
+                    wait_deadline=time.monotonic()+60
+                    while time.monotonic()<wait_deadline:
+                        received=find_raw(archive,offset,context)
+                        if received:break
+                        time.sleep(.25)
+                    else:raise TimeoutError('Default App raw upload timeout')
+                    receipt_data.update(session_id=received['session_id'],raw_received_at=received['server_received_at'])
+                    # Observe longer than the module's 5s overall deadline, without CDP.
+                    time.sleep(6)
+                    if find_raw(archive,offset,context)['session_id']!=received['session_id']:raise ValueError('Current session changed')
+                    after_sockets=cmd(adb+['shell','cat','/proc/net/unix'])
+                    receipt_data['debug_socket_present_after']=any('webview_devtools_remote_'+pid in after_sockets for pid in pids)
+                    if receipt_data['debug_socket_present_after']:raise RuntimeError('Default launch debugging enabled')
+                    receipt_data.update(status='COMPLETED',finished_at=now(),late_observation_seconds=6)
+                    write(receipt,receipt_data);op.update(cdp_status='NOT_USED',cdp_receipt=receipt.name,owned_app_pid=pids[0])
+                else:
+                    if len(matching)!=1:raise RuntimeError('One owned debugging socket required')
+                    cmd(adb+['forward','tcp:'+str(s['ports']['cdp']),'localabstract:webview_devtools_remote_'+matching[0]]);forward_owned=True
+                    driver=Path(profile['fault_driver']) if profile and op.get('control')=='fault' else HERE/'screen_cdp.mjs'
+                    cmd([shutil.which('node'),str(driver),'http://127.0.0.1:'+str(s['ports']['cdp']),str(receipt),'active' if op['process_type']=='A' and op['phase']=='change' else 'noop',str(archive),str(offset),context],timeout=100)
+                    cdp=read(receipt);op.update(cdp_status=cdp['status'],cdp_receipt=receipt.name,cdp_rollback_status=cdp.get('rollback_status'),owned_app_pid=matching[0])
+                    if cdp['status']!='COMPLETED':raise RuntimeError('CDP failed')
             except Exception as exc:op.update(status='FAILED',error=type(exc).__name__+': '+str(exc))
             finally:
                 receipt=run/(op['step_id']+'.cdp.json')
@@ -156,6 +185,9 @@ def run_environment(s,env,out,smoke=False):
                     op.update(session_id=sid,raw_archive='backend/raw_expanded_payloads.jsonl',raw_byte_offset=offset,collector_install_id=identity,
                         observed_screen=p.get('web_data',{}).get('screen_layer',{}),geometry_status=p.get('collection_observations',{}).get('webview_geometry',{}).get('read_status'))
                     life['raw_records']+=1
+                    if profile:
+                        op['module_version']=p.get('collection_observations',{}).get('webview_geometry',{}).get('collector_version')
+                        if op['module_version']!=profile['module_version']:op.update(status='FAILED',error='Actual geometry module version mismatch')
                     if op['status']!='FAILED':op['status']='COLLECTED'
                 elif op['status']!='FAILED':op.update(status='FAILED',error='No current raw receipt')
                 op['system_after']=system_snapshot(cmd,adb)

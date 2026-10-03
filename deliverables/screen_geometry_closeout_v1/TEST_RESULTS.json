@@ -1,0 +1,38 @@
+{
+  "python": {
+    "command": "python3 -B -m unittest -v hybridguard_agent.tests.test_screen_geometry_io hybridguard_agent.tests.test_screen_geometry_evaluation hybridguard_agent.tests.test_screen_geometry_relations hybridguard_agent.tests.test_screen_geometry_collection",
+    "tests": 51,
+    "failures": 0,
+    "log": "python-tests.log"
+  },
+  "cdp": {
+    "command": "node --test deliverables/screen_geometry_observation_v1/test_screen_cdp.mjs deliverables/screen_geometry_closeout_v1/test_fault_cdp.mjs",
+    "tests": 5,
+    "failures": 0,
+    "log": "cdp-tests.log"
+  },
+  "android": {
+    "working_directory": "android_app/HybridGuard",
+    "environment": {
+      "JAVA_HOME": "/usr/libexec/java_home -v 21",
+      "ANDROID_SDK_ROOT": "$HOME/Library/Android/sdk"
+    },
+    "command": "./gradlew --no-daemon --console=plain --project-cache-dir \"$test_build_root/project-cache\" -I ../../deliverables/screen_geometry_observation_v1/isolated_build.gradle -DgeometryBuildRoot=\"$test_build_root/build\" -PhybridguardCollectEndpoint=http://127.0.0.1:8000/api/collect/fingerprint -PhybridguardRequirePublicEndpoints=false :featureapp:testDebugUnitTest --tests \"*Geometry*\"",
+    "test_build_root": "fresh mktemp -d /tmp/screen-closeout-junit.XXXXXX",
+    "tests": 11,
+    "failures": 0,
+    "result": "ANDROID_TESTS.json",
+    "log": "android-tests.log",
+    "apk_rebuilt": false
+  },
+  "fault_fixtures": "temporary directories only; excluded from all research and smoke counts",
+  "v15_comparison": {
+    "result": "V15_CONSISTENCY.json",
+    "unchanged_records": 72,
+    "summary_differences": 0
+  },
+  "actual_v16_attempts": 12,
+  "additional_capture_attempts_after_evaluation_corrections": 0,
+  "model_fit_calls": 0,
+  "preserved_initial_dirty_status_entries": 209
+}

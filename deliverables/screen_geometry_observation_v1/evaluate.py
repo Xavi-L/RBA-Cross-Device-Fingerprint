@@ -18,6 +18,7 @@ from hybridguard_agent.research import screen_geometry_sources as sources
 from hybridguard_agent.research import screen_geometry_relations as relation
 from hybridguard_agent.research import mtc_screen_relations as old_screen
 from hybridguard_agent.research import normal_collection_evidence as normal
+from hybridguard_agent.research import screen_geometry_io as evidence
 from hybridguard_agent.research.rule_learning.contracts import cell
 
 PREFIX = "app.web_data.screen_layer."
@@ -33,13 +34,15 @@ def array(value): return value if isinstance(value, list) else []
 
 
 def read(path, default=None):
-    return json.loads(path.read_text()) if path.exists() else default
+    value, errors = evidence.read_object(path)
+    if errors: raise evidence.EvidenceError(json.dumps(errors, ensure_ascii=False))
+    return value
 
 
 def rows(path):
-    if not path.exists(): return []
-    with (gzip.open if str(path).endswith(".gz") else open)(path, "rt") as stream:
-        return [json.loads(line) for line in stream if line.strip()]
+    loaded = evidence.read_jsonl(path)
+    if loaded.errors: raise evidence.EvidenceError(json.dumps(loaded.errors, ensure_ascii=False))
+    return [r["value"] for r in loaded.records]
 
 
 def write(path, value):
@@ -66,10 +69,10 @@ def current_conditions(bound):
     return {name: {**value, "state": state(value)} for name, value in result.items()}
 
 
-def current_row(raw, operation, reference, environment, *, smoke=False):
+def current_row(raw, operation, reference, environment, *, smoke=False, identity_prefix=None):
     sid = operation.get("session_id") or ""
     bound = sources.bind_current(raw, session_id=sid, source_reference=reference,
-             environment_id=("screen-geometry-smoke-" if smoke else "screen-geometry-") + environment)
+             environment_id=(identity_prefix or ("screen-geometry-smoke-" if smoke else "screen-geometry-")) + environment)
     positive = {f: relation.number for f in LEGACY_NORMAL_FIELDS}
     observation = normal.observation_evidence(bound, LEGACY_NORMAL_FIELDS, value_predicates=positive)
     geometry = obj(bound.get("geometry"))
@@ -103,7 +106,7 @@ def _timestamp(value):
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
-def workflow_proof(bound, raw, operation, receipt, commands, *, environment, run, settings, smoke=False):
+def workflow_proof(bound, raw, operation, receipt, commands, *, environment, run, settings, smoke=False, context_prefix=None):
     """Verify current raw, explicit commands and process lifecycle, never rules.
 
     Geometry availability is deliberately NOT a normal-label requirement.
@@ -115,7 +118,7 @@ def workflow_proof(bound, raw, operation, receipt, commands, *, environment, run
     complete_errors = []
     sid = operation.get("session_id")
     step = operation["step_id"]
-    context = ("screen-geometry-smoke:" if smoke else "screen-geometry:") + environment + ":" + step
+    context = (context_prefix or ("screen-geometry-smoke:" if smoke else "screen-geometry:")) + environment + ":" + step
     payload = obj(raw.get("canonical_received_payload"))
     manifest = obj(payload.get("collection_manifest"))
     active = operation["process_type"] == "A" and operation["phase"] == "change"
@@ -282,36 +285,160 @@ def _collector():
     return mod
 
 
-def evaluate(out=HERE, *, smoke=False):
-    settings = read(out / "SETTINGS.json")
-    collector = _collector(); collector.validate_settings(settings)
-    destination = out / "smoke" if smoke else out
-    if (destination / "predictions.jsonl.gz").exists(): raise FileExistsError("Saved predictions exist; use summarize")
-    result = []
-    for environment in settings["environments"][:1] if smoke else settings["environments"]:
-        eid = environment["environment_group_id"]; run = destination / "runs" / eid
-        operations = {o["step_id"]:o for o in rows(run / "operations.jsonl") if o.get("step_id")}
-        archive = run / "backend/raw_expanded_payloads.jsonl"; indexed = defaultdict(list)
-        for line, raw in enumerate(rows(archive), 1): indexed[raw.get("session_id")].append((line, raw))
-        lifecycle = read(run / "environment.json", {})
-        members = []
-        for planned in collector.positions(settings, smoke):
-            operation = {**planned, **operations.get(planned["step_id"], {"status":"NOT_EXECUTED", "cdp_status":"NOT_EXECUTED"})}
-            matches = indexed.get(operation.get("session_id"), [])
-            raw = matches[0][1] if len(matches) == 1 else {}
-            reference = str(archive.relative_to(ROOT)) + ":" + str(matches[0][0] if len(matches) == 1 else "missing")
-            row, bound, observation = current_row(raw, operation, reference, eid, smoke=smoke)
-            receipt = read(run / (operation["step_id"] + ".cdp.json"), {})
-            workflow = workflow_proof(bound, raw, operation, receipt, lifecycle.get("commands", []), environment=eid,
-                        run=run.relative_to(ROOT), settings=settings, smoke=smoke)
-            row["workflow_evidence"] = workflow
-            members.append({"row":row, "observation":observation, "workflow":workflow})
-            if len(members) == 3:
-                adjudicate_trio(members); result.extend(m["row"] for m in members); members = []
-    if len(result) != (6 if smoke else 72): raise ValueError("ALL_PLANNED_POSITIONS_MUST_BE_RETAINED")
-    with gzip.open(destination / "predictions.jsonl.gz", "xt") as stream:
-        for row in result: stream.write(json.dumps(row, ensure_ascii=False, allow_nan=False, separators=(",",":")) + "\n")
-    return summarize(destination, planned=6 if smoke else 72)
+def legacy_plan(settings, smoke=False):
+    try:
+        _collector().validate_settings(settings)
+        envs = settings["environments"][:1] if smoke else settings["environments"]
+        expected_envs = ["api29_swiftshader"] if smoke else ["api29_swiftshader", "api30_swiftshader", "api36_swiftshader"]
+        if [e["environment_group_id"] for e in envs] != expected_envs: raise ValueError("FIXED_ENVIRONMENTS_REQUIRED")
+        return [{"environment":e["environment_group_id"], **p} for e in envs for p in _collector().positions(settings, smoke)]
+    except (KeyError, TypeError, ValueError) as error:
+        raise evidence.EvidenceError("Invalid fixed v15 configuration: " + str(error)) from error
+
+
+def evaluate_positions(source, settings, plan, *, smoke=False, identity_prefix=None,
+                       context_prefix=None, single_workflow=None):
+    """Shared association for fixed v15 members and explicitly named v16 smoke.
+
+    Broken lines never acquire an identity from their ordinal position. Read
+    failures are reported separately from current-session feature availability.
+    """
+    source=Path(source).absolute(); all_errors=[]; result=[]; groups={}
+    if len({(p["environment"],p["step_id"]) for p in plan}) != len(plan):
+        raise evidence.EvidenceError("DUPLICATED_PREDEFINED_MEMBER")
+    env_ids=list(dict.fromkeys(p["environment"] for p in plan))
+    raw_cache={eid:evidence.read_jsonl(evidence.archive_path(source/"runs"/eid)) for eid in env_ids}
+    global_sessions=defaultdict(set)
+    for eid,loaded in raw_cache.items():
+        for r in loaded.records:
+            sid=r["value"].get("session_id")
+            if evidence.identifier(sid):global_sessions[sid].add(eid)
+    for eid in env_ids:
+        run=source/"runs"/eid
+        ops_read=evidence.read_jsonl(run/"operations.jsonl"); operations=evidence.index_records(ops_read,"step_id")
+        archive=evidence.archive_path(run)
+        raw_read=raw_cache[eid]; indexed=evidence.index_records(raw_read,"session_id")
+        lifecycle, life_errors=evidence.read_object(run/"environment.json")
+        commands=lifecycle.get("commands")
+        if not isinstance(commands,list) or any(not isinstance(c,dict) or not isinstance(c.get("argv"),list) for c in commands):
+            life_errors.append(evidence.issue(run/"environment.json","INVALID_COMMAND_EVIDENCE"));commands=[]
+        expected_steps={p["step_id"] for p in plan if p["environment"]==eid}
+        for step, matches in operations.items():
+            if step not in expected_steps:
+                all_errors.append(evidence.issue(run/"operations.jsonl","UNPLANNED_STEP",matches[0]["line"],step))
+        session_steps=defaultdict(set)
+        for step,matches in operations.items():
+            for match in matches:
+                sid=match["value"].get("session_id")
+                if evidence.identifier(sid):session_steps[sid].add(step)
+        for sid,matches in indexed.items():
+            if sid not in session_steps:
+                for located in matches:
+                    all_errors.append(evidence.issue(archive,"UNASSOCIATED_RAW_SESSION",located["line"],sid))
+            for located in matches:
+                payload=located["value"].get("canonical_received_payload")
+                if not isinstance(payload,dict) or not evidence.identifier(payload.get("session_id")):
+                    all_errors.append(evidence.issue(archive,"RAW_PAYLOAD_IDENTITY_INVALID",located["line"],sid))
+        all_errors.extend(ops_read.errors+raw_read.errors+life_errors)
+        for planned in [p for p in plan if p["environment"]==eid]:
+            step=planned["step_id"]; local=[]; matches=operations.get(step,[])
+            operation={**planned,"status":"NOT_EXECUTED","cdp_status":"NOT_EXECUTED"}
+            operation_ref=None
+            if len(matches)==1:
+                saved=matches[0]["value"]; operation_ref=matches[0]["reference"]
+                operation.update(saved)
+                for key in ("step_id","process_type","round","phase"):
+                    if saved.get(key)!=planned[key]:local.append("OPERATION_PLANNED_IDENTITY_MISMATCH:"+key)
+                # The predetermined position is authoritative even if metadata is broken.
+                operation.update({k:planned[k] for k in ("step_id","process_type","round","phase")})
+            else: local.append("DUPLICATE_STEP_ID" if matches else "PLANNED_OPERATION_MISSING")
+            sid=operation.get("session_id")
+            if not evidence.identifier(sid):
+                if operation.get("status")!="NOT_EXECUTED":local.append("OPERATION_SESSION_ID_INVALID")
+                sid="";operation["session_id"]=""
+            if len(session_steps.get(sid,set()))>1:local.append("SESSION_SHARED_BY_MULTIPLE_STEPS")
+            if len(global_sessions.get(sid,set()))>1:local.append("CROSS_ENVIRONMENT_RAW_SESSION_CONFLICT")
+            raw_matches=indexed.get(sid,[]) if sid else []
+            raw={}; reference=evidence.reference(archive)+":missing"
+            if len(raw_matches)==1:
+                located=raw_matches[0];raw=located["value"];reference=located["reference"]
+                payload=obj(raw.get("canonical_received_payload")); manifest=obj(payload.get("collection_manifest"))
+                if not evidence.identifier(payload.get("session_id")):local.append("RAW_PAYLOAD_SESSION_ID_INVALID")
+                if (manifest.get("collector_version_code")!=settings["collector"]["version_code"]
+                        or manifest.get("collector_version_name")!=settings["collector"]["version_name"]):
+                    local.append("BATCH_COLLECTOR_IDENTITY_MISMATCH")
+            else:local.append("DUPLICATE_RAW_SESSION_ID" if raw_matches else "CURRENT_RAW_RECORD_MISSING_OR_UNREADABLE")
+            if local:raw={}
+            try:
+                row,bound,observation=current_row(raw,operation,reference,eid,smoke=smoke,identity_prefix=identity_prefix)
+            except (ValueError,TypeError,KeyError,AttributeError,OverflowError) as error:
+                local.append("RECORD_STRUCTURE_ERROR:"+type(error).__name__+":"+str(error))
+                row,bound,observation=current_row({},operation,reference,eid,smoke=smoke,identity_prefix=identity_prefix)
+            receipt_path=run/planned.get("receipt_file",step+".cdp.json")
+            receipt,receipt_errors=evidence.read_object(receipt_path); all_errors.extend(receipt_errors)
+            try:
+                if single_workflow is not None and planned.get("control") in ("default","fault"):
+                    workflow=single_workflow(bound,raw,operation,receipt,commands,planned=planned,run=run,settings=settings)
+                else:
+                    workflow=workflow_proof(bound,raw,operation,receipt,commands,environment=eid,
+                        run=Path(evidence.reference(run)),settings=settings,smoke=smoke,context_prefix=context_prefix)
+            except (ValueError,TypeError,KeyError,AttributeError,OverflowError) as error:
+                local.append("WORKFLOW_STRUCTURE_ERROR:"+type(error).__name__+":"+str(error));workflow={}
+            if local or receipt_errors or life_errors:
+                workflow.update(verified=False,current_execution_verified=False,complete_workflow_verified=False)
+                workflow["reasons"]=workflow.get("reasons",[])+local+[e["kind"] for e in receipt_errors+life_errors]
+            workflow.setdefault("operation_id",step);workflow.setdefault("session_id",sid)
+            workflow.setdefault("evidence_refs",[reference]);workflow.setdefault("reasons",[])
+            row["workflow_evidence"]=workflow
+            row["position_status"]=("NOT_EXECUTED" if operation.get("status")=="NOT_EXECUTED" and not matches else
+                "FAILED_INPUT" if local or bound.get("status")!="OK" else
+                "FAILED_EVIDENCE" if receipt_errors or life_errors or not workflow.get("verified") else "EVALUATED")
+            row["input_evidence"]={"operation_reference":operation_ref,"raw_path":str(archive.absolute()),
+                "raw_line":raw_matches[0]["line"] if len(raw_matches)==1 else None,
+                "association_errors":local,"receipt_errors":receipt_errors,"environment_errors":life_errors}
+            for reason in local:
+                all_errors.append(evidence.issue(run/"operations.jsonl","POSITION_INPUT_FAILURE",None,reason,step_id=step,environment=eid))
+            member={"row":row,"observation":observation,"workflow":workflow}
+            if planned.get("standalone"):
+                row["normal_basis"]=normal.normal_pre(observation,workflow) if planned.get("control")=="default" else {
+                    "supported":False,"kind":"engineering_fault_injection","reasons":["ENGINEERING_ONLY_EXCLUDED"]}
+                row["material_role"]="ENGINEERING_SMOKE";row["engineering_position"]=planned["control"]
+            else:groups.setdefault((eid,planned["process_type"],planned["round"]),[]).append(member)
+            result.append(row)
+    for key,members in groups.items():
+        if len(members)!=3 or [m["row"]["phase"] for m in members]!=["clean_pre","change","clean_post"]:
+            raise evidence.EvidenceError("Invalid predefined trio: "+str(key))
+        adjudicate_trio(members)
+    return result,all_errors
+
+
+def save_evaluation(destination, result, errors, planned):
+    destination=Path(destination).absolute()
+    if destination.exists() and any((destination/n).exists() for n in ("predictions.jsonl.gz","SUMMARY.json","READ_ERRORS.json")):
+        raise FileExistsError("Evaluation output exists; select a new directory")
+    destination.mkdir(parents=True,exist_ok=True)
+    with gzip.open(destination/"predictions.jsonl.gz","xt") as stream:
+        for row in result:stream.write(json.dumps(row,ensure_ascii=False,allow_nan=False,separators=(",",":"))+"\n")
+    write(destination/"READ_ERRORS.json",{"errors":errors,"error_count":len(errors),
+        "unassigned_errors":[e for e in errors if not e.get("step_id")],
+        "policy":"no ordinal recovery; unread planned members retained"})
+    summary=summary_data(result,planned)
+    summary["input_error_count"]=len(errors)
+    summary["position_status_counts"]=dict(Counter(r.get("position_status","EVALUATED") for r in result))
+    write(destination/"SUMMARY.json",summary);render_results(destination,summary,result)
+    return summary
+
+
+def evaluate(out=HERE, *, smoke=False, input_dir=None):
+    source=Path(input_dir or out).absolute()
+    settings=evidence.read_object(source/"SETTINGS.json",required=True)[0]
+    plan=legacy_plan(settings,smoke)
+    destination=Path(out)/"smoke" if smoke else Path(out)
+    data_source=source/"smoke" if smoke else source
+    if destination.resolve()==data_source.resolve():
+        raise ValueError("Evaluation requires a new output directory; historical materials are read-only")
+    result,errors=evaluate_positions(data_source,settings,plan,smoke=smoke)
+    return save_evaluation(destination,result,errors,len(plan))
 
 
 def statistics(data):
@@ -324,13 +451,25 @@ def statistics(data):
     return {"n":count, "conditions":values}
 
 
-def summarize(out=HERE, *, planned=72):
-    data = rows(out / "predictions.jsonl.gz")
-    settings = read((out.parent if planned == 6 else out) / "SETTINGS.json")
+def summarize(out=HERE, *, planned=72, input_dir=None):
+    out=Path(out).absolute();source=Path(input_dir or out).absolute()
+    data = rows(source / "predictions.jsonl.gz")
+    settings = evidence.read_object((source.parent if planned == 6 else source) / "SETTINGS.json",required=True)[0]
+    legacy_plan(settings, planned==6)
     environments = settings["environments"][:1] if planned == 6 else settings["environments"]
     expected = {(e["environment_group_id"],p["step_id"]) for e in environments for p in _collector().positions(settings, planned == 6)}
     if len(data) != planned or {(r["environment"],r["step_id"]) for r in data} != expected:
         raise ValueError("SAVED_PLANNED_MEMBERS_MISSING_OR_DUPLICATED")
+    summary=summary_data(data,planned)
+    # The old no-argument summarizer is now read-only. Explicit new output
+    # directories allow report generation without overwriting old evidence.
+    if out.resolve()!=source.resolve():
+        out.mkdir(parents=True,exist_ok=False)
+        write(out / "SUMMARY.json",summary);render_results(out,summary,data)
+    return summary
+
+
+def summary_data(data, planned):
     trios = [r["trio_evidence"] for r in data if r.get("trio_evidence")]
     normal_rows = [r for r in data if r.get("normal_basis",{}).get("supported")]
     effective = [r for r in data if r.get("observable_intervention")]
@@ -362,8 +501,6 @@ def summarize(out=HERE, *, planned=72):
         "condition_difference_rows":[r["sample_id"] for r in data if len({c["state"] for c in r["conditions"].values()})>1],
         "legacy_new_web_snapshot_difference_records":sum(bool(r["legacy_vs_geometry_web_differences"]) for r in data),
         "trios":trios}
-    write(out / "SUMMARY.json", summary)
-    render_results(out, summary, data)
     return summary
 
 
@@ -407,9 +544,9 @@ def render_results(out, summary, data):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__); parser.add_argument("command",choices=("evaluate","summarize"))
-    parser.add_argument("--output-dir",type=Path,default=HERE);parser.add_argument("--smoke",action="store_true")
+    parser.add_argument("--output-dir",type=Path,default=HERE);parser.add_argument("--input-dir",type=Path,default=HERE);parser.add_argument("--smoke",action="store_true")
     args=parser.parse_args();out=args.output_dir.resolve()
-    value=evaluate(out,smoke=args.smoke) if args.command=="evaluate" else summarize(out/"smoke" if args.smoke else out,planned=6 if args.smoke else 72)
+    value=evaluate(out,smoke=args.smoke,input_dir=args.input_dir) if args.command=="evaluate" else summarize(out/"smoke" if args.smoke else out,planned=6 if args.smoke else 72,input_dir=args.input_dir/"smoke" if args.smoke else args.input_dir)
     print(json.dumps({k:value[k] for k in ("planned_records","received_raw_records","usable_geometry_windows","trio_recovery")}))
 
 

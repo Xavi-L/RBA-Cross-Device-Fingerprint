@@ -26,8 +26,8 @@ export async function executeFlow(send,active,wait,pause=ms=>new Promise(r=>setT
   evidence.status=evidence.error||evidence.rollback_status!=='COMPLETED'?'FAILED':'COMPLETED';
   return evidence;
 }
-export async function run(base,path,active,archive,offset,context){
-  const receipt={version:'screen-only-cdp-v1',started_at:new Date().toISOString(),status:'STARTED',
+export async function run(base,path,active,archive,offset,context,options={}){
+  const receipt={version:options.version||'screen-only-cdp-v1',started_at:new Date().toISOString(),status:'STARTED',
     active_screen_override:active,parameters:active?PARAMETERS:null,commands:[]};
   fs.writeFileSync(path,JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});
   const save=()=>fs.writeFileSync(path,JSON.stringify(receipt,null,2)+'\n');let socket;
@@ -55,7 +55,7 @@ export async function run(base,path,active,archive,offset,context){
         socket.addEventListener('message',handler);socket.send(JSON.stringify(event));
       });
     }
-    Object.assign(receipt,await executeFlow(send,active,()=>waitForRaw(archive,offset,context,55)));
+    Object.assign(receipt,await (options.flow||executeFlow)(send,active,()=>waitForRaw(archive,offset,context,55)));
   }catch(error){receipt.status='FAILED';receipt.error=String(error.stack||error);}
   finally{receipt.finished_at=new Date().toISOString();save();socket?.close();}
   return receipt;
