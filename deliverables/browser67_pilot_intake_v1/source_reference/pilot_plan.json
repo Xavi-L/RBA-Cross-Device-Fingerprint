@@ -1,0 +1,62 @@
+{
+  "schema_version": "browser67-paired-pilot-plan-v1",
+  "preregistered_at": "2026-10-04",
+  "source_commit": "a16ba9dea3078a66b4e8e4338d00d9dd9df9893b",
+  "device_manifest_id": "local-run-template",
+  "serial": "DEVICE_SERIAL_REQUIRED",
+  "browser_package": "com.android.chrome",
+  "app_package": "com.example.hybridguard.featureapp",
+  "app_activity": "com.example.hybridguard.featureapp/.MainActivity",
+  "static_origin": "http://127.0.0.1:8001",
+  "collect_endpoint": "http://127.0.0.1:8000/api/collect/fingerprint",
+  "cdp_origin": "http://127.0.0.1:9340",
+  "debug_wait_ms": 30000,
+  "collection_wait_ms": 60000,
+  "rounds_per_configuration": 3,
+  "stage_order": [
+    "clean_pre",
+    "attack_active",
+    "clean_post"
+  ],
+  "planned_stage_count": 18,
+  "controls": [
+    {
+      "configuration_id": "language_fr",
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "Object.defineProperty(navigator, 'language', {get: () => 'fr-FR', configurable: true}); Object.defineProperty(navigator, 'languages', {get: () => ['fr-FR'], configurable: true});",
+        "returnByValue": true
+      },
+      "restoration": {
+        "expression": "delete navigator.language; delete navigator.languages;",
+        "returnByValue": true
+      },
+      "expected": {
+        "language": "fr-FR",
+        "languages": [
+          "fr-FR"
+        ]
+      }
+    },
+    {
+      "configuration_id": "timezone_tokyo",
+      "method": "Emulation.setTimezoneOverride",
+      "params": {
+        "timezoneId": "Asia/Tokyo"
+      },
+      "expected": {
+        "timezone_id": "Asia/Tokyo",
+        "timezone_offset": -540
+      }
+    }
+  ],
+  "scope": "Own API36 emulator only; browser controls only; original App/WebView and browser payloads archived by upstream backend.",
+  "sampling": "Fixed pilot of two configurations, three clean/active/post rounds each. No retries or tuning; failed and skipped stages remain in the planned denominator.",
+  "pairing": "App issues the ticket and launches Chrome. New ticket event selects the exact pair; original App runtime_context and collection_round bind to session; completed provenance and both raw archives must match exactly.",
+  "gate": "Hold the original deferred browser-probe-adapter.js response. HTML, bootstrap and canonical core are served byte-for-byte first, so the real page realm is committed while adapter execution and DOMContentLoaded remain blocked. Install current-realm controls before releasing the identical adapter bytes. Core language/timezone reads occur within collect(), not module initialization. All static file paths are constrained to the public directory.",
+  "restoration": "Delete the two language own-property overrides or reset timezone after a completed stage; close the exact probe target and require success=true, then force-stop Chrome and App before next stage. Record restoration commands. On an incomplete pair abort remaining slots and record them skipped without stopping App.",
+  "engineering_attempt": "Public configuration template. Set a private device serial and a fresh neutral run identity before any capture; archived pilot_r8 measurements and source locks remain private.",
+  "interpretation": "Pilot validates pairing, controlled observations and restoration, not population statistics or the old App177 denominator. Labels and control methods exist only in external plan/ledger.",
+  "canonical_probe_sha256": "a747c8cfc0ca916c02071e632da476bbbf60983bfbd46dcd25ef6bdfb16f3412",
+  "publication_role": "configuration_template_not_archived_measured_plan"
+}

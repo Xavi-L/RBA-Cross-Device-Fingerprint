@@ -1,0 +1,1314 @@
+{
+  "catalog_version": "mtc-p3-finite-templates-v1",
+  "declared_at_utc": "2026-09-22T12:02:51.171649+00:00",
+  "candidates": [
+    {
+      "candidate_id": "P3-X-TIMEZONE-ID",
+      "version": "2.0.1",
+      "family": "XENV",
+      "dependencies": [
+        "app.web_data.execution_layer.timezone_id",
+        "browser.web_data.execution_layer.timezone_id"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "timezone aliases, per-container settings, capture time",
+      "official_source_ids": [],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-TIMEZONE-OFFSET",
+      "version": "2.0.1",
+      "family": "XENV",
+      "dependencies": [
+        "app.web_data.execution_layer.timezone_offset",
+        "browser.web_data.execution_layer.timezone_offset"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "DST boundary or time/settings changes between captures",
+      "official_source_ids": [],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-LANGUAGE",
+      "version": "2.0.1",
+      "family": "XENV",
+      "dependencies": [
+        "app.web_data.navigator_layer.language",
+        "browser.web_data.navigator_layer.language"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "per-app and browser language preferences",
+      "official_source_ids": [],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-LANGUAGES",
+      "version": "2.0.1",
+      "family": "XENV",
+      "dependencies": [
+        "app.web_data.navigator_layer.languages",
+        "browser.web_data.navigator_layer.languages"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "ordered preference list can differ between containers",
+      "official_source_ids": [],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-TOUCH",
+      "version": "2.0.1",
+      "family": "XENV",
+      "dependencies": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "browser.web_data.navigator_layer.max_touch_points"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "browser exposure/privacy/input device differences",
+      "official_source_ids": [],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-PLATFORM",
+      "version": "2.0.1",
+      "family": "XENV",
+      "dependencies": [
+        "app.web_data.navigator_layer.platform",
+        "browser.web_data.navigator_layer.platform"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "legacy platform exposure is user-agent dependent",
+      "official_source_ids": [],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-CORES",
+      "version": "2.0.1",
+      "family": "MEM",
+      "dependencies": [
+        "app.web_data.navigator_layer.hardware_concurrency",
+        "browser.web_data.navigator_layer.hardware_concurrency"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "privacy caps and logical processor availability; 0 is sentinel",
+      "official_source_ids": [
+        "whatwg-hardware-concurrency",
+        "w3c-device-memory",
+        "android-memory-info"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-MEMORY",
+      "version": "2.0.1",
+      "family": "MEM",
+      "dependencies": [
+        "app.web_data.navigator_layer.device_memory",
+        "browser.web_data.navigator_layer.device_memory"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "implementation-defined approximation and caps; 0 is sentinel",
+      "official_source_ids": [
+        "whatwg-hardware-concurrency",
+        "w3c-device-memory",
+        "android-memory-info"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-DPR",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "zoom, density and per-container window configuration",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-COLOR",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "app.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.color_depth"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "browser screen exposure/privacy differences",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-GPU-VENDOR",
+      "version": "2.0.1",
+      "family": "GPU",
+      "dependencies": [
+        "app.web_data.graphics_layer.webgl_vendor",
+        "browser.web_data.graphics_layer.webgl_vendor"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "ANGLE wrappers, privacy and different graphics backends",
+      "official_source_ids": [
+        "khronos-webgl-renderer-info"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-GPU-RENDERER",
+      "version": "2.0.1",
+      "family": "GPU",
+      "dependencies": [
+        "app.web_data.graphics_layer.webgl_renderer",
+        "browser.web_data.graphics_layer.webgl_renderer"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "ANGLE wrappers, privacy and different graphics backends",
+      "official_source_ids": [
+        "khronos-webgl-renderer-info"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-CANVAS",
+      "version": "2.0.1",
+      "family": "HASH",
+      "dependencies": [
+        "app.web_data.graphics_layer.canvas_hash",
+        "browser.web_data.graphics_layer.canvas_hash"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "different rendering kernels/fonts; equality is not required",
+      "official_source_ids": [
+        "w3c-web-audio-privacy",
+        "whatwg-navigator-plugins"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-AUDIO-HASH",
+      "version": "2.0.1",
+      "family": "HASH",
+      "dependencies": [
+        "app.web_data.audio_layer.audio_hash",
+        "browser.web_data.audio_layer.audio_hash"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "kernel and audio path differences; equality is not required",
+      "official_source_ids": [
+        "w3c-web-audio-privacy",
+        "whatwg-navigator-plugins"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-AUDIO-RATE",
+      "version": "2.0.1",
+      "family": "HASH",
+      "dependencies": [
+        "app.web_data.audio_layer.audio_sample_rate",
+        "browser.web_data.audio_layer.audio_sample_rate"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "audio output device and context configuration differ",
+      "official_source_ids": [
+        "w3c-web-audio-privacy",
+        "whatwg-navigator-plugins"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-FONT",
+      "version": "2.0.1",
+      "family": "HASH",
+      "dependencies": [
+        "app.web_data.font_layer.available_font_hash",
+        "browser.web_data.font_layer.available_font_hash"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "font set and measurement differences between engines",
+      "official_source_ids": [
+        "w3c-web-audio-privacy",
+        "whatwg-navigator-plugins"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-PLUGIN",
+      "version": "2.0.1",
+      "family": "HASH",
+      "dependencies": [
+        "app.web_data.automation_surface_layer.plugins_hash",
+        "browser.web_data.automation_surface_layer.plugins_hash"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "empty/synthetic plugin inventory is not hardware identity",
+      "official_source_ids": [
+        "w3c-web-audio-privacy",
+        "whatwg-navigator-plugins"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-MIME",
+      "version": "2.0.1",
+      "family": "HASH",
+      "dependencies": [
+        "app.web_data.automation_surface_layer.mime_types_hash",
+        "browser.web_data.automation_surface_layer.mime_types_hash"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "empty/synthetic MIME inventory is not hardware identity",
+      "official_source_ids": [
+        "w3c-web-audio-privacy",
+        "whatwg-navigator-plugins"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-X-SCREEN-SIZE",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "predicate": "dimension_equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "orientation normalized only; multiwindow and screen exposure can differ",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-OS-APP",
+      "version": "2.0.1",
+      "family": "OS",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "android_major_equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "naive equality ignores UA reduction/custom UA; diagnostic only",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SCREEN-APP",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate": "screen_short_side",
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      },
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-COLOR-APP",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "CSSOM screen exposure relation, not independent hardware evidence",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-OS-BROWSER",
+      "version": "2.0.1",
+      "family": "OS",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "android_major_equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "descriptive_only",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "naive equality ignores UA reduction/custom UA; diagnostic only",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SCREEN-BROWSER",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "browser.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate": "screen_short_side",
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      },
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-COLOR-BROWSER",
+      "version": "2.0.1",
+      "family": "SCREEN",
+      "dependencies": [
+        "browser.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.pixel_depth"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "CSSOM screen exposure relation, not independent hardware evidence",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-UA-REDUCED-BROWSER",
+      "version": "2.0.1",
+      "family": "OS",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "browser_android_compatible",
+      "parameters": {
+        "reduced_chrome_min_major": 107,
+        "reduced_android_token": 10
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "Chrome Android >=107 reduced Android 10 token is compatible, not actual OS recovery; customized UA can still violate",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-UA-DEFAULT",
+      "version": "2.0.1",
+      "family": "OS",
+      "dependencies": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "host configuration and JS navigator UA can differ; no universal equality guarantee",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-UA-SETTINGS",
+      "version": "2.0.1",
+      "family": "OS",
+      "dependencies": [
+        "app.webview_data.webview_settings_layer.settings_user_agent",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "device_mined_rule",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "host configuration and JS navigator UA can differ; no universal equality guarantee",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-PROVIDER-PARSE",
+      "version": "2.0.1",
+      "family": "OS",
+      "dependencies": [
+        "app.webview_data.kernel_container_layer.webview_provider_version",
+        "app.webview_data.kernel_container_layer.webview_provider_major"
+      ],
+      "predicate": "provider_parse",
+      "parameters": {},
+      "source_lane": "collector_derived_consistency",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "major is parsed from version by this collector; duplicate derivation, not new detection power",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-GPU-COPY",
+      "version": "2.0.1",
+      "family": "GPU",
+      "dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "source_lane": "collector_derived_consistency",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "both copy one glRenderer value; tautological collector consistency",
+      "official_source_ids": [
+        "khronos-webgl-renderer-info"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-MEM-AVAILABLE",
+      "version": "2.0.1",
+      "family": "MEM",
+      "dependencies": [
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.total_memory_gb"
+      ],
+      "predicate": "less_equal",
+      "parameters": {},
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "same MemoryInfo snapshot, GB units; this is memory accounting, not identity",
+      "official_source_ids": [
+        "whatwg-hardware-concurrency",
+        "w3c-device-memory",
+        "android-memory-info"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-NAME_COUNT",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate": "less_equal",
+      "parameters": {},
+      "source_lane": "collector_derived_consistency",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "distinct subset count cannot exceed source list count",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-VENDOR_COUNT",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate": "less_equal",
+      "parameters": {},
+      "source_lane": "collector_derived_consistency",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "distinct subset count cannot exceed source list count",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-TYPE-COUNT",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate": "list_count",
+      "parameters": {},
+      "source_lane": "collector_derived_consistency",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "collector returns distinct sorted type list; same-list derivation",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-TYPE-ORDER",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sorted_unique",
+      "parameters": {},
+      "source_lane": "collector_derived_consistency",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "collector implementation invariant, not independent evidence",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-ACCELEROMETER",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 1
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-MAGNETIC_FIELD",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 2
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-GYROSCOPE",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 4
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-LIGHT_SENSOR",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 5
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-PRESSURE_SENSOR",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 6
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-PROXIMITY_SENSOR",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 8
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-GRAVITY_SENSOR",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 9
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-ROTATION_VECTOR",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 11
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-STEP_DETECTOR",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 18
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    },
+    {
+      "candidate_id": "P3-SENSOR-STEP_COUNTER",
+      "version": "2.0.1",
+      "family": "SENSOR",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 19
+      },
+      "source_lane": "official_derived_semantic_rule",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "support_scope": "global_empirical",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "standalone_attack_decision": false,
+      "runtime_integration": "NOT_INTEGRATED_P4_REQUIRED",
+      "local_source_paths": [
+        "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+        "android_app/HybridGuard/featureapp/src/main/java/com/example/hybridguard/featureapp/ExpandedFingerprintCollector.kt",
+        "web_probe/canonical_web_probe.js"
+      ],
+      "units_and_normalization": "screen_short_side: native reported pixel short side / DPR versus CSS short side; absolute 1 CSS px tolerance. dimension_equal sorts axes only. Other equalities preserve exact strings/array order and numerical equality; booleans never equal numbers. Memory operands GB; timezone operands minutes; sensor operands integer counts/types. No imputation.",
+      "execution_test": "hybridguard_agent.tests.test_mtc_p3_candidates"
+    }
+  ],
+  "implementation_revision": "2.0.1 Native OS parser accepts collector Android prefix; original templates and numeric parameters unchanged"
+}

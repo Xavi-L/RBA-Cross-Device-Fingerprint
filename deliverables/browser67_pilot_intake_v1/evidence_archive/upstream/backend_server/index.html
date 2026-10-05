@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HybridGuard RBA 跨端风控探针</title>
+    <style>
+        /* 苹果风格的色彩与变量系统 */
+        :root {
+            --system-bg: #F5F5F7;        
+            --card-bg: #FFFFFF;          
+            --text-main: #1D1D1F;        
+            --text-secondary: #86868B;   
+            --accent-blue: #0071E3;      
+            --success-green: #34C759;    
+            --danger-red: #FF3B30;       
+            --border-color: #D2D2D7;     
+            
+            --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace;
+        }
+        
+        body {
+            background-color: var(--system-bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            margin: 0;
+            /* 核心修改：顶部增加 60px 的基础边距，并适配刘海屏安全区域 */
+            padding: max(60px, env(safe-area-inset-top) + 20px) 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 0 24px 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .radar {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+            margin-right: 16px;
+            box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.4);
+            animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+
+        @keyframes pulse {
+            to { box-shadow: 0 0 0 12px rgba(0, 113, 227, 0); }
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .status-panel {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .status-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+        }
+
+        .canvas-container {
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background: var(--system-bg);
+            border: 1px solid var(--border-color);
+            display: inline-block;
+        }
+
+        .terminal {
+            background: var(--card-bg);
+            border-radius: 16px;
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+            color: #333336;
+        }
+
+        .terminal p {
+            margin: 0 0 6px 0;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards ease-in-out;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .terminal p::before {
+            content: "❯";
+            position: absolute;
+            left: 0;
+            color: var(--border-color);
+            font-size: 0.8rem;
+        }
+
+        .highlight { color: var(--accent-blue); font-weight: 600; }
+        .success { color: var(--success-green); }
+        .danger { color: var(--danger-red); }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(4px); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: #C1C1C1; 
+            border-radius: 4px; 
+            border: 2px solid var(--card-bg);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #A8A8A8; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="radar"></div>
+        <div>
+            <h2>HybridGuard RBA Engine</h2>
+            <div class="subtitle">CROSS-DEVICE FINGERPRINT PROBE v2.0</div>
+        </div>
+    </div>
+
+    <div class="status-panel">
+        <div class="status-text" id="main-status">SYSTEM STATUS: INITIALIZING SECURITY PROBE...</div>
+        <div class="canvas-container" id="canvas-box" style="display: none;">
+            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">CANVAS RENDER MATRIX</div>
+        </div>
+    </div>
+
+    <div class="terminal" id="log"></div>
+</div>
+
+    <script>
+        // --- 酷炫的打字机日志输出系统 ---
+        const terminal = document.getElementById('log');
+        const mainStatus = document.getElementById('main-status');
+
+        function updateStatus(msg) {
+            mainStatus.innerHTML = `System Status:&nbsp;<span class="highlight">${msg}</span>`;
+        }
+
+        function logMsg(msg, type = 'normal') {
+            const p = document.createElement('p');
+            if (type === 'success') p.className = 'success';
+            else if (type === 'danger') p.className = 'danger';
+            
+            let formattedMsg = msg.replace(/(\d+(\.\d+)?\s*(ms|GB)?)/g, '<span class="highlight">$1</span>');
+            p.innerHTML = formattedMsg;
+            
+            terminal.appendChild(p);
+            terminal.scrollTop = terminal.scrollHeight;
+            console.log(msg);
+        }
+
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        function getWebGLInfo() {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            let vendor = "Unknown";
+            let renderer = "Unknown";
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                if (debugInfo) {
+                    vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                }
+            }
+            return { vendor, renderer };
+        }
+
+        function getAdvancedWebFeatures() {
+            const features = {};
+            try {
+                features.color_depth = screen.colorDepth || 0;
+                features.pixel_depth = screen.pixelDepth || 0;
+                features.avail_width = screen.availWidth || 0;
+                features.avail_height = screen.availHeight || 0;
+                features.hardware_concurrency = navigator.hardwareConcurrency || 0; 
+                features.device_memory = navigator.deviceMemory || 0; 
+                features.max_touch_points = navigator.maxTouchPoints || 0; 
+                features.language = navigator.language || "";
+                features.platform = navigator.platform || "";
+                features.timezone_offset = new Date().getTimezoneOffset();
+                
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const extensions = gl.getSupportedExtensions();
+                    features.webgl_extensions_count = extensions ? extensions.length : 0; 
+                }
+            } catch (e) { console.error(e); }
+            return features;
+        }
+
+        function runComputeChallenge() {
+            const startTime = performance.now();
+            let result = 0;
+            for (let i = 0; i < 5000000; i++) {
+                result += Math.sin(i) * Math.cos(i) + Math.tan(i % 100);
+            }
+            return { time_ms: parseFloat((performance.now() - startTime).toFixed(2)) };
+        }
+
+        async function getCanvasFingerprint() {
+            return new Promise((resolve) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 250; canvas.height = 50;
+                const ctx = canvas.getContext('2d');
+
+                ctx.textBaseline = "top";
+                ctx.font = "14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+                
+                // 顺手帮你把 Canvas 画布里的颜色也改柔和了，更贴合整体风格
+                ctx.fillStyle = "rgba(0, 113, 227, 0.2)"; // 替换了原来的高饱和橙色，改为柔和的淡蓝色
+                ctx.fillRect(125, 1, 62, 20);
+
+                ctx.fillStyle = "rgba(29, 29, 31, 0.8)"; // 替换了深蓝色，改为深灰色
+                ctx.fillText("HybridGuard 2026", 2, 15);
+                ctx.fillStyle = "rgba(52, 199, 89, 0.5)"; // 替换了亮绿色，改为苹果标准绿(带透明度)
+                ctx.fillText("HybridGuard 2026", 4, 17);
+
+                ctx.font = "20px -apple-system";
+                ctx.fillText("👾🤖", 180, 10);
+
+                document.getElementById('canvas-box').style.display = 'block';
+                document.getElementById('canvas-box').appendChild(canvas);
+
+                const dataURL = canvas.toDataURL();
+                resolve(sha256(dataURL));
+            });
+        }
+
+        async function collectAndSend() {
+            updateStatus("Establishing JSBridge Connection...");
+            await sleep(500);
+
+            let currentSessionId = "fallback-web-" + Date.now();
+            let jsbridge_injected = false;
+            let bridge_latency_ms = 0.0;
+            let securityData = {};
+
+            if (window.AndroidBridge && window.AndroidBridge.getSessionId) {
+                jsbridge_injected = true;
+                try {
+                    const t0 = performance.now();
+                    currentSessionId = window.AndroidBridge.getSessionId();
+                    const t1 = performance.now();
+                    bridge_latency_ms = parseFloat((t1 - t0).toFixed(3));
+                    logMsg(`[JSBridge] 连接建立成功，链路延迟: ${bridge_latency_ms} ms`, 'success');
+
+                    if (window.AndroidBridge.getWebViewSecurityFeatures) {
+                        securityData = JSON.parse(window.AndroidBridge.getWebViewSecurityFeatures());
+                        logMsg("[Container] 已提取沙箱级环境特征矩阵 (20+ Vectors)");
+                    }
+                } catch (e) { logMsg("[JSBridge] 异常拦截!", "danger"); }
+            } else {
+                logMsg("[Warning] 纯净 Web 环境，未检测到注入沙箱", "danger");
+            }
+
+            const webviewDataNested = {
+                bridge_routing_layer: {
+                    jsbridge_injected: jsbridge_injected,
+                    bridge_latency_ms: bridge_latency_ms
+                },
+                kernel_container_layer: {
+                    webview_provider_package: securityData.webview_provider_package,
+                    webview_provider_version: securityData.webview_provider_version,
+                    webview_provider_version_code: securityData.webview_provider_version_code,
+                    system_http_agent: securityData.system_http_agent || securityData.default_ua_native
+                },
+                host_security_layer: {
+                    is_debuggable: securityData.is_debuggable,
+                    app_package_name: securityData.app_package_name,
+                    installer_package: securityData.installer_package,
+                    is_cleartext_traffic_permitted: securityData.is_cleartext_traffic_permitted
+                },
+                temporal_build_layer: {
+                    first_install_time: securityData.first_install_time,
+                    last_update_time: securityData.last_update_time,
+                    target_sdk_version: securityData.target_sdk_version,
+                    min_sdk_version: securityData.min_sdk_version
+                }
+            };
+            if (securityData.error_msg) {
+                webviewDataNested.exception_layer = { error_msg: securityData.error_msg };
+            }
+
+            updateStatus("Extracting Browser Fingerprints...");
+            await sleep(600);
+            
+            logMsg(`[Navigator] User-Agent: ${navigator.userAgent.substring(0, 40)}...`);
+            logMsg(`[Screen] 逻辑分辨率: ${window.screen.width}x${window.screen.height} DPR: ${window.devicePixelRatio||1}`);
+            
+            const webglInfo = getWebGLInfo();
+            logMsg(`[GPU] WebGL 渲染引擎探测: ${webglInfo.renderer}`);
+
+            updateStatus("Running Crypto & Compute Tasks...");
+            await sleep(500);
+
+            const challenge = runComputeChallenge();
+            logMsg(`[Compute] CPU 算力挑战完成，耗时: ${challenge.time_ms} ms`, 'success');
+
+            const canvasHash = await getCanvasFingerprint();
+            logMsg(`[Render] Canvas 像素级哈希生成: ${canvasHash.substring(0, 16)}...`, 'success');
+
+            const advancedFeatures = getAdvancedWebFeatures();
+            logMsg(`[Metrics] 已提取前端扩展特征群 (40+ Vectors)`);
+
+            const webDataNested = {
+                navigator_layer: {
+                    user_agent: navigator.userAgent,
+                    language: advancedFeatures.language,
+                    platform: advancedFeatures.platform,
+                    hardware_concurrency: advancedFeatures.hardware_concurrency,
+                    device_memory: advancedFeatures.device_memory,
+                    max_touch_points: advancedFeatures.max_touch_points
+                },
+                screen_layer: {
+                    screen_resolution_logical: `${window.screen.width}x${window.screen.height}`,
+                    device_pixel_ratio: window.devicePixelRatio || 1,
+                    color_depth: advancedFeatures.color_depth,
+                    pixel_depth: advancedFeatures.pixel_depth,
+                    avail_width: advancedFeatures.avail_width,
+                    avail_height: advancedFeatures.avail_height
+                },
+                graphics_layer: {
+                    webgl_vendor: webglInfo.vendor,
+                    webgl_renderer: webglInfo.renderer,
+                    webgl_extensions_count: advancedFeatures.webgl_extensions_count,
+                    canvas_hash: canvasHash
+                },
+                execution_layer: {
+                    compute_task_time_ms: challenge.time_ms,
+                    timezone_offset: advancedFeatures.timezone_offset
+                }
+            };
+
+            const payload = {
+                session_id: currentSessionId, 
+                timestamp: Math.floor(Date.now() / 1000),
+                webview_data: webviewDataNested, 
+                web_data: webDataNested
+            };
+
+            updateStatus("Uploading to RBA Engine...");
+            logMsg("========================================");
+            logMsg(" 准备跨端数据会师，向 FastAPI 传输负载包...");
+
+            try {
+                const response = await fetch('/api/collect/fingerprint', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true' 
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    logMsg(" [HTTP 200] 传输成功！大模型风控分析已就绪。", "success");
+                    updateStatus("Scan Complete. Awaiting AI Decision.");
+                } else {
+                    logMsg(` [HTTP ${response.status}] 传输失败`, "danger");
+                }
+            } catch (error) {
+                logMsg(" 探针离线，请检查后端网络环境", "danger");
+            }
+        }
+
+        window.onload = collectAndSend;
+    </script>
+</body>
+</html>

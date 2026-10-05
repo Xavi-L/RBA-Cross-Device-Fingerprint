@@ -1,0 +1,644 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formal_manipulation_long_tables_v2",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/predictions"
+    },
+    {
+      "$ref": "#/$defs/rule_events"
+    },
+    {
+      "$ref": "#/$defs/failures"
+    },
+    {
+      "$ref": "#/$defs/abstentions"
+    },
+    {
+      "$ref": "#/$defs/runtime_records"
+    }
+  ],
+  "$defs": {
+    "predictions": {
+      "type": "object",
+      "properties": {
+        "study_version": {
+          "const": "formal-manipulation-v1"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "protocol_digest": {
+          "type": "string"
+        },
+        "opaque_id": {
+          "type": "string"
+        },
+        "variant_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "input_view": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "formal-prediction-v2"
+        },
+        "contract_version": {
+          "const": "formal-manipulation-relation-risk-attribution-v2"
+        },
+        "policy_version": {
+          "const": "formal-manipulation-family-or-v2"
+        },
+        "adapter_version": {
+          "const": "app177-triplet-adapter-v1"
+        },
+        "execution_status": {
+          "enum": [
+            "COMPLETED",
+            "FAILED"
+          ]
+        },
+        "risk": {
+          "type": "object",
+          "properties": {
+            "decision_schema_version": {
+              "const": "manipulation-decision-v2"
+            },
+            "contract_version": {
+              "const": "formal-manipulation-relation-risk-attribution-v2"
+            },
+            "policy_version": {
+              "const": "formal-manipulation-family-or-v2"
+            },
+            "research_scope_id": {
+              "const": "featureapp-reported-identity-coherence-research-v2"
+            },
+            "decision": {
+              "enum": [
+                "MANIPULATION_ALERT",
+                "NO_ALERT",
+                "INSUFFICIENT_EVIDENCE",
+                "FAILED"
+              ]
+            },
+            "alert_score": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "score_meaning": {
+              "const": "count_of_distinct_qualifying_conflict_families_not_probability"
+            },
+            "threshold": {
+              "const": 1
+            },
+            "reason_codes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "eligible_family_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "eligible_family_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "evaluated_family_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evaluated_family_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "triggered_family_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "unavailable_family_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "partial_coverage": {
+              "type": "boolean"
+            },
+            "family_coverage": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verification_valid": {
+              "type": "boolean"
+            },
+            "calibrated_attack_probability": {
+              "const": null
+            },
+            "attribution_certainty": {
+              "const": {
+                "status": "UNKNOWN",
+                "reason": "current_fields_do_not_prove_authorization_attack_or_intent",
+                "attack_proven": false,
+                "calibrated_attack_probability": null
+              }
+            },
+            "attack_classification": {
+              "const": "NOT_EVALUATED"
+            },
+            "claim_boundary": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "decision_schema_version",
+            "contract_version",
+            "policy_version",
+            "research_scope_id",
+            "decision",
+            "alert_score",
+            "score_meaning",
+            "threshold",
+            "reason_codes",
+            "eligible_family_count",
+            "eligible_family_ids",
+            "evaluated_family_count",
+            "evaluated_family_ids",
+            "triggered_family_ids",
+            "unavailable_family_ids",
+            "partial_coverage",
+            "family_coverage",
+            "verification_valid",
+            "calibrated_attack_probability",
+            "attribution_certainty",
+            "attack_classification",
+            "claim_boundary"
+          ],
+          "additionalProperties": false
+        },
+        "timings_ms": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "catalog_version": {
+          "type": "string"
+        },
+        "runtime_adapter_version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_version",
+        "run_id",
+        "protocol_digest",
+        "opaque_id",
+        "variant_id",
+        "condition_id",
+        "input_view",
+        "method",
+        "schema_version",
+        "contract_version",
+        "policy_version",
+        "adapter_version",
+        "execution_status",
+        "risk",
+        "timings_ms",
+        "catalog_version",
+        "runtime_adapter_version"
+      ],
+      "additionalProperties": false
+    },
+    "rule_events": {
+      "type": "object",
+      "properties": {
+        "study_version": {
+          "const": "formal-manipulation-v1"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "protocol_digest": {
+          "type": "string"
+        },
+        "opaque_id": {
+          "type": "string"
+        },
+        "variant_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "input_view": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "formal-rule-event-v2"
+        },
+        "rule_id": {
+          "type": "string"
+        },
+        "catalog_status": {
+          "type": "string"
+        },
+        "source_condition_included": {
+          "type": "boolean"
+        },
+        "original_outcome": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "original_result": {
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "original_outcome_recorded": {
+          "type": "boolean"
+        },
+        "original_source_lane": {
+          "type": "string"
+        },
+        "provenance_group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "original_evidence_family": {
+          "type": "string"
+        },
+        "decision_family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decision_role": {
+          "type": "string"
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "used_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "additional_risk_required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "field_states": {
+          "type": "object"
+        },
+        "relation_applicability": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "SUPPORTED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "risk_candidate_eligibility": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "ELIGIBLE",
+                "NOT_ELIGIBLE",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "attribution_certainty": {
+          "const": {
+            "status": "UNKNOWN",
+            "reason": "current_fields_do_not_prove_authorization_attack_or_intent",
+            "attack_proven": false,
+            "calibrated_attack_probability": null
+          }
+        },
+        "participates_in_risk": {
+          "type": "boolean"
+        },
+        "triggers_family": {
+          "type": "boolean"
+        },
+        "participation_reason": {
+          "type": "string"
+        },
+        "verification_valid": {
+          "type": "boolean"
+        },
+        "contract_version": {
+          "const": "formal-manipulation-relation-risk-attribution-v2"
+        }
+      },
+      "required": [
+        "study_version",
+        "run_id",
+        "protocol_digest",
+        "opaque_id",
+        "variant_id",
+        "condition_id",
+        "input_view",
+        "method",
+        "schema_version",
+        "rule_id",
+        "catalog_status",
+        "source_condition_included",
+        "original_outcome",
+        "original_result",
+        "original_outcome_recorded",
+        "original_source_lane",
+        "provenance_group",
+        "original_evidence_family",
+        "decision_family",
+        "decision_role",
+        "required_fields",
+        "used_fields",
+        "additional_risk_required_fields",
+        "field_states",
+        "relation_applicability",
+        "risk_candidate_eligibility",
+        "attribution_certainty",
+        "participates_in_risk",
+        "triggers_family",
+        "participation_reason",
+        "verification_valid",
+        "contract_version"
+      ],
+      "additionalProperties": false
+    },
+    "failures": {
+      "type": "object",
+      "properties": {
+        "study_version": {
+          "const": "formal-manipulation-v1"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "protocol_digest": {
+          "type": "string"
+        },
+        "opaque_id": {
+          "type": "string"
+        },
+        "variant_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "input_view": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "formal-failure-v2"
+        },
+        "stage": {
+          "type": "string"
+        },
+        "error_type": {
+          "type": "string"
+        },
+        "reason_code": {
+          "type": "string"
+        },
+        "retry_of": {
+          "const": null
+        },
+        "prediction_status_row_saved": {
+          "const": true
+        }
+      },
+      "required": [
+        "study_version",
+        "run_id",
+        "protocol_digest",
+        "opaque_id",
+        "variant_id",
+        "condition_id",
+        "input_view",
+        "method",
+        "schema_version",
+        "stage",
+        "error_type",
+        "reason_code",
+        "retry_of",
+        "prediction_status_row_saved"
+      ],
+      "additionalProperties": false
+    },
+    "abstentions": {
+      "type": "object",
+      "properties": {
+        "study_version": {
+          "const": "formal-manipulation-v1"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "protocol_digest": {
+          "type": "string"
+        },
+        "opaque_id": {
+          "type": "string"
+        },
+        "variant_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "input_view": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "formal-abstention-v2"
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unavailable_family_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "study_version",
+        "run_id",
+        "protocol_digest",
+        "opaque_id",
+        "variant_id",
+        "condition_id",
+        "input_view",
+        "method",
+        "schema_version",
+        "reason_codes",
+        "unavailable_family_ids"
+      ],
+      "additionalProperties": false
+    },
+    "runtime_records": {
+      "type": "object",
+      "properties": {
+        "study_version": {
+          "const": "formal-manipulation-v1"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "protocol_digest": {
+          "type": "string"
+        },
+        "opaque_id": {
+          "type": "string"
+        },
+        "variant_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "input_view": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "formal-runtime-record-v2"
+        },
+        "runtime": {
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "risk_verification": {
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "study_version",
+        "run_id",
+        "protocol_digest",
+        "opaque_id",
+        "variant_id",
+        "condition_id",
+        "input_view",
+        "method",
+        "schema_version",
+        "runtime",
+        "risk_verification"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "access_policy_ref": "evaluation_access_policy.json",
+  "attribution": "UNKNOWN_NOT_ATTACK_PROOF",
+  "calibrated_attack_probability": null,
+  "candidate_families": 5,
+  "candidate_family_ids": [
+    "app_os",
+    "host_os",
+    "model_app_ua",
+    "model_system_agent",
+    "native_app_gpu_family"
+  ],
+  "candidate_rule_ids": [
+    "NVW-001",
+    "NVW-002",
+    "NW-001",
+    "NW-002",
+    "NW-005",
+    "OFFDER-OS-001",
+    "OFFDER-OS-002"
+  ],
+  "candidate_rules": 7,
+  "code_commit": "f00e699d2763afed5369774f01e5a0f632d8f5c6",
+  "collection_started": false,
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "denominators_ref": "evaluation/task_denominators.json",
+  "diagnostic_spec_ref": "diagnostic_spec.json",
+  "evaluation_index_ref": "evaluation/evaluation_index.jsonl",
+  "execution_authorization": {
+    "S05": "STATIC_FREEZE_ONLY",
+    "S06_S12": "PENDING_SEPARATE_USER_AUTHORIZATION",
+    "formal_execution_authorized": false
+  },
+  "expected_unit_counts": {
+    "diagnostic_unit_count": 480,
+    "risk_unique_unit_count": 2854,
+    "risk_variant_count": 13,
+    "synthetic_risk_unit_count": 49,
+    "timing_unit_count": 1152
+  },
+  "expected_unit_files": [
+    "expected_units.jsonl",
+    "diagnostic_expected_units.jsonl",
+    "synthetic_expected_units.jsonl",
+    "timing_expected_units.jsonl"
+  ],
+  "figure_spec_ref": "figure_spec.json",
+  "formal_metrics": "NOT_EVALUATED",
+  "formal_predictions_created_in_S05": 0,
+  "frozen_at": "2026-09-23T16:40:18.530204+00:00",
+  "frozen_policy_ref": "frozen_sources/hybridguard_agent/config/formal_manipulation_policy_v2/decision_policy.json",
+  "frozen_role_gate_config_ref": "frozen_sources/hybridguard_agent/config/formal_manipulation_role_gate_v2",
+  "input_ref": "blind/inputs.jsonl",
+  "metric_spec_ref": "metric_spec.json",
+  "model_calls": 0,
+  "mutability": "Immutable snapshot. Changes to source behavior, candidates, gates, threshold, input eligibility, metric definitions or selected units require a new version; never overwrite this freeze.",
+  "performance_branches": {
+    "MTC_TPR_FPR": "NOT_EVALUATED_UNLABELED",
+    "attack_response_and_010": "FROZEN_PENDING_S06",
+    "clean_pre_post_FPR": "FROZEN_PENDING_S06",
+    "lower_evidence_detection": "NOT_EVALUATED_DESCRIPTIVE_ONLY",
+    "temporal_control_FPR": "NOT_EVALUATED_NO_ELIGIBLE_LABELS"
+  },
+  "policy_config_ref": "hybridguard_agent/config/formal_manipulation_policy_v2",
+  "policy_version": "formal-manipulation-family-or-v2",
+  "prior_acceptance": {
+    "S01": {
+      "ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/01_admission/VALIDATION.json",
+      "status": "PASS"
+    },
+    "S02": {
+      "ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/02_inputs/VALIDATION.json",
+      "status": "PASS"
+    },
+    "S03": {
+      "ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03_registry/VALIDATION.json",
+      "status": "PASS"
+    },
+    "S03-R": {
+      "ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/03r_role_gate_v2/VALIDATION.json",
+      "status": "PASS"
+    },
+    "S04": {
+      "ref": "hybridguard_agent/artifacts/formal_manipulation_v1_20260923/04_contract/VALIDATION.json",
+      "status": "PASS"
+    }
+  },
+  "protocol_digest": "d1eb5d9894ff8a9194692f8bcfdc22b7f6c603448f1f21ad8151980a3fb19d27",
+  "protocol_version": "formal-manipulation-protocol-v2",
+  "role_gate_config_ref": "hybridguard_agent/config/formal_manipulation_role_gate_v2",
+  "runtime_binding": "Future execution uses copied frozen_sources with the same internal layout and explicitly passed copied v2 config/policy. Compare resolved module paths and input/job bindings before running. Future S09/S10/S11 wrappers must implement these finite definitions, not alter the risk chain; record wrapper source/version at their authorized implementation.",
+  "source_binding_scope": "Participating Python import closure and explicit runtime configs/data only; no repository-wide audit",
+  "source_snapshot_root": "frozen_sources",
+  "status": "FROZEN",
+  "strategy": "Fixed distinct-family OR; threshold 1; no weights, training, calibration, threshold search or LLM",
+  "study_version": "formal-manipulation-v1",
+  "synthetic_fixtures_ref": "synthetic/fixtures.jsonl",
+  "timing_spec_ref": "timing_spec.json",
+  "variant_registry_ref": "variant_registry.json"
+}

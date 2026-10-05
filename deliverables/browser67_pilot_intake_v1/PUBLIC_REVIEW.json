@@ -1,0 +1,121 @@
+{
+  "schema_version": "browser67-public-evidence-review-v1",
+  "status": "passed",
+  "zip_required": false,
+  "archive_files_verified": 488,
+  "verification_stages": 18,
+  "self_tests_passed": 8,
+  "rebuild": {
+    "members": 18,
+    "values_equal": 4392,
+    "states_equal": 4392,
+    "full_sample_index_equal": true,
+    "catalog_equal": true,
+    "qc_equal": true,
+    "paired_bytes_equal": false,
+    "paired_bytes_equal_after_crlf_to_lf": true
+  },
+  "qc_counts": {
+    "input_app_analysis_rows": 18,
+    "input_app_raw_rows": 18,
+    "input_app_session_count": 18,
+    "selected_latest_app_analysis_rows": 18,
+    "selected_latest_app_raw_rows": 18,
+    "selected_latest_app_session_count": 18,
+    "app177_valid_count": 18,
+    "browser_attempted_count": 18,
+    "paired244_completed_count": 18,
+    "browser_incomplete_count": 0,
+    "paired_244_count": 18,
+    "app_only_177_count": 0,
+    "quarantined_app_count": 0,
+    "quarantined_pair_count": 0
+  },
+  "readiness": {
+    "experiment_readiness_version": "latest-experiment-readiness-v1",
+    "plan_version": "latest-experiment-plan-v1",
+    "build_status": "passed",
+    "primary_task": "paired244_fingerprint_effect",
+    "counts": {
+      "indexed_sample_count": 18,
+      "paired244_primary_count": 18,
+      "app177_reserve_count": 0,
+      "fact_row_count": 18,
+      "verified_primary_label_count": 0,
+      "trusted_stable_group_count": 0,
+      "grouped_input_eligible_count": 0,
+      "split_assigned_count": 0,
+      "split_sample_counts": {
+        "train": 0,
+        "development": 0,
+        "test": 0
+      },
+      "split_group_counts": {
+        "train": 0,
+        "development": 0,
+        "test": 0
+      },
+      "split_class_sample_counts": {
+        "train": {
+          "manipulation_absent": 0,
+          "manipulation_present": 0
+        },
+        "development": {
+          "manipulation_absent": 0,
+          "manipulation_present": 0
+        },
+        "test": {
+          "manipulation_absent": 0,
+          "manipulation_present": 0
+        }
+      },
+      "split_class_group_counts": {
+        "train": {
+          "manipulation_absent": 0,
+          "manipulation_present": 0
+        },
+        "development": {
+          "manipulation_absent": 0,
+          "manipulation_present": 0
+        },
+        "test": {
+          "manipulation_absent": 0,
+          "manipulation_present": 0
+        }
+      }
+    },
+    "structural_ready": false,
+    "grouped_data_prerequisites_met": false,
+    "structural_blockers": [
+      "B_NO_VERIFIED_LABELS",
+      "B_STABLE_GROUP_FACTS_INCOMPLETE",
+      "B_NO_FORMAL_PAIRED244",
+      "B_SPLIT_GROUP_MISSING",
+      "B_SPLIT_CLASS_MISSING"
+    ],
+    "grouped_data_blockers": [
+      "B_NO_VERIFIED_LABELS",
+      "B_STABLE_GROUP_FACTS_INCOMPLETE",
+      "B_NO_FORMAL_PAIRED244",
+      "B_SPLIT_GROUP_MISSING",
+      "B_SPLIT_CLASS_MISSING",
+      "B_GROUP_COVERAGE_THRESHOLD_NOT_MET"
+    ],
+    "downstream_permissions": {
+      "collection_qc": true,
+      "paired_browser_observation": true,
+      "build_grouped_experiment_inputs": false,
+      "train_or_tune_model": false,
+      "report_performance_metrics": false,
+      "final_test_evaluation": false
+    },
+    "claim_boundary": "Readiness is a necessary control-plane gate, not proof of sample-size adequacy, performance, calibration, or cross-device generalization."
+  },
+  "evidence_unchanged": true,
+  "operations": {
+    "new_collection": 0,
+    "training": 0,
+    "detector_scoring": 0
+  },
+  "whole_zip_verification": "Historical intake attestation; ZIPs are not published or rehashed by this command."
+}

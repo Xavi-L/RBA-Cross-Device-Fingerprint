@@ -1,0 +1,40 @@
+{
+  "config_version": "latest-paired244-sources-v1",
+  "release": {
+    "featureapp_version_code": 16,
+    "featureapp_version_name": "1.6.9-expanded-v2.2-geometry",
+    "featureapp_build_file": "${EVIDENCE_ROOT}/upstream/android_app/HybridGuard/featureapp/build.gradle.kts",
+    "app_collector": "featureapp",
+    "app_schema_version": "expanded-v2.2-status",
+    "app_status_schema_version": "field-status-v1",
+    "app_signal_count": 177,
+    "browser_collector": "browserprobe",
+    "browser_schema_version": "browser-web-v1-status",
+    "browser_status_schema_version": "browser-field-status-v1",
+    "browser_probe_revision": "expanded-web-67-v2",
+    "browser_signal_count": 67,
+    "pair_provenance_schema_version": "browser-pair-provenance-v1",
+    "batch_id_source": "backend_process_lifecycle",
+    "require_closed_batch": true
+  },
+  "sources": {
+    "app_analysis": "${EVIDENCE_ROOT}/data/expanded_collected_data.jsonl",
+    "app_raw": "${EVIDENCE_ROOT}/data/raw_expanded_payloads.jsonl",
+    "app_receipts": "${EVIDENCE_ROOT}/data/collection_receipts.jsonl",
+    "collection_batches": "${EVIDENCE_ROOT}/data/collection_batches.jsonl",
+    "browser_analysis": "${EVIDENCE_ROOT}/data/browser_collected_data.jsonl",
+    "browser_raw": "${EVIDENCE_ROOT}/data/raw_browser_payloads.jsonl",
+    "browser_pair_provenance": "${EVIDENCE_ROOT}/data/browser_pair_provenance.jsonl",
+    "browser_pair_events": "${EVIDENCE_ROOT}/data/browser_pair_events.jsonl",
+    "feature_catalog": "${EVIDENCE_ROOT}/upstream/android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+    "browser_probe_manifest": "${EVIDENCE_ROOT}/upstream/browser_probe_site/public/probe/manifest.json"
+  },
+  "policy": {
+    "paired_view": "paired_244",
+    "app_only_view": "app_only_177",
+    "quarantine_view": "quarantine",
+    "dataset_role": "development_qc_only",
+    "label_status": "unlabeled",
+    "missing_browser_values_are_never_imputed": true
+  }
+}

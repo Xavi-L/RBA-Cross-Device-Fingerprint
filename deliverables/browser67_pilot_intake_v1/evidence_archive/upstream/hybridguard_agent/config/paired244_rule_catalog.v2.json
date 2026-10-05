@@ -1,0 +1,3758 @@
+{
+  "catalog_version": "paired244-runtime-catalog-v2",
+  "source_p3_run": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+  "source_record_version": "hybridguard-mtc-observation-v2",
+  "rules": [
+    {
+      "rule_id": "CORE-001",
+      "title": "Native 缺失与接口重放",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "采集缺失、宿主不完整与接口重放没有等价关系；旧描述的“大量缺失”也没有定义。",
+      "dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_health_code",
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.battery_plugged_code",
+        "app.android_native_data.battery_dynamics_layer.battery_status_code",
+        "app.android_native_data.battery_dynamics_layer.battery_technology",
+        "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+        "app.android_native_data.battery_dynamics_layer.battery_voltage_mv",
+        "app.android_native_data.battery_dynamics_layer.is_charging",
+        "app.android_native_data.build_fingerprint_layer.build_bootloader",
+        "app.android_native_data.build_fingerprint_layer.build_display",
+        "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+        "app.android_native_data.build_fingerprint_layer.build_id",
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_time_ms",
+        "app.android_native_data.build_fingerprint_layer.build_type",
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_brand",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.android_native_data.build_fingerprint_layer.elapsed_realtime_ms",
+        "app.android_native_data.build_fingerprint_layer.kernel_arch",
+        "app.android_native_data.build_fingerprint_layer.os_api_level",
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.android_native_data.build_fingerprint_layer.security_patch",
+        "app.android_native_data.build_fingerprint_layer.supported_abis",
+        "app.android_native_data.build_fingerprint_layer.uptime_ms",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.android_native_data.graphics_layer.egl_vendor",
+        "app.android_native_data.graphics_layer.gles_version",
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.native_gpu_vendor",
+        "app.android_native_data.locale_timezone_layer.native_country",
+        "app.android_native_data.locale_timezone_layer.native_language",
+        "app.android_native_data.locale_timezone_layer.native_locale",
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.is_low_memory",
+        "app.android_native_data.memory_layer.memory_threshold_gb",
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.android_native_data.network_state_layer.active_network_present",
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_cellular_transport",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport",
+        "app.android_native_data.network_state_layer.link_downstream_kbps",
+        "app.android_native_data.network_state_layer.link_upstream_kbps",
+        "app.android_native_data.network_state_layer.network_metered",
+        "app.android_native_data.screen_display_layer.font_scale",
+        "app.android_native_data.screen_display_layer.orientation_code",
+        "app.android_native_data.screen_display_layer.screen_density_dpi",
+        "app.android_native_data.screen_display_layer.screen_mode_physical_height",
+        "app.android_native_data.screen_display_layer.screen_mode_physical_width",
+        "app.android_native_data.screen_display_layer.screen_mode_refresh_rate_hz",
+        "app.android_native_data.screen_display_layer.screen_refresh_rate_hz",
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.android_native_data.screen_display_layer.screen_scaled_density",
+        "app.android_native_data.screen_display_layer.screen_xdpi",
+        "app.android_native_data.screen_display_layer.screen_ydpi",
+        "app.android_native_data.security_config_layer.developer_options_enabled",
+        "app.android_native_data.security_config_layer.http_proxy_setting",
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.android_native_data.security_config_layer.java_http_proxy_host",
+        "app.android_native_data.security_config_layer.java_http_proxy_port",
+        "app.android_native_data.security_config_layer.su_binary_present",
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+        "app.android_native_data.storage_layer.data_storage_free_gb",
+        "app.android_native_data.storage_layer.data_storage_total_gb",
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "仅个别 Native 字段缺失不直接触发本规则。",
+      "evidence_family": "CORE-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "分别定义采集完整性和请求来源检查，保留超时/权限失败；重放结论需独立受控证据。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "CORE-002",
+      "title": "FeatureApp bridge presence; low sensor count is context only",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "sensor_count_branch_removed_no_short_circuit",
+      "dependencies": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "legacy_spec": {
+        "predicate_id": "sensor_or_jsbridge_absent_v1",
+        "short_circuit": true,
+        "fact_ids": [
+          "native.sensor_total_count",
+          "webview.jsbridge_state"
+        ]
+      },
+      "predicate": "featureapp_bridge_only_v2",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "Bridge absence is a collection/integrity observation, never an attack label. Sensor count does not cause rejection.",
+      "evidence_family": "featureapp_bridge",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "CORE-003",
+      "title": "关键传感器矩阵异常",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "传感器少或缺少某类型不能沿用旧异常阈值；P3 的存在性自洽检查不等于设备完整性。",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "压力传感器缺失较常见，不应单独扣高分。",
+      "evidence_family": "CORE-003",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "按设备能力研究适用范围；仅能力描述不能晋级为攻击检查。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NW-001",
+      "title": "Native 型号与 Web UA 宽松匹配",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "型号别名、简化及自定义 UA 使“合理印证”缺少确定定义。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_brand",
+        "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "UA 只包含 Android 但缺少具体型号时只作为弱异常；不同厂商 UA 表达存在差异。",
+      "evidence_family": "NW-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "冻结明确型号解析与别名依据；缺型号不判冲突，按发现/开发组报告反例与不可评估。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NW-002",
+      "title": "Android 版本一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": {
+        "predicate_id": "native_web_android_major_neq_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "native.android_major",
+          "web.ua_android_major"
+        ]
+      },
+      "predicate": "native_web_android_major_neq_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "Android 16/API 36 是合法版本；无法解析版本时记为未知，不单独高危。",
+      "evidence_family": "app_os",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "NW-003",
+      "title": "屏幕与 DPR 软一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "Native 实际采的是 App DisplayMetrics，旧 10% 不能直接沿用；P3 短边规则不能替代二维假设。",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "允许状态栏、导航栏、安全区导致的高度误差；优先按横竖屏两种方向选择较小误差。",
+      "evidence_family": "screen_geometry",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "区分 App 显示区域/面板/viewport；研究方向、窗口和缩放，冻结容差并保留全部残差。",
+      "related_or_replacement_ids": [
+        "P3-SCREEN-APP",
+        "P3-SCREEN-BROWSER"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NW-004",
+      "title": "CPU ABI 与 Web platform 一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "platform 字符串不能直接等同 CPU ABI，旧 x86/ARM 对比缺少兼容语义。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.web_data.navigator_layer.platform"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "某些浏览器 platform 字段较粗糙；无法识别时只作为未知。",
+      "evidence_family": "NW-004",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "建立有来源的架构可比性表，未知/粗粒度/隐私化 platform 不比较；先报告分组反例。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NW-005",
+      "title": "硬件族与 WebGL GPU 一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "硬件别名、ANGLE 包装、软件回退与 GPU 屏蔽不能用旧关键词映射判冲突。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.build_fingerprint_layer.device_manufacturer",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "MediaTek、Huawei、Samsung 等可宽松匹配 Mali 或 PowerVR；仅未知 GPU 不直接高危。",
+      "evidence_family": "NW-005",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "审计渲染后端归一和硬件族来源；仅在可比且有独立支持的子集验证。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NW-006",
+      "title": "桌面或自动化 UA 痕迹",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": {
+        "predicate_id": "desktop_or_script_ua_surface_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "web.ua_class",
+          "web.platform_class"
+        ]
+      },
+      "predicate": "desktop_or_script_ua_surface_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "仅缺少具体型号不等同于桌面 UA；必须结合明确关键词判断。",
+      "evidence_family": "app_surface",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "NW-007",
+      "title": "触控能力与移动 UA 一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": {
+        "predicate_id": "mobile_ua_zero_touch_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "web.ua_class",
+          "web.max_touch_points"
+        ]
+      },
+      "predicate": "mobile_ua_zero_touch_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "触点数量具体值不要求一致，只要求移动环境具备基本触控能力。",
+      "evidence_family": "mobile_touch",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "NW-008",
+      "title": "内存容量软一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "deviceMemory 粗粒度/上限与 Native 可用 RAM 口径不同，旧 3–4GB 容差无新版依据。",
+      "dependencies": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "Web deviceMemory 粗粒度取整，3GB 到 4GB 内的差异不扣高分。",
+      "evidence_family": "NW-008",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "建立分桶兼容候选；识别哨兵和不可比 API，不以覆盖全部旧样本为阈值目标。",
+      "related_or_replacement_ids": [
+        "OFFDER-MEMORY-001"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NVW-001",
+      "title": "WebView system HTTP agent 与 Native 型号一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "system_http_agent 是系统属性而非当前网页 UA；型号缺省不能直接判异常。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "system_http_agent 缺少型号时为弱异常，需要结合 UA 和版本规则判断。",
+      "evidence_family": "NVW-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "从采集实现确认 system agent 格式与适用性，型号存在才比较，别名必须有依据。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "NVW-002",
+      "title": "WebView system HTTP agent 与 Native Android 版本一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "legacy_spec": {
+        "predicate_id": "native_webview_android_major_neq_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "native.android_major",
+          "webview.http_android_major"
+        ]
+      },
+      "predicate": "native_webview_android_major_neq_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "无法解析版本时不单独高危。",
+      "evidence_family": "host_os",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "NVW-003",
+      "title": "FeatureApp 包名符合固定 MTC 部署配置",
+      "origin": "legacy_device",
+      "source_lane": "project_deployment_policy",
+      "status": "ACTIVE",
+      "disposition_reason": "改为精确匹配本项目已声明的包名；不沿用宽泛前缀或可信设备结论。",
+      "dependencies": [
+        "app.webview_data.host_security_layer.app_package_name"
+      ],
+      "legacy_spec": null,
+      "predicate": "exact_package_policy_v1",
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "改为精确匹配本项目已声明的包名；不沿用宽泛前缀或可信设备结论。 精确匹配、相似前缀拒绝、空值未知、缺字段未评估；输出部署策略差异。",
+      "evidence_family": "deployment_identity",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "精确匹配、相似前缀拒绝、空值未知、缺字段未评估；输出部署策略差异。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [],
+      "implementation": "paired244-legacy-backlog-v1",
+      "parameters": {
+        "policy_version": "mtc-featureapp-deployment-policy-v1",
+        "allowed_packages": [
+          "com.example.hybridguard.featureapp"
+        ],
+        "allowed_releases": [
+          {
+            "version_code": 9,
+            "version_name": "1.6.2-expanded-v2.2-mtc"
+          },
+          {
+            "version_code": 11,
+            "version_name": "1.6.4-expanded-v2.2-mtc-https"
+          }
+        ],
+        "basis": [
+          "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+          "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+        ],
+        "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+        "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+      },
+      "original_source_lane": "device_mined_rule",
+      "admission_mode": "reviewed_policy_or_context_only_not_empirical_rule",
+      "legacy_conclusion_reused": false
+    },
+    {
+      "rule_id": "NVW-004",
+      "title": "安装器观测及采集回退上下文",
+      "origin": "legacy_device",
+      "source_lane": "collector_context",
+      "status": "ACTIVE",
+      "disposition_reason": "改为安装来源上下文；源码把安装器 null 写为 manual，不能推断实际安装方式。",
+      "dependencies": [
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "legacy_spec": null,
+      "predicate": "installer_observation_v1",
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [
+        "android-install-source-current"
+      ],
+      "limitations": "改为安装来源上下文；源码把安装器 null 写为 manual，不能推断实际安装方式。 manual 回退、unknown、具名安装器均独立测试，任何来源都不产生攻击/安全标签。",
+      "evidence_family": "installer_context",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "manual 回退、unknown、具名安装器均独立测试，任何来源都不产生攻击/安全标签。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [],
+      "implementation": "paired244-legacy-backlog-v1",
+      "parameters": {},
+      "original_source_lane": "device_mined_rule",
+      "admission_mode": "reviewed_policy_or_context_only_not_empirical_rule",
+      "legacy_conclusion_reused": false
+    },
+    {
+      "rule_id": "NVW-005",
+      "title": "Debug 与明文流量张力",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "legacy_spec": {
+        "predicate_id": "debug_and_cleartext_context_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "webview.is_debuggable",
+          "webview.cleartext_permitted"
+        ]
+      },
+      "predicate": "debug_and_cleartext_context_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "开发灰度阶段允许该组合，不应单独判定中高风险。",
+      "evidence_family": "debug_cleartext",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "WVWEB-001",
+      "title": "WebView provider 与 Web UA Chrome 主版本一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "RETIRED",
+      "disposition_reason": "package_version_namespace_is_not_chromium_version",
+      "dependencies": [],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "只比较主版本；小版本差异不单独扣分。",
+      "evidence_family": "WVWEB-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "WVWEB-002",
+      "title": "App Web UA 标记上下文",
+      "origin": "legacy_device",
+      "source_lane": "collector_context",
+      "status": "ACTIVE",
+      "disposition_reason": "仅报告 UA 中 wv/Version 标记的出现情况；标记缺失不再构成风险。",
+      "dependencies": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": null,
+      "predicate": "webview_ua_markers_context_v1",
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [
+        "android-websettings-current"
+      ],
+      "limitations": "仅报告 UA 中 wv/Version 标记的出现情况；标记缺失不再构成风险。 含标记/无标记/自定义 UA/空值，均不将标记作为容器真值。",
+      "evidence_family": "app_surface",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "含标记/无标记/自定义 UA/空值，均不将标记作为容器真值。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [],
+      "implementation": "paired244-legacy-backlog-v1",
+      "parameters": {
+        "wv_pattern": ";\\s*wv\\b",
+        "version_pattern": "\\bVersion/4\\.0\\b"
+      },
+      "original_source_lane": "device_mined_rule",
+      "admission_mode": "reviewed_policy_or_context_only_not_empirical_rule",
+      "legacy_conclusion_reused": false
+    },
+    {
+      "rule_id": "WVWEB-003",
+      "title": "JSBridge 与移动 WebView 运行时一致性",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "MERGED",
+      "disposition_reason": "桥接、UA 表面和 token 已分别留痕；取消“共同成立即强可信”的复合结论。",
+      "dependencies": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "仅缺少 WebView token 时不直接高危，应结合桥接和 UA 类型。",
+      "evidence_family": "WVWEB-003",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "通过所列检查查看各事实，不追加独立票；这是改写后的组合去向，不宣称旧逻辑已验证。",
+      "related_or_replacement_ids": [
+        "CORE-002",
+        "NW-006",
+        "WVWEB-002"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "WVWEB-004",
+      "title": "非浏览器 UA",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": {
+        "predicate_id": "script_user_agent_surface_v1",
+        "short_circuit": true,
+        "fact_ids": [
+          "web.ua_class"
+        ]
+      },
+      "predicate": "script_user_agent_surface_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "App 内正常 WebView 不应出现该类 UA。",
+      "evidence_family": "app_surface",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "PHYS-001",
+      "title": "模拟器硬件关键词",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "硬件关键词或 x86/软件渲染不能自动推出攻击或非法虚拟环境。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "单独 x86 需要结合硬件和渲染证据判断。",
+      "evidence_family": "PHYS-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "与 AVD 设备族研究联合；冻结词表与适用范围，区分环境观察和攻击事实。",
+      "related_or_replacement_ids": [
+        "OFFDER-EMULATOR-001"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "PHYS-002",
+      "title": "WebGL 软件渲染或桌面渲染",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "软件渲染可能是正常回退，ANGLE 不是统一桌面标签。",
+      "dependencies": [
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "厂商 GPU 名称差异较大，需优先识别软件/桌面关键词。",
+      "evidence_family": "PHYS-002",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "有来源地解析渲染后端；先做上下文候选及反例审计，再决定是否存在可用约束。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "PHYS-003",
+      "title": "算力耗时异常",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "单次算力耗时缺少预热、负载和重复观测，旧 50/800ms 阈值不能沿用。",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.execution_layer.compute_task_time_ms",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "算力挑战受 JIT 预热、设备性能和负载影响，不应单独判高危。",
+      "evidence_family": "PHYS-003",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "同一实例带时间、预热和负载记录的重复测试；先冻结采样协议。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "PHYS-004",
+      "title": "电池温度死值",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "单次常见温度不能证明长期死值；现有代表记录没有合格时间序列。",
+      "dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "单条样本中的常见温度值不直接高危，需要结合其他异常。",
+      "evidence_family": "PHYS-004",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "可靠同实例标识、时间戳、间隔和设备状态的重复温度观测；不把同型号多条当序列。",
+      "related_or_replacement_ids": [
+        "OFFDER-BATTERY-001"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "PHYS-005",
+      "title": "ADB 与满电组合",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.is_charging",
+        "app.android_native_data.security_config_layer.is_adb_enabled"
+      ],
+      "legacy_spec": {
+        "predicate_id": "adb_and_high_battery_context_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "native.adb_enabled",
+          "native.battery_level_pct",
+          "native.is_charging"
+        ]
+      },
+      "predicate": "adb_and_high_battery_context_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "ADB 单独开启在开发灰度阶段可容忍，不应超过低风险或轻中风险。",
+      "evidence_family": "PHYS-005",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "PHYS-006",
+      "title": "构建指纹调试/模拟器痕迹",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_type"
+      ],
+      "legacy_spec": {
+        "predicate_id": "normalized_build_marker_context_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "native.build_marker_categories"
+        ]
+      },
+      "predicate": "normalized_build_marker_context_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "仅 user/release-keys 属于正常发布构建信号。",
+      "evidence_family": "PHYS-006",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "SCENE-001",
+      "title": "云机房或测试机架",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_predicate_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.web_data.execution_layer.timezone_offset",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "legacy_spec": {
+        "predicate_id": "test_rig_context_v1",
+        "short_circuit": false,
+        "fact_ids": [
+          "webview.installer_class",
+          "web.timezone_offset",
+          "native.adb_enabled",
+          "native.battery_level_pct"
+        ]
+      },
+      "predicate": "test_rig_context_v1",
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "limitations": "该场景不应与模拟器/重放混淆；若传感器和 Bridge 正常，通常给 35-45 分。",
+      "evidence_family": "SCENE-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "SCENE-002",
+      "title": "廉价模拟器",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "多个未经验证的模拟器线索相加不会自动成为有效规则。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_board",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.execution_layer.timezone_offset",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "需要多项模拟器证据共同出现。",
+      "evidence_family": "SCENE-002",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "先验证组成关系并去除共享来源的重复票；环境与攻击标签分别取证。",
+      "related_or_replacement_ids": [
+        "PHYS-001",
+        "PHYS-002",
+        "OFFDER-EMULATOR-001"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "SCENE-003",
+      "title": "无头 PC 浏览器伪装",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "缺触摸/缺传感器/耗时快可能合法，旧组合与或关系及阈值需重定义。",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.execution_layer.compute_task_time_ms",
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "单个算力偏快不充分，需要与桌面/无头/触控缺失等证据组合。",
+      "evidence_family": "SCENE-003",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "冻结非矛盾的组成条件；缺失与不可用分开，耗时部分需先完成重复采样。",
+      "related_or_replacement_ids": [
+        "PHYS-003"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "SCENE-004",
+      "title": "官方来源与核心完整性通过",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "RETIRED",
+      "disposition_reason": "合理安装器、传感器>=10 与桥接不能支持“安全/低风险”确认；停用旧安全推断。",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.webview_data.bridge_routing_layer.jsbridge_injected",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "低风险规则只能在未命中高危规则时使用，不能覆盖一票否决。",
+      "evidence_family": "SCENE-004",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "保留独立上下文，不以没有冲突或安装来源确认安全。",
+      "related_or_replacement_ids": [
+        "CORE-002",
+        "NVW-004"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "AGG-001",
+      "title": "三端平均一致性与失败计数",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "MERGED",
+      "disposition_reason": "旧平均分依赖未校准权重及重复规则；只保留当前执行结果的透明汇总。",
+      "dependencies": [],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "聚合规则用于综合加权，不替代具体高危规则。",
+      "evidence_family": "AGG-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "使用 decision 中逐条偏差与去重 evidence_family；不输出旧平均分或聚合风险阈值。",
+      "related_or_replacement_ids": [
+        "runtime:paired_decision"
+      ],
+      "uncollected_or_derived_fields": [
+        "consistency_tri_layer_failure_count",
+        "consistency_tri_layer_mean_match_score"
+      ]
+    },
+    {
+      "rule_id": "TOL-001",
+      "title": "ADB 与宿主开发配置上下文",
+      "origin": "legacy_device",
+      "source_lane": "collector_context",
+      "status": "ACTIVE",
+      "disposition_reason": "将 ADB/debuggable/cleartext 作为开发配置事实，避免单项或组合自动判攻击。",
+      "dependencies": [
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.webview_data.host_security_layer.is_debuggable",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+      ],
+      "legacy_spec": null,
+      "predicate": "development_flags_context_v1",
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "将 ADB/debuggable/cleartext 作为开发配置事实，避免单项或组合自动判攻击。 真假、权限不可用与遮蔽边界；加入 ADB 事实，标明与原 debug/cleartext 检查共享证据。",
+      "evidence_family": "debug_cleartext",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "真假、权限不可用与遮蔽边界；加入 ADB 事实，标明与原 debug/cleartext 检查共享证据。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [],
+      "implementation": "paired244-legacy-backlog-v1",
+      "parameters": {},
+      "original_source_lane": "device_mined_rule",
+      "admission_mode": "reviewed_policy_or_context_only_not_empirical_rule",
+      "legacy_conclusion_reused": false
+    },
+    {
+      "rule_id": "TOL-002",
+      "title": "屏幕高度误差容错",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "MERGED",
+      "disposition_reason": "高度容错应属于屏幕关系适用性，不另算一条风险规则。",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.avail_height",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "宽度和 DPR 严重不一致、横竖屏均无法解释时才提高风险。",
+      "evidence_family": "TOL-002",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "并入 NW-003 的研究规范；父规则仍待研究，当前不宣称已实现系统栏修正。",
+      "related_or_replacement_ids": [
+        "NW-003"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "TOL-003",
+      "title": "内存粗粒度容错",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "MERGED",
+      "disposition_reason": "内存容错应属于内存兼容关系，旧固定差值不直接启用。",
+      "dependencies": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "内存差异只有在与 UA、GPU、平台等多项矛盾并存时才作为辅助风险信号。",
+      "evidence_family": "TOL-003",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "并入 NW-008 的研究规范；父规则仍待研究，不增加可执行数量。",
+      "related_or_replacement_ids": [
+        "NW-008"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "TOL-004",
+      "title": "WebView Chrome 小版本容错",
+      "origin": "legacy_device",
+      "source_lane": "device_mined_rule",
+      "status": "RETIRED",
+      "disposition_reason": "仍依赖 provider 包版本与 UA Chromium 版本同一命名空间；P3 已证明该通用前提不成立。",
+      "dependencies": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.webview_provider_version"
+      ],
+      "legacy_spec": null,
+      "predicate": null,
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "limitations": "仅主版本明显不一致时才作为跨层异常。",
+      "evidence_family": "TOL-004",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "连同旧主版本规则停止引用；保留 P3-PROVIDER-PARSE 仅作采集器解析自检。",
+      "related_or_replacement_ids": [
+        "WVWEB-001",
+        "OFFDER-WEBVIEW-001",
+        "P3-PROVIDER-PARSE"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "OFFDER-OS-001",
+      "title": "Native 与 Web UA Android 主版本兼容",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "native_web_android_major_equal_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-OS-001",
+        "name": "Native 与 Web UA Android 主版本兼容",
+        "relation_type": "cross_layer_equality",
+        "premise_fields": [
+          "android_native_data.os_version",
+          "web_data.user_agent"
+        ],
+        "official_card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-UA-001"
+        ],
+        "official_source_refs": [
+          "android-build-version-api",
+          "chrome-ua-client-hints",
+          "android-websettings-api"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "native_web_android_major_equal_v1",
+        "severity": "strong",
+        "risk_use_status": "research_semantic_alert_only",
+        "tolerance": "Only evaluate when both Android majors parse successfully; a UA with no Android token remains unknown.",
+        "counterexamples": [
+          "legitimate custom user-agent override",
+          "privacy-reduced or malformed user-agent"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-build-version-api",
+        "chrome-ua-client-hints",
+        "android-websettings-api"
+      ],
+      "limitations": "Only evaluate when both Android majors parse successfully; a UA with no Android token remains unknown.",
+      "evidence_family": "app_os",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-OS-002",
+      "title": "Native 与 WebView HTTP Agent Android 主版本兼容",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "predicate": "native_webview_android_major_equal_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-OS-002",
+        "name": "Native 与 WebView HTTP Agent Android 主版本兼容",
+        "relation_type": "cross_layer_equality",
+        "premise_fields": [
+          "android_native_data.os_version",
+          "webview_data.system_http_agent"
+        ],
+        "official_card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-WEBVIEW-001"
+        ],
+        "official_source_refs": [
+          "android-build-version-api",
+          "android-webview-api",
+          "android-websettings-api"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "native_webview_android_major_equal_v1",
+        "severity": "strong",
+        "risk_use_status": "research_semantic_alert_only",
+        "tolerance": "Only compare parsed Android majors; provider patch versions are irrelevant.",
+        "counterexamples": [
+          "vendor-specific HTTP agent without an Android version token"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-build-version-api",
+        "android-webview-api",
+        "android-websettings-api"
+      ],
+      "limitations": "Only compare parsed Android majors; provider patch versions are irrelevant.",
+      "evidence_family": "host_os",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-UA-001",
+      "title": "Android App 宿主与桌面/脚本 Web 表面不兼容",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.platform"
+      ],
+      "predicate": "android_host_not_desktop_or_script_surface_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-UA-001",
+        "name": "Android App 宿主与桌面/脚本 Web 表面不兼容",
+        "relation_type": "host_surface_compatibility",
+        "premise_fields": [
+          "android_native_data.os_version",
+          "web_data.user_agent",
+          "web_data.platform"
+        ],
+        "official_card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-UA-001",
+          "GOKB-AUTOMATION-001"
+        ],
+        "official_source_refs": [
+          "android-build-version-api",
+          "android-websettings-api",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "android_host_not_desktop_or_script_surface_v1",
+        "severity": "strong",
+        "risk_use_status": "research_semantic_alert_only",
+        "tolerance": "Linux arm and Linux x86 Android surfaces remain mobile_or_ambiguous; only explicit desktop/headless/script markers violate the relation.",
+        "counterexamples": [
+          "legitimate desktop user-agent override for site compatibility",
+          "remote debugging or test automation"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-build-version-api",
+        "android-websettings-api",
+        "chrome-devtools-device-mode",
+        "chrome-ua-client-hints"
+      ],
+      "limitations": "Linux arm and Linux x86 Android surfaces remain mobile_or_ambiguous; only explicit desktop/headless/script markers violate the relation.",
+      "evidence_family": "app_surface",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-WEBVIEW-001",
+      "title": "WebView Provider 与运行时 Web UA Chrome 主版本兼容",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "RETIRED",
+      "disposition_reason": "package_version_namespace_is_not_chromium_version",
+      "dependencies": [
+        "app.webview_data.kernel_container_layer.webview_provider_major",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "webview_provider_runtime_chrome_major_equal_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-WEBVIEW-001",
+        "name": "WebView Provider 与运行时 Web UA Chrome 主版本兼容",
+        "relation_type": "container_version_chain",
+        "premise_fields": [
+          "webview_data.webview_provider_major",
+          "web_data.user_agent"
+        ],
+        "official_card_refs": [
+          "GOKB-WEBVIEW-001",
+          "GOKB-UA-001",
+          "GOKB-AUTOMATION-001"
+        ],
+        "official_source_refs": [
+          "android-webview-api",
+          "android-websettings-api",
+          "chrome-ua-client-hints",
+          "chrome-devtools-device-mode"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "webview_provider_runtime_chrome_major_equal_v1",
+        "severity": "soft",
+        "risk_use_status": "semantic_deviation_only",
+        "tolerance": "Compare only major versions; an explicit application user-agent override can legitimately break equality.",
+        "counterexamples": [
+          "custom WebSettings user-agent",
+          "vendor WebView version reporting differences"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-webview-api",
+        "android-websettings-api",
+        "chrome-ua-client-hints",
+        "chrome-devtools-device-mode"
+      ],
+      "limitations": "Compare only major versions; an explicit application user-agent override can legitimately break equality.",
+      "evidence_family": "OFFDER-WEBVIEW-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-UA-002",
+      "title": "WebView 默认 UA 与运行时 Web UA 软一致",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "webview_default_runtime_ua_equal_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-UA-002",
+        "name": "WebView 默认 UA 与运行时 Web UA 软一致",
+        "relation_type": "container_identity_soft_equality",
+        "premise_fields": [
+          "webview_data.default_ua_native",
+          "web_data.user_agent"
+        ],
+        "official_card_refs": [
+          "GOKB-WEBVIEW-001",
+          "GOKB-UA-001",
+          "GOKB-AUTOMATION-001"
+        ],
+        "official_source_refs": [
+          "android-websettings-api",
+          "chrome-devtools-device-mode"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "webview_default_runtime_ua_equal_v1",
+        "severity": "soft",
+        "risk_use_status": "semantic_deviation_only",
+        "tolerance": "Exact mismatch is only a soft deviation because applications may deliberately override the runtime UA.",
+        "counterexamples": [
+          "custom user-agent override",
+          "site compatibility policy"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-websettings-api",
+        "chrome-devtools-device-mode"
+      ],
+      "limitations": "Exact mismatch is only a soft deviation because applications may deliberately override the runtime UA.",
+      "evidence_family": "host_ua",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-TOUCH-001",
+      "title": "Android 移动 UA 与触控表面软一致",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.max_touch_points"
+      ],
+      "predicate": "mobile_ua_touch_positive_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-TOUCH-001",
+        "name": "Android 移动 UA 与触控表面软一致",
+        "relation_type": "capability_implication",
+        "premise_fields": [
+          "web_data.user_agent",
+          "web_data.max_touch_points"
+        ],
+        "official_card_refs": [
+          "GOKB-UA-001",
+          "GOKB-AUTOMATION-001"
+        ],
+        "official_source_refs": [
+          "chrome-ua-client-hints",
+          "chrome-devtools-device-mode"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "mobile_ua_touch_positive_v1",
+        "severity": "soft",
+        "risk_use_status": "semantic_deviation_only",
+        "tolerance": "Only applies to Android browser/WebView UA classes; zero touch is not an attack verdict.",
+        "counterexamples": [
+          "emulator or special device without a touch surface",
+          "privacy or browser compatibility behavior"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "chrome-ua-client-hints",
+        "chrome-devtools-device-mode"
+      ],
+      "limitations": "Only applies to Android browser/WebView UA classes; zero touch is not an attack verdict.",
+      "evidence_family": "mobile_touch",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-BRIDGE-001",
+      "title": "FeatureApp 采集链要求 JSBridge 存在",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "predicate": "featureapp_jsbridge_present_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-BRIDGE-001",
+        "name": "FeatureApp 采集链要求 JSBridge 存在",
+        "relation_type": "project_topology_implication",
+        "premise_fields": [
+          "collector_app",
+          "webview_data.jsbridge_injected"
+        ],
+        "official_card_refs": [
+          "GOKB-WEBVIEW-002",
+          "GOKB-WEBVIEW-003"
+        ],
+        "official_source_refs": [
+          "android-webview-api",
+          "android-webview-native-bridges-risk"
+        ],
+        "inference_level": "official_semantics_plus_project_context",
+        "executable_status": "compiled_v1",
+        "predicate_id": "featureapp_jsbridge_present_v1",
+        "severity": "strong",
+        "risk_use_status": "research_semantic_alert_only",
+        "tolerance": "Only applies when collector_app is featureapp; external browsers and WebViews without a designed bridge are not applicable.",
+        "counterexamples": [
+          "collector route that intentionally disables the bridge",
+          "external browser capture"
+        ],
+        "validation_status": "requires_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-webview-api",
+        "android-webview-native-bridges-risk"
+      ],
+      "limitations": "Only applies when collector_app is featureapp; external browsers and WebViews without a designed bridge are not applicable.",
+      "evidence_family": "featureapp_bridge",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-DEVCONFIG-001",
+      "title": "Debuggable 与 Cleartext 组合是开发安全上下文",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.webview_data.host_security_layer.is_debuggable",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+      ],
+      "predicate": "debug_cleartext_context_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-DEVCONFIG-001",
+        "name": "Debuggable 与 Cleartext 组合是开发安全上下文",
+        "relation_type": "security_posture_context",
+        "premise_fields": [
+          "webview_data.is_debuggable",
+          "webview_data.is_cleartext_traffic_permitted"
+        ],
+        "official_card_refs": [
+          "GOKB-DEVCONFIG-001",
+          "GOKB-DEVCONFIG-002"
+        ],
+        "official_source_refs": [
+          "android-debuggable-risk",
+          "android-cleartext-communications-risk",
+          "android-network-security-config"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "debug_cleartext_context_v1",
+        "severity": "context",
+        "risk_use_status": "context_only_not_alert",
+        "tolerance": "Expected in some development and collection builds; never becomes an attack alert by itself.",
+        "counterexamples": [
+          "authorized development build",
+          "local research collection endpoint"
+        ],
+        "validation_status": "requires_context_reporting"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-debuggable-risk",
+        "android-cleartext-communications-risk",
+        "android-network-security-config"
+      ],
+      "limitations": "Expected in some development and collection builds; never becomes an attack alert by itself.",
+      "evidence_family": "debug_cleartext",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-GPU-001",
+      "title": "Android Native 图形栈与 Windows Direct3D WebGL 表面不兼容",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "legacy_relation_retained_without_attack_claim",
+      "dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "predicate": "android_gpu_not_windows_direct3d_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-GPU-001",
+        "name": "Android Native 图形栈与 Windows Direct3D WebGL 表面不兼容",
+        "relation_type": "cross_layer_platform_family_compatibility",
+        "premise_fields": [
+          "android_native_data.native_gpu_renderer",
+          "android_native_data.egl_renderer",
+          "web_data.webgl_vendor",
+          "web_data.webgl_renderer"
+        ],
+        "official_card_refs": [
+          "GOKB-BUILD-001",
+          "GOKB-AUTOMATION-001",
+          "GOKB-EMULATOR-001"
+        ],
+        "official_source_refs": [
+          "android-build-api",
+          "android-emulator-overview",
+          "chrome-devtools-device-mode"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "compiled_v1",
+        "predicate_id": "android_gpu_not_windows_direct3d_v1",
+        "severity": "strong",
+        "risk_use_status": "research_semantic_alert_only",
+        "tolerance": "ANGLE alone is not a violation on Android; only explicit Windows/Direct3D desktop markers contradict the Android Native graphics stack.",
+        "counterexamples": [
+          "remote rendering that intentionally exposes a desktop GPU string",
+          "future Android WebView backend reporting changes"
+        ],
+        "validation_status": "requires_cross_version_normal_and_attack_validation"
+      },
+      "version": "paired244-legacy-adapter-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-build-api",
+        "android-emulator-overview",
+        "chrome-devtools-device-mode"
+      ],
+      "limitations": "ANGLE alone is not a violation on Android; only explicit Windows/Direct3D desktop markers contradict the Android Native graphics stack.",
+      "evidence_family": "OFFDER-GPU-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "rule_id": "OFFDER-DISPLAY-001",
+      "title": "Native 物理分辨率与 Web 逻辑尺寸乘 DPR 近似一致",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "官方字段语义不提供项目通用数值容差；不同显示区域不能直接等同。",
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.visual_viewport_height",
+        "app.web_data.screen_layer.visual_viewport_width"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-DISPLAY-001",
+        "name": "Native 物理分辨率与 Web 逻辑尺寸乘 DPR 近似一致",
+        "relation_type": "numeric_tolerance_relation",
+        "premise_fields": [
+          "android_native_data.screen_resolution_physical",
+          "web_data.screen_resolution_logical",
+          "web_data.device_pixel_ratio",
+          "web_data.visual_viewport_width",
+          "web_data.visual_viewport_height"
+        ],
+        "official_card_refs": [
+          "GOKB-DISPLAY-001"
+        ],
+        "official_source_refs": [
+          "android-displaymetrics-api"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "candidate_needs_empirical_tolerance",
+        "predicate_id": null,
+        "severity": "soft",
+        "risk_use_status": "not_executable",
+        "tolerance": "Status bars, navigation bars, orientation, safe areas and visual viewport require a grouped normal-data tolerance model.",
+        "counterexamples": [
+          "orientation change",
+          "split screen",
+          "display cutout",
+          "browser zoom"
+        ],
+        "validation_status": "pending_grouped_normal_calibration"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-displaymetrics-api"
+      ],
+      "limitations": "Status bars, navigation bars, orientation, safe areas and visual viewport require a grouped normal-data tolerance model.",
+      "evidence_family": "screen_geometry",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "与 NW-003 共用比较研究但保留来源；不得复用旧 10% 作为验收线。",
+      "related_or_replacement_ids": [
+        "NW-003"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "OFFDER-MEMORY-001",
+      "title": "Native 总内存与 Web deviceMemory 粗粒度兼容",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "官方粗粒度语义不提供 Native RAM 的通用差值阈值。",
+      "dependencies": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-MEMORY-001",
+        "name": "Native 总内存与 Web deviceMemory 粗粒度兼容",
+        "relation_type": "coarse_bucket_compatibility",
+        "premise_fields": [
+          "android_native_data.total_memory_gb",
+          "web_data.device_memory"
+        ],
+        "official_card_refs": [
+          "GOKB-MEMORY-001"
+        ],
+        "official_source_refs": [
+          "android-activitymanager-memoryinfo-api",
+          "chrome-ua-client-hints"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "candidate_needs_empirical_tolerance",
+        "predicate_id": null,
+        "severity": "soft",
+        "risk_use_status": "not_executable",
+        "tolerance": "Web deviceMemory is coarse and privacy-reduced; several GB of difference may be normal.",
+        "counterexamples": [
+          "browser bucketing",
+          "32-bit process limits",
+          "OEM memory reporting"
+        ],
+        "validation_status": "pending_grouped_normal_calibration"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-activitymanager-memoryinfo-api",
+        "chrome-ua-client-hints"
+      ],
+      "limitations": "Web deviceMemory is coarse and privacy-reduced; several GB of difference may be normal.",
+      "evidence_family": "OFFDER-MEMORY-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "与 NW-008 研究分桶兼容；缺失、上限、浏览器差异单独报告。",
+      "related_or_replacement_ids": [
+        "NW-008"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "OFFDER-SENSOR-001",
+      "title": "移动设备传感器矩阵完整性",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "官方 API 没有规定真实设备必须达到的传感器数量。",
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-SENSOR-001",
+        "name": "移动设备传感器矩阵完整性",
+        "relation_type": "capability_profile",
+        "premise_fields": [
+          "android_native_data.sensor_total_count",
+          "android_native_data.sensor_type_list",
+          "android_native_data.has_accelerometer",
+          "android_native_data.has_gyroscope",
+          "android_native_data.has_magnetic_field",
+          "android_native_data.has_light_sensor",
+          "android_native_data.has_proximity_sensor"
+        ],
+        "official_card_refs": [
+          "GOKB-SENSOR-001",
+          "GOKB-EMULATOR-001"
+        ],
+        "official_source_refs": [
+          "android-sensors-overview",
+          "android-sensormanager-api",
+          "android-emulator-overview"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "candidate_needs_empirical_threshold",
+        "predicate_id": null,
+        "severity": "strong",
+        "risk_use_status": "not_executable",
+        "tolerance": "Low-end phones, tablets and special devices legitimately omit individual sensors; no fixed count is official.",
+        "counterexamples": [
+          "tablet",
+          "rugged device",
+          "low-end handset",
+          "device without pressure sensor"
+        ],
+        "validation_status": "pending_device_family_calibration"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-sensors-overview",
+        "android-sensormanager-api",
+        "android-emulator-overview"
+      ],
+      "limitations": "Low-end phones, tablets and special devices legitimately omit individual sensors; no fixed count is official.",
+      "evidence_family": "OFFDER-SENSOR-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "只先保留 P3 自洽检查；设备能力画像要有分组支持，攻击判定另需标签。",
+      "related_or_replacement_ids": [
+        "CORE-003"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "OFFDER-BATTERY-001",
+      "title": "电池死值或长期接电需要时间序列验证",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "长期稳定是时间关系，单条快照不能检验。",
+      "dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.battery_temp_celsius",
+        "app.android_native_data.battery_dynamics_layer.battery_voltage_mv",
+        "app.android_native_data.battery_dynamics_layer.is_charging"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-BATTERY-001",
+        "name": "电池死值或长期接电需要时间序列验证",
+        "relation_type": "temporal_stability_relation",
+        "premise_fields": [
+          "android_native_data.battery_level_pct",
+          "android_native_data.battery_temp_celsius",
+          "android_native_data.battery_voltage_mv",
+          "android_native_data.is_charging"
+        ],
+        "official_card_refs": [
+          "GOKB-BATTERY-001"
+        ],
+        "official_source_refs": [
+          "android-batterymanager-api"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "candidate_needs_longitudinal_data",
+        "predicate_id": null,
+        "severity": "context",
+        "risk_use_status": "not_executable",
+        "tolerance": "A single full-battery or stable-temperature sample is normal; repeated observations over time are required.",
+        "counterexamples": [
+          "recently charged phone",
+          "device connected during testing"
+        ],
+        "validation_status": "pending_longitudinal_collection"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-batterymanager-api"
+      ],
+      "limitations": "A single full-battery or stable-temperature sample is normal; repeated observations over time are required.",
+      "evidence_family": "OFFDER-BATTERY-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "补可靠同实例电量/温度/电压/充电状态序列，冻结时间窗和最少观测标准。",
+      "related_or_replacement_ids": [
+        "PHYS-004"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "OFFDER-PACKAGE-001",
+      "title": "FeatureApp 包名及版本配对符合固定 MTC 部署配置",
+      "origin": "legacy_official",
+      "source_lane": "project_deployment_policy",
+      "status": "ACTIVE",
+      "disposition_reason": "将已冻结 MTC v9/v11 部署清单变成包名与版本配对检查；安装来源单列上下文。",
+      "dependencies": [
+        "app.webview_data.host_security_layer.app_package_name",
+        "app.webview_data.host_security_layer.app_version_code",
+        "app.webview_data.host_security_layer.app_version_name"
+      ],
+      "predicate": "package_release_policy_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-PACKAGE-001",
+        "name": "App 包名、版本与安装来源符合部署策略",
+        "relation_type": "deployment_policy_relation",
+        "premise_fields": [
+          "webview_data.app_package_name",
+          "webview_data.app_version_name",
+          "webview_data.app_version_code",
+          "webview_data.installer_package"
+        ],
+        "official_card_refs": [
+          "GOKB-PACKAGE-001"
+        ],
+        "official_source_refs": [
+          "android-packagemanager-api"
+        ],
+        "inference_level": "official_semantics_plus_project_policy",
+        "executable_status": "candidate_needs_deployment_policy",
+        "predicate_id": null,
+        "severity": "context",
+        "risk_use_status": "not_executable",
+        "tolerance": "Manual installation is expected in development; allowed packages and installers must be versioned by deployment environment.",
+        "counterexamples": [
+          "local debug installation",
+          "enterprise MDM installation",
+          "grey release"
+        ],
+        "validation_status": "pending_environment_policy"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-packagemanager-api"
+      ],
+      "limitations": "将已冻结 MTC v9/v11 部署清单变成包名与版本配对检查；安装来源单列上下文。 版本 code/name 必须来自同一清单项；缺失未评估，未知版本仅策略差异，不证明攻击。",
+      "evidence_family": "deployment_identity",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "版本 code/name 必须来自同一清单项；缺失未评估，未知版本仅策略差异，不证明攻击。",
+      "related_or_replacement_ids": [
+        "NVW-003",
+        "NVW-004"
+      ],
+      "uncollected_or_derived_fields": [],
+      "implementation": "paired244-legacy-backlog-v1",
+      "parameters": {
+        "policy_version": "mtc-featureapp-deployment-policy-v1",
+        "allowed_packages": [
+          "com.example.hybridguard.featureapp"
+        ],
+        "allowed_releases": [
+          {
+            "version_code": 9,
+            "version_name": "1.6.2-expanded-v2.2-mtc"
+          },
+          {
+            "version_code": 11,
+            "version_name": "1.6.4-expanded-v2.2-mtc-https"
+          }
+        ],
+        "basis": [
+          "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+          "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+        ],
+        "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+        "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+      },
+      "original_source_lane": "official_derived_semantic_rule",
+      "admission_mode": "reviewed_policy_or_context_only_not_empirical_rule",
+      "legacy_conclusion_reused": false
+    },
+    {
+      "rule_id": "OFFDER-NET-001",
+      "title": "有采集适用性限制的网络与 VPN 上下文",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "ACTIVE",
+      "disposition_reason": "网络/VPN 仅作瞬时上下文；按采集器 API 路径限制回退字段。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_api_level",
+        "app.android_native_data.network_state_layer.active_network_present",
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport",
+        "app.android_native_data.network_state_layer.has_cellular_transport"
+      ],
+      "predicate": "network_context_v1",
+      "legacy_relation": {
+        "relation_id": "OFFDER-NET-001",
+        "name": "网络传输与 VPN 仅作为动态上下文",
+        "relation_type": "volatile_context_relation",
+        "premise_fields": [
+          "android_native_data.active_transport_types",
+          "android_native_data.has_vpn_transport",
+          "android_native_data.has_wifi_transport",
+          "android_native_data.has_cellular_transport"
+        ],
+        "official_card_refs": [
+          "GOKB-NET-001",
+          "GOKB-DEVCONFIG-002"
+        ],
+        "official_source_refs": [
+          "android-networkcapabilities-api",
+          "android-network-security-config"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "catalog_only_context",
+        "predicate_id": null,
+        "severity": "context",
+        "risk_use_status": "not_executable",
+        "tolerance": "Normal users may use VPN, Wi-Fi or cellular networks and the state changes rapidly.",
+        "counterexamples": [
+          "normal VPN user",
+          "network handover"
+        ],
+        "validation_status": "context_only"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [
+        "android-network-capabilities-current"
+      ],
+      "legacy_official_source_ids": [
+        "android-networkcapabilities-api",
+        "android-network-security-config"
+      ],
+      "limitations": "网络/VPN 仅作瞬时上下文；按采集器 API 路径限制回退字段。 旧 API 返回不适用；字段缺失未评估；VPN、无网络、网络切换均不判攻击。",
+      "evidence_family": "network_context",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "旧 API 返回不适用；字段缺失未评估；VPN、无网络、网络切换均不判攻击。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [],
+      "implementation": "paired244-legacy-backlog-v1",
+      "parameters": {
+        "collector_caps_min_api": 23
+      },
+      "original_source_lane": "official_derived_semantic_rule",
+      "admission_mode": "reviewed_policy_or_context_only_not_empirical_rule",
+      "legacy_conclusion_reused": false
+    },
+    {
+      "rule_id": "OFFDER-PLAY-001",
+      "title": "服务端 Play Integrity Verdict 直接完整性关系",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "244 未采集服务端验证的 Play Integrity verdict。",
+      "dependencies": [],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-PLAY-001",
+        "name": "服务端 Play Integrity Verdict 直接完整性关系",
+        "relation_type": "future_official_direct_verdict",
+        "premise_fields": [
+          "future.play_integrity.server_verdict",
+          "future.play_integrity.device_integrity",
+          "future.play_integrity.app_integrity"
+        ],
+        "official_card_refs": [
+          "GOKB-PLAY-001"
+        ],
+        "official_source_refs": [
+          "play-integrity-overview",
+          "play-integrity-verdicts"
+        ],
+        "inference_level": "official_direct_future",
+        "executable_status": "future_not_collected",
+        "predicate_id": null,
+        "severity": "strong",
+        "risk_use_status": "future_official_verdict",
+        "tolerance": "Only server-verified verdicts are trusted; client-provided values are not evidence.",
+        "counterexamples": [
+          "unsupported device capability",
+          "temporary service failure"
+        ],
+        "validation_status": "pending_server_verified_collection"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "play-integrity-overview",
+        "play-integrity-verdicts"
+      ],
+      "limitations": "Only server-verified verdicts are trusted; client-provided values are not evidence.",
+      "evidence_family": "OFFDER-PLAY-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "设计单独版本的真实采集与服务端验证绑定；服务失败/不支持不能当攻击或正常。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [
+        "future.play_integrity.app_integrity",
+        "future.play_integrity.device_integrity",
+        "future.play_integrity.server_verdict"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-PLAY-002",
+      "title": "Play Integrity 请求绑定与防重放关系",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "244 未包含完整性请求 token 与请求绑定验证事实。",
+      "dependencies": [],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-PLAY-002",
+        "name": "Play Integrity 请求绑定与防重放关系",
+        "relation_type": "future_official_request_binding",
+        "premise_fields": [
+          "future.play_integrity.request_hash",
+          "future.play_integrity.integrity_token",
+          "future.play_integrity.request_details"
+        ],
+        "official_card_refs": [
+          "GOKB-PLAY-002"
+        ],
+        "official_source_refs": [
+          "play-integrity-standard-request",
+          "play-integrity-overview",
+          "play-integrity-verdicts"
+        ],
+        "inference_level": "official_direct_future",
+        "executable_status": "future_not_collected",
+        "predicate_id": null,
+        "severity": "strong",
+        "risk_use_status": "future_official_verdict",
+        "tolerance": "Nonce/request binding and server verification are mandatory.",
+        "counterexamples": [
+          "expired token",
+          "service retry"
+        ],
+        "validation_status": "pending_server_verified_collection"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "play-integrity-standard-request",
+        "play-integrity-overview",
+        "play-integrity-verdicts"
+      ],
+      "limitations": "Nonce/request binding and server verification are mandatory.",
+      "evidence_family": "OFFDER-PLAY-002",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "补服务端验证的请求绑定/时效与防重放事实，不能依靠客户端字符串代替。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [
+        "future.play_integrity.integrity_token",
+        "future.play_integrity.request_details",
+        "future.play_integrity.request_hash"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-KEY-001",
+      "title": "硬件 Key Attestation 证书链与挑战绑定",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "244 没有可信的证书链、挑战及撤销验证事实。",
+      "dependencies": [],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-KEY-001",
+        "name": "硬件 Key Attestation 证书链与挑战绑定",
+        "relation_type": "future_official_attestation",
+        "premise_fields": [
+          "future.key_attestation.attestation_challenge",
+          "future.key_attestation.verified_certificate_chain",
+          "future.key_attestation.google_root_trusted",
+          "future.key_attestation.revocation_status_ok"
+        ],
+        "official_card_refs": [
+          "GOKB-KEY-001"
+        ],
+        "official_source_refs": [
+          "android-key-attestation",
+          "aosp-key-id-attestation"
+        ],
+        "inference_level": "official_direct_future",
+        "executable_status": "future_not_collected",
+        "predicate_id": null,
+        "severity": "strong",
+        "risk_use_status": "future_official_verdict",
+        "tolerance": "Device capability and attestation security level must be considered; absence alone is not an attack.",
+        "counterexamples": [
+          "device without hardware-backed attestation",
+          "revocation service unavailable"
+        ],
+        "validation_status": "pending_server_verified_collection"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-key-attestation",
+        "aosp-key-id-attestation"
+      ],
+      "limitations": "Device capability and attestation security level must be considered; absence alone is not an attack.",
+      "evidence_family": "OFFDER-KEY-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "单独采集挑战绑定与服务端证书验证结果；保留无硬件支持状态。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [
+        "future.key_attestation.attestation_challenge",
+        "future.key_attestation.google_root_trusted",
+        "future.key_attestation.revocation_status_ok",
+        "future.key_attestation.verified_certificate_chain"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-BOOT-001",
+      "title": "Verified Boot 状态与弱构建线索联合关系",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "构建标签和 su 观察不能替代经过验证的 boot/locked 证明。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_type",
+        "app.android_native_data.security_config_layer.su_binary_present"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-BOOT-001",
+        "name": "Verified Boot 状态与弱构建线索联合关系",
+        "relation_type": "future_official_attestation_plus_context",
+        "premise_fields": [
+          "future.key_attestation.verified_boot_state",
+          "future.key_attestation.device_locked",
+          "android_native_data.build_tags",
+          "android_native_data.build_type",
+          "android_native_data.su_binary_present"
+        ],
+        "official_card_refs": [
+          "GOKB-BOOT-001"
+        ],
+        "official_source_refs": [
+          "aosp-verified-boot",
+          "aosp-key-id-attestation",
+          "android-build-api"
+        ],
+        "inference_level": "official_direct_future",
+        "executable_status": "future_not_collected",
+        "predicate_id": null,
+        "severity": "strong",
+        "risk_use_status": "future_official_verdict",
+        "tolerance": "Current build tags and su-binary observations remain weak until verified boot is server-verified.",
+        "counterexamples": [
+          "authorized development build",
+          "custom ROM"
+        ],
+        "validation_status": "pending_attestation_collection"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "aosp-verified-boot",
+        "aosp-key-id-attestation",
+        "android-build-api"
+      ],
+      "limitations": "Current build tags and su-binary observations remain weak until verified boot is server-verified.",
+      "evidence_family": "OFFDER-BOOT-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "与硬件证明采集联动；区分授权开发构建、不支持及验证失败。",
+      "related_or_replacement_ids": [
+        "OFFDER-KEY-001"
+      ],
+      "uncollected_or_derived_fields": [
+        "future.key_attestation.device_locked",
+        "future.key_attestation.verified_boot_state"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-WEBSEC-001",
+      "title": "WebView 文件访问设置需要与已加载 Origin 联合判断",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_DATA",
+      "disposition_reason": "已有设置未包含实际加载 scheme/host/信任策略判定。",
+      "dependencies": [
+        "app.webview_data.webview_settings_layer.allow_content_access",
+        "app.webview_data.webview_settings_layer.allow_file_access",
+        "app.webview_data.webview_settings_layer.java_script_enabled"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-WEBSEC-001",
+        "name": "WebView 文件访问设置需要与已加载 Origin 联合判断",
+        "relation_type": "future_origin_security_relation",
+        "premise_fields": [
+          "webview_data.allow_file_access",
+          "webview_data.allow_content_access",
+          "webview_data.java_script_enabled",
+          "future.webview_navigation.loaded_scheme",
+          "future.webview_navigation.loaded_host",
+          "future.webview_navigation.uri_trusted"
+        ],
+        "official_card_refs": [
+          "GOKB-WEBVIEW-004"
+        ],
+        "official_source_refs": [
+          "android-webview-unsafe-file-inclusion",
+          "android-webview-unsafe-uri-loading",
+          "android-websettings-api"
+        ],
+        "inference_level": "official_direct_future",
+        "executable_status": "future_missing_origin_fields",
+        "predicate_id": null,
+        "severity": "context",
+        "risk_use_status": "not_executable",
+        "tolerance": "Settings alone do not establish unsafe loading; the loaded scheme, host and trust decision are required.",
+        "counterexamples": [
+          "trusted local content",
+          "content access required by application design"
+        ],
+        "validation_status": "pending_navigation_origin_collection"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-webview-unsafe-file-inclusion",
+        "android-webview-unsafe-uri-loading",
+        "android-websettings-api"
+      ],
+      "limitations": "Settings alone do not establish unsafe loading; the loaded scheme, host and trust decision are required.",
+      "evidence_family": "OFFDER-WEBSEC-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "补与同次导航关联的 Origin 和版本化信任策略；不因 file access 开启直接判危险。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": [
+        "future.webview_navigation.loaded_host",
+        "future.webview_navigation.loaded_scheme",
+        "future.webview_navigation.uri_trusted"
+      ]
+    },
+    {
+      "rule_id": "OFFDER-PLUGIN-001",
+      "title": "Android WebView 与非零插件表面的兼容性",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "非零插件计数不是跨版本通用异常；P3 空 hash 也不能证明空枚举。",
+      "dependencies": [
+        "app.web_data.automation_surface_layer.mime_types_count",
+        "app.web_data.automation_surface_layer.plugins_count",
+        "app.webview_data.kernel_container_layer.webview_provider_package"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-PLUGIN-001",
+        "name": "Android WebView 与非零插件表面的兼容性",
+        "relation_type": "automation_surface_candidate",
+        "premise_fields": [
+          "webview_data.webview_provider_package",
+          "web_data.plugins_count",
+          "web_data.mime_types_count"
+        ],
+        "official_card_refs": [
+          "GOKB-AUTOMATION-001",
+          "GOKB-WEBVIEW-001"
+        ],
+        "official_source_refs": [
+          "chrome-devtools-device-mode",
+          "android-webview-api"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "candidate_needs_cross_version_validation",
+        "predicate_id": null,
+        "severity": "soft",
+        "risk_use_status": "not_executable",
+        "tolerance": "Plugin exposure differs across Chromium versions; a nonzero count cannot be declared abnormal before cross-version normal validation.",
+        "counterexamples": [
+          "Chromium PDF plugin exposure",
+          "vendor-specific WebView behavior"
+        ],
+        "validation_status": "pending_cross_version_normal_validation"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "chrome-devtools-device-mode",
+        "android-webview-api"
+      ],
+      "limitations": "Plugin exposure differs across Chromium versions; a nonzero count cannot be declared abnormal before cross-version normal validation.",
+      "evidence_family": "OFFDER-PLUGIN-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "先审计 API 可用性和默认回退，再按实现/版本验证可比较范围。",
+      "related_or_replacement_ids": [],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "rule_id": "OFFDER-EMULATOR-001",
+      "title": "AVD 构建、传感器和软件渲染组合关系",
+      "origin": "legacy_official",
+      "source_lane": "official_derived_semantic_rule",
+      "status": "NEEDS_RESEARCH",
+      "disposition_reason": "官方 AVD 文档不提供关键词/传感器组合的攻击阈值。",
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.cpu_abi",
+        "app.android_native_data.build_fingerprint_layer.device_hardware",
+        "app.android_native_data.build_fingerprint_layer.device_product",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "predicate": null,
+      "legacy_relation": {
+        "relation_id": "OFFDER-EMULATOR-001",
+        "name": "AVD 构建、传感器和软件渲染组合关系",
+        "relation_type": "virtual_device_profile_candidate",
+        "premise_fields": [
+          "android_native_data.device_product",
+          "android_native_data.device_hardware",
+          "android_native_data.cpu_abi",
+          "android_native_data.sensor_total_count",
+          "web_data.webgl_renderer"
+        ],
+        "official_card_refs": [
+          "GOKB-EMULATOR-001"
+        ],
+        "official_source_refs": [
+          "android-emulator-overview",
+          "android-avd-manager",
+          "android-build-api"
+        ],
+        "inference_level": "official_derived",
+        "executable_status": "candidate_needs_device_family_validation",
+        "predicate_id": null,
+        "severity": "context",
+        "risk_use_status": "not_executable",
+        "tolerance": "Official documents establish AVD as a virtual environment but do not define goldfish/ranchu/SwiftShader risk thresholds.",
+        "counterexamples": [
+          "authorized emulator test",
+          "cloud testing device"
+        ],
+        "validation_status": "pending_device_family_validation"
+      },
+      "version": "paired244-legacy-review-v1",
+      "official_source_ids": [],
+      "legacy_official_source_ids": [
+        "android-emulator-overview",
+        "android-avd-manager",
+        "android-build-api"
+      ],
+      "limitations": "Official documents establish AVD as a virtual environment but do not define goldfish/ranchu/SwiftShader risk thresholds.",
+      "evidence_family": "OFFDER-EMULATOR-001",
+      "standalone_attack_decision": false,
+      "risk_weight": null,
+      "review_version": "paired244-legacy-review-v1",
+      "next_action_and_acceptance": "分清真实虚拟设备环境证据与攻击标签；构建有验证身份的设备族研究。",
+      "related_or_replacement_ids": [
+        "PHYS-001",
+        "SCENE-002"
+      ],
+      "uncollected_or_derived_fields": []
+    },
+    {
+      "dependencies": [
+        "app.web_data.execution_layer.timezone_offset",
+        "browser.web_data.execution_layer.timezone_offset"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "DST boundary or time/settings changes between captures",
+      "official_source_ids": [],
+      "family": "XENV",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-X-TIMEZONE-OFFSET",
+      "title": "P3-X-TIMEZONE-OFFSET",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 591,
+          "applicable_manufacturers": 39,
+          "group_outcomes": {
+            "MATCH": 591,
+            "UNKNOWN": 19
+          }
+        },
+        "development": {
+          "applicable_groups": 138,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 138,
+            "UNKNOWN": 4
+          }
+        }
+      },
+      "evidence_family": "P3-X-TIMEZONE-OFFSET",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.web_data.navigator_layer.language",
+        "browser.web_data.navigator_layer.language"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "per-app and browser language preferences",
+      "official_source_ids": [],
+      "family": "XENV",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-X-LANGUAGE",
+      "title": "P3-X-LANGUAGE",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 609,
+            "COUNTEREXAMPLE": 1
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 141,
+            "COUNTEREXAMPLE": 1
+          }
+        }
+      },
+      "evidence_family": "P3-X-LANGUAGE",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "browser.web_data.navigator_layer.max_touch_points"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "browser exposure/privacy/input device differences",
+      "official_source_ids": [],
+      "family": "XENV",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-X-TOUCH",
+      "title": "P3-X-TOUCH",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "P3-X-TOUCH",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.web_data.navigator_layer.hardware_concurrency",
+        "browser.web_data.navigator_layer.hardware_concurrency"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "privacy caps and logical processor availability; 0 is sentinel",
+      "official_source_ids": [
+        "whatwg-hardware-concurrency",
+        "w3c-device-memory",
+        "android-memory-info"
+      ],
+      "family": "MEM",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-X-CORES",
+      "title": "P3-X-CORES",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 581,
+            "COUNTEREXAMPLE": 29
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 138,
+            "COUNTEREXAMPLE": 4
+          }
+        }
+      },
+      "evidence_family": "P3-X-CORES",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "zoom, density and per-container window configuration",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "family": "SCREEN",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-X-DPR",
+      "title": "P3-X-DPR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 607,
+            "COUNTEREXAMPLE": 3
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 141,
+            "COUNTEREXAMPLE": 1
+          }
+        }
+      },
+      "evidence_family": "screen_geometry",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "predicate": "dimension_equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "orientation normalized only; multiwindow and screen exposure can differ",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "family": "SCREEN",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-X-SCREEN-SIZE",
+      "title": "P3-X-SCREEN-SIZE",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 596,
+            "COUNTEREXAMPLE": 14
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 140,
+            "COUNTEREXAMPLE": 2
+          }
+        }
+      },
+      "evidence_family": "screen_geometry",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate": "screen_short_side",
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      },
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "family": "SCREEN",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SCREEN-APP",
+      "title": "P3-SCREEN-APP",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 598,
+            "COUNTEREXAMPLE": 12
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 140,
+            "COUNTEREXAMPLE": 2
+          }
+        }
+      },
+      "evidence_family": "screen_geometry",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "CSSOM screen exposure relation, not independent hardware evidence",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "family": "SCREEN",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-COLOR-APP",
+      "title": "P3-COLOR-APP",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "P3-COLOR-APP",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "browser.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate": "screen_short_side",
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      },
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "family": "SCREEN",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SCREEN-BROWSER",
+      "title": "P3-SCREEN-BROWSER",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 596,
+            "COUNTEREXAMPLE": 14
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 140,
+            "COUNTEREXAMPLE": 2
+          }
+        }
+      },
+      "evidence_family": "screen_geometry",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "browser.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.pixel_depth"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "CSSOM screen exposure relation, not independent hardware evidence",
+      "official_source_ids": [
+        "android-display-metrics",
+        "cssom-view-dpr"
+      ],
+      "family": "SCREEN",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-COLOR-BROWSER",
+      "title": "P3-COLOR-BROWSER",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "P3-COLOR-BROWSER",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "browser_android_compatible",
+      "parameters": {
+        "reduced_chrome_min_major": 107,
+        "reduced_android_token": 10
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "Chrome Android >=107 reduced Android 10 token is compatible, not actual OS recovery; customized UA can still violate",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "family": "OS",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-UA-REDUCED-BROWSER",
+      "title": "P3-UA-REDUCED-BROWSER",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 468,
+          "applicable_manufacturers": 31,
+          "group_outcomes": {
+            "MATCH": 464,
+            "NOT_APPLICABLE": 133,
+            "UNKNOWN": 9,
+            "COUNTEREXAMPLE": 4
+          }
+        },
+        "development": {
+          "applicable_groups": 106,
+          "applicable_manufacturers": 18,
+          "group_outcomes": {
+            "MATCH": 106,
+            "UNKNOWN": 3,
+            "NOT_APPLICABLE": 33
+          }
+        }
+      },
+      "evidence_family": "P3-UA-REDUCED-BROWSER",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "host configuration and JS navigator UA can differ; no universal equality guarantee",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "family": "OS",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-UA-DEFAULT",
+      "title": "P3-UA-DEFAULT",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "host_ua",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.webview_data.webview_settings_layer.settings_user_agent",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "device_mined_rule",
+      "limitations": "host configuration and JS navigator UA can differ; no universal equality guarantee",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "family": "OS",
+      "admission_mode": "empirical",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-UA-SETTINGS",
+      "title": "P3-UA-SETTINGS",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "EMPIRICAL_RESEARCH_RELATION",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "host_ua",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.webview_data.kernel_container_layer.webview_provider_version",
+        "app.webview_data.kernel_container_layer.webview_provider_major"
+      ],
+      "predicate": "provider_parse",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "collector_derived_consistency",
+      "limitations": "major is parsed from version by this collector; duplicate derivation, not new detection power",
+      "official_source_ids": [
+        "android-webview-ua-reduction",
+        "android-websettings-api",
+        "android-webview-provider-api"
+      ],
+      "family": "OS",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-PROVIDER-PARSE",
+      "title": "P3-PROVIDER-PARSE",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "COLLECTOR_CONSISTENCY_ONLY",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 568,
+          "applicable_manufacturers": 35,
+          "group_outcomes": {
+            "MATCH": 568,
+            "UNKNOWN": 42
+          }
+        },
+        "development": {
+          "applicable_groups": 136,
+          "applicable_manufacturers": 18,
+          "group_outcomes": {
+            "MATCH": 136,
+            "UNKNOWN": 6
+          }
+        }
+      },
+      "evidence_family": "P3-PROVIDER-PARSE",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer"
+      ],
+      "predicate": "equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "collector_derived_consistency",
+      "limitations": "both copy one glRenderer value; tautological collector consistency",
+      "official_source_ids": [
+        "khronos-webgl-renderer-info"
+      ],
+      "family": "GPU",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-GPU-COPY",
+      "title": "P3-GPU-COPY",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "COLLECTOR_CONSISTENCY_ONLY",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "P3-GPU-COPY",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.total_memory_gb"
+      ],
+      "predicate": "less_equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "same MemoryInfo snapshot, GB units; this is memory accounting, not identity",
+      "official_source_ids": [
+        "whatwg-hardware-concurrency",
+        "w3c-device-memory",
+        "android-memory-info"
+      ],
+      "family": "MEM",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-MEM-AVAILABLE",
+      "title": "P3-MEM-AVAILABLE",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "P3-MEM-AVAILABLE",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate": "less_equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "collector_derived_consistency",
+      "limitations": "distinct subset count cannot exceed source list count",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-NAME_COUNT",
+      "title": "P3-SENSOR-NAME_COUNT",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "COLLECTOR_CONSISTENCY_ONLY",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate": "less_equal",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "collector_derived_consistency",
+      "limitations": "distinct subset count cannot exceed source list count",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-VENDOR_COUNT",
+      "title": "P3-SENSOR-VENDOR_COUNT",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "COLLECTOR_CONSISTENCY_ONLY",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate": "list_count",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "collector_derived_consistency",
+      "limitations": "collector returns distinct sorted type list; same-list derivation",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-TYPE-COUNT",
+      "title": "P3-SENSOR-TYPE-COUNT",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "COLLECTOR_CONSISTENCY_ONLY",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sorted_unique",
+      "parameters": {},
+      "version": "2.0.1",
+      "source_lane": "collector_derived_consistency",
+      "limitations": "collector implementation invariant, not independent evidence",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "collector",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-TYPE-ORDER",
+      "title": "P3-SENSOR-TYPE-ORDER",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "COLLECTOR_CONSISTENCY_ONLY",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 1
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-ACCELEROMETER",
+      "title": "P3-SENSOR-ACCELEROMETER",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 610,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 610
+          }
+        },
+        "development": {
+          "applicable_groups": 142,
+          "applicable_manufacturers": 21,
+          "group_outcomes": {
+            "MATCH": 142
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 2
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+      "title": "P3-SENSOR-MAGNETIC_FIELD",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 592,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 592,
+            "NOT_APPLICABLE": 18
+          }
+        },
+        "development": {
+          "applicable_groups": 137,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 137,
+            "NOT_APPLICABLE": 5
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 4
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-GYROSCOPE",
+      "title": "P3-SENSOR-GYROSCOPE",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 561,
+          "applicable_manufacturers": 36,
+          "group_outcomes": {
+            "MATCH": 561,
+            "NOT_APPLICABLE": 49
+          }
+        },
+        "development": {
+          "applicable_groups": 133,
+          "applicable_manufacturers": 19,
+          "group_outcomes": {
+            "MATCH": 133,
+            "NOT_APPLICABLE": 9
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 5
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+      "title": "P3-SENSOR-LIGHT_SENSOR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 603,
+          "applicable_manufacturers": 41,
+          "group_outcomes": {
+            "MATCH": 603,
+            "NOT_APPLICABLE": 7
+          }
+        },
+        "development": {
+          "applicable_groups": 141,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 141,
+            "NOT_APPLICABLE": 1
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 6
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+      "title": "P3-SENSOR-PRESSURE_SENSOR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 94,
+          "applicable_manufacturers": 11,
+          "group_outcomes": {
+            "NOT_APPLICABLE": 516,
+            "MATCH": 94
+          }
+        },
+        "development": {
+          "applicable_groups": 21,
+          "applicable_manufacturers": 6,
+          "group_outcomes": {
+            "NOT_APPLICABLE": 121,
+            "MATCH": 21
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 8
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+      "title": "P3-SENSOR-PROXIMITY_SENSOR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 596,
+          "applicable_manufacturers": 40,
+          "group_outcomes": {
+            "MATCH": 596,
+            "NOT_APPLICABLE": 14
+          }
+        },
+        "development": {
+          "applicable_groups": 138,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 138,
+            "NOT_APPLICABLE": 4
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 9
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+      "title": "P3-SENSOR-GRAVITY_SENSOR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 587,
+          "applicable_manufacturers": 39,
+          "group_outcomes": {
+            "MATCH": 587,
+            "NOT_APPLICABLE": 23
+          }
+        },
+        "development": {
+          "applicable_groups": 137,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 137,
+            "NOT_APPLICABLE": 5
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 11
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+      "title": "P3-SENSOR-ROTATION_VECTOR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 586,
+          "applicable_manufacturers": 40,
+          "group_outcomes": {
+            "MATCH": 586,
+            "NOT_APPLICABLE": 24
+          }
+        },
+        "development": {
+          "applicable_groups": 137,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 137,
+            "NOT_APPLICABLE": 5
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 18
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-STEP_DETECTOR",
+      "title": "P3-SENSOR-STEP_DETECTOR",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 504,
+          "applicable_manufacturers": 36,
+          "group_outcomes": {
+            "MATCH": 504,
+            "NOT_APPLICABLE": 106
+          }
+        },
+        "development": {
+          "applicable_groups": 123,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 123,
+            "NOT_APPLICABLE": 19
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    },
+    {
+      "dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate": "sensor_presence",
+      "parameters": {
+        "sensor_type": 19
+      },
+      "version": "2.0.1",
+      "source_lane": "official_derived_semantic_rule",
+      "limitations": "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ",
+      "official_source_ids": [
+        "android-sensor-manager"
+      ],
+      "family": "SENSOR",
+      "admission_mode": "semantic",
+      "scope": "P1 passed paired244 P2 primary representatives; observed dependency values only",
+      "rule_id": "P3-SENSOR-STEP_COUNTER",
+      "title": "P3-SENSOR-STEP_COUNTER",
+      "origin": "p3_research",
+      "status": "ACTIVE",
+      "disposition_reason": "SEMANTIC_RESEARCH_CONSTRAINT",
+      "empirical_selection_applied": true,
+      "p3_support": {
+        "discovery": {
+          "applicable_groups": 593,
+          "applicable_manufacturers": 39,
+          "group_outcomes": {
+            "MATCH": 593,
+            "NOT_APPLICABLE": 17
+          }
+        },
+        "development": {
+          "applicable_groups": 139,
+          "applicable_manufacturers": 20,
+          "group_outcomes": {
+            "MATCH": 139,
+            "NOT_APPLICABLE": 3
+          }
+        }
+      },
+      "evidence_family": "sensor_structure",
+      "standalone_attack_decision": false,
+      "risk_weight": null
+    }
+  ],
+  "legacy_kb_binding": {
+    "path": "scoring/rule_knowledge_base.json",
+    "sha256": "bd64876a301eaa063b7793fd7fb471ffe64bab4478970f7f3a6476ff0a4a7884"
+  },
+  "execution_policy": "Evaluate all ACTIVE checks independently; no short circuit, risk weights or attack/safety label. Similar evidence families are not independent votes.",
+  "overlap_policy": "Preserve source lanes and differing availability/applicability semantics; do not merge merely similar predicates. Report check counts, not independent-rule counts.",
+  "reserved_validation": "LOCKED",
+  "detection_metrics": "NOT_EVALUATED",
+  "p4_status": "BACKLOG_FIRST_BATCH_ONLY",
+  "previous_catalog_version": "paired244-runtime-catalog-v1",
+  "review_version": "paired244-legacy-review-v1",
+  "deployment_policy": {
+    "policy_version": "mtc-featureapp-deployment-policy-v1",
+    "allowed_packages": [
+      "com.example.hybridguard.featureapp"
+    ],
+    "allowed_releases": [
+      {
+        "version_code": 9,
+        "version_name": "1.6.2-expanded-v2.2-mtc"
+      },
+      {
+        "version_code": 11,
+        "version_name": "1.6.4-expanded-v2.2-mtc-https"
+      }
+    ],
+    "basis": [
+      "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+      "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+    ],
+    "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+    "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+  },
+  "review_scope": {
+    "allowed_splits": [
+      "discovery",
+      "development"
+    ],
+    "reserved_validation": "LOCKED",
+    "first_batch": "Explicit dispositions and six deployment/context observations; remaining research/collection is not completed.",
+    "prior_development_exposure": true,
+    "threshold_fitting": false,
+    "new_attack_labels": false,
+    "model_calls": false,
+    "acceptance": "Reproduce unchanged 48 checks; exercise every new predicate boundary; retain every runtime failure and all unknown states."
+  }
+}

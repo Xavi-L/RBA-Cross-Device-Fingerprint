@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formal_manipulation_job_v2",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "formal-prediction-job-v2"
+    },
+    "study_version": {
+      "const": "formal-manipulation-v1"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "protocol_digest": {
+      "type": "string"
+    },
+    "contract_version": {
+      "const": "formal-manipulation-relation-risk-attribution-v2"
+    },
+    "policy_version": {
+      "const": "formal-manipulation-family-or-v2"
+    },
+    "execution_scope": {
+      "enum": [
+        "SYNTHETIC_CONTRACT_TEST",
+        "FROZEN_FORMAL_EVALUATION"
+      ]
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "variant_id": {
+            "type": "string"
+          },
+          "condition_id": {
+            "enum": [
+              "SRC-000",
+              "SRC-001",
+              "SRC-010",
+              "SRC-011",
+              "SRC-100",
+              "SRC-101",
+              "SRC-110",
+              "SRC-111"
+            ]
+          },
+          "input_view": {
+            "enum": [
+              "App177",
+              "Native84",
+              "Host26",
+              "AppWeb67",
+              "NativeAppWeb151"
+            ]
+          },
+          "method": {
+            "enum": [
+              "final_v3_v2",
+              "legacy19_v2"
+            ]
+          }
+        },
+        "required": [
+          "variant_id",
+          "condition_id",
+          "input_view",
+          "method"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "expected_units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "opaque_id": {
+            "type": "string",
+            "pattern": "^sample-[A-Za-z0-9_-]+$"
+          },
+          "variant_id": {
+            "type": "string"
+          },
+          "input_line": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "opaque_id",
+          "variant_id",
+          "input_line"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "freeze": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "FROZEN"
+        },
+        "protocol_version": {
+          "const": "formal-manipulation-protocol-v2"
+        },
+        "authorized_execution_step": {
+          "enum": [
+            "S06",
+            "S07",
+            "S08",
+            "S09",
+            "S10",
+            "S11"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "protocol_version",
+        "authorized_execution_step"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "study_version",
+    "run_id",
+    "protocol_digest",
+    "contract_version",
+    "policy_version",
+    "execution_scope",
+    "variants",
+    "expected_units"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "execution_scope": {
+            "const": "FROZEN_FORMAL_EVALUATION"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "freeze"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "freeze"
+          ]
+        }
+      }
+    }
+  ]
+}

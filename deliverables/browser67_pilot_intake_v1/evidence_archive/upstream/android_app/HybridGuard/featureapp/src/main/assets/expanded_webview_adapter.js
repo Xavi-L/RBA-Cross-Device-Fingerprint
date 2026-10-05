@@ -1,0 +1,319 @@
+(function (global) {
+    "use strict";
+
+    var statusEl = document.getElementById("status");
+    var subtitleEl = document.getElementById("subtitle");
+    var logEl = document.getElementById("log");
+    var canvasBox = document.getElementById("canvasBox");
+    var geometrySamplingPending = false;
+    var geometryReadiness = { status: "not_checked", reason: null };
+
+    function setStatus(text) {
+        if (geometrySamplingPending) { return; }
+        statusEl.textContent = text;
+    }
+
+    function log(text, cls) {
+        if (geometrySamplingPending) { return; }
+        var paragraph = document.createElement("p");
+        paragraph.className = "line" + (cls ? " " + cls : "");
+        paragraph.textContent = text;
+        logEl.appendChild(paragraph);
+        logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function sleep(milliseconds) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, milliseconds);
+        });
+    }
+
+    function assignObject(target, source) {
+        Object.keys(source || {}).forEach(function (key) {
+            target[key] = source[key];
+        });
+        return target;
+    }
+
+    function defaultHostData() {
+        return {
+            webview_provider_package: "",
+            webview_provider_version: "",
+            webview_provider_version_code: -1,
+            webview_provider_major: -1,
+            system_http_agent: "",
+            default_ua_native: "",
+            is_debuggable: false,
+            app_package_name: "",
+            app_version_name: "",
+            app_version_code: -1,
+            installer_package: "unknown",
+            is_cleartext_traffic_permitted: false,
+            first_install_time: -1,
+            last_update_time: -1,
+            target_sdk_version: -1,
+            min_sdk_version: -1,
+            java_script_enabled: true,
+            dom_storage_enabled: true,
+            database_enabled: false,
+            allow_file_access: false,
+            allow_content_access: false,
+            mixed_content_mode: -1,
+            safe_browsing_enabled: false,
+            settings_user_agent: ""
+        };
+    }
+
+    function buildWebViewData(hostData, bridgeLatencyMs) {
+        return {
+            bridge_routing_layer: {
+                jsbridge_injected: true,
+                bridge_latency_ms: bridgeLatencyMs
+            },
+            kernel_container_layer: {
+                webview_provider_package: hostData.webview_provider_package,
+                webview_provider_version: hostData.webview_provider_version,
+                webview_provider_version_code: hostData.webview_provider_version_code,
+                webview_provider_major: hostData.webview_provider_major,
+                system_http_agent: hostData.system_http_agent,
+                default_ua_native: hostData.default_ua_native
+            },
+            host_security_layer: {
+                is_debuggable: hostData.is_debuggable,
+                app_package_name: hostData.app_package_name,
+                app_version_name: hostData.app_version_name,
+                app_version_code: hostData.app_version_code,
+                installer_package: hostData.installer_package,
+                is_cleartext_traffic_permitted: hostData.is_cleartext_traffic_permitted
+            },
+            temporal_build_layer: {
+                first_install_time: hostData.first_install_time,
+                last_update_time: hostData.last_update_time,
+                target_sdk_version: hostData.target_sdk_version,
+                min_sdk_version: hostData.min_sdk_version
+            },
+            webview_settings_layer: {
+                java_script_enabled: hostData.java_script_enabled,
+                dom_storage_enabled: hostData.dom_storage_enabled,
+                database_enabled: hostData.database_enabled,
+                allow_file_access: hostData.allow_file_access,
+                allow_content_access: hostData.allow_content_access,
+                mixed_content_mode: hostData.mixed_content_mode,
+                safe_browsing_enabled: hostData.safe_browsing_enabled,
+                settings_user_agent: hostData.settings_user_agent
+            }
+        };
+    }
+
+    function updateProbeUi(status, detail, cls) {
+        // Android only calls this after geometry has completed or timed out.
+        geometrySamplingPending = false;
+        setStatus(status);
+        if (detail) {
+            subtitleEl.textContent = detail;
+            log(detail, cls);
+        }
+    }
+
+    global.HybridGuardProbe = {
+        updateResult: updateProbeUi,
+        captureWebViewGeometry: function (request) {
+            if (!global.HybridGuardWebViewGeometry) {
+                throw new Error("geometry_observer_module_missing");
+            }
+            return global.HybridGuardWebViewGeometry.capture(request);
+        }
+    };
+
+    function awaitGeometryReadiness() {
+        var attempts = 0;
+        function check() {
+            attempts += 1;
+            try {
+                if (!global.AndroidBridge || typeof global.AndroidBridge.isGeometryReady !== "function") {
+                    geometryReadiness = { status: "unsupported", reason: "host_readiness_api_missing", attempts: attempts };
+                    return Promise.resolve();
+                }
+                if (global.AndroidBridge.isGeometryReady()) {
+                    geometryReadiness = { status: "observed", reason: null, attempts: attempts };
+                    return Promise.resolve();
+                }
+            } catch (error) {
+                geometryReadiness = { status: "runtime_error", reason: String(error), attempts: attempts };
+                return Promise.resolve();
+            }
+            if (attempts >= 80) {
+                geometryReadiness = { status: "timeout", reason: "host_not_ready_after_bounded_wait", attempts: attempts };
+                return Promise.resolve();
+            }
+            return sleep(50).then(check);
+        }
+        return check();
+    }
+
+    // Auxiliary raw evidence, outside the fixed 177/67 field trees. The
+    // observer records both contexts; offline candidate scope is WebGL1.
+    function collectWebGLParameters(sessionId) {
+        var result = {
+            collection_revision: "featureapp-webgl-parameter-collection-v1",
+            read_status: "not_collected",
+            observation: null,
+            reason: "session_binding_missing"
+        };
+        if (typeof sessionId !== "string" || !sessionId) {
+            return result;
+        }
+        var observer = global.HybridGuardWebGLParameterObserver;
+        if (!observer || typeof observer.observe !== "function") {
+            result.read_status = "unsupported";
+            result.reason = "observer_module_missing";
+            return result;
+        }
+        try {
+            result.observation = observer.observe({
+                realmBinding: "featureapp:" + sessionId + ":main-frame"
+            });
+            result.read_status = "observed";
+            result.reason = null;
+        } catch (error) {
+            result.read_status = "runtime_error";
+            result.reason = global.HybridGuardWebProbe.describeError(error);
+        }
+        return result;
+    }
+
+    function handoffPayload(sessionId, webViewData, probeResult) {
+        if (
+            !global.AndroidBridge ||
+            !global.AndroidBridge.submitExpandedPayload ||
+            !sessionId
+        ) {
+            setStatus("Unable to hand payload to Android uploader");
+            return;
+        }
+        var payload = {
+            session_id: sessionId,
+            timestamp: Math.floor(Date.now() / 1000),
+            webview_data: webViewData,
+            web_data: probeResult.web_data,
+            collection_diagnostics: {
+                diagnostics_schema_version: "web-probe-diagnostics-v1",
+                web_probe_revision: global.HybridGuardWebProbe.REVISION,
+                probe_statuses: probeResult.probe_statuses
+            }
+        };
+        payload.collection_observations = probeResult.collection_observations || {
+            observation_schema_version: "app-web-observations-v1"
+        };
+        payload.collection_observations.geometry_document_id = global.HybridGuardWebViewGeometry ?
+            global.HybridGuardWebViewGeometry.documentId : null;
+        payload.collection_observations.geometry_readiness = geometryReadiness;
+        try {
+            setStatus("Handing expanded payload to Android uploader...");
+            log("Expanded payload handing to uploader", "good");
+            geometrySamplingPending = true;
+            global.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
+        } catch (error) {
+            geometrySamplingPending = false;
+            log(
+                "Android uploader handoff failed: " +
+                    global.HybridGuardWebProbe.describeError(error),
+                "bad"
+            );
+            setStatus("Android uploader handoff failed");
+        }
+    }
+
+    function collectExpandedSignals() {
+        var currentSessionId = "";
+        var webViewData = buildWebViewData(defaultHostData(), -1);
+        var fallbackProbeResult = {
+            web_data: global.HybridGuardWebProbe.defaultWebData(),
+            probe_statuses: {
+                navigator: "runtime_error",
+                screen: "runtime_error",
+                webgl: "runtime_error",
+                webgl2: "runtime_error",
+                execution: "runtime_error",
+                connection: "runtime_error",
+                audio: "runtime_error",
+                font: "runtime_error",
+                permissions: "runtime_error",
+                automation: "runtime_error",
+                canvas: "runtime_error"
+            }
+        };
+
+        setStatus("Establishing JSBridge connection...");
+        return awaitGeometryReadiness().then(function () { return sleep(100); }).then(function () {
+            if (
+                !global.AndroidBridge ||
+                !global.AndroidBridge.getSessionId ||
+                !global.AndroidBridge.getWebViewHostFeatures ||
+                !global.AndroidBridge.submitExpandedPayload
+            ) {
+                throw new Error("Android bridge missing");
+            }
+            var startedAt = performance.now();
+            currentSessionId = global.AndroidBridge.getSessionId();
+            var bridgeLatencyMs = parseFloat((performance.now() - startedAt).toFixed(3));
+            var hostData = assignObject(
+                defaultHostData(),
+                JSON.parse(global.AndroidBridge.getWebViewHostFeatures())
+            );
+            webViewData = buildWebViewData(hostData, bridgeLatencyMs);
+            log("JSBridge connected in " + bridgeLatencyMs + " ms", "good");
+            log("Expanded WebView host signals collected");
+            setStatus("Collecting expanded browser runtime signals...");
+            return sleep(100);
+        }).then(function () {
+            return global.HybridGuardWebProbe.collect({
+                canvasContainer: canvasBox,
+                onLog: log,
+                // Self-declared association with this App collection's main
+                // frame, not an assertion of native getter authenticity.
+                webdriverObservation: {
+                    realmBinding: "featureapp:" + currentSessionId + ":main-frame"
+                }
+            });
+        }).then(function (probeResult) {
+            var observations = probeResult.collection_observations || {
+                observation_schema_version: "app-web-observations-v1"
+            };
+            observations.webgl_parameter = collectWebGLParameters(currentSessionId);
+            probeResult.collection_observations = observations;
+            var navigatorInfo = probeResult.web_data.navigator_layer;
+            var screenInfo = probeResult.web_data.screen_layer;
+            var webglInfo = probeResult.web_data.graphics_layer;
+            var audioInfo = probeResult.web_data.audio_layer;
+            var fontInfo = probeResult.web_data.font_layer;
+            var executionInfo = probeResult.web_data.execution_layer;
+            log("UA: " + navigatorInfo.user_agent.substring(0, 68));
+            log(
+                "Logical screen: " +
+                    screenInfo.screen_resolution_logical +
+                    " DPR " +
+                    screenInfo.device_pixel_ratio
+            );
+            log("WebGL renderer: " + webglInfo.webgl_renderer);
+            log(
+                "Audio supported: " +
+                    audioInfo.audio_context_supported +
+                    ", fonts: " +
+                    fontInfo.font_probe_count
+            );
+            log("Compute challenge: " + executionInfo.compute_task_time_ms + " ms", "good");
+            log("Canvas hash: " + webglInfo.canvas_hash.substring(0, 16));
+            handoffPayload(currentSessionId, webViewData, probeResult);
+        }, function (error) {
+            log(
+                "Expanded probe degraded: " +
+                    global.HybridGuardWebProbe.describeError(error),
+                "bad"
+            );
+            handoffPayload(currentSessionId, webViewData, fallbackProbeResult);
+        });
+    }
+
+    global.addEventListener("load", collectExpandedSignals);
+})(window);

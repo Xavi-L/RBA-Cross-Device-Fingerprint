@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/context-pack-v1",
+  "type": "object",
+  "required": ["context_pack_version", "sample_id", "evidence_hash", "query_fields", "filters", "cards"],
+  "properties": {
+    "context_pack_version": {"const": "context-pack-v1"},
+    "sample_id": {"type": "string"},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "query_fields": {"type": "array", "items": {"type": "string"}},
+    "filters": {"type": "object"},
+    "cards": {"type": "array"}
+  },
+  "additionalProperties": true
+}

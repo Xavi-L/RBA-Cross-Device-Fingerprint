@@ -1,0 +1,23 @@
+{
+  "schema_version": "rule-learning-experiment-matrix-v1",
+  "execution_status": "PLANNED_ONLY",
+  "experiments": [
+    {"id": "R05_PRIMARY", "question": "Do whole-set budgeted rules improve detection/clean-alarm/coverage tradeoffs?", "split_id": "LOEO-v1", "methods": ["HISTORICAL_SEVEN", "DIRECT_CORE_OR", "GREEDY_OR", "FINITE_IP_OR", "FINITE_IP_DNF2", "ALWAYS_NO_ALERT", "ALWAYS_ABSTAIN"], "fit_methods": ["GREEDY_OR", "FINITE_IP_OR", "FINITE_IP_DNF2"], "operating_points": ["OP05", "OP00", "OP10"], "fit_job_count": 27, "outer_folds": 3, "pool": "core", "source_condition": "SRC-111", "primary_comparison": "GREEDY_OR_OP05", "legacy_reuse": "saved final_v3_v2 exact matching IDs; own historical coverage definition retained separately; legacy19 secondary saved reference only"},
+    {"id": "R06_SOURCE_REFIT", "question": "What can be learned when each provenance pool is available?", "split_id": "LOEO-v1", "method": "GREEDY_OR", "operating_points": ["OP05"], "source_conditions": ["SRC-000", "SRC-001", "SRC-010", "SRC-011", "SRC-100", "SRC-101", "SRC-110", "SRC-111"], "source_bit_order": ["O_u", "H", "E"], "C": "COMMON_MEASUREMENT_AND_DIAGNOSTIC_ONLY_NOT_CORE_ALARM_FEATURE", "fit_job_count_max": 24, "reuse_SRC111_from_R05": true, "retrain": true, "empty_pool": "EMPTY_MODEL_RETAINED"},
+    {"id": "R06_POSTFIT_DELETE", "question": "On which inputs does this particular frozen model depend?", "method": "DELETE_CLAUSES_CONTAINING_REMOVED_SOURCE_FROM_FROZEN_GREEDY_OR", "source_removals": ["E", "O_u", "H"], "operating_points": ["OP05"], "fit_job_count": 0, "retrain": false, "distinct_from_source_refit": true, "mixed_source_clause": "REMOVE_ENTIRE_CLAUSE", "semantic_gates_retained": true},
+    {"id": "R07_SINGLE_SURFACE_REFIT", "question": "What information does a cross-surface representation add?", "split_id": "LOEO-v1", "method": "GREEDY_OR", "surfaces": ["native84", "app_web67", "host26"], "operating_points": ["OP05"], "fit_job_count": 9, "encoder": "SINGLE_SURFACE_TRAIN_ENCODER_V1_PLUS_SAME_SURFACE_CATALOG_ATOMS", "same_objective_and_model_budget": true, "candidate_pool_size_reported": true, "current_Browser_attack_branch": "NOT_AVAILABLE"},
+    {"id": "R07_FIXED_MODEL_MASK", "question": "How does missing input affect a frozen model?", "split_id": "LOEO-v1", "method": "FROZEN_GREEDY_OR_MASK_VALUES_STATUS_QUALITY_BEFORE_DERIVATION", "removed_surfaces": ["native84", "app_web67", "host26"], "fit_job_count": 0, "retrain": false},
+    {"id": "R07_SEMANTIC_DIAGNOSTIC", "question": "Do U, copy redundancy and alias identity behave as contracted?", "scope": "SYNTHETIC_ONLY", "variants": ["NEGATE_U", "FAILED_ATOM", "DUPLICATE_ALIAS", "EMPTY_MODEL"], "real_wrong_semantics_experiment": false, "fit_job_count": 0},
+    {"id": "R08_CONFIG_TRANSFER", "question": "Can learned rules transfer to a held-out declared configuration in shared environments?", "split_id": "LOCO-v1", "methods": ["HISTORICAL_SEVEN", "DIRECT_CORE_OR", "GREEDY_OR"], "fit_methods": ["GREEDY_OR"], "operating_points": ["OP05"], "fit_job_count": 14, "independent_mechanism": false},
+    {"id": "R08_MECHANISM", "status": "NOT_EVALUABLE_UNVERIFIED_MECHANISM_PARTITION", "fit_job_count": 0},
+    {"id": "R08_PROSPECTIVE", "status": "NOT_AVAILABLE", "fit_job_count": 0, "separate_authorization": true},
+    {"id": "FINAL_DEVELOPMENT_REFIT", "method": "GREEDY_OR", "operating_points": ["OP05"], "fit_job_count": 1, "population": "ALL_162_SUPERVISED_STAGES", "evaluation_role": "DEVELOPMENT_ONLY_NO_INDEPENDENT_SCORE"},
+    {"id": "R09_COST", "models": "ALL_SAVED_FITS_AND_FIXED_GREEDY_OR_OP05_LOEO_MODELS", "fit_job_count": 0, "inference_ids": "ALL_LOEO_TEST_IDS_SORTED", "warmup_passes": 1, "timed_passes": 5, "cold_passes": 1, "cold_definition": "NEW_PROCESS_MODULE_AND_MODEL_LOAD_INCLUDED_OS_PAGE_CACHE_NOT_CLEARED", "clock": "MONOTONIC_PERF_COUNTER_NS", "train_and_inference_separate": true, "legacy_S06_audit_timing_is_fair_benchmark": false},
+    {"id": "R09_EXPLANATION", "population": "ALL_SAVED_OOF_DECISIONS", "checks": ["model clause membership", "current input field references", "literal polarity and U", "no intent attribution"], "manual_missing": "NOT_REVIEWED", "fit_job_count": 0},
+    {"id": "R10_MTC_REFERENCE", "scope": "SAVED_OUTPUT_EXPORT_ONLY", "TPR_FPR": "NOT_EVALUABLE_NO_TRUTH", "fit_job_count": 0}
+  ],
+  "total_planned_fit_jobs_upper_bound": 75,
+  "already_executed_fit_jobs": 0,
+  "same_fold_expected_IDs_for_comparisons": true,
+  "baseline_success_requirement": "NO_REQUIRED_WIN_OR_NONEMPTY_MODEL"
+}

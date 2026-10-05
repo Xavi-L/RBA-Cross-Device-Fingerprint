@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/knowledge-card-v1",
+  "type": "object",
+  "required": ["card_id", "kind", "title", "canonical_fields", "content", "provenance", "applicability", "status", "version"],
+  "properties": {
+    "card_id": {"type": "string", "minLength": 1},
+    "kind": {"enum": ["deterministic_rule", "official", "empirical_rule", "empirical_case"]},
+    "title": {"type": "string", "minLength": 1},
+    "canonical_fields": {"type": "array", "items": {"type": "string"}},
+    "content": {"type": "object"},
+    "provenance": {"type": "object"},
+    "applicability": {"enum": ["current", "future_only"]},
+    "status": {"type": "string"},
+    "version": {}
+  },
+  "additionalProperties": true
+}

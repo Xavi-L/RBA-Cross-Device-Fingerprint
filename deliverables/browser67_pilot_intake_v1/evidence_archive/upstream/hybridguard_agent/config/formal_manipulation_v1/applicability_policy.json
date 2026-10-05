@@ -1,0 +1,1475 @@
+{
+  "policy_version": "formal-manipulation-applicability-v1",
+  "common_gate_ids": [
+    "registered_current_fields",
+    "explicit_observed_and_quality",
+    "typed_finite_non_sentinel",
+    "product_specific_ua_scope",
+    "unmodified_agent_origin_not_inferred",
+    "gpu_render_path_not_inferred",
+    "browser_evidence_only_if_present",
+    "source_group_never_changes_semantic_gate"
+  ],
+  "scopes": [
+    {
+      "applicability_id": "scope:CORE-002",
+      "rule_id": "CORE-002",
+      "profile": "bridge",
+      "required_fields": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "conditions": [
+        "explicit boolean bridge state",
+        "fixed App177 study surface, never infer route from free metadata"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:NW-001",
+      "rule_id": "NW-001",
+      "profile": "app_model",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "explicit unique non-K model-before-Build token",
+        "Native model is interpretable",
+        "current settings/default UA chain known",
+        "UA origin and stability throughout capture established"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_default_or_authorized_override_boundary_during_capture"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "require_dalvik": false
+      }
+    },
+    {
+      "applicability_id": "scope:NW-002",
+      "rule_id": "NW-002",
+      "profile": "app_os",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "explicit parseable Native version and App Android token",
+        "App/WebView reduction excluded independently of Browser milestones",
+        "UA origin and capture-time stability established"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_default_or_authorized_override_boundary_during_capture"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:NW-005",
+      "rule_id": "NW-005",
+      "profile": "gpu",
+      "required_fields": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "conditions": [
+        "unmasked meaningful renderer strings",
+        "Native hardware family unambiguous",
+        "software/host/remote or hybrid rendering exclusions established",
+        "ANGLE alone never a contradiction"
+      ],
+      "unobservable_alert_preconditions": [
+        "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "families": [
+          "adreno",
+          "mali",
+          "powervr",
+          "tegra",
+          "vivante"
+        ],
+        "software_tokens": [
+          "swiftshader",
+          "llvmpipe",
+          "softpipe",
+          "swrast"
+        ]
+      }
+    },
+    {
+      "applicability_id": "scope:NW-006",
+      "rule_id": "NW-006",
+      "profile": "ua_surface_context",
+      "required_fields": [
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:NW-007",
+      "rule_id": "NW-007",
+      "profile": "touch_context",
+      "required_fields": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "UA string and nonnegative integer maxTouchPoints"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:NVW-001",
+      "rule_id": "NVW-001",
+      "profile": "system_model",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.device_model",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "conditions": [
+        "explicit Dalvik grammar and unique model-before-Build token",
+        "property is the unmodified default for this historical implementation"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_system_http_agent_origin"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "require_dalvik": true
+      }
+    },
+    {
+      "applicability_id": "scope:NVW-002",
+      "rule_id": "NVW-002",
+      "profile": "system_os",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "conditions": [
+        "explicit Dalvik Android grammar",
+        "Native version parses without guessing",
+        "unmodified property origin established"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_system_http_agent_origin"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:NVW-003",
+      "rule_id": "NVW-003",
+      "profile": "deployment",
+      "required_fields": [
+        "app.webview_data.host_security_layer.app_package_name"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.host_security_layer.app_package_name"
+      ],
+      "conditions": [
+        "registered package/release fields available",
+        "fixed historical MTC deployment scope only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "deployment_policy",
+      "parameters": {
+        "policy_version": "mtc-featureapp-deployment-policy-v1",
+        "allowed_packages": [
+          "com.example.hybridguard.featureapp"
+        ],
+        "allowed_releases": [
+          {
+            "version_code": 9,
+            "version_name": "1.6.2-expanded-v2.2-mtc"
+          },
+          {
+            "version_code": 11,
+            "version_name": "1.6.4-expanded-v2.2-mtc-https"
+          }
+        ],
+        "basis": [
+          "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+          "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+        ],
+        "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+        "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+      }
+    },
+    {
+      "applicability_id": "scope:NVW-004",
+      "rule_id": "NVW-004",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:NVW-005",
+      "rule_id": "NVW-005",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:WVWEB-002",
+      "rule_id": "WVWEB-002",
+      "profile": "ua_surface_context",
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {
+        "wv_pattern": ";\\s*wv\\b",
+        "version_pattern": "\\bVersion/4\\.0\\b"
+      }
+    },
+    {
+      "applicability_id": "scope:WVWEB-004",
+      "rule_id": "WVWEB-004",
+      "profile": "ua_surface_context",
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:PHYS-005",
+      "rule_id": "PHYS-005",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.is_charging",
+        "app.android_native_data.security_config_layer.is_adb_enabled"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.battery_dynamics_layer.is_charging",
+        "app.android_native_data.security_config_layer.is_adb_enabled"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:PHYS-006",
+      "rule_id": "PHYS-006",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_type"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.build_fingerprint",
+        "app.android_native_data.build_fingerprint_layer.build_tags",
+        "app.android_native_data.build_fingerprint_layer.build_type"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:SCENE-001",
+      "rule_id": "SCENE-001",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.web_data.execution_layer.timezone_offset",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.battery_dynamics_layer.battery_level_pct",
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.web_data.execution_layer.timezone_offset",
+        "app.webview_data.host_security_layer.installer_package"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:TOL-001",
+      "rule_id": "TOL-001",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.security_config_layer.is_adb_enabled",
+        "app.webview_data.host_security_layer.is_debuggable",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-OS-001",
+      "rule_id": "OFFDER-OS-001",
+      "profile": "app_os",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "explicit parseable Native version and App Android token",
+        "App/WebView reduction excluded independently of Browser milestones",
+        "UA origin and capture-time stability established"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_default_or_authorized_override_boundary_during_capture"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-OS-002",
+      "rule_id": "OFFDER-OS-002",
+      "profile": "system_os",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.webview_data.kernel_container_layer.system_http_agent"
+      ],
+      "conditions": [
+        "explicit Dalvik Android grammar",
+        "Native version parses without guessing",
+        "unmodified property origin established"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_system_http_agent_origin"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-UA-001",
+      "rule_id": "OFFDER-UA-001",
+      "profile": "ua_surface_context",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.platform"
+      ],
+      "conditions": [
+        "interpretable UA/platform fields"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-UA-002",
+      "rule_id": "OFFDER-UA-002",
+      "profile": "ua_snapshot",
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.default_ua_native"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "both current strings available",
+        "same instance and capture interval would be required for a strong equality claim"
+      ],
+      "unobservable_alert_preconditions": [
+        "atomic_same_instance_ua_capture"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-TOUCH-001",
+      "rule_id": "OFFDER-TOUCH-001",
+      "profile": "touch_context",
+      "required_fields": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.max_touch_points"
+      ],
+      "conditions": [
+        "UA string and nonnegative integer maxTouchPoints"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-BRIDGE-001",
+      "rule_id": "OFFDER-BRIDGE-001",
+      "profile": "bridge",
+      "required_fields": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.bridge_routing_layer.jsbridge_injected"
+      ],
+      "conditions": [
+        "explicit boolean bridge state",
+        "fixed App177 study surface, never infer route from free metadata"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-DEVCONFIG-001",
+      "rule_id": "OFFDER-DEVCONFIG-001",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted",
+        "app.webview_data.host_security_layer.is_debuggable"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.host_security_layer.is_debuggable",
+        "app.webview_data.host_security_layer.is_cleartext_traffic_permitted"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-GPU-001",
+      "rule_id": "OFFDER-GPU-001",
+      "profile": "gpu",
+      "required_fields": [
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.web_data.graphics_layer.webgl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.web_data.graphics_layer.webgl_vendor",
+        "app.web_data.graphics_layer.webgl_renderer"
+      ],
+      "conditions": [
+        "unmasked meaningful renderer strings",
+        "Native hardware family unambiguous",
+        "software/host/remote or hybrid rendering exclusions established",
+        "ANGLE alone never a contradiction"
+      ],
+      "unobservable_alert_preconditions": [
+        "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:OFFDER-PACKAGE-001",
+      "rule_id": "OFFDER-PACKAGE-001",
+      "profile": "deployment",
+      "required_fields": [
+        "app.webview_data.host_security_layer.app_package_name",
+        "app.webview_data.host_security_layer.app_version_code",
+        "app.webview_data.host_security_layer.app_version_name"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.host_security_layer.app_package_name",
+        "app.webview_data.host_security_layer.app_version_code",
+        "app.webview_data.host_security_layer.app_version_name"
+      ],
+      "conditions": [
+        "registered package/release fields available",
+        "fixed historical MTC deployment scope only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "deployment_policy",
+      "parameters": {
+        "policy_version": "mtc-featureapp-deployment-policy-v1",
+        "allowed_packages": [
+          "com.example.hybridguard.featureapp"
+        ],
+        "allowed_releases": [
+          {
+            "version_code": 9,
+            "version_name": "1.6.2-expanded-v2.2-mtc"
+          },
+          {
+            "version_code": 11,
+            "version_name": "1.6.4-expanded-v2.2-mtc-https"
+          }
+        ],
+        "basis": [
+          "android_app/HybridGuard/featureapp/build.gradle.kts:applicationId",
+          "hybridguard_agent/config/mtc_paired244_sources.v2.json:allowed_releases"
+        ],
+        "scope": "Frozen MTC FeatureApp deployment only; fingerprint claims are not package attestation.",
+        "installer_policy": "Context only; no installer is an automatic trusted/hostile verdict."
+      }
+    },
+    {
+      "applicability_id": "scope:OFFDER-NET-001",
+      "rule_id": "OFFDER-NET-001",
+      "profile": "network_context",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_api_level",
+        "app.android_native_data.network_state_layer.active_network_present",
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_cellular_transport",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_api_level",
+        "app.android_native_data.network_state_layer.active_network_present",
+        "app.android_native_data.network_state_layer.active_transport_types",
+        "app.android_native_data.network_state_layer.has_vpn_transport",
+        "app.android_native_data.network_state_layer.has_wifi_transport",
+        "app.android_native_data.network_state_layer.has_cellular_transport"
+      ],
+      "conditions": [
+        "positive integer API level",
+        "API >=23 for the collector capabilities path",
+        "typed transport list/flags"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "context_only",
+      "parameters": {
+        "collector_caps_min_api": 23
+      }
+    },
+    {
+      "applicability_id": "scope:P3-X-TIMEZONE-OFFSET",
+      "rule_id": "P3-X-TIMEZONE-OFFSET",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.web_data.execution_layer.timezone_offset",
+        "browser.web_data.execution_layer.timezone_offset"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.execution_layer.timezone_offset",
+        "browser.web_data.execution_layer.timezone_offset"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-X-LANGUAGE",
+      "rule_id": "P3-X-LANGUAGE",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.web_data.navigator_layer.language",
+        "browser.web_data.navigator_layer.language"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.language",
+        "browser.web_data.navigator_layer.language"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-X-TOUCH",
+      "rule_id": "P3-X-TOUCH",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "browser.web_data.navigator_layer.max_touch_points"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "browser.web_data.navigator_layer.max_touch_points"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-X-CORES",
+      "rule_id": "P3-X-CORES",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.web_data.navigator_layer.hardware_concurrency",
+        "browser.web_data.navigator_layer.hardware_concurrency"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.navigator_layer.hardware_concurrency",
+        "browser.web_data.navigator_layer.hardware_concurrency"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-X-DPR",
+      "rule_id": "P3-X-DPR",
+      "profile": "screen_geometry",
+      "required_fields": [
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-X-SCREEN-SIZE",
+      "rule_id": "P3-X-SCREEN-SIZE",
+      "profile": "screen_geometry",
+      "required_fields": [
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SCREEN-APP",
+      "rule_id": "P3-SCREEN-APP",
+      "profile": "screen_geometry",
+      "required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.device_pixel_ratio",
+        "app.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "app.web_data.screen_layer.screen_resolution_logical",
+        "app.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      }
+    },
+    {
+      "applicability_id": "scope:P3-COLOR-APP",
+      "rule_id": "P3-COLOR-APP",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ],
+      "predicate_dependencies": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SCREEN-BROWSER",
+      "rule_id": "P3-SCREEN-BROWSER",
+      "profile": "screen_geometry",
+      "required_fields": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "browser.web_data.screen_layer.device_pixel_ratio",
+        "browser.web_data.screen_layer.screen_resolution_logical"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.screen_display_layer.screen_resolution_physical",
+        "browser.web_data.screen_layer.screen_resolution_logical",
+        "browser.web_data.screen_layer.device_pixel_ratio"
+      ],
+      "conditions": [
+        "positive dimensions/DPR",
+        "same window/zoom/display context would be needed for a universal relation"
+      ],
+      "unobservable_alert_preconditions": [
+        "equivalent_window_page_zoom_and_display_context"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "css_pixel_tolerance": 1.0
+      }
+    },
+    {
+      "applicability_id": "scope:P3-COLOR-BROWSER",
+      "rule_id": "P3-COLOR-BROWSER",
+      "profile": "declared_fields",
+      "required_fields": [
+        "browser.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.pixel_depth"
+      ],
+      "predicate_dependencies": [
+        "browser.web_data.screen_layer.color_depth",
+        "browser.web_data.screen_layer.pixel_depth"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-UA-REDUCED-BROWSER",
+      "rule_id": "P3-UA-REDUCED-BROWSER",
+      "profile": "browser_os",
+      "required_fields": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.build_fingerprint_layer.os_version",
+        "browser.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "real admitted Browser fields present",
+        "explicit parseable Android UA",
+        "reduced shape is not interpreted as actual OS"
+      ],
+      "unobservable_alert_preconditions": [
+        "unmodified_browser_ua_origin"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "reduced_chrome_min_major": 107,
+        "reduced_android_token": 10
+      }
+    },
+    {
+      "applicability_id": "scope:P3-UA-DEFAULT",
+      "rule_id": "P3-UA-DEFAULT",
+      "profile": "ua_snapshot",
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.kernel_container_layer.default_ua_native"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.kernel_container_layer.default_ua_native",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "both current strings available",
+        "same instance and capture interval would be required for a strong equality claim"
+      ],
+      "unobservable_alert_preconditions": [
+        "atomic_same_instance_ua_capture"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-UA-SETTINGS",
+      "rule_id": "P3-UA-SETTINGS",
+      "profile": "ua_snapshot",
+      "required_fields": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.webview_data.webview_settings_layer.settings_user_agent"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.webview_settings_layer.settings_user_agent",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "conditions": [
+        "both current strings available",
+        "same instance and capture interval would be required for a strong equality claim"
+      ],
+      "unobservable_alert_preconditions": [
+        "atomic_same_instance_ua_capture"
+      ],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": false,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-PROVIDER-PARSE",
+      "rule_id": "P3-PROVIDER-PARSE",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.webview_data.kernel_container_layer.webview_provider_major",
+        "app.webview_data.kernel_container_layer.webview_provider_version"
+      ],
+      "predicate_dependencies": [
+        "app.webview_data.kernel_container_layer.webview_provider_version",
+        "app.webview_data.kernel_container_layer.webview_provider_major"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-GPU-COPY",
+      "rule_id": "P3-GPU-COPY",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.graphics_layer.egl_renderer",
+        "app.android_native_data.graphics_layer.native_gpu_renderer"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.graphics_layer.native_gpu_renderer",
+        "app.android_native_data.graphics_layer.egl_renderer"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-MEM-AVAILABLE",
+      "rule_id": "P3-MEM-AVAILABLE",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.total_memory_gb"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.memory_layer.avail_memory_gb",
+        "app.android_native_data.memory_layer.total_memory_gb"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-NAME_COUNT",
+      "rule_id": "P3-SENSOR-NAME_COUNT",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_name_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-VENDOR_COUNT",
+      "rule_id": "P3-SENSOR-VENDOR_COUNT",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_vendor_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-TYPE-COUNT",
+      "rule_id": "P3-SENSOR-TYPE-COUNT",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list",
+        "app.android_native_data.sensor_matrix_layer.sensor_total_count"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-TYPE-ORDER",
+      "rule_id": "P3-SENSOR-TYPE-ORDER",
+      "profile": "declared_fields",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "registered predicate dependencies observed, finite and correctly typed"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "collector_consistency",
+      "parameters": {}
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-ACCELEROMETER",
+      "rule_id": "P3-SENSOR-ACCELEROMETER",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_accelerometer",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 1
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-MAGNETIC_FIELD",
+      "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_magnetic_field",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 2
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-GYROSCOPE",
+      "rule_id": "P3-SENSOR-GYROSCOPE",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_gyroscope",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 4
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-LIGHT_SENSOR",
+      "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_light_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 5
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-PRESSURE_SENSOR",
+      "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_pressure_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 6
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-PROXIMITY_SENSOR",
+      "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_proximity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 8
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-GRAVITY_SENSOR",
+      "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_gravity_sensor",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 9
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-ROTATION_VECTOR",
+      "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_rotation_vector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 11
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-STEP_DETECTOR",
+      "rule_id": "P3-SENSOR-STEP_DETECTOR",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_step_detector",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 18
+      }
+    },
+    {
+      "applicability_id": "scope:P3-SENSOR-STEP_COUNTER",
+      "rule_id": "P3-SENSOR-STEP_COUNTER",
+      "profile": "sensor_positive",
+      "required_fields": [
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "predicate_dependencies": [
+        "app.android_native_data.sensor_matrix_layer.has_step_counter",
+        "app.android_native_data.sensor_matrix_layer.sensor_type_list"
+      ],
+      "conditions": [
+        "boolean has_sensor and positive integer type list available",
+        "positive antecedent only"
+      ],
+      "unobservable_alert_preconditions": [],
+      "scope_gate_executable": true,
+      "alert_prerequisites_fully_executable": true,
+      "missing_or_unverifiable_state": "UNKNOWN",
+      "decision_role": "observation_only",
+      "parameters": {
+        "sensor_type": 19
+      }
+    }
+  ],
+  "inference_evidence": "only declared features/field_status/field_quality; no labels, tool, config, phase, logs or future post",
+  "ua_product_versions": {
+    "chrome_desktop_phase5": 107,
+    "chrome_android_phase6": 110,
+    "webview_default_android_release": 17,
+    "version_only_proves_current_ua_default": false,
+    "frozen_v3_browser_min_major_unchanged": 107
+  },
+  "gpu_software_tokens": [
+    "swiftshader",
+    "llvmpipe",
+    "softpipe",
+    "swrast",
+    "lavapipe",
+    "swangle"
+  ],
+  "new_alarm_policy_implemented": false
+}

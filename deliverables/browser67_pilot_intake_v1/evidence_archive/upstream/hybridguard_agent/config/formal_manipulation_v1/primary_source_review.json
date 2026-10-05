@@ -1,0 +1,303 @@
+{
+  "review_version": "formal-manipulation-primary-sources-v1",
+  "reviewed_on": "2026-09-23",
+  "boundary": "Primary semantics and local code only; no performance-based selection. Living pages do not attest historical samples.",
+  "documents": [
+    {
+      "source_ids": [
+        "android-webview-ua-reduction"
+      ],
+      "url": "https://android-developers.googleblog.com/2024/12/user-agent-reduction-on-android-webview.html",
+      "document_version": "Publication 2024-12-06; current text reviewed 2026-09-23; revision UNKNOWN",
+      "applicable_products": [
+        "Android WebView default UA"
+      ],
+      "verified_scope": "Current WebView schedule names Android 17; reduced Android 10/K tokens are not actual OS/model. Custom-UA behavior and appended suffixes are separate.",
+      "section": "Updated User-Agent string; custom user agent",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "s03-chrome-ua-timeline"
+      ],
+      "url": "https://www.chromium.org/updates/ua-reduction/",
+      "document_version": "Rollout updates through 2023-05-11; retrieved 2026-09-23",
+      "applicable_products": [
+        "Chrome desktop",
+        "Chrome Android Browser"
+      ],
+      "verified_scope": "Desktop phase 5 starts M107; Android mobile/tablet phase 6 starts M110; phase 7 ends reverse trial M113. Version alone is not per-session default-UA evidence.",
+      "section": "Updates; Proposed Rollout Plan; Phase 6",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-websettings-api",
+        "android-websettings-current"
+      ],
+      "url": "https://developer.android.com/reference/android/webkit/WebSettings",
+      "document_version": "API reference updated 2026-08-03; APIs since 3 and 17",
+      "applicable_products": [
+        "Android WebView"
+      ],
+      "verified_scope": "Default UA and instance settings UA are distinct. Applications can set a different instance UA, including during page loading. A saved settings snapshot does not prove temporal stability.",
+      "section": "getDefaultUserAgent; setUserAgentString",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "closed-aosp-http-agent"
+      ],
+      "url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/master/core/java/com/android/internal/os/RuntimeInit.java",
+      "document_version": "master snapshot accessed 2026-09-23; immutable revision UNKNOWN",
+      "applicable_products": [
+        "AOSP RuntimeInit / HttpURLConnection"
+      ],
+      "verified_scope": "Default http.agent is built from VM/version and Build fields; release builds may include MODEL. Current master grammar is not proof of historical OEM defaults.",
+      "section": "commonInit; getDefaultUserAgent",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "s03-system-property"
+      ],
+      "url": "https://developer.android.com/reference/java/lang/System",
+      "document_version": "API reference updated 2026-08-03; setProperty API 1",
+      "applicable_products": [
+        "Android Java system properties"
+      ],
+      "verified_scope": "System properties can be set by the application. A Dalvik-looking string does not demonstrate an unmodified default.",
+      "section": "getProperty; setProperty",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "khronos-webgl-renderer-info",
+        "closed-webgl-renderer"
+      ],
+      "url": "https://registry.khronos.org/webgl/extensions/WEBGL_debug_renderer_info/",
+      "document_version": "Revision 8; modified 2014-07-15",
+      "applicable_products": [
+        "WebGL 1.0 optional extension"
+      ],
+      "verified_scope": "Renderer/vendor expose driver descriptions when extension is exposed; privacy masking is permitted. These strings do not certify a physical GPU or rendering path.",
+      "section": "Overview; New Tokens; Issues",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "s03-swiftshader"
+      ],
+      "url": "https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md",
+      "document_version": "main snapshot accessed 2026-09-23; immutable revision UNKNOWN",
+      "applicable_products": [
+        "Chromium GLES/Vulkan and WebGL"
+      ],
+      "verified_scope": "SwiftShader uses CPU rendering; GLES driver and WebGL fallback are separate modes. Automatic fallback deprecation does not mean software rendering is an attack.",
+      "section": "Using Chromium with SwiftShader",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "s03-angle"
+      ],
+      "url": "https://chromium.googlesource.com/angle/angle/+/main/README.md",
+      "document_version": "main snapshot accessed 2026-09-23; immutable revision UNKNOWN",
+      "applicable_products": [
+        "ANGLE on multiple operating systems"
+      ],
+      "verified_scope": "ANGLE is a translation layer with multiple backends. The ANGLE token alone cannot identify a Windows host or imply spoofing.",
+      "section": "Supported Platforms; README",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "s03-emulator-graphics"
+      ],
+      "url": "https://developer.android.com/studio/run/emulator-acceleration",
+      "document_version": "Page updated 2026-03-06",
+      "applicable_products": [
+        "Android Emulator"
+      ],
+      "verified_scope": "Host GPU, software, lavapipe, swiftshader and swangle paths are legitimate emulator rendering options. No current fingerprint string alone attests the host/physical rendering boundary.",
+      "section": "Configure graphics acceleration",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "s03-devtools-ua-override"
+      ],
+      "url": "https://developer.chrome.com/docs/devtools/device-mode/override-user-agent",
+      "document_version": "Page updated 2024-05-24; retrieved 2026-09-23",
+      "applicable_products": [
+        "Chrome DevTools"
+      ],
+      "verified_scope": "DevTools supports UA overrides for development. An exposed UA value alone cannot determine authorization or default provenance.",
+      "section": "Override the user agent string",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-build-version-api"
+      ],
+      "url": "https://developer.android.com/reference/android/os/Build.VERSION",
+      "document_version": "Current API reference; RELEASE API 1; exact document revision UNKNOWN",
+      "applicable_products": [
+        "Android Build.VERSION"
+      ],
+      "verified_scope": "RELEASE is an opaque user-visible string with no guaranteed numeric structure. Only explicit parseable versions can support this project comparison.",
+      "section": "RELEASE; RELEASE_OR_CODENAME",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-build-api"
+      ],
+      "url": "https://developer.android.com/reference/android/os/Build",
+      "document_version": "Current API reference; MODEL API 1; exact document revision UNKNOWN",
+      "applicable_products": [
+        "Android Build"
+      ],
+      "verified_scope": "MODEL is the end-user-visible product name, not authenticated identity. Alias normalization is a project decision.",
+      "section": "MODEL",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-webview-provider-api",
+        "android-webview-api"
+      ],
+      "url": "https://developer.android.com/reference/android/webkit/WebView",
+      "document_version": "Current API reference; getCurrentWebViewPackage API 26; exact document revision UNKNOWN",
+      "applicable_products": [
+        "Android WebView"
+      ],
+      "verified_scope": "Current provider package information is available through the WebView API; package-version parsing does not prove the Chromium renderer version or per-session UA provenance. addJavascriptInterface exposes an application-supplied object; bridge design is an application choice, not a universal device property.",
+      "section": "getCurrentWebViewPackage; addJavascriptInterface",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "cssom-view-dpr"
+      ],
+      "url": "https://drafts.csswg.org/cssom-view/",
+      "document_version": "CSSOM View Level 1 living draft; revision UNKNOWN",
+      "applicable_products": [
+        "WebView and Browser CSSOM implementations"
+      ],
+      "verified_scope": "Screen colorDepth/pixelDepth share compatibility semantics. DPR depends on page zoom; visual viewport scale is different. Screen and available application display dimensions are not universally equal.",
+      "section": "Screen interface; devicePixelRatio; Zooming",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-sensor-manager"
+      ],
+      "url": "https://developer.android.com/reference/android/hardware/SensorManager",
+      "document_version": "Current API reference; exact revision UNKNOWN",
+      "applicable_products": [
+        "Android SensorManager"
+      ],
+      "verified_scope": "Default sensors and sensor lists have permission, wake-up and composite-sensor semantics. The positive flag-to-type implication is a project relation, not an attack verdict.",
+      "section": "getDefaultSensor; getSensorList",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-memory-info"
+      ],
+      "url": "https://developer.android.com/reference/android/app/ActivityManager.MemoryInfo",
+      "document_version": "Current API reference; availMem API 1; totalMem API 16; exact revision UNKNOWN",
+      "applicable_products": [
+        "Android ActivityManager"
+      ],
+      "verified_scope": "Available and kernel-accessible total memory differ from retail advertised memory; collector reads one MemoryInfo snapshot. Bounds are consistency observations.",
+      "section": "availMem; totalMem; advertisedMem",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "android-display-metrics"
+      ],
+      "url": "https://developer.android.com/reference/android/util/DisplayMetrics",
+      "document_version": "Current API reference; exact revision UNKNOWN",
+      "applicable_products": [
+        "Android application display metrics"
+      ],
+      "verified_scope": "Collector displayMetrics width/height describe an application display context. They are not proof of physical-panel dimensions; window/zoom differences remain legitimate.",
+      "section": "widthPixels; heightPixels; density",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "whatwg-hardware-concurrency"
+      ],
+      "url": "https://html.spec.whatwg.org/multipage/workers.html#dom-navigator-hardwareconcurrency",
+      "document_version": "HTML Living Standard; revision UNKNOWN",
+      "applicable_products": [
+        "Web Worker navigator surfaces"
+      ],
+      "verified_scope": "The available logical-processor count can be limited by the user agent. Cross-container equality is not normative; probe zero is a fallback.",
+      "section": "hardwareConcurrency",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    },
+    {
+      "source_ids": [
+        "w3c-device-memory"
+      ],
+      "url": "https://www.w3.org/TR/2026/WD-device-memory-1-20260330/",
+      "document_version": "Working Draft 2026-03-30",
+      "applicable_products": [
+        "Implementations of Device Memory API"
+      ],
+      "verified_scope": "The value is approximate, quantized and bounded by the implementation; it is not exact native RAM or a permanent 8-GiB ceiling.",
+      "section": "Computing deviceMemory",
+      "review_status": "VERIFIED_CURRENT_PRIMARY",
+      "accessed_at": "2026-09-23",
+      "historical_sample_version_attested": false
+    }
+  ],
+  "bounded_access_gaps": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-16.0.0_r1/core/java/com/android/internal/os/RuntimeInit.java",
+      "status": "FETCH_FAILED",
+      "resolution": "Used primary AOSP mirror master for grammar only; pinned historical revision remains UNKNOWN. No further retrieval required for S03."
+    }
+  ]
+}

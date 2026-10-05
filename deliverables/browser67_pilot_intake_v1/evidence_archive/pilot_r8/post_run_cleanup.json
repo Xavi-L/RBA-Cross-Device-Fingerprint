@@ -1,0 +1,65 @@
+{
+  "schema_version": "browser67-post-run-cleanup-v1",
+  "managed_probe_targets_remaining": 0,
+  "chrome_and_app_stopped": true,
+  "commands": [
+    {
+      "at_utc": "2026-10-04T15:30:05.255622+00:00",
+      "args": [
+        "shell",
+        "am",
+        "force-stop",
+        "com.example.hybridguard.featureapp"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "at_utc": "2026-10-04T15:30:05.399413+00:00",
+      "args": [
+        "shell",
+        "am",
+        "force-stop",
+        "com.android.chrome"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "at_utc": "2026-10-04T15:30:05.494430+00:00",
+      "args": [
+        "shell",
+        "pidof",
+        "com.example.hybridguard.featureapp"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "at_utc": "2026-10-04T15:30:05.623252+00:00",
+      "args": [
+        "shell",
+        "pidof",
+        "com.android.chrome"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "at_utc": "2026-10-04T15:30:05.720638+00:00",
+      "args": [
+        "shell",
+        "getprop",
+        "persist.sys.timezone"
+      ],
+      "exit_code": 0,
+      "stdout": "GMT\n",
+      "stderr": ""
+    }
+  ],
+  "shared_adb_forward_reverse_mappings": "retained existing local experiment mappings; no unrelated device configuration changed"
+}

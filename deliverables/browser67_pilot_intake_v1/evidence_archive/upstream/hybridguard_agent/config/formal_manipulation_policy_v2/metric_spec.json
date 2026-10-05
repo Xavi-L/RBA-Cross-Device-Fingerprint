@@ -1,0 +1,24 @@
+{
+  "metric_spec_version": "formal-metric-spec-v2",
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "positive_TPR": "alert_positive / fixed eligible_positive; include failed and abstain",
+  "primary_control_mid_FPR": "alert verified control_mid / all eligible verified control_mid",
+  "other_negative_strata": [
+    "all verified controls",
+    "clean_pre",
+    "clean_post",
+    "all verified negatives"
+  ],
+  "coverage": "(alert+no_alert)/fixed eligible denominator",
+  "conditional_rate": "alert/(alert+no_alert); undefined without decisions",
+  "failure_bounds": "[alert/N,(alert+failed)/N], INCOMPLETE when failed; abstentions reported separately",
+  "010": "exact NO_ALERT -> MANIPULATION_ALERT -> NO_ALERT / all frozen eligible triplets; missing and failed stay in denominator",
+  "recovery": "post NO_ALERT conditional on active alert, with explicit denominator",
+  "configuration_macro": "each admitted configuration equally weighted",
+  "environment_macro": "configuration means inside each environment group, then equal group weights",
+  "intervals": "NOT_ESTIMABLE_RELATED_GROUPS; no bootstrap or independent-device confidence claim in S04",
+  "delta_matching": "predeclared environment/batch mapping only; reused control does not expand FPR denominator",
+  "unknown_truth": "descriptive only, never negative by default",
+  "calibration": "NOT_RUN_NO_INDEPENDENT_CALIBRATION",
+  "secondary_precision_F1_accuracy": "NOT_ESTIMATED_IN_S04; no natural-prevalence claims"
+}

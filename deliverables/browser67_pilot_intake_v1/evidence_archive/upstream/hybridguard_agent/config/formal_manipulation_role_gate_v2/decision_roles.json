@@ -1,0 +1,2042 @@
+{
+  "contract_version": "formal-manipulation-relation-risk-attribution-v2",
+  "roles": [
+    {
+      "rule_id": "CORE-002",
+      "provenance_group": "E",
+      "decision_family": "featureapp_bridge",
+      "original_evidence_family": "featureapp_bridge",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Bridge presence is collector consistency. The old topology assumption is project-specific and not an independently observed attack fact.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#CORE-002",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [
+          "android-webview-api"
+        ],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "intentionally disabled bridge",
+        "collection failure or alternate route",
+        "Bridge absence is a collection/integrity observation, never an attack label. Sensor count does not cause rejection."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "NW-001",
+      "provenance_group": "E",
+      "decision_family": "model_app_ua",
+      "original_evidence_family": "model_app_ua",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "The existing development-screened explicit model relation is a limited reported-identity coherence hypothesis. Require an interpretable default model matching the Native naming convention; do not infer aliases or physical identity.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NW-001",
+        "implementation_ref": "hybridguard_agent/research/mtc_closed_resource.py::evaluate",
+        "source_ids": [
+          "closed-ua-reduction",
+          "android-websettings-api",
+          "android-build-api",
+          "android-webview-ua-reduction",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_closed_resource_study_20260922",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate per-instance or DevTools UA override",
+        "UA changed after settings snapshot",
+        "OEM model alias or reduced K token",
+        "Only unambiguous Android model-before-Build tokens; no inferred aliases, substring matching or recovery of reduced model. Custom UA may disagree."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_default_or_authorized_override_boundary_during_capture",
+          "measurement_requirements": [
+            "parseable non-reduced current identity operands"
+          ],
+          "risk_scope_requirements": [
+            "typed current default/settings reference",
+            "explicit custom settings exclude App UA risk eligibility",
+            "reference agrees with Native convention"
+          ],
+          "attribution_only": [
+            "authorization of overrides",
+            "uninterrupted default origin throughout capture"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "NW-002",
+      "provenance_group": "E",
+      "decision_family": "app_os",
+      "original_evidence_family": "app_os",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "Native versus full App Android-major disagreement is an interpretable identity-coherence risk hypothesis. Require an observed default/settings reference aligned with Native, without treating that snapshot as proof of authorization.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NW-002",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [
+          "android-build-version-api",
+          "android-websettings-api",
+          "android-webview-ua-reduction",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate custom UA",
+        "WebView reduced Android 10/K",
+        "opaque or preview Build.VERSION.RELEASE",
+        "UA changed after host snapshot",
+        "Android 16/API 36 是合法版本；无法解析版本时记为未知，不单独高危。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_default_or_authorized_override_boundary_during_capture",
+          "measurement_requirements": [
+            "parseable non-reduced current identity operands"
+          ],
+          "risk_scope_requirements": [
+            "typed current default/settings reference",
+            "explicit custom settings exclude App UA risk eligibility",
+            "reference agrees with Native convention"
+          ],
+          "attribution_only": [
+            "authorization of overrides",
+            "uninterrupted default origin throughout capture"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "NW-005",
+      "provenance_group": "E",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "native_app_gpu_family",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "The existing development-screened named hardware-family comparison supports a limited cross-renderer coherence hypothesis when both families are unique and neither is software or masked. Different legal rendering paths remain an attribution limitation.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NW-005",
+        "implementation_ref": "hybridguard_agent/research/mtc_closed_resource.py::evaluate",
+        "source_ids": [
+          "closed-webgl-renderer",
+          "khronos-webgl-renderer-info",
+          "s03-swiftshader",
+          "s03-angle",
+          "s03-emulator-graphics"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_closed_resource_study_20260922",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "SwiftShader/lavapipe/llvmpipe software rendering",
+        "legitimate emulator host GPU",
+        "remote or hybrid rendering",
+        "privacy-masked or ambiguous renderer",
+        "ANGLE translation on Android",
+        "Narrow renderer-family relation replaces the unverified SoC/board lookup. Software fallback is not applicable; unknown/masked/ambiguous families remain unknown. Same family does not establish same GPU/device."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering",
+          "measurement_requirements": [
+            "meaningful unmasked renderers",
+            "software cannot be used as a hardware-family comparison",
+            "unique named families for NW-005"
+          ],
+          "risk_scope_requirements": [
+            "reported cross-renderer family coherence, not physical-path identity"
+          ],
+          "attribution_only": [
+            "actual physical/host/remote/hybrid route and its authorization"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "NW-006",
+      "provenance_group": "E",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NW-006",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [
+          "android-websettings-api",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "仅缺少具体型号不等同于桌面 UA；必须结合明确关键词判断。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "NW-007",
+      "provenance_group": "E",
+      "decision_family": "mobile_touch",
+      "original_evidence_family": "mobile_touch",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Zero touch is a legal observation and cannot by itself justify a manipulation alert.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NW-007",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "non-touch Android device",
+        "external input devices",
+        "browser exposure/privacy differences",
+        "触点数量具体值不要求一致，只要求移动环境具备基本触控能力。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "NVW-001",
+      "provenance_group": "E",
+      "decision_family": "model_system_agent",
+      "original_evidence_family": "model_system_agent",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "A full Dalvik model token can be compared with Native as a process-property coherence hypothesis. A matching default-UA naming reference limits alias ambiguity. Mutability limits attribution, not literal comparability; this is not current JS UA or independent identity evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NVW-001",
+        "implementation_ref": "hybridguard_agent/research/mtc_closed_resource.py::evaluate",
+        "source_ids": [
+          "closed-aosp-http-agent",
+          "s03-system-property",
+          "android-build-api"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_closed_resource_study_20260922",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate System.setProperty override retaining Dalvik grammar",
+        "OEM/default grammar variation",
+        "preview builds omit MODEL",
+        "System http.agent is a mutable process property, not current WebView JS UA. AOSP default and Native fields share Build.MODEL; not independent identity evidence."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_system_http_agent_origin",
+          "measurement_requirements": [
+            "explicit Dalvik grammar and interpretable identity operands"
+          ],
+          "risk_scope_requirements": [
+            "uniform host-property coherence hypothesis, not JS-UA identity"
+          ],
+          "attribution_only": [
+            "whether mutable http.agent was legitimately overridden"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "NVW-002",
+      "provenance_group": "E",
+      "decision_family": "host_os",
+      "original_evidence_family": "host_os",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "The existing Native/Dalvik Android-major relation can supply a host-property coherence risk clue under the uniform relative-Native-reference scope. A legal property override remains a possible false positive and is not declared an attack.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NVW-002",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [
+          "closed-aosp-http-agent",
+          "s03-system-property",
+          "android-build-version-api"
+        ],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legal http.agent override",
+        "vendor non-Dalvik agent",
+        "preview or opaque RELEASE string",
+        "无法解析版本时不单独高危。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_system_http_agent_origin",
+          "measurement_requirements": [
+            "explicit Dalvik grammar and interpretable identity operands"
+          ],
+          "risk_scope_requirements": [
+            "uniform host-property coherence hypothesis, not JS-UA identity"
+          ],
+          "attribution_only": [
+            "whether mutable http.agent was legitimately overridden"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "NVW-003",
+      "provenance_group": "C",
+      "decision_family": "deployment_identity",
+      "original_evidence_family": "deployment_identity",
+      "old_decision_role": "deployment_policy",
+      "decision_role": "deployment_policy",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The retained MTC code9/code11 policy is not the App177 attack release contract. A mismatch is deployment-only and does not alter S01 labels.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NVW-003",
+        "implementation_ref": "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule",
+        "source_ids": [],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "old 1.6.3 attack-collection APK",
+        "debug/grey release or manual install",
+        "改为精确匹配本项目已声明的包名；不沿用宽泛前缀或可信设备结论。 精确匹配、相似前缀拒绝、空值未知、缺字段未评估；输出部署策略差异。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "NVW-004",
+      "provenance_group": "C",
+      "decision_family": "installer_context",
+      "original_evidence_family": "installer_context",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NVW-004",
+        "implementation_ref": "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule",
+        "source_ids": [
+          "android-install-source-current"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "改为安装来源上下文；源码把安装器 null 写为 manual，不能推断实际安装方式。 manual 回退、unknown、具名安装器均独立测试，任何来源都不产生攻击/安全标签。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "NVW-005",
+      "provenance_group": "E",
+      "decision_family": "debug_cleartext",
+      "original_evidence_family": "debug_cleartext",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#NVW-005",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "开发灰度阶段允许该组合，不应单独判定中高风险。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "WVWEB-002",
+      "provenance_group": "C",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#WVWEB-002",
+        "implementation_ref": "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule",
+        "source_ids": [
+          "android-websettings-current",
+          "android-websettings-api",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "仅报告 UA 中 wv/Version 标记的出现情况；标记缺失不再构成风险。 含标记/无标记/自定义 UA/空值，均不将标记作为容器真值。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "WVWEB-004",
+      "provenance_group": "E",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#WVWEB-004",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [
+          "android-websettings-api",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "App 内正常 WebView 不应出现该类 UA。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "PHYS-005",
+      "provenance_group": "E",
+      "decision_family": "PHYS-005",
+      "original_evidence_family": "PHYS-005",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#PHYS-005",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "ADB 单独开启在开发灰度阶段可容忍，不应超过低风险或轻中风险。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "PHYS-006",
+      "provenance_group": "E",
+      "decision_family": "PHYS-006",
+      "original_evidence_family": "PHYS-006",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#PHYS-006",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "仅 user/release-keys 属于正常发布构建信号。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "SCENE-001",
+      "provenance_group": "E",
+      "decision_family": "SCENE-001",
+      "original_evidence_family": "SCENE-001",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#SCENE-001",
+        "implementation_ref": "hybridguard_agent/rules/paired244.py::execute_paired_rules / hybridguard_agent/rules/executor.py::_evaluate",
+        "source_ids": [],
+        "screening_scope": "LEGACY_EMPIRICAL_HISTORY_NOT_FULLY_RECORDED",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "该场景不应与模拟器/重放混淆；若传感器和 Bridge 正常，通常给 35-45 分。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "TOL-001",
+      "provenance_group": "C",
+      "decision_family": "debug_cleartext",
+      "original_evidence_family": "debug_cleartext",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#TOL-001",
+        "implementation_ref": "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule",
+        "source_ids": [],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "将 ADB/debuggable/cleartext 作为开发配置事实，避免单项或组合自动判攻击。 真假、权限不可用与遮蔽边界；加入 ADB 事实，标明与原 debug/cleartext 检查共享证据。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "OFFDER-OS-001",
+      "provenance_group": "O_u",
+      "decision_family": "app_os",
+      "original_evidence_family": "app_os",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "Same scoped Android-major relation as NW-002, using its retained official-derived provenance; it is not another independent supporting family and not an official attack verdict.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-OS-001",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-build-version-api",
+          "chrome-ua-client-hints",
+          "android-websettings-api",
+          "android-webview-ua-reduction",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate custom UA",
+        "WebView reduced Android 10/K",
+        "opaque or preview Build.VERSION.RELEASE",
+        "UA changed after host snapshot",
+        "legitimate custom user-agent override",
+        "privacy-reduced or malformed user-agent",
+        "Only evaluate when both Android majors parse successfully; a UA with no Android token remains unknown."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_default_or_authorized_override_boundary_during_capture",
+          "measurement_requirements": [
+            "parseable non-reduced current identity operands"
+          ],
+          "risk_scope_requirements": [
+            "typed current default/settings reference",
+            "explicit custom settings exclude App UA risk eligibility",
+            "reference agrees with Native convention"
+          ],
+          "attribution_only": [
+            "authorization of overrides",
+            "uninterrupted default origin throughout capture"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "OFFDER-OS-002",
+      "provenance_group": "O_u",
+      "decision_family": "host_os",
+      "original_evidence_family": "host_os",
+      "old_decision_role": "observation_only",
+      "decision_role": "alert_candidate",
+      "role_changed": true,
+      "reviewed_candidate": true,
+      "rationale": "Same Native/Dalvik major relation and gate as NVW-002. Official defaults support the comparison hypothesis, not proof of an unmodified property or unauthorized intervention.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-OS-002",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-build-version-api",
+          "android-webview-api",
+          "android-websettings-api",
+          "closed-aosp-http-agent",
+          "s03-system-property"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legal http.agent override",
+        "vendor non-Dalvik agent",
+        "preview or opaque RELEASE string",
+        "vendor-specific HTTP agent without an Android version token",
+        "Only compare parsed Android majors; provider patch versions are irrelevant."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_system_http_agent_origin",
+          "measurement_requirements": [
+            "explicit Dalvik grammar and interpretable identity operands"
+          ],
+          "risk_scope_requirements": [
+            "uniform host-property coherence hypothesis, not JS-UA identity"
+          ],
+          "attribution_only": [
+            "whether mutable http.agent was legitimately overridden"
+          ],
+          "insufficient_risk_basis": []
+        }
+      ]
+    },
+    {
+      "rule_id": "OFFDER-UA-001",
+      "provenance_group": "O_u",
+      "decision_family": "app_surface",
+      "original_evidence_family": "app_surface",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Lexical desktop/script/wv markers neither authenticate product identity nor prove unauthorized manipulation. No independent alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-UA-001",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-build-version-api",
+          "android-websettings-api",
+          "chrome-devtools-device-mode",
+          "chrome-ua-client-hints",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "legitimate desktop-UA compatibility override",
+        "authorized headless/test usage",
+        "missing wv marker under custom UA",
+        "legitimate desktop user-agent override for site compatibility",
+        "remote debugging or test automation",
+        "Linux arm and Linux x86 Android surfaces remain mobile_or_ambiguous; only explicit desktop/headless/script markers violate the relation."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "OFFDER-UA-002",
+      "provenance_group": "O_u",
+      "decision_family": "host_ua",
+      "original_evidence_family": "host_ua",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Default, instance settings and JS UA are distinct observations; their equality is not a universal invariant. The settings snapshot is captured before the JS probe.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-UA-002",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-websettings-api",
+          "chrome-devtools-device-mode"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "custom per-instance UA",
+        "UA change between host snapshot and JS probe",
+        "custom user-agent override",
+        "site compatibility policy",
+        "Exact mismatch is only a soft deviation because applications may deliberately override the runtime UA."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "atomic_same_instance_ua_capture",
+          "measurement_requirements": [
+            "atomic_same_instance_ua_capture remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "OFFDER-TOUCH-001",
+      "provenance_group": "O_u",
+      "decision_family": "mobile_touch",
+      "original_evidence_family": "mobile_touch",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Zero touch is a legal observation and cannot by itself justify a manipulation alert.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-TOUCH-001",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "chrome-ua-client-hints",
+          "chrome-devtools-device-mode"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "non-touch Android device",
+        "external input devices",
+        "browser exposure/privacy differences",
+        "emulator or special device without a touch surface",
+        "privacy or browser compatibility behavior",
+        "Only applies to Android browser/WebView UA classes; zero touch is not an attack verdict."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "OFFDER-BRIDGE-001",
+      "provenance_group": "O_u",
+      "decision_family": "featureapp_bridge",
+      "original_evidence_family": "featureapp_bridge",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Bridge presence is collector consistency. The old topology assumption is project-specific and not an independently observed attack fact.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-BRIDGE-001",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-webview-api",
+          "android-webview-native-bridges-risk"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "intentionally disabled bridge",
+        "collection failure or alternate route",
+        "collector route that intentionally disables the bridge",
+        "external browser capture",
+        "Only applies when collector_app is featureapp; external browsers and WebViews without a designed bridge are not applicable."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "OFFDER-DEVCONFIG-001",
+      "provenance_group": "O_u",
+      "decision_family": "debug_cleartext",
+      "original_evidence_family": "debug_cleartext",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-DEVCONFIG-001",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-debuggable-risk",
+          "android-cleartext-communications-risk",
+          "android-network-security-config"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "authorized development build",
+        "local research collection endpoint",
+        "Expected in some development and collection builds; never becomes an attack alert by itself."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "OFFDER-GPU-001",
+      "provenance_group": "O_u",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "OFFDER-GPU-001",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": true,
+      "rationale": "Windows/Direct3D backend vocabulary does not itself measure a mismatch between two comparable hardware families. Existing normal host/translation counterexamples defeat the product-exclusion premise; no independent risk role is justified by this marker alone.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-GPU-001",
+        "implementation_ref": "hybridguard_agent/official_semantics/evaluator.py::_evaluate_compiled",
+        "source_ids": [
+          "android-build-api",
+          "android-emulator-overview",
+          "chrome-devtools-device-mode",
+          "khronos-webgl-renderer-info",
+          "s03-swiftshader",
+          "s03-angle",
+          "s03-emulator-graphics"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "SwiftShader/lavapipe/llvmpipe software rendering",
+        "legitimate emulator host GPU",
+        "remote or hybrid rendering",
+        "privacy-masked or ambiguous renderer",
+        "ANGLE translation on Android",
+        "remote rendering that intentionally exposes a desktop GPU string",
+        "future Android WebView backend reporting changes",
+        "ANGLE alone is not a violation on Android; only explicit Windows/Direct3D desktop markers contradict the Android Native graphics stack."
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "same_physical_rendering_path_and_exclusion_of_legitimate_host_or_remote_rendering",
+          "measurement_requirements": [
+            "meaningful unmasked renderers",
+            "software cannot be used as a hardware-family comparison",
+            "unique named families for NW-005"
+          ],
+          "risk_scope_requirements": [
+            "reported cross-renderer family coherence, not physical-path identity"
+          ],
+          "attribution_only": [
+            "actual physical/host/remote/hybrid route and its authorization"
+          ],
+          "insufficient_risk_basis": [
+            "backend marker alone has no independent identity-coherence implication"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "OFFDER-PACKAGE-001",
+      "provenance_group": "C",
+      "decision_family": "deployment_identity",
+      "original_evidence_family": "deployment_identity",
+      "old_decision_role": "deployment_policy",
+      "decision_role": "deployment_policy",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The retained MTC code9/code11 policy is not the App177 attack release contract. A mismatch is deployment-only and does not alter S01 labels.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-PACKAGE-001",
+        "implementation_ref": "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule",
+        "source_ids": [
+          "android-packagemanager-api"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "old 1.6.3 attack-collection APK",
+        "debug/grey release or manual install",
+        "local debug installation",
+        "enterprise MDM installation",
+        "grey release",
+        "将已冻结 MTC v9/v11 部署清单变成包名与版本配对检查；安装来源单列上下文。 版本 code/name 必须来自同一清单项；缺失未评估，未知版本仅策略差异，不证明攻击。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "OFFDER-NET-001",
+      "provenance_group": "O_u",
+      "decision_family": "network_context",
+      "original_evidence_family": "network_context",
+      "old_decision_role": "context_only",
+      "decision_role": "context_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Network flags share one snapshot and describe dynamic context, not attack or safety.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#OFFDER-NET-001",
+        "implementation_ref": "hybridguard_agent/rules/legacy_backlog.py::evaluate_reviewed_rule",
+        "source_ids": [
+          "android-network-capabilities-current",
+          "android-networkcapabilities-api",
+          "android-network-security-config"
+        ],
+        "screening_scope": "NOT_MARKED_IN_CURRENT_CATALOG",
+        "discovery_split_ref": "UNKNOWN_OR_NOT_MARKED",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "VPN",
+        "network handover",
+        "no active network",
+        "legacy API fallback",
+        "normal VPN user",
+        "网络/VPN 仅作瞬时上下文；按采集器 API 路径限制回退字段。 旧 API 返回不适用；字段缺失未评估；VPN、无网络、网络切换均不判攻击。"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-X-TIMEZONE-OFFSET",
+      "provenance_group": "E",
+      "decision_family": "P3-X-TIMEZONE-OFFSET",
+      "original_evidence_family": "P3-X-TIMEZONE-OFFSET",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-X-TIMEZONE-OFFSET",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "DST boundary or time/settings changes between captures"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-X-LANGUAGE",
+      "provenance_group": "E",
+      "decision_family": "P3-X-LANGUAGE",
+      "original_evidence_family": "P3-X-LANGUAGE",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-X-LANGUAGE",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "per-app and browser language preferences"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-X-TOUCH",
+      "provenance_group": "E",
+      "decision_family": "P3-X-TOUCH",
+      "original_evidence_family": "P3-X-TOUCH",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-X-TOUCH",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "browser exposure/privacy/input device differences"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-X-CORES",
+      "provenance_group": "E",
+      "decision_family": "P3-X-CORES",
+      "original_evidence_family": "P3-X-CORES",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-X-CORES",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "whatwg-hardware-concurrency",
+          "w3c-device-memory",
+          "android-memory-info"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "privacy caps and logical processor availability; 0 is sentinel"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-X-DPR",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-X-DPR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-display-metrics",
+          "cssom-view-dpr"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "zoom, density and per-container window configuration"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-X-SCREEN-SIZE",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-X-SCREEN-SIZE",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-display-metrics",
+          "cssom-view-dpr"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "orientation normalized only; multiwindow and screen exposure can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-SCREEN-APP",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SCREEN-APP",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-display-metrics",
+          "cssom-view-dpr"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-COLOR-APP",
+      "provenance_group": "H",
+      "decision_family": "P3-COLOR-APP",
+      "original_evidence_family": "P3-COLOR-APP",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-COLOR-APP",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-display-metrics",
+          "cssom-view-dpr"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "CSSOM screen exposure relation, not independent hardware evidence"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SCREEN-BROWSER",
+      "provenance_group": "E",
+      "decision_family": "screen_geometry",
+      "original_evidence_family": "screen_geometry",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The Native field named physical resolution is collected from App DisplayMetrics. Retain the frozen 1 CSS-pixel arithmetic tolerance as a project choice, not an official physical equality or tuned alert threshold.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SCREEN-BROWSER",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-display-metrics",
+          "cssom-view-dpr"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "split window or foldable configuration",
+        "page zoom",
+        "orientation or app display differs from physical mode",
+        "Native field is App display metrics, not panel resolution; short side avoids orientation but not split windows/zoom"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "equivalent_window_page_zoom_and_display_context",
+          "measurement_requirements": [
+            "equivalent_window_page_zoom_and_display_context remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-COLOR-BROWSER",
+      "provenance_group": "H",
+      "decision_family": "P3-COLOR-BROWSER",
+      "original_evidence_family": "P3-COLOR-BROWSER",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-COLOR-BROWSER",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-display-metrics",
+          "cssom-view-dpr"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "CSSOM screen exposure relation, not independent hardware evidence"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-UA-REDUCED-BROWSER",
+      "provenance_group": "H",
+      "decision_family": "P3-UA-REDUCED-BROWSER",
+      "original_evidence_family": "P3-UA-REDUCED-BROWSER",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Frozen v3 uses >=107 and Android 10 without checking K. Primary rollout distinguishes desktop M107 from Android M110; this S03 overlay records the discrepancy, guards reduced shapes, and never rewrites the frozen predicate or fabricates Browser evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-UA-REDUCED-BROWSER",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-webview-ua-reduction",
+          "android-websettings-api",
+          "android-webview-provider-api",
+          "s03-chrome-ua-timeline",
+          "s03-devtools-ua-override"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "Chrome Android reduced OS/model",
+        "older opt-in reduction",
+        "legitimate custom Browser UA",
+        "other browser product/version behavior",
+        "Chrome Android >=107 reduced Android 10 token is compatible, not actual OS recovery; customized UA can still violate"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "unmodified_browser_ua_origin",
+          "measurement_requirements": [
+            "The frozen Browser >=107/Android10 predicate has an unresolved product-scope discrepancy; retain UNKNOWN outside explicitly excluded reduced shapes."
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [
+            "unmodified Browser UA origin"
+          ],
+          "insufficient_risk_basis": [
+            "No Browser risk promotion or new Browser evidence in this revision."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-UA-DEFAULT",
+      "provenance_group": "E",
+      "decision_family": "host_ua",
+      "original_evidence_family": "host_ua",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Default, instance settings and JS UA are distinct observations; their equality is not a universal invariant. The settings snapshot is captured before the JS probe.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-UA-DEFAULT",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-webview-ua-reduction",
+          "android-websettings-api",
+          "android-webview-provider-api"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "custom per-instance UA",
+        "UA change between host snapshot and JS probe",
+        "host configuration and JS navigator UA can differ; no universal equality guarantee"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "atomic_same_instance_ua_capture",
+          "measurement_requirements": [
+            "atomic_same_instance_ua_capture remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-UA-SETTINGS",
+      "provenance_group": "E",
+      "decision_family": "host_ua",
+      "original_evidence_family": "host_ua",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Default, instance settings and JS UA are distinct observations; their equality is not a universal invariant. The settings snapshot is captured before the JS probe.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-UA-SETTINGS",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-webview-ua-reduction",
+          "android-websettings-api",
+          "android-webview-provider-api"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "custom per-instance UA",
+        "UA change between host snapshot and JS probe",
+        "host configuration and JS navigator UA can differ; no universal equality guarantee"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": [
+        {
+          "old_condition": "atomic_same_instance_ua_capture",
+          "measurement_requirements": [
+            "atomic_same_instance_ua_capture remains necessary for the old universal equality interpretation"
+          ],
+          "risk_scope_requirements": [],
+          "attribution_only": [],
+          "insufficient_risk_basis": [
+            "No new evidence justifies upgrading this descriptive relation; measurement scope remains UNKNOWN."
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "P3-PROVIDER-PARSE",
+      "provenance_group": "C",
+      "decision_family": "P3-PROVIDER-PARSE",
+      "original_evidence_family": "P3-PROVIDER-PARSE",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-PROVIDER-PARSE",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-webview-ua-reduction",
+          "android-websettings-api",
+          "android-webview-provider-api"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "major is parsed from version by this collector; duplicate derivation, not new detection power"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-GPU-COPY",
+      "provenance_group": "C",
+      "decision_family": "native_app_gpu_family",
+      "original_evidence_family": "P3-GPU-COPY",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-GPU-COPY",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "khronos-webgl-renderer-info"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "both copy one glRenderer value; tautological collector consistency"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-MEM-AVAILABLE",
+      "provenance_group": "H",
+      "decision_family": "P3-MEM-AVAILABLE",
+      "original_evidence_family": "P3-MEM-AVAILABLE",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-MEM-AVAILABLE",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "whatwg-hardware-concurrency",
+          "w3c-device-memory",
+          "android-memory-info"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "same MemoryInfo snapshot, GB units; this is memory accounting, not identity"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-NAME_COUNT",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-NAME_COUNT",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "distinct subset count cannot exceed source list count"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-VENDOR_COUNT",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-VENDOR_COUNT",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "distinct subset count cannot exceed source list count"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-TYPE-COUNT",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-TYPE-COUNT",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "collector returns distinct sorted type list; same-list derivation"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-TYPE-ORDER",
+      "provenance_group": "C",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "collector_consistency",
+      "decision_role": "collector_consistency",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "Keep the documented relation, collector invariant or context in its own role. ACTIVE and COUNTEREXAMPLE do not grant an alert role.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-TYPE-ORDER",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "collector/platform behavior rather than manipulation",
+        "missing or defaulted observation is unknown",
+        "collector implementation invariant, not independent evidence"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-ACCELEROMETER",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-ACCELEROMETER",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-MAGNETIC_FIELD",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-MAGNETIC_FIELD",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-GYROSCOPE",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-GYROSCOPE",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-LIGHT_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-LIGHT_SENSOR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-PRESSURE_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-PRESSURE_SENSOR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-PROXIMITY_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-PROXIMITY_SENSOR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-GRAVITY_SENSOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-GRAVITY_SENSOR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-ROTATION_VECTOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-ROTATION_VECTOR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-STEP_DETECTOR",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-STEP_DETECTOR",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    },
+    {
+      "rule_id": "P3-SENSOR-STEP_COUNTER",
+      "provenance_group": "H",
+      "decision_family": "sensor_structure",
+      "original_evidence_family": "sensor_structure",
+      "old_decision_role": "observation_only",
+      "decision_role": "observation_only",
+      "role_changed": false,
+      "reviewed_candidate": false,
+      "rationale": "The positive flag-to-list implication is a project consistency observation, not independent physical identity or manipulation evidence.",
+      "basis": {
+        "source_registry_ref": "hybridguard_agent/config/formal_manipulation_v1/source_registry.jsonl#P3-SENSOR-STEP_COUNTER",
+        "implementation_ref": "hybridguard_agent/research/mtc_p3_candidates.py::evaluate_candidate",
+        "source_ids": [
+          "android-sensor-manager"
+        ],
+        "screening_scope": "FROZEN_DISCOVERY_DEVELOPMENT_SCREEN",
+        "discovery_split_ref": "hybridguard_agent/artifacts/mtc_p3_discovery_20260922_r2",
+        "basis_limit": "Existing relation/source/development provenance is not evidence of detection accuracy or unauthorized intent."
+      },
+      "known_legal_counterexamples": [
+        "permission or wake-up/default sensor differences",
+        "dynamic sensors change between calls",
+        "false antecedent is not absence proof",
+        "true -> type listed only; false may reflect permission/default-sensor differences; dynamic sensor timing can differ"
+      ],
+      "research_scope_id": "featureapp-reported-identity-coherence-research-v2",
+      "attribution_certainty": "UNKNOWN",
+      "attribution_unknown_does_not_veto_relation_or_eligible_risk": true,
+      "old_precondition_classification": []
+    }
+  ],
+  "risk_alert_meaning": "Suspected manipulation/risk warning within the declared research scope, pending empirical evaluation."
+}

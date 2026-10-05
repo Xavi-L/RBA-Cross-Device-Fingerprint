@@ -70,6 +70,18 @@ python3 -B deliverables/browser67_pilot_intake_v1/intake.py summarize
 
 第一条确认本地排除、核验双包、复用/首次解压原件、运行冻结核验和自测试、生成v16/v2配置、调用两个主仓builder、逐成员比较并运行必要测试；每次生成新的私有run。第二条只读取最近一次验收保存结果并重写脱敏摘要/本报告，**不代表重新核验当前输入**。也可指定 `--run-id` 选择私有run；已有run不覆盖。
 
-本次私有run引用：`.private/browser67_pilot_20261004/runs/b1_20261006_final`。`.private/browser67_pilot_20261004/originals/`保留两个首次解压树；`latest_run.json`记录最近验收；run内含verification、自测试、路径映射、本机配置、paired/app-only/quarantine、sample_index、QC、目录/来源清单、阶段去向、逐成员比对、字段质量侧表、readiness和测试日志。完整原始指纹、票据和会话关联均只留在被本地忽略的私有目录。
+本次私有run引用：`.private/browser67_pilot_20261004/runs/b1_20261006_final`。`.private/browser67_pilot_20261004/originals/`保留两个首次解压树；`latest_run.json`记录最近验收；run内含verification、自测试、路径映射、本机配置、paired/app-only/quarantine、sample_index、QC、目录/来源清单、阶段去向、逐成员比对、字段质量侧表、readiness和测试日志。本机原件保留在被本地忽略的私有目录；后续获授权的证据公开副本见下方说明。
 
 验证：本次接入测试 **14/14**、现有快照/准入回归 **18/18**，均无跳过。接入测试包含真实材料的8项归档自测试。无私有证据的其他检出环境会显式跳过真实材料测试，不视为真实验收通过。旧模型、历史结果及子模块指针未修改。
+
+## 后续授权的证据公开
+
+用户于2026-10-06明确授权提交有用证据，排除凭据和两个ZIP。现提供488个测量归档文件的原字节副本、13个B1源码参考文件和主仓验收留档。详见[EVIDENCE_PUBLICATION.md](EVIDENCE_PUBLICATION.md)与[公开证据复核结果](PUBLIC_REVIEW.json)。
+
+远端无需ZIP或本机私有目录，运行：
+
+```sh
+python3 -B deliverables/browser67_pilot_intake_v1/review_evidence.py verify
+```
+
+原B1结果和正式准入边界保持不变；本节更新的是公开范围。

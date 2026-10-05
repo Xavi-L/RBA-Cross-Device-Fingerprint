@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/evidence-bundle-v2",
+  "title": "HybridGuard Evidence Bundle v2",
+  "type": "object",
+  "required": [
+    "evidence_bundle_version",
+    "extractor_version",
+    "sample_id",
+    "schema_version",
+    "evidence_hash",
+    "derived_facts",
+    "evidence_groups",
+    "observed_fields",
+    "coverage",
+    "boundary_note"
+  ],
+  "properties": {
+    "evidence_bundle_version": {"const": "evidence-bundle-v2"},
+    "extractor_version": {"type": "string", "minLength": 1},
+    "sample_id": {"type": "string", "minLength": 1},
+    "schema_version": {"const": "expanded-v2"},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "derived_facts": {"type": "object"},
+    "evidence_groups": {
+      "type": "object",
+      "required": ["cross_layer", "runtime_context"],
+      "properties": {
+        "cross_layer": {"$ref": "#/$defs/observations"},
+        "runtime_context": {"$ref": "#/$defs/observations"}
+      },
+      "additionalProperties": false
+    },
+    "observed_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["supported_evidence_groups", "not_assessed"]
+    },
+    "boundary_note": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["observation_id", "fact_ids", "fields", "status", "summary", "details"],
+        "properties": {
+          "observation_id": {"type": "string", "minLength": 1},
+          "fact_ids": {"type": "array", "items": {"type": "string"}},
+          "fields": {"type": "array", "items": {"type": "string"}},
+          "status": {
+            "enum": ["matched", "not_matched", "observed", "unknown", "unavailable", "not_applicable"]
+          },
+          "summary": {"type": "string", "minLength": 1},
+          "details": {"type": "object"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

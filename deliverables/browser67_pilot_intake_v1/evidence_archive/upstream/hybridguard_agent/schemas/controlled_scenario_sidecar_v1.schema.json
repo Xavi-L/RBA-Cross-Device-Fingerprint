@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/controlled-scenario-sidecar-v1",
+  "title": "HybridGuard Controlled Scenario Sidecar v1",
+  "type": "object",
+  "required": [
+    "controlled_scenario_sidecar_version",
+    "policy",
+    "input_audit",
+    "scenarios",
+    "claim_boundary"
+  ],
+  "properties": {
+    "controlled_scenario_sidecar_version": {"const": "controlled-scenario-sidecar-v1"},
+    "policy": {"type": "object"},
+    "input_audit": {"type": "object"},
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scenario_schema_version",
+          "scenario_id",
+          "pair_key_sha256",
+          "members",
+          "pair_invariants",
+          "comparison_policy",
+          "field_comparisons",
+          "scenario_status",
+          "reasons",
+          "metric_eligible",
+          "claim_boundary"
+        ],
+        "properties": {
+          "scenario_schema_version": {"const": "controlled-scenario-sidecar-v1"},
+          "scenario_id": {"type": "string", "minLength": 1},
+          "pair_key_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "members": {"type": "array"},
+          "pair_invariants": {"type": "object"},
+          "comparison_policy": {"type": "object"},
+          "field_comparisons": {"type": "array"},
+          "scenario_status": {
+            "enum": [
+              "not_evaluable",
+              "insufficient_evidence",
+              "controlled_target_field_change_observed",
+              "no_configured_target_field_change_observed"
+            ]
+          },
+          "reasons": {"type": "array", "items": {"type": "string"}},
+          "metric_eligible": {"const": false},
+          "claim_boundary": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claim_boundary": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

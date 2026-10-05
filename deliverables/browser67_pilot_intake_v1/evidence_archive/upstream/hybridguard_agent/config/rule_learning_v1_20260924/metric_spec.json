@@ -1,0 +1,37 @@
+{
+  "schema_version": "rule-learning-metric-spec-v1",
+  "sample_unit": "UNIQUE_OPAQUE_STAGE_ID_PER_MODEL_FOLD",
+  "triplet_unit": ["bundle_id", "triplet_id"],
+  "positive_label": "S01_eligible_detection_true",
+  "negative_label": "S01_eligible_pre_control_or_eligible_post_control_true",
+  "unknown_labels": "DESCRIPTIVE_ONLY_NEVER_TN_FP_FN_TP",
+  "decision_values": ["MANIPULATION_ALERT", "NO_ALERT", "INSUFFICIENT_EVIDENCE", "EMPTY_MODEL", "FAILED"],
+  "metrics": [
+    {"id": "attack_tpr", "numerator": "attack_ALERT", "denominator": "all_admitted_attack_stages", "U_empty_failed": "REMAIN_IN_DENOMINATOR"},
+    {"id": "clean_alarm_rate", "numerator": "clean_ALERT", "denominator": "all_admitted_pre_and_post_stages", "U_empty_failed": "REMAIN_IN_DENOMINATOR"},
+    {"id": "pre_alarm_rate", "numerator": "pre_ALERT", "denominator": "all_admitted_pre_stages"},
+    {"id": "post_alarm_rate", "numerator": "post_ALERT", "denominator": "all_admitted_post_stages"},
+    {"id": "decided_clean_alarm_rate", "numerator": "clean_ALERT", "denominator": "clean_ALERT_plus_NO_ALERT"},
+    {"id": "exact_FTF", "numerator": "pre_NO_ALERT_and_attack_ALERT_and_post_NO_ALERT", "denominator": "all_admitted_complete_triplets", "U_empty_failed": "UNSUCCESSFUL_NOT_REMOVED"},
+    {"id": "conditional_recovery", "numerator": "attack_ALERT_and_post_NO_ALERT", "denominator": "admitted_triplets_with_attack_ALERT_and_eligible_post"},
+    {"id": "decision_coverage", "numerator": "ALERT_plus_NO_ALERT", "denominator": "all_expected_stages"},
+    {"id": "abstention_rate", "numerator": "INSUFFICIENT_EVIDENCE_plus_EMPTY_MODEL", "denominator": "all_expected_stages"},
+    {"id": "failure_rate", "numerator": "FAILED", "denominator": "all_expected_stages"},
+    {"id": "atom_coverage", "numerator": "available_atom_cells", "denominator": "all_expected_atom_stage_cells"},
+    {"id": "clause_coverage", "numerator": "T_or_F_clause_cells", "denominator": "all_expected_clause_stage_cells"},
+    {"id": "MacroTPR_config_environment", "numerator": "sum_over_configs(mean_over_present_envs(attack_ALERT/n_attack_config_env))", "denominator": "number_of_configs_with_admitted_attack_support"}
+  ],
+  "resolution": {"save": ["numerator", "denominator", "value", "minimum_nonzero_rate", "status", "reason"], "minimum_nonzero_rate": "1/N", "zero_denominator": {"value": null, "status": "NOT_EVALUABLE"}, "missing_truth": {"value": null, "status": "NOT_EVALUABLE_NO_TRUTH"}, "unrun_branch": {"value": null, "status": "NOT_RUN"}},
+  "uncertainty": {"positive_identification_interval": ["TP/N_positive", "(TP+U+EMPTY+FAILED)/N_positive"], "negative_identification_interval": ["FP/N_negative", "(FP+U+EMPTY+FAILED)/N_negative"], "interval_is_population_CI": false, "group_bootstrap_CI_current_three_envs": false, "zero_FP_is_population_zero": false},
+  "aggregation": {"primary_report": ["each_fold", "pooled_oof_unique_stages", "environment", "config", "config_environment", "phase"], "pooled_oof_uses_multiple_models": true, "fit_refit_and_test_not_pooled": true, "different_tracks_never_pooled": true, "per_method_sample_count_does_not_increase_population": true, "missing_fold": "REPORT_INCOMPLETE_EXPECTED_DENOMINATOR_NOT_COMPLETE_OOF", "source_comparison_denominators": "SAME_EXPECTED_IDS"},
+  "complexity": ["distinct_atoms", "clauses", "literal_occurrences", "distinct_families", "distinct_surfaces", "source_union"],
+  "stability": {"metric": "pairwise_Jaccard_selected_canonical_signed_atoms_across_LOEO_models", "both_empty": "NOT_EVALUABLE", "one_empty": 0, "all_expected_fold_pairs": true, "source_aliases": "CANONICALIZED_WITH_PROVENANCE_RETAINED"},
+  "not_primary": {"precision_F1": "NOT_PLANNED_ARTIFICIAL_CLASS_MIX", "mechanism_MacroTPR": "NOT_EVALUABLE_UNVERIFIED_MECHANISMS", "temporal_control_FPR": "NOT_EVALUABLE_NO_TRUTH", "MTC_TPR_FPR": "NOT_EVALUABLE_NO_TRUTH"},
+  "long_tables": {
+    "prediction": {"key": ["protocol_digest", "split_id", "fold_id", "model_id", "opaque_id"], "required": ["study_version", "candidate_version", "input_manifest_ref", "method_id", "operating_point", "decision", "model_status", "selected_atoms_available", "selected_atoms_expected", "clauses_defined", "clauses_expected", "failure_reason", "source_rows"]},
+    "metric": {"key": ["protocol_digest", "split_id", "fold_id", "model_id", "metric_id", "stratum"], "required": ["numerator", "denominator", "expected_denominator", "value", "status", "reason", "evaluation_role", "source_rows"]},
+    "triplet": {"key": ["model_id", "fold_id", "bundle_id", "triplet_id"], "required": ["pre_id", "attack_id", "post_id", "pre_decision", "attack_decision", "post_decision", "exact_FTF", "status", "source_rows"]},
+    "selection": {"key": ["model_id", "fold_id", "clause_id", "atom_id", "polarity"], "required": ["source_groups", "canonical_identity", "train_id_manifest", "support_triplets", "support_bundles", "support_environments", "objective", "solver_status", "best_bound", "gap", "freeze_time"]},
+    "cost": {"key": ["job_id", "model_id", "operation", "repeat_index"], "required": ["elapsed_ns", "cpu_seconds", "peak_rss_bytes", "environment", "audit_enabled", "status", "source_rows"]}
+  }
+}

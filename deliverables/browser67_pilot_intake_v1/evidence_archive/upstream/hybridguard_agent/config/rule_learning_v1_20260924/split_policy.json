@@ -1,0 +1,18 @@
+{
+  "schema_version": "rule-learning-split-policy-v1",
+  "split_version": "r01-splits-v1",
+  "seed": 20260924,
+  "random_stage_split": false,
+  "base_unit": ["bundle_id", "triplet_id"],
+  "repeated_unit_links": ["same_bundle", "same_run", "same_session", "S02_exact_payload_duplicate_if_present"],
+  "environment_authority": "S01_environment_group_registry_transitive_closure",
+  "material_roles": {"admitted_attack_triplet": "SUPERVISED_DEVELOPMENT_OUTER_EVALUATION_BY_FOLD", "temporal_control_unknown": "DESCRIPTIVE_ONLY", "lower_evidence_attack": "DESCRIPTIVE_ONLY", "incomplete_attempt": "DESCRIPTIVE_ONLY", "MTC": "EXPOSED_RELATION_REFERENCE_NO_SUPERVISED_LABEL", "zero_stage_bundle": "MATERIAL_HISTORY_ONLY"},
+  "primary": {"split_id": "LOEO-v1", "outer": "LEAVE_ONE_ENVIRONMENT_ASSOCIATION_GROUP_OUT", "fold_count": 3, "inner_selection": "NONE_FIXED_HYPERPARAMETERS", "rule_set_fit": "OUTER_TRAIN_ONLY", "reason": "only two training environments per fold; one-environment inner fits and sparse configuration overlap cannot support meaningful hyperparameter selection", "hold_out_all_material_from_target_environment": true, "test_data_fit_permissions": [], "test_metadata_permissions_R01": ["id", "label_admission", "group", "config", "declared_field_set", "counts"], "test_feature_permissions_before_model_freeze": []},
+  "configuration": {"split_id": "LOCO-v1", "outer": "LEAVE_ONE_CONFIG_ID_OUT_ALL_ITS_BUNDLES_AND_TRIPLETS", "fold_count": 14, "inner_selection": "NONE_FIXED_HYPERPARAMETERS", "shared_environment_allowed": true, "claim": "EXPOSED_CONFIG_TRANSFER_WITH_SHARED_ENVIRONMENTS", "independent_mechanism_claim": false, "entire_target_environment_holdout": false, "environment_cross_config_association": "DISCLOSED_SHARING_NOT_INDEPENDENT_ENVIRONMENT_TEST"},
+  "mechanism": {"status": "NOT_EVALUABLE_UNVERIFIED_MECHANISM_PARTITION", "mechanism_id": null, "mechanism_labels_from_tool_or_config": false, "declared_field_set_is_mechanism": false, "fallback": "LOCO_AS_CONFIG_ONLY_NOT_RENAMED_MECHANISM", "reopening": "NEW_EVIDENCE_AND_VERSIONED_PARTITION_BEFORE_FIT"},
+  "inner_future_eligibility": {"minimum_outer_train_environment_groups": 4, "minimum_inner_train_environment_groups": 2, "minimum_inner_validation_triplets": 3, "both_labels_required": true, "current_enabled": false, "change_requires_protocol_revision": true},
+  "fold_admission": {"minimum_train_environments": 2, "minimum_train_triplets": 6, "minimum_train_configurations": 2, "minimum_test_triplets": 3, "both_labels_required": true, "violating_fold": "NOT_EVALUABLE_KEEP_FOLD_NO_RESHUFFLE", "all_folds_infeasible": "DEVELOPMENT_ONLY", "candidate_unavailable_or_fit_failure": "KEEP_EXPECTED_TEST_UNITS_FAILED_OR_EMPTY_MODEL_NO_SPLIT_CHANGE"},
+  "batch_scope": {"bundle": "NEVER_SPLIT", "collection_campaign": "SHARED_HISTORICAL_CAMPAIGN_NOT_HELD_OUT", "independent_batch_evidence": "NOT_AVAILABLE", "all_262_rows_assigned_train_side_or_test_side_or_excluded_in_each_fold": true},
+  "prospective": {"status": "NOT_AVAILABLE", "automatic_collection": false, "requirements": ["new independently supported labels", "unexposed material", "model frozen before access", "separate authorization"]},
+  "manifests": {"members": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/SPLIT_MEMBERSHIP.jsonl", "fold_summary": "hybridguard_agent/artifacts/discriminative_rule_learning_v1_20260924/R01_protocol/FOLD_MANIFEST.json", "generation": "SORTED_METADATA_ONLY_DETERMINISTIC_NO_SHUFFLE"}
+}

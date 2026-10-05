@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/decision-trace-v1",
+  "type": "object",
+  "required": ["decision_trace_version", "decision_id", "sample_id", "versions", "evidence_hash", "rule_execution", "retrieval", "reasoning", "fusion", "citations", "verification", "runtime"],
+  "properties": {
+    "decision_trace_version": {"const": "decision-trace-v1"},
+    "decision_id": {"type": "string"},
+    "sample_id": {"type": "string"},
+    "versions": {"type": "object"},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rule_execution": {"type": "object"},
+    "retrieval": {"type": "object"},
+    "reasoning": {"type": "object"},
+    "fusion": {"type": "object"},
+    "citations": {"type": "object"},
+    "verification": {"type": "object"},
+    "runtime": {"type": "object"}
+  },
+  "additionalProperties": false
+}

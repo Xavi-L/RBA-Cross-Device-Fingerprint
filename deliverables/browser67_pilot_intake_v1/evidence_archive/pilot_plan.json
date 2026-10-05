@@ -1,0 +1,61 @@
+{
+  "schema_version": "browser67-paired-pilot-plan-v1",
+  "preregistered_at": "2026-10-04",
+  "source_commit": "a16ba9dea3078a66b4e8e4338d00d9dd9df9893b",
+  "device_manifest_id": "rba-browser-pilot-api36-lf-r8",
+  "serial": "emulator-5554",
+  "browser_package": "com.android.chrome",
+  "app_package": "com.example.hybridguard.featureapp",
+  "app_activity": "com.example.hybridguard.featureapp/.MainActivity",
+  "static_origin": "http://127.0.0.1:8001",
+  "collect_endpoint": "http://127.0.0.1:8000/api/collect/fingerprint",
+  "cdp_origin": "http://127.0.0.1:9340",
+  "debug_wait_ms": 30000,
+  "collection_wait_ms": 60000,
+  "rounds_per_configuration": 3,
+  "stage_order": [
+    "clean_pre",
+    "attack_active",
+    "clean_post"
+  ],
+  "planned_stage_count": 18,
+  "controls": [
+    {
+      "configuration_id": "language_fr",
+      "method": "Runtime.evaluate",
+      "params": {
+        "expression": "Object.defineProperty(navigator, 'language', {get: () => 'fr-FR', configurable: true}); Object.defineProperty(navigator, 'languages', {get: () => ['fr-FR'], configurable: true});",
+        "returnByValue": true
+      },
+      "restoration": {
+        "expression": "delete navigator.language; delete navigator.languages;",
+        "returnByValue": true
+      },
+      "expected": {
+        "language": "fr-FR",
+        "languages": [
+          "fr-FR"
+        ]
+      }
+    },
+    {
+      "configuration_id": "timezone_tokyo",
+      "method": "Emulation.setTimezoneOverride",
+      "params": {
+        "timezoneId": "Asia/Tokyo"
+      },
+      "expected": {
+        "timezone_id": "Asia/Tokyo",
+        "timezone_offset": -540
+      }
+    }
+  ],
+  "scope": "Own API36 emulator only; browser controls only; original App/WebView and browser payloads archived by upstream backend.",
+  "sampling": "Fixed pilot of two configurations, three clean/active/post rounds each. No retries or tuning; failed and skipped stages remain in the planned denominator.",
+  "pairing": "App issues the ticket and launches Chrome. New ticket event selects the exact pair; original App runtime_context and collection_round bind to session; completed provenance and both raw archives must match exactly.",
+  "gate": "Hold the original deferred browser-probe-adapter.js response. HTML, bootstrap and canonical core are served byte-for-byte first, so the real page realm is committed while adapter execution and DOMContentLoaded remain blocked. Install current-realm controls before releasing the identical adapter bytes. Core language/timezone reads occur within collect(), not module initialization. All static file paths are constrained to the public directory.",
+  "restoration": "Delete the two language own-property overrides or reset timezone after a completed stage; close the exact probe target and require success=true, then force-stop Chrome and App before next stage. Record restoration commands. On an incomplete pair abort remaining slots and record them skipped without stopping App.",
+  "engineering_attempt": "Fresh final root archives byte-identical verified LF APK (9fbe8059) originally built and tested55/55 in verified root; all packaged asset source/Git/ZIP identities regenerated from actual bytes and genuine artifact relocation recorded. r6 failed CORS preflight because original browser adapter uses ngrok-skip-browser-warning; its immutable capture/manifest/source disposition remains in verified root. Final backend allows only precise legitimate header and origin. New opaque lf-r7 contexts retain two configurations, three repetitions,18slots and unchanged intervention values. All original CRLF runs remain quarantined; final raw payloads start in a fresh single batch. Core a747 declared/hash/actual Git/canonical/browser/APK bytes must match. No earlier records fabricated or relabeled. Resumed in browser-fingerprint workspace from immutable final-root copy; final backend never started because its launch path was unquoted/incorrect. Fresh r8 context, data and lifecycle; no prior final-root raw captures exist.",
+  "interpretation": "Pilot validates pairing, controlled observations and restoration, not population statistics or the old App177 denominator. Labels and control methods exist only in external plan/ledger.",
+  "canonical_probe_sha256": "a747c8cfc0ca916c02071e632da476bbbf60983bfbd46dcd25ef6bdfb16f3412"
+}

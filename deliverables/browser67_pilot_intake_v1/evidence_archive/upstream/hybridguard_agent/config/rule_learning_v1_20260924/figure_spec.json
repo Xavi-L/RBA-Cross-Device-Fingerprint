@@ -1,0 +1,20 @@
+{
+  "schema_version": "rule-learning-figure-spec-v1",
+  "render_in_R01": false,
+  "output_formats": ["SVG", "PDF", "CSV", "JSON"],
+  "common_source_columns": ["study_version", "protocol_digest", "candidate_version", "split_id", "fold_id", "model_id", "input_manifest_ref", "evaluation_role", "source_rows", "numerator", "denominator", "status"],
+  "no_data_policy": "NULL_VALUE_WITH_NOT_RUN_NOT_AVAILABLE_OR_NOT_EVALUABLE_NO_SIMULATED_EFFECTS",
+  "figures": [
+    {"id": "Fig1", "kind": "protocol_flow", "sources": ["study_protocol.json", "split_policy.json", "experiment_matrix.json"], "denominator": "NOT_APPLICABLE", "show": ["train-only learning", "per-fold model freeze", "current-stage prediction", "isolated evaluation"]},
+    {"id": "Fig2", "kind": "rule_and_model_triplet_response_heatmap", "sources": ["R05_primary/rule_events.jsonl", "R05_primary/triplet_results.jsonl", "R05_primary/training_logs"], "denominator": "54_admitted_triplets_per_complete_LOEO_method", "atom_rows": "ALL_REGISTERED_CORE_ATOMS_WITH_SELECTION_MARKERS_NO_OUTCOME_RANK_FILTER", "cell_unit": "ATOM_OR_MODEL_BY_TRIPLET_PHASE", "strata": ["evaluation_role", "fold_id", "config_id", "environment_group_id"], "sort": ["atom_id_ASC", "config_id_ASC", "environment_group_id_ASC", "bundle_id_ASC", "triplet_id_ASC"], "separate_training_diagnostics": true, "include_U_EMPTY_FAILED": true},
+    {"id": "Fig3", "kind": "predeclared_budget_operating_points", "sources": ["R05_primary/metrics.csv", "R05_primary/selected_rules.jsonl"], "metrics": ["attack_tpr", "clean_alarm_rate", "decided_clean_alarm_rate", "decision_coverage", "complexity"], "denominators": {"attack": 54, "pre": 54, "post": 54, "clean": 108}, "strata": ["method_id", "operating_point", "fold_id"], "select_best_on_outer_results": false, "show_k_over_n": true},
+    {"id": "Fig4", "kind": "method_and_source_refit", "sources": ["R05_primary/metrics.csv", "R06_sources/source_refit_metrics.csv"], "denominator": "SAME_EXPECTED_OOF_IDS_PER_TRACK", "strata": ["fold_id", "source_condition", "method_id"], "postfit_deletion_source": "R06_sources/source_drop_sensitivity.csv", "postfit_deletion_separate_panel": true, "include_empty_sources": true},
+    {"id": "Fig5", "kind": "representation_and_transfer", "sources": ["R07_representation/input_refit_metrics.csv", "R08_validation/track_metrics.csv"], "denominator": "PER_TRACK_FOLD_SUPPORTED_S01_LABEL_IDS", "strata": ["split_id", "fold_id", "surface", "config_id", "environment_group_id"], "shared_environment_label": true, "mechanism_unverified": "NOT_EVALUABLE", "prospective_missing": "NOT_AVAILABLE", "MTC": "SEPARATE_DESCRIPTIVE_BLOCK_NO_DETECTION_RATE"},
+    {"id": "Fig6", "kind": "rule_structure_and_selection_stability", "sources": ["R05_primary/selected_rules.jsonl", "R05_primary/fold_models", "R01_protocol/CANDIDATE_LEDGER.jsonl"], "denominator": "ALL_EXPECTED_LOEO_MODELS_AND_FOLD_PAIRS", "strata": ["fold_id", "canonical_identity", "polarity", "source_groups"], "show_all_folds": true, "show_counterexamples_and_support_scope": true, "both_empty_Jaccard": "NOT_EVALUABLE"}
+  ],
+  "tables": [
+    {"id": "materials", "sources": ["R01_protocol/DATA_ROLE_LEDGER.jsonl", "R01_protocol/MATERIAL_FLOW.jsonl", "R01_protocol/GROUP_SUPPORT.csv"], "unit": "STAGE_AND_BUNDLE_IN_SEPARATE_COLUMNS", "include_unknown_and_zero_stage": true},
+    {"id": "failure_and_cost", "sources": ["R05_primary/failures/abstentions.jsonl", "R09_cost_explanation/cost_long.csv"], "unit": "EXPECTED_PREDICTION_OR_TIMING_RUN", "split_training_inference_audit": true},
+    {"id": "claim_ledger", "sources": ["ALL_ACTUALLY_COMPLETED_EXPERIMENTS"], "required": ["claim", "evidence_scope", "model_id", "fold_id", "source_rows", "n", "limitation", "status"]}
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/browser-pair-evidence-v1",
+  "title": "HybridGuard Browser Pair Evidence v1",
+  "type": "object",
+  "required": [
+    "browser_pair_evidence_version",
+    "evidence_hash",
+    "sample_id",
+    "policy_version",
+    "input_contract",
+    "comparison_status",
+    "field_results",
+    "summary",
+    "metric_eligible",
+    "claim_boundary"
+  ],
+  "properties": {
+    "browser_pair_evidence_version": {"const": "browser-pair-evidence-v1"},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sample_id": {"type": "string", "minLength": 1},
+    "policy_version": {"const": "browser-pair-comparison-policy-v1"},
+    "input_contract": {
+      "type": "object",
+      "required": [
+        "dataset_manifest_version",
+        "paired_record_schema_version",
+        "feature_catalog_version",
+        "browser_probe_revision"
+      ],
+      "properties": {
+        "dataset_manifest_version": {"const": "latest-featureapp-paired244-snapshot-v1"},
+        "paired_record_schema_version": {"const": "hybridguard-paired244-view-v1"},
+        "feature_catalog_version": {"const": "latest-paired244-feature-catalog-v1"},
+        "browser_probe_revision": {"const": "expanded-web-67-v1"}
+      },
+      "additionalProperties": false
+    },
+    "comparison_status": {"enum": ["completed", "not_evaluable"]},
+    "field_results": {
+      "type": "array",
+      "minItems": 67,
+      "maxItems": 67,
+      "items": {"$ref": "#/$defs/field_result"}
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "field_count",
+        "exact_policy_count",
+        "not_comparable_policy_count",
+        "same_count",
+        "different_count",
+        "unavailable_count",
+        "not_comparable_count",
+        "comparable_observed_count"
+      ],
+      "properties": {
+        "field_count": {"const": 67},
+        "exact_policy_count": {"const": 39},
+        "not_comparable_policy_count": {"const": 28},
+        "same_count": {"type": "integer", "minimum": 0},
+        "different_count": {"type": "integer", "minimum": 0},
+        "unavailable_count": {"type": "integer", "minimum": 0},
+        "not_comparable_count": {"type": "integer", "minimum": 0},
+        "comparable_observed_count": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "metric_eligible": {"const": false},
+    "claim_boundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "nullable_sha256": {
+      "oneOf": [
+        {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        {"type": "null"}
+      ]
+    },
+    "field_result": {
+      "type": "object",
+      "required": [
+        "field_path",
+        "value_type",
+        "comparison_mode",
+        "app_status",
+        "browser_status",
+        "result",
+        "app_value_sha256",
+        "browser_value_sha256",
+        "reason_code"
+      ],
+      "properties": {
+        "field_path": {"type": "string", "pattern": "^web_data\\."},
+        "value_type": {"enum": ["number", "string", "boolean", "array"]},
+        "comparison_mode": {"enum": ["exact", "not_comparable"]},
+        "app_status": {
+          "enum": [
+            "observed",
+            "unsupported_by_os",
+            "permission_denied",
+            "runtime_error",
+            "timeout",
+            "not_applicable"
+          ]
+        },
+        "browser_status": {
+          "enum": [
+            "observed",
+            "unsupported_by_os",
+            "permission_denied",
+            "runtime_error",
+            "timeout",
+            "not_applicable"
+          ]
+        },
+        "result": {"enum": ["same", "different", "unavailable", "not_comparable"]},
+        "app_value_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "browser_value_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "reason_code": {
+          "enum": [
+            "exact_values_equal",
+            "exact_values_different",
+            "source_field_unavailable",
+            "not_comparable_diagnostic_only",
+            "not_comparable_runtime_timing",
+            "not_comparable_origin_or_permission_scope",
+            "not_comparable_transient_network",
+            "not_comparable_container_viewport"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

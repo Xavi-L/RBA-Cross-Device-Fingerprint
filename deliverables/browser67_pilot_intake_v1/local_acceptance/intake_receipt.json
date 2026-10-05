@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "intake_date": "2026-10-06",
+  "main_commit": "a16ba9dea3078a66b4e8e4338d00d9dd9df9893b",
+  "packages": [
+    {
+      "kind": "source",
+      "name": "hybridguard-browser-fingerprint-research-browser67-pilot-20261004.zip",
+      "bytes": 46800765,
+      "sha256": "d0c82b4e6deec7db6e7c410b0a3a33b2bd173884c3a05114ff90d769d74b5bed",
+      "crc": "passed",
+      "safe_paths": true,
+      "files": 1290
+    },
+    {
+      "kind": "evidence",
+      "name": "browser67_paired_pilot_evidence.zip",
+      "bytes": 13723281,
+      "sha256": "9f05bb21f6caafe277f62619c47ec142f7798af8aff51414e7e8403ef0183df6",
+      "crc": "passed",
+      "safe_paths": true,
+      "files": 488
+    }
+  ],
+  "inventory": {
+    "listed_members_verified": 487,
+    "total_files": 488,
+    "package_contents_locked_by_zip_sha256": true
+  },
+  "public_source_comparison": [
+    {
+      "path": "run_paired_browser_pilot.mjs",
+      "published_equals_measured": false,
+      "publication_changes": [
+        "Portable ADB default uses ADB_PATH or PATH; archived collection source is unchanged."
+      ]
+    },
+    {
+      "path": "test_paired_browser_pilot.mjs",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "verify_pilot.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "test_verify_pilot.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "build_delivery.mjs",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "package_delivery.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "run_backend.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    }
+  ],
+  "inputs_unchanged": true,
+  "focused_tests": [
+    {
+      "suite": "intake",
+      "tests": 14,
+      "passed": true,
+      "skipped": 0
+    },
+    {
+      "suite": "existing_builders",
+      "tests": 18,
+      "passed": true,
+      "skipped": 0
+    }
+  ],
+  "original_failure": "FileNotFoundError",
+  "original_reports_equal": true
+}

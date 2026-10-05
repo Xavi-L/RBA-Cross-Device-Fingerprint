@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hybridguard/sample-manifest-v1",
+  "title": "HybridGuard Sample Manifest v1",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "sample_id",
+    "session_id_hash",
+    "raw_payload_sha256",
+    "capture",
+    "label",
+    "quality"
+  ],
+  "properties": {
+    "manifest_version": {
+      "const": "sample-manifest-v1"
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id_hash": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "raw_payload_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "capture": {
+      "type": "object",
+      "required": [
+        "source_type"
+      ],
+      "properties": {
+        "capture_batch_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_type": {
+          "type": "string"
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider_run_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "pair": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "label": {
+      "type": "object",
+      "required": [
+        "environment_class",
+        "label_status"
+      ],
+      "properties": {
+        "environment_class": {
+          "type": "string"
+        },
+        "manipulation_present": {},
+        "violation_types": {
+          "type": "array"
+        },
+        "label_status": {
+          "enum": [
+            "verified",
+            "pending",
+            "rejected"
+          ]
+        },
+        "label_provenance": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "attack": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "quality": {
+      "type": "object",
+      "required": [
+        "qc_status",
+        "formal_experiment_eligible"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
