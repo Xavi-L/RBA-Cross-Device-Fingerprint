@@ -1,0 +1,493 @@
+{
+  "schema_version": "browser67-pilot-intake-v1",
+  "intake_date": "2026-10-06",
+  "status": "passed",
+  "source_archive_commit": "59a0cff18386150eca90fcf09b2f6169ff186a1e",
+  "measurement_main_commit": "a16ba9dea3078a66b4e8e4338d00d9dd9df9893b",
+  "rebuild_main_commit": "a16ba9dea3078a66b4e8e4338d00d9dd9df9893b",
+  "selected_pilot": "pilot_r8",
+  "packages": [
+    {
+      "kind": "source",
+      "name": "hybridguard-browser-fingerprint-research-browser67-pilot-20261004.zip",
+      "bytes": 46800765,
+      "sha256": "d0c82b4e6deec7db6e7c410b0a3a33b2bd173884c3a05114ff90d769d74b5bed",
+      "crc": "passed",
+      "safe_paths": true,
+      "files": 1290
+    },
+    {
+      "kind": "evidence",
+      "name": "browser67_paired_pilot_evidence.zip",
+      "bytes": 13723281,
+      "sha256": "9f05bb21f6caafe277f62619c47ec142f7798af8aff51414e7e8403ef0183df6",
+      "crc": "passed",
+      "safe_paths": true,
+      "files": 488
+    }
+  ],
+  "inventory": {
+    "listed_members_verified": 487,
+    "total_files": 488,
+    "package_contents_locked_by_zip_sha256": true
+  },
+  "path_compatibility": {
+    "version": "browser67-windows-path-compat-v1",
+    "archived_verifier_sha256": "9185c07796b69f5219432af80f32cd71b2947b235622798bdd05185161f5fad8",
+    "allowed_root_fields": [
+      "source_checkout.parent",
+      "resume_archive_origin.directory"
+    ],
+    "original_failure": "FileNotFoundError",
+    "evidence_unchanged": true
+  },
+  "verification": {
+    "schema_version": "browser67-independent-verification-v1",
+    "verification": "passed",
+    "source_commit": "a16ba9dea3078a66b4e8e4338d00d9dd9df9893b",
+    "planned_stages": 18,
+    "verified_stages": 18,
+    "complete_triplets": 6,
+    "configurations": 2,
+    "devices": 1,
+    "app_canonical_hashes_verified": 18,
+    "browser_canonical_hashes_verified": 18,
+    "accepted_app_receipts": 18,
+    "inventory": {
+      "app_raw_archives": 18,
+      "browser_raw_archives": 18,
+      "completed_pairs": 18,
+      "selected_pairs": 18,
+      "unselected_completed_pairs": 0,
+      "app_only_archives": 0
+    },
+    "app_signal_catalog_size": 177,
+    "browser_signal_catalog_size": 67,
+    "aggregate_field_status_counts": {
+      "app": {
+        "observed": 3186
+      },
+      "browser": {
+        "observed": 1206
+      }
+    },
+    "browser_only_control_scope_verified": true,
+    "clean_post_matches_clean_pre": true,
+    "gate_control_upload_order_verified": true,
+    "build_static_and_probe_locks_verified": true,
+    "experimental_labels_absent_from_payloads": true,
+    "backend_ticket_events_verified": 18,
+    "installed_apk_bytes_verified": true,
+    "fresh_chrome_startup_verified": true,
+    "backend_closed_cleanly": true,
+    "exported_app_provenance_verified": 18,
+    "limitations": [
+      "One owned emulator and two browser controls; no population stability estimate.",
+      "Target locale/timezone observations are conserved in App Native/App Web; whole payloads vary naturally.",
+      "CDP and backend ledgers share a local host clock; this is an archived event-order check, not a network timing experiment.",
+      "No detector, model quality, ablation result, or old App177 denominator is established."
+    ],
+    "selected_pilot": "pilot_r8"
+  },
+  "archived_self_tests": {
+    "schema_version": "browser67-independent-verifier-tests-v1",
+    "tests": 8,
+    "passed": 8,
+    "selected_pilot": "pilot_r8",
+    "real_data_baseline_passed": true,
+    "rejected_mutations": [
+      "canonical_hash_tampering",
+      "missing_stage",
+      "scope_changed_with_coherent_hashes",
+      "false_restoration_with_coherent_hashes",
+      "label_leakage_with_coherent_hashes",
+      "backend_ticket_removed",
+      "installed_apk_tampering"
+    ],
+    "original_evidence_modified": false
+  },
+  "original_reports_equal": true,
+  "rebuild": {
+    "members": 18,
+    "values_equal": 4392,
+    "states_equal": 4392,
+    "full_sample_index_equal": true,
+    "catalog_equal": true,
+    "qc_equal": true,
+    "paired_bytes_equal": false,
+    "paired_bytes_equal_after_crlf_to_lf": true
+  },
+  "qc_counts": {
+    "input_app_analysis_rows": 18,
+    "input_app_raw_rows": 18,
+    "input_app_session_count": 18,
+    "selected_latest_app_analysis_rows": 18,
+    "selected_latest_app_raw_rows": 18,
+    "selected_latest_app_session_count": 18,
+    "app177_valid_count": 18,
+    "browser_attempted_count": 18,
+    "paired244_completed_count": 18,
+    "browser_incomplete_count": 0,
+    "paired_244_count": 18,
+    "app_only_177_count": 0,
+    "quarantined_app_count": 0,
+    "quarantined_pair_count": 0
+  },
+  "source_comparison": [
+    {
+      "path": "android_app/HybridGuard/featureapp/build.gradle.kts",
+      "current_sha256": "6e7083572556cf4bad224f1c5cf909a48e856ab8356042e5aa3e0042cb84f0a4",
+      "frozen_sha256": "6e7083572556cf4bad224f1c5cf909a48e856ab8356042e5aa3e0042cb84f0a4",
+      "same_bytes": true
+    },
+    {
+      "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+      "current_sha256": "564ecdbb509768b6fab541ada2572083f0e7438fb27ca5e3662187cf53eb96bd",
+      "frozen_sha256": "564ecdbb509768b6fab541ada2572083f0e7438fb27ca5e3662187cf53eb96bd",
+      "same_bytes": true
+    },
+    {
+      "path": "browser_probe_site/public/probe/manifest.json",
+      "current_sha256": "2a23a398d41aa14d9cd3d1388796e4133d94b4d03e9e72dfcdc5e8a421529edb",
+      "frozen_sha256": "2a23a398d41aa14d9cd3d1388796e4133d94b4d03e9e72dfcdc5e8a421529edb",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/__init__.py",
+      "current_sha256": "1320cc5ea837a0eac3477998ac93d28ce753944ab001092957e90300b4d1d559",
+      "frozen_sha256": "1320cc5ea837a0eac3477998ac93d28ce753944ab001092957e90300b4d1d559",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/adapters/__init__.py",
+      "current_sha256": "720236a81bf55cbff9fc0c69e6f24bdbcc268478861ea36d7083d3f6a5af001a",
+      "frozen_sha256": "720236a81bf55cbff9fc0c69e6f24bdbcc268478861ea36d7083d3f6a5af001a",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/adapters/official_kb_adapter.py",
+      "current_sha256": "5dfb5851e2c464f55c9c74582912c338625306d06de132ca8e062c6b2a1b3a11",
+      "frozen_sha256": "5dfb5851e2c464f55c9c74582912c338625306d06de132ca8e062c6b2a1b3a11",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/adapters/paired244_catalog.py",
+      "current_sha256": "7f8a118d25c452184350ad0683c4887f4962d1c3c49b78e2b0ab8b4e536347b9",
+      "frozen_sha256": "7f8a118d25c452184350ad0683c4887f4962d1c3c49b78e2b0ab8b4e536347b9",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/adapters/rule_kb_adapter.py",
+      "current_sha256": "6a53164d0853bb423efbbe8a893dbbc8447572bb652520ccf1226900ad87ed73",
+      "frozen_sha256": "6a53164d0853bb423efbbe8a893dbbc8447572bb652520ccf1226900ad87ed73",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/config/latest_experiment_protocol.v1.json",
+      "current_sha256": "fadd3d02bce823a4df21c9ad3ca0b183c649142fc14e893ec39379f4f64438f2",
+      "frozen_sha256": "fadd3d02bce823a4df21c9ad3ca0b183c649142fc14e893ec39379f4f64438f2",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/config/latest_paired244_sources.json",
+      "current_sha256": "2920487479401fa2db51823347f4be9b2246187b0f539c9ebf987692623c77ab",
+      "frozen_sha256": "2920487479401fa2db51823347f4be9b2246187b0f539c9ebf987692623c77ab",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/evidence/__init__.py",
+      "current_sha256": "4fc1a527cb9136f8fd5a3ae7cb729aada1bb188a28e7820a74f4b9884c40d149",
+      "frozen_sha256": "4fc1a527cb9136f8fd5a3ae7cb729aada1bb188a28e7820a74f4b9884c40d149",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/evidence/extractor.py",
+      "current_sha256": "540b6bc52bf5dbacb3c9d8c14e5ef2cfdc638f0351df00608888e8140a42e015",
+      "frozen_sha256": "540b6bc52bf5dbacb3c9d8c14e5ef2cfdc638f0351df00608888e8140a42e015",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/evidence/paired244.py",
+      "current_sha256": "59ca069d56922610354ba2477f36e8b1e5c2775eaef4b5e366ce7895069726dd",
+      "frozen_sha256": "59ca069d56922610354ba2477f36e8b1e5c2775eaef4b5e366ce7895069726dd",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/official_semantics/__init__.py",
+      "current_sha256": "5a908ea456544b65269c796575a8f0e6940d7ad74172fce9a369d466495e9358",
+      "frozen_sha256": "5a908ea456544b65269c796575a8f0e6940d7ad74172fce9a369d466495e9358",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/official_semantics/evaluator.py",
+      "current_sha256": "65c39096b601c12ccbb505a26d81d6a29dbdde9d45f8ef13143e8d8d16057662",
+      "frozen_sha256": "65c39096b601c12ccbb505a26d81d6a29dbdde9d45f8ef13143e8d8d16057662",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/research/__init__.py",
+      "current_sha256": "e507b761f4cfe5ec303fe5f26aa507cc9a9e2f264ea26ae5bb2dacf52a210062",
+      "frozen_sha256": "e507b761f4cfe5ec303fe5f26aa507cc9a9e2f264ea26ae5bb2dacf52a210062",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/research/mtc_closed_resource.py",
+      "current_sha256": "e6e7812c414f8e147fccf5639e1b41d009de53b3142011176616d5a4c916990a",
+      "frozen_sha256": "e6e7812c414f8e147fccf5639e1b41d009de53b3142011176616d5a4c916990a",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/research/mtc_p3_candidates.py",
+      "current_sha256": "ab6a3bdc3f42d5e8b6674d9d580abe554d85f2cce2523114535e31aa007c4b86",
+      "frozen_sha256": "ab6a3bdc3f42d5e8b6674d9d580abe554d85f2cce2523114535e31aa007c4b86",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/retrieval/__init__.py",
+      "current_sha256": "4dffa844c3e26a3868907c06906e67c74afa941bb764fcd7bc3d2eb7ae0abcbe",
+      "frozen_sha256": "4dffa844c3e26a3868907c06906e67c74afa941bb764fcd7bc3d2eb7ae0abcbe",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/retrieval/exact_retriever.py",
+      "current_sha256": "8bc91b682e66b53fb4bb501bd7f94716c8d64d9e664ade81b24cf30fc62f5dd3",
+      "frozen_sha256": "8bc91b682e66b53fb4bb501bd7f94716c8d64d9e664ade81b24cf30fc62f5dd3",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/retrieval/paired244.py",
+      "current_sha256": "d553d4f0a26aa826f2bf407ac44d6dbfd0323105655b3f9d3cfb4a7e01bd4929",
+      "frozen_sha256": "d553d4f0a26aa826f2bf407ac44d6dbfd0323105655b3f9d3cfb4a7e01bd4929",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/rules/__init__.py",
+      "current_sha256": "4b6bdd0b94c56e615cb3ca2491cbce0dc2ca4d5adb7c2945889a19fc0bd7826d",
+      "frozen_sha256": "4b6bdd0b94c56e615cb3ca2491cbce0dc2ca4d5adb7c2945889a19fc0bd7826d",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/rules/executor.py",
+      "current_sha256": "6fc1bda7e800a2aac669508786cb7e0566a1e5945c9be948a6348922828ef639",
+      "frozen_sha256": "6fc1bda7e800a2aac669508786cb7e0566a1e5945c9be948a6348922828ef639",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/rules/legacy_backlog.py",
+      "current_sha256": "0dcc70ec55e970387ad280c611b53c7b93ee7fa535ad4215b94fd8ecbfe722cf",
+      "frozen_sha256": "0dcc70ec55e970387ad280c611b53c7b93ee7fa535ad4215b94fd8ecbfe722cf",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/rules/paired244.py",
+      "current_sha256": "b96d7eac1697d7905edc3a3cc99ab09b4a8189b52a65ffbef8a06588aad9accc",
+      "frozen_sha256": "b96d7eac1697d7905edc3a3cc99ab09b4a8189b52a65ffbef8a06588aad9accc",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/runtime/__init__.py",
+      "current_sha256": "78679cc774239cf4b84ab82229e0d891ab9f1b577d49c8e63e2602e28c9bd0e8",
+      "frozen_sha256": "78679cc774239cf4b84ab82229e0d891ab9f1b577d49c8e63e2602e28c9bd0e8",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/runtime/paired244.py",
+      "current_sha256": "be8f8a8ef972182ac1a67501784017f18a66c019e6777c4fb6f9f066841e592f",
+      "frozen_sha256": "be8f8a8ef972182ac1a67501784017f18a66c019e6777c4fb6f9f066841e592f",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/runtime/service.py",
+      "current_sha256": "b7f36e2ee029000f1e65f9d214d308d06adb83263584cbe2abc05c0921860147",
+      "frozen_sha256": "b7f36e2ee029000f1e65f9d214d308d06adb83263584cbe2abc05c0921860147",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/runtime/snapshot_loader.py",
+      "current_sha256": "589c1123e63ce05e6923d4a5afb5f88a01dc0c84dcaa3ecee8765f15c49a6f27",
+      "frozen_sha256": "589c1123e63ce05e6923d4a5afb5f88a01dc0c84dcaa3ecee8765f15c49a6f27",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/schemas/latest_experiment_fact_v1.schema.json",
+      "current_sha256": "a4bdca98dd637b7642ee9d785598115e2a4a3a97e3f0f0af97c6e01001678c56",
+      "frozen_sha256": "a4bdca98dd637b7642ee9d785598115e2a4a3a97e3f0f0af97c6e01001678c56",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/scripts/build_latest_experiment_plan.py",
+      "current_sha256": "f3dcb8c843d6f88e0f001525521a49611ecac66944741f4b6d5038322c345099",
+      "frozen_sha256": "f3dcb8c843d6f88e0f001525521a49611ecac66944741f4b6d5038322c345099",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+      "current_sha256": "85d46f6f5c95860bddf20c0096fff269141e45b77b08edfa9474f92b3d44b95e",
+      "frozen_sha256": "85d46f6f5c95860bddf20c0096fff269141e45b77b08edfa9474f92b3d44b95e",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/verification/__init__.py",
+      "current_sha256": "19e7a4b1b8197714224d23095983f9a8e12e614bf51e6c7aa8a6de14d3036934",
+      "frozen_sha256": "19e7a4b1b8197714224d23095983f9a8e12e614bf51e6c7aa8a6de14d3036934",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/verification/paired244.py",
+      "current_sha256": "f7cce7101cc20423636faeeac6f6a4ddd7fdc50e138fbeec9497fa64521a70be",
+      "frozen_sha256": "f7cce7101cc20423636faeeac6f6a4ddd7fdc50e138fbeec9497fa64521a70be",
+      "same_bytes": true
+    },
+    {
+      "path": "hybridguard_agent/verification/verifier.py",
+      "current_sha256": "e5947e130ae17401b42b81b171e304f64999c97a0560cc246922ca2aa67b41fc",
+      "frozen_sha256": "e5947e130ae17401b42b81b171e304f64999c97a0560cc246922ca2aa67b41fc",
+      "same_bytes": true
+    }
+  ],
+  "public_harness_source_comparison": [
+    {
+      "path": "run_paired_browser_pilot.mjs",
+      "published_equals_measured": false,
+      "publication_changes": [
+        "Portable ADB default uses ADB_PATH or PATH; archived collection source is unchanged."
+      ]
+    },
+    {
+      "path": "test_paired_browser_pilot.mjs",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "verify_pilot.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "test_verify_pilot.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "build_delivery.mjs",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "package_delivery.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    },
+    {
+      "path": "run_backend.py",
+      "published_equals_measured": true,
+      "publication_changes": []
+    }
+  ],
+  "focused_tests": [
+    {
+      "suite": "intake",
+      "tests": 14,
+      "passed": true,
+      "skipped": 0
+    },
+    {
+      "suite": "existing_builders",
+      "tests": 18,
+      "passed": true,
+      "skipped": 0
+    }
+  ],
+  "research_admission": {
+    "label_status": "candidate",
+    "identity_scope": "run_profile",
+    "identity_stability": "run_scoped_unverified",
+    "readiness": {
+      "experiment_readiness_version": "latest-experiment-readiness-v1",
+      "plan_version": "latest-experiment-plan-v1",
+      "build_status": "passed",
+      "primary_task": "paired244_fingerprint_effect",
+      "counts": {
+        "indexed_sample_count": 18,
+        "paired244_primary_count": 18,
+        "app177_reserve_count": 0,
+        "fact_row_count": 18,
+        "verified_primary_label_count": 0,
+        "trusted_stable_group_count": 0,
+        "grouped_input_eligible_count": 0,
+        "split_assigned_count": 0,
+        "split_sample_counts": {
+          "train": 0,
+          "development": 0,
+          "test": 0
+        },
+        "split_group_counts": {
+          "train": 0,
+          "development": 0,
+          "test": 0
+        },
+        "split_class_sample_counts": {
+          "train": {
+            "manipulation_absent": 0,
+            "manipulation_present": 0
+          },
+          "development": {
+            "manipulation_absent": 0,
+            "manipulation_present": 0
+          },
+          "test": {
+            "manipulation_absent": 0,
+            "manipulation_present": 0
+          }
+        },
+        "split_class_group_counts": {
+          "train": {
+            "manipulation_absent": 0,
+            "manipulation_present": 0
+          },
+          "development": {
+            "manipulation_absent": 0,
+            "manipulation_present": 0
+          },
+          "test": {
+            "manipulation_absent": 0,
+            "manipulation_present": 0
+          }
+        }
+      },
+      "structural_ready": false,
+      "grouped_data_prerequisites_met": false,
+      "structural_blockers": [
+        "B_NO_VERIFIED_LABELS",
+        "B_STABLE_GROUP_FACTS_INCOMPLETE",
+        "B_NO_FORMAL_PAIRED244",
+        "B_SPLIT_GROUP_MISSING",
+        "B_SPLIT_CLASS_MISSING"
+      ],
+      "grouped_data_blockers": [
+        "B_NO_VERIFIED_LABELS",
+        "B_STABLE_GROUP_FACTS_INCOMPLETE",
+        "B_NO_FORMAL_PAIRED244",
+        "B_SPLIT_GROUP_MISSING",
+        "B_SPLIT_CLASS_MISSING",
+        "B_GROUP_COVERAGE_THRESHOLD_NOT_MET"
+      ],
+      "downstream_permissions": {
+        "collection_qc": true,
+        "paired_browser_observation": true,
+        "build_grouped_experiment_inputs": false,
+        "train_or_tune_model": false,
+        "report_performance_metrics": false,
+        "final_test_evaluation": false
+      },
+      "claim_boundary": "Readiness is a necessary control-plane gate, not proof of sample-size adequacy, performance, calibration, or cross-device generalization."
+    }
+  },
+  "operations": {
+    "training": 0,
+    "new_collection": 0,
+    "detector_scoring": 0
+  },
+  "private_run_ref": ".private/browser67_pilot_20261004/runs/b1_20261006_final",
+  "claim_boundary": "Pilot collection/control/effect/recovery and pairing QC only; no HMAC re-verification, detector efficacy or generalization claim."
+}
