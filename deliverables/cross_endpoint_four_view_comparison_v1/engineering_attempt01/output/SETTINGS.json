@@ -1,0 +1,164 @@
+{
+  "mode": "DEVELOPMENT_FOUR_VIEW_COMPARISON",
+  "parameters": {
+    "criterion": "gini",
+    "splitter": "best",
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "random_state": 20261006,
+    "class_weight": null
+  },
+  "actual_defaults": {
+    "ccp_alpha": 0.0,
+    "class_weight": null,
+    "criterion": "gini",
+    "max_depth": null,
+    "max_features": null,
+    "max_leaf_nodes": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "random_state": null,
+    "splitter": "best"
+  },
+  "fields": {
+    "native_locale": [
+      "app.android_native_data.locale_timezone_layer.native_locale",
+      "category",
+      "app",
+      "category"
+    ],
+    "native_zone": [
+      "app.android_native_data.locale_timezone_layer.native_timezone_id",
+      "category",
+      "app",
+      "category"
+    ],
+    "native_raw_offset": [
+      "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+      "number",
+      "app",
+      "numeric"
+    ],
+    "app_language": [
+      "app.web_data.navigator_layer.language",
+      "tag",
+      "app",
+      "category"
+    ],
+    "app_first_language": [
+      "app.web_data.navigator_layer.languages",
+      "first",
+      "app",
+      "category"
+    ],
+    "app_language_count": [
+      "app.web_data.navigator_layer.languages",
+      "length",
+      "app",
+      "numeric"
+    ],
+    "app_web_offset": [
+      "app.web_data.execution_layer.timezone_offset",
+      "number",
+      "app",
+      "numeric"
+    ],
+    "browser_language": [
+      "browser.web_data.navigator_layer.language",
+      "tag",
+      "browser",
+      "category"
+    ],
+    "browser_first_language": [
+      "browser.web_data.navigator_layer.languages",
+      "first",
+      "browser",
+      "category"
+    ],
+    "browser_language_count": [
+      "browser.web_data.navigator_layer.languages",
+      "length",
+      "browser",
+      "numeric"
+    ],
+    "browser_web_offset": [
+      "browser.web_data.execution_layer.timezone_offset",
+      "number",
+      "browser",
+      "numeric"
+    ]
+  },
+  "views": {
+    "V_APP": [
+      "native_locale",
+      "native_zone",
+      "native_raw_offset",
+      "app_language",
+      "app_first_language",
+      "app_language_count",
+      "app_web_offset"
+    ],
+    "V_BROWSER": [
+      "browser_language",
+      "browser_first_language",
+      "browser_language_count",
+      "browser_web_offset"
+    ],
+    "V_BOTH": [
+      "native_locale",
+      "native_zone",
+      "native_raw_offset",
+      "app_language",
+      "app_first_language",
+      "app_language_count",
+      "app_web_offset",
+      "browser_language",
+      "browser_first_language",
+      "browser_language_count",
+      "browser_web_offset"
+    ],
+    "V_BOTH_REL": [
+      "native_locale",
+      "native_zone",
+      "native_raw_offset",
+      "app_language",
+      "app_first_language",
+      "app_language_count",
+      "app_web_offset",
+      "browser_language",
+      "browser_first_language",
+      "browser_language_count",
+      "browser_web_offset",
+      "C1",
+      "C2"
+    ]
+  },
+  "train_cohorts": {
+    "P0": [
+      "mtc_discovery",
+      "pilot18",
+      "b2b42"
+    ],
+    "P1": [
+      "mtc_discovery",
+      "b2b42"
+    ],
+    "P2": [
+      "mtc_discovery",
+      "pilot18"
+    ]
+  },
+  "holdout": {
+    "P0": null,
+    "P1": "pilot18",
+    "P2": "b2b42"
+  },
+  "threshold": 0.5,
+  "weighting": "class halves; positives equal represented families then records; normals equal represented sources then records",
+  "preprocessing": "train-only shared raw one-hot+median+all-numeric-missing-indicators; fixed relational F/T/U columns",
+  "expected_tree_fits": 12,
+  "expected_preprocessor_fits": 3
+}

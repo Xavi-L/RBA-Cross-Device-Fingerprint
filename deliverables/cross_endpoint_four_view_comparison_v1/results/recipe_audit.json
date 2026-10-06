@@ -1,0 +1,666 @@
+[
+  {
+    "plan": "P0",
+    "view": "V_APP",
+    "splits": [
+      {
+        "plan": "P0",
+        "view": "V_APP",
+        "node": 0,
+        "feature": "native_locale=en-US",
+        "threshold": 0.5,
+        "training_n": 690,
+        "weighted_n": 0.9999999999999999
+      },
+      {
+        "plan": "P0",
+        "view": "V_APP",
+        "node": 1,
+        "feature": "native_zone=Asia/Hong_Kong",
+        "threshold": 0.5,
+        "training_n": 632,
+        "weighted_n": 0.1764705882352946
+      },
+      {
+        "plan": "P0",
+        "view": "V_APP",
+        "node": 4,
+        "feature": "app_first_language=fr-fr",
+        "threshold": 0.5,
+        "training_n": 58,
+        "weighted_n": 0.8235294117647056
+      },
+      {
+        "plan": "P0",
+        "view": "V_APP",
+        "node": 5,
+        "feature": "app_web_offset",
+        "threshold": -510.0,
+        "training_n": 56,
+        "weighted_n": 0.6985294117647054
+      }
+    ],
+    "fr_FR_split": true,
+    "list_length_splits": [],
+    "offset_splits": [
+      {
+        "plan": "P0",
+        "view": "V_APP",
+        "node": 5,
+        "feature": "app_web_offset",
+        "threshold": -510.0,
+        "training_n": 56,
+        "weighted_n": 0.6985294117647054
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": true,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P0",
+    "view": "V_BROWSER",
+    "splits": [
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 0,
+        "feature": "browser_language=zh-cn",
+        "threshold": 0.5,
+        "training_n": 690,
+        "weighted_n": 0.9999999999999999
+      },
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 1,
+        "feature": "browser_web_offset",
+        "threshold": -240.0,
+        "training_n": 63,
+        "weighted_n": 0.8341269841269837
+      },
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 2,
+        "feature": "browser_language_count",
+        "threshold": 2.5,
+        "training_n": 48,
+        "weighted_n": 0.5924603174603175
+      },
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 5,
+        "feature": "browser_first_language=en-us",
+        "threshold": 0.5,
+        "training_n": 15,
+        "weighted_n": 0.2416666666666667
+      },
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 8,
+        "feature": "browser_web_offset",
+        "threshold": -450.0,
+        "training_n": 627,
+        "weighted_n": 0.16587301587301606
+      }
+    ],
+    "fr_FR_split": false,
+    "list_length_splits": [
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 2,
+        "feature": "browser_language_count",
+        "threshold": 2.5,
+        "training_n": 48,
+        "weighted_n": 0.5924603174603175
+      }
+    ],
+    "offset_splits": [
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 1,
+        "feature": "browser_web_offset",
+        "threshold": -240.0,
+        "training_n": 63,
+        "weighted_n": 0.8341269841269837
+      },
+      {
+        "plan": "P0",
+        "view": "V_BROWSER",
+        "node": 8,
+        "feature": "browser_web_offset",
+        "threshold": -450.0,
+        "training_n": 627,
+        "weighted_n": 0.16587301587301606
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": false,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P0",
+    "view": "V_BOTH",
+    "splits": [
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 0,
+        "feature": "native_locale=en-US",
+        "threshold": 0.5,
+        "training_n": 690,
+        "weighted_n": 0.9999999999999999
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 1,
+        "feature": "browser_language=fr-fr",
+        "threshold": 0.5,
+        "training_n": 632,
+        "weighted_n": 0.1764705882352945
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 4,
+        "feature": "browser_web_offset",
+        "threshold": -240.0,
+        "training_n": 58,
+        "weighted_n": 0.8235294117647054
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 5,
+        "feature": "app_language=en-us",
+        "threshold": 0.5,
+        "training_n": 43,
+        "weighted_n": 0.5818627450980387
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 8,
+        "feature": "browser_language_count",
+        "threshold": 1.5,
+        "training_n": 15,
+        "weighted_n": 0.2416666666666667
+      }
+    ],
+    "fr_FR_split": true,
+    "list_length_splits": [
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 8,
+        "feature": "browser_language_count",
+        "threshold": 1.5,
+        "training_n": 15,
+        "weighted_n": 0.2416666666666667
+      }
+    ],
+    "offset_splits": [
+      {
+        "plan": "P0",
+        "view": "V_BOTH",
+        "node": 4,
+        "feature": "browser_web_offset",
+        "threshold": -240.0,
+        "training_n": 58,
+        "weighted_n": 0.8235294117647054
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": true,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P0",
+    "view": "V_BOTH_REL",
+    "splits": [
+      {
+        "plan": "P0",
+        "view": "V_BOTH_REL",
+        "node": 0,
+        "feature": "C1=T",
+        "threshold": 0.5,
+        "training_n": 690,
+        "weighted_n": 0.9999999999999999
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH_REL",
+        "node": 1,
+        "feature": "C2=T",
+        "threshold": 0.5,
+        "training_n": 683,
+        "weighted_n": 0.7500000000000223
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH_REL",
+        "node": 2,
+        "feature": "browser_first_language=zh-cn",
+        "threshold": 0.5,
+        "training_n": 674,
+        "weighted_n": 0.4901960784313604
+      },
+      {
+        "plan": "P0",
+        "view": "V_BOTH_REL",
+        "node": 5,
+        "feature": "browser_language_count",
+        "threshold": 2.5,
+        "training_n": 9,
+        "weighted_n": 0.25980392156862747
+      }
+    ],
+    "fr_FR_split": false,
+    "list_length_splits": [
+      {
+        "plan": "P0",
+        "view": "V_BOTH_REL",
+        "node": 5,
+        "feature": "browser_language_count",
+        "threshold": 2.5,
+        "training_n": 9,
+        "weighted_n": 0.25980392156862747
+      }
+    ],
+    "offset_splits": [],
+    "missing_indicator_split": false,
+    "native_locale_split": false,
+    "relation_splits": [
+      "C1=T",
+      "C2=T"
+    ],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P1",
+    "view": "V_APP",
+    "splits": [
+      {
+        "plan": "P1",
+        "view": "V_APP",
+        "node": 0,
+        "feature": "native_locale=en-US",
+        "threshold": 0.5,
+        "training_n": 672,
+        "weighted_n": 0.9999999999999983
+      },
+      {
+        "plan": "P1",
+        "view": "V_APP",
+        "node": 2,
+        "feature": "app_language=en-us",
+        "threshold": 0.5,
+        "training_n": 40,
+        "weighted_n": 0.7352941176470581
+      },
+      {
+        "plan": "P1",
+        "view": "V_APP",
+        "node": 4,
+        "feature": "app_web_offset",
+        "threshold": -510.0,
+        "training_n": 38,
+        "weighted_n": 0.6102941176470582
+      }
+    ],
+    "fr_FR_split": false,
+    "list_length_splits": [],
+    "offset_splits": [
+      {
+        "plan": "P1",
+        "view": "V_APP",
+        "node": 4,
+        "feature": "app_web_offset",
+        "threshold": -510.0,
+        "training_n": 38,
+        "weighted_n": 0.6102941176470582
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": true,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P1",
+    "view": "V_BROWSER",
+    "splits": [
+      {
+        "plan": "P1",
+        "view": "V_BROWSER",
+        "node": 0,
+        "feature": "browser_language=zh-cn",
+        "threshold": 0.5,
+        "training_n": 672,
+        "weighted_n": 0.9999999999999983
+      },
+      {
+        "plan": "P1",
+        "view": "V_BROWSER",
+        "node": 1,
+        "feature": "browser_language_count",
+        "threshold": 1.5,
+        "training_n": 45,
+        "weighted_n": 0.7511904761904754
+      },
+      {
+        "plan": "P1",
+        "view": "V_BROWSER",
+        "node": 3,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 43,
+        "weighted_n": 0.6261904761904755
+      },
+      {
+        "plan": "P1",
+        "view": "V_BROWSER",
+        "node": 6,
+        "feature": "browser_first_language=zh-cn",
+        "threshold": 0.5,
+        "training_n": 627,
+        "weighted_n": 0.248809523809523
+      }
+    ],
+    "fr_FR_split": false,
+    "list_length_splits": [
+      {
+        "plan": "P1",
+        "view": "V_BROWSER",
+        "node": 1,
+        "feature": "browser_language_count",
+        "threshold": 1.5,
+        "training_n": 45,
+        "weighted_n": 0.7511904761904754
+      }
+    ],
+    "offset_splits": [
+      {
+        "plan": "P1",
+        "view": "V_BROWSER",
+        "node": 3,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 43,
+        "weighted_n": 0.6261904761904755
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": false,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P1",
+    "view": "V_BOTH",
+    "splits": [
+      {
+        "plan": "P1",
+        "view": "V_BOTH",
+        "node": 0,
+        "feature": "native_locale=en-US",
+        "threshold": 0.5,
+        "training_n": 672,
+        "weighted_n": 0.9999999999999983
+      },
+      {
+        "plan": "P1",
+        "view": "V_BOTH",
+        "node": 2,
+        "feature": "app_language=fr-fr",
+        "threshold": 0.5,
+        "training_n": 40,
+        "weighted_n": 0.7352941176470582
+      },
+      {
+        "plan": "P1",
+        "view": "V_BOTH",
+        "node": 3,
+        "feature": "browser_language_count",
+        "threshold": 1.5,
+        "training_n": 38,
+        "weighted_n": 0.6102941176470582
+      }
+    ],
+    "fr_FR_split": true,
+    "list_length_splits": [
+      {
+        "plan": "P1",
+        "view": "V_BOTH",
+        "node": 3,
+        "feature": "browser_language_count",
+        "threshold": 1.5,
+        "training_n": 38,
+        "weighted_n": 0.6102941176470582
+      }
+    ],
+    "offset_splits": [],
+    "missing_indicator_split": false,
+    "native_locale_split": true,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P1",
+    "view": "V_BOTH_REL",
+    "splits": [
+      {
+        "plan": "P1",
+        "view": "V_BOTH_REL",
+        "node": 0,
+        "feature": "native_locale=en-US",
+        "threshold": 0.5,
+        "training_n": 672,
+        "weighted_n": 0.9999999999999983
+      },
+      {
+        "plan": "P1",
+        "view": "V_BOTH_REL",
+        "node": 2,
+        "feature": "C1=T",
+        "threshold": 0.5,
+        "training_n": 40,
+        "weighted_n": 0.7352941176470584
+      },
+      {
+        "plan": "P1",
+        "view": "V_BOTH_REL",
+        "node": 3,
+        "feature": "C2=F",
+        "threshold": 0.5,
+        "training_n": 36,
+        "weighted_n": 0.4852941176470587
+      }
+    ],
+    "fr_FR_split": false,
+    "list_length_splits": [],
+    "offset_splits": [],
+    "missing_indicator_split": false,
+    "native_locale_split": true,
+    "relation_splits": [
+      "C1=T",
+      "C2=F"
+    ],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P2",
+    "view": "V_APP",
+    "splits": [
+      {
+        "plan": "P2",
+        "view": "V_APP",
+        "node": 0,
+        "feature": "native_locale=en-US",
+        "threshold": 0.5,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      },
+      {
+        "plan": "P2",
+        "view": "V_APP",
+        "node": 1,
+        "feature": "app_first_language=zh-cn",
+        "threshold": 0.5,
+        "training_n": 630,
+        "weighted_n": 0.2499999999999992
+      }
+    ],
+    "fr_FR_split": false,
+    "list_length_splits": [],
+    "offset_splits": [],
+    "missing_indicator_split": false,
+    "native_locale_split": true,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P2",
+    "view": "V_BROWSER",
+    "splits": [
+      {
+        "plan": "P2",
+        "view": "V_BROWSER",
+        "node": 0,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      },
+      {
+        "plan": "P2",
+        "view": "V_BROWSER",
+        "node": 2,
+        "feature": "browser_first_language=fr-fr",
+        "threshold": 0.5,
+        "training_n": 645,
+        "weighted_n": 0.7499999999999992
+      }
+    ],
+    "fr_FR_split": true,
+    "list_length_splits": [],
+    "offset_splits": [
+      {
+        "plan": "P2",
+        "view": "V_BROWSER",
+        "node": 0,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": false,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P2",
+    "view": "V_BOTH",
+    "splits": [
+      {
+        "plan": "P2",
+        "view": "V_BOTH",
+        "node": 0,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      },
+      {
+        "plan": "P2",
+        "view": "V_BOTH",
+        "node": 2,
+        "feature": "browser_language=fr-fr",
+        "threshold": 0.5,
+        "training_n": 645,
+        "weighted_n": 0.749999999999999
+      }
+    ],
+    "fr_FR_split": true,
+    "list_length_splits": [],
+    "offset_splits": [
+      {
+        "plan": "P2",
+        "view": "V_BOTH",
+        "node": 0,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": false,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  },
+  {
+    "plan": "P2",
+    "view": "V_BOTH_REL",
+    "splits": [
+      {
+        "plan": "P2",
+        "view": "V_BOTH_REL",
+        "node": 0,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      },
+      {
+        "plan": "P2",
+        "view": "V_BOTH_REL",
+        "node": 2,
+        "feature": "browser_language=fr-fr",
+        "threshold": 0.5,
+        "training_n": 645,
+        "weighted_n": 0.7499999999999992
+      }
+    ],
+    "fr_FR_split": true,
+    "list_length_splits": [],
+    "offset_splits": [
+      {
+        "plan": "P2",
+        "view": "V_BOTH_REL",
+        "node": 0,
+        "feature": "browser_web_offset",
+        "threshold": -510.0,
+        "training_n": 648,
+        "weighted_n": 0.9999999999999996
+      }
+    ],
+    "missing_indicator_split": false,
+    "native_locale_split": false,
+    "relation_splits": [],
+    "direct_batch_or_version_feature": false,
+    "scope": "Fixed measurements can still proxy collection recipes or cohorts; not causal identification of ABI/version"
+  }
+]

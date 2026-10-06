@@ -1,0 +1,208 @@
+{
+  "status": "PASSED",
+  "recorded_at": "2026-10-06T07:40:07.078599+00:00",
+  "head": "2524fb7155313cfdfbe4180fc601622b3ec8379a",
+  "planned_and_completed_models": 12,
+  "independent_positions": 951,
+  "tests_passed": 27,
+  "test_logs": [
+    "TEST_RESULTS_01.txt",
+    "TEST_RESULTS_02.txt",
+    "TEST_RESULTS_03.txt"
+  ],
+  "calls_by_phase": {
+    "accepted_experiment": {
+      "preprocess_fit": 3,
+      "preprocess_fit_rows": 2010,
+      "preprocess_transform": 3,
+      "preprocess_transform_rows": 2853,
+      "view_projection": 12,
+      "view_projection_rows": 11412,
+      "tree_fit": 12,
+      "tree_fit_rows": 8040,
+      "predict_proba": 12,
+      "predict_proba_rows": 11412,
+      "apply": 12,
+      "apply_rows": 11412,
+      "json_predict": 12,
+      "json_predict_rows": 11412
+    },
+    "engineering_failed_attempt": {
+      "tree_fit": 1,
+      "tree_fit_rows": 690,
+      "preprocess_fit": 1,
+      "preprocess_fit_rows": 690,
+      "preprocess_transform": 1,
+      "preprocess_transform_rows": 951,
+      "view_projection": 1,
+      "predict_proba": 0,
+      "json_predict": 0,
+      "view_projection_rows": 951
+    },
+    "tests": {
+      "preprocess_fit": 8,
+      "preprocess_fit_rows": 60,
+      "preprocess_transform": 10,
+      "preprocess_transform_rows": 59,
+      "view_projection": 9,
+      "view_projection_rows": 58,
+      "tree_fit": 4,
+      "tree_fit_rows": 32,
+      "predict_proba": 1,
+      "predict_proba_rows": 8,
+      "apply": 1,
+      "apply_rows": 8,
+      "json_predict": 3,
+      "json_predict_rows": 10
+    },
+    "current_input_verification": {
+      "preprocess_transform": 11412,
+      "preprocess_transform_rows": 11412,
+      "view_projection": 11412,
+      "view_projection_rows": 11412,
+      "json_predict": 11412,
+      "json_predict_rows": 11412
+    },
+    "saved_only_summary": {
+      "tree_fit": 0,
+      "preprocess_fit": 0,
+      "preprocess_transform": 0,
+      "predict_proba": 0,
+      "apply": 0,
+      "json_predict": 0
+    }
+  },
+  "calls_totals": {
+    "preprocess_fit": 12,
+    "preprocess_fit_rows": 2760,
+    "preprocess_transform": 11426,
+    "preprocess_transform_rows": 15275,
+    "view_projection": 11434,
+    "view_projection_rows": 23833,
+    "tree_fit": 17,
+    "tree_fit_rows": 8762,
+    "predict_proba": 13,
+    "predict_proba_rows": 11420,
+    "apply": 13,
+    "apply_rows": 11420,
+    "json_predict": 11427,
+    "json_predict_rows": 22834
+  },
+  "call_units": "Batch call counts and *_rows processed row counts; neither is independent sample count",
+  "engineering_failure": "One P0 V_APP fit before export TypeError; no predictions. Only numpy metadata int conversion changed; retained failure log.",
+  "new_collection_calls": 0,
+  "old_App_or_B2C_training_calls": 0,
+  "current_input_replay": {
+    "status": "PASSED",
+    "current_input_predictions": 11412,
+    "transform_checks": 132,
+    "weight_checks": 8040,
+    "calls": {
+      "verification:preprocess_transform": 11412,
+      "verification:preprocess_transform_rows": 11412,
+      "verification:view_projection": 11412,
+      "verification:view_projection_rows": 11412,
+      "verification:json_predict": 11412,
+      "verification:json_predict_rows": 11412
+    },
+    "tree_fits": 0,
+    "preprocessor_fits": 0,
+    "collection_calls": 0,
+    "scope": "All 12 portable model entries on same 951 actual-derived inputs; no labels or sidecars in prediction"
+  },
+  "saved_only_summary": {
+    "status": "PASSED",
+    "files_equal": {
+      "normal_budget_checks.json": true,
+      "both_vs_rel_examples.jsonl": true,
+      "summary.json": true,
+      "summary.csv": true,
+      "frozen_reference_summary.csv": true,
+      "frozen_reference_summary.json": true,
+      "both_vs_rel.json": true,
+      "missing_reasons.json": true
+    },
+    "tree_fits": 0,
+    "preprocessor_fits": 0,
+    "predictions": 0,
+    "raw_reads": 0,
+    "network_process_calls": 0
+  },
+  "protection": {
+    "head_unchanged": true,
+    "old_artifact_and_code_checks": {
+      "old_models_conditions_protocol": {
+        "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py": true,
+        "deliverables/browser67_cross_endpoint_diagnostic_v1/CANDIDATES_FROZEN.json": true,
+        "deliverables/cross_endpoint_constrained_extension_v1/results/models.json": true,
+        "deliverables/cross_endpoint_constrained_extension_v1/results/predictions.jsonl": true,
+        "hybridguard_agent/config/latest_experiment_protocol.v1.json": true,
+        "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-01__RETENTION/model.json": true,
+        "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-02__RETENTION/model.json": true,
+        "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-03__RETENTION/model.json": true
+      },
+      "used_source_files": {
+        "deliverables/cross_endpoint_constrained_extension_v1/results/members.jsonl": true,
+        "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl": true,
+        "deliverables/cross_endpoint_matched_controls_v1/PLAN.json": true,
+        "deliverables/cross_endpoint_matched_controls_v1/ATTEMPT_SELECTION.json": true,
+        "deliverables/cross_endpoint_matched_controls_v1/private_runs/formal01/evaluation/positions.jsonl": true,
+        "deliverables/cross_endpoint_matched_controls_v1/private_runs/formal01/captures.jsonl": true,
+        "deliverables/cross_endpoint_matched_controls_v1/private_runs/repair01/captures.jsonl": true,
+        "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl": true,
+        "deliverables/cross_endpoint_constrained_extension_v1/results/inputs.jsonl": true
+      },
+      "prefit_implementation": {
+        "deliverables/cross_endpoint_four_view_comparison_v1/run.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/run_tests.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/test_comparison.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/features.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/summarize.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/source_adapter.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/engine.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/io_utils.py": true,
+        "deliverables/cross_endpoint_four_view_comparison_v1/test_export.py": true
+      }
+    },
+    "protocol_prefit_unchanged": true,
+    "root_docs_append_only": {
+      "RBA_PRE_PAPER_EXPERIMENT_PLAN.md": {
+        "old_bytes": 27505,
+        "added_bytes": 2858,
+        "old_content_prefix_preserved": true
+      },
+      "RBA_SUPERVISOR_REPORT.md": {
+        "old_bytes": 23312,
+        "added_bytes": 2705,
+        "old_content_prefix_preserved": true
+      }
+    },
+    "original_status_entries": 210,
+    "unrelated_status_entries_preserved": 210,
+    "unrelated_status_equal": true,
+    "staged_paths": [],
+    "git_mutations_executed": false,
+    "scope": "Targeted pre-fit frozen files and used sources; run guarded against network/process and writes outside new output. Not a full-MTC or whole-repository integrity audit."
+  },
+  "static_checks": {
+    "python_ast_files": [
+      "analyze_saved.py",
+      "check_summary.py",
+      "engine.py",
+      "features.py",
+      "io_utils.py",
+      "run.py",
+      "run_tests.py",
+      "source_adapter.py",
+      "summarize.py",
+      "test_comparison.py",
+      "test_export.py",
+      "test_saved_boundaries.py",
+      "verify_saved.py"
+    ],
+    "new_code_docs_trailing_whitespace": [],
+    "root_diff_check": "PASSED",
+    "targeted_credential_pattern_scan": "No matching filenames; not an exhaustive secret scan",
+    "local_doc_links_verified": 23
+  }
+}

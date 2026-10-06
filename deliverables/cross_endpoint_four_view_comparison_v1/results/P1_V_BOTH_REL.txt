@@ -1,0 +1,10 @@
+|--- native_locale=en-US <= 0.50
+|   |--- weights: [0.26, 0.00] class: 0
+|--- native_locale=en-US >  0.50
+|   |--- C1=T <= 0.50
+|   |   |--- C2=F <= 0.50
+|   |   |   |--- weights: [0.01, 0.25] class: 1
+|   |   |--- C2=F >  0.50
+|   |   |   |--- weights: [0.22, 0.00] class: 0
+|   |--- C1=T >  0.50
+|   |   |--- weights: [0.00, 0.25] class: 1

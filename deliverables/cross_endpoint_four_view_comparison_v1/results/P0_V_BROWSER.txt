@@ -1,0 +1,16 @@
+|--- browser_language=zh-cn <= 0.50
+|   |--- browser_web_offset <= -240.00
+|   |   |--- browser_language_count <= 2.50
+|   |   |   |--- weights: [0.15, 0.42] class: 1
+|   |   |--- browser_language_count >  2.50
+|   |   |   |--- weights: [0.02, 0.00] class: 0
+|   |--- browser_web_offset >  -240.00
+|   |   |--- browser_first_language=en-us <= 0.50
+|   |   |   |--- weights: [0.00, 0.08] class: 1
+|   |   |--- browser_first_language=en-us >  0.50
+|   |   |   |--- weights: [0.17, 0.00] class: 0
+|--- browser_language=zh-cn >  0.50
+|   |--- browser_web_offset <= -450.00
+|   |   |--- weights: [0.17, 0.00] class: 0
+|   |--- browser_web_offset >  -450.00
+|   |   |--- weights: [0.00, 0.00] class: 0

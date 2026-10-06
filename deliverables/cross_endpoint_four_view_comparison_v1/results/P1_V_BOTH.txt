@@ -1,0 +1,10 @@
+|--- native_locale=en-US <= 0.50
+|   |--- weights: [0.26, 0.00] class: 0
+|--- native_locale=en-US >  0.50
+|   |--- app_language=fr-fr <= 0.50
+|   |   |--- browser_language_count <= 1.50
+|   |   |   |--- weights: [0.00, 0.12] class: 1
+|   |   |--- browser_language_count >  1.50
+|   |   |   |--- weights: [0.24, 0.25] class: 1
+|   |--- app_language=fr-fr >  0.50
+|   |   |--- weights: [0.00, 0.12] class: 1

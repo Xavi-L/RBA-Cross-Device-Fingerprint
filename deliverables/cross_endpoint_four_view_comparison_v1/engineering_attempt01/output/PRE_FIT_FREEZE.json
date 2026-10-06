@@ -1,0 +1,219 @@
+{
+  "time": "2026-10-06T07:22:50.807919+00:00",
+  "protocol_sha256": "cde5fdf25cbb7e80d8c58cedc423628d5f550006d7811d3c76fdd483e7f38616",
+  "settings": {
+    "mode": "DEVELOPMENT_FOUR_VIEW_COMPARISON",
+    "parameters": {
+      "criterion": "gini",
+      "splitter": "best",
+      "max_depth": 3,
+      "min_samples_leaf": 2,
+      "random_state": 20261006,
+      "class_weight": null
+    },
+    "actual_defaults": {
+      "ccp_alpha": 0.0,
+      "class_weight": null,
+      "criterion": "gini",
+      "max_depth": null,
+      "max_features": null,
+      "max_leaf_nodes": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 1,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "random_state": null,
+      "splitter": "best"
+    },
+    "fields": {
+      "native_locale": [
+        "app.android_native_data.locale_timezone_layer.native_locale",
+        "category",
+        "app",
+        "category"
+      ],
+      "native_zone": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "category",
+        "app",
+        "category"
+      ],
+      "native_raw_offset": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "number",
+        "app",
+        "numeric"
+      ],
+      "app_language": [
+        "app.web_data.navigator_layer.language",
+        "tag",
+        "app",
+        "category"
+      ],
+      "app_first_language": [
+        "app.web_data.navigator_layer.languages",
+        "first",
+        "app",
+        "category"
+      ],
+      "app_language_count": [
+        "app.web_data.navigator_layer.languages",
+        "length",
+        "app",
+        "numeric"
+      ],
+      "app_web_offset": [
+        "app.web_data.execution_layer.timezone_offset",
+        "number",
+        "app",
+        "numeric"
+      ],
+      "browser_language": [
+        "browser.web_data.navigator_layer.language",
+        "tag",
+        "browser",
+        "category"
+      ],
+      "browser_first_language": [
+        "browser.web_data.navigator_layer.languages",
+        "first",
+        "browser",
+        "category"
+      ],
+      "browser_language_count": [
+        "browser.web_data.navigator_layer.languages",
+        "length",
+        "browser",
+        "numeric"
+      ],
+      "browser_web_offset": [
+        "browser.web_data.execution_layer.timezone_offset",
+        "number",
+        "browser",
+        "numeric"
+      ]
+    },
+    "views": {
+      "V_APP": [
+        "native_locale",
+        "native_zone",
+        "native_raw_offset",
+        "app_language",
+        "app_first_language",
+        "app_language_count",
+        "app_web_offset"
+      ],
+      "V_BROWSER": [
+        "browser_language",
+        "browser_first_language",
+        "browser_language_count",
+        "browser_web_offset"
+      ],
+      "V_BOTH": [
+        "native_locale",
+        "native_zone",
+        "native_raw_offset",
+        "app_language",
+        "app_first_language",
+        "app_language_count",
+        "app_web_offset",
+        "browser_language",
+        "browser_first_language",
+        "browser_language_count",
+        "browser_web_offset"
+      ],
+      "V_BOTH_REL": [
+        "native_locale",
+        "native_zone",
+        "native_raw_offset",
+        "app_language",
+        "app_first_language",
+        "app_language_count",
+        "app_web_offset",
+        "browser_language",
+        "browser_first_language",
+        "browser_language_count",
+        "browser_web_offset",
+        "C1",
+        "C2"
+      ]
+    },
+    "train_cohorts": {
+      "P0": [
+        "mtc_discovery",
+        "pilot18",
+        "b2b42"
+      ],
+      "P1": [
+        "mtc_discovery",
+        "b2b42"
+      ],
+      "P2": [
+        "mtc_discovery",
+        "pilot18"
+      ]
+    },
+    "holdout": {
+      "P0": null,
+      "P1": "pilot18",
+      "P2": "b2b42"
+    },
+    "threshold": 0.5,
+    "weighting": "class halves; positives equal represented families then records; normals equal represented sources then records",
+    "preprocessing": "train-only shared raw one-hot+median+all-numeric-missing-indicators; fixed relational F/T/U columns",
+    "expected_tree_fits": 12,
+    "expected_preprocessor_fits": 3
+  },
+  "original_sources": {
+    "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py": "b0a214d41973f925a121a7fdbc21822b29cd6105891502de87785f60f5841814",
+    "deliverables/browser67_cross_endpoint_diagnostic_v1/CANDIDATES_FROZEN.json": "a0d4774bf6bc18f8c60887c404dc22e9caaf0cc3267fb5621607a1f53ba2dc98",
+    "deliverables/cross_endpoint_constrained_extension_v1/results/models.json": "a3e3145271e8d78356d510101ce2d39b9e42203aea7baa3afb6d6f6ddae34ff1",
+    "deliverables/cross_endpoint_constrained_extension_v1/results/predictions.jsonl": "2e67c2166279daf739e2c626ac8f0cd6d2cbdfbd0a35101b4903cf73d87f34d7",
+    "hybridguard_agent/config/latest_experiment_protocol.v1.json": "fadd3d02bce823a4df21c9ad3ca0b183c649142fc14e893ec39379f4f64438f2",
+    "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-01__RETENTION/model.json": "bda6a1d86e864296320df57a261238e9c4c87d22d81ee2233ed3943a84b4133b",
+    "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-02__RETENTION/model.json": "76329e8b7b7455ededd765879f815bb90589969e4128c6a8efa2b6eb055cc69f",
+    "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-03__RETENTION/model.json": "7031039d5cff899ed16eaf8da4c8a270324e2bc6d1b7b0f42c70ab0dff85117d"
+  },
+  "implementation": {
+    "deliverables/cross_endpoint_four_view_comparison_v1/run.py": "e0ca3bc777e8b11f853eb42921679210707f6b2dc26b38902d78c18a0b6cdbd4",
+    "deliverables/cross_endpoint_four_view_comparison_v1/run_tests.py": "4c0fa164767ba229dc0a752e25325660a8470135cf394d13dc11d4c21a4dec3f",
+    "deliverables/cross_endpoint_four_view_comparison_v1/test_comparison.py": "e8441c65c5df5046c37cffd0609de90afc562915786b61fb0c3b529a7fca186d",
+    "deliverables/cross_endpoint_four_view_comparison_v1/features.py": "aafa3e697ba7b30dda1910844adf3d90ec4023eb71544ccd8c3801f32700115b",
+    "deliverables/cross_endpoint_four_view_comparison_v1/summarize.py": "8eb1350b8ffe82f26d8ce7f249365545572982e6a9386bb48ef41140cb871c86",
+    "deliverables/cross_endpoint_four_view_comparison_v1/source_adapter.py": "0d228f6d0de9a9154b30538a2fe2f0fc104e2e41bdaab266582ae261b7d84a86",
+    "deliverables/cross_endpoint_four_view_comparison_v1/engine.py": "9cf701b41a5415ff1ab6ae2baede021befb83656ff285bb150cd816278cd0968",
+    "deliverables/cross_endpoint_four_view_comparison_v1/io_utils.py": "04b6658ba9e99ae2db9e3af2bfa53de712650607a7c6523f7a7c9aef4f0ea835"
+  },
+  "environment": {
+    "python": "3.13.5 (main, Jun 11 2025, 15:36:57) [Clang 17.0.0 (clang-1700.0.13.3)]",
+    "python_executable": "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_four_view_comparison_v1/.runtime/bin/python",
+    "packages": {
+      "scikit-learn": "1.7.2",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "threadpoolctl": "3.7.0",
+      "cloudpickle": "3.1.2"
+    },
+    "tree_defaults": {
+      "ccp_alpha": 0.0,
+      "class_weight": null,
+      "criterion": "gini",
+      "max_depth": null,
+      "max_features": null,
+      "max_leaf_nodes": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 1,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "random_state": null,
+      "splitter": "best"
+    },
+    "existing_environment_checks": "Homebrew 3.9,3.10,3.13,3.14; collection venv; bundled runtime: sklearn unavailable",
+    "installed_isolated": true,
+    "old_environments_modified": false
+  },
+  "no_new_scores_read_before_freeze": true
+}

@@ -1,0 +1,13 @@
+|--- native_locale=en-US <= 0.50
+|   |--- native_zone=Asia/Hong_Kong <= 0.50
+|   |   |--- weights: [0.18, 0.00] class: 0
+|   |--- native_zone=Asia/Hong_Kong >  0.50
+|   |   |--- weights: [0.00, 0.00] class: 0
+|--- native_locale=en-US >  0.50
+|   |--- app_first_language=fr-fr <= 0.50
+|   |   |--- app_web_offset <= -510.00
+|   |   |   |--- weights: [0.01, 0.12] class: 1
+|   |   |--- app_web_offset >  -510.00
+|   |   |   |--- weights: [0.31, 0.25] class: 0
+|   |--- app_first_language=fr-fr >  0.50
+|   |   |--- weights: [0.00, 0.12] class: 1

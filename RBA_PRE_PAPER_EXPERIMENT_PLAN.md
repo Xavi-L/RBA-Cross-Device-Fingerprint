@@ -261,3 +261,18 @@ paired244比较还需单列：App177有效数、Browser尝试数、配对完成�
 代价是每模型MTC discovery新增12条F转U，明确覆盖从579/630降至567/630，恰为90%；历史development新增3条F转U，reserved_validation无新增未知，各组报警不增加。690个开发位置与261个历史评价位置分别报告，951位置已实际逐配对回放。三个配置不构成新数据三折交叉验证，两批小实验已经用于学习，原来源标签和正式准入不变。
 
 证据入口：[B2-C报告](deliverables/cross_endpoint_constrained_extension_v1/REPORT.md)、[模型与运行入口](deliverables/cross_endpoint_constrained_extension_v1/README.md)、[12集合结果](deliverables/cross_endpoint_constrained_extension_v1/results/candidate_checks.csv)、[逐组结果](deliverables/cross_endpoint_constrained_extension_v1/results/summary/summary.csv)、[实际当前输入回放](deliverables/cross_endpoint_constrained_extension_v1/results/REPLAY_VERIFICATION.json)。完整paired244整体方法对照与最终消融尚未完成；没有训练Browser-only或平铺双端无关系模型，不能宣称跨端整体优于任意单端。原App阶段105/126等旧数字与各批历史身份保持原义。
+
+
+## B3-A 四视图实际开发比较补记（2026-10-06）
+
+已完成 P0/P1/P2 各四个固定小决策树，共12个预定模型，使用现有951个配对位置，无新增采集。App侧语言/时区、Browser侧、双端拼接、双端加原版C1/C2使用相同学习器、深度及权重规则；最后两组共享同一训练部分预处理，仅增加关系列。字段范围有限，不代表全部App177/Browser67的性能上限。
+
+P0开发：双端拼接与加关系均检出14/14有效干预，正常小实验报警分别为32/46与0/46。P1整批留出旧先导：两种双端均检出6/6，正常报警由12/12降为0/12，但加关系模型在训练匹配正常仍报警2/34，超过预算1。P2整批留出42条匹配对照：两种双端结果完全相同，检出4/8、正常报警6/34，未选用C1/C2；其中训练未见App侧干预，评价App侧0/4，Browser侧4/4。全部未达标与无收益结果保留。
+
+两批小实验此前均已接触，P1/P2是整批留出的开发比较，不能称前瞻盲测或真机泛化。固定fr-FR、列表长度和-540/-480等配方对分裂有影响；有些单端正常/干预输入完全相同，高检出同时伴随高正常报警，不能解释为识别操纵意图。树的二值输出虽为951/951，但双端完整输入仅918/951，每模型33条判定使用部分缺测输入，不能称观测覆盖提高。
+
+27项测试通过，保存模型当前输入复现11,412/11,412一致；独立核对训练限定变换与权重，仅重汇总复现8份文件。实际树fit共17次：12次完成比较、1次首次工程导出失败前的拟合、4次合成测试拟合，均有账本；没有重训旧App或B2-C。三个旧配置、App105/126与378条继续独立保留，不混入本轮14次有效干预分母，正式准入权限未变。
+
+证据入口：[B3-A中文报告](deliverables/cross_endpoint_four_view_comparison_v1/REPORT.md)、[代码及复现命令](deliverables/cross_endpoint_four_view_comparison_v1/README.md)、[主比较CSV](deliverables/cross_endpoint_four_view_comparison_v1/results/main_comparison.csv)、[逐来源完整状态](deliverables/cross_endpoint_four_view_comparison_v1/results/summary/summary.csv)、[调用与保护检查](deliverables/cross_endpoint_four_view_comparison_v1/VALIDATION.json)。本节补充此前“尚无单端/双端对照”的进展，不改写此前阶段记录；当前新增证据限于固定语言/时区任务。
+
+下一步精简安排尚未执行：优先复用BOTH/REL同流程证据及既有B2-C选择表，若需主方法公平消融再单独冻结最小对照；成本分采集、字段准备、关系计算、推理/加载统计；图表聚焦分来源四视图主表、状态与输入完整率、同成员增益及反例。无需为100%再补采、扩网格或降低预算。本轮到此停止，不自动提交推送。
