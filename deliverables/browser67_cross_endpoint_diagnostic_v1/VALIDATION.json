@@ -1,0 +1,80 @@
+{
+  "mode": "PILOT_DIAGNOSTIC_ONLY",
+  "supersedes": "review_20261006/before/VALIDATION.json",
+  "tests": {
+    "new_diagnostic": 36,
+    "existing_formal_protocol": 10,
+    "status": "PASSED"
+  },
+  "independent_audit": {
+    "status": "PASSED",
+    "source_pair_checks": 909,
+    "mtc_raw_projection_field_checks": 5346,
+    "independent_condition_comparisons": 4545,
+    "independent_app_comparisons": 54,
+    "candidate_definitions_unchanged": true,
+    "independence": "raw JSON paths and separate candidate implementation; original selected App kernels with independent frozen-threshold and clause aggregation; no B2 loader/compiler/predictor",
+    "scope": "reproduction and implementation audit, not new samples or external validation"
+  },
+  "runtime_audit": {
+    "status": "PASSED",
+    "actual_calls": {
+      "app_prediction_calls": 54,
+      "condition_calls": 4545
+    },
+    "prohibited_training_collection_process_network_calls": [],
+    "write_scope": "only requested fresh output directory",
+    "written_files": [
+      "EXAMPLES.json",
+      "MODEL_MANIFEST.json",
+      "MTC_MEMBERS.jsonl",
+      "OVERLAP.json",
+      "PILOT_EVALUATION_SIDECAR.jsonl",
+      "RUN_MANIFEST.json",
+      "SUMMARY.csv",
+      "SUMMARY.json",
+      "TRAJECTORIES.json",
+      "app_predictions.jsonl",
+      "condition_results.jsonl",
+      "failures.jsonl"
+    ],
+    "candidate_scope": "PILOT_DIAGNOSTIC_ONLY"
+  },
+  "result_comparison": {
+    "app_predictions.jsonl": {
+      "rows": 54,
+      "changed_prediction_or_condition_content": 0,
+      "metadata_only_changed_rows": 54,
+      "before_sha256": "c540f72f1b3c712aabd910e3a66d59995edbdfba38957bf1b21b0968274b8ffc",
+      "after_sha256": "ecea345ff390c265bb7d7e1f75b9d3a055674db7384330e68f43f0fdaff01316"
+    },
+    "condition_results.jsonl": {
+      "rows": 4545,
+      "changed_prediction_or_condition_content": 0,
+      "metadata_only_changed_rows": 90,
+      "before_sha256": "9e811f85f03f4cedbf2e3b7ce3cb61d3a73f0a706a3afcc1a594eeb87bb53c8d",
+      "after_sha256": "9b6667d12d23d57af2517ddde2d12f2ecf7946102a853289dbf010e7ff5d75cf"
+    },
+    "SUMMARY.json": {
+      "byte_identical": true
+    },
+    "SUMMARY.csv": {
+      "byte_identical": true
+    },
+    "TRAJECTORIES.json": {
+      "byte_identical": true
+    },
+    "OVERLAP.json": {
+      "byte_identical": true
+    },
+    "failures.jsonl": {
+      "byte_identical": true
+    }
+  },
+  "definitions_unchanged": true,
+  "fit_calls": 0,
+  "new_collection_calls": 0,
+  "no_commit_or_push": true,
+  "formal_splits_assigned": 0,
+  "formal_readiness_overridden": false
+}

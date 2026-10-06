@@ -1,0 +1,49 @@
+{
+  "mode": "PILOT_DIAGNOSTIC_ONLY",
+  "frozen_at": "2026-10-05T17:53:24.905442+00:00",
+  "heldout_values_read_before_freeze": false,
+  "fit_calls": 0,
+  "formal_protocol_override": false,
+  "mapping": {
+    "MATCH": "F",
+    "COUNTEREXAMPLE": "T",
+    "UNKNOWN": "U",
+    "NOT_APPLICABLE": "U"
+  },
+  "status_gate": "observed and observed_value, missing=>U; source binding/structure failure=>FAILED",
+  "parser": "rule_semantics_revision_v1.language.limited_full_tag; conservative 2/3 ASCII primary + optional 4-letter script + optional 2-letter/3-digit region; case insensitive; no trimming/underscore/alias conversion; excluded und,mul,zxx,iw,in,ji => U; unsupported is not necessarily invalid BCP47; no registry-validity claim",
+  "definitions": [
+    {
+      "id": "C1",
+      "version": "cross-web-offset-v1",
+      "formula": "finite int/float (not bool) App Web timezone_offset != Browser timezone_offset; Web minutes UTC-local on both sides; 0/-1 valid; no time gate"
+    },
+    {
+      "id": "C2",
+      "version": "cross-preferred-language-limited-v1",
+      "formula": "limited_full_tag(App Web language) != limited_full_tag(Browser language)"
+    },
+    {
+      "id": "C3",
+      "version": "cross-primary-language-limited-v1",
+      "formula": "primary parsed subtag of C2 operands differs; ignores script/region"
+    },
+    {
+      "id": "D1",
+      "version": "P3-X-LANGUAGES@2.0.1",
+      "formula": "original P3 raw ordered equality without normalization; original applicability unchanged"
+    },
+    {
+      "id": "D2",
+      "version": "browser-language-first-limited-v1",
+      "formula": "Browser language vs nonempty string-list languages[0], limited_full_tag normalization"
+    }
+  ],
+  "scope": "3 candidates + 2 explanatory controls, no OR/AND, no classifier admission",
+  "examples": "sort sample_id; first three per predefined category",
+  "splits": {
+    "discovery": 630,
+    "development": 144,
+    "reserved_validation": 117
+  }
+}

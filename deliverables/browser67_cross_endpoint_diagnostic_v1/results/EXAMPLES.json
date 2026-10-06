@@ -1,0 +1,2573 @@
+{
+  "insufficient_input_or_semantics": [
+    {
+      "sample_id": "mtc-pair-hgpair-v1-123335e7b1afac2b8f50b018",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-123335e7b1afac2b8f50b018",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:728",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:187",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:187",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C1",
+          "state": "U",
+          "reason": "UNAVAILABLE_OPERAND",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -480,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "runtime_error",
+              "quality": "source_unavailable"
+            }
+          ],
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "d857b64e-14ed-498f-84af-6e22c090046e",
+              "started_at_ms": 1789703073323,
+              "finished_at_ms": 1789703079631,
+              "payload_timestamp_seconds": 1789703079,
+              "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1789703086,
+            "browser_timestamp_source": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:187#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1789703086121
+            },
+            "browser_minus_app_payload_seconds": 7,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-123335e7b1afac2b8f50b018",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:728",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:187",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:187",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh-cn",
+            "zh-cn"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-123335e7b1afac2b8f50b018",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:728",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:187",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:187",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh",
+            "zh"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-123335e7b1afac2b8f50b018",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:728",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:187",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:187",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH"
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-123335e7b1afac2b8f50b018",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:728",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:187",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:187",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:229",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh-cn",
+            "zh-cn"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "mtc-pair-hgpair-v1-12601facda1ea69a595073dd",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-12601facda1ea69a595073dd",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:729",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:807",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:808",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -480,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -480,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "14ee84c5-3575-484b-a6c6-43dcff07532a",
+              "started_at_ms": 1789984394868,
+              "finished_at_ms": 1789984397982,
+              "payload_timestamp_seconds": 1789984397,
+              "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1789984405,
+            "browser_timestamp_source": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:808#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1789984405464
+            },
+            "browser_minus_app_payload_seconds": 8,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-12601facda1ea69a595073dd",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:729",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:807",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:808",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C2",
+          "state": "U",
+          "reason": "OUTSIDE_FIXED_LIMITED_TAG_DOMAIN",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-RCN",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-12601facda1ea69a595073dd",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:729",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:807",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:808",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C3",
+          "state": "U",
+          "reason": "OUTSIDE_FIXED_LIMITED_TAG_DOMAIN",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-RCN",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-12601facda1ea69a595073dd",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:729",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:807",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:808",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-CN",
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-RCN",
+                "zh-CN",
+                "en-CN",
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-12601facda1ea69a595073dd",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:729",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:807",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:808",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1361",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D2",
+          "state": "U",
+          "reason": "OUTSIDE_FIXED_LIMITED_TAG_DOMAIN",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-RCN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-RCN",
+                "zh-CN",
+                "en-CN",
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "mtc-pair-hgpair-v1-15ce440ed6150229c7f00e55",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-15ce440ed6150229c7f00e55",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:742",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:359",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:359",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C1",
+          "state": "U",
+          "reason": "UNAVAILABLE_OPERAND",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -480,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "runtime_error",
+              "quality": "source_unavailable"
+            }
+          ],
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "07d00519-67d2-419f-b699-86639957ea47",
+              "started_at_ms": 1789969685661,
+              "finished_at_ms": 1789969693104,
+              "payload_timestamp_seconds": 1789969693,
+              "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1789969708,
+            "browser_timestamp_source": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:359#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1789969708537
+            },
+            "browser_minus_app_payload_seconds": 15,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-15ce440ed6150229c7f00e55",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:742",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:359",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:359",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh-cn",
+            "zh-cn"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-15ce440ed6150229c7f00e55",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:742",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:359",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:359",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh",
+            "zh"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-15ce440ed6150229c7f00e55",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:742",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:359",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:359",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH"
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-15ce440ed6150229c7f00e55",
+            "cohort": "mtc",
+            "group": "discovery",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:742",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:359",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:359",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:512",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh-cn",
+            "zh-cn"
+          ]
+        }
+      ]
+    }
+  ],
+  "mtc_normal_deviation": [
+    {
+      "sample_id": "mtc-pair-hgpair-v1-e24e526c0ef5674e87549035",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-e24e526c0ef5674e87549035",
+            "cohort": "mtc",
+            "group": "development",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:1580",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:902",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:903",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -480,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -480,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "9312701f-d628-48ec-9d53-ecbe5b679a43",
+              "started_at_ms": 1790041476787,
+              "finished_at_ms": 1790041477927,
+              "payload_timestamp_seconds": 1790041477,
+              "source_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1790041507,
+            "browser_timestamp_source": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:903#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1790041507704
+            },
+            "browser_minus_app_payload_seconds": 30,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-e24e526c0ef5674e87549035",
+            "cohort": "mtc",
+            "group": "development",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:1580",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:902",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:903",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C2",
+          "state": "T",
+          "reason": "NORMALIZED_DIFFERENT",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh-cn",
+            "en-us"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-e24e526c0ef5674e87549035",
+            "cohort": "mtc",
+            "group": "development",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:1580",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:902",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:903",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "C3",
+          "state": "T",
+          "reason": "NORMALIZED_DIFFERENT",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "zh-CN",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "zh",
+            "en"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-e24e526c0ef5674e87549035",
+            "cohort": "mtc",
+            "group": "development",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:1580",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:902",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:903",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "zh-CN",
+                "en-US",
+                "zh-TW",
+                "ja-JP",
+                "ko-KR",
+                "vi-VN",
+                "th-TH",
+                "id-ID",
+                "de-DE",
+                "pt-PT",
+                "es-ES",
+                "it-IT",
+                "ar-JO"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "zh-TW",
+                "zh-CN",
+                "zh",
+                "ja-JP",
+                "ja",
+                "ko-KR",
+                "ko",
+                "vi-VN",
+                "vi",
+                "th-TH",
+                "th",
+                "id-ID",
+                "id",
+                "de-DE",
+                "de",
+                "pt-PT",
+                "pt",
+                "es-ES",
+                "es",
+                "it-IT",
+                "it",
+                "ar-JO",
+                "ar",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "mtc-pair-hgpair-v1-e24e526c0ef5674e87549035",
+            "cohort": "mtc",
+            "group": "development",
+            "evaluation_basis": "hybridguard_agent/artifacts/mtc_p2_frozen_20260922/sample_registry.jsonl:1580",
+            "original_label_status": "unknown",
+            "pair_reference": "hybridguard_agent/artifacts/mtc_paired244_v2_20260922_final/paired_244.jsonl:902",
+            "app_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+            "browser_reference": "backend_server/collection_backups/mtc_final_20260922/sources/raw_browser_payloads.jsonl:903",
+            "normal_basis": {
+              "status": "research_normal_condition_supported",
+              "supported": true,
+              "basis_id": "mtc-routine-collection-research-normal-v1",
+              "reasons": [
+                "routine_mtc_task_and_matching_retained_raw_closed_batch"
+              ],
+              "evidence_refs": [
+                "backend_server/collection_backups/mtc_final_20260922/sources/raw_expanded_payloads.jsonl:1514",
+                "deliverables/mtc_20260916/百度MTC采集操作流程说明.md",
+                "deliverables/mtc_20260917/提测说明.md",
+                "deliverables/mtc_20260921_https/提测说明.md"
+              ],
+              "scope": "routine_collection_without_research_target_fingerprint_tampering",
+              "assessment_kind": "task_and_batch_research_basis_not_per_device_attestation"
+            }
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "zh-TW",
+                "zh-CN",
+                "zh",
+                "ja-JP",
+                "ja",
+                "ko-KR",
+                "ko",
+                "vi-VN",
+                "vi",
+                "th-TH",
+                "th",
+                "id-ID",
+                "id",
+                "de-DE",
+                "de",
+                "pt-PT",
+                "pt",
+                "es-ES",
+                "es",
+                "it-IT",
+                "it",
+                "ar-JO",
+                "ar",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        }
+      ]
+    }
+  ],
+  "normal_list_diff_preferred_same": [
+    {
+      "sample_id": "p244-105ab2c4442ee54a8a78d718",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "p244-105ab2c4442ee54a8a78d718",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 2,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:6",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:6",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:6",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:6",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:1"
+          },
+          "condition_id": "C1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "33317544-6ab2-4fce-bb03-dbcef3cb9c87",
+              "started_at_ms": 1791127630415,
+              "finished_at_ms": 1791127633150,
+              "payload_timestamp_seconds": 1791127633,
+              "source_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:6",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1791127637,
+            "browser_timestamp_source": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:6#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1791127637040
+            },
+            "browser_minus_app_payload_seconds": 4,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "p244-105ab2c4442ee54a8a78d718",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 2,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:6",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:6",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:6",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:6",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:1"
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-105ab2c4442ee54a8a78d718",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 2,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:6",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:6",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:6",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:6",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:1"
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en",
+            "en"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-105ab2c4442ee54a8a78d718",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 2,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:6",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:6",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:6",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:6",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:1"
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "p244-105ab2c4442ee54a8a78d718",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 2,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:6",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:6",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:6",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:6",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:1"
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "p244-21c71c9ecdc9d8c4542793b5",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "p244-21c71c9ecdc9d8c4542793b5",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:3",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:3",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:3",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:3",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:2"
+          },
+          "condition_id": "C1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "8413cf9e-8efd-4ef3-9367-c5719a9f25c5",
+              "started_at_ms": 1791127596232,
+              "finished_at_ms": 1791127598529,
+              "payload_timestamp_seconds": 1791127598,
+              "source_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:3",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1791127601,
+            "browser_timestamp_source": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:3#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1791127601770
+            },
+            "browser_minus_app_payload_seconds": 3,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "p244-21c71c9ecdc9d8c4542793b5",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:3",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:3",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:3",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:3",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:2"
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-21c71c9ecdc9d8c4542793b5",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:3",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:3",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:3",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:3",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:2"
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en",
+            "en"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-21c71c9ecdc9d8c4542793b5",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:3",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:3",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:3",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:3",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:2"
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "p244-21c71c9ecdc9d8c4542793b5",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "language_fr",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:3",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:3",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:3",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:3",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:2"
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "p244-24ca478046ed4efa7bbada79",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "p244-24ca478046ed4efa7bbada79",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:18",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:18",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:18",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:18",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:3"
+          },
+          "condition_id": "C1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "11c9bd2a-f070-42ce-b744-50466cfd2b33",
+              "started_at_ms": 1791127760024,
+              "finished_at_ms": 1791127762222,
+              "payload_timestamp_seconds": 1791127762,
+              "source_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:18",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1791127764,
+            "browser_timestamp_source": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:18#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1791127764990
+            },
+            "browser_minus_app_payload_seconds": 2,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "p244-24ca478046ed4efa7bbada79",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:18",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:18",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:18",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:18",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:3"
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-24ca478046ed4efa7bbada79",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:18",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:18",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:18",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:18",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:3"
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en",
+            "en"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-24ca478046ed4efa7bbada79",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:18",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:18",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:18",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:18",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:3"
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "p244-24ca478046ed4efa7bbada79",
+            "cohort": "pilot",
+            "group": "normal",
+            "stage": "clean_post",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:18",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:18",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:18",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:18",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:3"
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        }
+      ]
+    }
+  ],
+  "browser_intervention": [
+    {
+      "sample_id": "p244-2c60218a01ef5a5d46d871ef",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "p244-2c60218a01ef5a5d46d871ef",
+            "cohort": "pilot",
+            "group": "language_fr",
+            "stage": "attack_active",
+            "configuration": "language_fr",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:8",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:8",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:8",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:8",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:5"
+          },
+          "condition_id": "C1",
+          "state": "F",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "MATCH",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "e9c84076-4bab-4a1e-a183-c8172fb31d54",
+              "started_at_ms": 1791127653425,
+              "finished_at_ms": 1791127655871,
+              "payload_timestamp_seconds": 1791127655,
+              "source_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:8",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1791127659,
+            "browser_timestamp_source": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:8#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1791127659308
+            },
+            "browser_minus_app_payload_seconds": 4,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "p244-2c60218a01ef5a5d46d871ef",
+            "cohort": "pilot",
+            "group": "language_fr",
+            "stage": "attack_active",
+            "configuration": "language_fr",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:8",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:8",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:8",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:8",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:5"
+          },
+          "condition_id": "C2",
+          "state": "T",
+          "reason": "NORMALIZED_DIFFERENT",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "fr-FR",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "fr-fr"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-2c60218a01ef5a5d46d871ef",
+            "cohort": "pilot",
+            "group": "language_fr",
+            "stage": "attack_active",
+            "configuration": "language_fr",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:8",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:8",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:8",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:8",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:5"
+          },
+          "condition_id": "C3",
+          "state": "T",
+          "reason": "NORMALIZED_DIFFERENT",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "fr-FR",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en",
+            "fr"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-2c60218a01ef5a5d46d871ef",
+            "cohort": "pilot",
+            "group": "language_fr",
+            "stage": "attack_active",
+            "configuration": "language_fr",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:8",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:8",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:8",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:8",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:5"
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "fr-FR"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "p244-2c60218a01ef5a5d46d871ef",
+            "cohort": "pilot",
+            "group": "language_fr",
+            "stage": "attack_active",
+            "configuration": "language_fr",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:8",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:8",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:8",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:8",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:5"
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "fr-FR",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "fr-FR"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "fr-fr",
+            "fr-fr"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "p244-3d8fd644f33d8ff32347cf38",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "p244-3d8fd644f33d8ff32347cf38",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:11",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:11",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:11",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:11",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:8"
+          },
+          "condition_id": "C1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -540,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "4e093ad9-d5df-4afe-80fa-f5201cf4ff7c",
+              "started_at_ms": 1791127687812,
+              "finished_at_ms": 1791127689969,
+              "payload_timestamp_seconds": 1791127689,
+              "source_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:11",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1791127692,
+            "browser_timestamp_source": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:11#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1791127692822
+            },
+            "browser_minus_app_payload_seconds": 3,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "p244-3d8fd644f33d8ff32347cf38",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:11",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:11",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:11",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:11",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:8"
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-3d8fd644f33d8ff32347cf38",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:11",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:11",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:11",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:11",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:8"
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en",
+            "en"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-3d8fd644f33d8ff32347cf38",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:11",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:11",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:11",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:11",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:8"
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "p244-3d8fd644f33d8ff32347cf38",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 1,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:11",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:11",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:11",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:11",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:8"
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "p244-d538c8fd999b116527303e11",
+      "rows": [
+        {
+          "meta": {
+            "sample_id": "p244-d538c8fd999b116527303e11",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:17",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:17",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:17",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:17",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:14"
+          },
+          "condition_id": "C1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": 0,
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.execution_layer.timezone_offset",
+              "present": true,
+              "value": -540,
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE",
+          "time_diagnostics": {
+            "app": {
+              "status": "observed_device_interval",
+              "session_id": "e737c550-b273-4ae7-889a-3ef4ce96fd3d",
+              "started_at_ms": 1791127749936,
+              "finished_at_ms": 1791127752133,
+              "payload_timestamp_seconds": 1791127752,
+              "source_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:17",
+              "source_fields": [
+                "collection_manifest.collection_started_at_ms",
+                "collection_diagnostics.collection_finished_at_ms"
+              ],
+              "unit": "unix_epoch_milliseconds",
+              "scope": "device_range_encloses_Native_then_Web_reads_not_exact_synchrony",
+              "payload_timestamp_use": "consistency_check_only_never_date_fallback",
+              "reason": "KNOWN_COLLECTOR_DEVICE_BRACKETING"
+            },
+            "browser_payload_timestamp": 1791127754,
+            "browser_timestamp_source": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:17#canonical_received_payload.timestamp",
+            "browser_collection_diagnostics": {
+              "collection_finished_at_ms": 1791127754949
+            },
+            "browser_minus_app_payload_seconds": 2,
+            "scope": "payload timestamps only; not atomic field read; never an App timezone date fallback"
+          }
+        },
+        {
+          "meta": {
+            "sample_id": "p244-d538c8fd999b116527303e11",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:17",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:17",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:17",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:17",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:14"
+          },
+          "condition_id": "C2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-d538c8fd999b116527303e11",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:17",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:17",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:17",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:17",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:14"
+          },
+          "condition_id": "C3",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en",
+            "en"
+          ]
+        },
+        {
+          "meta": {
+            "sample_id": "p244-d538c8fd999b116527303e11",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:17",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:17",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:17",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:17",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:14"
+          },
+          "condition_id": "D1",
+          "state": "T",
+          "reason": "equal",
+          "operands": [
+            {
+              "field": "app.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "p3_outcome": "COUNTEREXAMPLE"
+        },
+        {
+          "meta": {
+            "sample_id": "p244-d538c8fd999b116527303e11",
+            "cohort": "pilot",
+            "group": "timezone_tokyo",
+            "stage": "attack_active",
+            "configuration": "timezone_tokyo",
+            "repeat": 3,
+            "evaluation_basis": "deliverables/browser67_pilot_intake_v1/local_acceptance/stage_inventory.jsonl:17",
+            "label_scope": "independent B1 verified stage; original labels unchanged",
+            "capture_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/pilot_r8/captures.jsonl:17",
+            "app_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_expanded_payloads.jsonl:17",
+            "browser_reference": "deliverables/browser67_pilot_intake_v1/evidence_archive/data/raw_browser_payloads.jsonl:17",
+            "pair_reference": "deliverables/browser67_pilot_intake_v1/local_acceptance/paired244_snapshot/paired_244.jsonl:14"
+          },
+          "condition_id": "D2",
+          "state": "F",
+          "reason": "NORMALIZED_EQUAL",
+          "operands": [
+            {
+              "field": "browser.web_data.navigator_layer.language",
+              "present": true,
+              "value": "en-US",
+              "status": "observed",
+              "quality": "observed_value"
+            },
+            {
+              "field": "browser.web_data.navigator_layer.languages",
+              "present": true,
+              "value": [
+                "en-US",
+                "en"
+              ],
+              "status": "observed",
+              "quality": "observed_value"
+            }
+          ],
+          "normalized": [
+            "en-us",
+            "en-us"
+          ]
+        }
+      ]
+    }
+  ]
+}
