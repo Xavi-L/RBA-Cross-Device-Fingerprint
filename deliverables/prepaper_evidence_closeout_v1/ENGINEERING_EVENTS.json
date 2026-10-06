@@ -1,0 +1,23 @@
+[
+  {
+    "attempt": "engineering_attempt01",
+    "status": "INTERRUPTED_PREFLIGHT",
+    "recorded_timing_batches": 0
+  },
+  {
+    "attempt": "engineering_attempt02",
+    "status": "FAILED_ENVIRONMENT_METADATA",
+    "recorded_timing_batches": 0
+  },
+  {
+    "component": "extract_existing_times",
+    "status": "FAILED_BEFORE_OUTPUT",
+    "reason": "Assumed COMPLETE while original capture enums are completed / COMPLETED; fix exact cohort enum only. No timing or selection calls."
+  },
+  {
+    "component": "validate_delivery",
+    "status": "FAILED_SELF_REFERENCE_BEFORE_MANIFEST",
+    "reason": "VALIDATION.json link was checked before this command creates it; preserve log, move only self-file existence check after writing. No selection, prediction, timing or fit.",
+    "log": "DELIVERY_CHECK_attempt01.log"
+  }
+]

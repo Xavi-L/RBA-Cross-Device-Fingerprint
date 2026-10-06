@@ -1,0 +1,67 @@
+{
+  "settings": {
+    "mode": "DEVELOPMENT_EXTENSION_SELECTION",
+    "sets": [
+      {
+        "id": "S0",
+        "extensions": []
+      },
+      {
+        "id": "S1",
+        "extensions": [
+          "C1"
+        ]
+      },
+      {
+        "id": "S2",
+        "extensions": [
+          "C2"
+        ]
+      },
+      {
+        "id": "S12",
+        "extensions": [
+          "C1",
+          "C2"
+        ]
+      }
+    ],
+    "normal_counts": {
+      "mtc_discovery": 630,
+      "pilot18": 12,
+      "b2b42": 34
+    },
+    "normal_alarm_budgets": {
+      "mtc_discovery": 31,
+      "pilot18": 0,
+      "b2b42": 34
+    },
+    "minimum_coverage": "9/10",
+    "minimum_candidate_mtc_coverage": "9/10",
+    "maximum_rules": 8,
+    "maximum_complexity": 16,
+    "new_single_literal_complexity": 2,
+    "families": [
+      "App_language",
+      "App_timezone",
+      "Browser_language",
+      "Browser_timezone"
+    ],
+    "ordering": [
+      "all_constraints_satisfied",
+      "max_macro_trigger_rate",
+      "min_new_rules",
+      "S0,S1,S2,S12"
+    ]
+  },
+  "only_change": {
+    "normal_alarm_budgets.b2b42": {
+      "before": 1,
+      "after": 34
+    }
+  },
+  "new_selection_tasks": 3,
+  "candidate_checks": 12,
+  "usage": "ABLATION_ONLY",
+  "interpretation": "Remove matched-normal alarm cap only, not deployment tolerance"
+}

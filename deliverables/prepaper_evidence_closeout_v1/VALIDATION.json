@@ -1,0 +1,136 @@
+{
+  "status": "PASSED",
+  "time": "2026-10-06T09:07:53.325842+00:00",
+  "head": "61388e9ec1f2d2bf915c2c6b4f5b48a0cf109787",
+  "worktree": {
+    "preexisting_status_entries": 210,
+    "preserved_status_entries": 210,
+    "new_scope": {
+      "RBA_SUPERVISOR_REPORT.md": " M",
+      "RBA_PRE_PAPER_EXPERIMENT_PLAN.md": " M",
+      "deliverables/prepaper_evidence_closeout_v1/": "??"
+    },
+    "index_empty": true,
+    "git_mutations": 0,
+    "root_history_prefixes_preserved": true,
+    "submodule_status_preserved": true
+  },
+  "frozen_original_files": 56,
+  "protocol_unchanged": true,
+  "timed_implementation_unchanged": true,
+  "tests": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "calls": {
+      "score": 22,
+      "state_combinations": 9255,
+      "select": 6
+    },
+    "scope": "extra test selector calls, not accepted new ablation tasks",
+    "fit": 0,
+    "collection": 0
+  },
+  "accepted_selection": {
+    "status": "PASSED",
+    "calls": {
+      "select": 3,
+      "score": 12,
+      "state_combinations": 11133
+    },
+    "new_selection_tasks": 3,
+    "candidate_checks": 12,
+    "new_prediction_combinations": 2853,
+    "reused_full_predictions": 2853,
+    "reused_base_predictions": 2853,
+    "tree_fit": 0,
+    "app_fit": 0,
+    "encoder_fit": 0,
+    "collection": 0,
+    "positions": 951,
+    "development": 690,
+    "historical_evaluation": 261
+  },
+  "accepted_timing": {
+    "status": "PASSED",
+    "recorded_batches": 1480,
+    "checks_including_warmups": 1628,
+    "models": 21,
+    "calls": {
+      "shared_raw_adaptation": 28380,
+      "load_parse_validate": 231,
+      "model_input_prepare": 41580,
+      "C1_C2_evaluate": 27720,
+      "prepared_model_inference": 41580,
+      "original_current_interface": 27720,
+      "tree_measurement_cells": 31680
+    },
+    "tree_calls": {
+      "unspecified:preprocess_transform": 39600,
+      "unspecified:preprocess_transform_rows": 39600,
+      "unspecified:view_projection": 39600,
+      "unspecified:view_projection_rows": 39600,
+      "unspecified:json_predict": 39600,
+      "unspecified:json_predict_rows": 39600
+    },
+    "profiling_inside_timing": false,
+    "fit": 0,
+    "selection": 0,
+    "collection": 0,
+    "scope": "Single benchmark campaign on fixed 60 members; all outputs unchanged"
+  },
+  "engineering_failures": [
+    {
+      "attempt": "engineering_attempt01",
+      "status": "INTERRUPTED_PREFLIGHT",
+      "recorded_timing_batches": 0
+    },
+    {
+      "attempt": "engineering_attempt02",
+      "status": "FAILED_ENVIRONMENT_METADATA",
+      "recorded_timing_batches": 0
+    },
+    {
+      "component": "extract_existing_times",
+      "status": "FAILED_BEFORE_OUTPUT",
+      "reason": "Assumed COMPLETE while original capture enums are completed / COMPLETED; fix exact cohort enum only. No timing or selection calls."
+    },
+    {
+      "component": "validate_delivery",
+      "status": "FAILED_SELF_REFERENCE_BEFORE_MANIFEST",
+      "reason": "VALIDATION.json link was checked before this command creates it; preserve log, move only self-file existence check after writing. No selection, prediction, timing or fit.",
+      "log": "DELIVERY_CHECK_attempt01.log"
+    }
+  ],
+  "unrecorded_calls": "First interrupted preflight partial prediction call counts NOT_RECORDED; zero fit/selection/collection",
+  "saved_only_rebuild": {
+    "status": "PASSED",
+    "files": 30,
+    "selection": 0,
+    "prediction": 0,
+    "timing": 0,
+    "fit": 0,
+    "collection": 0
+  },
+  "syntax_files": 13,
+  "local_links_checked": 76,
+  "credential_shape_text_files": 97,
+  "visual_review": {
+    "figures": 4,
+    "svg_png_csv_per_figure": true,
+    "all_pngs_inspected": true,
+    "layout_only_revision": "fig03 title padding; data unchanged"
+  },
+  "evidence": {
+    "positions": 951,
+    "development": 690,
+    "historical_evaluation": 261,
+    "rule_models": 9,
+    "rule_outputs": 8559,
+    "frozen_trees": 12,
+    "frozen_tree_outputs": 11412,
+    "metric_rows": 348
+  },
+  "privacy": "Existing private raw/archive/private_runs remain referenced locally; no archive copy or publication",
+  "scope": "Completed B3-B; stop experiments and begin bounded exploratory paper writing"
+}

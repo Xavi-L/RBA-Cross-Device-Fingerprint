@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/measure_cost.py", line 69, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=HERE/'timing');measure(p.parse_args().output)
+                                                                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/measure_cost.py", line 24, in measure
+    outputs=[c.infer_prepared(runtime,p),c.original_current(runtime,input_),c.loaded_raw_original(runtime,raw_),c.loaded_raw_cached(runtime,raw_)]
+                                                                                                                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/cost_runtime.py", line 117, in loaded_raw_cached
+    def loaded_raw_cached(runtime,raw):return cached_current(runtime,adapt_loaded(raw))
+                                              ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/cost_runtime.py", line 115, in cached_current
+    def cached_current(runtime,adapted):return infer_prepared(runtime,prepare(runtime,adapted))
+                                                                      ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/cost_runtime.py", line 82, in prepare
+    item=tree_cells(model,adapted);gate=f.view_status(item,model['view'])
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/cost_runtime.py", line 68, in tree_cells
+    path,transform,side,kind=f.FIELDS[field];cell=f.measure(source,path,transform)
+                                                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_four_view_comparison_v1/features.py", line 43, in measure
+    if type(value) is not list or any(type(x) is not str for x in value):reason='NOT_STRING_LIST'
+                                  ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_four_view_comparison_v1/features.py", line 43, in <genexpr>
+    if type(value) is not list or any(type(x) is not str for x in value):reason='NOT_STRING_LIST'
+    
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/guards.py", line 21, in profile
+    path=frame.f_code.co_filename;name=frame.f_code.co_name
+         ^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/guards.py", line 8, in audit
+    def audit(event,args):
+    
+KeyboardInterrupt

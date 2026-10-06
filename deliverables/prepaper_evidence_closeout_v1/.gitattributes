@@ -1,0 +1,7 @@
+results/** -text
+timing/** -text
+# Preserve generated CSV bytes so saved-only reproduction also works after checkout.
+*.csv -text whitespace=cr-at-eol
+# Generated graphics and original failure snapshots retain their emitted whitespace.
+figures/*.svg -text -whitespace
+engineering_attempt*/** -text -whitespace

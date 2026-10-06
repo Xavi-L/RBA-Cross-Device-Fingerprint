@@ -1,0 +1,69 @@
+"""One recorded benchmark campaign: one warmup and ten passes per fixed stage."""
+import argparse,gc,platform,statistics,sys,time
+from datetime import datetime,timezone
+from importlib.metadata import version
+from closeout_io import *
+from guards import audit_guard,profile_calls
+import cost_runtime as c
+
+def measure(output):
+    out=Path(output).resolve();require(out.is_relative_to(HERE) and not out.exists(),'NEW_TIMING_OUTPUT_REQUIRED');out.mkdir()
+    audit_guard(out);c.block_learning()
+    members=[m for m in rows(HERE/'results/members.jsonl') if m['cohort'] in ('pilot18','b2b42')]
+    require(len(members)==60 and sum(m['identity']=='NORMAL' for m in members)==46,'FIXED_60_TIMING_MEMBERS')
+    jsonl(out/'members.jsonl',members)
+    profile=profile_calls(False)
+    raw=c.load_pairs(members);adapted=[c.adapt_loaded(r) for r in raw]
+    runtimes=[c.load_descriptor(d) for d in c.descriptors()]
+    expected={(r['model_id'],r['sample_id']):r for p in (HERE/'results/predictions.jsonl',B3A/'results/predictions.jsonl') for r in rows(p)}
+    replay=[];precomputed={}
+    for runtime in runtimes:
+        mid=runtime['descriptor']['model_id'];prepared=[c.prepare(runtime,r) for r in adapted];current=[c.current_input(runtime,r) for r in adapted]
+        precomputed[mid]=(prepared,current)
+        for member,p,input_,raw_ in zip(members,prepared,current,raw):
+            outputs=[c.infer_prepared(runtime,p),c.original_current(runtime,input_),c.loaded_raw_original(runtime,raw_),c.loaded_raw_cached(runtime,raw_)]
+            saved=expected[mid,member['sample_id']]
+            require(all(r['state']==saved['state'] for r in outputs),'CACHE_PUBLIC_SAVED_STATE_MISMATCH')
+            if runtime['descriptor']['kind']=='tree':require(all(abs(r['probability']-saved['probability'])<1e-14 for r in outputs),'CACHE_TREE_SCORE_MISMATCH')
+            replay.append(dict(model_id=mid,sample_id=member['sample_id'],state=saved['state'],prepared_equals_public_equals_both_loaded_raw_wrappers=True))
+    sys.setprofile(None)
+    jsonl(out/'equivalence.jsonl',replay)
+    write(out/'PREFLIGHT.json',dict(status='PASSED',comparisons=len(replay),paths_per_comparison=4,calls=dict(c.CALLS),profile_calls=dict(profile),new_fit=0,new_selection=0))
+    freeze=dict(time=datetime.now(timezone.utc).isoformat(),python=sys.version,executable=sys.executable,platform=platform.platform(),machine=platform.machine(),processor=platform.processor(),gc_enabled=gc.isenabled(),
+        packages={p:version(p) for p in ('numpy','scikit-learn','scipy')},timer='time.perf_counter_ns',timer_info=vars(time.get_clock_info('perf_counter')),warmup_passes=1,recorded_passes=10,batch_n=60,
+        member_ids=[m['sample_id'] for m in members],protocol_sha256=digest(HERE/'PROTOCOL.md'),implementation={ref(p):digest(p) for p in (HERE/'cost_runtime.py',HERE/'measure_cost.py')},
+        inclusion='Python loop/calls/output allocations and lightweight counters included; profiling disabled; audit hooks enabled',exclusion='raw disk/JSON load, module import, network, collection, timed-region logging',
+        metric='batch elapsed / n; P95 of 10 batch-amortized values, not per-request tail latency',same_clock_acquisition='Separate historical logs only')
+    write(out/'TIMING_FREEZE.json',freeze)
+    records=[];correctness=[];c.CALLS.clear();c.e.COUNTS.clear();c.e.EVENTS.clear()
+    def benchmark(label,stage,items,operation,check):
+        for repeat in range(-1,10):
+            start=time.perf_counter_ns();values=[operation(x) for x in items];elapsed=time.perf_counter_ns()-start
+            # All output validation and artifact writing is outside timed interval.
+            require(check(values),'TIMED_OUTPUT_CHANGED:'+stage)
+            correctness.append(dict(label=label,stage=stage,repeat=repeat,equal=True))
+            if repeat>=0:records.append(dict(label=label,stage=stage,repeat=repeat,n=len(items),elapsed_ns=elapsed,amortized_us=elapsed/len(items)/1000))
+        # Checkpoint after each entire stage, never inside timing.
+        jsonl(out/'batches.jsonl',records)
+    baseline_adapted=adapted
+    benchmark('shared_all_models','loaded_raw_adaptation',raw,c.adapt_loaded,lambda values:values==baseline_adapted)
+    for runtime in runtimes:
+        descriptor=runtime['descriptor'];label=descriptor['label'];mid=descriptor['model_id'];prepared,current=precomputed[mid]
+        def matching(values):
+            return all(v['state']==expected[mid,m['sample_id']]['state'] and (descriptor['kind']!='tree' or abs(v['probability']-expected[mid,m['sample_id']]['probability'])<1e-14) for m,v in zip(members,values))
+        benchmark(label,'load_parse_validate',[descriptor],c.load_descriptor,lambda vs:vs[0]['model']==runtime['model'])
+        if descriptor['kind']=='tree':
+            def same_prepared(values):return all(v['gate']==p['gate'] and c.e.np.array_equal(v['X'],p['X']) for v,p in zip(values,prepared))
+        else:same_prepared=lambda values:values==prepared
+        benchmark(label,'model_input_prepare',adapted,lambda x:c.prepare(runtime,x),same_prepared)
+        benchmark(label,'prepared_inference',prepared,lambda x:c.infer_prepared(runtime,x),matching)
+        benchmark(label,'original_current_interface',current,lambda x:c.original_current(runtime,x),matching)
+        benchmark(label,'cached_from_adapted',adapted,lambda x:c.cached_current(runtime,x),matching)
+        benchmark(label,'loaded_raw_to_original',raw,lambda x:c.loaded_raw_original(runtime,x),matching)
+        benchmark(label,'loaded_raw_to_cached',raw,lambda x:c.loaded_raw_cached(runtime,x),matching)
+    jsonl(out/'checks.jsonl',correctness)
+    write(out/'EXECUTION.json',dict(status='PASSED',recorded_batches=len(records),checks_including_warmups=len(correctness),models=len(runtimes),calls=dict(c.CALLS),tree_calls=dict(c.e.COUNTS),profiling_inside_timing=False,fit=0,selection=0,collection=0,scope='Single benchmark campaign on fixed 60 members; all outputs unchanged'))
+    print(json.dumps({'status':'PASSED','models':len(runtimes),'recorded_batches':len(records),'equivalence':len(replay)}))
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=HERE/'timing');measure(p.parse_args().output)

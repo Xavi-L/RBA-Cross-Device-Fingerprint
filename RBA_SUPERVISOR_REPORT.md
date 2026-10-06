@@ -200,3 +200,20 @@ P0开发：双端拼接与加关系均检出14/14有效干预，正常小实验�
 证据入口：[B3-A中文报告](deliverables/cross_endpoint_four_view_comparison_v1/REPORT.md)、[代码及复现命令](deliverables/cross_endpoint_four_view_comparison_v1/README.md)、[主比较CSV](deliverables/cross_endpoint_four_view_comparison_v1/results/main_comparison.csv)、[逐来源完整状态](deliverables/cross_endpoint_four_view_comparison_v1/results/summary/summary.csv)、[调用与保护检查](deliverables/cross_endpoint_four_view_comparison_v1/VALIDATION.json)。本节补充此前“尚无单端/双端对照”的进展，不改写此前阶段记录；当前新增证据限于固定语言/时区任务。
 
 现有证据支持“显式关系在部分开发配置中减少正常报警”，同时保留P2无增益和未见App端失败；不宣称完整paired244最终方法必然优于单端。下一步仅建议精简最终消融、成本及图表，未自动执行。
+
+
+## B3-B 最小消融、成本与论文表图收尾（2026-10-06）
+
+本轮已完成主方法的两个最小消融、一次离线成本统计及统一候选表图。保持原B2-C三个App+C1、三个基础App、C1/C2、B3-A十二棵树与预处理不变，复用同一951位置（690开发、261历史正常评价）。App历史开发/专项、B2-C有限增量规则方法、B3-A语言/时区四视图仍是三个独立研究层次，保留原105/126、378条等历史分母，不拼接最好成绩。
+
+R_FULL复用原App+C1，每配置检出7/14；R_NO_CROSS复用原可行S0，每配置2/14。仅去掉匹配正常组报警上限（预算1→34，含义是消融中不以该组报警淘汰集合，不是部署容忍度提高）后，三次原有限选择均选择C2，每配置9/14。实际交换为新增7次语言检出、失去5次Browser时区检出，并新增2/34匹配正常报警；两条正常浏览器偏好没有删除、改标或置U。MTC预算31、先导预算0、90%覆盖、8规则/16复杂度、宏平均与固定排序不变；C1+C2仍因566/630明确输出低于567/630而被拒绝。新增模型标记ABLATION_ONLY，不替代主方法。MTC的T/F/U/FAILED、历史144/117新增1个报警和逐成员变化分别保存。
+
+B3-A保留全部原结果：P0双端与REL均14/14、正常32/46与0/46；P1留出先导均6/6、正常12/12与0/12，但REL训练匹配仍报警2/34；P2均4/8、正常6/34，REL无增益。P0 REL依赖Browser语言列表长度≤2.5；双端33/951部分缺测没有被二值输出修复。P1/P2不是未接触盲测，四视图不等于主规则方法的全部消融。
+
+离线成本固定21模型、相同60条开发配对，一次预热与10遍，保存1,480个批次；区分加载、已加载raw适配、关系/输入准备、准备后判断、原公开接口及缓存包装。1,260项四路径等价检查全部通过。P95是批次均摊分布，不是单请求尾延迟；既有采集日志的同host墙钟区间与15秒人为等待单列，纯探针与未记录的纯训练时长不补造。两次计时前工程失败及额外测试调用保留，没有追加计时追求最好值。
+
+15项针对性测试通过；仅保存材料重汇总/制图复现30份文件字节一致，生成4幅SVG/PNG/CSV图、348行机器指标索引和10项主张证据索引。正式新选择仅3任务/12检查，测试额外6选择/22检查单列；App、编码器、树新fit与新增采集均0。旧模型和证据保持冻结，保护已有工作区改动，本轮未自动提交推送。
+
+证据入口：[B3-B中文报告](deliverables/prepaper_evidence_closeout_v1/REPORT.md)、[三设置逐条输出](deliverables/prepaper_evidence_closeout_v1/results/predictions.jsonl)、[统一指标索引](deliverables/prepaper_evidence_closeout_v1/tables/metric_index.jsonl)、[成本表](deliverables/prepaper_evidence_closeout_v1/tables/cost.csv)、[候选图清单](deliverables/prepaper_evidence_closeout_v1/figures/FIGURES.json)、[主张与证据](deliverables/prepaper_evidence_closeout_v1/CLAIM_EVIDENCE.md)、[复现命令](deliverables/prepaper_evidence_closeout_v1/README.md)、[最终复核](deliverables/prepaper_evidence_closeout_v1/VALIDATION.json)。
+
+本补记更新此前“精简消融、成本与表图尚未执行”的状态，不改写历史阶段。现在可以进入方法和评价正文写作，明确范围为 **paired244语言/时区双向干预的探索性证据，配合App侧历史专项**。广泛Browser攻击工具/参数覆盖、独立新设备泛化、配方与环境混杂、历史缺测及纯探针计时缺口仍限制论文主张；它们不自动转化为下一轮开发。本轮完成后停止实验，不追加采集、分类器、预算、容差或关系试验。

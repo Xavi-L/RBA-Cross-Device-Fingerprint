@@ -1,0 +1,54 @@
+Traceback (most recent call last):
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/measure_cost.py", line 71, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=HERE/'timing');measure(p.parse_args().output)
+                                                                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/measure_cost.py", line 34, in measure
+    freeze=dict(time=datetime.now(timezone.utc).isoformat(),python=sys.version,executable=sys.executable,platform=platform.platform(),machine=platform.machine(),processor=platform.processor(),gc_enabled=gc.isenabled(),
+                                                                                                                  ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/platform.py", line 1337, in platform
+    system, node, release, version, machine, processor = uname()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/platform.py", line 942, in __iter__
+    (self.processor,)
+     ^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py", line 1026, in __get__
+    val = self.func(instance)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/platform.py", line 937, in processor
+    return _unknown_as_blank(_Processor.get())
+                             ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/platform.py", line 869, in get
+    return func() or ''
+           ~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/platform.py", line 905, in from_subprocess
+    return subprocess.check_output(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        ['uname', '-p'],
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        encoding="utf8",
+        ^^^^^^^^^^^^^^^^
+    ).strip()
+    ^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 1005, in __init__
+    errread, errwrite) = self._get_handles(stdin, stdout, stderr)
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 1756, in _get_handles
+    errwrite = self._get_devnull()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 1150, in _get_devnull
+    self._devnull = os.open(os.devnull, os.O_RDWR)
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/guards.py", line 14, in audit
+    require(Path(os.fsdecode(p)).resolve().is_relative_to(output),'WRITE_OUTSIDE_OUTPUT')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/prepaper_evidence_closeout_v1/closeout_io.py", line 15, in require
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: WRITE_OUTSIDE_OUTPUT
