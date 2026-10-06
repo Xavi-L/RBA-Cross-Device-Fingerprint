@@ -1,0 +1,70 @@
+{
+  "time": "2026-10-06T06:17:00.641227+00:00",
+  "settings": {
+    "mode": "DEVELOPMENT_EXTENSION_SELECTION",
+    "sets": [
+      {
+        "id": "S0",
+        "extensions": []
+      },
+      {
+        "id": "S1",
+        "extensions": [
+          "C1"
+        ]
+      },
+      {
+        "id": "S2",
+        "extensions": [
+          "C2"
+        ]
+      },
+      {
+        "id": "S12",
+        "extensions": [
+          "C1",
+          "C2"
+        ]
+      }
+    ],
+    "normal_counts": {
+      "mtc_discovery": 630,
+      "pilot18": 12,
+      "b2b42": 34
+    },
+    "normal_alarm_budgets": {
+      "mtc_discovery": 31,
+      "pilot18": 0,
+      "b2b42": 1
+    },
+    "minimum_coverage": "9/10",
+    "minimum_candidate_mtc_coverage": "9/10",
+    "maximum_rules": 8,
+    "maximum_complexity": 16,
+    "new_single_literal_complexity": 2,
+    "families": [
+      "App_language",
+      "App_timezone",
+      "Browser_language",
+      "Browser_timezone"
+    ],
+    "ordering": [
+      "all_constraints_satisfied",
+      "max_macro_trigger_rate",
+      "min_new_rules",
+      "S0,S1,S2,S12"
+    ]
+  },
+  "implementation": {
+    "deliverables/cross_endpoint_constrained_extension_v1/run.py": "effc159311c5a80ba07ec2c0f4dfe257c53a10f39a1cb17d8eae730aca4ec717",
+    "deliverables/cross_endpoint_constrained_extension_v1/test_extension.py": "fab6b614dd0b0f96b4c8a181754d6f73c9d915ad1501c35ef6d6fc749ac4202e",
+    "deliverables/cross_endpoint_constrained_extension_v1/adapter.py": "d1cd69848091ed1172a4c3e3df075a2909942929191154c6127ed2f50f0a8ca3",
+    "deliverables/cross_endpoint_constrained_extension_v1/selector.py": "d345bd8012292e90720957254ba75433f25c39d0962beb3d3984c7a212de722a",
+    "deliverables/cross_endpoint_constrained_extension_v1/summarize.py": "d4bf874ce1a0b1ded70744b655e8f9fdea3c2c222bd1aa2a4745ef948b3724a0",
+    "deliverables/cross_endpoint_constrained_extension_v1/common.py": "056a1e0f722a29b01ba7348ffc81b5afeedbee40d53f75198d91cc0819b95e5f",
+    "deliverables/cross_endpoint_constrained_extension_v1/inference.py": "d98a40aad1de22ce8d43d4fd96af24a7e99a7987153229b70c4dcdaad9fcbe8d"
+  },
+  "protocol_sha256": "5f9a4ff75ad9ffe44221097279f9ccc98022f15b331db7c39dc207d67530c9ca",
+  "no_evaluation_members_admitted": true,
+  "failure_semantics": "selected FAILED has priority, then original Kleene OR"
+}

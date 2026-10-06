@@ -176,3 +176,12 @@ E1统一回放可以作为App侧阶段整理，完成后不自动进入最终消
 | R13 | [当前关系输入范围](https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/afaa8bd88ac59b3deffeb83789e9ce6fc47a52f7/hybridguard_agent/research/mtc_relation_sources.py) | 只传入App内部Native／Host／App Web，独立Browser未进入当前特征映射，说明阶段模型的范围 |
 
 核对路径：先看R4阶段主结果，再用R10确认模型身份、R11检查逐条输出；贡献解释查R5、R6及R4专项；完整paired244目标与当前输入缺口分别查R12、R13。各目录原始引用和操作回执继续保留，不能以本文汇总替代原始材料。
+
+
+## B2-C 实际结果补记（2026-10-06）
+
+已完成一次有限跨端增量选择：保持三个B_REL_TZ RETENTION App阶段模型与编码器不变，各比较空集、C1、C2、C1+C2，结果均选择C1。每个新开发模型在14次有效开发干预中由2次检出增至7次，新增5次Browser时区检出；46条小实验正常记录无新增报警。C2因两条真实正常Browser偏好触发而超过B2-B独立正常预算，未选入。
+
+代价是每模型MTC discovery新增12条F转U，明确覆盖从579/630降至567/630，恰为90%；历史development新增3条F转U，reserved_validation无新增未知，各组报警不增加。690个开发位置与261个历史评价位置分别报告，951位置已实际逐配对回放。三个配置不构成新数据三折交叉验证，两批小实验已经用于学习，原来源标签和正式准入不变。
+
+证据入口：[B2-C报告](deliverables/cross_endpoint_constrained_extension_v1/REPORT.md)、[模型与运行入口](deliverables/cross_endpoint_constrained_extension_v1/README.md)、[12集合结果](deliverables/cross_endpoint_constrained_extension_v1/results/candidate_checks.csv)、[逐组结果](deliverables/cross_endpoint_constrained_extension_v1/results/summary/summary.csv)、[实际当前输入回放](deliverables/cross_endpoint_constrained_extension_v1/results/REPLAY_VERIFICATION.json)。完整paired244整体方法对照与最终消融尚未完成；没有训练Browser-only或平铺双端无关系模型，不能宣称跨端整体优于任意单端。原App阶段105/126等旧数字与各批历史身份保持原义。

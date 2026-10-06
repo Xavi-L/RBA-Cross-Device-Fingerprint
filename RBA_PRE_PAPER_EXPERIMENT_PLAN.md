@@ -252,3 +252,12 @@ paired244比较还需单列：App177有效数、Browser尝试数、配对完成�
 | `mtc_timezone_selection.py`、`mtc_timezone_candidates.py`、`timezone_relation_sources.py`、`screen_geometry_io.py` | 位于`hybridguard_agent/research/`；可复用预测、字段适配及错误处理，不替代未来Browser接入设计 |
 
 本次只修订根目录两份汇报／计划文件，不改写历史主线正文、攻击侧协议、冻结材料或模型。本次安排优先于这两份文档初版的即时E1→E2→定稿顺序；后续实际任务仍需明确授权，计划不代表已经运行。
+
+
+## B2-C 实际结果补记（2026-10-06）
+
+已完成一次有限跨端增量选择：保持三个B_REL_TZ RETENTION App阶段模型与编码器不变，各比较空集、C1、C2、C1+C2，结果均选择C1。每个新开发模型在14次有效开发干预中由2次检出增至7次，新增5次Browser时区检出；46条小实验正常记录无新增报警。C2因两条真实正常Browser偏好触发而超过B2-B独立正常预算，未选入。
+
+代价是每模型MTC discovery新增12条F转U，明确覆盖从579/630降至567/630，恰为90%；历史development新增3条F转U，reserved_validation无新增未知，各组报警不增加。690个开发位置与261个历史评价位置分别报告，951位置已实际逐配对回放。三个配置不构成新数据三折交叉验证，两批小实验已经用于学习，原来源标签和正式准入不变。
+
+证据入口：[B2-C报告](deliverables/cross_endpoint_constrained_extension_v1/REPORT.md)、[模型与运行入口](deliverables/cross_endpoint_constrained_extension_v1/README.md)、[12集合结果](deliverables/cross_endpoint_constrained_extension_v1/results/candidate_checks.csv)、[逐组结果](deliverables/cross_endpoint_constrained_extension_v1/results/summary/summary.csv)、[实际当前输入回放](deliverables/cross_endpoint_constrained_extension_v1/results/REPLAY_VERIFICATION.json)。完整paired244整体方法对照与最终消融尚未完成；没有训练Browser-only或平铺双端无关系模型，不能宣称跨端整体优于任意单端。原App阶段105/126等旧数字与各批历史身份保持原义。

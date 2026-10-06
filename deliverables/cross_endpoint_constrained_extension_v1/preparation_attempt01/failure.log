@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_constrained_extension_v1/run.py", line 111, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=HERE/'results');args=p.parse_args();run(args.output)
+                                                                                                                ~~~^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_constrained_extension_v1/run.py", line 43, in run
+    train_m,train_i=a.mtc_cohorts(bases,('discovery',))
+                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_constrained_extension_v1/adapter.py", line 160, in mtc_cohorts
+    require(p['normal_basis']==meta['normal_basis'],'MTC_NORMAL_BASIS_CHANGED')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/cross_endpoint_constrained_extension_v1/common.py", line 12, in require
+    if not ok: raise ValueError(reason)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: MTC_NORMAL_BASIS_CHANGED

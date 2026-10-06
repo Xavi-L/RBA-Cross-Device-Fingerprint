@@ -1,0 +1,29 @@
+{
+  "status": "PASSED",
+  "new_tests": 30,
+  "b2b_unchanged_regression_tests": 25,
+  "b2a_unchanged_regression_tests": 36,
+  "total_tests": 91,
+  "accepted_selection_tasks": 3,
+  "accepted_candidate_set_checks": 12,
+  "real_data_holdout_mutation_regression": {
+    "selector_calls": 3,
+    "candidate_checks": 12,
+    "production_models_changed": false,
+    "purpose": "Test evaluation-value noninterference; no additional chosen model or tuning"
+  },
+  "current_input_replay_passes": 2,
+  "current_input_predictions_per_pass": 2853,
+  "total_replay_app_predictions": 5706,
+  "total_replay_selected_condition_predictions": 5706,
+  "inference_unit_fixture_app_calls": 7,
+  "inference_unit_fixture_condition_calls": 4,
+  "scope": "Prediction counts above describe explicit evidence replays and new inference unit tests; historical regression suite executions are tests, not additional scientific samples.",
+  "implementation_followup": "After first replay added input-key and condition-file identity guards, and whole-triplet recovery-only summary semantics. A second complete current-input replay and saved-only byte comparison passed. Selection settings/model choices unchanged.",
+  "preparation_attempt": "One preparation attempt stopped before any selection on normal-evidence reference serialization difference; retained under preparation_attempt01.",
+  "summary_guard_preparation": "First guard test failed on macOS /var versus /private/var temp path spelling; resolved canonical temp path only, then all four saved output files byte-equal.",
+  "no_new_app_training": true,
+  "no_encoder_refit": true,
+  "no_collection": true,
+  "no_final_ablation": true
+}
