@@ -1,0 +1,1542 @@
+[
+  {
+    "atom_id": "CAT:NW-006",
+    "operands": [
+      "app.web_data.navigator_layer.platform",
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "NW-006"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operands": [
+        "app.web_data.navigator_layer.platform",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "operator": "DESKTOP_OR_SCRIPT_UA_OR_DESKTOP_PLATFORM",
+      "parameters": {}
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CAT:NW-007",
+    "operands": [
+      "app.web_data.navigator_layer.max_touch_points",
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "NW-007"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operands": [
+        "app.web_data.navigator_layer.max_touch_points",
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "operator": "ANDROID_MOBILE_UA_AND_TOUCH_EQ_ZERO",
+      "parameters": {}
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CAT:OFFDER-TOUCH-001",
+    "operands": [
+      "app.web_data.navigator_layer.user_agent",
+      "app.web_data.navigator_layer.max_touch_points"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "OFFDER-TOUCH-001"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operands": [
+        "app.web_data.navigator_layer.user_agent",
+        "app.web_data.navigator_layer.max_touch_points"
+      ],
+      "operator": "TOUCH_GT_ZERO_GIVEN_ANDROID_MOBILE_UA",
+      "parameters": {}
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CAT:P3-COLOR-APP",
+    "operands": [
+      "app.web_data.screen_layer.color_depth",
+      "app.web_data.screen_layer.pixel_depth"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "P3-COLOR-APP"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operands": [
+        "app.web_data.screen_layer.color_depth",
+        "app.web_data.screen_layer.pixel_depth"
+      ],
+      "operator": "TYPED_SEMANTIC_EQUAL",
+      "parameters": {}
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CAT:WVWEB-004",
+    "operands": [
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "WVWEB-004"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operands": [
+        "app.web_data.navigator_layer.user_agent"
+      ],
+      "operator": "UA_CLASS_EQ_SCRIPT_CLIENT",
+      "parameters": {}
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True",
+    "operands": [
+      "app.web_data.audio_layer.audio_context_supported"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_context_supported:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0",
+    "operands": [
+      "app.web_data.audio_layer.audio_output_latency"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.023219954648526078",
+    "operands": [
+      "app.web_data.audio_layer.audio_output_latency"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.023219954648526078"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.023219954648526078,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155",
+    "operands": [
+      "app.web_data.audio_layer.audio_output_latency"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_output_latency:LE:0.046439909297052155"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.046439909297052155,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0",
+    "operands": [
+      "app.web_data.audio_layer.audio_sample_rate"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:44100.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 44100.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:46050.0",
+    "operands": [
+      "app.web_data.audio_layer.audio_sample_rate"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:46050.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 46050.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0",
+    "operands": [
+      "app.web_data.audio_layer.audio_sample_rate"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.audio_layer.audio_sample_rate:LE:48000.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 48000.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0",
+    "operands": [
+      "app.web_data.automation_surface_layer.mime_types_count"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.automation_surface_layer.mime_types_count:LE:0.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0",
+    "operands": [
+      "app.web_data.automation_surface_layer.plugins_count"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.automation_surface_layer.plugins_count:LE:0.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True",
+    "operands": [
+      "app.web_data.execution_layer.local_storage_available"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.execution_layer.local_storage_available:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True",
+    "operands": [
+      "app.web_data.execution_layer.session_storage_available"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.execution_layer.session_storage_available:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0",
+    "operands": [
+      "app.web_data.execution_layer.timezone_offset"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.execution_layer.timezone_offset:LE:-480.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": -480.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0",
+    "operands": [
+      "app.web_data.font_layer.font_probe_count"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.font_layer.font_probe_count:LE:5.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 5.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True",
+    "operands": [
+      "app.web_data.graphics_layer.webgl2_supported"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl2_supported:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:19.0",
+    "operands": [
+      "app.web_data.graphics_layer.webgl_extensions_count"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:19.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 19.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0",
+    "operands": [
+      "app.web_data.graphics_layer.webgl_extensions_count"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:20.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 20.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:21.0",
+    "operands": [
+      "app.web_data.graphics_layer.webgl_extensions_count"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl_extensions_count:LE:21.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 21.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0",
+    "operands": [
+      "app.web_data.graphics_layer.webgl_max_texture_size"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.graphics_layer.webgl_max_texture_size:LE:4096.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 4096.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True",
+    "operands": [
+      "app.web_data.navigator_layer.cookie_enabled"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.cookie_enabled:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0",
+    "operands": [
+      "app.web_data.navigator_layer.device_memory"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.device_memory:LE:2.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 2.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:1.0",
+    "operands": [
+      "app.web_data.navigator_layer.hardware_concurrency"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.hardware_concurrency:LE:1.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 1.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.languages:LE:1.0",
+    "operands": [
+      "app.web_data.navigator_layer.languages"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.languages:LE:1.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 1.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0",
+    "operands": [
+      "app.web_data.navigator_layer.max_touch_points"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.max_touch_points:LE:5.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 5.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.online:EQ:True",
+    "operands": [
+      "app.web_data.navigator_layer.online"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.online:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:android",
+    "operands": [
+      "app.web_data.navigator_layer.platform"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.platform:EQ:android"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop",
+    "operands": [
+      "app.web_data.navigator_layer.platform"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.platform:EQ:desktop"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous",
+    "operands": [
+      "app.web_data.navigator_layer.platform"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.platform:EQ:mobile_or_ambiguous"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser",
+    "operands": [
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_browser"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview",
+    "operands": [
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:android_webview"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless",
+    "operands": [
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:desktop_or_headless"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client",
+    "operands": [
+      "app.web_data.navigator_layer.user_agent"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.navigator_layer.user_agent:EQ:script_client"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0",
+    "operands": [
+      "app.web_data.network_api_layer.downlink_mbps"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:10.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 10.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.575",
+    "operands": [
+      "app.web_data.network_api_layer.downlink_mbps"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.downlink_mbps:LE:9.575"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 9.575,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0",
+    "operands": [
+      "app.web_data.network_api_layer.rtt_ms"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.rtt_ms:LE:0.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.network_api_layer.save_data:EQ:True",
+    "operands": [
+      "app.web_data.network_api_layer.save_data"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.network_api_layer.save_data:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True",
+    "operands": [
+      "app.web_data.permissions_layer.permissions_api_supported"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.permissions_layer.permissions_api_supported:EQ:True"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.avail_height:LE:915.0",
+    "operands": [
+      "app.web_data.screen_layer.avail_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.avail_height:LE:915.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 915.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0",
+    "operands": [
+      "app.web_data.screen_layer.avail_width"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.avail_width:LE:412.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 412.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0",
+    "operands": [
+      "app.web_data.screen_layer.color_depth"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.color_depth:LE:24.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 24.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625",
+    "operands": [
+      "app.web_data.screen_layer.device_pixel_ratio"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.device_pixel_ratio:LE:2.625"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 2.625,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:639.0",
+    "operands": [
+      "app.web_data.screen_layer.inner_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.inner_height:LE:639.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 639.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.inner_height:LE:710.0",
+    "operands": [
+      "app.web_data.screen_layer.inner_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.inner_height:LE:710.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 710.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.inner_width:LE:411.0",
+    "operands": [
+      "app.web_data.screen_layer.inner_width"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.inner_width:LE:411.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 411.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0",
+    "operands": [
+      "app.web_data.screen_layer.inner_width"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.inner_width:LE:412.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 412.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0",
+    "operands": [
+      "app.web_data.screen_layer.orientation_angle"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.orientation_angle:LE:0.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 0.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:639.0",
+    "operands": [
+      "app.web_data.screen_layer.outer_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.outer_height:LE:639.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 639.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.outer_height:LE:711.0",
+    "operands": [
+      "app.web_data.screen_layer.outer_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.outer_height:LE:711.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 711.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0",
+    "operands": [
+      "app.web_data.screen_layer.outer_width"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.outer_width:LE:412.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 412.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0",
+    "operands": [
+      "app.web_data.screen_layer.pixel_depth"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.pixel_depth:LE:24.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 24.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:639.2380981445312",
+    "operands": [
+      "app.web_data.screen_layer.visual_viewport_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:639.2380981445312"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 639.2380981445312,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:710.4761962890625",
+    "operands": [
+      "app.web_data.screen_layer.visual_viewport_height"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_height:LE:710.4761962890625"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 710.4761962890625,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0",
+    "operands": [
+      "app.web_data.screen_layer.visual_viewport_scale"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_scale:LE:1.0"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 1.0,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:411.4285583496094",
+    "operands": [
+      "app.web_data.screen_layer.visual_viewport_width"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:411.4285583496094"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 411.4285583496094,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625",
+    "operands": [
+      "app.web_data.screen_layer.visual_viewport_width"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "CONTROL:app.web_data.screen_layer.visual_viewport_width:LE:412.19049072265625"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": 412.19049072265625,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+    "operands": [
+      "app.android_native_data.locale_timezone_layer.native_timezone_id",
+      "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+      "app.web_data.execution_layer.timezone_offset"
+    ],
+    "measurement_surfaces": [
+      "app_web67",
+      "native84"
+    ],
+    "family": "timezone_relation",
+    "aliases": [
+      "MTCREL:NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [
+      "collection_manifest.collection_started_at_ms",
+      "collection_diagnostics.collection_finished_at_ms"
+    ],
+    "condition": {
+      "operator": "NATIVE_ZONE_AT_ACQUISITION_VS_WEB_OFFSET_DIFFERS",
+      "operands": [
+        "app.android_native_data.locale_timezone_layer.native_timezone_id",
+        "app.android_native_data.locale_timezone_layer.native_timezone_offset_min",
+        "app.web_data.execution_layer.timezone_offset"
+      ],
+      "parameters": {
+        "version": "mtc-timezone-relation-v1",
+        "fitted": false,
+        "parameter_fit_calls": 0,
+        "tzdb_version": "2026c",
+        "library": "Python stdlib zoneinfo",
+        "time_basis": [
+          "collection_manifest.collection_started_at_ms",
+          "collection_diagnostics.collection_finished_at_ms"
+        ],
+        "time_unit": "unix_epoch_milliseconds",
+        "native_offset_unit": "minutes_east_of_UTC_standard_only",
+        "web_offset_unit": "minutes_west_of_UTC_current",
+        "comparison": "exact_current_offset_difference",
+        "missing_date_fallback": "existing_fixed_offset_domain_only",
+        "web_timezone_id": "diagnostic_only_no_string_comparison",
+        "crossing_offset_transition": "U",
+        "learned_tolerance": null
+      }
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": [
+      "app.web_data.execution_layer.timezone_id"
+    ]
+  },
+  {
+    "atom_id": "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE",
+    "operands": [
+      "app.android_native_data.memory_layer.total_memory_gb",
+      "app.web_data.navigator_layer.device_memory"
+    ],
+    "measurement_surfaces": [
+      "app_web67",
+      "native84"
+    ],
+    "family": "memory_relation",
+    "aliases": [
+      "MTCREL:WEB_MEMORY_ABOVE_NATIVE_POWER2_ENVELOPE"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operator": "WEB_MEMORY_ABOVE_NATIVE_POWER_OF_TWO_UPPER_ENVELOPE",
+      "operands": [
+        "app.android_native_data.memory_layer.total_memory_gb",
+        "app.web_data.navigator_layer.device_memory"
+      ],
+      "parameters": {
+        "units": "GiB",
+        "native_minimum_gib": 0.25,
+        "bound": "smallest_power_of_two_greater_than_or_equal_to_native",
+        "comparison": "strict_greater_than",
+        "learned_parameters": false,
+        "lower_web_exposures": "allowed",
+        "browser_upper_cap": "not_assumed",
+        "domain": "same_current_Android_App_record_with_WebView_numeric_observations"
+      }
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1",
+    "operands": [
+      "app.web_data.screen_layer.inner_width",
+      "app.web_data.screen_layer.inner_height",
+      "app.web_data.screen_layer.visual_viewport_width",
+      "app.web_data.screen_layer.visual_viewport_height",
+      "app.web_data.screen_layer.visual_viewport_scale"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "same_web_viewport",
+    "aliases": [
+      "REL:SCREEN_VISUAL_EXCEEDS_LAYOUT:v1"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": {
+      "operator": "VISUAL_VIEWPORT_EXCEEDS_LAYOUT_AT_SCALE_GE_ONE",
+      "operands": [
+        "app.web_data.screen_layer.inner_width",
+        "app.web_data.screen_layer.inner_height",
+        "app.web_data.screen_layer.visual_viewport_width",
+        "app.web_data.screen_layer.visual_viewport_height",
+        "app.web_data.screen_layer.visual_viewport_scale"
+      ],
+      "parameters": {
+        "minimum_visual_scale": 1.0,
+        "css_pixel_rounding_tolerance": 1.0,
+        "axes": "OR",
+        "parameter_fitting": "NONE"
+      }
+    },
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "RSR-LANG-FIRST-v1",
+    "operands": [
+      "app.web_data.navigator_layer.language",
+      "app.web_data.navigator_layer.languages"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "RSR-LANG-FIRST-v1"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "RSR-WEBDRIVER-STATE-v1",
+    "operands": [
+      "app.web_data.automation_surface_layer.webdriver"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "RSR-WEBDRIVER-STATE-v1"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  },
+  {
+    "atom_id": "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1",
+    "operands": [
+      "app.collection_observations.webgl_parameter.observation"
+    ],
+    "measurement_surfaces": [
+      "app_web67"
+    ],
+    "family": "base",
+    "aliases": [
+      "RSR-WEBGL1-PARAMETER-EQUIVALENCE-v1"
+    ],
+    "polarities": [
+      "POSITIVE",
+      "NEGATIVE"
+    ],
+    "metadata_refs": [],
+    "condition": null,
+    "numeric_threshold": null,
+    "gate": "registered typed/status/quality and operand domain; same-current-record binding",
+    "diagnostic_only": []
+  }
+]

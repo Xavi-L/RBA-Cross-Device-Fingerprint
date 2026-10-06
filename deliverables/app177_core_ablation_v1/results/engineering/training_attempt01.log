@@ -1,0 +1,21 @@
+{"scheme": "A_NO_MTC_CAP", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "SPARSE", "status": "FITTED", "rule_count": 6}
+{"scheme": "A_NO_MTC_CAP", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "RETENTION", "status": "FITTED", "rule_count": 8}
+{"scheme": "A_APP_WEB_ONLY", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "SPARSE", "status": "FITTED", "rule_count": 5}
+{"scheme": "A_APP_WEB_ONLY", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "RETENTION", "status": "FITTED", "rule_count": 5}
+{"scheme": "A_NO_MEMORY_REL", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "SPARSE", "status": "FITTED", "rule_count": 5}
+{"scheme": "A_NO_MEMORY_REL", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "RETENTION", "status": "FITTED", "rule_count": 5}
+{"scheme": "A_NO_TIMEZONE_REL", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "SPARSE", "status": "FITTED", "rule_count": 6}
+{"scheme": "A_NO_TIMEZONE_REL", "fold_id": "WEBGL1-LOEO-v1-01", "stage": "RETENTION", "status": "FITTED", "rule_count": 6}
+Traceback (most recent call last):
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/app177_core_ablation_v1/run.py", line 186, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/app177_core_ablation_v1/run.py", line 185, in main
+    else:globals()[args.command](out)
+         ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/app177_core_ablation_v1/run.py", line 149, in train
+    fitted=tree.fit(engine.prepare(*args,scheme='APP_TREE',**kw))
+  File "/Users/xavier/毕业设计/RBA-Cross-Device-Fingerprint/deliverables/app177_core_ablation_v1/tree.py", line 67, in fit
+    if expected!=got:raise ValueError('TREE_JSON_PROBABILITY_REGRESSION')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: TREE_JSON_PROBABILITY_REGRESSION

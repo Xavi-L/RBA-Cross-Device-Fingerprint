@@ -1,5 +1,23 @@
 # RBA / HybridGuard 论文前实验与图表规划
 
+> **当前总状态：2026-10-06，App177主体实验已补齐，完整跨端证据仍有缺口。**
+> App单端（Native／WebView Host／App Web）、App内部跨层和App↔独立Browser跨端分别评价；App177是研究主体，不能用Browser局部实验替代，也不降为只放附录的历史背景。
+
+| 主线／任务 | 当前实际状态与证据 |
+|---|---|
+| Browser语言／时区局部扩展、四视图与消融 | **已完成并保留**；[B2-C](deliverables/cross_endpoint_constrained_extension_v1/REPORT.md)、[B3-A](deliverables/cross_endpoint_four_view_comparison_v1/REPORT.md)、[B3-B](deliverables/prepaper_evidence_closeout_v1/REPORT.md) |
+| App Full统一回放 | **完成**；核心1,449位置／3,591模型输出，原主实验/MTC逐ID一致；60双端位置的180个App输出另计。[回放核对](deliverables/app177_core_ablation_v1/results/FULL_REPLAY.json) |
+| App四项公平消融 | **完成24次规则拟合**，原三折编码器直接复用；每组新SPARSE→本组RETENTION。[主体报告](deliverables/app177_core_ablation_v1/REPORT.md) |
+| App范围普通分类器 | **三折小树完成**；真实树fit为3次交付＋1次导出自检失败的工程尝试，单独登记；0编码器重拟合。[执行记录](deliverables/app177_core_ablation_v1/results/EXECUTION.json) |
+| App参与跨端检测 | 已有语言/时区60条真实配对完成App-only补充回放；原14配置和专项缺同阶段Browser配对，其他范围的双端方法贡献与完整消融**仍待补证**。[覆盖清单](deliverables/app177_core_ablation_v1/PAIRED_COVERAGE.md) |
+| 全项目实验完成／W1完整初稿 | **尚未满足，W1暂缓**；已有草稿保留。此前“开始写作”仅是Browser局部收尾判断，不代表完整研究结束。本轮0采集、0 Browser重训。 |
+
+App主实验攻击检出：Full **105/126**；去MTC报警预算 **108/126**；Web-only **96/126**；去内存关系 **96/126**；去时区关系 **105/126**；小树 **72/126**，各方案旧受控正常均0/252报警。去MTC预算的三个模型均使全部891条MTC正常记录报警；去时区关系使6次正常系统换时区报警；去内存关系漏掉专项18次有效变化。Full仍有屏幕正常布局误报和MTC未知输出，完整分母、逐折状态与反例均在主体报告，不只展示收益。
+
+**当前下一步仅建议一个最小资源配对补证批次**：原resource-pair＋memory_4GiB，补真实两端pre/change/post及匹配正常对照，再冻结适用的跨端方法比较；不重采全部378条。该方案未授权采集，亦不自动补齐其他配置的跨端主张。
+
+## 历史阶段记录（原数字与当时调度保留；当前状态以上表为准）
+
 > 制定与修订日期：**2026年10月3日**。  
 > 已完成实验事实基线：[`afaa8bd88ac59b3deffeb83789e9ce6fc47a52f7`](https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/commit/afaa8bd88ac59b3deffeb83789e9ce6fc47a52f7)。已完成成果与证据索引见 [导师阶段汇报](RBA_SUPERVISOR_REPORT.md)。  
 > **本次调整：完整研究目标为paired244，不提前将App侧B_REL_TZ定为论文最终模型。最终消融、最终模型与图表冻结暂停，待Browser67攻击材料接入及跨端方法开发后重新制定。**  

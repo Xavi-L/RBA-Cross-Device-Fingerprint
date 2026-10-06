@@ -1,0 +1,73 @@
+{
+  "experiment_id": "app177-core-ablation-v1",
+  "basis_head": "d959b234bdb618a184fe6f1e4e5d82f6a2250bbe",
+  "collection_calls_authorized": 0,
+  "full_model_ids": [
+    "mtc-rel-tz-6e10284c39b1b601ab406240",
+    "mtc-rel-tz-9c5fa0e310ba10a00e520b1c",
+    "mtc-rel-tz-4ae67bb9da899cc419dd525f"
+  ],
+  "membership_settings_reference": "deliverables/mtc_constrained_reselection_v1/SETTINGS.json",
+  "schemes": [
+    "A_NO_MTC_CAP",
+    "A_APP_WEB_ONLY",
+    "A_NO_MEMORY_REL",
+    "A_NO_TIMEZONE_REL"
+  ],
+  "rule_stages": [
+    "SPARSE",
+    "RETENTION"
+  ],
+  "planned_rule_fits": 24,
+  "planned_tree_fits": 3,
+  "full_refits": 0,
+  "controlled_normal_alarm_fraction": "1/20",
+  "mtc_normal_alarm_fraction": "1/20",
+  "no_mtc_cap_override": "all MTC normal members, only A_NO_MTC_CAP",
+  "mtc_candidate_evaluability": "9/10",
+  "mtc_final_set_defined": "9/10",
+  "max_rules": 8,
+  "max_complexity": 16,
+  "fit_deadline_seconds": 60,
+  "encoder_policy": "load each original fold encoder; zero refits; retain entire shared encoder but project allowed/selected candidates",
+  "base_templates": 50,
+  "fixed_relation_templates": 3,
+  "tree_parameters": {
+    "criterion": "gini",
+    "splitter": "best",
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "random_state": 20261006,
+    "class_weight": null
+  },
+  "tree_positive_probability_threshold": 0.5,
+  "weights": {
+    "attack_total": "1/2",
+    "attack_grouping": "equal observed training configurations then within configuration",
+    "controlled_normal_total": "1/4",
+    "mtc_normal_total": "1/4"
+  },
+  "unknown_encoding": "fixed disjoint T/F/U indicators; FAILED retained; no valid measured candidate -> U; no evaluation fitting",
+  "classification_scope": "shared App candidate representation and training admission, not all 177 raw fields",
+  "evaluation_scope": "controlled own outer fold; all three folds separately for each other member; historical/development not new blind test",
+  "raw_private_policy": "existing references only; no copied raw/tickets/private_runs",
+  "timezone_database": {
+    "version": "mtc-timezone-relation-v1",
+    "fitted": false,
+    "parameter_fit_calls": 0,
+    "tzdb_version": "2026c",
+    "library": "Python stdlib zoneinfo",
+    "time_basis": [
+      "collection_manifest.collection_started_at_ms",
+      "collection_diagnostics.collection_finished_at_ms"
+    ],
+    "time_unit": "unix_epoch_milliseconds",
+    "native_offset_unit": "minutes_east_of_UTC_standard_only",
+    "web_offset_unit": "minutes_west_of_UTC_current",
+    "comparison": "exact_current_offset_difference",
+    "missing_date_fallback": "existing_fixed_offset_domain_only",
+    "web_timezone_id": "diagnostic_only_no_string_comparison",
+    "crossing_offset_transition": "U",
+    "learned_tolerance": null
+  }
+}
