@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-10-06T05:25:26.984448+00:00",
+  "issue": "Chrome Preferred languages setting visible before immediate force-stop, absent on subsequent cold-start UI. First formal L_BROWSER_LANG changes report unchanged navigator values.",
+  "evidence": [
+    "private_runs/engineering/browser-setting-apply03.json",
+    "private_runs/engineering/browser-setting-restore03.json",
+    "private_runs/formal01/settings_operations.jsonl"
+  ],
+  "hypothesis": "Immediate process restart before asynchronous preference persistence; not yet proven for this installed version.",
+  "bounded_diagnostic": "After full first matrix, apply the same real preference, wait a fixed 15 seconds, cold-start and inspect actual Preferred languages. One diagnostic attempt.",
+  "repair_gate": "Only if preference survives the bounded persistence check, minimally repair the normal setting path and replay exactly the affected two triplets. No model outputs have been computed on the new formal batch.",
+  "maximum_additional_collection_positions": 6,
+  "affected_sample_ids": [
+    "b2b-api36p1-20261006-formal01:L_BROWSER_LANG:r1:pre",
+    "b2b-api36p1-20261006-formal01:L_BROWSER_LANG:r1:change",
+    "b2b-api36p1-20261006-formal01:L_BROWSER_LANG:r1:post",
+    "b2b-api36p1-20261006-formal01:L_BROWSER_LANG:r2:pre",
+    "b2b-api36p1-20261006-formal01:L_BROWSER_LANG:r2:change",
+    "b2b-api36p1-20261006-formal01:L_BROWSER_LANG:r2:post"
+  ],
+  "original_outputs_policy": "Preserve all 42 first-pass captures and raw records; separately list six superseded attempts if repair executes. Targets, candidates, models, and all other positions unchanged."
+}

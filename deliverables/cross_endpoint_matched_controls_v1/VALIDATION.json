@@ -1,0 +1,51 @@
+{
+  "status": "PASSED",
+  "node_tests": 4,
+  "b2b_python_tests": 25,
+  "unchanged_b2a_regression_tests": 36,
+  "total_tests": 65,
+  "test_logs": [
+    "private_runs/node-tests.log",
+    "private_runs/tests-repair-review.log",
+    "private_runs/b2a-regression-tests.log"
+  ],
+  "initial_evaluation": {
+    "status": "PASSED",
+    "actual_calls": {
+      "actual_model_calls": 126,
+      "actual_condition_calls": 210
+    },
+    "fit_calls": 0,
+    "prohibited_operations": [],
+    "writes": [
+      "app_predictions.jsonl",
+      "condition_results.jsonl",
+      "evaluation_manifest.json",
+      "models.json",
+      "plan.json",
+      "positions.jsonl"
+    ],
+    "scope": "Current App only / current pair only; no collection, subprocess, network, training, or writes to history."
+  },
+  "independent_replay": {
+    "status": "PASSED",
+    "independent_condition_checks": 210,
+    "additional_app_only_replay_calls": 126,
+    "exact_saved_prediction_equality": true,
+    "new_acquisitions": 0,
+    "training_calls": 0,
+    "network_process_and_output_write_guard": "ENFORCED",
+    "scope": "Replayed saved App raw only; separate calls do not enlarge 42-position denominator."
+  },
+  "saved_only_summary": {
+    "status": "PASSED",
+    "saved_summary_files_equal": 4,
+    "raw_reads": 0,
+    "model_calls": 0,
+    "condition_calls": 0,
+    "collection_calls": 0,
+    "training_calls": 0,
+    "process_or_network_calls": 0,
+    "forbidden_events": []
+  }
+}

@@ -1,0 +1,23 @@
+| 场景 | 阶段（每项2位置） | C1 | C2 | C3 | D1 | D2 | App折01 | App折02 | App折03 |
+|---|---|---|---|---|---|---|---|---|---|
+| L_SYS_LANG | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_SYS_LANG | change | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_SYS_LANG | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_SYS_TZ | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_SYS_TZ | change | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_SYS_TZ | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_BROWSER_LANG | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| L_BROWSER_LANG | change | 2F | 2T | 2T | 2T | 2F | 2F | 2F | 2F |
+| L_BROWSER_LANG | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_APP_LANG | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_APP_LANG | change | 2F | 2T | 2T | 2T | 2F | 2F | 2F | 2F |
+| A_APP_LANG | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_APP_TZ | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_APP_TZ | change | 2T | 2F | 2F | 2T | 2F | 2T | 2T | 2T |
+| A_APP_TZ | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_BROWSER_LANG | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_BROWSER_LANG | change | 2F | 2T | 2T | 2T | 2F | 2F | 2F | 2F |
+| A_BROWSER_LANG | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_BROWSER_TZ | pre | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_BROWSER_TZ | change | 2T | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
+| A_BROWSER_TZ | post | 2F | 2F | 2F | 2T | 2F | 2F | 2F | 2F |
