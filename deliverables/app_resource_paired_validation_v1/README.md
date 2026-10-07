@@ -1,5 +1,7 @@
 # App资源／内存真实配对补证
 
+> **2026-10-07后续审核授权**：用户已要求提交推送必要私有数据。正式formal01的plan、captures、private_command_events及三份raw/provenance档案按原路径纳入Git；资源别名映射随联合选择交付。目标仓库为public。详见[审核范围](../app_resource_constrained_extension_v1/REMOTE_REVIEW.md)与[16文件清单](../app_resource_constrained_extension_v1/REVIEW_EVIDENCE.json)。下文“未授权公开／不自动提交”保留为原采集阶段的授权边界，已由本次限定授权更新；其余私有文件仍忽略。
+
 固定范围见 `PLAN.json`、`SETTINGS.json`、`FIELD_SEMANTICS.md`；结果见 `REPORT.md`。正式54位置，额外冒烟最多6位置，0模型拟合、0规则选择。保持原App模型、Browser成果和旧raw不变。
 
 新raw、票据、完整操作日志、配对关联在本目录被Git忽略的 `private_runs/`。结果使用RP001–RP054分析别名；同阶段绑定在本地原始provenance核验。新raw未获公开授权。源码和结果均不自动提交／推送。

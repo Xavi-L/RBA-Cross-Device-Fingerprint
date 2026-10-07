@@ -1,0 +1,133 @@
+{
+  "time": "2026-10-07T04:06:18.562873+00:00",
+  "source_head": "1f05abe93fa76b74161d1653497d52d919d9f484",
+  "dependencies": {
+    "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-01__RETENTION/model.json": "bda6a1d86e864296320df57a261238e9c4c87d22d81ee2233ed3943a84b4133b",
+    "deliverables/timezone_relation_validation_v1/folds/WEBGL1-LOEO-v1-01/encoder.json": "b176be2b5ea7e8c938fe088836a36751573675b6431c8dd70c6961622dd1a07f",
+    "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py": "b0a214d41973f925a121a7fdbc21822b29cd6105891502de87785f60f5841814",
+    "deliverables/cross_endpoint_constrained_extension_v1/results/paired244-devext-c2e38381be26f0a91709871b.json": "1c4c5a0d5f720955f2caf8148588ce4f08af13f9e2a03c3b0381fb62c309e37c",
+    "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-02__RETENTION/model.json": "76329e8b7b7455ededd765879f815bb90589969e4128c6a8efa2b6eb055cc69f",
+    "deliverables/timezone_relation_validation_v1/folds/WEBGL1-LOEO-v1-02/encoder.json": "2dc5693a00744289b4f086357dc20e51df15e2cc57e409b2c2f0a2fcd72b23d7",
+    "deliverables/cross_endpoint_constrained_extension_v1/results/paired244-devext-9688bfa5bc943c8095f94b46.json": "31fec0eadf7bd86261182035e897d654d0929238e3b251e66dbd8dea1a7145f3",
+    "deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-03__RETENTION/model.json": "7031039d5cff899ed16eaf8da4c8a270324e2bc6d1b7b0f42c70ab0dff85117d",
+    "deliverables/timezone_relation_validation_v1/folds/WEBGL1-LOEO-v1-03/encoder.json": "8543d8f09303bde4144d5ab3b7122d0323d223df314b3cd0bbbd467384f00a7d",
+    "deliverables/cross_endpoint_constrained_extension_v1/results/paired244-devext-09060772f27998b093caaea7.json": "0007d781073197a902101cc4a57a1ade3e2b1f0d6077ec873342a97848a9fd0a",
+    "deliverables/app_resource_paired_validation_v1/conditions.py": "521cb017d4277802680596126266cd14a9f7bd32a7b7c6cecd3d77144fa5dd3a",
+    "hybridguard_agent/research/mtc_resource_relations.py": "1871263f122d26e35fa2e64badb22cbe7f71a7ceea9ceea185e329dcc5a2123a"
+  },
+  "settings": {
+    "mode": "DEVELOPMENT_RESOURCE_EXTENSION_SELECTION",
+    "candidate_order": [
+      "M",
+      "W",
+      "B"
+    ],
+    "candidates": {
+      "M": "R_NATIVE_BROWSER_MEMORY",
+      "W": "R_WEB_MEMORY_DIFFERENCE",
+      "B": "D_BROWSER_MEMORY8"
+    },
+    "sets": [
+      {
+        "id": "S0",
+        "extensions": []
+      },
+      {
+        "id": "M",
+        "extensions": [
+          "M"
+        ]
+      },
+      {
+        "id": "W",
+        "extensions": [
+          "W"
+        ]
+      },
+      {
+        "id": "B",
+        "extensions": [
+          "B"
+        ]
+      },
+      {
+        "id": "MW",
+        "extensions": [
+          "M",
+          "W"
+        ]
+      },
+      {
+        "id": "MB",
+        "extensions": [
+          "M",
+          "B"
+        ]
+      },
+      {
+        "id": "WB",
+        "extensions": [
+          "W",
+          "B"
+        ]
+      },
+      {
+        "id": "MWB",
+        "extensions": [
+          "M",
+          "W",
+          "B"
+        ]
+      }
+    ],
+    "families": [
+      "App_language",
+      "App_timezone",
+      "Browser_language",
+      "Browser_timezone",
+      "App_resource16_48",
+      "App_memory4",
+      "Browser_resource16_48",
+      "Browser_memory4"
+    ],
+    "normal_counts": {
+      "mtc_discovery": 630,
+      "pilot18": 12,
+      "b2b42": 34,
+      "resource54": 42
+    },
+    "normal_alarm_budgets": {
+      "mtc_discovery": 31,
+      "pilot18": 0,
+      "b2b42": 1,
+      "resource54": 2
+    },
+    "minimum_coverage": "9/10",
+    "minimum_candidate_mtc_coverage": "9/10",
+    "maximum_rules": 8,
+    "maximum_complexity": 16,
+    "new_single_literal_complexity": 2,
+    "ordering": [
+      "all_constraints",
+      "max_eight_family_macro",
+      "min_added_conditions",
+      "fixed_set_order"
+    ],
+    "selection_positions": 744,
+    "historical_evaluation_positions": 261,
+    "collection": 0,
+    "app_fit": 0,
+    "tree_fit": 0,
+    "encoder_fit": 0
+  },
+  "implementation": {
+    "run.py": "9f1089530d5b0f226afbad9219ef720de5c6bac935bac4fe03ed44573efedb53",
+    "test_extension.py": "a9f9c9bb7c3f76421b69635fc8b8fa5a40da8b6ce5b7dfd0e253a88a7051e86d",
+    "summarize.py": "67ef4a50f7b3aebb8691106ca6f01fcde7c415634880e01fa1a5ca60911f00f4",
+    "rx_inference.py": "b82d19becaca0bc1acee148932b629dade8f5bc23931fa321afad56bfefa87da",
+    "rx_prepare.py": "532687c6c363968492255918f73fc13ca5740a217bf083f8cfd50881a58f1268",
+    "rx_common.py": "b9b9844bf18a0e60dbebd4f89aca63c546cc3e05d0cde27805eff5269f54f58f",
+    "rx_selector.py": "85fa430a9b5a8f55d54318882e21909ef1e511a7f0241589c7ddfc64cd21f039",
+    "rx_sources.py": "ea1379cd47f72a26255e3d4c21519804b5159176d6ef187cdca470631aed4f8d"
+  }
+}
