@@ -1,13 +1,45 @@
 """Render Chinese review tables from saved outputs only."""
 from rx_common import *
+DISPLAY_SETS = ('S0','M','B','W')
+def saved_context(out):
+    """Display aggregation only; member identity comes from the separate member table."""
+    members=rows(out/'members.jsonl');models=read(out/'models.json');mi=index(members)
+    predictions=rows(out/'combinations.jsonl')
+    pi=index(predictions,lambda r:(r['sample_id'],r['base_model_id'],r['set_id']))
+    require(len(mi)==1005 and len(models)==3,'DISPLAY_MEMBER_MODEL_COUNTS')
+    require(set(pi)=={(sid,m['base_model_id'],st) for sid in mi for m in models for st,_ in SETS},'DISPLAY_EXACT_CARTESIAN')
+    for r in predictions:
+        require(all(r[k]==mi[r['sample_id']][k] for k in ('cohort','role','identity')),'DISPLAY_METADATA_MISMATCH')
+    return members,models,pi
+def normal_rows(members,models,predictions,cohorts):
+    result=[]
+    for model in models:
+        for sid in DISPLAY_SETS:
+            for co in cohorts:
+                selected=[m for m in members if m['cohort']==co and m['identity']=='NORMAL']
+                c=counts(predictions[m['sample_id'],model['base_model_id'],sid]['state'] for m in selected)
+                result.append(dict(fold=model['fold'],base_model_id=model['base_model_id'],set_id=sid,cohort=co,
+                    **c,coverage=f"{c['defined']}/{c['n']}",coverage_percent=100*c['defined']/c['n'] if c['n'] else None))
+    return result
+def state_differences(members,predictions,first,second,set_id):
+    return [m['sample_id'] for m in members if predictions[m['sample_id'],first,set_id]['state']!=predictions[m['sample_id'],second,set_id]['state']]
 def render(out=HERE/'results'):
     summary=read(out/'summary/SUMMARY.json');checks=read(out/'candidate_checks.json');models=read(out/'models.json')
     unknown=read(out/'summary/unknown_overlap.json');details=read(out/'summary/member_deltas.json')
+    members,models,states=saved_context(out)
+    historical=normal_rows(members,models,states,('mtc_development','mtc_reserved_validation'))
+    discovery=normal_rows(members,models,states,('mtc_discovery',))
+    differences=[dict(first=a['fold'],second=b['fold'],set_id=st,ids=state_differences(members,states,a['base_model_id'],b['base_model_id'],st))
+        for i,a in enumerate(models) for b in models[i+1:] for st in DISPLAY_SETS]
+    for r in historical:
+        saved=next(d['normal'] for d in details if d['fold']==r['fold'] and d['set_id']==r['set_id'] and d['group']==r['cohort'])
+        require(all(saved[k]==r[k] for k in ('n','T','F','U','FAILED','defined')),'SAVED_SUMMARY_DISAGREES_WITH_MEMBERS')
     folds={m['base_model_id']:m['fold'][-2:] for m in models}
     state=lambda c:'/'.join(str(c[k]) for k in ('T','F','U','FAILED'))
     reason={'NORMAL_ALARM_BUDGET:mtc_discovery':'MTC正常报警超预算','MODEL_DEFINED_COVERAGE:mtc_discovery':'联合明确输出不足90%',
             'CANDIDATE_COVERAGE:W':'W候选覆盖不足90%','RULE_BUDGET':'规则超8','COMPLEXITY_BUDGET':'复杂度超16'}
     lines=['# 冻结App+C1上的资源增量选择与同成员比较','',
+      '> 2026-10-07展示修正：历史MTC表改按三个模型ID分别汇总，修正配置03被配置01代表的错误。以下“本轮”执行账本仍指原资源接入实验；此次仅重汇总展示和定向缺测说明，0选择、0预测、0拟合、0采集、0重新计时。见[修正记录](../app_browser_evidence_consolidation_v1/REPORT_CORRECTION.md)。','',
       '**结论：三个配置均仅空增量S0可行，保留原B2-C基础方法。在当前冻结基线和约束下，没有可接入的资源条件。**',
       'M与B的主要限制是联合未知覆盖；W还超过正常报警预算且候选自身覆盖不足。空增量保持原App+C1推理语义，不是EMPTY_MODEL，也不是将训练失败伪装成达标。三份基础模型本身通过新增四组正常要求。','',
       '实际完成3个有限集合选择任务、24个集合检查。这属于学习；本轮0新增采集、0 App训练、0树拟合、0数值编码器拟合。没有重跑App四项消融，没有修改旧模型、C1、六资源条件、原目标4/16、二次幂上界或正常反例。','',
@@ -23,7 +55,12 @@ def render(out=HERE/'results'):
       '|---|---|---:|---:|---|---:|---|---|---|---|---|']
     for c in checks:
         ns=c['normals'];lines.append('|'+ '|'.join([folds[c['base_model_id']],c['set_id'],f"{c['macro']['value']:.1%}",str(c['micro']['T']),state(ns['mtc_discovery']),str(ns['mtc_discovery']['defined']),state(ns['pilot18']),state(ns['b2b42']),state(ns['resource54']),f"{c['rule_count']}/{c['complexity']}",'通过' if c['feasible'] else '；'.join(reason.get(r,r) for r in c['reasons'])])+'|')
-    lines+=['','基础在MTC上为6T/561F/63U，明确567/630，恰好90%。M、B单独候选均589/630明确（93.49%），加入基础却都变成560/630（88.89%），因此即使有剩余容量也不满足要求。W只有560/630明确（88.89%），联合正常报警46条超过31。第三配置可容纳两个新增条件，但覆盖限制仍阻止接入。','',
+    lines+=['']
+    for model in models:
+        base=next(r for r in discovery if r['fold']==model['fold'] and r['set_id']=='S0')
+        w=next(r for r in discovery if r['fold']==model['fold'] and r['set_id']=='W')
+        lines.append(f"配置{model['fold'][-2:]}：基础MTC discovery为{state(base)}（T/F/U/FAILED），明确{base['coverage']}（{base['coverage_percent']:.2f}%）；W联合正常报警{w['T']}/{w['n']}，预算31。")
+    lines+=['M、B单独候选均589/630明确（93.49%），加入每个基础却都变成560/630（88.89%），因此即使有剩余容量也不满足要求。W只有560/630明确（88.89%），三个配置均超过正常报警预算。第三配置可容纳两个新增条件，但覆盖限制仍阻止接入。','',
       '## 3. 主表二：固定组合与真实选择的八家族结果','',
       '各格为T/N；这些修改位置本轮均无U/FAILED。M/B/W为**未通过约束的诊断组合**，不能作为已接入方法报告。真实选择S0的八家族宏平均50%，微平均13/26；这些成绩使用了三批小实验进行选择，不是新盲测。','',
       '|配置|组合|接入状态|App语言|App时区|Browser语言|Browser时区|App资源16/48|App内存4|Browser资源16/48|Browser内存4|微平均|宏平均|',
@@ -46,11 +83,12 @@ def render(out=HERE/'results'):
       '## 5. 未知叠加与正常反例','',
       'MTC discovery：App单端51U，C1为20U，两者交集8，基础联合63U。资源M/B各41U，与基础63U交集34，联合70U；新增7条恰为基础F→U。W为70U并包含基础全部63U。必须使用这些逐ID集合，不能把单条件93.49%覆盖直接当联合覆盖。','',
       '7条新增训练U在原资源条件中均为Browser device_memory的QUALITY_UNAVAILABLE；原始输入复核仍与保存状态一致，没有把它们默认补F。每条ID以及六批次的交并集保存在[unknown_overlap.json](results/summary/unknown_overlap.json)。','',
-      '|集合|MTC development144 T/F/U/FAILED|MTC reserved117 T/F/U/FAILED|', '|---|---|---|']
-    for sid in ('S0','M','B','W'):
-        cs=[next(r for r in details if r['fold']==models[0]['fold'] and r['set_id']==sid and r['group']==co)['normal'] for co in ('mtc_development','mtc_reserved_validation')]
-        lines.append('|'+sid+'|'+state(cs[0])+'|'+state(cs[1])+'|')
-    lines+=['','上表三个配置逐条状态相同；完整分别结果保留。144/117是在选择冻结后评价的历史接触正常材料，不能提供未见攻击检出率，也不称独立盲测。','',
+      '|配置|集合|历史正常集合|N|T|F|U|FAILED|明确输出|明确覆盖|', '|---|---|---|---:|---:|---:|---:|---:|---|---:|']
+    for r in historical:
+        lines.append('|'+ '|'.join([r['fold'][-2:],r['set_id'],r['cohort'].removeprefix('mtc_'),*[str(r[k]) for k in ('n','T','F','U','FAILED')],r['coverage'],f"{r['coverage_percent']:.2f}%"] )+'|')
+    lines+=['','上表直接从combinations.jsonl与独立members.jsonl按模型ID汇总，三个配置分别展示。逐成员状态比较结果（全1,005位置、各集合分别比较）：']
+    for r in differences:lines.append(f"- 配置{r['first'][-2:]}对{r['second'][-2:]}，{r['set_id']}：{len(r['ids'])}条状态不同。")
+    lines+=['','相同新增变化数量不表示最终T/F/U相同；配置03不能用01代表。144/117是在原选择冻结后评价的历史接触正常材料，不能提供未见攻击检出率，也不称独立盲测。','',
       'M的3条正常反例保持原组：']
     for r in summary['counterexamples']:lines.append(f"- `{r['sample_id']}`：{r['cohort']}，{r['identity']}，{r['role']}。")
     lines+=['','其Native约3.63–3.67GiB、二次幂上界4、Browser内存8。两条discovery增加正常报警，reserved的一条仍留在评价组；不改变为U、不移入训练，也不因总占比小而把Native称为硬件真值。W在正常MTC有62次偏离，训练40、历史22；这些不能当作攻击标签。','',
@@ -59,7 +97,7 @@ def render(out=HERE/'results'):
       '选择阶段复用2853个旧B2-C输出、162个资源App输出、2835个资源候选状态；新执行54次C1、60次六条件接口＝360条件输出，以及162次基础OR组合。三次选择检查24集合，保存24,120个模型/集合/成员状态。','',
       '冻结后当前输入复核覆盖全部1,005成员：3015次原App预测、1005次C1、1005次六条件接口＝6030条件输出，全部与保存状态一致；同时独立复算24,120个OR与24组约束/目标/优胜者，无再次选择。合计本轮研究预测/核验为3015 App预测、1059 C1、6390资源条件输出；候选集合学习单列3任务/24检查。历史972次App预测、18次MTC修复未重做。','',
       '14项针对性测试通过，包括四组预算、逐ID未知并集、端点隔离、错配、FAILED优先、空扩展、容量、平局/无可行集合、实际261评价值扰动不影响选择、当前入口一致性、仅重汇总禁用推理/选择/拟合/联网并逐文件相同。测试的合成选择与扰动回归调用在TESTS.json单列，不算新的科研模型或样本。','',
-      '**唯一最小下一步：先对这7条新增正常U做一份基于现有原始证据的字段可用性说明，明确当前App+C1与Browser内存联合依赖的适用边界。** 本轮不放宽90%门槛、不增加容量、不采新设备、不启动同方法联合消融；本次可接入性问题已有负面答案，保留已有基础方法。','',
+      '**2026-10-07后续说明已完成**：新增7条discovery与2条reserved正常U已按原P2→P1→raw定向核对。均为Browser内存原值0、原状态observed、P1质量ambiguous_sentinel，未发现可信有效正值被适配漏读；旧证据不能恢复有效Browser测量，不再安排同批缺测反复回放。具体机制仍无足够证据，不能归因于HTTP或某个版本。见[统一证据与缺测说明](../app_browser_evidence_consolidation_v1/REPORT.md)。原接入结论保持S0，报告配置修正不改变模型或逐条状态。','',
       'App主体消融、语言/时区局部跨端证据和资源配对继续有效。UA、屏幕、WebGL的双端修改/正常代价与同方法比较仍不足，限制“通用跨端覆盖”“多设备/未见工具泛化”“完整244字段公平比较”等尚无支持的主张；不是自动要求穷举所有剩余字段。W1完整定稿未启动，也不宣称项目完整结束。用户后续已明确授权提交推送本轮改动和必要私有数据。REVIEW_EVIDENCE.json列出纳入Git的16个必要原始证据文件；其他私有产物继续忽略。目标仓库为public，纳入文件可公开访问。原执行快照中未提交／未推送状态是此前实验停止点的历史记录。','']
     (HERE/'REPORT.md').write_text('\n'.join(lines))
 if __name__=='__main__':render()
