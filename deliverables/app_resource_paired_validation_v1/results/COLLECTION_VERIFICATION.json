@@ -1,0 +1,2803 @@
+{
+  "fit_calls": 0,
+  "prediction_calls": 0,
+  "condition_calls": 0,
+  "batches": {
+    "smoke01": {
+      "planned": 6,
+      "recorded_attempts": 6,
+      "states": {
+        "FAILED": 4,
+        "COMPLETED": 2
+      },
+      "unique_capture_ids": 6,
+      "actual_archives": {
+        "app_raw": 3,
+        "browser_raw": 2,
+        "completed_pair_provenance": 2
+      },
+      "endpoint_bindings": {
+        "app": 3,
+        "browser": 2,
+        "pair": 2
+      },
+      "effects": [
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "UNCONFIRMED",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": false,
+            "endpoint_available": {
+              "app": false,
+              "browser": false
+            },
+            "pair_valid": false,
+            "observer_matches_raw": {
+              "app": false,
+              "browser": false
+            },
+            "control_timing": {
+              "preparation_begin": null,
+              "target_command_at": null,
+              "restore_command_at": null,
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": false,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": false,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": false,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": false,
+              "browser": false
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "UNSUPPORTED",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": false,
+                "original_readable": false,
+                "before": null,
+                "current": null,
+                "target": 16,
+                "changed": false,
+                "target_reached": false,
+                "direction": "unknown",
+                "restored": false
+              },
+              "hardwareConcurrency": {
+                "executed": false,
+                "original_readable": false,
+                "before": null,
+                "current": null,
+                "target": 48,
+                "changed": false,
+                "target_reached": false,
+                "direction": "unknown",
+                "restored": false
+              }
+            },
+            "confounded": true,
+            "reasons": [],
+            "runtime_restored": false,
+            "endpoint_available": {
+              "app": false,
+              "browser": false
+            },
+            "pair_valid": false,
+            "observer_matches_raw": {
+              "app": false,
+              "browser": false
+            },
+            "control_timing": {
+              "preparation_begin": null,
+              "target_command_at": null,
+              "restore_command_at": null,
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": false,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": false,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": false,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [
+              "POST_DIFFERS_OR_PRE_UNAVAILABLE"
+            ],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:46:27.153Z",
+              "target_command_at": "2026-10-06T17:46:27.153Z",
+              "restore_command_at": "2026-10-06T17:46:35.879Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": false,
+            "non_target_checks": {
+              "other_endpoint_resources": false,
+              "native_memory": false,
+              "triplet_major_raw_fields": false,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:46:47.501Z",
+              "target_command_at": "2026-10-06T17:46:53.689Z",
+              "restore_command_at": "2026-10-06T17:46:55.249Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": false,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": false,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "UNSUPPORTED",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": false,
+                "original_readable": false,
+                "before": null,
+                "current": null,
+                "target": 16,
+                "changed": false,
+                "target_reached": false,
+                "direction": "unknown",
+                "restored": false
+              },
+              "hardwareConcurrency": {
+                "executed": false,
+                "original_readable": false,
+                "before": null,
+                "current": null,
+                "target": 48,
+                "changed": false,
+                "target_reached": false,
+                "direction": "unknown",
+                "restored": false
+              }
+            },
+            "confounded": true,
+            "reasons": [],
+            "runtime_restored": false,
+            "endpoint_available": {
+              "app": true,
+              "browser": false
+            },
+            "pair_valid": false,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": false
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:47:04.617Z",
+              "target_command_at": null,
+              "restore_command_at": null,
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": false,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": false,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": false,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "UNCONFIRMED",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [
+              "POST_DIFFERS_OR_PRE_UNAVAILABLE"
+            ],
+            "runtime_restored": false,
+            "endpoint_available": {
+              "app": false,
+              "browser": false
+            },
+            "pair_valid": false,
+            "observer_matches_raw": {
+              "app": false,
+              "browser": false
+            },
+            "control_timing": {
+              "preparation_begin": null,
+              "target_command_at": null,
+              "restore_command_at": null,
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": false,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": false,
+            "non_target_checks": {
+              "other_endpoint_resources": false,
+              "native_memory": false,
+              "triplet_major_raw_fields": false,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": false,
+              "browser": false
+            }
+          }
+        }
+      ],
+      "backend_lifecycle": {
+        "schema_version": "rba-browser-pilot-backend-lifecycle-v1",
+        "elapsed_seconds": 322.497,
+        "started_event_count": 1,
+        "closed_event_count": 1,
+        "closed_cleanly": true,
+        "active_marker_removed": true,
+        "allowed_browser_origin": "http://127.0.0.1:8001",
+        "foreign_origin_rejected_before_handler": true
+      }
+    },
+    "formal01": {
+      "planned": 54,
+      "recorded_attempts": 54,
+      "states": {
+        "COMPLETED": 54
+      },
+      "unique_capture_ids": 54,
+      "actual_archives": {
+        "app_raw": 54,
+        "browser_raw": 54,
+        "completed_pair_provenance": 54
+      },
+      "endpoint_bindings": {
+        "app": 54,
+        "browser": 54,
+        "pair": 54
+      },
+      "effects": [
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:51:23.468Z",
+              "target_command_at": "2026-10-06T17:51:23.468Z",
+              "restore_command_at": "2026-10-06T17:51:31.306Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 16.0,
+                "target": 16,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              },
+              "hardwareConcurrency": {
+                "executed": true,
+                "original_readable": true,
+                "before": 1,
+                "current": 48,
+                "target": 48,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:51:41.604Z",
+              "target_command_at": "2026-10-06T17:51:41.604Z",
+              "restore_command_at": "2026-10-06T17:51:49.026Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "both_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:52:01.111Z",
+              "target_command_at": "2026-10-06T17:52:01.111Z",
+              "restore_command_at": "2026-10-06T17:52:08.656Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:52:17.615Z",
+              "target_command_at": "2026-10-06T17:52:17.615Z",
+              "restore_command_at": "2026-10-06T17:52:24.845Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 4.0,
+                "target": 4,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:52:35.888Z",
+              "target_command_at": "2026-10-06T17:52:35.888Z",
+              "restore_command_at": "2026-10-06T17:52:43.896Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "memory_only_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:52:53.305Z",
+              "target_command_at": "2026-10-06T17:52:53.305Z",
+              "restore_command_at": "2026-10-06T17:53:00.498Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:53:12.474Z",
+              "target_command_at": "2026-10-06T17:53:18.321Z",
+              "restore_command_at": "2026-10-06T17:53:19.977Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 16,
+                "target": 16,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              },
+              "hardwareConcurrency": {
+                "executed": true,
+                "original_readable": true,
+                "before": 1,
+                "current": 48,
+                "target": 48,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:53:30.156Z",
+              "target_command_at": "2026-10-06T17:53:35.722Z",
+              "restore_command_at": "2026-10-06T17:53:37.319Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "both_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:53:46.468Z",
+              "target_command_at": "2026-10-06T17:53:52.448Z",
+              "restore_command_at": "2026-10-06T17:53:53.834Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:54:03.861Z",
+              "target_command_at": "2026-10-06T17:54:11.748Z",
+              "restore_command_at": "2026-10-06T17:54:12.568Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 4,
+                "target": 4,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:54:21.499Z",
+              "target_command_at": "2026-10-06T17:54:27.080Z",
+              "restore_command_at": "2026-10-06T17:54:28.737Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "memory_only_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:54:39.051Z",
+              "target_command_at": "2026-10-06T17:54:44.836Z",
+              "restore_command_at": "2026-10-06T17:54:46.060Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:54:56.867Z",
+              "target_command_at": "2026-10-06T17:54:56.867Z",
+              "restore_command_at": "2026-10-06T17:55:04.106Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:55:13.660Z",
+              "target_command_at": "2026-10-06T17:55:13.660Z",
+              "restore_command_at": "2026-10-06T17:55:21.404Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:55:34.171Z",
+              "target_command_at": "2026-10-06T17:55:34.171Z",
+              "restore_command_at": "2026-10-06T17:55:44.645Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 1,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:55:55.654Z",
+              "target_command_at": "2026-10-06T17:56:02.122Z",
+              "restore_command_at": "2026-10-06T17:56:03.442Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 1,
+          "phase": "change",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:56:15.071Z",
+              "target_command_at": "2026-10-06T17:56:21.156Z",
+              "restore_command_at": "2026-10-06T17:56:22.722Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 1,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:56:32.824Z",
+              "target_command_at": "2026-10-06T17:56:38.755Z",
+              "restore_command_at": "2026-10-06T17:56:40.455Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 2,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:56:51.922Z",
+              "target_command_at": "2026-10-06T17:56:51.922Z",
+              "restore_command_at": "2026-10-06T17:56:59.785Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 2,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 16.0,
+                "target": 16,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              },
+              "hardwareConcurrency": {
+                "executed": true,
+                "original_readable": true,
+                "before": 1,
+                "current": 48,
+                "target": 48,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:57:09.001Z",
+              "target_command_at": "2026-10-06T17:57:09.001Z",
+              "restore_command_at": "2026-10-06T17:57:16.711Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "both_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 2,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:57:27.992Z",
+              "target_command_at": "2026-10-06T17:57:27.992Z",
+              "restore_command_at": "2026-10-06T17:57:35.822Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 2,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:57:45.167Z",
+              "target_command_at": "2026-10-06T17:57:45.167Z",
+              "restore_command_at": "2026-10-06T17:57:52.594Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 2,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 4.0,
+                "target": 4,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:58:03.638Z",
+              "target_command_at": "2026-10-06T17:58:03.638Z",
+              "restore_command_at": "2026-10-06T17:58:11.007Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "memory_only_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 2,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:58:21.653Z",
+              "target_command_at": "2026-10-06T17:58:21.653Z",
+              "restore_command_at": "2026-10-06T17:58:30.082Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 2,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:58:40.678Z",
+              "target_command_at": "2026-10-06T17:58:46.601Z",
+              "restore_command_at": "2026-10-06T17:58:48.013Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 2,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 16,
+                "target": 16,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              },
+              "hardwareConcurrency": {
+                "executed": true,
+                "original_readable": true,
+                "before": 1,
+                "current": 48,
+                "target": 48,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:58:57.728Z",
+              "target_command_at": "2026-10-06T17:59:04.841Z",
+              "restore_command_at": "2026-10-06T17:59:06.250Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "both_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 2,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:59:15.456Z",
+              "target_command_at": "2026-10-06T17:59:21.931Z",
+              "restore_command_at": "2026-10-06T17:59:23.273Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 2,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:59:34.487Z",
+              "target_command_at": "2026-10-06T17:59:40.827Z",
+              "restore_command_at": "2026-10-06T17:59:42.327Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 2,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 4,
+                "target": 4,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T17:59:53.385Z",
+              "target_command_at": "2026-10-06T17:59:59.841Z",
+              "restore_command_at": "2026-10-06T18:00:01.616Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "memory_only_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 2,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:00:11.696Z",
+              "target_command_at": "2026-10-06T18:00:18.658Z",
+              "restore_command_at": "2026-10-06T18:00:20.077Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 2,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:00:31.222Z",
+              "target_command_at": "2026-10-06T18:00:31.222Z",
+              "restore_command_at": "2026-10-06T18:00:38.916Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 2,
+          "phase": "change",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:00:49.558Z",
+              "target_command_at": "2026-10-06T18:00:49.558Z",
+              "restore_command_at": "2026-10-06T18:00:56.749Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 2,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:01:08.681Z",
+              "target_command_at": "2026-10-06T18:01:08.681Z",
+              "restore_command_at": "2026-10-06T18:01:17.121Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 2,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:01:26.730Z",
+              "target_command_at": "2026-10-06T18:01:32.627Z",
+              "restore_command_at": "2026-10-06T18:01:34.235Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 2,
+          "phase": "change",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:01:44.796Z",
+              "target_command_at": "2026-10-06T18:01:51.511Z",
+              "restore_command_at": "2026-10-06T18:01:53.020Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 2,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:02:04.248Z",
+              "target_command_at": "2026-10-06T18:02:10.581Z",
+              "restore_command_at": "2026-10-06T18:02:12.210Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 3,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:02:22.685Z",
+              "target_command_at": "2026-10-06T18:02:22.685Z",
+              "restore_command_at": "2026-10-06T18:02:29.737Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 3,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 16.0,
+                "target": 16,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              },
+              "hardwareConcurrency": {
+                "executed": true,
+                "original_readable": true,
+                "before": 1,
+                "current": 48,
+                "target": 48,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:02:38.886Z",
+              "target_command_at": "2026-10-06T18:02:38.886Z",
+              "restore_command_at": "2026-10-06T18:02:46.990Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "both_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_RESOURCE",
+          "round": 3,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:02:58.459Z",
+              "target_command_at": "2026-10-06T18:02:58.459Z",
+              "restore_command_at": "2026-10-06T18:03:06.287Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 3,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:03:16.368Z",
+              "target_command_at": "2026-10-06T18:03:16.368Z",
+              "restore_command_at": "2026-10-06T18:03:24.561Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 3,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "app",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 4.0,
+                "target": 4,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:03:33.358Z",
+              "target_command_at": "2026-10-06T18:03:33.358Z",
+              "restore_command_at": "2026-10-06T18:03:41.432Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "memory_only_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_APP_MEMORY4",
+          "round": 3,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:03:50.486Z",
+              "target_command_at": "2026-10-06T18:03:50.486Z",
+              "restore_command_at": "2026-10-06T18:03:58.610Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 3,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:04:07.945Z",
+              "target_command_at": "2026-10-06T18:04:14.048Z",
+              "restore_command_at": "2026-10-06T18:04:15.818Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 3,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 16,
+                "target": 16,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              },
+              "hardwareConcurrency": {
+                "executed": true,
+                "original_readable": true,
+                "before": 1,
+                "current": 48,
+                "target": 48,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:04:26.553Z",
+              "target_command_at": "2026-10-06T18:04:32.802Z",
+              "restore_command_at": "2026-10-06T18:04:34.406Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "both_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_RESOURCE",
+          "round": 3,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:04:43.542Z",
+              "target_command_at": "2026-10-06T18:04:50.134Z",
+              "restore_command_at": "2026-10-06T18:04:51.643Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 3,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:05:02.190Z",
+              "target_command_at": "2026-10-06T18:05:08.303Z",
+              "restore_command_at": "2026-10-06T18:05:09.860Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 3,
+          "phase": "change",
+          "effect": {
+            "identity": "CONTROLLED_INTERVENTION",
+            "effective": true,
+            "endpoint": "browser",
+            "fields": {
+              "deviceMemory": {
+                "executed": true,
+                "original_readable": true,
+                "before": 2,
+                "current": 4,
+                "target": 4,
+                "changed": true,
+                "target_reached": true,
+                "direction": "up",
+                "restored": true
+              }
+            },
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:05:18.429Z",
+              "target_command_at": "2026-10-06T18:05:24.396Z",
+              "restore_command_at": "2026-10-06T18:05:26.017Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "memory_only_changed",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            }
+          }
+        },
+        {
+          "scenario": "A_BROWSER_MEMORY4",
+          "round": 3,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:05:35.627Z",
+              "target_command_at": "2026-10-06T18:05:41.554Z",
+              "restore_command_at": "2026-10-06T18:05:43.160Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 3,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:05:54.024Z",
+              "target_command_at": "2026-10-06T18:05:54.024Z",
+              "restore_command_at": "2026-10-06T18:06:02.103Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 3,
+          "phase": "change",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:06:11.570Z",
+              "target_command_at": "2026-10-06T18:06:11.570Z",
+              "restore_command_at": "2026-10-06T18:06:19.426Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_APP_SHAM",
+          "round": 3,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "app",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:06:29.724Z",
+              "target_command_at": "2026-10-06T18:06:29.724Z",
+              "restore_command_at": "2026-10-06T18:06:37.662Z",
+              "basis": "App new-document script registration then actual document navigation"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 3,
+          "phase": "pre",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:06:47.268Z",
+              "target_command_at": "2026-10-06T18:06:53.858Z",
+              "restore_command_at": "2026-10-06T18:06:55.346Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 3,
+          "phase": "change",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:07:04.558Z",
+              "target_command_at": "2026-10-06T18:07:10.399Z",
+              "restore_command_at": "2026-10-06T18:07:11.917Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        },
+        {
+          "scenario": "N_BROWSER_SHAM",
+          "round": 3,
+          "phase": "post",
+          "effect": {
+            "identity": "NORMAL",
+            "effective": false,
+            "endpoint": "browser",
+            "fields": {},
+            "confounded": false,
+            "reasons": [],
+            "runtime_restored": true,
+            "endpoint_available": {
+              "app": true,
+              "browser": true
+            },
+            "pair_valid": true,
+            "observer_matches_raw": {
+              "app": true,
+              "browser": true
+            },
+            "control_timing": {
+              "preparation_begin": "2026-10-06T18:07:21.319Z",
+              "target_command_at": "2026-10-06T18:07:27.307Z",
+              "restore_command_at": "2026-10-06T18:07:28.811Z",
+              "basis": "browser runtime command"
+            },
+            "held_through_receipts": true,
+            "subtype": "no_observable_change",
+            "resource_returned_to_pre": true,
+            "non_target_checks": {
+              "other_endpoint_resources": true,
+              "native_memory": true,
+              "triplet_major_raw_fields": true,
+              "same_page_major_fields": true
+            },
+            "endpoint_normal_evidence": {
+              "app": true,
+              "browser": true
+            }
+          }
+        }
+      ],
+      "backend_lifecycle": {
+        "schema_version": "rba-browser-pilot-backend-lifecycle-v1",
+        "elapsed_seconds": 989.154,
+        "started_event_count": 1,
+        "closed_event_count": 1,
+        "closed_cleanly": true,
+        "active_marker_removed": true,
+        "allowed_browser_origin": "http://127.0.0.1:8001",
+        "foreign_origin_rejected_before_handler": true
+      }
+    }
+  },
+  "browser_probe_identity": {
+    "served_counts": {
+      "browser-probe.html": 58,
+      "browser-probe-bootstrap.js": 57,
+      "probe/canonical_web_probe.js": 57,
+      "probe/manifest.json": 56
+    },
+    "mismatches": [],
+    "comparison_scope": "actual served files and adapter; no entire-archive scan"
+  },
+  "apk_probe_identity_unchanged": true
+}

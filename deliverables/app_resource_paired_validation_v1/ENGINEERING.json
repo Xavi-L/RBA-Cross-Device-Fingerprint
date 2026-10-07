@@ -1,0 +1,39 @@
+{
+  "recorded_at": "2026-10-06T17:50:08.234686+00:00",
+  "smoke_planned_positions": 6,
+  "smoke_attempted_positions": 6,
+  "extra_smoke_runs": 0,
+  "smoke_completed_pairs": 2,
+  "smoke_app_records": 3,
+  "smoke_browser_records": 2,
+  "smoke_failures": [
+    {
+      "scenario": "A_APP_RESOURCE",
+      "phase": "pre",
+      "reason": "Error: CHROME_STARTUP_TIMEOUT"
+    },
+    {
+      "scenario": "A_APP_RESOURCE",
+      "phase": "change",
+      "reason": "Error: CHROME_STARTUP_TIMEOUT"
+    },
+    {
+      "scenario": "A_BROWSER_RESOURCE",
+      "phase": "change",
+      "reason": "Error: BROWSER_TARGET_TIMEOUT"
+    },
+    {
+      "scenario": "A_BROWSER_RESOURCE",
+      "phase": "post",
+      "reason": "Error: GATE_PENDING"
+    }
+  ],
+  "setup_changes": [
+    "isolated v16 signed APK replacement",
+    "Chrome use without account",
+    "Chrome notifications No thanks"
+  ],
+  "code_repair": "Chrome first-run and notification prompts completed; unconditional gate abort on failure, endpoint process close on failed capture; target wait up to120s for observed startup delay.",
+  "no_rule_target_environment_tuning": true,
+  "smoke_outputs_excluded_from_formal": true
+}

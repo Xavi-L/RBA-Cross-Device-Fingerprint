@@ -1,0 +1,51 @@
+{
+  "frozen_at": "2026-10-06T17:10:06.807242+00:00",
+  "fit_calls": 0,
+  "selection_calls": 0,
+  "targets": {
+    "RESOURCE": {
+      "deviceMemory": 16,
+      "hardwareConcurrency": 48
+    },
+    "MEMORY4": {
+      "deviceMemory": 4
+    }
+  },
+  "conditions": {
+    "R_APP_MEMORY": "original mtc_resource_relations.evaluate: A > U(N), N>=0.25 GiB, original status/quality and same-App binding",
+    "R_NATIVE_BROWSER_MEMORY": "B > U(N), N>=0.25 GiB; current Native and independent Browser with valid pair; no App Web dependency",
+    "R_WEB_MEMORY_DIFFERENCE": "A != B; pure two-Web diagnostic",
+    "D_APP_MEMORY8": "A > 8; App Web only",
+    "D_BROWSER_MEMORY8": "B > 8; Browser only",
+    "D_CPU_DIFFERENCE": "App Web CPU != Browser CPU; diagnostic only"
+  },
+  "domain": "positive finite memory numbers; positive integer CPU; bool excluded; observed/observed_value quality; unavailable U; structural/binding errors FAILED; normal valid deviations remain T",
+  "state_order": [
+    "T",
+    "F",
+    "U",
+    "FAILED"
+  ],
+  "frozen_model_schemes": [
+    "APP_FULL",
+    "A_NO_MEMORY_REL",
+    "A_APP_WEB_ONLY"
+  ],
+  "stage": "RETENTION",
+  "folds": [
+    "WEBGL1-LOEO-v1-01",
+    "WEBGL1-LOEO-v1-02",
+    "WEBGL1-LOEO-v1-03"
+  ],
+  "new_model_positions": 486,
+  "new_condition_positions": 324,
+  "mtc_condition_positions": 5346,
+  "mtc_groups": {
+    "discovery": 630,
+    "development": 144,
+    "reserved_validation": 117
+  },
+  "mtc_history": "development/reserved previously used; not new blind validation",
+  "union_model": "not constructed",
+  "threshold_tuning": false
+}

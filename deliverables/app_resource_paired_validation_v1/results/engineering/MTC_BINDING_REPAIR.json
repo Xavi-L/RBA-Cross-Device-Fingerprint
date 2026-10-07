@@ -1,0 +1,14 @@
+{
+  "first_condition_calls": 5346,
+  "engineering_condition_calls": 18,
+  "actual_total_condition_calls": 5364,
+  "affected_sample_ids": [
+    "mtc-pair-hgpair-v1-587f09196488ea6ad7d39816",
+    "mtc-pair-hgpair-v1-7dfb7f5dc7974a6de55e9637",
+    "mtc-pair-hgpair-v1-faee63e3196d362cea615f64"
+  ],
+  "reason": "App177 generic raw reader rejected duplicate session IDs across different historical uploads. Original P2 members already identify one physical row and payload hash, and the historical paired reader verifies the P1 receipt and pair. Native resource adapter now uses that exact reference like the existing Web diagnostic, rather than an added session-global gate. Duplicate P2 IDs or contradictory references still fail.",
+  "formulas_targets_thresholds_unchanged": true,
+  "fit_calls": 0,
+  "first_outputs_preserved": "mtc_first_attempt_3members.jsonl"
+}
