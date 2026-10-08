@@ -1,0 +1,72 @@
+id,label_en,claim_zh,implementation_status,zone,evidence,box,label,status,display,visible
+observ_app,"App: 177 fields
+Native 84 | Host 26 | App Web 67",App内的系统读取、WebView宿主、App网页是三个观察位置，不是三台设备；177是采集目录规模，非全部可用或全部用于模型。Native/Host是额外观察，不是不可修改的硬件真值。,infrastructure,observation,"[{""path"": ""android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv"", ""locator"": ""CSV layer=android_native_data (84), webview_data (26), web_data (67); other 4 metadata rows excluded""}, {""path"": ""hybridguard_agent/evidence/paired244.py"", ""locator"": ""lines 20-29, 34-42""}]","[8, 188, 117, 19]","App177 · three observation locations
+System Native 84  |  WebView Host 26  |  App Web 67
+Native / Host: additional observations, not ground truth",infrastructure,,
+observ_browser,"Independent browser
+Browser 67",独立浏览器的67项网页观测与App内WebView分离；不是另一台设备，也不能用App Web复制补齐Browser。,infrastructure,observation,"[{""path"": ""browser_probe_site/public/probe/manifest.json"", ""locator"": ""/signal_count""}, {""path"": ""hybridguard_agent/evidence/paired244.py"", ""locator"": ""lines 20-29, 40-42""}, {""path"": ""hybridguard_agent/scripts/build_latest_paired244_snapshot.py"", ""locator"": ""lines 4-7, 616-622""}]","[133, 188, 39, 19]","Independent
+Browser 67",infrastructure,,
+preparation,"Bind saved records
+Versions, units, field states",只按保存的会话、回执、批次与关联依据绑定；检查实际版本、单位、字段状态。来源标识用于关联，不成为检测特征。同阶段关联不证明原子同步。有效App缺Browser可保留App资料，但这不是模型自动回退。,infrastructure,observation,"[{""path"": ""hybridguard_agent/scripts/build_latest_paired244_snapshot.py"", ""locator"": ""load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622""}, {""path"": ""deliverables/timezone_relation_validation_v1/SEMANTICS.md"", ""locator"": ""lines 7-18""}, {""path"": ""hybridguard_agent/evidence/paired244.py"", ""locator"": ""lines 1-6""}]","[8, 165, 164, 16]","Saved session / receipt association → paired244 · same device
+Check actual versions, units and field states; same phase ≠ atomic synchronization
+Association IDs are provenance, not detection features",infrastructure,,
+training,"App-stage development
+Controlled App + normal controls
+MTC training normals (630)",App候选选择使用受控App修改及其正常对照和MTC630正常约束；原App材料按环境留出。App177是输入目录，不是177字段端到端学习。,infrastructure,offline,"[{""path"": ""deliverables/app177_core_ablation_v1/REPORT.md"", ""locator"": ""lines 9-16, 24-34""}, {""path"": ""deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md"", ""locator"": ""lines 3-7, 61-67""}]","[8, 123, 44, 25]","App-stage development
+Controlled changes + normals
+MTC training normals: 630
+Pre / change / post labels",infrastructure,,
+constraints,"Normal behavior & usability
+Alarm, defined output, complexity",已保存选择有正常报警预算、候选/整模明确输出要求、规则数与复杂度限制；阶段间正常组预算各自执行，不把所有正常混成一个约束。参数详见来源，不在图面堆砌。,fixed,offline,"[{""path"": ""deliverables/app177_core_ablation_v1/REPORT.md"", ""locator"": ""lines 28-29""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md"", ""locator"": ""lines 7-11""}, {""path"": ""deliverables/app_resource_constrained_extension_v1/REPORT.md"", ""locator"": ""lines 20-24""}]","[8, 103, 44, 15]","Constraints at each stage:
+alarm / defined output /
+complexity",fixed,,
+app_rules,"Frozen App rules
+Memory + timezone references",当前Full身份是三个B_REL_TZ RETENTION；均包含Native—App Web内存上界和日期感知时区参照。配置01/02为6规则、配置03为5规则；不可将Host几何或Browser关系写为该App模型的已选条件。,accepted,offline,"[{""path"": ""deliverables/timezone_relation_validation_v1/models.json"", ""locator"": ""/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses""}, {""path"": ""deliverables/app177_core_ablation_v1/REPORT.md"", ""locator"": ""lines 26, 31-34""}]","[60, 125, 47, 23]","Compute allowed candidates
+Select App rules:
+memory + timezone references",accepted,,
+paired_development,"Paired development
+Freeze App; compare increments",冻结App及编码器，用真实配对的开发材料比较有限跨端增量C1/C2。MTC630与先导18/匹配42参与开发；144/117仅冻结后历史评价。不存在244项端到端训练。,infrastructure,offline,"[{""path"": ""deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md"", ""locator"": ""lines 3-7, 11, 15""}]","[115, 125, 57, 23]","Freeze App rules
+Paired changes + controls
+Compare cross-endpoint checks",infrastructure,,
+paired_rules,"Accepted paired rules
+App + cross-endpoint timezone",三个已接受配对开发模型均选C1，仅比较App Web与Browser的当前时区偏移；C2未获接入。配对模型是独立身份与接口，不能称App全部范围都已证明跨端增益。,accepted,offline,"[{""path"": ""deliverables/cross_endpoint_constrained_extension_v1/results/models.json"", ""locator"": ""/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION""}, {""path"": ""deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py"", ""locator"": ""lines 5-11, 27-40""}]","[115, 105, 57, 12]","Accepted paired method
+App + cross-endpoint timezone C1",accepted,,
+resource_trial,"Resource extension trial
+No candidate accepted; keep baseline",后续真实资源配对支持固定条件诊断和一次有限接入尝试。三个模型均S0/BASELINE_RETAINED、extensions=[]，因此没有资源增强已接受模型。,unintegrated,offline,"[{""path"": ""deliverables/app_resource_constrained_extension_v1/results/models.json"", ""locator"": ""/0..2/selected_set=S0; /0..2/status=BASELINE_RETAINED; /0..2/extensions=[]""}, {""path"": ""deliverables/app_resource_constrained_extension_v1/REPORT.md"", ""locator"": ""lines 5-20, 53-60""}]","[60, 82, 47, 21]","Resource admission trial
+No added set accepted
+Keep App+C1 baseline",rejected_extension,,
+specialists,"Tested / not integrated
+Host geometry | resource relations",Host几何上界与资源固定关系均有独立测试，但没有纳入当前接受完整模型。虚线仅指专项/未整合，不代表未来自动启用；不画通往接受模型的实线。Host内容区域非硬件真值。,unintegrated,offline,"[{""path"": ""deliverables/screen_geometry_observation_v1/SEMANTICS.md"", ""locator"": ""lines 3, 23-35, 45-47""}, {""path"": ""deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md"", ""locator"": ""lines 5, 67""}, {""path"": ""deliverables/app_resource_constrained_extension_v1/REPORT.md"", ""locator"": ""lines 5-6, 60""}]","[115, 82, 57, 16]","Tested / NOT INTEGRATED
+Host geometry | resource checks",diagnostic_unintegrated,,
+historical_evaluation,"Historical evaluation
+MTC 144 / 117 (not blind)",MTC144/117是历史评价，不入训练或选择约束；不能称从未接触的新盲测。已接受模型可在此报告结果，但图不把该框连回训练。,infrastructure,offline,"[{""path"": ""deliverables/app177_core_ablation_v1/REPORT.md"", ""locator"": ""lines 11-12""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md"", ""locator"": ""line 5""}]","[8, 81, 44, 17]","Historical evaluation
+MTC 144 / 117
+Not training; not a blind test",infrastructure,,
+current_inputs,"Current record(s)
+App-only OR bound pair",实际当前判断读取一个当前App记录，或当前App及其所需Browser配对。无需修改前记录或未来恢复；输入scope按接口明确。,infrastructure,current,"[{""path"": ""hybridguard_agent/research/rule_learning/predictor.py"", ""locator"": ""lines 1, 24-37""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/inference.py"", ""locator"": ""lines 1, 10-23, 28-36""}]","[8, 44, 36, 21]","Current record only
+App-only or bound pair
+No pre/post or labels",infrastructure,,
+required_quality,"Required observations
+Quality + binding checks",只使用已选依赖所需当前观测。字段缺失或质量不可用保留U，执行/绑定错误单列FAILED；版本与单位依据实际适配，不默认填充缺测。未选字段失败不扩大模型失败范围。,infrastructure,current,"[{""path"": ""deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py"", ""locator"": ""lines 15-40""}, {""path"": ""hybridguard_agent/research/rule_learning/predictor.py"", ""locator"": ""lines 38-64""}, {""path"": ""deliverables/app177_core_ablation_v1/REPORT.md"", ""locator"": ""lines 33-34""}]","[51, 44, 38, 21]","Required observations
+& quality checks
+Per chosen interface",fixed,,
+current_interfaces_app,"Separate fixed interfaces
+App-only | Paired: App + C1",App-only与App+C1是不同输入范围/接口，没有已实现自动降级主张。配对C1缺测为U：若App=F则整模U，若App=T且无FAILED则仍T；绑定或选中执行失败优先为FAILED。,accepted,current,"[{""path"": ""deliverables/cross_endpoint_constrained_extension_v1/inference.py"", ""locator"": ""lines 10-36""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/selector.py"", ""locator"": ""lines 14-20""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md"", ""locator"": ""line 9""}]","[97, 55, 75, 12]","App-only interface
+Frozen App rules",accepted,,
+current_interfaces_paired,"Separate fixed interfaces
+App-only | Paired: App + C1",App-only与App+C1是不同输入范围/接口，没有已实现自动降级主张。配对C1缺测为U：若App=F则整模U，若App=T且无FAILED则仍T；绑定或选中执行失败优先为FAILED。,accepted,current,"[{""path"": ""deliverables/cross_endpoint_constrained_extension_v1/inference.py"", ""locator"": ""lines 10-36""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/selector.py"", ""locator"": ""lines 14-20""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md"", ""locator"": ""line 9""}]","[97, 35, 75, 16]","Paired interface: frozen App + C1
+Missing Browser ≠ App-only fallback",accepted,,
+outcomes,"T: Alert | F: No alert
+U: Undetermined",T报警、F未报警、U无法判断。F不等同设备安全、没有干预或身份认证成功；此输出是研究条件判断，不是线上拦截/自动处置。,accepted,current,"[{""path"": ""hybridguard_agent/research/rule_learning/predictor.py"", ""locator"": ""lines 59-64""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/inference.py"", ""locator"": ""lines 32-36""}, {""path"": ""deliverables/timezone_relation_validation_v1/SEMANTICS.md"", ""locator"": ""lines 22-31""}]","[8, 14, 113, 16]","No selected dependency error:
+T: alarm   F: no alarm   U: cannot judge
+F is not a device-safety claim",accepted,,
+failed,"FAILED
+Execution / binding error",任一已选条件执行或绑定失败使整体FAILED，即使另一条件为T；FAILED优先级不可在图示中改写。EMPTY_MODEL也不能当F。,fixed,current,"[{""path"": ""hybridguard_agent/research/rule_learning/predictor.py"", ""locator"": ""lines 17-20, 38-64""}, {""path"": ""deliverables/cross_endpoint_constrained_extension_v1/selector.py"", ""locator"": ""lines 14-20""}]","[130, 14, 42, 16]","FAILED
+Execution / binding error
+Selected error takes priority",fixed,,
+sidecar_roles,"Development labels
+Before / during / recovery",阶段、正常/修改身份、目标值、场景与恢复用于离线选择或效果核验；不作为当前记录判断输入。不将change直接等同攻击。,infrastructure,offline,"[{""path"": ""deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md"", ""locator"": ""lines 13-15""}, {""path"": ""hybridguard_agent/research/rule_learning/predictor.py"", ""locator"": ""lines 24-37""}]",,"Development labels
+Before / during / recovery",infrastructure,may be embedded in training box,False
+comparison_only,"Four-view small trees
+Comparison evidence only",四视图小树属于语言/时区方法比较，不能替换为当前接受规则主方法；未声称完整paired244或全字段性能上限。,comparison,offline,"[{""path"": ""deliverables/cross_endpoint_four_view_comparison_v1/REPORT.md"", ""locator"": ""lines 1-7, 13-24""}]",,"Four-view small trees
+Comparison evidence only",comparison,caption only; not a main-flow node,False

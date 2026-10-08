@@ -1,0 +1,1257 @@
+{
+  "owner": "rba-round3-overview-saved-evidence-v1",
+  "nodes": [
+    {
+      "id": "observ_app",
+      "label_en": "App: 177 fields\nNative 84 | Host 26 | App Web 67",
+      "claim_zh": "App内的系统读取、WebView宿主、App网页是三个观察位置，不是三台设备；177是采集目录规模，非全部可用或全部用于模型。Native/Host是额外观察，不是不可修改的硬件真值。",
+      "implementation_status": "infrastructure",
+      "zone": "observation",
+      "evidence": [
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+          "locator": "CSV layer=android_native_data (84), webview_data (26), web_data (67); other 4 metadata rows excluded"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 20-29, 34-42"
+        }
+      ],
+      "box": [
+        8,
+        188,
+        117,
+        19
+      ],
+      "label": "App177 · three observation locations\nSystem Native 84  |  WebView Host 26  |  App Web 67\nNative / Host: additional observations, not ground truth",
+      "status": "infrastructure"
+    },
+    {
+      "id": "observ_browser",
+      "label_en": "Independent browser\nBrowser 67",
+      "claim_zh": "独立浏览器的67项网页观测与App内WebView分离；不是另一台设备，也不能用App Web复制补齐Browser。",
+      "implementation_status": "infrastructure",
+      "zone": "observation",
+      "evidence": [
+        {
+          "path": "browser_probe_site/public/probe/manifest.json",
+          "locator": "/signal_count"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 20-29, 40-42"
+        },
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "lines 4-7, 616-622"
+        }
+      ],
+      "box": [
+        133,
+        188,
+        39,
+        19
+      ],
+      "label": "Independent\nBrowser 67",
+      "status": "infrastructure"
+    },
+    {
+      "id": "preparation",
+      "label_en": "Bind saved records\nVersions, units, field states",
+      "claim_zh": "只按保存的会话、回执、批次与关联依据绑定；检查实际版本、单位、字段状态。来源标识用于关联，不成为检测特征。同阶段关联不证明原子同步。有效App缺Browser可保留App资料，但这不是模型自动回退。",
+      "implementation_status": "infrastructure",
+      "zone": "observation",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 7-18"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 1-6"
+        }
+      ],
+      "box": [
+        8,
+        165,
+        164,
+        16
+      ],
+      "label": "Saved session / receipt association → paired244 · same device\nCheck actual versions, units and field states; same phase ≠ atomic synchronization\nAssociation IDs are provenance, not detection features",
+      "status": "infrastructure"
+    },
+    {
+      "id": "training",
+      "label_en": "App-stage development\nControlled App + normal controls\nMTC training normals (630)",
+      "claim_zh": "App候选选择使用受控App修改及其正常对照和MTC630正常约束；原App材料按环境留出。App177是输入目录，不是177字段端到端学习。",
+      "implementation_status": "infrastructure",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 9-16, 24-34"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+          "locator": "lines 3-7, 61-67"
+        }
+      ],
+      "box": [
+        8,
+        123,
+        44,
+        25
+      ],
+      "label": "App-stage development\nControlled changes + normals\nMTC training normals: 630\nPre / change / post labels",
+      "status": "infrastructure"
+    },
+    {
+      "id": "constraints",
+      "label_en": "Normal behavior & usability\nAlarm, defined output, complexity",
+      "claim_zh": "已保存选择有正常报警预算、候选/整模明确输出要求、规则数与复杂度限制；阶段间正常组预算各自执行，不把所有正常混成一个约束。参数详见来源，不在图面堆砌。",
+      "implementation_status": "fixed",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 28-29"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 7-11"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 20-24"
+        }
+      ],
+      "box": [
+        8,
+        103,
+        44,
+        15
+      ],
+      "label": "Constraints at each stage:\nalarm / defined output /\ncomplexity",
+      "status": "fixed"
+    },
+    {
+      "id": "app_rules",
+      "label_en": "Frozen App rules\nMemory + timezone references",
+      "claim_zh": "当前Full身份是三个B_REL_TZ RETENTION；均包含Native—App Web内存上界和日期感知时区参照。配置01/02为6规则、配置03为5规则；不可将Host几何或Browser关系写为该App模型的已选条件。",
+      "implementation_status": "accepted",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        }
+      ],
+      "box": [
+        60,
+        125,
+        47,
+        23
+      ],
+      "label": "Compute allowed candidates\nSelect App rules:\nmemory + timezone references",
+      "status": "accepted"
+    },
+    {
+      "id": "paired_development",
+      "label_en": "Paired development\nFreeze App; compare increments",
+      "claim_zh": "冻结App及编码器，用真实配对的开发材料比较有限跨端增量C1/C2。MTC630与先导18/匹配42参与开发；144/117仅冻结后历史评价。不存在244项端到端训练。",
+      "implementation_status": "infrastructure",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 3-7, 11, 15"
+        }
+      ],
+      "box": [
+        115,
+        125,
+        57,
+        23
+      ],
+      "label": "Freeze App rules\nPaired changes + controls\nCompare cross-endpoint checks",
+      "status": "infrastructure"
+    },
+    {
+      "id": "paired_rules",
+      "label_en": "Accepted paired rules\nApp + cross-endpoint timezone",
+      "claim_zh": "三个已接受配对开发模型均选C1，仅比较App Web与Browser的当前时区偏移；C2未获接入。配对模型是独立身份与接口，不能称App全部范围都已证明跨端增益。",
+      "implementation_status": "accepted",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+          "locator": "/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 5-11, 27-40"
+        }
+      ],
+      "box": [
+        115,
+        105,
+        57,
+        12
+      ],
+      "label": "Accepted paired method\nApp + cross-endpoint timezone C1",
+      "status": "accepted"
+    },
+    {
+      "id": "resource_trial",
+      "label_en": "Resource extension trial\nNo candidate accepted; keep baseline",
+      "claim_zh": "后续真实资源配对支持固定条件诊断和一次有限接入尝试。三个模型均S0/BASELINE_RETAINED、extensions=[]，因此没有资源增强已接受模型。",
+      "implementation_status": "unintegrated",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/results/models.json",
+          "locator": "/0..2/selected_set=S0; /0..2/status=BASELINE_RETAINED; /0..2/extensions=[]"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 5-20, 53-60"
+        }
+      ],
+      "box": [
+        60,
+        82,
+        47,
+        21
+      ],
+      "label": "Resource admission trial\nNo added set accepted\nKeep App+C1 baseline",
+      "status": "rejected_extension"
+    },
+    {
+      "id": "specialists",
+      "label_en": "Tested / not integrated\nHost geometry | resource relations",
+      "claim_zh": "Host几何上界与资源固定关系均有独立测试，但没有纳入当前接受完整模型。虚线仅指专项/未整合，不代表未来自动启用；不画通往接受模型的实线。Host内容区域非硬件真值。",
+      "implementation_status": "unintegrated",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/screen_geometry_observation_v1/SEMANTICS.md",
+          "locator": "lines 3, 23-35, 45-47"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+          "locator": "lines 5, 67"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 5-6, 60"
+        }
+      ],
+      "box": [
+        115,
+        82,
+        57,
+        16
+      ],
+      "label": "Tested / NOT INTEGRATED\nHost geometry | resource checks",
+      "status": "diagnostic_unintegrated"
+    },
+    {
+      "id": "historical_evaluation",
+      "label_en": "Historical evaluation\nMTC 144 / 117 (not blind)",
+      "claim_zh": "MTC144/117是历史评价，不入训练或选择约束；不能称从未接触的新盲测。已接受模型可在此报告结果，但图不把该框连回训练。",
+      "implementation_status": "infrastructure",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 11-12"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 5"
+        }
+      ],
+      "box": [
+        8,
+        81,
+        44,
+        17
+      ],
+      "label": "Historical evaluation\nMTC 144 / 117\nNot training; not a blind test",
+      "status": "infrastructure"
+    },
+    {
+      "id": "current_inputs",
+      "label_en": "Current record(s)\nApp-only OR bound pair",
+      "claim_zh": "实际当前判断读取一个当前App记录，或当前App及其所需Browser配对。无需修改前记录或未来恢复；输入scope按接口明确。",
+      "implementation_status": "infrastructure",
+      "zone": "current",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 1, 24-37"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 1, 10-23, 28-36"
+        }
+      ],
+      "box": [
+        8,
+        44,
+        36,
+        21
+      ],
+      "label": "Current record only\nApp-only or bound pair\nNo pre/post or labels",
+      "status": "infrastructure"
+    },
+    {
+      "id": "required_quality",
+      "label_en": "Required observations\nQuality + binding checks",
+      "claim_zh": "只使用已选依赖所需当前观测。字段缺失或质量不可用保留U，执行/绑定错误单列FAILED；版本与单位依据实际适配，不默认填充缺测。未选字段失败不扩大模型失败范围。",
+      "implementation_status": "infrastructure",
+      "zone": "current",
+      "evidence": [
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 15-40"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 38-64"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 33-34"
+        }
+      ],
+      "box": [
+        51,
+        44,
+        38,
+        21
+      ],
+      "label": "Required observations\n& quality checks\nPer chosen interface",
+      "status": "fixed"
+    },
+    {
+      "id": "current_interfaces_app",
+      "label_en": "Separate fixed interfaces\nApp-only | Paired: App + C1",
+      "claim_zh": "App-only与App+C1是不同输入范围/接口，没有已实现自动降级主张。配对C1缺测为U：若App=F则整模U，若App=T且无FAILED则仍T；绑定或选中执行失败优先为FAILED。",
+      "implementation_status": "accepted",
+      "zone": "current",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ],
+      "box": [
+        97,
+        55,
+        75,
+        12
+      ],
+      "label": "App-only interface\nFrozen App rules",
+      "status": "accepted"
+    },
+    {
+      "id": "current_interfaces_paired",
+      "label_en": "Separate fixed interfaces\nApp-only | Paired: App + C1",
+      "claim_zh": "App-only与App+C1是不同输入范围/接口，没有已实现自动降级主张。配对C1缺测为U：若App=F则整模U，若App=T且无FAILED则仍T；绑定或选中执行失败优先为FAILED。",
+      "implementation_status": "accepted",
+      "zone": "current",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ],
+      "box": [
+        97,
+        35,
+        75,
+        16
+      ],
+      "label": "Paired interface: frozen App + C1\nMissing Browser ≠ App-only fallback",
+      "status": "accepted"
+    },
+    {
+      "id": "outcomes",
+      "label_en": "T: Alert | F: No alert\nU: Undetermined",
+      "claim_zh": "T报警、F未报警、U无法判断。F不等同设备安全、没有干预或身份认证成功；此输出是研究条件判断，不是线上拦截/自动处置。",
+      "implementation_status": "accepted",
+      "zone": "current",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 59-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 32-36"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 22-31"
+        }
+      ],
+      "box": [
+        8,
+        14,
+        113,
+        16
+      ],
+      "label": "No selected dependency error:\nT: alarm   F: no alarm   U: cannot judge\nF is not a device-safety claim",
+      "status": "accepted"
+    },
+    {
+      "id": "failed",
+      "label_en": "FAILED\nExecution / binding error",
+      "claim_zh": "任一已选条件执行或绑定失败使整体FAILED，即使另一条件为T；FAILED优先级不可在图示中改写。EMPTY_MODEL也不能当F。",
+      "implementation_status": "fixed",
+      "zone": "current",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 17-20, 38-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        }
+      ],
+      "box": [
+        130,
+        14,
+        42,
+        16
+      ],
+      "label": "FAILED\nExecution / binding error\nSelected error takes priority",
+      "status": "fixed"
+    },
+    {
+      "id": "sidecar_roles",
+      "label_en": "Development labels\nBefore / during / recovery",
+      "claim_zh": "阶段、正常/修改身份、目标值、场景与恢复用于离线选择或效果核验；不作为当前记录判断输入。不将change直接等同攻击。",
+      "implementation_status": "infrastructure",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 13-15"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 24-37"
+        }
+      ],
+      "display": "may be embedded in training box",
+      "visible": false,
+      "status": "infrastructure",
+      "label": "Development labels\nBefore / during / recovery"
+    },
+    {
+      "id": "comparison_only",
+      "label_en": "Four-view small trees\nComparison evidence only",
+      "claim_zh": "四视图小树属于语言/时区方法比较，不能替换为当前接受规则主方法；未声称完整paired244或全字段性能上限。",
+      "implementation_status": "comparison",
+      "zone": "offline",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_four_view_comparison_v1/REPORT.md",
+          "locator": "lines 1-7, 13-24"
+        }
+      ],
+      "display": "caption only; not a main-flow node",
+      "visible": false,
+      "status": "comparison",
+      "label": "Four-view small trees\nComparison evidence only"
+    }
+  ],
+  "edges": [
+    {
+      "from": "observ_app",
+      "to": "preparation",
+      "style": "solid",
+      "points": [
+        [
+          66,
+          188
+        ],
+        [
+          66,
+          181
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+          "locator": "CSV layer=android_native_data (84), webview_data (26), web_data (67); other 4 metadata rows excluded"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 20-29, 34-42"
+        },
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 7-18"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 1-6"
+        }
+      ]
+    },
+    {
+      "from": "observ_browser",
+      "to": "preparation",
+      "style": "solid",
+      "points": [
+        [
+          152,
+          188
+        ],
+        [
+          152,
+          181
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "browser_probe_site/public/probe/manifest.json",
+          "locator": "/signal_count"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 20-29, 40-42"
+        },
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "lines 4-7, 616-622"
+        },
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 7-18"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 1-6"
+        }
+      ]
+    },
+    {
+      "from": "training",
+      "to": "app_rules",
+      "style": "solid",
+      "points": [
+        [
+          52,
+          137
+        ],
+        [
+          60,
+          137
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 9-16, 24-34"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+          "locator": "lines 3-7, 61-67"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        }
+      ]
+    },
+    {
+      "from": "constraints",
+      "to": "app_rules",
+      "style": "solid",
+      "points": [
+        [
+          52,
+          111
+        ],
+        [
+          56,
+          111
+        ],
+        [
+          56,
+          127
+        ],
+        [
+          60,
+          127
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 28-29"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 7-11"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 20-24"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        }
+      ]
+    },
+    {
+      "from": "app_rules",
+      "to": "paired_development",
+      "style": "solid",
+      "points": [
+        [
+          107,
+          137
+        ],
+        [
+          115,
+          137
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 3-7, 11, 15"
+        }
+      ]
+    },
+    {
+      "from": "paired_development",
+      "to": "paired_rules",
+      "style": "solid",
+      "points": [
+        [
+          144,
+          125
+        ],
+        [
+          144,
+          117
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 3-7, 11, 15"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+          "locator": "/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 5-11, 27-40"
+        }
+      ]
+    },
+    {
+      "from": "paired_rules",
+      "to": "resource_trial",
+      "style": "dashed",
+      "points": [
+        [
+          126,
+          105
+        ],
+        [
+          126,
+          101
+        ],
+        [
+          107,
+          101
+        ]
+      ],
+      "meaning": "tested but unintegrated branch",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+          "locator": "/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 5-11, 27-40"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/results/models.json",
+          "locator": "/0..2/selected_set=S0; /0..2/status=BASELINE_RETAINED; /0..2/extensions=[]"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 5-20, 53-60"
+        }
+      ]
+    },
+    {
+      "from": "app_rules",
+      "to": "specialists",
+      "style": "dashed",
+      "points": [
+        [
+          107,
+          128
+        ],
+        [
+          111,
+          128
+        ],
+        [
+          111,
+          90
+        ],
+        [
+          115,
+          90
+        ]
+      ],
+      "meaning": "tested but unintegrated branch",
+      "evidence": [
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        },
+        {
+          "path": "deliverables/screen_geometry_observation_v1/SEMANTICS.md",
+          "locator": "lines 3, 23-35, 45-47"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+          "locator": "lines 5, 67"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 5-6, 60"
+        }
+      ]
+    },
+    {
+      "from": "current_inputs",
+      "to": "required_quality",
+      "style": "solid",
+      "points": [
+        [
+          44,
+          55
+        ],
+        [
+          51,
+          55
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 1, 24-37"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 1, 10-23, 28-36"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 15-40"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 38-64"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 33-34"
+        }
+      ]
+    },
+    {
+      "from": "required_quality",
+      "to": "current_interfaces_app",
+      "style": "solid",
+      "points": [
+        [
+          89,
+          55
+        ],
+        [
+          93,
+          55
+        ],
+        [
+          93,
+          61
+        ],
+        [
+          97,
+          61
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 15-40"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 38-64"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 33-34"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ]
+    },
+    {
+      "from": "required_quality",
+      "to": "current_interfaces_paired",
+      "style": "solid",
+      "points": [
+        [
+          89,
+          49
+        ],
+        [
+          93,
+          49
+        ],
+        [
+          93,
+          43
+        ],
+        [
+          97,
+          43
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 15-40"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 38-64"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 33-34"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ]
+    },
+    {
+      "from": "current_interfaces_app",
+      "to": "outcomes",
+      "style": "solid",
+      "points": [
+        [
+          172,
+          61
+        ],
+        [
+          174,
+          61
+        ],
+        [
+          174,
+          32
+        ],
+        [
+          87,
+          32
+        ],
+        [
+          87,
+          30
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 59-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 32-36"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 22-31"
+        }
+      ],
+      "output_gate": "no selected dependency execution/binding error"
+    },
+    {
+      "from": "current_interfaces_paired",
+      "to": "outcomes",
+      "style": "solid",
+      "points": [
+        [
+          172,
+          43
+        ],
+        [
+          174,
+          43
+        ],
+        [
+          174,
+          32
+        ],
+        [
+          87,
+          32
+        ],
+        [
+          87,
+          30
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 59-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 32-36"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 22-31"
+        }
+      ],
+      "output_gate": "no selected dependency execution/binding error"
+    },
+    {
+      "from": "current_interfaces_app",
+      "to": "failed",
+      "style": "solid",
+      "points": [
+        [
+          174,
+          45
+        ],
+        [
+          176,
+          45
+        ],
+        [
+          176,
+          31
+        ],
+        [
+          151,
+          31
+        ],
+        [
+          151,
+          30
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 17-20, 38-64"
+        }
+      ],
+      "output_gate": "selected dependency execution/binding error takes priority"
+    },
+    {
+      "from": "current_interfaces_paired",
+      "to": "failed",
+      "style": "solid",
+      "points": [
+        [
+          174,
+          43
+        ],
+        [
+          176,
+          43
+        ],
+        [
+          176,
+          31
+        ],
+        [
+          151,
+          31
+        ],
+        [
+          151,
+          30
+        ]
+      ],
+      "meaning": "implemented data flow or saved dependency",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 17-20, 38-64"
+        }
+      ],
+      "output_gate": "selected dependency execution/binding error takes priority"
+    }
+  ],
+  "sources": [
+    "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+    "browser_probe_site/public/probe/manifest.json",
+    "hybridguard_agent/evidence/paired244.py",
+    "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+    "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+    "deliverables/app177_core_ablation_v1/REPORT.md",
+    "deliverables/timezone_relation_validation_v1/models.json",
+    "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+    "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+    "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+    "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+    "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+    "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+    "hybridguard_agent/research/rule_learning/predictor.py",
+    "deliverables/app_resource_constrained_extension_v1/results/models.json",
+    "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+    "deliverables/screen_geometry_observation_v1/SEMANTICS.md",
+    "deliverables/cross_endpoint_four_view_comparison_v1/REPORT.md"
+  ],
+  "checks": [
+    {
+      "id": "catalog_surface_counts",
+      "status": "PASS",
+      "detail": {
+        "android_native_data": 84,
+        "webview_data": 26,
+        "web_data": 67
+      }
+    },
+    {
+      "id": "metadata_not_signal",
+      "status": "PASS",
+      "detail": "4 metadata rows excluded from App177 count"
+    },
+    {
+      "id": "browser_catalog_count",
+      "status": "PASS",
+      "detail": "Browser67 from manifest signal_count"
+    },
+    {
+      "id": "frozen_app_relations",
+      "status": "PASS",
+      "detail": "all 3 RETENTION models retain memory and timezone relations"
+    },
+    {
+      "id": "accepted_paired_c1",
+      "status": "PASS",
+      "detail": "all 3 paired models select C1"
+    },
+    {
+      "id": "paired_base_identity",
+      "status": "PASS",
+      "detail": "paired bases exactly match frozen RETENTION App models"
+    },
+    {
+      "id": "resource_no_increment",
+      "status": "PASS",
+      "detail": "all 3 resource selection results retain baseline S0"
+    },
+    {
+      "id": "resource_base_identity",
+      "status": "PASS",
+      "detail": "resource bases exactly match accepted paired models"
+    },
+    {
+      "id": "source_locations_exist",
+      "status": "PASS",
+      "detail": 18
+    },
+    {
+      "id": "no_specialist_to_accepted_edge",
+      "status": "PASS",
+      "detail": "no edge makes diagnostic extensions accepted"
+    },
+    {
+      "id": "no_history_to_training_edge",
+      "status": "PASS",
+      "detail": "144/117 remain evaluation only"
+    },
+    {
+      "id": "no_label_to_inference_edge",
+      "status": "PASS",
+      "detail": "labels and trajectories stay offline"
+    }
+  ],
+  "source_model_identities": {
+    "app_retention": [
+      "mtc-rel-tz-6e10284c39b1b601ab406240",
+      "mtc-rel-tz-9c5fa0e310ba10a00e520b1c",
+      "mtc-rel-tz-4ae67bb9da899cc419dd525f"
+    ],
+    "paired": [
+      "paired244-devext-c2e38381be26f0a91709871b",
+      "paired244-devext-9688bfa5bc943c8095f94b46",
+      "paired244-devext-09060772f27998b093caaea7"
+    ],
+    "resource_baseline_retained": [
+      "resource-devext-fe3aa275343e7a4b631b6384",
+      "resource-devext-f27d5d2413c52d73560e475d",
+      "resource-devext-8eef46c8e8a2cbce48b64537"
+    ]
+  },
+  "notes": [
+    "Use no actual session IDs, device IDs or receipts.",
+    "App source box encloses Native/Host/App Web; browser is separate observation location.",
+    "App177 / paired244 are catalog views, not all-input availability guarantees or end-to-end learner descriptions.",
+    "Display FAILED priority separately and explicitly.",
+    "Required Browser unavailable does not imply automatic App fallback or F.",
+    "Dashed specialists do not have a solid arrow to accepted models.",
+    "Place historical MTC144/117 outside training; preserve non-blind historical role.",
+    "Source IDs are bind-only metadata, excluded from inference features."
+  ]
+}
