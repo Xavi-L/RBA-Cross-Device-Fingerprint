@@ -1,0 +1,290 @@
+{
+  "owner": "rba-round1-app-saved-counts-v1",
+  "status": "初稿已生成／待导师选择",
+  "figures": [
+    {
+      "id": "F01",
+      "svg": "figures/F01.svg",
+      "png": "figures/F01.png",
+      "plotting_csv": "data/F01.csv",
+      "size_mm": [
+        180,
+        135
+      ],
+      "dpi": 300,
+      "pixel_dimensions": [
+        2125,
+        1594
+      ],
+      "minimum_font_pt": 8,
+      "text_canvas_bounds": "PASS",
+      "name": "App detection across 14 modification configurations",
+      "filtering": "configurations14: identity=EFFECTIVE_INTERVENTION; six methods; rules RETENTION and tree FITTED",
+      "aggregation": "None within a cell. Sum 14 disjoint held-out configuration rows only for T02; do not sum full-model replays.",
+      "role": "Current complete App method, four saved retrained ablations, fixed small App tree",
+      "denominators": "9 per cell; 126 effective positions overall; controlled normal 252 in T02",
+      "limitations": [
+        "Development-exposed material, not a fresh blind test.",
+        "108/126 without MTC cap must be read with 261/261 normal alarms in F02.",
+        "Full is App only, not App+C1."
+      ],
+      "status": "初稿已生成／待导师选择",
+      "sources": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/configurations14.json",
+          "sha256": "9c3b1b3371a660b50133a16844947bf199ac8470df5d6e41cca9562def089ba8"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/configurations14.csv",
+          "sha256": "461a91ea8c1626f46380a4b2359c44db5a1f7c42a0105f61af3e9c924032e6f5"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/main.json",
+          "sha256": "c276ffcadda34d6f4f233c3483e9e20c5c6963e1163975939f28d729961ad5d6"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/main.csv",
+          "sha256": "d03abd1be56676eff046c54e450e2503b3a0acc2506feda141ded71346de01ce"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/all_stages.json",
+          "sha256": "2a57d095d5d5f7fd2176162121c4f8aa83655a73b52224bbe5b5ca47ab44f655"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/all_stages.csv",
+          "sha256": "1fabf1e7003ce1a237866bc82cb0e67b0e406eff52e11a0061d38bb0d0e7a50f"
+        },
+        {
+          "path": "deliverables/app_browser_evidence_consolidation_v1/tables.json",
+          "sha256": "a5d97226bdd44b1e96fad1be184f3cc654a4c0d7b9cfb406b0e4fa12bcf5c305"
+        }
+      ],
+      "caption": "CAPTIONS.md#f01",
+      "data_role": "Development-exposed saved material; not a new blind test.",
+      "png_sha256": "dd3b605287dabf832e053c52e2f19d5f3ed5ef66ec70f0a6a87be9d7e2624901"
+    },
+    {
+      "id": "F02",
+      "svg": "figures/F02.svg",
+      "png": "figures/F02.png",
+      "plotting_csv": "data/F02.csv",
+      "size_mm": [
+        180,
+        155
+      ],
+      "dpi": 300,
+      "pixel_dimensions": [
+        2125,
+        1830
+      ],
+      "minimum_font_pt": 8,
+      "text_canvas_bounds": "PASS",
+      "name": "Four App outputs on historical MTC normal records",
+      "filtering": "six methods x three fold_id; subset in development,reserved_validation",
+      "aggregation": "Within each method/fold only: 144 + 117 = 261. Retain original discovery630/development144/reserved117 and derived261 in T03.",
+      "role": "Historical normal evaluation; discovery630 is training normal constraint",
+      "denominators": "261 per plotted row; T03 retains 630,144,117 and derived261",
+      "limitations": [
+        "No attack-generalization evidence.",
+        "Three configurations reuse the same records.",
+        "Tree binary output does not restore missing observations; 73/891 input-unknown count is for full MTC, not 261.",
+        "EMPTY_MODEL=0; failure and unknown remain distinct from F."
+      ],
+      "status": "初稿已生成／待导师选择",
+      "sources": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/mtc.json",
+          "sha256": "044874f9e5f0b2a80ea7da5464d088aaacd4400656be24a5b502cdadefd3b045"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/mtc.csv",
+          "sha256": "160d3d954233559815172d2bb25594a238749bc189270b8ac0222629d970e39d"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/tree_input_integrity.json",
+          "sha256": "a558c00374baf2e4e4f42ff32ea9879eae902e23a8eae1494fb412a7d92469e0"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/tree_input_integrity.csv",
+          "sha256": "3140bbd364f403d1e28aa9653a85caccb20392c0921694bd17152ea9e5904aa8"
+        },
+        {
+          "path": "deliverables/app_browser_evidence_consolidation_v1/tables.json",
+          "sha256": "a5d97226bdd44b1e96fad1be184f3cc654a4c0d7b9cfb406b0e4fa12bcf5c305"
+        }
+      ],
+      "caption": "CAPTIONS.md#f02",
+      "data_role": "Development-exposed saved material; not a new blind test.",
+      "png_sha256": "bc3814847929b6fba5938820a87766e9d90605d4ccdb499b589a7a6830a223e1"
+    },
+    {
+      "id": "F03a",
+      "svg": "figures/F03a.svg",
+      "png": "figures/F03a.png",
+      "plotting_csv": "data/F03a.csv",
+      "size_mm": [
+        180,
+        86
+      ],
+      "dpi": 300,
+      "pixel_dimensions": [
+        2125,
+        1015
+      ],
+      "minimum_font_pt": 8,
+      "text_canvas_bounds": "PASS",
+      "name": "Complete App models on the memory-only batch",
+      "filtering": "cohort=memory AND scenario=ALL AND phase=ALL; all three identities and folds retained",
+      "aggregation": "No hierarchy summation. Plot one count tuple only after all three configurations match in every state; keep all 54 rows.",
+      "role": "Saved complete-model specialist results, not a two-condition ablation",
+      "denominators": "Per configuration: 18 effective, 48 normal, 6 no observable effect; 72 total",
+      "limitations": [
+        "Not 54 independent interventions.",
+        "Equal aggregate counts do not establish member-wise equality.",
+        "Upward memory changes only; does not cover arbitrary changes."
+      ],
+      "status": "初稿已生成／待导师选择",
+      "sources": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/specialists.json",
+          "sha256": "23ea95e04a31966567787ccf85dce2d52198bd524d8273dde6af67df112f90f7"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/specialists.csv",
+          "sha256": "c6f485731ea766df6fa209a08445c8c410638881f8277d45fc3cd93e56404a6e"
+        },
+        {
+          "path": "deliverables/app_browser_evidence_consolidation_v1/tables.json",
+          "sha256": "a5d97226bdd44b1e96fad1be184f3cc654a4c0d7b9cfb406b0e4fa12bcf5c305"
+        },
+        {
+          "path": "deliverables/memory_relation_validation_v1/REPORT.md",
+          "sha256": "7593c241e146c71df139c8e8f37999dc91d9cc58c6bf5c5076302fc0a9216c70"
+        }
+      ],
+      "caption": "CAPTIONS.md#f03a",
+      "data_role": "Development-exposed saved material; not a new blind test.",
+      "png_sha256": "26b799a40f49de86429070f73fd80d034d73db92cafe6c1fb0068d5c538e1871"
+    },
+    {
+      "id": "F03b",
+      "svg": "figures/F03b.svg",
+      "png": "figures/F03b.png",
+      "plotting_csv": "data/F03b.csv",
+      "size_mm": [
+        85,
+        87
+      ],
+      "dpi": 300,
+      "pixel_dimensions": [
+        1003,
+        1027
+      ],
+      "minimum_font_pt": 8,
+      "text_canvas_bounds": "PASS",
+      "name": "Fixed memory relation versus Web > 8",
+      "filtering": "summary.new_batch only; scope=target and EFFECTIVE_INTERVENTION for targets4,8,16",
+      "aggregation": "Sum saved condition counts across three environments/two rounds per target; cross-check saved triplet states. Aggregate rows are separate scopes.",
+      "role": "Original fixed conditions R_REL and R_WEB8; no retraining or condition evaluation",
+      "denominators": "6 per effective target; total18; target2 no-effect6 separately; normal48",
+      "limitations": [
+        "Same local batch as F03a, not another 72 samples.",
+        "Upward changes only, not arbitrary memory tampering.",
+        "Full planned denominators retain U/FAILED; no common-evaluable restriction.",
+        "EMPTY_MODEL is not applicable to a fixed condition."
+      ],
+      "status": "初稿已生成／待导师选择",
+      "sources": [
+        {
+          "path": "deliverables/memory_relation_validation_v1/summary.json",
+          "sha256": "9fdc2a15c433db6de697bb02d29428fda5819e3ffb056c3c695f51630c24dce2"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/MEMORY_NORMAL_REVIEW.json",
+          "sha256": "baca5ccd94340cd644e232717b29d45fdb516a9ecca9dbad751c15fffd423107"
+        },
+        {
+          "path": "deliverables/memory_relation_validation_v1/REPORT.md",
+          "sha256": "7593c241e146c71df139c8e8f37999dc91d9cc58c6bf5c5076302fc0a9216c70"
+        }
+      ],
+      "caption": "CAPTIONS.md#f03b",
+      "data_role": "Development-exposed saved material; not a new blind test.",
+      "png_sha256": "d9a5309f2da9e107fc049a053101301836acc17e3d07aee3f68fe792a15c5ac3"
+    },
+    {
+      "id": "F04",
+      "svg": "figures/F04.svg",
+      "png": "figures/F04.png",
+      "plotting_csv": "data/F04.csv",
+      "size_mm": [
+        180,
+        91
+      ],
+      "dpi": 300,
+      "pixel_dimensions": [
+        2125,
+        1074
+      ],
+      "minimum_font_pt": 8,
+      "text_canvas_bounds": "PASS",
+      "name": "Normal timezone changes versus web-only modifications",
+      "filtering": "timezone; phase=change; L_* AND NORMAL versus A_* AND EFFECTIVE_INTERVENTION; scenario ALL excluded",
+      "aggregation": "Sum Los_Angeles and UTC within one method/fold/identity. Plot equal count tuples after checking all folds; retain full rows.",
+      "role": "Current complete App methods on system-change controls and web-only interventions",
+      "denominators": "6 normal changes and 6 modifications per configuration; normal6 is a subset of normal30 in F04_totals",
+      "limitations": [
+        "Normal and modified columns have different interpretations.",
+        "Full and no-timezone main score both105/126, but normal-change costs differ.",
+        "Three configurations are not independent experimental repetitions."
+      ],
+      "status": "初稿已生成／待导师选择",
+      "sources": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/specialists.json",
+          "sha256": "23ea95e04a31966567787ccf85dce2d52198bd524d8273dde6af67df112f90f7"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/specialists.csv",
+          "sha256": "c6f485731ea766df6fa209a08445c8c410638881f8277d45fc3cd93e56404a6e"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/main.json",
+          "sha256": "c276ffcadda34d6f4f233c3483e9e20c5c6963e1163975939f28d729961ad5d6"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/results/summary/main.csv",
+          "sha256": "d03abd1be56676eff046c54e450e2503b3a0acc2506feda141ded71346de01ce"
+        },
+        {
+          "path": "deliverables/app_browser_evidence_consolidation_v1/tables.json",
+          "sha256": "a5d97226bdd44b1e96fad1be184f3cc654a4c0d7b9cfb406b0e4fa12bcf5c305"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/REPORT.md",
+          "sha256": "eb0c7b98b0c4e572b4e362187130f48fcb9c8def61729a5e2d80fade458bd62e"
+        }
+      ],
+      "caption": "CAPTIONS.md#f04",
+      "data_role": "Development-exposed saved material; not a new blind test.",
+      "png_sha256": "6d5e3d8b89bcd7b027efdc863f217699f3eb61d064e7b52edfe3f1fc410cd3f5"
+    }
+  ],
+  "runtime": {
+    "python_runtime": "3.13.5",
+    "matplotlib": "3.10.6"
+  },
+  "source_summary": "Saved CSV/JSON counts; reports are semantic references only.",
+  "tables": {
+    "T01": "data/T01.csv",
+    "T02": "data/T02.csv",
+    "T03": "data/T03.csv",
+    "F04_totals": "data/F04_totals.csv",
+    "tree_input_integrity": "data/tree_input_integrity.csv"
+  },
+  "mappings": {
+    "methods": "data/methods.csv",
+    "configurations": "data/configurations.csv",
+    "folds": "data/folds.csv"
+  }
+}
