@@ -1,5 +1,8 @@
 # RBA / HybridGuard：当前制图清单
 
+
+**选图整理状态：可供导师选图，待提纲对应。** [导师选图册PDF](paper/figures/review_pack/ADVISOR_FIGURE_BOOK.pdf)收录14类图稿及T01/T02/T05；[生成与只读检查](paper/figures/review_pack/README.md)。F00正文候选与原详细说明共用一个素材ID，F10仍以表交付，F11未制作。
+
 **制定日期：2026-10-08｜当前阶段：已有实验结果的论文图表制作**
 
 本清单是当前制图工作的执行入口，与[总体实验规划](RBA_PRE_PAPER_EXPERIMENT_PLAN.md)配套。旧规划保留多轮历史安排，不据此重启已经完成的实验。研究事实与论文表述以[导师实验总报告](RBA_EXPERIMENT_REPORT_FOR_ADVISOR.md)和[最新统一结果](deliverables/app_browser_evidence_consolidation_v1/REPORT.md)为准。
@@ -37,8 +40,8 @@ F编号是稳定素材编号，不是最终论文图号。一个图组允许输�
 | **F06 四视图检出与正常代价** | 相同小树下，多一端信息或明确关系有什么作用？ | P0、P1、P2分别显示；检出图与正常报警图配套 | S06、S09 | F06a／F06b初稿已生成／待导师选择；[图稿入口](paper/figures/round2_paired/README.md)；保留P2无收益、P1训练正常反例及33/951部分缺测 |
 | **F07 资源接入取舍** | 为什么能多发现修改，却没有接入当前完整方法？ | 同1,005成员；S0、S0+M/B/W，开发／历史分开，三个配置分开 | S07、S01 | F07a／F07b初稿已生成／待导师选择；[图稿与T04入口](paper/figures/round2_paired/README.md)；S0保留，其余诊断未通过；24候选与历史分组均保留 |
 | **F08 正常语言偏好反例** | 正常更改偏好与脚本修改，首选语言相同为什么仍不能用同一解释？ | 两条正常偏好、对应修改、完整列表长度及固定树输出 | S06、S09 | 初稿已生成／待导师选择；[七案例图稿入口](paper/figures/round2_paired/README.md)；训练／留出角色逐行保留，列表长度差异不等于识别恶意意图 |
-| **F00 方法与实验流程** | 哪些信息来自系统、宿主、App网页和独立Browser？训练与当前记录推理怎样分开？ | 实际已实现链路；Host专项、新资源未入选部分用明确旁支标记 | S00、S01 | 初稿已生成／供导师选用；[F00示意与证据映射](paper/figures/round3_overview/README.md)；离线选择与当前判断分区，未整合专项用虚线 |
-| **F09 宿主几何专项** | 正常布局扩大为何不应被固定高度误报？ | v15的72条；旧高度、同Web关系、新Host上界，正常66／修改6 | S08 | 初稿已生成／供导师选用；[F09图与分场景明细](paper/figures/round3_overview/README.md)；仅v15正式72条，固定条件专项，未纳入App完整模型 |
+| **F00 方法与实验流程** | 哪些信息来自系统、宿主、App网页和独立Browser？训练与当前记录推理怎样分开？ | 实际已实现链路；Host专项、新资源未入选部分用明确旁支标记 | S00、S01 | 初稿已生成／供导师选用；[F00正文候选](paper/figures/round3_overview/figures/F00_main.svg)／[F00详细说明](paper/figures/round3_overview/figures/F00.svg)；[布局与证据映射](paper/figures/round3_overview/README.md)；正文版区分测量与固定模型传递，原详细版保留 |
+| **F09 宿主几何专项** | 正常布局扩大为何不应被固定高度误报？ | v15的72条；旧高度、同Web关系、新Host上界，正常66／修改6 | S08 | 初稿已生成／供导师选用；[F09图与分场景明细](paper/figures/round3_overview/README.md)；仅v15正式72条，三条固定条件比较；仅新Host几何未整合，旧高度仍用于APP_FULL配置01/02 |
 | **F10 运行成本** | 输入准备、判断、文件读取与采集配对各占什么成本？ | 既有分阶段计时；不新增基准测试 | S09 | 成本表T05已生成，图形化未制作／暂不需要；[分阶段成本、模型资源与既有日志](paper/figures/round3_overview/T05.md)；批次均摊P95不是单请求尾延迟 |
 | **F11 早期开发与其他探索** | 为什么不以早期100%为最终卖点？WebGL专项证明了什么？ | 历史同成员开发对照、MTC高报警、WebGL局部观察各守原分母 | S00中相应历史证据索引 | 可选附录，优先表格；不把历史开发轨迹画成新方法持续泛化提升 |
 

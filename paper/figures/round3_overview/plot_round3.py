@@ -288,7 +288,7 @@ def plot_f09(data, save):
     fig = plt.figure(figsize=(dims[0] / 25.4, dims[1] / 25.4), facecolor='white')
     fig.text(.035, .966, 'F09  Host geometry preserves local detection with fewer normal alarms',
              fontsize=10, weight='bold', va='top')
-    fig.text(.035, .921, 'Fixed-condition specialist study | Not integrated into the current App full model', fontsize=8.5)
+    fig.text(.035, .921, 'Fixed-condition comparison | New Host relation not integrated into Full App', fontsize=8.5)
     fig.text(.035, .865, 'A  Local comparison', fontsize=9, weight='bold')
     ax = fig.add_axes([.31, .555, .66, .222])
     cohorts = ('normal_layout_middle', 'effective_screen_modification')
@@ -691,7 +691,7 @@ def render_cost_markdown(data):
     return '\n'.join(lines)
 
 
-def plot_all(data,output):
+def plot_all(data,output,figure=None):
     os.environ.setdefault('MPLCONFIGDIR',str(Path(tempfile.gettempdir())/'rba-round3-mpl'))
     import matplotlib
     matplotlib.use('Agg')
@@ -718,7 +718,8 @@ def plot_all(data,output):
         specs[id_]=dict(id=id_,svg='figures/'+id_+'.svg',png='figures/'+id_+'.png',
             size_mm=list(size),dpi=300,pixel_dimensions=pixels,minimum_font_pt=min(fonts),text_canvas_bounds='PASS')
         plt.close(fig)
-    plot_f00(data,save);plot_f09(data,save)
+    if figure in (None,'F00'):plot_f00(data,save)
+    if figure in (None,'F09'):plot_f09(data,save)
     return specs
 
 
@@ -792,11 +793,47 @@ def compact_checks(checks):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check-only',action='store_true')
+    parser.add_argument('--figure',choices=['F09'],help='Re-render F09 from its saved plotting CSVs only.')
     parser.add_argument('--output',type=Path,default=HERE);args=parser.parse_args();output=args.output.resolve()
     if args.check_only:
         result=compact_checks(saved_checks(output))
         print(json.dumps(dict(mode='saved_outputs_and_links_only',status=result['status'],check_groups=result['groups'],failures=result['failures'],source_result_reads=0,writes=0),ensure_ascii=False))
         return int(result['status']!='PASS')
+    if args.figure:
+        manifest=read_json(output/'FIGURES.json');report=read_json(output/'CHECK.json')
+        if manifest.get('owner')!=OWNER:raise ValueError('Unknown output owner')
+        paths=['data/F09.csv','data/F09_records.csv','data/F09_effects.csv']
+        before={p:digest(output/p) for p in paths}
+        data={Path(p).stem:read_csv(output/p) for p in paths}
+        for row in data['F09']:
+            for key in ('N','T','F','U','FAILED','defined'):row[key]=int(row[key])
+            for key in ('rate','defined_rate'):row[key]=float(row[key])
+        spec=plot_all(data,output,figure='F09')['F09']
+        figure=next(f for f in manifest['figures'] if f['id']=='F09')
+        previous_hashes={ext:figure[ext+'_sha256'] for ext in ('png','svg')}
+        figure.update(spec)
+        for ext in ('png','svg'):figure[ext+'_sha256']=digest(output/figure[ext])
+        for item in manifest['generated_files']:
+            if item['path'] in (spec['png'],spec['svg']):item['sha256']=digest(output/item['path'])
+        write_json(output/'FIGURES.json',manifest)
+        if before!={p:digest(output/p) for p in paths}:raise ValueError('Saved plotting data changed')
+        changed=any(previous_hashes[ext]!=figure[ext+'_sha256'] for ext in ('png','svg'))
+        if changed:
+            visual=report['visual_review'];visual['status']='PENDING'
+            visual.pop('reviewed_on',None)
+            visual['png_sha256'].pop('F09',None)
+            visual['png']='F00 prior inspection remains byte-matched. Revised F09 requires a new inspection.'
+            visual['working_size']='F00 prior proof remains byte-matched. Revised F09 96 dpi proof pending.'
+            for item in visual['figures']:
+                if item['id']=='F09':item.update(status='PENDING',notes='Subtitle changed; prior visual approval invalidated.')
+            visual['svg']['rendered_visual_review']='NOT_EVALUATED'
+        report['F09_wording_revision']={'scope':'Only new Host geometry is unintegrated; legacy height remains in APP_FULL 01/02.',
+            'saved_plotting_csv_unchanged':True,'source_result_reads':0,'old_hashes':previous_hashes,
+            'new_hashes':{ext:figure[ext+'_sha256'] for ext in ('png','svg')}}
+        report['saved_outputs']=compact_checks(saved_checks(output))
+        write_json(output/'CHECK.json',report)
+        print(json.dumps({'figure':'F09','saved_outputs':report['saved_outputs']['status'],'visual_status':report['visual_review']['status'],'source_result_reads':0}))
+        return int(report['saved_outputs']['status']!='PASS')
     output.mkdir(parents=True,exist_ok=True)
     previous=read_json(output/'FIGURES.json') if (output/'FIGURES.json').exists() else None
     if previous and previous.get('owner')!=OWNER:raise ValueError('Unknown output owner')

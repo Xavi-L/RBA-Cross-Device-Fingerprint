@@ -2,11 +2,15 @@
 
 **初稿已生成／供导师选用。** F00、F09是独立素材编号；F10本轮以T05表格交付，**图形化未制作／暂不需要**。正文／附录、最终图号与版面由导师决定。[全图集入口](../README.md)汇总三轮实际素材，F11保持可选／未制作。
 
+
+后续选图整理：**可供导师选图，待提纲对应**。[导师选图册](../review_pack/ADVISOR_FIGURE_BOOK.pdf) · [生成/检查](../review_pack/README.md)。F09仅把“未整合”明确限定为新Host几何；旧高度仍用于APP_FULL 01/02，绘图CSV及状态计数不变。F00新增正文版，详细版、T05和前两轮文件保留。
+
 本轮只读已有代码、模型说明和保存结果，筛选、计数、换算单位并制图。0采集、0拟合、0选择、0模型或条件预测、0重新计时；无网络、无新实验。参考HEAD为`6bcb5f50e085c3873c3b7abaf8262adbedc3bb4f`。第一／二轮文件不覆盖，前两轮README的后续停止点属于各自当轮记录。
 
 | 素材 | 输出 | 可复查内容 |
 |---|---|---|
-| F00 方法与分阶段流程 | [SVG](figures/F00.svg) · [300 dpi PNG](figures/F00.png) | [可编辑节点布局源](F00_source.json) · [节点／来源CSV](data/F00_nodes.csv) · [连线／来源CSV](data/F00_edges.csv) |
+| F00正文候选（180×160 mm） | [SVG](figures/F00_main.svg) · [PNG](figures/F00_main.png) | [可编辑布局](F00_main_source.json) · [节点](data/F00_main_nodes.csv) · [连线/图注依赖](data/F00_main_edges.csv) · [格式/视觉记录](F00_main_MANIFEST.json) |
+| F00详细说明（180×228 mm） | [SVG](figures/F00.svg) · [300 dpi PNG](figures/F00.png) | [可编辑节点布局源](F00_source.json) · [节点／来源CSV](data/F00_nodes.csv) · [连线／来源CSV](data/F00_edges.csv) |
 | F09 宿主几何专项 | [SVG](figures/F09.svg) · [300 dpi PNG](figures/F09.png) | [绘图CSV](data/F09.csv) · [场景／阶段](data/F09_scenarios.csv) · [正常变化](data/F09_normal_changes.csv) · [环境](data/F09_environments.csv) |
 | F10／T05 分阶段成本 | [可读表格](T05.md) | [49行固定主表](data/T05_cost_main.csv) · [148阶段组](data/T05_cost_all.csv) · [1480原批次](data/T05_cost_batches.csv) |
 
@@ -20,9 +24,11 @@ App规则选取、冻结App后的C1增量、资源未通过接入分别表达。
 
 直接编辑SVG中的文本和矢量图元，或修改`F00_source.json`的`label`、`box`（毫米）和连线`points`后重新生成；声明变化须同时更新节点证据。脚本保持SVG文本可编辑，不嵌入字体。布局源、CSV映射和实际SVG共同交付，不构建额外网站或工具平台。
 
+正文候选将流程归为8个主框和1个未整合旁注：当前输入实线、固定模型点划线、共同选择约束点线；各接口分别输出，不合并成自动回退。MTC144/117的冻结后历史评价依赖移到[补充图注](CAPTIONS.md#f00正文候选版f00_main)，不连回训练。
+
 ## F09 范围与明细
 
-只用v15正式72条：正常66、有效屏幕修改6；正常布局扩大中间6是66的子集。三个对象是固定条件，**未纳入当前App完整模型**。旧高度报警6/66、同Web与Host各0/66；修改检出分别6/6、0/6、6/6。收益为正常布局少6次报警并保留6次局部检出，不能替换当前完整App模型的屏幕结果。
+只用v15正式72条：正常66、有效屏幕修改6；正常布局扩大中间6是66的子集。这里比较三条固定条件；其中**新Host几何条件尚未纳入当前完整App方法**。旧高度条件仍用于APP_FULL配置01/02，不能用本专项替换其整模表现。旧高度报警6/66、同Web与Host各0/66；修改检出分别6/6、0/6、6/6。收益为正常布局少6次报警并保留6次局部检出，不能替换当前完整App模型的屏幕结果。
 
 [72行脱敏来源定位](data/F09_records.csv)、[24组三阶段效果依据](data/F09_effects.csv)、[三个条件映射](data/F09_conditions.csv)保留独立正常与实际变化依据。旋转只有4/6可观测生效，另2次仍为正常尝试。v16工程12、早期smoke、App378、MTC及资源54均排除。
 
@@ -50,6 +56,18 @@ deliverables/prepaper_evidence_closeout_v1/.plot-runtime/bin/python -B paper/fig
 
 ```bash
 python3 -B paper/figures/round3_overview/plot_round3.py --check-only
+```
+
+只从保存绘图CSV修正/重渲染F09，不触及F00、T05或实验结果：
+
+```bash
+deliverables/prepaper_evidence_closeout_v1/.plot-runtime/bin/python -B paper/figures/round3_overview/plot_round3.py --figure F09
+```
+
+单独生成F00正文候选（只读布局源，不运行实验）：
+
+```bash
+deliverables/prepaper_evidence_closeout_v1/.plot-runtime/bin/python -B paper/figures/round3_overview/plot_f00_main.py
 ```
 
 可设置`RBA_ROUND3_QA_DIR=/tmp/rba_round3_qa`生成96 dpi工作尺寸校样。F00宽180 mm、F09宽180 mm，最小字号8 pt。数值检查和画布文字边界检查不能替代实际视觉验收；重生成改变PNG摘要时，旧视觉记录失效。

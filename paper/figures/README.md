@@ -1,6 +1,9 @@
 # 论文素材图集：供导师选用
 
-本入口按“方法—App主体—双端作用—正常代价—独立专项—成本”组织三轮独立素材。**初稿供导师选用；素材编号不是最终论文图号。** 正文／附录建议仅帮助选材，章节、图号、页数、版式与最终取舍仍由导师决定。三轮共14幅独立图稿及T05成本表已生成。第三轮F00、F09及T05的验收范围见[第三轮入口](round3_overview/README.md)与[CHECK.json](round3_overview/CHECK.json)。本导航不重绘旧图、不修改旧CSV。
+本入口按“方法—App主体—双端作用—正常代价—独立专项—成本”组织三轮独立素材。**初稿供导师选用；素材编号不是最终论文图号。** 正文／附录建议仅帮助选材，章节、图号、页数、版式与最终取舍仍由导师决定。三轮共14幅独立图稿及T05成本表已生成。第三轮F00、F09及T05的验收范围见[第三轮入口](round3_overview/README.md)与[CHECK.json](round3_overview/CHECK.json)。前两轮图稿与CSV保持原样；本轮新增F00正文版并修正F09的未整合对象措辞。
+
+
+**可供导师选图，待提纲对应。** [导师选图册PDF](review_pack/ADVISOR_FIGURE_BOOK.pdf)连续收录14类图稿及T01、T02、T05选读表，提供可点击目录；[生成与检查说明](review_pack/README.md) · [页码/来源映射](review_pack/PAGES.json) · [本轮检查](review_pack/CHECK.json)。本地修订稿与基线证据版本分别标注，正文候选不代表导师已选用。
 
 三轮入口：[第一轮App主体](round1_app/README.md) · [第二轮双端作用](round2_paired/README.md) · [第三轮方法／Host专项／成本](round3_overview/README.md)。当前制图状态见[制图清单](../../RBA_CURRENT_FIGURE_PLAN.md)，综合证据口径见[导师报告](../../RBA_EXPERIMENT_REPORT_FOR_ADVISOR.md)及[统一证据报告](../../deliverables/app_browser_evidence_consolidation_v1/REPORT.md)。旧两轮README中的“后续轮次未执行”是当轮停止点的历史说明；跨轮当前入口以本页及制图清单为准，旧交付文件保持原样。
 
@@ -8,9 +11,9 @@
 
 | 素材 | 短问题 | 图稿 | 图注、数据／映射 | 来源入口 | 正文／附录候选（导师定） |
 |---|---|---|---|---|---|
-| F00 | 从哪里观察、怎样选择、当前判断需要什么？ | [PNG](round3_overview/figures/F00.png) · [SVG](round3_overview/figures/F00.svg) | [中英图注](round3_overview/CAPTIONS.md) · [节点](round3_overview/data/F00_nodes.csv) · [连线](round3_overview/data/F00_edges.csv) | [App依赖](../../deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md) · [跨端协议](../../deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md) | 正文方法示意候选 |
+| F00 | 从哪里观察、怎样选择、当前判断需要什么？ | F00正文候选：[PNG](round3_overview/figures/F00_main.png) · [SVG](round3_overview/figures/F00_main.svg)<br>F00详细说明：[PNG](round3_overview/figures/F00.png) · [SVG](round3_overview/figures/F00.svg) | [中英图注](round3_overview/CAPTIONS.md) · [节点](round3_overview/data/F00_nodes.csv) · [连线](round3_overview/data/F00_edges.csv) | [App依赖](../../deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md) · [跨端协议](../../deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md) | 正文方法示意候选 |
 
-F00区分离线选择和当前记录判断。App-only与配对输入是不同接口，不能解释为自动回退系统。目录规模App177／paired244不等于全部字段可用或端到端训练；来源标识用于配对，不是检测特征。虚线专项表示测试过但未整合，不是未来自动启用。
+F00正文候选为180×160 mm、8个主框及1个未整合旁注，分清测量实线与固定模型点划线；[布局与证据映射](round3_overview/F00_main_source.json)可编辑。原详细说明版180×228 mm保持不变，两个版式共用F00编号。F00区分离线选择和当前记录判断。App-only与配对输入是不同接口，不能解释为自动回退系统。目录规模App177／paired244不等于全部字段可用或端到端训练；来源标识用于配对，不是检测特征。虚线专项表示测试过但未整合，不是未来自动启用。
 
 ## App主体
 
@@ -51,7 +54,7 @@ F06a／F06b保留P1训练正常反例与P2没有额外收益；不能只取P0最
 |---|---|---|---|---|---|
 | F09 | 当前网页占用区域能否减少固定高度误报？ | [PNG](round3_overview/figures/F09.png) · [SVG](round3_overview/figures/F09.svg) | [图注](round3_overview/CAPTIONS.md) · [CSV](round3_overview/data/F09.csv) · [分场景明细入口](round3_overview/README.md) | [v15正式结果](../../deliverables/screen_geometry_observation_v1/SUMMARY.json) · [几何语义](../../deliverables/screen_geometry_observation_v1/SEMANTICS.md) | 正文局部例证或附录专项候选 |
 
-F09是三个固定条件的专项比较，未纳入当前完整App模型。仅用v15正式72位置，正常布局中间6位置是66正常的子集；不叠加分母，不混入v16工程材料。它不能替代F01／原App整模中的屏幕表现或屏幕专项整模误报结果；Host也不是硬件真值认证层。
+F09比较三条固定条件，其中新Host几何条件未纳入当前完整App方法；旧高度条件仍用于APP_FULL配置01/02，专项不能替换整模表现。仅用v15正式72位置，正常布局中间6位置是66正常的子集；不叠加分母，不混入v16工程材料。它不能替代F01／原App整模中的屏幕表现或屏幕专项整模误报结果；Host也不是硬件真值认证层。
 
 ## 成本
 

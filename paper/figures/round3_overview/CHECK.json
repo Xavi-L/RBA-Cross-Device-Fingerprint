@@ -736,7 +736,7 @@
       {
         "id": "documentation_local_links",
         "status": "PASS",
-        "checked": 269
+        "checked": 291
       },
       {
         "id": "round1_app_manifest_targets_exist",
@@ -839,13 +839,12 @@
   },
   "visual_review": {
     "status": "PASS",
-    "reviewed_on": "2026-10-08",
     "png_sha256": {
       "F00": "268818b91e4a97093eb623736e9e6e04f0acecdb0f05a736eb7b32ab498d412b",
-      "F09": "db2e72ea5ede58fcb1685fbe6414c90cd3500d18210a413d57323ca94e233b49"
+      "F09": "bfb24cc42657aa31dbdb1190b54a61ff42404a1c66963a8525cf3c0e4969dff5"
     },
-    "png": "F00 and F09 final 300 dpi PNGs opened separately; count text, captions, clipping, overlap, arrow directions and groups inspected.",
-    "working_size": "Both 96 dpi proofs inspected at declared 180 mm width (screen approximation, not physical print calibration).",
+    "png": "F00 detailed prior PNG review retained because bytes are unchanged. Revised F09 final 300 dpi PNG opened and inspected anew.",
+    "working_size": "Revised F09 96 dpi proof opened. Detailed F00 prior proof remains byte-matched; F00_main is separately recorded in F00_main_MANIFEST.json.",
     "figures": [
       {
         "id": "F00",
@@ -863,7 +862,7 @@
           119
         ],
         "status": "PASS",
-        "notes": "Three fixed conditions; subset6/all-normal66 kept distinct; complete states and rotation4/6 readable; no clipped labels."
+        "notes": "Revised subtitle read at 300/96 dpi. Complete 66 normal + 6 modified states and 4/6 rotation retained; new Host integration scope explicit."
       }
     ],
     "svg": {
@@ -872,10 +871,16 @@
       "vector_paths": "present",
       "raster_images": 0,
       "editable_text": "present",
-      "rendered_visual_review": "NOT_EVALUATED"
+      "rendered_visual_review": {
+        "F00_detailed": "NOT_EVALUATED (unchanged prior status)",
+        "F09": "PASS: final vector SVG at 180x119 mm embedded in PDF page 16, rendered by Poppler and visually inspected.",
+        "F09_svg_sha256": "574aa7e767bd1a2b79eea2fa6cff149ac0b54b6c979ac9fe56ec3c12a2f910ad",
+        "pdf_sha256": "61ee96690e00dee0810e1d863592228d1c316b3c8531af5acccda677733cb473"
+      }
     },
     "physical_print": "NOT_EVALUATED",
-    "table_review": "T05 Markdown read and checked against CSV; stage denominators and per-model/per-position units explicit; no timing chart generated."
+    "table_review": "T05 Markdown read and checked against CSV; stage denominators and per-model/per-position units explicit; no timing chart generated.",
+    "reviewed_on": "2026-10-08"
   },
   "delivery_scope": {
     "head": "6bcb5f50e085c3873c3b7abaf8262adbedc3bb4f",
@@ -884,5 +889,19 @@
     "plan_F01_to_F08_and_F11_rows_unchanged": true,
     "forbidden_runtime_calls_in_AST": [],
     "no_commit_or_push": true
+  },
+  "F09_wording_revision": {
+    "scope": "Only new Host geometry is unintegrated; legacy height remains in APP_FULL 01/02.",
+    "saved_plotting_csv_unchanged": true,
+    "source_result_reads": 0,
+    "old_hashes": {
+      "png": "db2e72ea5ede58fcb1685fbe6414c90cd3500d18210a413d57323ca94e233b49",
+      "svg": "f4472ade3062b8533ea225fa15c01bf5c60c2dfacb580389deb181a864715f5f"
+    },
+    "new_hashes": {
+      "png": "bfb24cc42657aa31dbdb1190b54a61ff42404a1c66963a8525cf3c0e4969dff5",
+      "svg": "574aa7e767bd1a2b79eea2fa6cff149ac0b54b6c979ac9fe56ec3c12a2f910ad"
+    },
+    "visual_status": "PASS for revised PNG and SVG-in-PDF rendering; physical print NOT_EVALUATED"
   }
 }

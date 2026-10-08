@@ -34,13 +34,24 @@ The current App-only and paired interfaces are distinct; they use only current r
 - 完整逐节点状态、来源定位与连线含义见F00证据映射。
 
 
+## F00正文候选版（F00_main）
+
+与上文F00共用方法身份和完整限定语，不构成新增实验图。正文候选为180×160 mm、8个主框及1个虚线旁注；原180×228 mm详细说明版保留。实线传递当前测量，点划线传递固定模型，点线将共同约束分别连到两个选择阶段；当前App-only与配对接口各自输出，互不自动回退。离线框内列出其独立开发材料，不表示将当前待判记录回流训练。
+
+**中文补充图注。** 冻结App模型 → MTC144／117历史评价，结果不反馈选择，也不是新的盲测；这条评价依赖置于图注，避免在主图再增加框。配对开发和当前配对路径均须真实会话／回执关联，不按值相似配对；关联ID不进入检测。T为报警，F为未报警，U为无法判断；选中依赖的执行或绑定错误优先产生FAILED。资源试验没有新条件通过接入，Host新几何同样未整合；旧高度仍用于APP_FULL配置01／02。
+
+**English supplement for the main-text candidate.** This compact layout has eight main boxes plus one unintegrated-diagnostics note and represents the same F00 method, not another experiment. Solid paths carry current observations, dash-dot paths load fixed models, and dotted paths apply selection constraints. Separate App-only and paired interfaces retain their own outcomes, with no automatic fallback. Offline development inputs are listed inside the selection boxes; current records do not flow back to training. Frozen App models are subsequently evaluated on historical MTC144/117 only, with no feedback into selection and no new blind-test claim. Pairing uses actual saved session/receipt association, not value similarity or association IDs as detection features. T/F/U mean alarm/no alarm/cannot judge; a selected execution or binding error has priority as FAILED. The new Host geometry and resource conditions remain unintegrated; the legacy height condition remains in APP_FULL configurations 01/02.
+
+[正文SVG](figures/F00_main.svg) · [正文PNG](figures/F00_main.png) · [可编辑布局源](F00_main_source.json) · [节点映射](data/F00_main_nodes.csv) · [连线及图注依赖映射](data/F00_main_edges.csv)。原[详细说明SVG](figures/F00.svg)保持不变。
+
+
 ## F09 宿主实际显示区域：固定条件专项
 
-**初稿已生成／供导师选用；固定条件专项，未纳入当前App完整模型。** 对照对象为旧高度阈值 `R_HEIGHT710`、旧同网页关系 `R_SAME_WEB` 和新宿主几何上界 `R_HOST_GEOMETRY`，不是三个重训模型或三个整模消融。
+**初稿已生成／供导师选用；三条固定条件比较，其中新Host几何条件尚未纳入当前完整App方法。** 旧高度条件仍用于APP_FULL配置01/02，不能用本专项替换其整模表现。 对照对象为旧高度阈值 `R_HEIGHT710`、旧同网页关系 `R_SAME_WEB` 和新宿主几何上界 `R_HOST_GEOMETRY`，不是三个重训模型或三个整模消融。
 
 **中文图注。** 宿主几何参照在v15正式72个位置中减少正常布局变化造成的报警，同时保留局部屏幕修改检出。A展示6个有独立正常依据的布局扩大中间位置及6个确认实际生效的屏幕修改位置：旧高度阈值和Host上界均检出6/6修改，正常布局扩大时分别报警6/6和0/6；旧同网页关系两组均为0/6。B保留全部66个有依据正常位置和6个有效修改位置的T/F/U/FAILED计数。正常布局6是正常66的子集，不能相加。三个条件在72条上均无U或FAILED。72条来自3个模拟器环境的重复观察，不代表72台设备或真机人群误报率；旋转实际生效4/6，另2个无可观测效果的正常尝试完整保留在分场景CSV。
 
-**English caption.** Host geometry reduces alarms caused by normal layout enlargement while retaining local screen-modification detections in the 72-position formal v15 matrix. Panel A compares three fixed conditions on six independently supported normal layout-enlargement positions and six observably effective screen modifications. Both the legacy height threshold and the Host upper bound detect all six modifications; they raise six and zero alarms, respectively, on the normal layout subset. The legacy same-Web relation raises no alarms in either group. Panel B reports complete T/F/U/FAILED counts for all 66 normal and six modified positions. The six layout positions are included in the 66 normal positions. All three conditions have explicit outputs on all 72 positions, with no U or FAILED. These are repeated observations in three emulator environments, not a device-population estimate. Rotation has an observed effect in four of six attempts; the two normal attempts without an observable effect are retained in the accompanying scene-level data. This fixed-condition study has not been integrated into the accepted App full model.
+**English caption.** Host geometry reduces alarms caused by normal layout enlargement while retaining local screen-modification detections in the 72-position formal v15 matrix. Panel A compares three fixed conditions on six independently supported normal layout-enlargement positions and six observably effective screen modifications. Both the legacy height threshold and the Host upper bound detect all six modifications; they raise six and zero alarms, respectively, on the normal layout subset. The legacy same-Web relation raises no alarms in either group. Panel B reports complete T/F/U/FAILED counts for all 66 normal and six modified positions. The six layout positions are included in the 66 normal positions. All three conditions have explicit outputs on all 72 positions, with no U or FAILED. These are repeated observations in three emulator environments, not a device-population estimate. Rotation has an observed effect in four of six attempts; the two normal attempts without an observable effect are retained in the accompanying scene-level data. The new Host geometry condition has not been integrated into the accepted App full model. The legacy height condition remains in APP_FULL configurations 01/02; this comparison does not replace their full-model results.
 
 Host提供当前App中WebView实际占用的内容区域，而非整块物理屏幕。正常扩大容器后，网页高度可以合法增加，因此固定710阈值产生正常报警。Host关系按[SEMANTICS](../../../deliverables/screen_geometry_observation_v1/SEMANTICS.md)逐轴比较：网页视觉尺寸 × 同期DPR × 当前 `visualViewport.scale`，是否大于实测WebView内容区域加既定容差；容差为 `2 + 4 × 2^-23 × max(|P|, |H|, 1)` 物理像素。本轮只计数保存输出，不重新计算该关系。不补缺失scale、不按宽度比反推、不混用旧Web快照与新Host窗口。
 

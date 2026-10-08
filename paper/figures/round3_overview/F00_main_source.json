@@ -1,0 +1,766 @@
+{
+  "owner": "rba-f00-main-layout-v1",
+  "id": "F00_main",
+  "material_class": "F00",
+  "size_mm": [
+    180,
+    160
+  ],
+  "minimum_font_pt": 8,
+  "title": "F00  Observations, fixed models and current decisions",
+  "nodes": [
+    {
+      "id": "app_observation",
+      "label": "App177: Native | Host | App Web\nThree observation locations",
+      "box": [
+        5,
+        16,
+        76,
+        17
+      ],
+      "kind": "observation",
+      "evidence": [
+        {
+          "path": "android_app/HybridGuard/featureapp/src/main/assets/expanded_v2_field_catalog.csv",
+          "locator": "CSV layer=android_native_data (84), webview_data (26), web_data (67); other 4 metadata rows excluded"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 20-29, 34-42"
+        }
+      ]
+    },
+    {
+      "id": "browser_observation",
+      "label": "Independent Browser67\nExtra Web observation; same device",
+      "box": [
+        103,
+        16,
+        72,
+        17
+      ],
+      "kind": "observation",
+      "evidence": [
+        {
+          "path": "browser_probe_site/public/probe/manifest.json",
+          "locator": "/signal_count"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 20-29, 40-42"
+        },
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "lines 4-7, 616-622"
+        }
+      ]
+    },
+    {
+      "id": "bound_pair",
+      "label": "Bound App + Browser: paired244\nSaved session / receipt association",
+      "box": [
+        103,
+        37,
+        72,
+        15
+      ],
+      "kind": "observation",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 7-18"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 1-6"
+        }
+      ]
+    },
+    {
+      "id": "app_selection",
+      "label": "App candidate selection → fixed App rules\nControlled App changes + normal controls\nMTC630 normal training portion",
+      "box": [
+        5,
+        60,
+        76,
+        23
+      ],
+      "kind": "accepted",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 9-16, 24-34"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+          "locator": "lines 3-7, 61-67"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        }
+      ]
+    },
+    {
+      "id": "paired_selection",
+      "label": "Bound-pair development, App frozen\nAccept C1 cross-endpoint timezone\nSaved method: App + C1",
+      "box": [
+        5,
+        96,
+        76,
+        22
+      ],
+      "kind": "accepted",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 3-7, 11, 15"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+          "locator": "/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 5-11, 27-40"
+        }
+      ]
+    },
+    {
+      "id": "constraints",
+      "label": "Selection constraints at each stage\nNormal alarms | defined output | complexity",
+      "box": [
+        5,
+        124,
+        76,
+        13
+      ],
+      "kind": "constraint",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 28-29"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 7-11"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 20-24"
+        }
+      ]
+    },
+    {
+      "id": "app_interface",
+      "label": "Current App-only interface\nCurrent App + loaded fixed App rules\nT / F / U   |   error → FAILED",
+      "box": [
+        103,
+        60,
+        72,
+        23
+      ],
+      "kind": "current",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 1, 24-37"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 1, 10-23, 28-36"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 15-40"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 38-64"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 33-34"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 59-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 32-36"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 22-31"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 17-20, 38-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        }
+      ]
+    },
+    {
+      "id": "paired_interface",
+      "label": "Current paired interface\nCurrent bound pair + loaded App + C1\nT / F / U   |   error → FAILED",
+      "box": [
+        103,
+        96,
+        72,
+        22
+      ],
+      "kind": "current",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 1, 24-37"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 1, 10-23, 28-36"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 15-40"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 38-64"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 33-34"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 59-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 32-36"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 22-31"
+        },
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 17-20, 38-64"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        }
+      ]
+    },
+    {
+      "id": "specialists",
+      "label": "Tested, not integrated: new Host geometry / resource conditions",
+      "box": [
+        5,
+        142,
+        170,
+        9
+      ],
+      "kind": "diagnostic",
+      "evidence": [
+        {
+          "path": "deliverables/screen_geometry_observation_v1/SEMANTICS.md",
+          "locator": "lines 3, 23-35, 45-47"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/CANDIDATE_DEPENDENCIES.md",
+          "locator": "lines 5, 67"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 5-6, 60"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/results/models.json",
+          "locator": "/0..2/selected_set=S0; /0..2/status=BASELINE_RETAINED; /0..2/extensions=[]"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 5-20, 53-60"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "app_current",
+      "source": "app_observation",
+      "target": "app_interface",
+      "points": [
+        [
+          81,
+          24.5
+        ],
+        [
+          92,
+          24.5
+        ],
+        [
+          92,
+          57
+        ],
+        [
+          139,
+          57
+        ],
+        [
+          139,
+          60
+        ]
+      ],
+      "kind": "measurement",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 1, 24-37"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 1, 10-23, 28-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ]
+    },
+    {
+      "id": "app_association",
+      "source": "app_observation",
+      "target": "bound_pair",
+      "points": [
+        [
+          92,
+          44.5
+        ],
+        [
+          103,
+          44.5
+        ]
+      ],
+      "kind": "measurement_branch",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 7-18"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 1-6"
+        }
+      ]
+    },
+    {
+      "id": "browser_association",
+      "source": "browser_observation",
+      "target": "bound_pair",
+      "points": [
+        [
+          139,
+          33
+        ],
+        [
+          139,
+          37
+        ]
+      ],
+      "kind": "measurement",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/scripts/build_latest_paired244_snapshot.py",
+          "locator": "load_catalog lines 205-229; App binding lines 488-511; pair binding lines 540-622"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/SEMANTICS.md",
+          "locator": "lines 7-18"
+        },
+        {
+          "path": "hybridguard_agent/evidence/paired244.py",
+          "locator": "lines 1-6"
+        }
+      ]
+    },
+    {
+      "id": "pair_current",
+      "source": "bound_pair",
+      "target": "paired_interface",
+      "points": [
+        [
+          175,
+          44.5
+        ],
+        [
+          179,
+          44.5
+        ],
+        [
+          179,
+          107
+        ],
+        [
+          175,
+          107
+        ]
+      ],
+      "kind": "measurement",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/rule_learning/predictor.py",
+          "locator": "lines 1, 24-37"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 1, 10-23, 28-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ]
+    },
+    {
+      "id": "load_app",
+      "source": "app_selection",
+      "target": "app_interface",
+      "points": [
+        [
+          81,
+          71.5
+        ],
+        [
+          103,
+          71.5
+        ]
+      ],
+      "kind": "model",
+      "evidence": [
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ]
+    },
+    {
+      "id": "freeze_app",
+      "source": "app_selection",
+      "target": "paired_selection",
+      "points": [
+        [
+          43,
+          83
+        ],
+        [
+          43,
+          96
+        ]
+      ],
+      "kind": "model",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 3-7, 11, 15"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+          "locator": "/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 5-11, 27-40"
+        }
+      ]
+    },
+    {
+      "id": "load_pair",
+      "source": "paired_selection",
+      "target": "paired_interface",
+      "points": [
+        [
+          81,
+          107
+        ],
+        [
+          103,
+          107
+        ]
+      ],
+      "kind": "model",
+      "evidence": [
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/results/models.json",
+          "locator": "/0/extensions, /1/extensions, /2/extensions = [C1]; /0..2/status = SELECTED_EXTENSION"
+        },
+        {
+          "path": "deliverables/browser67_cross_endpoint_diagnostic_v1/conditions.py",
+          "locator": "lines 5-11, 27-40"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/inference.py",
+          "locator": "lines 10-36"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/selector.py",
+          "locator": "lines 14-20"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 9"
+        }
+      ]
+    },
+    {
+      "id": "app_constraints",
+      "source": "constraints",
+      "target": "app_selection",
+      "points": [
+        [
+          20,
+          124
+        ],
+        [
+          20,
+          121
+        ],
+        [
+          2,
+          121
+        ],
+        [
+          2,
+          71.5
+        ],
+        [
+          5,
+          71.5
+        ]
+      ],
+      "kind": "constraint",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 28-29"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 7-11"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 20-24"
+        }
+      ]
+    },
+    {
+      "id": "pair_constraints",
+      "source": "constraints",
+      "target": "paired_selection",
+      "points": [
+        [
+          20,
+          121
+        ],
+        [
+          20,
+          118
+        ]
+      ],
+      "kind": "constraint_branch",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 28-29"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "lines 7-11"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "locator": "lines 20-24"
+        }
+      ]
+    }
+  ],
+  "junctions": [
+    [
+      92,
+      44.5
+    ],
+    [
+      20,
+      121
+    ]
+  ],
+  "labels": [
+    {
+      "x": 5,
+      "y": 12,
+      "text": "OBSERVATIONS",
+      "bold": true
+    },
+    {
+      "x": 5,
+      "y": 55,
+      "text": "OFFLINE DEVELOPMENT",
+      "bold": true
+    },
+    {
+      "x": 103,
+      "y": 55,
+      "text": "CURRENT RECORD ONLY",
+      "bold": true
+    },
+    {
+      "x": 83,
+      "y": 21,
+      "text": "App",
+      "size": 8
+    },
+    {
+      "x": 92,
+      "y": 68,
+      "text": "Load App",
+      "align": "center"
+    },
+    {
+      "x": 45,
+      "y": 90,
+      "text": "Freeze App"
+    },
+    {
+      "x": 92,
+      "y": 103,
+      "text": "Load pair",
+      "align": "center"
+    },
+    {
+      "x": 140,
+      "y": 127,
+      "text": "Separate interfaces; no automatic fallback",
+      "align": "center"
+    },
+    {
+      "x": 140,
+      "y": 132,
+      "text": "F: no alarm, not a safety claim",
+      "align": "center"
+    },
+    {
+      "x": 5,
+      "y": 155,
+      "text": "Solid: measurements   Dash-dot: fixed models   Dotted: selection constraints"
+    }
+  ],
+  "caption_dependencies": [
+    {
+      "source": "app_selection",
+      "target": "historical_evaluation",
+      "visible": false,
+      "meaning": "Frozen App models → historical MTC144/117 evaluation only; no feedback to training, not a new blind test.",
+      "evidence": [
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 11-12"
+        },
+        {
+          "path": "deliverables/cross_endpoint_constrained_extension_v1/PROTOCOL.md",
+          "locator": "line 5"
+        },
+        {
+          "path": "deliverables/timezone_relation_validation_v1/models.json",
+          "locator": "/models/1, /models/3, /models/5; stage=RETENTION; selected_clauses"
+        },
+        {
+          "path": "deliverables/app177_core_ablation_v1/REPORT.md",
+          "locator": "lines 26, 31-34"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Catalogue counts occur once and do not denote complete model inputs or equality requirements.",
+    "App-only input bypasses association. Paired development and current paired inference require actual session/receipt binding, never value similarity; IDs are not detection features.",
+    "Offline panels contain saved development material. Solid arrows from observation nodes denote current measurement paths, not new collection or current-to-training feedback.",
+    "Each current interface has its own result mapping. A selected execution/binding error is FAILED before T/F/U combination; missing pair data does not trigger an App fallback.",
+    "Native/Host are observations, not truth; same-phase association is not atomic synchronization.",
+    "Historical evaluation dependency is stated in the caption; the tested/unintegrated note has no edge into an accepted model."
+  ]
+}
