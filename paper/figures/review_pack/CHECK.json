@@ -1,6 +1,6 @@
 {
   "owner": "rba-advisor-figure-book-v1",
-  "pdf_sha256": "61ee96690e00dee0810e1d863592228d1c316b3c8531af5acccda677733cb473",
+  "pdf_sha256": "033a5c1594217bd3fb67991a3e51b59e032a6cdab14b7f6f496fe5e02799bf9c",
   "saved_pdf": {
     "status": "PASS",
     "page_count": 22,
@@ -10,8 +10,31 @@
       "/BAAAAA+DejaVuSans-Bold": true,
       "/CAAAAA+DejaVuSans": true
     },
-    "external_or_relative_links": 82,
+    "external_https_links": 82,
+    "external_non_https_links": 0,
     "internal_links": 20,
+    "toc_destination_pages": {
+      "F00": 3,
+      "F01": 4,
+      "F02": 5,
+      "F03a": 6,
+      "F03b": 7,
+      "F04": 8,
+      "F05a": 9,
+      "F05b": 10,
+      "F06a": 11,
+      "F06b": 12,
+      "F07a": 13,
+      "F07b": 14,
+      "F08": 15,
+      "F09": 16,
+      "T01": 17,
+      "T02": 18,
+      "T05a": 19,
+      "T05b": 20,
+      "T05c": 21,
+      "T05d": 22
+    },
     "raster_images": 0,
     "failures": []
   },
@@ -26,7 +49,8 @@
   },
   "visual_review": {
     "status": "PASS",
-    "reviewed_on": "2026-10-08",
+    "date": "2026-10-08",
+    "pdf_sha256": "033a5c1594217bd3fb67991a3e51b59e032a6cdab14b7f6f496fe5e02799bf9c",
     "pages_inspected": [
       1,
       2,
@@ -51,12 +75,15 @@
       21,
       22
     ],
-    "format": "Final PDF rendered with Poppler at 96 dpi; all 22 final page PNGs opened individually at original 794x1123 pixel resolution.",
-    "scope": "Chinese, all 14 vector figure renderings, notes, titles, margins, tables, page breaks, links and footers; no clipping, overlap, blank figure pages or missing glyphs observed.",
-    "working_size": "Original 85/180 mm widths retained; 96 dpi is a 100 percent screen approximation, not a calibrated physical print.",
-    "svg": "All 14 source SVGs inspected as vector content in the final PDF; zero raster fallbacks.",
-    "physical_print": "NOT_EVALUATED",
-    "proofs": "Temporary directory only; not part of repository delivery."
+    "method": "Poppler pdftoppm 96 dpi rendering of the regenerated final PDF; each of 22 pages opened and visually inspected at original raster size.",
+    "checks": [
+      "Titles, figure content, Chinese text, table pagination, footers and link rows readable.",
+      "No observed clipping, missing glyphs or overlap.",
+      "F00 and F09 inspected in the regenerated PDF; source figures were not redrawn."
+    ],
+    "prior_pdf_visual_review_reused": false,
+    "render_directory": "/tmp/rba_pdf_standalone_qa",
+    "physical_print": "NOT_EVALUATED"
   },
   "operations": {
     "collection": 0,
@@ -66,20 +93,130 @@
     "retiming": 0,
     "network": 0
   },
-  "content_checks": {
+  "operations_scope": "PDF generation and offline checks only; separate online link validation is recorded below.",
+  "standalone_delivery_check": {
     "status": "PASS",
-    "critical_text_checks": 41,
-    "toc_destinations": 20,
-    "destination_page_mapping": "PASS",
-    "F09_plotting_CSV_and_states": "UNCHANGED",
-    "method_roles_and_negative_results": "Read against saved CAPTIONS; matched page/source SVG map.",
-    "earlier_round_files_detailed_F00_and_T05": "UNCHANGED",
-    "prior_figure_area_files": 112,
-    "preserved_files": 104,
-    "changed_existing_files": "Only figure atlas, round3 README/CAPTIONS, F09 generator/SVG/PNG, FIGURES/CHECK.",
-    "prior_unrelated_status_entries": 211,
-    "prior_unrelated_status_changes": 0,
-    "staged_paths": 0,
-    "failures": []
+    "date": "2026-10-08",
+    "pdf_sha256": "033a5c1594217bd3fb67991a3e51b59e032a6cdab14b7f6f496fe5e02799bf9c",
+    "pdf_copy": "/tmp/rba-pdf-only-fjkjw0xs/ADVISOR_FIGURE_BOOK.pdf",
+    "isolated_directory_files": [
+      "ADVISOR_FIGURE_BOOK.pdf"
+    ],
+    "source_dependency_check": {
+      "status": "PASS",
+      "working_directory": "/tmp/rba-pdf-only-fjkjw0xs",
+      "repository_source_reads": 0,
+      "expected_mapping": "PAGES.json",
+      "writes": 0,
+      "science_entrypoints": 0
+    },
+    "external_https_annotations": 82,
+    "external_non_https_annotations": 0,
+    "changed_manifest_links": 6,
+    "published_artifact_commit": "adf82efde233eab941bf5a591650fa4cc79f9b25",
+    "unchanged_evidence_baseline": "7ae5bc1d71233d141d29b3ca48172a31108a1f11",
+    "online_validation": {
+      "method": "Anonymous HTTPS GET using actual URI annotations extracted from the isolated PDF copy; redirects restricted to HTTPS.",
+      "checked_annotations": 6,
+      "unique_files": 5,
+      "all_http_200": true,
+      "unchanged_links_online_checked": false,
+      "results": [
+        {
+          "page": 3,
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/data/F00_main_nodes.csv",
+          "http_status": "200",
+          "final_url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/data/F00_main_nodes.csv",
+          "content_type": "text/html; charset=utf-8",
+          "status": "PASS",
+          "error": null
+        },
+        {
+          "page": 3,
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/figures/F00_main.svg",
+          "http_status": "200",
+          "final_url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/figures/F00_main.svg",
+          "content_type": "text/html; charset=utf-8",
+          "status": "PASS",
+          "error": null
+        },
+        {
+          "page": 3,
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/CAPTIONS.md",
+          "http_status": "200",
+          "final_url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/CAPTIONS.md",
+          "content_type": "text/html; charset=utf-8",
+          "status": "PASS",
+          "error": null
+        },
+        {
+          "page": 3,
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/data/F00_main_edges.csv",
+          "http_status": "200",
+          "final_url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/data/F00_main_edges.csv",
+          "content_type": "text/html; charset=utf-8",
+          "status": "PASS",
+          "error": null
+        },
+        {
+          "page": 16,
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/figures/F09.svg",
+          "http_status": "200",
+          "final_url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/figures/F09.svg",
+          "content_type": "text/html; charset=utf-8",
+          "status": "PASS",
+          "error": null
+        },
+        {
+          "page": 16,
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/CAPTIONS.md",
+          "http_status": "200",
+          "final_url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/adf82efde233eab941bf5a591650fa4cc79f9b25/paper/figures/round3_overview/CAPTIONS.md",
+          "content_type": "text/html; charset=utf-8",
+          "status": "PASS",
+          "error": null
+        }
+      ]
+    },
+    "internal_link_annotations": 20,
+    "toc_destination_pages": {
+      "F00": 3,
+      "F01": 4,
+      "F02": 5,
+      "F03a": 6,
+      "F03b": 7,
+      "F04": 8,
+      "F05a": 9,
+      "F05b": 10,
+      "F06a": 11,
+      "F06b": 12,
+      "F07a": 13,
+      "F07b": 14,
+      "F08": 15,
+      "F09": 16,
+      "T01": 17,
+      "T02": 18,
+      "T05a": 19,
+      "T05b": 20,
+      "T05c": 21,
+      "T05d": 22
+    },
+    "prior_directory_targets_unchanged": true,
+    "figure_page_maps_unchanged": true
+  },
+  "change_scope_check": {
+    "status": "PASS",
+    "changed_files": [
+      "paper/figures/review_pack/ADVISOR_FIGURE_BOOK.pdf",
+      "paper/figures/review_pack/CHECK.json",
+      "paper/figures/review_pack/PAGES.json",
+      "paper/figures/review_pack/README.md",
+      "paper/figures/review_pack/book_content.json",
+      "paper/figures/review_pack/build_book.py"
+    ],
+    "unchanged_figure_and_data_input_records": 41,
+    "experiment_graphics_and_statistics_changes": 0,
+    "unrelated_preexisting_status_entries_preserved": 211,
+    "staged_files": 0
   }
 }

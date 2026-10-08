@@ -10,7 +10,7 @@ import re
 import subprocess
 import tempfile
 from pathlib import Path
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import quote, urlparse
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -28,6 +28,11 @@ def dump(path, data): path.write_text(json.dumps(data,ensure_ascii=False,indent=
 def rows(path):
     with path.open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
 def esc(value): return html.escape(str(value))
+def github_url(path, version):
+    return 'https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/'+version+'/'+quote(str(path),safe='/')
+def full_https(uri):
+    parsed=urlparse(uri)
+    return parsed.scheme=='https' and bool(parsed.hostname) and not parsed.username and not parsed.password
 def paragraphs(items): return ''.join('<p>'+esc(p)+'</p>' for p in items)
 def table(headers, data):
     return '<table><thead><tr>'+''.join('<th>'+esc(h)+'</th>' for h in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+esc(x)+'</td>' for x in row)+'</tr>' for row in data)+'</tbody></table>'
@@ -35,22 +40,21 @@ def table(headers, data):
 
 def build_pages(config):
     pages=[]; links=[]; inputs=set(); svg_map=[]
-    def link(label,path,local=False):
+    def link(label,path,published=False):
         path=Path(path); absolute=(ROOT/path).resolve()
         if not absolute.is_file():raise FileNotFoundError(path)
-        uri=os.path.relpath(absolute,HERE) if local else 'https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/'+config['baseline']+'/'+quote(path.as_posix(),safe='/')
-        links.append(dict(label=label,uri=uri,path=path.as_posix(),version='local working draft' if local else config['baseline']))
-        # Relative artifact URIs are set after print, so temporary HTML paths cannot leak.
-        href='https://rba-local.invalid/'+str(len(links)-1) if local else uri
-        return '<a href="'+esc(href)+'">'+esc(label)+'</a>'
+        version=config['published_artifact_commit'] if published else config['baseline']
+        uri=github_url(path.as_posix(),version)
+        links.append(dict(label=label,uri=uri,path=path.as_posix(),version=version))
+        return '<a href="'+esc(uri)+'">'+esc(label)+'</a>'
     def add(id,title,body,category='待导师选择',keywords=None):
         pages.append(dict(id=id,title=title,body=body,category=category,keywords=keywords or [id,title]))
     def saved(path):
         inputs.add(path.relative_to(ROOT).as_posix());return rows(path)
     guide=paragraphs([
         '本册用于连续阅读与选图，尚未给定导师提纲、投稿模板或最终论文图号。素材ID保持F00-F09（含拆分子图），共14类；F00正文候选和详细说明是同一素材的两个版式，F10仍以T05表格呈现，F11未制作。',
-        '事实基线：'+config['baseline']+'。当前稿件：'+config['version']+'。本轮只修F09措辞、增加F00正文版并汇编保存材料；无采集、拟合、选择、预测或重新计时。',
-        '证据、CSV和未改原图链接固定到事实基线提交。F00正文版、修正F09及第三轮当前图注尚未提交，链接使用本仓库相对路径，须在相同目录结构下打开；页内图面已完整嵌入，可独立阅读。源图版本、摘要与页码另存PAGES.json，不能将本地新图误称为基线提交已有图。'])
+        '事实基线：'+config['baseline']+'。当前稿件：'+config['version']+'。本轮只修外部链接与发送说明；图形、实验和统计数据不变，无采集、拟合、选择、预测或重新计时。',
+        'PDF可单独发送和阅读，无需附带仓库目录；页内矢量图、正文和表格均已嵌入。F00正文版、修正F09、节点/连线映射及当前英文图注的6个入口固定到已推送图稿提交 '+config['published_artifact_commit']+'；未变更的实验依据仍保留原事实基线。外部材料通过完整HTTPS网页链接访问，目录保持PDF内部跳转；源图版本、摘要与页码另存PAGES.json。'])
     guide+=table(['简称','方法身份'],[
         ['Full App / APP_FULL','不读独立Browser的当前完整App规则；四项消融是已保存的重新选择/拟合模型。'],
         ['App+C1 / PAIRED_BASE / S0','冻结App加接受的跨端时区C1；T05旧名R_FULL也是此方法，R_NO_CROSS是旧App基线。'],
@@ -74,12 +78,12 @@ def build_pages(config):
         body+=paragraphs(entry['notes'])
         current=fid in ('F00','F09')
         captions=(rnd/'CAPTIONS.md').relative_to(ROOT)
-        refs=[link('绘图CSV/节点映射',csv_path.relative_to(ROOT),local=fid=='F00'),
-              link('当前原图SVG' if current else '原图SVG',svg.relative_to(ROOT),local=current),
-              link('完整英文图注',captions,local=current),link('保存证据',Path(item['sources'][0]['path']))]
+        refs=[link('绘图CSV/节点映射',csv_path.relative_to(ROOT),published=fid=='F00'),
+              link('当前原图SVG' if current else '原图SVG',svg.relative_to(ROOT),published=current),
+              link('完整英文图注',captions,published=current),link('保存证据',Path(item['sources'][0]['path']))]
         if fid=='F00':
             refs+=[link('F00详细说明',Path('paper/figures/round3_overview/figures/F00.svg')),
-                link('连线/评价依赖',Path('paper/figures/round3_overview/data/F00_main_edges.csv'),local=True)]
+                link('连线/评价依赖',Path('paper/figures/round3_overview/data/F00_main_edges.csv'),published=True)]
             inputs.update(['paper/figures/round3_overview/F00_main_source.json',
                 'paper/figures/round3_overview/data/F00_main_edges.csv'])
         if fid=='F06b':refs.append(link('T04分组长明细',Path('paper/figures/round2_paired/data/T04_four_view_all_cohorts.csv')))
@@ -193,9 +197,17 @@ def html_document(pages):
     return '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>RBA 导师选图册</title><style>'+css+'</style>'+''.join(parts)+'</html>'
 
 
-def inspect_pdf(mapping):
+def inspect_pdf(mapping,pdf_path=PDF):
     from pypdf import PdfReader
-    reader=PdfReader(PDF);failures=[];external=0;internal=0;fonts={};rasters=0
+    reader=PdfReader(pdf_path);failures=[];external=0;internal=0;fonts={};rasters=0
+    expected_urls={item['uri'] for item in mapping['links']};seen_urls=set();seen_destinations=set()
+    expected_destinations={p['id']:p['page'] for p in mapping['pages'] if p['page']>=3}
+    destinations=reader.named_destinations
+    actual_destinations={str(key).lstrip('/'):reader.get_destination_page_number(value)+1 for key,value in destinations.items()}
+    if actual_destinations!=expected_destinations:failures.append('TOC destination page mapping mismatch')
+    for item in mapping['links']:
+        if not full_https(item['uri']) or item['version'] not in (mapping['baseline'],mapping['published_artifact_commit']) or item['uri']!=github_url(item['path'],item['version']):
+            failures.append('Incomplete or unpinned manifest HTTPS link: '+item['uri'])
     if len(reader.pages)!=len(mapping['pages']):failures.append('PDF page count mismatch')
     for p,expected in zip(reader.pages,mapping['pages']):
         text=re.sub(r'\s+','',p.extract_text() or '')
@@ -216,35 +228,44 @@ def inspect_pdf(mapping):
         for ref in p.get('/Annots',[]):
             a=ref.get_object();action=a.get('/A',{});uri=action.get('/URI')
             if uri:
-                external+=1
-                if 'rba-local.invalid' in uri or uri.startswith('file:'):failures.append('Unresolved/absolute local PDF URI')
-            elif a.get('/Dest') or action.get('/D'):internal+=1
+                external+=1;seen_urls.add(str(uri))
+                if not full_https(str(uri)) or str(uri) not in expected_urls:failures.append('Invalid PDF external HTTPS link: '+str(uri))
+            elif a.get('/Dest') or action.get('/D'):
+                internal+=1;dest=a.get('/Dest') or action.get('/D')
+                if str(dest) not in destinations:failures.append('Unresolved PDF internal link: '+str(dest))
+                else:seen_destinations.add(str(dest).lstrip('/'))
+    if seen_urls!=expected_urls:failures.append('PDF/manifest external URL set mismatch')
+    if seen_destinations!=set(expected_destinations):failures.append('Missing TOC link annotations')
     if not all(fonts.values()) or not fonts:failures.append('Missing embedded font')
     if internal<len(mapping['pages'])-2:failures.append('Missing clickable TOC destinations')
     if rasters:failures.append('Unexpected raster figure in vector PDF')
     return dict(status='FAIL' if failures else 'PASS',page_count=len(reader.pages),embedded_fonts=fonts,
-        external_or_relative_links=external,internal_links=internal,raster_images=rasters,failures=failures)
+        external_https_links=external,external_non_https_links=sum(not full_https(u) for u in seen_urls),
+        internal_links=internal,toc_destination_pages=actual_destinations,raster_images=rasters,failures=failures)
 
 
-def check_only():
+def check_only(pdf_path=PDF,standalone=False):
     mapping=read_json(HERE/'PAGES.json');failures=[]
     if mapping.get('owner')!=OWNER:failures.append('Unknown owner')
-    if sha(PDF)!=mapping['pdf_sha256']:failures.append('PDF bytes changed; visual review invalid')
-    for p,h in mapping['inputs'].items():
-        if not (ROOT/p).is_file() or sha(ROOT/p)!=h:failures.append('Source changed: '+p)
-    for item in mapping['links']:
-        if not (ROOT/item['path']).is_file():failures.append('Missing local link target: '+item['path'])
-        if item['version']!='local working draft' and mapping['baseline'] not in item['uri']:failures.append('Unpinned evidence link')
+    if sha(pdf_path)!=mapping['pdf_sha256']:failures.append('PDF bytes changed; visual review invalid')
+    if not standalone:
+        for p,h in mapping['inputs'].items():
+            if not (ROOT/p).is_file() or sha(ROOT/p)!=h:failures.append('Source changed: '+p)
     if [f['id'] for f in mapping['figures']]!=EXPECTED_IDS:failures.append('Figure class/order mismatch')
-    pdf_check=inspect_pdf(mapping);failures+=pdf_check['failures']
+    pdf_check=inspect_pdf(mapping,pdf_path);failures+=pdf_check['failures']
     result=dict(status='FAIL' if failures else 'PASS',pages=pdf_check['page_count'],figure_classes=14,
-        local_link_targets=len(mapping['links']),failures=failures,writes=0,science_entrypoints=0,network=0)
+        external_https_links=pdf_check['external_https_links'],internal_links=pdf_check['internal_links'],
+        standalone_pdf=standalone,repository_source_reads=0 if standalone else len(mapping['inputs']),
+        failures=failures,writes=0,science_entrypoints=0,network=0)
     print(json.dumps(result,ensure_ascii=False));return int(bool(failures))
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
-    if args.check_only:return check_only()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check-only',action='store_true')
+    parser.add_argument('--pdf',type=Path,help='With --check-only, inspect an isolated PDF copy without reading figure/data sources. Expected mapping is read from PAGES.json.')
+    args=parser.parse_args()
+    if args.pdf and not args.check_only:parser.error('--pdf requires --check-only')
+    if args.check_only:return check_only(args.pdf.resolve() if args.pdf else PDF,standalone=bool(args.pdf))
     prior=read_json(HERE/'PAGES.json') if (HERE/'PAGES.json').exists() else None
     if prior and prior.get('owner')!=OWNER:raise ValueError('Unknown output owner')
     if not prior and any((HERE/p).exists() for p in ('ADVISOR_FIGURE_BOOK.pdf','CHECK.json')):raise ValueError('Unowned output')
@@ -256,17 +277,11 @@ def main():
         node=Path(os.environ.get('RBA_NODE',str(DEPENDENCIES/'node/bin/node')))
         subprocess.run([str(node),str(HERE/'print_book.cjs'),str(source),str(temp/'book.pdf'),str(qa/'layout.json')],check=True)
         from pypdf import PdfReader,PdfWriter
-        from pypdf.generic import NameObject,TextStringObject
         writer=PdfWriter(clone_from=PdfReader(temp/'book.pdf'))
-        for page in writer.pages:
-            for ref in page.get('/Annots',[]):
-                action=ref.get_object().get('/A',{});uri=action.get('/URI','')
-                if uri.startswith('https://rba-local.invalid/'):
-                    action[NameObject('/URI')]=TextStringObject(links[int(urlparse(uri).path.strip('/'))]['uri'])
         writer.add_metadata({'/Title':'RBA 导师选图册','/Subject':config['status']+'; baseline '+config['baseline'],'/Author':'RBA research project'})
         with (temp/'final.pdf').open('wb') as fh:writer.write(fh)
         (temp/'final.pdf').replace(PDF)
-    mapping=dict(owner=OWNER,version=config['version'],baseline=config['baseline'],status=config['status'],pdf_sha256=sha(PDF),
+    mapping=dict(owner=OWNER,version=config['version'],baseline=config['baseline'],published_artifact_commit=config['published_artifact_commit'],status=config['status'],pdf_sha256=sha(PDF),
         figures=svg_map,pages=[dict(page=i+1,**{k:v for k,v in p.items() if k!='body'}) for i,p in enumerate(pages)],
         inputs={p:sha(ROOT/p) for p in sorted(inputs)},links=links)
     dump(HERE/'PAGES.json',mapping)
