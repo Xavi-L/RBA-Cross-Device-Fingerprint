@@ -4,7 +4,7 @@ from html import escape
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / 'HybridGuard_overview.svg'
-W, H = 1800, 892
+W, H = 1800, 920
 C = dict(ink='#343434', muted='#606060', blue='#507cc4', cream='#faf0e2',
          ice='#e9f0f9', green='#edf3e9', lavender='#e3e9f7', sage='#65855a',
          warm='#bd8b47', red='#bd5049', gray='#f6f6f3')
@@ -16,26 +16,34 @@ def rect(x,y,w,h,fill='white',stroke=C['ink'],r=15,sw=1.8,dash=None):
 def line(x1,y1,x2,y2,color=C['ink'],sw=2,dash=None):
     add(f'<path d="M{x1},{y1} L{x2},{y2}" fill="none" stroke="{color}" stroke-width="{sw}"'+(f' stroke-dasharray="{dash}"' if dash else '')+'/>')
 def path(d,color=C['ink'],sw=2,arrow=False,dash=None):
-    add(f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{sw}" stroke-linejoin="round" stroke-linecap="round"'+(' marker-end="url(#arrow)"' if arrow else '')+(f' stroke-dasharray="{dash}"' if dash else '')+'/>')
+    marker = 'arrow-current' if color==C['blue'] else ('arrow-development' if color==C['warm'] else 'arrow')
+    add(f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{sw}" stroke-linejoin="round" stroke-linecap="round"'+(f' marker-end="url(#{marker})"' if arrow else '')+(f' stroke-dasharray="{dash}"' if dash else '')+'/>')
+def flow(id,kind,d,source,target):
+    colors={'current':C['blue'],'development':C['warm'],'model':C['ink']}
+    add(f'<g id="{id}" data-flow-kind="{kind}" data-source="{source}" data-target="{target}">')
+    path(d,colors[kind],2.3,True,'7 5' if kind=='development' else None)
+    add('</g>')
 def text(x,y,s,size=29,weight='normal',anchor='start',color=C['ink'],italic=False):
     add(f'<text x="{x}" y="{y}" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{color}"'+(' font-style="italic"' if italic else '')+'>'+escape(s)+'</text>')
 def circle(x,y,r,fill,stroke='none',sw=1.8):
     add(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>')
 def icon(name,x,y,size=48,color=C['ink']):
-    add(f'<use href="#{name}" x="{x}" y="{y}" width="{size}" height="{size}" color="{color}"/>')
+    add(f'<use href="#{name}" xlink:href="#{name}" x="{x}" y="{y}" width="{size}" height="{size}" color="{color}"/>')
 def frame(x,w,n,title):
-    rect(x,94,w,662,'white','#777777',0,1.8,'5 5')
+    rect(x,94,w,698,'white','#777777',0,1.8,'5 5')
     circle(x+17,94,20,C['blue'])
     text(x+17,103,str(n),28,'normal','middle','white')
     rect(x+42,70,w-54,39,'white','none',0)
     text(x+52,103,title,32,'bold')
 
-add(f'''<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="89.2mm" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">
-<title id="title">HybridGuard: multi-view observations, constrained rule development, and current-record decisions</title>
-<desc id="desc">Style preview inspired by the visual organization of Figure 1 in the supplied Lower Barriers, Greater Threat paper. Native, WebView Host and App Web are App observations; the independent browser is separate. Development fixes App rules, freezes them, and accepts cross-endpoint timezone C1. Two current-record interfaces return T, F or U, with selected execution or binding errors recorded as FAILED. Host geometry and resource checks are separate studies, not integrated additions. No experiments or statistics were changed.</desc>
+add(f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180mm" height="92mm" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">
+<title id="title">HybridGuard: observations, offline constrained rule development, and independent current-record interfaces</title>
+<desc id="desc">Catalog views: Native84, WebView Host26 and App Web67 form App177; Browser67 is separate. Blue current-input paths bypass offline development: App directly enters App-only, while session/receipt-associated App and Browser enter paired inference. Dashed ochre arrows carry saved development data; black arrows load frozen models. The fixed App includes the Native–App Web memory relation. App SPARSE selection and signal/quality retention differ from finite constrained cross-endpoint selection. Four prespecified extension sets select C1, an App Web–Browser UTC-offset mismatch. New Host geometry was studied separately; Browser-resource extensions were selected against and none admitted. T means manipulation alert; F no alarm; U insufficient evidence. Selected-input execution or binding failures take priority as FAILED. No automatic App-only fallback exists in paired mode. Catalog counts are not completeness or trust guarantees; association is not atomic synchronization.</desc>
 <style>text {{font-family:'Times New Roman',Times,serif}} use {{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}}</style>
 <defs>
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4.5 L0,9 L2.5,4.5 Z" fill="#343434"/></marker>
+<marker id="arrow-current" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#507cc4"/></marker>
+<marker id="arrow-development" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4.5 L0,9 L2.5,4.5 Z" fill="#bd8b47"/></marker>
 <symbol id="chip" viewBox="0 0 48 48"><rect x="11" y="11" width="26" height="26" rx="4"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 5v6m7-6v6m7-6v6M17 37v6m7-6v6m7-6v6M5 17h6m-6 7h6m-6 7h6M37 17h6m-6 7h6m-6 7h6"/></symbol>
 <symbol id="host" viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="33" rx="4"/><path d="M5 15h38M11 11h1m5 0h1"/><rect x="13" y="22" width="22" height="12" rx="1"/><path d="M9 27h4m22 0h4M24 18v4m0 12v3"/></symbol>
 <symbol id="web" viewBox="0 0 48 48"><rect x="4" y="7" width="40" height="34" rx="4"/><path d="M4 16h40M11 12h1m5 0h1M17 23l-6 6 6 6m14-12l6 6-6 6m-5-14l-4 16"/></symbol>
@@ -51,115 +59,145 @@ add(f'''<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="89.2mm" vi
 <symbol id="cost" viewBox="0 0 48 48"><circle cx="25" cy="25" r="17"/><path d="M25 14v12l8 5M19 3h12M25 3v5"/></symbol>
 </defs>''')
 rect(0,0,W,H,'white','none',0)
-text(24,39,'HybridGuard: cross-view fingerprint consistency',34,'bold')
-text(1776,39,'METHOD OVERVIEW',27,'normal','end',C['muted'])
+text(24,34,'HybridGuard: cross-view fingerprint consistency',32,'bold')
+# Three arrow semantics are explicit. Color alone is not the only cue:
+# current paths are named bypasses, development is dashed, model arrows say load.
+for x,label,col,dash in [(998,'Dev. data',C['warm'],'7 5'),(1211,'Current input',C['blue'],None),(1480,'Frozen model',C['ink'],None)]:
+    path(f'M{x} 25 h45',col,2.3,True,dash)
+    text(x+55,34,label,29)
 
-# I. Same-device observation locations; the three App locations stay enclosed.
+# I. Catalog views, with an App-only branch before any Browser association.
 add('<g id="observations">')
 frame(24,478,1,'Multi-view observations')
-text(263,145,'Same physical device',29,'normal','middle',C['muted'],True)
-rect(48,176,252,338,'white',C['ink'],21,2.2)
-text(174,211,'App177',31,'bold','middle')
-for y,name,count,symbol,fill,col in [(228,'Native','84','chip',C['cream'],C['warm']),(310,'Host','26','host',C['ice'],C['blue']),(392,'App Web','67','web',C['green'],C['sage'])]:
-    rect(64,y,220,73,fill,'none',13)
-    icon(symbol,78,y+16,43,col)
-    text(137,y+30,name,30,'bold')
-    text(137,y+61,count+' signals',29)
-line(147,490,201,490,'#8a8a8a',3)
-text(402,224,'Independent',29,'normal','middle',C['muted'],True)
-rect(326,248,151,167,'white',C['ink'],13,2)
-line(326,275,477,275,'#666666',1.8)
-for x in [341,353,365]: circle(x,261,3,'#898989')
-icon('web',371,292,62,C['sage'])
-text(401.5,390,'Browser67',29,'bold','middle')
-path('M174 514 V552 H270 V584',arrow=True)
-path('M402 415 V552 H270')
-circle(270,552,3.7,C['ink'])
+text(263,145,'Catalog field counts',29,'normal','middle',C['muted'],True)
+add('<g id="current-app">')
+rect(48,176,282,338,'white',C['ink'],21,2.2)
+text(189,211,'App177',31,'bold','middle')
+for y,name,count,symbol,fill,col in [(228,'Native','84','chip',C['cream'],C['warm']),(310,'WebView Host','26','host',C['ice'],C['blue']),(392,'App Web','67','web',C['green'],C['sage'])]:
+    rect(64,y,250,73,fill,'none',13)
+    icon(symbol,77,y+16,41,col)
+    text(124,y+30,name,29,'bold')
+    text(124,y+63,count+' fields',29)
+line(162,490,216,490,'#8a8a8a',3)
+add('</g>')
+add('<g id="current-browser">')
+text(418,224,'Independent',29,'normal','middle',C['muted'],True)
+rect(343,248,150,185,'white',C['ink'],13,2)
+line(343,275,493,275,'#666666',1.8)
+for x in [365,377,389]: circle(x,261,3,'#898989')
+icon('web',387,290,60,C['sage'])
+text(418,382,'Browser67',29,'bold','middle')
+text(418,415,'67 fields',29,'normal','middle')
+add('</g>')
+flow('app-to-binding','current','M189 514 V552 H270 V584','current-app','current-bound-pair')
+flow('browser-to-binding','current','M418 434 V552 H270','current-browser','current-bound-pair')
+circle(270,552,3.7,C['blue'])
+add('<g id="current-bound-pair">')
 rect(53,589,420,94,C['gray'],C['ink'],16,1.6)
 icon('chain',74,615,44,C['blue'])
 text(132,624,'Session / receipt binding',29,'bold')
-text(132,661,'paired244',31,'normal')
-text(263,732,'Binding IDs are not features',29,'normal','middle',C['muted'],True)
+text(132,661,'paired244 (catalog)',30)
+add('</g>')
+text(263,722,'Same device; not atomic captures',29,'normal','middle',C['muted'],True)
+text(263,758,'IDs are not detection features',29,'normal','middle',C['muted'],True)
 add('</g>')
 
-# The main arrow denotes the development workflow, not an all-fields-required claim.
-path('M509 422 H552',sw=2.2,arrow=True)
-
-# II. Fixed App selection, then frozen-base extension; diagnostics remain separate.
+# II. Offline inputs originate here, never from the blue current-observation paths.
 add('<g id="development">')
-frame(560,662,2,'Constrained rule development')
-rect(583,145,616,94,C['cream'],'none',18)
-icon('records',604,169,48,C['warm'])
-text(669,180,'Controlled changes + normal controls',29,'bold')
-text(669,218,'MTC630 normal training records',29)
-path('M891 241 V259',arrow=True)
-rect(585,269,612,81,C['lavender'],'none',18)
-for cx,label,ic in [(687,'Normal alarms','alarm'),(891,'Defined output','coverage'),(1095,'Complexity','tree')]:
-    icon(ic,cx-16,277,32,C['blue'])
-    text(cx,338,label,29,'normal','middle')
-path('M891 351 V374',arrow=True)
-rect(594,381,592,93,C['ice'],C['ink'],16,1.6)
-icon('rules',618,402,47,C['blue'])
-text(686,416,'Fixed App rules',33,'bold')
-text(686,451,'Select within-App candidates',29)
-path('M891 476 V517',arrow=True)
-text(921,504,'Freeze App',29,'normal','start',C['muted'],True)
-rect(594,523,592,94,C['green'],C['ink'],16,1.6)
-icon('clocks',618,548,47,C['sage'])
-text(686,558,'App + C1',33,'bold')
-text(686,594,'Accept cross-endpoint timezone',29)
-rect(594,649,592,77,'white','#949494',12,1.6,'5 4')
-text(890,680,'Host geometry / resource checks',29,'normal','middle')
-text(890,713,'Tested separately; not integrated',29,'normal','middle',C['muted'],True)
+frame(560,662,2,'Offline constrained rule development')
+add('<g id="saved-development-data">')
+rect(588,145,607,79,C['cream'],'none',18)
+text(891,177,'Saved development records',32,'bold','middle')
+text(891,213,'App / paired studies + MTC630 normals',29,'normal','middle')
+add('</g>')
+flow('saved-to-constraints','development','M891 226 V240','saved-development-data','selection-constraints')
+add('<g id="selection-constraints">')
+rect(588,246,607,102,C['lavender'],'none',18)
+for cx,l1,l2,ic in [(689,'Normal-alarm','budget','alarm'),(891,'Defined-output','coverage','coverage'),(1093,'Model','complexity','tree')]:
+    icon(ic,cx-15,253,30,C['blue'])
+    text(cx,307,l1,29,'normal','middle')
+    text(cx,341,l2,29,'normal','middle')
+add('</g>')
+flow('constraints-to-app','development','M891 350 V367','selection-constraints','fixed-app')
+add('<g id="fixed-app">')
+rect(588,374,607,140,C['ice'],C['ink'],16,1.6)
+text(891,405,'App selection → fixed App',32,'bold','middle')
+text(891,439,'SPARSE: macro-TPR − λ·complexity',29,'normal','middle')
+text(891,472,'RETENTION: signal / quality retention',29,'normal','middle')
+text(891,505,'Includes Native–App Web memory',29,'normal','middle')
+add('</g>')
+flow('freeze-app','model','M891 516 V542','fixed-app','fixed-paired')
+text(922,541,'Freeze App',29,'normal','start',C['muted'],True)
+add('<g id="fixed-paired">')
+rect(588,550,607,148,C['green'],C['ink'],16,1.6)
+text(891,582,'Constrained cross-endpoint selection',31,'bold','middle')
+text(891,616,'4 prespecified sets · max macro detection',29,'normal','middle')
+text(891,652,'Selected extension: C1',32,'bold','middle')
+text(891,686,'App Web–Browser UTC-offset mismatch',29,'normal','middle')
+add('</g>')
+# The paired development members independently enter extension selection.
+flow('saved-to-cross-selection','development','M588 201 H572 V591 H584','saved-development-data','fixed-paired')
+rect(588,709,607,72,'white','#949494',12,1.6,'5 4')
+text(891,738,'New Host geometry: studied, not integrated',29,'normal','middle')
+text(891,772,'Browser-resource extensions: none selected',29,'normal','middle',C['muted'],True)
 add('</g>')
 
-# III. The inputs are current observations; models arrive on distinct load arrows.
+# III. Two separate interfaces, each with its own current-input and model port.
 add('<g id="decision">')
 frame(1280,496,3,'Current-record decision')
-rect(1302,145,452,94,'white','none',16)
-icon('records',1316,169,46,C['blue'])
-text(1380,180,'Current observations',31,'bold')
-text(1380,217,'App only / bound pair',29)
-path('M1528 240 V269',arrow=True)
-rect(1330,279,396,53,C['cream'],'none',13)
-text(1528,314,'Required-input checks',30,'normal','middle')
-path('M1528 335 V372',arrow=True)
-rect(1304,381,448,242,'white','#808080',16,1.5)
-rect(1317,390,422,76,C['ice'],'none',12)
-text(1528,421,'App-only interface',31,'bold','middle')
-text(1528,453,'Fixed App rules',29,'normal','middle')
-line(1336,499,1487,499,'#b1b1b1',1.3,'4 4')
-text(1528,508,'or',29,'normal','middle',C['muted'],True)
-line(1569,499,1720,499,'#b1b1b1',1.3,'4 4')
-rect(1317,534,422,76,C['green'],'none',12)
-text(1528,565,'Paired interface',31,'bold','middle')
-text(1528,597,'Fixed App + C1',29,'normal','middle')
-path('M1528 625 V657',arrow=True)
-for cx,s,label,col in [(1328,'T','Alarm',C['red']),(1467,'F','No alarm',C['sage']),(1627,'U','Unknown',C['warm'])]:
-    circle(cx,682,16,col)
-    text(cx,692,s,28,'bold','middle','white')
-    text(cx+24,692,label,29)
-text(1528,737,'Execution / binding error → FAILED',29,'normal','middle',C['muted'])
+add('<g id="app-interface">')
+rect(1304,179,448,211,'white','#808080',16,1.5)
+text(1528,212,'App-only interface',32,'bold','middle')
+text(1528,248,'Current App observations',29,'normal','middle')
+text(1528,282,'Selected-input checks',29,'normal','middle')
+path('M1528 292 V308',C['blue'],2.3,True)
+rect(1317,315,422,69,C['ice'],'none',12)
+text(1528,343,'Fixed App rules',30,'bold','middle')
+text(1528,377,'→ T / F / U / FAILED',29,'normal','middle')
+add('</g>')
+add('<g id="paired-interface">')
+rect(1304,405,448,211,'white','#808080',16,1.5)
+text(1528,438,'Paired interface',32,'bold','middle')
+text(1528,473,'Current bound pair',29,'normal','middle')
+text(1528,507,'Selected-input checks',29,'normal','middle')
+path('M1528 517 V533',C['blue'],2.3,True)
+rect(1317,540,422,69,C['green'],'none',12)
+text(1528,568,'Fixed App + C1',30,'bold','middle')
+text(1528,602,'→ T / F / U / FAILED',29,'normal','middle')
+add('</g>')
+text(1528,645,'No automatic App-only fallback',29,'normal','middle',C['muted'],True)
+for cx,cy,s,label,col in [(1315,668,'T','Manipulation alert',C['red']),(1619,668,'F','No alarm',C['sage']),(1315,702,'U','Insufficient evidence',C['warm'])]:
+    circle(cx,cy,15,col)
+    text(cx,cy+10,s,28,'bold','middle','white')
+    text(cx+23,cy+10,label,29)
+text(1528,746,'Selected-input execution / binding',29,'normal','middle',C['muted'])
+text(1528,780,'failure → FAILED',29,'normal','middle',C['muted'])
 add('</g>')
 
-for y in (428,571):
-    path(f'M1187 {y} H1310',sw=2.2,arrow=True)
-    rect(1227,y-34,56,26,'white','none',0)
-    text(1255,y-12,'load',29,'normal','middle',C['muted'],True)
+# Actual current-input bypasses: neither path traverses a development block.
+flow('current-app-direct','current','M330 192 H528 V60 H1245 V240 H1298','current-app','app-interface')
+rect(760,40,258,26,'white','none',0)
+text(889,59,'Current App only',29,'normal','middle',C['blue'],True)
+flow('current-pair-direct','current','M473 642 H528 V803 H1790 V466 H1758','current-bound-pair','paired-interface')
+text(1019,832,'Current bound pair',29,'normal','middle',C['blue'],True)
+# The App port comes from its source before binding, never from the paired box.
+circle(330,192,3.7,C['blue'])
+flow('load-app-model','model','M1196 440 H1264 V349 H1311','fixed-app','app-interface')
+rect(1210,446,56,31,'white','none',0)
+text(1238,469,'load',29,'normal','middle',C['muted'],True)
+flow('load-paired-model','model','M1196 640 H1264 V574 H1311','fixed-paired','paired-interface')
+rect(1210,645,56,31,'white','none',0)
+text(1238,669,'load',29,'normal','middle',C['muted'],True)
 
-# A compact evidence strip, outside selection and current-record processing.
+# Historical evaluation is outside both selection and current inference.
 add('<g id="evaluation-evidence">')
-rect(24,791,1752,68,C['gray'],'#bebeba',10,1.3)
-text(47,834,'Saved evaluation',31,'bold')
-for x in [281,642,1014,1361]: line(x,805,x,845,'#c0c0ba',1.3)
-icon('chart',306,809,33,C['blue'])
-text(354,834,'App + ablations',30)
-icon('records',665,809,33,C['blue'])
-text(711,834,'MTC: 144 / 117',30)
-icon('chain',1038,809,33,C['sage'])
-text(1086,834,'Paired studies',30)
-icon('cost',1385,809,33,C['warm'])
-text(1432,834,'Specialists + cost',30)
+rect(24,848,1752,63,C['gray'],'#bebeba',10,1.3)
+text(47,888,'Saved evaluation',30,'bold')
+for x in [276,584,1136,1446]: line(x,860,x,898,'#c0c0ba',1.3)
+text(301,888,'App + ablations',29)
+text(609,888,'Historical MTC: 144 + 117 records',29)
+text(1160,888,'Paired studies',29)
+text(1470,888,'Specialists + cost',29)
 add('</g>')
 add('</svg>')
 OUT.write_text('\n'.join(parts)+'\n')

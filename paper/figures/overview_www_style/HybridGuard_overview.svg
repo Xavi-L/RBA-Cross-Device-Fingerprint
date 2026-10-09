@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="89.2mm" viewBox="0 0 1800 892" role="img" aria-labelledby="title desc">
-<title id="title">HybridGuard: multi-view observations, constrained rule development, and current-record decisions</title>
-<desc id="desc">Style preview inspired by the visual organization of Figure 1 in the supplied Lower Barriers, Greater Threat paper. Native, WebView Host and App Web are App observations; the independent browser is separate. Development fixes App rules, freezes them, and accepts cross-endpoint timezone C1. Two current-record interfaces return T, F or U, with selected execution or binding errors recorded as FAILED. Host geometry and resource checks are separate studies, not integrated additions. No experiments or statistics were changed.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180mm" height="92mm" viewBox="0 0 1800 920" role="img" aria-labelledby="title desc">
+<title id="title">HybridGuard: observations, offline constrained rule development, and independent current-record interfaces</title>
+<desc id="desc">Catalog views: Native84, WebView Host26 and App Web67 form App177; Browser67 is separate. Blue current-input paths bypass offline development: App directly enters App-only, while session/receipt-associated App and Browser enter paired inference. Dashed ochre arrows carry saved development data; black arrows load frozen models. The fixed App includes the Native–App Web memory relation. App SPARSE selection and signal/quality retention differ from finite constrained cross-endpoint selection. Four prespecified extension sets select C1, an App Web–Browser UTC-offset mismatch. New Host geometry was studied separately; Browser-resource extensions were selected against and none admitted. T means manipulation alert; F no alarm; U insufficient evidence. Selected-input execution or binding failures take priority as FAILED. No automatic App-only fallback exists in paired mode. Catalog counts are not completeness or trust guarantees; association is not atomic synchronization.</desc>
 <style>text {font-family:'Times New Roman',Times,serif} use {fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}</style>
 <defs>
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4.5 L0,9 L2.5,4.5 Z" fill="#343434"/></marker>
+<marker id="arrow-current" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#507cc4"/></marker>
+<marker id="arrow-development" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4.5 L0,9 L2.5,4.5 Z" fill="#bd8b47"/></marker>
 <symbol id="chip" viewBox="0 0 48 48"><rect x="11" y="11" width="26" height="26" rx="4"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 5v6m7-6v6m7-6v6M17 37v6m7-6v6m7-6v6M5 17h6m-6 7h6m-6 7h6M37 17h6m-6 7h6m-6 7h6"/></symbol>
 <symbol id="host" viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="33" rx="4"/><path d="M5 15h38M11 11h1m5 0h1"/><rect x="13" y="22" width="22" height="12" rx="1"/><path d="M9 27h4m22 0h4M24 18v4m0 12v3"/></symbol>
 <symbol id="web" viewBox="0 0 48 48"><rect x="4" y="7" width="40" height="34" rx="4"/><path d="M4 16h40M11 12h1m5 0h1M17 23l-6 6 6 6m14-12l6 6-6 6m-5-14l-4 16"/></symbol>
@@ -18,138 +20,188 @@
 <symbol id="chart" viewBox="0 0 48 48"><path d="M7 6v36h35M15 34V22m10 12V12m10 22V17"/></symbol>
 <symbol id="cost" viewBox="0 0 48 48"><circle cx="25" cy="25" r="17"/><path d="M25 14v12l8 5M19 3h12M25 3v5"/></symbol>
 </defs>
-<rect x="0" y="0" width="1800" height="892" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="24" y="39" font-size="34" font-weight="bold" text-anchor="start" fill="#343434">HybridGuard: cross-view fingerprint consistency</text>
-<text x="1776" y="39" font-size="27" font-weight="normal" text-anchor="end" fill="#606060">METHOD OVERVIEW</text>
+<rect x="0" y="0" width="1800" height="920" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="24" y="34" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">HybridGuard: cross-view fingerprint consistency</text>
+<path d="M998 25 h45" fill="none" stroke="#bd8b47" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-development)" stroke-dasharray="7 5"/>
+<text x="1053" y="34" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Dev. data</text>
+<path d="M1211 25 h45" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+<text x="1266" y="34" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Current input</text>
+<path d="M1480 25 h45" fill="none" stroke="#343434" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="1535" y="34" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Frozen model</text>
 <g id="observations">
-<rect x="24" y="94" width="478" height="662" rx="0" fill="white" stroke="#777777" stroke-width="1.8" stroke-dasharray="5 5"/>
+<rect x="24" y="94" width="478" height="698" rx="0" fill="white" stroke="#777777" stroke-width="1.8" stroke-dasharray="5 5"/>
 <circle cx="41" cy="94" r="20" fill="#507cc4" stroke="none" stroke-width="1.8"/>
 <text x="41" y="103" font-size="28" font-weight="normal" text-anchor="middle" fill="white">1</text>
 <rect x="66" y="70" width="424" height="39" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
 <text x="76" y="103" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Multi-view observations</text>
-<text x="263" y="145" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Same physical device</text>
-<rect x="48" y="176" width="252" height="338" rx="21" fill="white" stroke="#343434" stroke-width="2.2"/>
-<text x="174" y="211" font-size="31" font-weight="bold" text-anchor="middle" fill="#343434">App177</text>
-<rect x="64" y="228" width="220" height="73" rx="13" fill="#faf0e2" stroke="none" stroke-width="1.8"/>
-<use href="#chip" x="78" y="244" width="43" height="43" color="#bd8b47"/>
-<text x="137" y="258" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">Native</text>
-<text x="137" y="289" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">84 signals</text>
-<rect x="64" y="310" width="220" height="73" rx="13" fill="#e9f0f9" stroke="none" stroke-width="1.8"/>
-<use href="#host" x="78" y="326" width="43" height="43" color="#507cc4"/>
-<text x="137" y="340" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">Host</text>
-<text x="137" y="371" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">26 signals</text>
-<rect x="64" y="392" width="220" height="73" rx="13" fill="#edf3e9" stroke="none" stroke-width="1.8"/>
-<use href="#web" x="78" y="408" width="43" height="43" color="#65855a"/>
-<text x="137" y="422" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">App Web</text>
-<text x="137" y="453" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">67 signals</text>
-<path d="M147,490 L201,490" fill="none" stroke="#8a8a8a" stroke-width="3"/>
-<text x="402" y="224" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Independent</text>
-<rect x="326" y="248" width="151" height="167" rx="13" fill="white" stroke="#343434" stroke-width="2"/>
-<path d="M326,275 L477,275" fill="none" stroke="#666666" stroke-width="1.8"/>
-<circle cx="341" cy="261" r="3" fill="#898989" stroke="none" stroke-width="1.8"/>
-<circle cx="353" cy="261" r="3" fill="#898989" stroke="none" stroke-width="1.8"/>
-<circle cx="365" cy="261" r="3" fill="#898989" stroke="none" stroke-width="1.8"/>
-<use href="#web" x="371" y="292" width="62" height="62" color="#65855a"/>
-<text x="401.5" y="390" font-size="29" font-weight="bold" text-anchor="middle" fill="#343434">Browser67</text>
-<path d="M174 514 V552 H270 V584" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<path d="M402 415 V552 H270" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="270" cy="552" r="3.7" fill="#343434" stroke="none" stroke-width="1.8"/>
-<rect x="53" y="589" width="420" height="94" rx="16" fill="#f6f6f3" stroke="#343434" stroke-width="1.6"/>
-<use href="#chain" x="74" y="615" width="44" height="44" color="#507cc4"/>
-<text x="132" y="624" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Session / receipt binding</text>
-<text x="132" y="661" font-size="31" font-weight="normal" text-anchor="start" fill="#343434">paired244</text>
-<text x="263" y="732" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Binding IDs are not features</text>
+<text x="263" y="145" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Catalog field counts</text>
+<g id="current-app">
+<rect x="48" y="176" width="282" height="338" rx="21" fill="white" stroke="#343434" stroke-width="2.2"/>
+<text x="189" y="211" font-size="31" font-weight="bold" text-anchor="middle" fill="#343434">App177</text>
+<rect x="64" y="228" width="250" height="73" rx="13" fill="#faf0e2" stroke="none" stroke-width="1.8"/>
+<use href="#chip" xlink:href="#chip" x="77" y="244" width="41" height="41" color="#bd8b47"/>
+<text x="124" y="258" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Native</text>
+<text x="124" y="291" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">84 fields</text>
+<rect x="64" y="310" width="250" height="73" rx="13" fill="#e9f0f9" stroke="none" stroke-width="1.8"/>
+<use href="#host" xlink:href="#host" x="77" y="326" width="41" height="41" color="#507cc4"/>
+<text x="124" y="340" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">WebView Host</text>
+<text x="124" y="373" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">26 fields</text>
+<rect x="64" y="392" width="250" height="73" rx="13" fill="#edf3e9" stroke="none" stroke-width="1.8"/>
+<use href="#web" xlink:href="#web" x="77" y="408" width="41" height="41" color="#65855a"/>
+<text x="124" y="422" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">App Web</text>
+<text x="124" y="455" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">67 fields</text>
+<path d="M162,490 L216,490" fill="none" stroke="#8a8a8a" stroke-width="3"/>
 </g>
-<path d="M509 422 H552" fill="none" stroke="#343434" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<g id="current-browser">
+<text x="418" y="224" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Independent</text>
+<rect x="343" y="248" width="150" height="185" rx="13" fill="white" stroke="#343434" stroke-width="2"/>
+<path d="M343,275 L493,275" fill="none" stroke="#666666" stroke-width="1.8"/>
+<circle cx="365" cy="261" r="3" fill="#898989" stroke="none" stroke-width="1.8"/>
+<circle cx="377" cy="261" r="3" fill="#898989" stroke="none" stroke-width="1.8"/>
+<circle cx="389" cy="261" r="3" fill="#898989" stroke="none" stroke-width="1.8"/>
+<use href="#web" xlink:href="#web" x="387" y="290" width="60" height="60" color="#65855a"/>
+<text x="418" y="382" font-size="29" font-weight="bold" text-anchor="middle" fill="#343434">Browser67</text>
+<text x="418" y="415" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">67 fields</text>
+</g>
+<g id="app-to-binding" data-flow-kind="current" data-source="current-app" data-target="current-bound-pair">
+<path d="M189 514 V552 H270 V584" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+</g>
+<g id="browser-to-binding" data-flow-kind="current" data-source="current-browser" data-target="current-bound-pair">
+<path d="M418 434 V552 H270" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+</g>
+<circle cx="270" cy="552" r="3.7" fill="#507cc4" stroke="none" stroke-width="1.8"/>
+<g id="current-bound-pair">
+<rect x="53" y="589" width="420" height="94" rx="16" fill="#f6f6f3" stroke="#343434" stroke-width="1.6"/>
+<use href="#chain" xlink:href="#chain" x="74" y="615" width="44" height="44" color="#507cc4"/>
+<text x="132" y="624" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Session / receipt binding</text>
+<text x="132" y="661" font-size="30" font-weight="normal" text-anchor="start" fill="#343434">paired244 (catalog)</text>
+</g>
+<text x="263" y="722" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Same device; not atomic captures</text>
+<text x="263" y="758" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">IDs are not detection features</text>
+</g>
 <g id="development">
-<rect x="560" y="94" width="662" height="662" rx="0" fill="white" stroke="#777777" stroke-width="1.8" stroke-dasharray="5 5"/>
+<rect x="560" y="94" width="662" height="698" rx="0" fill="white" stroke="#777777" stroke-width="1.8" stroke-dasharray="5 5"/>
 <circle cx="577" cy="94" r="20" fill="#507cc4" stroke="none" stroke-width="1.8"/>
 <text x="577" y="103" font-size="28" font-weight="normal" text-anchor="middle" fill="white">2</text>
 <rect x="602" y="70" width="608" height="39" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="612" y="103" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Constrained rule development</text>
-<rect x="583" y="145" width="616" height="94" rx="18" fill="#faf0e2" stroke="none" stroke-width="1.8"/>
-<use href="#records" x="604" y="169" width="48" height="48" color="#bd8b47"/>
-<text x="669" y="180" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Controlled changes + normal controls</text>
-<text x="669" y="218" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">MTC630 normal training records</text>
-<path d="M891 241 V259" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="585" y="269" width="612" height="81" rx="18" fill="#e3e9f7" stroke="none" stroke-width="1.8"/>
-<use href="#alarm" x="671" y="277" width="32" height="32" color="#507cc4"/>
-<text x="687" y="338" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Normal alarms</text>
-<use href="#coverage" x="875" y="277" width="32" height="32" color="#507cc4"/>
-<text x="891" y="338" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Defined output</text>
-<use href="#tree" x="1079" y="277" width="32" height="32" color="#507cc4"/>
-<text x="1095" y="338" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Complexity</text>
-<path d="M891 351 V374" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="594" y="381" width="592" height="93" rx="16" fill="#e9f0f9" stroke="#343434" stroke-width="1.6"/>
-<use href="#rules" x="618" y="402" width="47" height="47" color="#507cc4"/>
-<text x="686" y="416" font-size="33" font-weight="bold" text-anchor="start" fill="#343434">Fixed App rules</text>
-<text x="686" y="451" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Select within-App candidates</text>
-<path d="M891 476 V517" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text x="921" y="504" font-size="29" font-weight="normal" text-anchor="start" fill="#606060" font-style="italic">Freeze App</text>
-<rect x="594" y="523" width="592" height="94" rx="16" fill="#edf3e9" stroke="#343434" stroke-width="1.6"/>
-<use href="#clocks" x="618" y="548" width="47" height="47" color="#65855a"/>
-<text x="686" y="558" font-size="33" font-weight="bold" text-anchor="start" fill="#343434">App + C1</text>
-<text x="686" y="594" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Accept cross-endpoint timezone</text>
-<rect x="594" y="649" width="592" height="77" rx="12" fill="white" stroke="#949494" stroke-width="1.6" stroke-dasharray="5 4"/>
-<text x="890" y="680" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Host geometry / resource checks</text>
-<text x="890" y="713" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Tested separately; not integrated</text>
+<text x="612" y="103" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Offline constrained rule development</text>
+<g id="saved-development-data">
+<rect x="588" y="145" width="607" height="79" rx="18" fill="#faf0e2" stroke="none" stroke-width="1.8"/>
+<text x="891" y="177" font-size="32" font-weight="bold" text-anchor="middle" fill="#343434">Saved development records</text>
+<text x="891" y="213" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">App / paired studies + MTC630 normals</text>
+</g>
+<g id="saved-to-constraints" data-flow-kind="development" data-source="saved-development-data" data-target="selection-constraints">
+<path d="M891 226 V240" fill="none" stroke="#bd8b47" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-development)" stroke-dasharray="7 5"/>
+</g>
+<g id="selection-constraints">
+<rect x="588" y="246" width="607" height="102" rx="18" fill="#e3e9f7" stroke="none" stroke-width="1.8"/>
+<use href="#alarm" xlink:href="#alarm" x="674" y="253" width="30" height="30" color="#507cc4"/>
+<text x="689" y="307" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Normal-alarm</text>
+<text x="689" y="341" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">budget</text>
+<use href="#coverage" xlink:href="#coverage" x="876" y="253" width="30" height="30" color="#507cc4"/>
+<text x="891" y="307" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Defined-output</text>
+<text x="891" y="341" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">coverage</text>
+<use href="#tree" xlink:href="#tree" x="1078" y="253" width="30" height="30" color="#507cc4"/>
+<text x="1093" y="307" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Model</text>
+<text x="1093" y="341" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">complexity</text>
+</g>
+<g id="constraints-to-app" data-flow-kind="development" data-source="selection-constraints" data-target="fixed-app">
+<path d="M891 350 V367" fill="none" stroke="#bd8b47" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-development)" stroke-dasharray="7 5"/>
+</g>
+<g id="fixed-app">
+<rect x="588" y="374" width="607" height="140" rx="16" fill="#e9f0f9" stroke="#343434" stroke-width="1.6"/>
+<text x="891" y="405" font-size="32" font-weight="bold" text-anchor="middle" fill="#343434">App selection → fixed App</text>
+<text x="891" y="439" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">SPARSE: macro-TPR − λ·complexity</text>
+<text x="891" y="472" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">RETENTION: signal / quality retention</text>
+<text x="891" y="505" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Includes Native–App Web memory</text>
+</g>
+<g id="freeze-app" data-flow-kind="model" data-source="fixed-app" data-target="fixed-paired">
+<path d="M891 516 V542" fill="none" stroke="#343434" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+</g>
+<text x="922" y="541" font-size="29" font-weight="normal" text-anchor="start" fill="#606060" font-style="italic">Freeze App</text>
+<g id="fixed-paired">
+<rect x="588" y="550" width="607" height="148" rx="16" fill="#edf3e9" stroke="#343434" stroke-width="1.6"/>
+<text x="891" y="582" font-size="31" font-weight="bold" text-anchor="middle" fill="#343434">Constrained cross-endpoint selection</text>
+<text x="891" y="616" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">4 prespecified sets · max macro detection</text>
+<text x="891" y="652" font-size="32" font-weight="bold" text-anchor="middle" fill="#343434">Selected extension: C1</text>
+<text x="891" y="686" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">App Web–Browser UTC-offset mismatch</text>
+</g>
+<g id="saved-to-cross-selection" data-flow-kind="development" data-source="saved-development-data" data-target="fixed-paired">
+<path d="M588 201 H572 V591 H584" fill="none" stroke="#bd8b47" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-development)" stroke-dasharray="7 5"/>
+</g>
+<rect x="588" y="709" width="607" height="72" rx="12" fill="white" stroke="#949494" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="891" y="738" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">New Host geometry: studied, not integrated</text>
+<text x="891" y="772" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">Browser-resource extensions: none selected</text>
 </g>
 <g id="decision">
-<rect x="1280" y="94" width="496" height="662" rx="0" fill="white" stroke="#777777" stroke-width="1.8" stroke-dasharray="5 5"/>
+<rect x="1280" y="94" width="496" height="698" rx="0" fill="white" stroke="#777777" stroke-width="1.8" stroke-dasharray="5 5"/>
 <circle cx="1297" cy="94" r="20" fill="#507cc4" stroke="none" stroke-width="1.8"/>
 <text x="1297" y="103" font-size="28" font-weight="normal" text-anchor="middle" fill="white">3</text>
 <rect x="1322" y="70" width="442" height="39" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
 <text x="1332" y="103" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Current-record decision</text>
-<rect x="1302" y="145" width="452" height="94" rx="16" fill="white" stroke="none" stroke-width="1.8"/>
-<use href="#records" x="1316" y="169" width="46" height="46" color="#507cc4"/>
-<text x="1380" y="180" font-size="31" font-weight="bold" text-anchor="start" fill="#343434">Current observations</text>
-<text x="1380" y="217" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">App only / bound pair</text>
-<path d="M1528 240 V269" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1330" y="279" width="396" height="53" rx="13" fill="#faf0e2" stroke="none" stroke-width="1.8"/>
-<text x="1528" y="314" font-size="30" font-weight="normal" text-anchor="middle" fill="#343434">Required-input checks</text>
-<path d="M1528 335 V372" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1304" y="381" width="448" height="242" rx="16" fill="white" stroke="#808080" stroke-width="1.5"/>
-<rect x="1317" y="390" width="422" height="76" rx="12" fill="#e9f0f9" stroke="none" stroke-width="1.8"/>
-<text x="1528" y="421" font-size="31" font-weight="bold" text-anchor="middle" fill="#343434">App-only interface</text>
-<text x="1528" y="453" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Fixed App rules</text>
-<path d="M1336,499 L1487,499" fill="none" stroke="#b1b1b1" stroke-width="1.3" stroke-dasharray="4 4"/>
-<text x="1528" y="508" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">or</text>
-<path d="M1569,499 L1720,499" fill="none" stroke="#b1b1b1" stroke-width="1.3" stroke-dasharray="4 4"/>
-<rect x="1317" y="534" width="422" height="76" rx="12" fill="#edf3e9" stroke="none" stroke-width="1.8"/>
-<text x="1528" y="565" font-size="31" font-weight="bold" text-anchor="middle" fill="#343434">Paired interface</text>
-<text x="1528" y="597" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Fixed App + C1</text>
-<path d="M1528 625 V657" fill="none" stroke="#343434" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<circle cx="1328" cy="682" r="16" fill="#bd5049" stroke="none" stroke-width="1.8"/>
-<text x="1328" y="692" font-size="28" font-weight="bold" text-anchor="middle" fill="white">T</text>
-<text x="1352" y="692" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Alarm</text>
-<circle cx="1467" cy="682" r="16" fill="#65855a" stroke="none" stroke-width="1.8"/>
-<text x="1467" y="692" font-size="28" font-weight="bold" text-anchor="middle" fill="white">F</text>
-<text x="1491" y="692" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">No alarm</text>
-<circle cx="1627" cy="682" r="16" fill="#bd8b47" stroke="none" stroke-width="1.8"/>
-<text x="1627" y="692" font-size="28" font-weight="bold" text-anchor="middle" fill="white">U</text>
-<text x="1651" y="692" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Unknown</text>
-<text x="1528" y="737" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060">Execution / binding error → FAILED</text>
+<g id="app-interface">
+<rect x="1304" y="179" width="448" height="211" rx="16" fill="white" stroke="#808080" stroke-width="1.5"/>
+<text x="1528" y="212" font-size="32" font-weight="bold" text-anchor="middle" fill="#343434">App-only interface</text>
+<text x="1528" y="248" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Current App observations</text>
+<text x="1528" y="282" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Selected-input checks</text>
+<path d="M1528 292 V308" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+<rect x="1317" y="315" width="422" height="69" rx="12" fill="#e9f0f9" stroke="none" stroke-width="1.8"/>
+<text x="1528" y="343" font-size="30" font-weight="bold" text-anchor="middle" fill="#343434">Fixed App rules</text>
+<text x="1528" y="377" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">→ T / F / U / FAILED</text>
 </g>
-<path d="M1187 428 H1310" fill="none" stroke="#343434" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1227" y="394" width="56" height="26" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="1255" y="416" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">load</text>
-<path d="M1187 571 H1310" fill="none" stroke="#343434" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1227" y="537" width="56" height="26" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="1255" y="559" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">load</text>
+<g id="paired-interface">
+<rect x="1304" y="405" width="448" height="211" rx="16" fill="white" stroke="#808080" stroke-width="1.5"/>
+<text x="1528" y="438" font-size="32" font-weight="bold" text-anchor="middle" fill="#343434">Paired interface</text>
+<text x="1528" y="473" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Current bound pair</text>
+<text x="1528" y="507" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">Selected-input checks</text>
+<path d="M1528 517 V533" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+<rect x="1317" y="540" width="422" height="69" rx="12" fill="#edf3e9" stroke="none" stroke-width="1.8"/>
+<text x="1528" y="568" font-size="30" font-weight="bold" text-anchor="middle" fill="#343434">Fixed App + C1</text>
+<text x="1528" y="602" font-size="29" font-weight="normal" text-anchor="middle" fill="#343434">→ T / F / U / FAILED</text>
+</g>
+<text x="1528" y="645" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">No automatic App-only fallback</text>
+<circle cx="1315" cy="668" r="15" fill="#bd5049" stroke="none" stroke-width="1.8"/>
+<text x="1315" y="678" font-size="28" font-weight="bold" text-anchor="middle" fill="white">T</text>
+<text x="1338" y="678" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Manipulation alert</text>
+<circle cx="1619" cy="668" r="15" fill="#65855a" stroke="none" stroke-width="1.8"/>
+<text x="1619" y="678" font-size="28" font-weight="bold" text-anchor="middle" fill="white">F</text>
+<text x="1642" y="678" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">No alarm</text>
+<circle cx="1315" cy="702" r="15" fill="#bd8b47" stroke="none" stroke-width="1.8"/>
+<text x="1315" y="712" font-size="28" font-weight="bold" text-anchor="middle" fill="white">U</text>
+<text x="1338" y="712" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Insufficient evidence</text>
+<text x="1528" y="746" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060">Selected-input execution / binding</text>
+<text x="1528" y="780" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060">failure → FAILED</text>
+</g>
+<g id="current-app-direct" data-flow-kind="current" data-source="current-app" data-target="app-interface">
+<path d="M330 192 H528 V60 H1245 V240 H1298" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+</g>
+<rect x="760" y="40" width="258" height="26" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="889" y="59" font-size="29" font-weight="normal" text-anchor="middle" fill="#507cc4" font-style="italic">Current App only</text>
+<g id="current-pair-direct" data-flow-kind="current" data-source="current-bound-pair" data-target="paired-interface">
+<path d="M473 642 H528 V803 H1790 V466 H1758" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-current)"/>
+</g>
+<text x="1019" y="832" font-size="29" font-weight="normal" text-anchor="middle" fill="#507cc4" font-style="italic">Current bound pair</text>
+<circle cx="330" cy="192" r="3.7" fill="#507cc4" stroke="none" stroke-width="1.8"/>
+<g id="load-app-model" data-flow-kind="model" data-source="fixed-app" data-target="app-interface">
+<path d="M1196 440 H1264 V349 H1311" fill="none" stroke="#343434" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+</g>
+<rect x="1210" y="446" width="56" height="31" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="1238" y="469" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">load</text>
+<g id="load-paired-model" data-flow-kind="model" data-source="fixed-paired" data-target="paired-interface">
+<path d="M1196 640 H1264 V574 H1311" fill="none" stroke="#343434" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+</g>
+<rect x="1210" y="645" width="56" height="31" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="1238" y="669" font-size="29" font-weight="normal" text-anchor="middle" fill="#606060" font-style="italic">load</text>
 <g id="evaluation-evidence">
-<rect x="24" y="791" width="1752" height="68" rx="10" fill="#f6f6f3" stroke="#bebeba" stroke-width="1.3"/>
-<text x="47" y="834" font-size="31" font-weight="bold" text-anchor="start" fill="#343434">Saved evaluation</text>
-<path d="M281,805 L281,845" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
-<path d="M642,805 L642,845" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
-<path d="M1014,805 L1014,845" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
-<path d="M1361,805 L1361,845" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
-<use href="#chart" x="306" y="809" width="33" height="33" color="#507cc4"/>
-<text x="354" y="834" font-size="30" font-weight="normal" text-anchor="start" fill="#343434">App + ablations</text>
-<use href="#records" x="665" y="809" width="33" height="33" color="#507cc4"/>
-<text x="711" y="834" font-size="30" font-weight="normal" text-anchor="start" fill="#343434">MTC: 144 / 117</text>
-<use href="#chain" x="1038" y="809" width="33" height="33" color="#65855a"/>
-<text x="1086" y="834" font-size="30" font-weight="normal" text-anchor="start" fill="#343434">Paired studies</text>
-<use href="#cost" x="1385" y="809" width="33" height="33" color="#bd8b47"/>
-<text x="1432" y="834" font-size="30" font-weight="normal" text-anchor="start" fill="#343434">Specialists + cost</text>
+<rect x="24" y="848" width="1752" height="63" rx="10" fill="#f6f6f3" stroke="#bebeba" stroke-width="1.3"/>
+<text x="47" y="888" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">Saved evaluation</text>
+<path d="M276,860 L276,898" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
+<path d="M584,860 L584,898" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
+<path d="M1136,860 L1136,898" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
+<path d="M1446,860 L1446,898" fill="none" stroke="#c0c0ba" stroke-width="1.3"/>
+<text x="301" y="888" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">App + ablations</text>
+<text x="609" y="888" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Historical MTC: 144 + 117 records</text>
+<text x="1160" y="888" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Paired studies</text>
+<text x="1470" y="888" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Specialists + cost</text>
 </g>
 </svg>
