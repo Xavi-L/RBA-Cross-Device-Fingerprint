@@ -1,0 +1,203 @@
+{
+  "texts": 55,
+  "text_overlaps": [],
+  "flow_or_relation_text_intersections": [],
+  "out_of_canvas": [],
+  "scopes": {
+    "three_nodes_inside_app": true,
+    "app_inside_device": true,
+    "browser_inside_device": true,
+    "browser_outside_app": true,
+    "offline_outside_device": true,
+    "example_outside_device": true
+  },
+  "graph": [
+    {
+      "id": "native-host",
+      "kind": "relation",
+      "source": "native",
+      "target": "webview-host",
+      "status": "context",
+      "color": "#9a9a95",
+      "dash": "1 7",
+      "start": null,
+      "end": null
+    },
+    {
+      "id": "native-app-web",
+      "kind": "relation",
+      "source": "native",
+      "target": "app-web",
+      "status": "selected",
+      "color": "#507cc4",
+      "dash": null,
+      "start": "url(#compare-selected)",
+      "end": "url(#compare-selected)"
+    },
+    {
+      "id": "host-app-web",
+      "kind": "relation",
+      "source": "webview-host",
+      "target": "app-web",
+      "status": "studied",
+      "color": "#bd8b47",
+      "dash": "10 7",
+      "start": "url(#compare-studied)",
+      "end": "url(#compare-studied)"
+    },
+    {
+      "id": "app-browser",
+      "kind": "relation",
+      "source": "app-web",
+      "target": "browser",
+      "status": "selected",
+      "color": "#507cc4",
+      "dash": null,
+      "start": "url(#compare-selected)",
+      "end": "url(#compare-selected)"
+    },
+    {
+      "id": "candidate-to-selection",
+      "kind": "development-input",
+      "source": "candidate-checks",
+      "target": "rule-selection",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": "url(#input-arrow)"
+    },
+    {
+      "id": "data-to-selection",
+      "kind": "development-input",
+      "source": "development-data",
+      "target": "rule-selection",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": "url(#input-arrow)"
+    },
+    {
+      "id": "selection-to-rules",
+      "kind": "development-output",
+      "source": "rule-selection",
+      "target": "selected-rules",
+      "status": null,
+      "color": "#80649b",
+      "dash": null,
+      "start": null,
+      "end": "url(#model-arrow)"
+    },
+    {
+      "id": "current-app-only",
+      "kind": "current-input",
+      "source": "app-observations",
+      "target": "app-only-interface",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": "url(#input-arrow)"
+    },
+    {
+      "id": "current-app-for-pair",
+      "kind": "current-input",
+      "source": "app-observations",
+      "target": "linked-pair",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": null
+    },
+    {
+      "id": "current-browser-for-pair",
+      "kind": "current-input",
+      "source": "browser",
+      "target": "linked-pair",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": null
+    },
+    {
+      "id": "current-linked-pair",
+      "kind": "current-input",
+      "source": "linked-pair",
+      "target": "paired-interface",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": "url(#input-arrow)"
+    },
+    {
+      "id": "load-selected-rules",
+      "kind": "model-input",
+      "source": "selected-rules",
+      "target": "current-detection",
+      "status": null,
+      "color": "#80649b",
+      "dash": null,
+      "start": null,
+      "end": "url(#model-arrow)"
+    },
+    {
+      "id": "selected-mode-result",
+      "kind": "decision-output",
+      "source": "current-detection",
+      "target": "decision-vocabulary",
+      "status": null,
+      "color": "#343434",
+      "dash": null,
+      "start": null,
+      "end": "url(#input-arrow)"
+    }
+  ],
+  "node_text_overflow": [],
+  "duplicate_ids": [],
+  "missing_marker_references": [],
+  "embedded_rasters": 0,
+  "nested_svgs": 0,
+  "text_compression": 0,
+  "effects": 0,
+  "right_margins_units": {
+    "system_web": 32.1875,
+    "app_web": 38.125
+  },
+  "geometry_label_clearance_above_node_titles": 27,
+  "min_body_font_units": 28,
+  "times_new_roman_available": true,
+  "exact_visible_copy_preserved": true,
+  "semantic_regression": {
+    "four_relations": true,
+    "context_without_arrows": true,
+    "geometry_still_unintegrated": true,
+    "independent_development_inputs": true,
+    "no_current_data_into_offline": true,
+    "one_model_load": true,
+    "one_shared_output": true,
+    "modes_have_no_interconnection": true,
+    "note_and_evaluation_have_no_arrows": true
+  },
+  "formal_files_unchanged": {
+    "HybridGuard_overview_triangle.svg": true,
+    "HybridGuard_overview_triangle.png": true,
+    "build_overview.py": true,
+    "COPY.md": true,
+    "README.md": true
+  },
+  "pilot_status_unchanged": true,
+  "automated_checks_pass": true,
+  "pdf": {
+    "file": "HybridGuard_overview_candidate.pdf",
+    "requested_size_mm": [
+      180,
+      133
+    ],
+    "renderer": "Chrome headless print",
+    "paper_template_modified": false
+  }
+}
