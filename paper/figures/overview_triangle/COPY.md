@@ -1,6 +1,6 @@
 # Overview 最终文案清单
 
-基线：`3443c16d8cd65e3575e84accce93bcb45a340cbc`，已完成图标、局部配色与细边框修订的版本。2026-10-10 本轮重构研究叙述；保留图标、浅色配色和三角主体，画布仍为180 × 106 mm。
+基线：`f80ec0a7a8b3922342fca75f13c9638271381de5`。2026-10-10 本轮仅作局部排版：核心英文、三角、图标与浅色配色不变；画布调整为180 × 125 mm，为连接通道、上下排列的检测模式和底部说明增加实际高度。
 
 以下为生成脚本使用的最终英文文案。换行仅服务于排版；正式中英文图注和实现限定见 README。
 
@@ -48,16 +48,16 @@
 - 选择目标与约束：Improve detection / Limit false alarms / Limit undecidable cases / Keep rules simple
 - 输出与模型连接标签：**Selected rules**
 
-两个输入分别进入选择区，再输出规则。四项目标不是效果保证。没有从整个三角、例子或当前观测到离线区的箭头。具体 App 与跨端选择程序、开发与评价数据角色留在 README。
+两个输入改为上下排列的宽条目，各自进入选择区，再输出规则；上方候选输入的线从侧面绕过开发数据条目，不把两个输入画成先后步骤。四项目标在浅紫底上按两行两列对齐。四项目标不是效果保证。没有从整个三角、例子或当前观测到离线区的箭头。具体 App 与跨端选择程序、开发与评价数据角色留在 README。
 
 ## F. 如何用于当前观测
 
 - **Apply selected rules** / Current observations only
-- 并列模式一：**App observations only** / App rules
-- 并列模式二：**App + linked browser observations** / App + browser rules
+- 上方可选模式：**App observations only** / App rules
+- 下方可选模式：**App + linked browser observations** / App + browser rules
 - 两种模式共享输出释义，仅写一次：**Manipulation alert** / No alert / Insufficient evidence
 
-两行短规则名使各输入模式与各自固定规则集对应。黑色单向线传送当前观测，紫色单向线加载已选规则；两模式不串行、不自动回退。输出汇合只共用结果词汇，不融合两次检测结果。编码、缺测和执行失败合同留在 README。
+两行短规则名使各输入模式与各自固定规则集对应。两卡片之间新增小型 **or**，明确它们是替代配置。黑色单向线从左侧进入上方 App-only 卡片、从右侧进入下方关联卡片；紫色线从独立端口进入共同规则应用框的标题区域。只从共同检测框引出一条结果箭头，表示所选模式的结果；不再画两条结果线或结果汇合点。编码、缺测和执行失败合同留在 README。
 
 ## G. 如何评价研究方法
 

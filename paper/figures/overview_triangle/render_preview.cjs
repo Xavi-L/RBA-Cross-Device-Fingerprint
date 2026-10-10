@@ -37,14 +37,16 @@ function labelSvg(w, h, lines) {
 async function main() {
   const args = process.argv.slice(2);
   if (args.length && (args.length !== 2 || args[0] !== '--before')) {
-    throw new Error('Usage: node render_preview.cjs [--before baseline-3443c16.png]');
+    throw new Error('Usage: node render_preview.cjs [--before baseline-f80ec0a.png]');
   }
   const before = args.length ? fs.readFileSync(args[1]) : null;
+  let beforeHeight;
   if (before) {
     const meta = await sharp(before).metadata();
-    if (meta.width !== width * pixelScale || meta.height !== height * pixelScale) {
-      throw new Error('Before preview must match the 3600 x 2120 baseline');
+    if (meta.width !== width * pixelScale || meta.height % pixelScale !== 0) {
+      throw new Error('Before preview must have the same width and pixel scale');
     }
+    beforeHeight = meta.height / pixelScale;
   }
   const png = await sharp(svg, {density: 144}).png().toBuffer();
   fs.writeFileSync(path.join(__dirname, 'HybridGuard_overview_triangle.png'), png);
@@ -81,13 +83,26 @@ async function main() {
 
   if (before) {
     const header = 60, gap = 32;
-    await sharp(labelSvg(width, 2 * (height + header) + gap, [
-      {x: 24, y: 40, text: 'Before: approved icons and local colors (3443c16)', size: 28},
-      {x: 24, y: height + header + gap + 40, text: 'After: research and method overview, same 180 x 106 mm', size: 28},
+    // Resize by width alone: the old and new heights deliberately differ.
+    await sharp(labelSvg(width, beforeHeight + height + 2 * header + gap, [
+      {x: 24, y: 40, text: 'Before: f80ec0a, 180 x 106 mm', size: 28},
+      {x: 24, y: beforeHeight + header + gap + 40, text: 'After: local layout refinement, 180 x 125 mm', size: 28},
     ])).composite([
-      {input: await sharp(before).resize(width, height).png().toBuffer(), left: 0, top: header},
-      {input: await sharp(png).resize(width, height).png().toBuffer(), left: 0, top: height + 2 * header + gap},
+      {input: await sharp(before).resize({width}).png().toBuffer(), left: 0, top: header},
+      {input: await sharp(png).resize({width}).png().toBuffer(), left: 0, top: beforeHeight + 2 * header + gap},
     ]).png().toFile(path.join(previewDir, 'before_after.png'));
+
+    // Matching y=680 crop and one pixel per viewBox unit; no independent scaling.
+    const cropTop = 680, beforeCropHeight = beforeHeight - cropTop, afterCropHeight = height - cropTop;
+    const crop = async (input, h) => sharp(input).extract({left: 0, top: cropTop * pixelScale,
+      width: width * pixelScale, height: h * pixelScale}).resize({width}).png().toBuffer();
+    await sharp(labelSvg(width, beforeCropHeight + afterCropHeight + 2 * header + gap, [
+      {x: 24, y: 40, text: 'Before: lower region, same scale (f80ec0a)', size: 28},
+      {x: 24, y: beforeCropHeight + header + gap + 40, text: 'After: lower region, same scale', size: 28},
+    ])).composite([
+      {input: await crop(before, beforeCropHeight), left: 0, top: header},
+      {input: await crop(png, afterCropHeight), left: 0, top: beforeCropHeight + 2 * header + gap},
+    ]).png().toFile(path.join(previewDir, 'lower_before_after.png'));
   }
   console.log(JSON.stringify({png: [width * pixelScale, height * pixelScale], previews: previewDir,
     comparisonGenerated: Boolean(before)}));

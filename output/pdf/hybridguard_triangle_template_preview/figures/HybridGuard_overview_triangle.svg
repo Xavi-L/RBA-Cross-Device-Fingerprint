@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-width="180mm" height="106mm" viewBox="0 0 1800 1060" role="img" aria-labelledby="title desc">
+width="180mm" height="125mm" viewBox="0 0 1800 1250" role="img" aria-labelledby="title desc">
 <title id="title">HybridGuard: Detecting device-fingerprint manipulation</title>
-<desc id="desc">Complementary observations from one device help check device-fingerprint reports for possible manipulation. Device and OS, app container, and embedded webpage form an App triangle. The standalone browser is outside the App but on the same device. Solid comparison edges denote selected system–web memory/timezone and App–browser timezone relations. Dashed container–web geometry remains a separate study; the dotted Native–Host link is context only. An independent timezone inset contrasts two illustrative current states. Offline selection evaluates within-view and cross-view candidates using controlled modifications and normal development data, under false-alarm, coverage and simplicity constraints. Selected rules and current data enter a shared detection area through separate paths. Parallel App-only and linked App–browser input modes use their corresponding fixed rules and share the output vocabulary: manipulation alert, no alert, or insufficient evidence. The evaluation strip denotes research scope, not an online processing stage. No observation point is trusted ground truth; no alert does not establish safety. Execution failures are recorded separately.</desc>
+<desc id="desc">Complementary observations from one device help check device-fingerprint reports for possible manipulation. Device and OS, app container, and embedded webpage form an App triangle. The standalone browser is outside the App but on the same device. Solid comparison edges denote selected system–web memory/timezone and App–browser timezone relations. Dashed container–web geometry remains a separate study; the dotted Native–Host link is context only. An independent timezone inset contrasts two illustrative current states. Offline selection evaluates within-view and cross-view candidates using controlled modifications and normal development data, under false-alarm, coverage and simplicity constraints. Selected rules and current data enter a shared detection area through separate paths. Vertically stacked alternative App-only and linked App–browser input modes use their corresponding fixed rules. One arrow from the common rule-application area denotes the selected mode's output: manipulation alert, no alert, or insufficient evidence. The evaluation strip denotes research scope, not an online processing stage. No observation point is trusted ground truth; no alert does not establish safety. Execution failures are recorded separately.</desc>
 <style>text {font-family:'Times New Roman',Times,serif} use {fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}</style>
 <defs>
 <marker id="relation-selected" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M2 2 L10 6.5 L2 11" fill="none" stroke="#507cc4" stroke-width="2.3" stroke-linejoin="round"/></marker>
@@ -13,7 +13,7 @@ width="180mm" height="106mm" viewBox="0 0 1800 1060" role="img" aria-labelledby=
 <symbol id="app-web-js" viewBox="0 0 48 48"><path d="M10 3h20l10 10v30q0 2-2 2H10q-2 0-2-2V5q0-2 2-2Z"/><path d="M30 3v10h10M15 39h18"/><text x="24" y="32" text-anchor="middle" font-family="'Times New Roman',Times,serif" font-size="20" font-weight="bold" fill="currentColor" stroke="none">JS</text></symbol>
 <symbol id="web" viewBox="0 0 48 48"><rect x="4" y="7" width="40" height="34" rx="4"/><path d="M4 16h40M11 12h1m5 0h1M17 23l-6 6 6 6m14-12l6 6-6 6m-5-14l-4 16"/></symbol>
 </defs>
-<rect x="0" y="0" width="1800" height="1060" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<rect x="0" y="0" width="1800" height="1250" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
 <text x="24" y="45" font-size="40" font-weight="bold" text-anchor="start" fill="#343434">HybridGuard: Detecting device-fingerprint manipulation</text>
 <text x="24" y="87" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Manipulated reports may conflict across observation points.</text>
 <g id="device-observations">
@@ -24,7 +24,7 @@ width="180mm" height="106mm" viewBox="0 0 1800 1060" role="img" aria-labelledby=
 <rect x="44" y="178" width="1120" height="516" rx="16" fill="white" stroke="#93938e" stroke-width="1.7" stroke-dasharray="6 6"/>
 <rect x="64" y="160" width="210" height="40" rx="16" fill="white" stroke="none" stroke-width="1.8"/>
 <text x="75" y="191" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Inside the app</text>
-<path d="M600 265 L245 605 L951 605Z" fill="#f8fafb"/>
+<path d="M589.790576 230.109948 L229.894737 610 L993.673684 610Z" fill="#f8fafb"/>
 <g id="native-host" data-kind="relation" data-status="context" data-source="native" data-target="webview-host">
 <path d="M480 346 L300 536" fill="none" stroke="#9a9a95" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 7"/>
 </g>
@@ -82,102 +82,95 @@ width="180mm" height="106mm" viewBox="0 0 1800 1060" role="img" aria-labelledby=
 </g>
 </g>
 <g id="timezone-example" data-kind="illustration">
-<rect x="1214" y="124" width="562" height="281" rx="16" fill="white" stroke="#B9C0C8" stroke-width="1.2"/>
+<rect x="1214" y="124" width="562" height="251" rx="16" fill="white" stroke="#B9C0C8" stroke-width="1.2"/>
 <text x="1240" y="162" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Example: timezone</text>
 <text x="1240" y="208" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">Normal system change</text>
 <text x="1240" y="246" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">System and web remain compatible</text>
-<path d="M1238 271 H1752" fill="none" stroke="#B9C0C8" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="1240" y="313" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">Web-only modification</text>
-<text x="1240" y="352" font-size="28" font-weight="normal" text-anchor="start" fill="#343434" xml:space="preserve">Reports may <tspan fill="#D62828">conflict</tspan></text>
+<path d="M1238 264 H1752" fill="none" stroke="#B9C0C8" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1240" y="302" font-size="30" font-weight="bold" text-anchor="start" fill="#343434">Web-only modification</text>
+<text x="1240" y="341" font-size="28" font-weight="normal" text-anchor="start" fill="#343434" xml:space="preserve">Reports may <tspan fill="#D62828">conflict</tspan></text>
 </g>
 <g id="offline-development">
-<rect x="1214" y="423" width="562" height="439" rx="16" fill="#EEE2FA" stroke="none" stroke-width="1.8"/>
-<text x="1238" y="461" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Select detection rules</text>
-<text x="1753" y="461" font-size="28" font-weight="normal" text-anchor="end" fill="#666666" font-style="italic">Offline</text>
+<rect x="1214" y="397" width="562" height="461" rx="16" fill="#EEE2FA" stroke="none" stroke-width="1.8"/>
+<text x="1238" y="435" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Select detection rules</text>
+<text x="1753" y="435" font-size="28" font-weight="normal" text-anchor="end" fill="#666666" font-style="italic">Offline</text>
 <g id="candidate-checks">
-<rect x="1236" y="481" width="242" height="177" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="1357" y="521" font-size="29" font-weight="bold" text-anchor="middle" fill="#343434">Candidate checks</text>
-<text x="1357" y="565" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">Within-view +</text>
-<text x="1357" y="599" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">cross-view</text>
+<rect x="1236" y="450" width="480" height="78" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="1260" y="481" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Candidate checks</text>
+<text x="1260" y="516" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Within-view + cross-view</text>
 </g>
 <g id="development-data">
-<rect x="1494" y="481" width="264" height="177" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="1626" y="511" font-size="29" font-weight="bold" text-anchor="middle" fill="#343434">Development data</text>
-<text x="1626" y="546" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">Controlled</text>
-<text x="1626" y="577" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">modifications</text>
-<text x="1626" y="608" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">Normal devices</text>
-<text x="1626" y="639" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">and settings</text>
+<rect x="1236" y="544" width="480" height="114" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="1260" y="575" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Development data</text>
+<text x="1260" y="610" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Controlled modifications</text>
+<text x="1260" y="645" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Normal devices and settings</text>
 </g>
-<g id="candidates-to-selection" data-kind="development-input" data-source="candidate-checks" data-target="rule-selection">
-<path d="M1357 658 V680 H1497" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="candidates-to-selection" data-kind="development-input" data-source="candidate-checks" data-target="selection-inputs">
+<path d="M1716 489 H1744 V677 H1497" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<g id="data-to-selection" data-kind="development-input" data-source="development-data" data-target="rule-selection">
-<path d="M1626 658 V680 H1497" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="data-to-selection" data-kind="development-input" data-source="development-data" data-target="selection-inputs">
+<path d="M1497 658 V677" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<g id="selection-input" data-kind="development-input" data-source="development-inputs" data-target="rule-selection">
-<path d="M1497 680 V691" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+<g id="selection-input" data-kind="development-input" data-source="selection-inputs" data-target="rule-selection">
+<path d="M1497 677 V693" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
 </g>
 <g id="rule-selection">
-<rect x="1236" y="691" width="522" height="84" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="1497" y="722" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">Improve detection · Limit false alarms</text>
-<text x="1497" y="757" font-size="28" font-weight="normal" text-anchor="middle" fill="#343434">Limit undecidable cases · Keep rules simple</text>
+<rect x="1214" y="693" width="562" height="84" rx="0" fill="none" stroke="none" stroke-width="1.8"/>
+<text x="1240" y="724" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Improve detection</text>
+<text x="1540" y="724" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Limit false alarms</text>
+<text x="1240" y="760" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Limit undecidable cases</text>
+<text x="1540" y="760" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Keep rules simple</text>
 </g>
 <g id="selection-output" data-kind="development-output" data-source="rule-selection" data-target="selected-rules">
-<path d="M1497 775 V800" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+<path d="M1497 777 V796" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
 </g>
 <g id="selected-rules">
-<rect x="1364" y="800" width="266" height="44" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
-<text x="1497" y="831" font-size="29" font-weight="bold" text-anchor="middle" fill="#80649b">Selected rules</text>
+<rect x="1364" y="796" width="266" height="44" rx="12" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="1497" y="827" font-size="29" font-weight="bold" text-anchor="middle" fill="#80649b">Selected rules</text>
 </g>
 </g>
 <g id="current-app-only" data-kind="current-input" data-source="app-observations" data-target="app-only-interface">
-<path d="M100 694 V868 H40 V965 H55" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+<path d="M100 694 V998 H210" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
 </g>
 <g id="current-app-for-pair" data-kind="current-input" data-source="app-observations" data-target="linked-pair">
-<path d="M1164 678 H1174 V866" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M150 694 V884 H965" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g id="current-browser-for-pair" data-kind="current-input" data-source="browser" data-target="linked-pair">
-<path d="M965 846 V866 H1174" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M965 846 V884" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<circle cx="1174" cy="866" r="3" fill="#343434"/>
+<circle id="linked-pair" cx="965" cy="884" r="3" fill="#343434"/>
 <g id="current-linked-pair" data-kind="current-input" data-source="linked-pair" data-target="paired-interface">
-<path d="M1174 866 H680 V965 H700" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+<path d="M965 884 H1010 V1118 H960" fill="none" stroke="#343434" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
 </g>
 <g id="current-detection">
-<rect x="24" y="875" width="1752" height="148" rx="16" fill="none" stroke="#93938e" stroke-width="1.7"/>
-<text x="55" y="912" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Apply selected rules</text>
-<text x="800" y="912" font-size="28" font-weight="normal" text-anchor="start" fill="#666666">Current observations only</text>
+<rect x="24" y="908" width="1140" height="270" rx="16" fill="none" stroke="#93938e" stroke-width="1.7"/>
+<text x="210" y="946" font-size="32" font-weight="bold" text-anchor="start" fill="#343434">Apply selected rules</text>
+<text x="650" y="946" font-size="28" font-weight="normal" text-anchor="start" fill="#666666">Current observations only</text>
 <g id="app-only-interface">
-<rect x="55" y="925" width="575" height="78" rx="12" fill="#e9f0f9" stroke="none" stroke-width="1.8"/>
-<text x="342.5" y="954" font-size="29" font-weight="bold" text-anchor="middle" fill="#343434">App observations only</text>
-<text x="342.5" y="989" font-size="28" font-weight="normal" text-anchor="middle" fill="#666666">App rules</text>
+<rect x="210" y="958" width="750" height="80" rx="12" fill="#e9f0f9" stroke="none" stroke-width="1.8"/>
+<text x="234" y="991" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">App observations only</text>
+<text x="234" y="1025" font-size="28" font-weight="normal" text-anchor="start" fill="#666666">App rules</text>
 </g>
 <g id="paired-interface">
-<rect x="700" y="925" width="575" height="78" rx="12" fill="#edf3e9" stroke="none" stroke-width="1.8"/>
-<text x="987.5" y="954" font-size="29" font-weight="bold" text-anchor="middle" fill="#343434">App + linked browser observations</text>
-<text x="987.5" y="989" font-size="28" font-weight="normal" text-anchor="middle" fill="#666666">App + browser rules</text>
+<rect x="210" y="1078" width="750" height="80" rx="12" fill="#edf3e9" stroke="none" stroke-width="1.8"/>
+<text x="234" y="1111" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">App + linked browser observations</text>
+<text x="234" y="1145" font-size="28" font-weight="normal" text-anchor="start" fill="#666666">App + browser rules</text>
 </g>
-<g id="app-result" data-kind="decision-output" data-source="app-only-interface" data-target="decision-vocabulary">
-<path d="M350 1003 V1015 H1300 V965" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="paired-result" data-kind="decision-output" data-source="paired-interface" data-target="decision-vocabulary">
-<path d="M1275 965 H1300" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<circle cx="1300" cy="965" r="3" fill="#343434"/>
-<g id="result-labels" data-kind="decision-output" data-source="input-mode-result" data-target="decision-vocabulary">
-<path d="M1300 965 H1330" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
-</g>
-<g id="decision-vocabulary">
-<text x="1350" y="947" font-size="29" font-weight="bold" text-anchor="start" fill="#D62828">Manipulation alert</text>
-<text x="1350" y="980" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">No alert</text>
-<text x="1350" y="1013" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Insufficient evidence</text>
-</g>
+<text x="585" y="1068" font-size="28" font-weight="normal" text-anchor="middle" fill="#666666" font-style="italic">or</text>
 </g>
 <g id="load-selected-rules" data-kind="model-input" data-source="selected-rules" data-target="current-detection">
-<path d="M1497 844 V875" fill="none" stroke="#80649b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#model-arrow)"/>
+<path d="M1497 840 V884 H1200 V940 H1164" fill="none" stroke="#80649b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#model-arrow)"/>
+</g>
+<g id="selected-mode-result" data-kind="decision-output" data-source="current-detection" data-target="decision-vocabulary">
+<path d="M1164 1058 H1305" fill="none" stroke="#343434" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+</g>
+<g id="decision-vocabulary">
+<text x="1340" y="1030" font-size="29" font-weight="bold" text-anchor="start" fill="#D62828">Manipulation alert</text>
+<text x="1340" y="1068" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">No alert</text>
+<text x="1340" y="1106" font-size="29" font-weight="normal" text-anchor="start" fill="#343434">Insufficient evidence</text>
 </g>
 <g id="research-evaluation" data-kind="evaluation-scope">
-<text x="24" y="1051" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Research evaluation</text>
-<text x="340" y="1051" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Detection · False alarms · Undecidable cases · Ablations</text>
+<text x="24" y="1224" font-size="29" font-weight="bold" text-anchor="start" fill="#343434">Research evaluation</text>
+<text x="340" y="1224" font-size="28" font-weight="normal" text-anchor="start" fill="#343434">Detection · False alarms · Undecidable cases · Ablations</text>
 </g>
 </svg>

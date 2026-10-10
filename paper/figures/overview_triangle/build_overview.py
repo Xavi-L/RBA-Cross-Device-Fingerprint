@@ -3,7 +3,7 @@ from html import escape
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-W, H = 1800, 1060
+W, H = 1800, 1250
 C = {'ink': '#343434', 'muted': '#666666', 'blue': '#507cc4',
      'warm': '#bd8b47', 'sage': '#65855a', 'context': '#9a9a95',
      'cream': '#faf0e2', 'ice': '#e9f0f9', 'green': '#edf3e9'}
@@ -68,9 +68,9 @@ def current(id_, source, target, d, arrow=True):
 
 
 add(f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-width="180mm" height="106mm" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">
+width="180mm" height="125mm" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">
 <title id="title">HybridGuard: Detecting device-fingerprint manipulation</title>
-<desc id="desc">Complementary observations from one device help check device-fingerprint reports for possible manipulation. Device and OS, app container, and embedded webpage form an App triangle. The standalone browser is outside the App but on the same device. Solid comparison edges denote selected system–web memory/timezone and App–browser timezone relations. Dashed container–web geometry remains a separate study; the dotted Native–Host link is context only. An independent timezone inset contrasts two illustrative current states. Offline selection evaluates within-view and cross-view candidates using controlled modifications and normal development data, under false-alarm, coverage and simplicity constraints. Selected rules and current data enter a shared detection area through separate paths. Parallel App-only and linked App–browser input modes use their corresponding fixed rules and share the output vocabulary: manipulation alert, no alert, or insufficient evidence. The evaluation strip denotes research scope, not an online processing stage. No observation point is trusted ground truth; no alert does not establish safety. Execution failures are recorded separately.</desc>
+<desc id="desc">Complementary observations from one device help check device-fingerprint reports for possible manipulation. Device and OS, app container, and embedded webpage form an App triangle. The standalone browser is outside the App but on the same device. Solid comparison edges denote selected system–web memory/timezone and App–browser timezone relations. Dashed container–web geometry remains a separate study; the dotted Native–Host link is context only. An independent timezone inset contrasts two illustrative current states. Offline selection evaluates within-view and cross-view candidates using controlled modifications and normal development data, under false-alarm, coverage and simplicity constraints. Selected rules and current data enter a shared detection area through separate paths. Vertically stacked alternative App-only and linked App–browser input modes use their corresponding fixed rules. One arrow from the common rule-application area denotes the selected mode's output: manipulation alert, no alert, or insufficient evidence. The evaluation strip denotes research scope, not an online processing stage. No observation point is trusted ground truth; no alert does not establish safety. Execution failures are recorded separately.</desc>
 <style>text {{font-family:'Times New Roman',Times,serif}} use {{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}}</style>
 <defs>''')
 for kind, color in [('selected', C['blue']), ('studied', C['warm'])]:
@@ -107,7 +107,9 @@ add('<g id="app-observations">')
 rect(44, 178, 1120, 516, stroke='#93938e', sw=1.7, dash='6 6')
 rect(64, 160, 210, 40)
 text(75, 191, 'Inside the app', 32, 'bold', 'start')
-add('<path d="M600 265 L245 605 L951 605Z" fill="#f8fafb"/>')
+# Intersections of the three relation lines extended beneath the opaque cards.
+# The fill meets their centerlines; the visible relation paths stay unchanged.
+add('<path d="M589.790576 230.109948 L229.894737 610 L993.673684 610Z" fill="#f8fafb"/>')
 relation('native-host', 'native', 'webview-host', 'M480 346 L300 536', 'context')
 relation('native-app-web', 'native', 'app-web', 'M713 346 L915 536', 'selected')
 relation('host-app-web', 'webview-host', 'app-web', 'M430 610 H746', 'studied')
@@ -162,85 +164,89 @@ add('</g>')
 
 # Independent illustrative states; deliberately no flow arrows or input ports.
 add('<g id="timezone-example" data-kind="illustration">')
-rect(1214, 124, 562, 281, stroke=relation_label_border, sw=1.2)
+rect(1214, 124, 562, 251, stroke=relation_label_border, sw=1.2)
 text(1240, 162, 'Example: timezone', 32, 'bold', 'start')
 text(1240, 208, 'Normal system change', 30, 'bold', 'start')
 text(1240, 246, 'System and web remain compatible', 28, anchor='start')
-path('M1238 271 H1752', relation_label_border, 1)
-text(1240, 313, 'Web-only modification', 30, 'bold', 'start')
-text(1240, 352, 'Reports may conflict', 28, anchor='start', emphasis='conflict')
+path('M1238 264 H1752', relation_label_border, 1)
+text(1240, 302, 'Web-only modification', 30, 'bold', 'start')
+text(1240, 341, 'Reports may conflict', 28, anchor='start', emphasis='conflict')
 add('</g>')
 
-# Two independent development inputs, followed by selection and model output.
+# Full-width independent inputs. The upper input bypasses the lower input.
 add('<g id="offline-development">')
-rect(1214, 423, 562, 439, offline_bg)
-text(1238, 461, 'Select detection rules', 32, 'bold', 'start')
-text(1753, 461, 'Offline', 28, anchor='end', color=C['muted'], italic=True)
+rect(1214, 397, 562, 461, offline_bg)
+text(1238, 435, 'Select detection rules', 32, 'bold', 'start')
+text(1753, 435, 'Offline', 28, anchor='end', color=C['muted'], italic=True)
 add('<g id="candidate-checks">')
-rect(1236, 481, 242, 177, r=12)
-text(1357, 521, 'Candidate checks', 29, 'bold')
-text(1357, 565, 'Within-view +', 28)
-text(1357, 599, 'cross-view', 28)
+rect(1236, 450, 480, 78, r=12)
+text(1260, 481, 'Candidate checks', 29, 'bold', 'start')
+text(1260, 516, 'Within-view + cross-view', 28, anchor='start')
 add('</g>')
 add('<g id="development-data">')
-rect(1494, 481, 264, 177, r=12)
-text(1626, 511, 'Development data', 29, 'bold')
-for y, label in [(546, 'Controlled'), (577, 'modifications'), (608, 'Normal devices'), (639, 'and settings')]:
-    text(1626, y, label, 28)
+rect(1236, 544, 480, 114, r=12)
+text(1260, 575, 'Development data', 29, 'bold', 'start')
+text(1260, 610, 'Controlled modifications', 28, anchor='start')
+text(1260, 645, 'Normal devices and settings', 28, anchor='start')
 add('</g>')
-flow('candidates-to-selection', 'development-input', 'candidate-checks', 'rule-selection', 'M1357 658 V680 H1497', arrow=False)
-flow('data-to-selection', 'development-input', 'development-data', 'rule-selection', 'M1626 658 V680 H1497', arrow=False)
-flow('selection-input', 'development-input', 'development-inputs', 'rule-selection', 'M1497 680 V691')
+flow('candidates-to-selection', 'development-input', 'candidate-checks', 'selection-inputs', 'M1716 489 H1744 V677 H1497', arrow=False)
+flow('data-to-selection', 'development-input', 'development-data', 'selection-inputs', 'M1497 658 V677', arrow=False)
+flow('selection-input', 'development-input', 'selection-inputs', 'rule-selection', 'M1497 677 V693')
 add('<g id="rule-selection">')
-rect(1236, 691, 522, 84, r=12)
-text(1497, 722, 'Improve detection · Limit false alarms', 28)
-text(1497, 757, 'Limit undecidable cases · Keep rules simple', 28)
+rect(1214, 693, 562, 84, fill='none', r=0)
+for x, y, label in [
+    (1240, 724, 'Improve detection'), (1540, 724, 'Limit false alarms'),
+    (1240, 760, 'Limit undecidable cases'), (1540, 760, 'Keep rules simple'),
+]:
+    text(x, y, label, 28, anchor='start')
 add('</g>')
-flow('selection-output', 'development-output', 'rule-selection', 'selected-rules', 'M1497 775 V800')
+flow('selection-output', 'development-output', 'rule-selection', 'selected-rules', 'M1497 777 V796')
 add('<g id="selected-rules">')
-rect(1364, 800, 266, 44, r=12)
-text(1497, 831, 'Selected rules', 29, 'bold', color='#80649b')
+rect(1364, 796, 266, 44, r=12)
+text(1497, 827, 'Selected rules', 29, 'bold', color='#80649b')
 add('</g>')
 add('</g>')
 
-# The current observations bypass development. Paired data join only after linking.
-current('current-app-only', 'app-observations', 'app-only-interface', 'M100 694 V868 H40 V965 H55')
-current('current-app-for-pair', 'app-observations', 'linked-pair', 'M1164 678 H1174 V866', arrow=False)
-current('current-browser-for-pair', 'browser', 'linked-pair', 'M965 846 V866 H1174', arrow=False)
-add('<circle cx="1174" cy="866" r="3" fill="#343434"/>')
-current('current-linked-pair', 'linked-pair', 'paired-interface', 'M1174 866 H680 V965 H700')
+# 50-unit channel (y=858..908). Only the linked observations share a join.
+# App-only enters from the left; the linked pair enters the lower card from the right.
+current('current-app-only', 'app-observations', 'app-only-interface', 'M100 694 V998 H210')
+current('current-app-for-pair', 'app-observations', 'linked-pair', 'M150 694 V884 H965', arrow=False)
+current('current-browser-for-pair', 'browser', 'linked-pair', 'M965 846 V884', arrow=False)
+add('<circle id="linked-pair" cx="965" cy="884" r="3" fill="#343434"/>')
+current('current-linked-pair', 'linked-pair', 'paired-interface', 'M965 884 H1010 V1118 H960')
 
-# Draw the group under its entering arrows, leaving each entry visible.
+# One common rule-application frame encloses alternative configurations.
+# The shared result list sits outside that frame; there are no per-mode result paths.
 add('<g id="current-detection">')
-rect(24, 875, 1752, 148, fill='none', stroke='#93938e', sw=1.7)
-text(55, 912, 'Apply selected rules', 32, 'bold', 'start')
-text(800, 912, 'Current observations only', 28, anchor='start', color=C['muted'])
-for id_, x, title, rules, fill in [
-    ('app-only-interface', 55, 'App observations only', 'App rules', C['ice']),
-    ('paired-interface', 700, 'App + linked browser observations', 'App + browser rules', C['green']),
+rect(24, 908, 1140, 270, fill='none', stroke='#93938e', sw=1.7)
+text(210, 946, 'Apply selected rules', 32, 'bold', 'start')
+text(650, 946, 'Current observations only', 28, anchor='start', color=C['muted'])
+for id_, y, title, rules, fill in [
+    ('app-only-interface', 958, 'App observations only', 'App rules', C['ice']),
+    ('paired-interface', 1078, 'App + linked browser observations', 'App + browser rules', C['green']),
 ]:
     add(f'<g id="{id_}">')
-    rect(x, 925, 575, 78, fill, r=12)
-    text(x + 287.5, 954, title, 29, 'bold')
-    text(x + 287.5, 989, rules, 28, color=C['muted'])
+    rect(210, y, 750, 80, fill, r=12)
+    text(234, y + 33, title, 29, 'bold', 'start')
+    text(234, y + 67, rules, 28, anchor='start', color=C['muted'])
     add('</g>')
-flow('app-result', 'decision-output', 'app-only-interface', 'decision-vocabulary', 'M350 1003 V1015 H1300 V965', arrow=False)
-flow('paired-result', 'decision-output', 'paired-interface', 'decision-vocabulary', 'M1275 965 H1300', arrow=False)
-add('<circle cx="1300" cy="965" r="3" fill="#343434"/>')
-flow('result-labels', 'decision-output', 'input-mode-result', 'decision-vocabulary', 'M1300 965 H1330')
-add('<g id="decision-vocabulary">')
-text(1350, 947, 'Manipulation alert', 29, 'bold', 'start', color=accent_red)
-text(1350, 980, 'No alert', 29, anchor='start')
-text(1350, 1013, 'Insufficient evidence', 29, anchor='start')
+text(585, 1068, 'or', 28, color=C['muted'], italic=True)
 add('</g>')
-add('</g>')
-flow('load-selected-rules', 'model-input', 'selected-rules', 'current-detection', 'M1497 844 V875', model=True)
 
-# An unconnected research scope strip, not a production inference stage.
+# Fixed models load at the rule-application header, away from data and results.
+flow('load-selected-rules', 'model-input', 'selected-rules', 'current-detection', 'M1497 840 V884 H1200 V940 H1164', model=True)
+flow('selected-mode-result', 'decision-output', 'current-detection', 'decision-vocabulary', 'M1164 1058 H1305')
+add('<g id="decision-vocabulary">')
+text(1340, 1030, 'Manipulation alert', 29, 'bold', 'start', color=accent_red)
+text(1340, 1068, 'No alert', 29, anchor='start')
+text(1340, 1106, 'Insufficient evidence', 29, anchor='start')
+add('</g>')
+
+# Separate research scope, with no inference or feedback arrows.
 add('<g id="research-evaluation" data-kind="evaluation-scope">')
-text(24, 1051, 'Research evaluation', 29, 'bold', 'start')
-text(340, 1051, 'Detection · False alarms · Undecidable cases · Ablations', 28, anchor='start')
+text(24, 1224, 'Research evaluation', 29, 'bold', 'start')
+text(340, 1224, 'Detection · False alarms · Undecidable cases · Ablations', 28, anchor='start')
 add('</g>')
 add('</svg>')
 (HERE / 'HybridGuard_overview_triangle.svg').write_text('\n'.join(parts) + '\n', encoding='utf-8')
-print('Wrote HybridGuard_overview_triangle.svg (180 × 106 mm)')
+print('Wrote HybridGuard_overview_triangle.svg (180 × 125 mm)')
