@@ -37,18 +37,20 @@ function labelSvg(w, h, lines) {
 async function main() {
   const args = process.argv.slice(2);
   if (args.length && (args.length !== 2 || args[0] !== '--before')) {
-    throw new Error('Usage: node render_preview.cjs [--before original-first-triangle.png]');
+    throw new Error('Usage: node render_preview.cjs [--before baseline-3443c16.png]');
   }
   const before = args.length ? fs.readFileSync(args[1]) : null;
   if (before) {
     const meta = await sharp(before).metadata();
     if (meta.width !== width * pixelScale || meta.height !== height * pixelScale) {
-      throw new Error('Before preview must match the original 3600 x 2120 first triangle');
+      throw new Error('Before preview must match the 3600 x 2120 baseline');
     }
   }
   const png = await sharp(svg, {density: 144}).png().toBuffer();
   fs.writeFileSync(path.join(__dirname, 'HybridGuard_overview_triangle.png'), png);
   fs.mkdirSync(previewDir, {recursive: true});
+  await sharp(png).resize(Math.round(180 / 25.4 * 96)).withMetadata({density: 96}).png()
+    .toFile(path.join(previewDir, 'actual_size.png'));
 
   // Read the final figure itself; no duplicate icon definitions in the previews.
   const actualScale = (180 / 25.4 * 96) / width;
@@ -80,8 +82,8 @@ async function main() {
   if (before) {
     const header = 60, gap = 32;
     await sharp(labelSvg(width, 2 * (height + header) + gap, [
-      {x: 24, y: 40, text: 'Before: first triangle (a6c9aa5)', size: 28},
-      {x: 24, y: height + header + gap + 40, text: 'After: local revision, same size and layout', size: 28},
+      {x: 24, y: 40, text: 'Before: approved icons and local colors (3443c16)', size: 28},
+      {x: 24, y: height + header + gap + 40, text: 'After: research and method overview, same 180 x 106 mm', size: 28},
     ])).composite([
       {input: await sharp(before).resize(width, height).png().toBuffer(), left: 0, top: header},
       {input: await sharp(png).resize(width, height).png().toBuffer(), left: 0, top: height + 2 * header + gap},

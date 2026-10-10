@@ -69,8 +69,8 @@ def current(id_, source, target, d, arrow=True):
 
 add(f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 width="180mm" height="106mm" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">
-<title id="title">HybridGuard: a triangle of Native, WebView Host, and App Web observations</title>
-<desc id="desc">The three App observation locations form a relation triangle. Native–App Web memory and timezone relations are selected in the fixed App models. Host–App Web geometry was studied separately and is not integrated. The arrowless Native–Host edge denotes shared observation context only and is outside the current App rule pool. Double-headed edges identify compared views, not bidirectional prediction, causation or ground truth. An independent Browser sits outside the triangle; selected C1 compares its numeric UTC offset with App Web after session/receipt association. Current App and bound-pair inputs enter separate fixed-model interfaces, without passing through offline development. Catalog counts do not imply completeness, independent contributions, or trust. The model also contains App Web base rules, not exhaustively drawn here. No Browser-resource increment was admitted. Missing evidence and selected-input failures retain their existing U and FAILED semantics.</desc>
+<title id="title">HybridGuard: Detecting device-fingerprint manipulation</title>
+<desc id="desc">Complementary observations from one device help check device-fingerprint reports for possible manipulation. Device and OS, app container, and embedded webpage form an App triangle. The standalone browser is outside the App but on the same device. Solid comparison edges denote selected system–web memory/timezone and App–browser timezone relations. Dashed container–web geometry remains a separate study; the dotted Native–Host link is context only. An independent timezone inset contrasts two illustrative current states. Offline selection evaluates within-view and cross-view candidates using controlled modifications and normal development data, under false-alarm, coverage and simplicity constraints. Selected rules and current data enter a shared detection area through separate paths. Parallel App-only and linked App–browser input modes use their corresponding fixed rules and share the output vocabulary: manipulation alert, no alert, or insufficient evidence. The evaluation strip denotes research scope, not an online processing stage. No observation point is trusted ground truth; no alert does not establish safety. Execution failures are recorded separately.</desc>
 <style>text {{font-family:'Times New Roman',Times,serif}} use {{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}}</style>
 <defs>''')
 for kind, color in [('selected', C['blue']), ('studied', C['warm'])]:
@@ -78,121 +78,169 @@ for kind, color in [('selected', C['blue']), ('studied', C['warm'])]:
         f'orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M2 2 L10 6.5 L2 11" '
         f'fill="none" stroke="{color}" stroke-width="2.3" stroke-linejoin="round"/></marker>')
 add('''<marker id="input-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 L3 5Z" fill="#343434"/></marker>
+<marker id="model-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 L3 5Z" fill="#80649b"/></marker>
 <symbol id="native-phone" viewBox="0 0 48 48"><rect x="10" y="2" width="28" height="44" rx="4"/><path d="M10 10h28M10 37h28M21 41.5h6"/><g transform="translate(0 -1.5)" stroke-width="2.1"><path d="M22 15h4l.6 2.7 2.5 1.4 2.6-.8 2 3.4-2 1.9v2.8l2 1.9-2 3.4-2.6-.8-2.5 1.4L26 35h-4l-.6-2.7-2.5-1.4-2.6.8-2-3.4 2-1.9v-2.8l-2-1.9 2-3.4 2.6.8 2.5-1.4Z"/><circle cx="24" cy="25" r="3"/></g></symbol>
 <symbol id="host" viewBox="0 0 48 48"><rect x="3" y="6" width="42" height="37" rx="4"/><path d="M3 15h42M9 10.5h9"/><path d="M12 20h17l7 6v11H12Z"/><path d="M29 20v6h7M17 31h13" stroke-width="1.8"/></symbol>
 <symbol id="app-web-js" viewBox="0 0 48 48"><path d="M10 3h20l10 10v30q0 2-2 2H10q-2 0-2-2V5q0-2 2-2Z"/><path d="M30 3v10h10M15 39h18"/><text x="24" y="32" text-anchor="middle" font-family="'Times New Roman',Times,serif" font-size="20" font-weight="bold" fill="currentColor" stroke="none">JS</text></symbol>
 <symbol id="web" viewBox="0 0 48 48"><rect x="4" y="7" width="40" height="34" rx="4"/><path d="M4 16h40M11 12h1m5 0h1M17 23l-6 6 6 6m14-12l6 6-6 6m-5-14l-4 16"/></symbol>
 </defs>''')
+
+
+def flow(id_, kind, source, target, d, model=False, arrow=True):
+    """Directed development/model/output flow, distinct from comparison edges."""
+    add(f'<g id="{id_}" data-kind="{kind}" data-source="{source}" data-target="{target}">')
+    path(d, '#80649b' if model else C['ink'], 2.2,
+         marker=('model-arrow' if model else 'input-arrow') if arrow else None)
+    add('</g>')
+
+
 rect(0, 0, W, H, r=0)
-text(24, 48, 'HybridGuard: cross-view corroboration', 40, 'bold', 'start')
+text(24, 45, 'HybridGuard: Detecting device-fingerprint manipulation', 40, 'bold', 'start')
+text(24, 87, 'Manipulated reports may conflict across observation points.', 29, anchor='start')
 
-# The triangle is a map of relations. It is not a circular data-processing flow.
+# Same-device boundary includes the separate browser, not offline development.
+add('<g id="device-observations">')
+rect(24, 124, 1160, 734, stroke='#b9c0c8', sw=1.5)
+rect(44, 110, 650, 40)
+text(55, 144, 'One device, multiple observation points', 32, 'bold', 'start')
 add('<g id="app-observations">')
-rect(24, 95, 1220, 680, 'white', '#93938e', 18, 1.7, '6 6')
-rect(44, 77, 610, 40)
-text(55, 107, 'App177 · three observation views', 32, 'bold', 'start')
-add('<path d="M640 205 L252 650 L1008 650Z" fill="#f8fafb"/>')
-relation('native-host', 'native', 'webview-host', 'M574 282 L318 573', 'context')
-relation('native-app-web', 'native', 'app-web', 'M704 282 L947 573', 'selected')
-relation('host-app-web', 'webview-host', 'app-web', 'M429 650 H830', 'studied')
+rect(44, 178, 1120, 516, stroke='#93938e', sw=1.7, dash='6 6')
+rect(64, 160, 210, 40)
+text(75, 191, 'Inside the app', 32, 'bold', 'start')
+add('<path d="M600 265 L245 605 L951 605Z" fill="#f8fafb"/>')
+relation('native-host', 'native', 'webview-host', 'M480 346 L300 536', 'context')
+relation('native-app-web', 'native', 'app-web', 'M713 346 L915 536', 'selected')
+relation('host-app-web', 'webview-host', 'app-web', 'M430 610 H746', 'studied')
 
-# Native apex.
+# Preserve all three approved icon definitions and sizes.
 add('<g id="native">')
-rect(460, 130, 360, 150, C['cream'], C['ink'], 20)
-icon('native-phone', 484, 148, 52, C['warm'])
-text(554, 179, 'Native', 38, 'bold', 'start')
-text(640, 220, '84 catalog fields')
-text(640, 258, 'Device / OS observations', 28)
+rect(420, 206, 360, 140, C['cream'], C['ink'], 20)
+icon('native-phone', 444, 224, 52, C['warm'])
+text(514, 249, 'Device & OS', 34, 'bold', 'start')
+text(600, 288, '(Native)', 28)
+text(600, 327, 'Memory and timezone', 29)
 add('</g>')
 
-# Lower vertices and their field catalogs.
-for id_, x, title, count, detail, symbol, fill, color in [
-    ('webview-host', 77, 'WebView Host', 26, 'Container & settings', 'host', C['ice'], C['blue']),
-    ('app-web', 833, 'App Web', 67, 'In-WebView JS', 'app-web-js', C['green'], C['sage']),
+for id_, x, w, title, term, detail, symbol, fill, color in [
+    ('webview-host', 60, 370, 'App container', '(WebView Host)', 'Container settings', 'host', C['ice'], C['blue']),
+    ('app-web', 746, 410, 'Embedded webpage', '(App Web)', 'Reported properties', 'app-web-js', C['green'], C['sage']),
 ]:
     add(f'<g id="{id_}">')
-    rect(x, 575, 350, 150, fill, C['ink'], 20)
-    icon(symbol, x + 20, 599, 48, color)
-    text(x + 77, 625, title, 34, 'bold', 'start')
-    text(x + 175, 665, f'{count} catalog fields')
-    text(x + 175, 703, detail, 28)
+    rect(x, 536, w, 138, fill, C['ink'], 20)
+    icon(symbol, x + 20, 554, 48, color)
+    text(x + 77, 576, title, 34, 'bold', 'start')
+    text(x + w / 2, 617, term, 28)
+    text(x + w / 2, 654, detail, 29)
     add('</g>')
 
-# Edge labels use explicit status wording, in addition to line style and color.
-rect(250, 361, 335, 87, stroke=relation_label_border, sw=1.2)
-text(418, 397, 'Shared context', 32, 'bold', color=C['muted'])
-text(418, 434, 'Outside current model', 29, color=C['muted'])
-rect(749, 361, 390, 87, stroke=relation_label_border, sw=1.2)
-text(944, 397, 'Memory + timezone', 32, 'bold', color=C['blue'])
-text(944, 434, 'Selected in fixed App', 29, color=C['blue'])
-
-text(650, 477, 'Cross-view', 40, 'bold')
-text(650, 524, 'corroboration', 40, 'bold', color=accent_red)
-rect(449, 542, 376, 80)
-text(637, 573, 'Viewport geometry', 31, 'bold', color=C['warm'])
-text(637, 611, 'Studied; not integrated', 29, color=C['warm'])
-text(634, 760, 'Catalog counts; only selected dependencies enter inference', 29, color=C['muted'], italic=True)
+rect(105, 372, 335, 78, stroke=relation_label_border, sw=1.2)
+text(272.5, 403, 'Shared context', 30, 'bold', color=C['muted'])
+text(272.5, 438, 'No detection rule', 28, color=C['muted'])
+rect(774, 372, 382, 78, stroke=relation_label_border, sw=1.2)
+text(965, 403, 'System–web consistency', 30, 'bold', color=C['blue'])
+text(965, 438, 'Memory and timezone', 29, color=C['blue'])
+text(600, 442, 'Cross-check', 38, 'bold', color=accent_red)
+text(600, 478, 'reported properties', 30)
+rect(432, 489, 312, 86)
+text(588, 522, 'Container–web geometry', 28, 'bold', color=C['warm'])
+text(588, 560, 'Not in current detector', 28, color=C['warm'])
 add('</g>')
 
-# Small status key and offline summary stay secondary to the relation triangle.
-text(1320, 111, 'Relation status', 33, 'bold', 'start')
-for y, label, kind, color, dash in [
-    (158, 'Selected', 'selected', C['blue'], None),
-    (208, 'Studied', 'studied', C['warm'], '10 7'),
-    (258, 'Context only', 'context', C['context'], '3 7'),
-]:
-    marker = None if kind == 'context' else 'relation-' + kind
-    path(f'M1320 {y-9} H1380', color, 2.6, dash, marker, both=kind != 'context')
-    text(1403, y, label, 30, anchor='start')
-add('<g id="offline-development">')
-rect(1290, 298, 486, 184, offline_bg)
-text(1533, 340, 'Offline rule development', 32, 'bold')
-text(1533, 380, 'App: SPARSE → RETENTION', 29)
-text(1533, 420, 'C1: 4-set macro selection', 29)
-text(1533, 461, 'Budget · coverage · complexity', 29)
-add('</g>')
-
-# C1 is separate from the three App views, and compares App Web to Browser.
+# A comparison outside the App boundary; both endpoints are on this device.
+relation('app-browser', 'app-web', 'browser', 'M965 674 V699 H640 V780 H746', 'selected')
+rect(180, 719, 435, 90, stroke=relation_label_border, sw=1.2)
+text(397.5, 754, 'App–browser consistency', 30, 'bold', color=C['blue'])
+text(397.5, 791, 'Timezone reports', 29, color=C['blue'])
 add('<g id="browser">')
-rect(1460, 575, 316, 150, browser_bg, C['ink'], 20)
-icon('web', 1481, 599, 48, C['sage'])
-text(1547, 625, 'Browser', 38, 'bold', 'start')
-text(1618, 665, '67 catalog fields')
-text(1618, 703, 'Independent JS runtime', 28)
+rect(746, 714, 410, 132, browser_bg, C['ink'], 20)
+icon('web', 766, 732, 48, C['sage'])
+text(823, 754, 'Standalone browser', 32, 'bold', 'start')
+text(951, 789, 'On the same device', 28)
+text(951, 826, 'Separate web runtime', 29)
 add('</g>')
-relation('app-web-browser-c1', 'app-web', 'browser', 'M1188 650 H1452', 'selected')
-rect(1272, 509, 96, 44, C['ice'], r=11)
-text(1320, 541, 'C1', 31, 'bold', color=C['blue'])
-text(1320, 590, 'UTC-offset', 29, color=C['blue'])
-text(1320, 627, 'mismatch', 29, color=accent_red)
-text(1320, 700, 'Selected', 29, color=C['blue'], italic=True)
-text(1437, 756, 'Session / receipt association', 29, color=C['muted'], italic=True)
+add('</g>')
 
-# Current input paths only. No edge feeds current observations into development.
-current('current-app-only', 'app-observations', 'app-only-interface', 'M350 777 V833')
-text(377, 817, 'Current App', 29, anchor='start')
-current('current-app-to-pair', 'app-observations', 'pair-input-join', 'M1040 777 V800 H1310', False)
-current('current-browser-to-pair', 'browser', 'pair-input-join', 'M1618 727 V800 H1310', False)
-add('<circle id="pair-input-join" cx="1310" cy="800" r="4" fill="#343434"/>')
-current('current-pair', 'pair-input-join', 'paired-interface', 'M1310 800 V833')
-text(1340, 831, 'Current bound pair', 29, anchor='start')
+# Independent illustrative states; deliberately no flow arrows or input ports.
+add('<g id="timezone-example" data-kind="illustration">')
+rect(1214, 124, 562, 281, stroke=relation_label_border, sw=1.2)
+text(1240, 162, 'Example: timezone', 32, 'bold', 'start')
+text(1240, 208, 'Normal system change', 30, 'bold', 'start')
+text(1240, 246, 'System and web remain compatible', 28, anchor='start')
+path('M1238 271 H1752', relation_label_border, 1)
+text(1240, 313, 'Web-only modification', 30, 'bold', 'start')
+text(1240, 352, 'Reports may conflict', 28, anchor='start', emphasis='conflict')
+add('</g>')
 
-for id_, x, w, title, fill, content in [
-    ('app-only-interface', 24, 782, 'App-only · fixed App', C['ice'], 'Current App → loaded rules → T / F / U / FAILED'),
-    ('paired-interface', 904, 872, 'Paired · fixed App + C1', C['green'], 'Current pair → loaded rules → T / F / U / FAILED'),
+# Two independent development inputs, followed by selection and model output.
+add('<g id="offline-development">')
+rect(1214, 423, 562, 439, offline_bg)
+text(1238, 461, 'Select detection rules', 32, 'bold', 'start')
+text(1753, 461, 'Offline', 28, anchor='end', color=C['muted'], italic=True)
+add('<g id="candidate-checks">')
+rect(1236, 481, 242, 177, r=12)
+text(1357, 521, 'Candidate checks', 29, 'bold')
+text(1357, 565, 'Within-view +', 28)
+text(1357, 599, 'cross-view', 28)
+add('</g>')
+add('<g id="development-data">')
+rect(1494, 481, 264, 177, r=12)
+text(1626, 511, 'Development data', 29, 'bold')
+for y, label in [(546, 'Controlled'), (577, 'modifications'), (608, 'Normal devices'), (639, 'and settings')]:
+    text(1626, y, label, 28)
+add('</g>')
+flow('candidates-to-selection', 'development-input', 'candidate-checks', 'rule-selection', 'M1357 658 V680 H1497', arrow=False)
+flow('data-to-selection', 'development-input', 'development-data', 'rule-selection', 'M1626 658 V680 H1497', arrow=False)
+flow('selection-input', 'development-input', 'development-inputs', 'rule-selection', 'M1497 680 V691')
+add('<g id="rule-selection">')
+rect(1236, 691, 522, 84, r=12)
+text(1497, 722, 'Improve detection · Limit false alarms', 28)
+text(1497, 757, 'Limit undecidable cases · Keep rules simple', 28)
+add('</g>')
+flow('selection-output', 'development-output', 'rule-selection', 'selected-rules', 'M1497 775 V800')
+add('<g id="selected-rules">')
+rect(1364, 800, 266, 44, r=12)
+text(1497, 831, 'Selected rules', 29, 'bold', color='#80649b')
+add('</g>')
+add('</g>')
+
+# The current observations bypass development. Paired data join only after linking.
+current('current-app-only', 'app-observations', 'app-only-interface', 'M100 694 V868 H40 V965 H55')
+current('current-app-for-pair', 'app-observations', 'linked-pair', 'M1164 678 H1174 V866', arrow=False)
+current('current-browser-for-pair', 'browser', 'linked-pair', 'M965 846 V866 H1174', arrow=False)
+add('<circle cx="1174" cy="866" r="3" fill="#343434"/>')
+current('current-linked-pair', 'linked-pair', 'paired-interface', 'M1174 866 H680 V965 H700')
+
+# Draw the group under its entering arrows, leaving each entry visible.
+add('<g id="current-detection">')
+rect(24, 875, 1752, 148, fill='none', stroke='#93938e', sw=1.7)
+text(55, 912, 'Apply selected rules', 32, 'bold', 'start')
+text(800, 912, 'Current observations only', 28, anchor='start', color=C['muted'])
+for id_, x, title, rules, fill in [
+    ('app-only-interface', 55, 'App observations only', 'App rules', C['ice']),
+    ('paired-interface', 700, 'App + linked browser observations', 'App + browser rules', C['green']),
 ]:
     add(f'<g id="{id_}">')
-    rect(x, 840, w, 112, fill, '#777777', 17, 1.5)
-    text(x + 28, 881, title, 33, 'bold', 'start')
-    text(x + 28, 926, content, 29, anchor='start')
+    rect(x, 925, 575, 78, fill, r=12)
+    text(x + 287.5, 954, title, 29, 'bold')
+    text(x + 287.5, 989, rules, 28, color=C['muted'])
     add('</g>')
+flow('app-result', 'decision-output', 'app-only-interface', 'decision-vocabulary', 'M350 1003 V1015 H1300 V965', arrow=False)
+flow('paired-result', 'decision-output', 'paired-interface', 'decision-vocabulary', 'M1275 965 H1300', arrow=False)
+add('<circle cx="1300" cy="965" r="3" fill="#343434"/>')
+flow('result-labels', 'decision-output', 'input-mode-result', 'decision-vocabulary', 'M1300 965 H1330')
+add('<g id="decision-vocabulary">')
+text(1350, 947, 'Manipulation alert', 29, 'bold', 'start', color=accent_red)
+text(1350, 980, 'No alert', 29, anchor='start')
+text(1350, 1013, 'Insufficient evidence', 29, anchor='start')
+add('</g>')
+add('</g>')
+flow('load-selected-rules', 'model-input', 'selected-rules', 'current-detection', 'M1497 844 V875', model=True)
 
-text(24, 994, 'T: Manipulation alert · F: No alarm · U: Insufficient evidence', 29, anchor='start', emphasis='Manipulation alert')
-text(1776, 994, 'Paired: no automatic App-only fallback', 29, anchor='end', color=C['muted'])
-text(24, 1033, 'Selected-input execution / binding failure → FAILED', 29, anchor='start', color=C['muted'])
-text(1776, 1033, 'Association ≠ atomic synchronization', 29, anchor='end', color=C['muted'], italic=True)
+# An unconnected research scope strip, not a production inference stage.
+add('<g id="research-evaluation" data-kind="evaluation-scope">')
+text(24, 1051, 'Research evaluation', 29, 'bold', 'start')
+text(340, 1051, 'Detection · False alarms · Undecidable cases · Ablations', 28, anchor='start')
+add('</g>')
 add('</svg>')
-
-out = HERE / 'HybridGuard_overview_triangle.svg'
-out.write_text('\n'.join(parts) + '\n', encoding='utf-8')
-print(out)
+(HERE / 'HybridGuard_overview_triangle.svg').write_text('\n'.join(parts) + '\n', encoding='utf-8')
+print('Wrote HybridGuard_overview_triangle.svg (180 × 106 mm)')
