@@ -1,0 +1,48 @@
+\section{Evaluation Methodology}
+\label{sec:methodology}
+
+The evaluation is designed to keep current controlled evidence, development-only paired data, and historical model experiments from being combined into one misleading result. The present result section evaluates frozen \appfp relations on existing controlled baseline-active pairs. Statistical attack-detection metrics, final grouped model comparisons, independent-device generalization, and the incremental value of \browserfp require a new and broader data collection.
+
+\subsection{Evidence Cohorts}
+
+The first cohort is the current controlled \appfp cohort. It combines a normal-input set with verified controlled comparisons in which a baseline App observation is matched to an observation collected while a documented intervention is active. This cohort supports direct field-effect accounting, relation-state transitions, and identification of manipulations that changed catalogued fields without violating any current strong relation. It is the only cohort used for the current controlled result counts.
+
+The second cohort is the development \pairedfp snapshot. Its purpose is to validate the end-to-end collection and data-governance path, including App and Browser receipts, completed pair provenance, App-only retention, field-state preservation, Browser sidecar construction, and reconstruction of runtime inputs. Because this snapshot is small and unlabeled, it is not used to evaluate manipulation coverage or detection performance.
+
+The third group comprises historical preliminary datasets. These records were used in earlier random-forest, consistency-feature, LLM, knowledge, fusion, and on-device experiments. They include teacher-derived risk scores, repeated device profiles, synthetic or template-driven variation, and earlier grouping heuristics. Section~\ref{sec:historical} reports these experiments as evidence of design evolution and as candidate baselines. Their numerical results are never pooled with the verified controlled-pair results.
+
+\subsection{Pair Qualification}
+
+A controlled comparison enters the current denominator only after structural, execution, and field-effect checks have passed. Its manifest must identify exactly one baseline and one attack-active observation for the same comparison unit. Both payloads must satisfy the frozen \appfp catalog and field-state contract, and the manifest must record the tool family, runner, exact configuration, release context, and references to execution evidence. Direct comparison of the two canonical payloads must confirm at least one changed field from the catalog. This final requirement prevents a tool invocation or nominal scenario label from being treated as evidence of an observable manipulation.
+
+A comparison is excluded when the active state is missing, the manifest is empty or exploratory, a payload violates the schema, the release context cannot be reconciled, or the execution and provenance evidence cannot support the declared pair. Historical post-intervention observations may remain in the source repository, but they are ignored under the advisor-mandated two-state protocol and do not affect qualification or any denominator.
+
+\subsection{Independent Relation Execution and Pair Outcomes}
+
+For each qualified pair, the evaluator processes the baseline and active payloads separately. The official-derived semantic catalog and the device-mined predicate catalog are executed in independent runs, each receiving only the signal-derived EvidenceBundle and its field states. Tool names, configuration identifiers, experiment phases, and mutation annotations are reattached only after the relation outcomes for both states have been serialized. This ordering prevents the evaluator from using the experiment label to decide which relation should fire.
+
+A relation can be consistent, inconsistent, contextual, or not assessed. Pair-level reporting then compares the two frozen state results. The central outcome is a baseline with no strong alert followed by an active state with a strong alert. Other possibilities remain informative. A relation may alert in both states, indicating either a persistent property or a baseline issue; neither state may alert; or one or both states may be unassessed because a premise is missing, unparseable, or inapplicable. The analysis also records a separate category in which a catalogued field change is confirmed but no strong relation covers it. This is a first-class negative result rather than evidence that the intervention failed or the resulting environment is safe.
+
+Soft deviations and contextual findings are not promoted to strong alerts for the transition count. For example, a difference between the provider and runtime versions can be recorded as a soft semantic deviation when legitimate user-agent customization is possible, and a debuggable-plus-cleartext configuration can be recorded as development context without being treated as an attack. This separation ensures that the reported transitions correspond to the frozen severity policy rather than to every observable difference.
+
+\subsection{Current Reporting Strategy}
+
+The current analysis reports counts at the qualified-pair level. It first accounts for accepted and excluded manifests and comparisons, then records baseline and active strong-alert counts for each source-separated catalog. It reports no-alert-to-alert transitions, overlap between the two catalogs, the exact manipulation families and field paths represented among covered and uncovered pairs, and the number of normal observations that produce strong alerts, soft deviations, or unassessed relations.
+
+These counts are intentionally not converted into accuracy, recall, precision, false-positive rate, AUPRC, or calibration error. Such metrics require a target population, a sampling design, and independent groups that represent the benign and manipulated distributions to which the estimate is intended to generalize. The current controlled portfolio was assembled to exercise known mechanisms and relation boundaries, and multiple comparisons share the same emulator and collection ecosystem. Dividing 51 by 69 would therefore describe only the fraction of accepted controlled pairs covered by one frozen relation set, not an estimate of real-world attack recall.
+
+The normal-input analysis is subject to the same restriction. The absence of a strong official-derived alert on 229 observations is useful for finding obvious contradictions, but it does not establish a population false-positive rate. Some records contain unassessed relations, the device-mined path returns insufficient-evidence decisions, and the observations do not constitute a randomly sampled deployment population. The result is reported as a property of the frozen normal cohort and nothing broader.
+
+\subsection{Future Comparative Evaluation}
+
+A formal comparative study will retain the same provenance and two-state qualification rules while expanding the device and scenario groups. It will compare individual observation surfaces, including Native-only, WebView-host-only, in-app-Web-only, and, where the label is meaningful, external-browser-only baselines. It will then compare raw \appfp and \pairedfp representations with models built from explicit cross-layer consistency features, frozen official-derived relations, and frozen device-mined predicates. These comparisons are needed to distinguish the value of collecting more raw fields from the value of representing the relations among them.
+
+The study will also evaluate relation fusion and optional knowledge-grounded reasoning. Deterministic relation baselines will be compared with retrieval and verifier variants rather than assuming that an LLM improves the task. App-only, Browser-only, and joint paired variants will measure whether the independent browser adds coverage, reduces uncertainty, or instead introduces benign disagreement. Additional ablations will remove field-state semantics, provenance checks, tolerance and counterexample metadata, verifier constraints, group-aware weighting, and individual relation families to identify which safeguards and evidence groups are responsible for any measured change.
+
+All learned relations, thresholds, prompts, retrieval parameters, and fusion hyperparameters must be selected using training and development groups only. The final test groups must remain isolated by stable physical device or provider profile, controlled scenario, and related comparison pair. Where a manipulation family or provider is used as an out-of-distribution condition, it must be excluded from rule and prompt development as well as model training.
+
+\subsection{Reproducibility and Statistical Unit}
+
+Every reported run should bind its dataset manifest, collector and backend revisions, App and Browser field catalogs, accepted and excluded attack manifests, relation-catalog hashes, executor version, and output directory. The manuscript must distinguish collection sessions, accepted App records, completed Browser pairs, stable device or provider groups, controlled scenarios, and qualified baseline-active comparisons. These units answer different questions and cannot be substituted for one another.
+
+For the eventual formal study, uncertainty should be computed at the independent group or scenario level rather than by treating repeated sessions as independent observations. Confidence intervals may use group-level bootstrap or another procedure compatible with the fixed evaluation design. Hypotheses, relation catalogs, model versions, and the final split should be frozen before the held-out evaluation is run.

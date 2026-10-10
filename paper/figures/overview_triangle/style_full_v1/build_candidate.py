@@ -135,11 +135,12 @@ def main():
     group('app-observations',data_kind='inside-app-scope',data_bounds=','.join(map(str,BOX['app'])))
     add(path('M276 178H1152Q1164 178 1164 190V722Q1164 734 1152 734H56Q44 734 44 722V190Q44 178 56 178H58',C['app_boundary'],1.5,stroke_dasharray='6 6'))
     txt(64,191,'Inside the app',32,'bold')
-    # Light open brackets associate terminals with the complete icon/text object.
+    # Only three short, uniform landing strokes remain where a text-side
+    # terminal needs clarification. No line encloses an observation object.
     group('observation-anchors',data_kind='object-group-anchors')
-    add(path('M431 343V351H842V343',C['boundary'],LINE['anchor']))
-    add(path('M54 558V550H436V707H428',C['boundary'],LINE['anchor']))
-    add(path('M1134 558V550H718V707H1134V699',C['boundary'],LINE['anchor']))
+    add(path('M732 351H764',C['boundary'],LINE['anchor']))
+    add(path('M436 574V606',C['boundary'],LINE['anchor']))
+    add(path('M864 550H896',C['boundary'],LINE['anchor']))
     end()
     relation('native-host','native','webview-host','M454 351L280 550','context')
     relation('native-app-web','native','app-web','M748 351L880 550','selected')
@@ -162,13 +163,13 @@ def main():
     for id_ in ['native','webview-host','app-web']: node(id_)
     end() # App scope
 
-    relation('app-browser','app-web','browser','M963 707V752H658V846H733','selected')
+    relation('app-browser','app-web','browser','M778 704V752H658V846H744','selected')
     group('browser-label',data_relation='app-browser')
     txt(235,817,'App–browser consistency',30,'bold',C['blue'])
     txt(235,854,'Timezone reports',29,color=C['blue'])
     add(path('M582 833H658',C['blue'],1.5)); end()
     group('browser-anchor',data_kind='object-group-anchors')
-    add(path('M741 776H733V924H1164V916',C['boundary'],LINE['anchor'])); end()
+    add(path('M949 914H981',C['boundary'],LINE['anchor'])); end()
     node('browser'); end() # Device scope
 
     # An explanatory two-case note. No flow, success badge, or invented values.
@@ -209,12 +210,16 @@ def main():
     add(rect(1360,848,88,79,C['purple'],14)); icon('file-text',1356,837,4)
     txt(1464,892,'Selected rules',29,'bold',C['rule_outline']); end(); end()
 
-    # Current data bypass Offline. Only the paired data have a join.
-    flow('current-app-only','current-input','app-observations','app-only-interface','M100 734V1084H210')
-    flow('current-app-for-pair','current-input','app-observations','linked-pair','M150 734V963H965',arrow=False)
-    flow('current-browser-for-pair','current-input','browser','linked-pair','M965 924V963',arrow=False)
+    # A single App outlet branches before Browser association. The paired
+    # path descends directly from the join, without crossing the independent
+    # App-only input. Only the actual paired-input join has a dot.
+    flow('current-app-exit','current-input','app-observations','app-branch','M100 734V963',arrow=False)
+    add('<g id="app-branch" data-kind="data-branch" data-point="100,963"/>')
+    flow('current-app-only','current-input','app-branch','app-only-interface','M100 963V1084H210')
+    flow('current-app-for-pair','current-input','app-branch','linked-pair','M100 963H965',arrow=False)
+    flow('current-browser-for-pair','current-input','browser','linked-pair','M965 914V963',arrow=False)
     add('<circle id="linked-pair" cx="965" cy="963" r="3" fill="#343434"/>')
-    flow('current-linked-pair','current-input','linked-pair','paired-interface','M965 963H1010V1204H960')
+    flow('current-linked-pair','current-input','linked-pair','paired-interface','M965 963V1204H910')
     group('current-detection',data_kind='current-rule-application',data_bounds=','.join(map(str,BOX['detection'])))
     add(rect(*BOX['detection'],radius=16,stroke=C['app_boundary'],width=1.7))
     txt(210,1032,'Apply selected rules',32,'bold')
@@ -222,11 +227,11 @@ def main():
     for id_,y,title,rules,fill in [
         ('app-only-interface',1044,'App observations only','App rules','ice'),
         ('paired-interface',1164,'App + linked browser observations','App + browser rules','green')]:
-        group(id_,data_kind='alternative-mode',data_bounds=f'210,{y},750,80')
-        add(rect(210,y,750,80,C[fill],12))
+        group(id_,data_kind='alternative-mode',data_bounds=f'210,{y},700,80')
+        add(rect(210,y,700,80,C[fill],12))
         txt(234,y+33,title,29,'bold'); txt(234,y+67,rules,28,color=C['muted']); end()
-    txt(585,1154,'or',28,color=C['muted'],anchor='middle',italic=True); end()
-    flow('load-selected-rules','model-input','selected-rules','current-detection','M1405 927V963H1200V1026H1164',model=True)
+    txt(560,1154,'or',28,color=C['muted'],anchor='middle',italic=True); end()
+    flow('load-selected-rules','model-input','selected-rules','current-detection','M1405 927V1026H1164',model=True)
     flow('selected-mode-result','decision-output','current-detection','decision-vocabulary','M1164 1144H1305')
     group('decision-vocabulary')
     txt(1340,1116,'Manipulation alert',29,'bold',C['red'])
@@ -236,16 +241,20 @@ def main():
     txt(340,1310,'Detection · False alarms · Undecidable cases · Ablations',28); end()
     add('</svg>')
     result='\n'.join(parts)+'\n'; root=ET.fromstring(result)
-    # Formal source is the content authority, not the saved pilot text.
-    defs=original.find(f'{{{NS}}}defs')
-    in_defs=set(defs.iter())
-    expected=[''.join(t.itertext()) for t in original.iter(f'{{{NS}}}text') if t not in in_defs]
+    # The reviewed complete candidate is the finishing content authority.
+    before=HERE/'finishing_baseline_55ca3bb/CONTENT_MANIFEST.json'
+    expected=json.loads(before.read_text())['candidate']
     assert Counter(expected)==Counter(content),(Counter(expected)-Counter(content),Counter(content)-Counter(expected))
     (HERE/'HybridGuard_overview_candidate.svg').write_text(result)
-    (HERE/'CONTENT_MANIFEST.json').write_text(json.dumps({'source':'baseline/HybridGuard_overview_triangle.svg',
+    (HERE/'CONTENT_MANIFEST.json').write_text(json.dumps({'source':'finishing_baseline_55ca3bb/CONTENT_MANIFEST.json',
         'expected':expected,'candidate':content,'exact_copy_multiset_equal':True},ensure_ascii=False,indent=2)+'\n')
     (HERE/'layout.json').write_text(json.dumps({'size_mm':[180,133],'viewbox':[W,H],'boxes':BOX,'nodes':NODES,
-        'palette':C,'type_units':TYPE,'line_units':LINE},ensure_ascii=False,indent=2)+'\n')
+        'palette':C,'type_units':TYPE,'line_units':LINE,
+        'finishing':{'baseline':'55ca3bb','object_landing_strokes':4,'landing_stroke_length':32,
+                     'app_outlet':[100,734],'app_branch':[100,963],
+                     'browser_outlet':[965,914],'paired_join':[965,963],
+                     'mode_inputs':[[210,1084],[910,1204]],'rule_input':[1164,1026]}
+        },ensure_ascii=False,indent=2)+'\n')
     # Export reusable new icon vectors beside the unchanged inherited assets.
     for name in ['browser','list-details','files','file-text']:
         body=browser_icon() if name=='browser' else material_icon(name)

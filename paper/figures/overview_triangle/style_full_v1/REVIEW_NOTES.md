@@ -1,6 +1,6 @@
 # HybridGuard 完整视觉候选稿 v1
 
-**一个完成的推荐候选稿，等待用户检查。** 内容沿用当前完整正式图；视觉继承提交 `1b536b611690df44db3bebc4812bfab220887362` 的三角样块。正式目录、`style_pilot_v1` 和正式 LaTeX 预览未覆盖；没有运行研究实验或自动提交推送。
+**一个完成局部收尾的推荐候选稿，等待用户检查。** 本轮冻结基线为已审阅的完整候选提交 `55ca3bbadb6d4ca7aef3cb7e06b6356c86b02f52`；更早视觉继承三角样块 `1b536b6`。收尾前版本单独保存在 `finishing_baseline_55ca3bb/`，原 `baseline/` 未覆盖。正式目录、`style_pilot_v1` 和正式 LaTeX 预览未改；没有运行研究实验或自动提交推送。当前修改、真实模板验收和保留限制以 [FINISHING_NOTES.md](FINISHING_NOTES.md) 为准。
 
 ## 交付
 
@@ -17,13 +17,13 @@
 
 右侧两个标签整体向内移动，保持原字号。System–web consistency 与 App Web 名称到 App 右边界分别约 **32.2、38.1 单位**（3.22、3.81 mm），原样块相应约 14.2 单位。几何说明移至虚线上方的独立文字带，末行与两侧节点名称的文字边界间隔 **27 单位**；短引线连接底边，不加标签卡片。正文说明和未集成状态完整保留。
 
-为使去掉卡片后的关系端点归属于整个对象，增加轻量、开放的对象括线：Native 下侧、Host 上/右侧、App Web 上/左/下侧、Browser 左/下侧。比较边落在这些括线上；括线不承担状态编码，线宽 1.2，明显轻于关系线与对象轮廓。主对象和文字仍保持开放组合，没有恢复原来的小图标文本卡片。
+本轮取消四个对象的大半周括线，仅在 Native 下侧、Host 右侧、App Web 上侧、Browser 数据出口保留各 32 单位的统一短承接线。对象级辅助线总长从 2582 降到 128 单位；线宽和透明度未变。App Web–Browser 比较线直接落到图形边缘，范围框和关系标签引线保留。
 
 同设备外框向下包入 Browser，App 虚线框只包住前三个观察位置。Browser 以浅青窗口为主对象，保留全部三行说明；蓝色时区比较跨过 App 边界，两个端点仍在同设备内。时区例子放在设备框外，以轻括号组织两组原有句子；没有添加不能帮助理解的图标、时间箭头或安全标记。
 
 Offline 改为“材料对象 → 选择模块 → 规则产物”：条件清单和记录集合分别输入紧凑浅紫处理模块；四项目标不配完成标记。Selected rules 作为单独规则文档，从独立端口加载到当前检测区。浅紫集中于对象和处理操作，外层保持白底。
 
-检测区继承上下替代模式和 `or`，各自保留对应规则，当前数据与规则分开进入。仅有一条共同结果箭头，研究评价条带不接入流程。全部区域正常显示，没有淡化旧区或把样块作为整张图片拼接。
+检测区继承上下替代模式和 `or`。App 使用单一出口，先分出不依赖 Browser 的 App-only 路径，另一支与 Browser 关联后直接下行进入 paired。模式卡片仅收去右侧 50 单位空白；为避免新交叉，保留左/右两侧输入。紫色规则线从独立标题侧端口进入，只有一条共同结果箭头，评价条带不接入流程。全部区域正常显示，没有淡化旧区。
 
 ## 尺度、检查与范围
 
@@ -39,16 +39,17 @@ Offline 改为“材料对象 → 选择模块 → 规则产物”：条件清�
 | 可编辑输出 | SVG 无嵌入栅格、无嵌套完整 SVG、无重复 ID 或缺失 marker；没有阴影、渐变或文字压缩。PDF 为一页矢量输出，实际重渲染查看；正文可提取，未嵌入栅格图像。 |
 | 源文件保护 | 五个正式文件与制作前副本一致，已提交样块未变；当前所有新增图稿、资源、脚本和说明仅在本候选目录。 |
 
-矢量 PDF 由 Chrome 按 180 × 133 mm 页面导出，实际页面约 **179.92 × 133.01 mm**，差异来自导出单位取整。实际 PDF 渲染已查看；未修改论文模板。尚未进行纸质打印、外部读者识别测试或导师验收，不能据此声称可直接投稿。
+矢量 PDF 由 Chrome 按 180 × 133 mm 页面导出，实际页面约 **179.92 × 133.01 mm**，差异来自导出单位取整。已在原 ACM 工程的隔离副本中实际编译并查看第 7 页：图宽 **177.94 mm**，图与图注及内部间距总高 **166.70 mm**。字体实际核验、页面占比及原第 16 页 1.452 pt 纵向警告见 [TEMPLATE_CHECK.json](TEMPLATE_CHECK.json)。正式模板未改；纸质打印、外部读者测试和导师验收未开展，仍为待审候选。
 
 ## 再生成
 
-从仓库根目录执行以下三个入口，均只输出到本目录：
+从仓库根目录按以下顺序执行，均只输出到本目录：
 
 ```sh
 python3 -B paper/figures/overview_triangle/style_full_v1/build_candidate.py
-node paper/figures/overview_triangle/style_full_v1/render_candidate.cjs
 node paper/figures/overview_triangle/style_full_v1/render_pdf_and_check.cjs
+node paper/figures/overview_triangle/style_full_v1/render_candidate.cjs
+python3 -B paper/figures/overview_triangle/style_full_v1/build_template_preview.py
 ```
 
-依赖为已配置的 Sharp、Playwright 和本机 Chrome。可用 `RBA_NODE_MODULES`、`RBA_CHROME` 指定路径。生成入口不导入旧绘图脚本，不调用研究模块；旧图比较和文案回归读取 `baseline/` 的本轮只读快照。PDF 渲染预览由 Poppler 从实际候选 PDF 生成。
+依赖为已配置的 Sharp、Playwright、本机 Chrome 和原 TeX Live/latexmk。可用 `RBA_NODE_MODULES`、`RBA_CHROME` 指定路径。新 PNG 来自已核验实际字体的 Chrome 渲染。`check_finishing.py` 使用带 pdfplumber/pypdf 的 Python 进行实际路径、PDF 与模板检查；本轮使用 Codex bundled Python。PDF 页面预览由 Poppler 生成。生成入口不导入旧绘图脚本，不调用研究模块；**本轮文案回归和收尾前后对照读取 `finishing_baseline_55ca3bb/`**，较早正式图对照继续使用 `baseline/`。

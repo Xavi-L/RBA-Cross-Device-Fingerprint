@@ -6,7 +6,7 @@ const HERE=__dirname,ROOT=path.resolve(HERE,'../../../..');
 async function main(){
  const browser=await chromium.launch({executablePath:process.env.RBA_CHROME||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
  try{
-  const page=await browser.newPage({viewport:{width:1800,height:1330},deviceScaleFactor:1});
+  const page=await browser.newPage({viewport:{width:1800,height:1330},deviceScaleFactor:2});
   const source=fs.readFileSync(path.join(HERE,'HybridGuard_overview_candidate.svg'),'utf8');
   await page.setContent(`<html><head><title>HybridGuard overview - full visual candidate</title><style>html,body{margin:0;padding:0}svg{width:1800px;height:1330px;display:block}</style></head><body>${source}</body></html>`);
   await page.evaluate(()=>document.fonts.ready);
@@ -18,7 +18,9 @@ async function main(){
     if(a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h)overlap.push([a.text,b.text]);
    }
    const graph=[...document.querySelectorAll('g[data-source]')].map(g=>{
-    const p=g.querySelector('path'); return {id:g.id,kind:g.dataset.kind,source:g.dataset.source,target:g.dataset.target,status:g.dataset.status||null,
+    const p=g.querySelector('path'),xy=q=>({x:q.x,y:q.y}); return {id:g.id,kind:g.dataset.kind,source:g.dataset.source,target:g.dataset.target,status:g.dataset.status||null,
+     d:p.getAttribute('d'),length:p.getTotalLength(),
+     first:xy(p.getPointAtLength(0)),last:xy(p.getPointAtLength(p.getTotalLength())),
      color:p.getAttribute('stroke'),dash:p.getAttribute('stroke-dasharray'),start:p.getAttribute('marker-start'),end:p.getAttribute('marker-end')};
    });
    const lineText=[];
@@ -60,11 +62,25 @@ async function main(){
     embedded_rasters:document.querySelectorAll('svg image').length,nested_svgs:document.querySelectorAll('svg svg').length,
     text_compression:document.querySelectorAll('text[textLength],text[lengthAdjust]').length,
     effects:document.querySelectorAll('filter,linearGradient,radialGradient').length,
+    external_resources:[...document.querySelectorAll('[href],[src],[xlink\\:href]')].map(e=>e.getAttribute('href')||e.getAttribute('src')||e.getAttribute('xlink:href')).filter(v=>v&&!v.startsWith('#')),
     right_margins_units:{system_web:gapFor('System–web consistency'),app_web:gapFor('Embedded webpage')},
     geometry_label_clearance_above_node_titles:Math.min(...lowerHeads.map(t=>t.y))-(geom.y+geom.h),
     min_body_font_units:Math.min(...entries.map(t=>t.size)),times_new_roman_available:document.fonts.check('29px "Times New Roman"')};
   });
-  await page.screenshot({path:path.join(HERE,'previews/chrome_full.png')});
+  // Inspect actual platform fonts, not only CSS font-family or fonts.check.
+  const cdp=await page.context().newCDPSession(page);
+  await cdp.send('DOM.enable');await cdp.send('CSS.enable');
+  const dom=await cdp.send('DOM.getDocument');
+  const textNodes=await cdp.send('DOM.querySelectorAll',{nodeId:dom.root.nodeId,selector:'svg text'});
+  report.actual_platform_fonts=[];
+  for(const nodeId of textNodes.nodeIds){
+   const fonts=await cdp.send('CSS.getPlatformFontsForNode',{nodeId});
+   report.actual_platform_fonts.push(...fonts.fonts.filter(f=>f.glyphCount>0));
+  }
+  report.platform_font_names=[...new Set(report.actual_platform_fonts.map(f=>f.postScriptName))];
+  report.no_platform_font_fallback=report.actual_platform_fonts.length>0&&report.actual_platform_fonts.every(f=>f.familyName==='Times New Roman');
+  await page.screenshot({path:path.join(HERE,'previews/chrome_full.png'),scale:'css'});
+  await page.screenshot({path:path.join(HERE,'previews/chrome_full_2x.png'),scale:'device'});
   const manifest=JSON.parse(fs.readFileSync(path.join(HERE,'CONTENT_MANIFEST.json')));
   const sorted=x=>[...x].sort();
   report.exact_visible_copy_preserved=JSON.stringify(sorted(manifest.expected))===JSON.stringify(sorted(report.texts.map(t=>t.text)));
@@ -74,7 +90,7 @@ async function main(){
    context_without_arrows:g.filter(e=>e.status==='context').every(e=>e.start===null&&e.end===null),
    geometry_still_unintegrated:g.find(e=>e.id==='host-app-web').status==='studied'&&report.texts.some(t=>t.text==='Not in current detector'),
    independent_development_inputs:g.filter(e=>e.kind==='development-input').length===2&&g.filter(e=>e.kind==='development-input').every(e=>e.target==='rule-selection'),
-   no_current_data_into_offline:g.filter(e=>e.kind==='current-input').every(e=>['app-only-interface','linked-pair','paired-interface'].includes(e.target)),
+   no_current_data_into_offline:g.filter(e=>e.kind==='current-input').every(e=>['app-branch','app-only-interface','linked-pair','paired-interface'].includes(e.target)),
    one_model_load:g.filter(e=>e.kind==='model-input').length===1,
    one_shared_output:g.filter(e=>e.kind==='decision-output').length===1,
    modes_have_no_interconnection:!g.some(e=>['app-only-interface','paired-interface'].includes(e.source)),
@@ -83,13 +99,13 @@ async function main(){
   report.pilot_status_unchanged=cp.execFileSync('git',['status','--porcelain=v1','--','paper/figures/overview_triangle/style_pilot_v1'],{cwd:ROOT,encoding:'utf8'}).trim()==='';
   report.automated_checks_pass=report.exact_visible_copy_preserved&&!report.text_overlaps.length&&!report.flow_or_relation_text_intersections.length&&!report.out_of_canvas.length&&
    !report.node_text_overflow.length&&!report.duplicate_ids.length&&!report.missing_marker_references.length&&!report.embedded_rasters&&!report.nested_svgs&&!report.text_compression&&!report.effects&&
-   report.min_body_font_units>=28&&Object.values(report.scopes).every(Boolean)&&Object.values(report.semantic_regression).every(Boolean)&&Object.values(report.formal_files_unchanged).every(Boolean)&&report.pilot_status_unchanged;
+   report.min_body_font_units>=28&&Object.values(report.scopes).every(Boolean)&&Object.values(report.semantic_regression).every(Boolean)&&Object.values(report.formal_files_unchanged).every(Boolean)&&report.pilot_status_unchanged&&report.no_platform_font_fallback&&!report.external_resources.length;
   report.pdf={file:'HybridGuard_overview_candidate.pdf',requested_size_mm:[180,133],renderer:'Chrome headless print',paper_template_modified:false};
   // CSS page size keeps the 180 mm figure width; vector text is not a screenshot.
   await page.addStyleTag({content:'@page{size:180mm 133mm;margin:0}html,body{width:180mm;height:133mm;margin:0}svg{width:180mm;height:133mm;display:block}'});
   await page.pdf({path:path.join(HERE,'HybridGuard_overview_candidate.pdf'),preferCSSPageSize:true,printBackground:true,margin:{top:0,bottom:0,left:0,right:0},scale:1});
   fs.writeFileSync(path.join(HERE,'CHECK.json'),JSON.stringify(report,null,2)+'\n');
-  console.log(JSON.stringify({...report,texts:report.texts.length},null,2));
+  console.log(JSON.stringify({...report,texts:report.texts.length,actual_platform_fonts:report.platform_font_names},null,2));
   if(!report.automated_checks_pass)process.exitCode=1;
  }finally{await browser.close();}
 }

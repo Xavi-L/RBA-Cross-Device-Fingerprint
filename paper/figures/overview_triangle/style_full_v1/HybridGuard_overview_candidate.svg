@@ -26,9 +26,9 @@
 <path d="M276 178H1152Q1164 178 1164 190V722Q1164 734 1152 734H56Q44 734 44 722V190Q44 178 56 178H58" stroke="#93938e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
 <text id="copy-04" x="64" y="191" font-size="32" font-weight="bold" fill="#343434" text-anchor="start" data-copy="true">Inside the app</text>
 <g id="observation-anchors" data-kind="object-group-anchors">
-<path d="M431 343V351H842V343" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M54 558V550H436V707H428" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1134 558V550H718V707H1134V699" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M732 351H764" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M436 574V606" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M864 550H896" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g id="native-host" data-kind="relation" data-source="native" data-target="webview-host" data-status="context">
 <path d="M454 351L280 550" stroke="#9a9a95" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 7"/>
@@ -87,7 +87,7 @@
 </g>
 </g>
 <g id="app-browser" data-kind="relation" data-source="app-web" data-target="browser" data-status="selected">
-<path d="M963 707V752H658V846H733" stroke="#507cc4" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#compare-selected)" marker-end="url(#compare-selected)"/>
+<path d="M778 704V752H658V846H744" stroke="#507cc4" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#compare-selected)" marker-end="url(#compare-selected)"/>
 </g>
 <g id="browser-label" data-relation="app-browser">
 <text id="copy-22" x="235" y="817" font-size="30" font-weight="bold" fill="#507cc4" text-anchor="start" data-copy="true">App–browser consistency</text>
@@ -95,7 +95,7 @@
 <path d="M582 833H658" stroke="#507cc4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g id="browser-anchor" data-kind="object-group-anchors">
-<path d="M741 776H733V924H1164V916" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M949 914H981" stroke="#B9C0C8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g id="browser" data-kind="observation" data-bounds="733,776,431,148">
 <rect x="744" y="780" width="118" height="134" fill="#E9F3F3" rx="17" stroke="none" stroke-width="0"/>
@@ -163,37 +163,41 @@
 <text id="copy-43" x="1464" y="892" font-size="29" font-weight="bold" fill="#80649b" text-anchor="start" data-copy="true">Selected rules</text>
 </g>
 </g>
-<g id="current-app-only" data-kind="current-input" data-source="app-observations" data-target="app-only-interface">
-<path d="M100 734V1084H210" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+<g id="current-app-exit" data-kind="current-input" data-source="app-observations" data-target="app-branch">
+<path d="M100 734V963" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<g id="current-app-for-pair" data-kind="current-input" data-source="app-observations" data-target="linked-pair">
-<path d="M150 734V963H965" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="app-branch" data-kind="data-branch" data-point="100,963"/>
+<g id="current-app-only" data-kind="current-input" data-source="app-branch" data-target="app-only-interface">
+<path d="M100 963V1084H210" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+</g>
+<g id="current-app-for-pair" data-kind="current-input" data-source="app-branch" data-target="linked-pair">
+<path d="M100 963H965" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g id="current-browser-for-pair" data-kind="current-input" data-source="browser" data-target="linked-pair">
-<path d="M965 924V963" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M965 914V963" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <circle id="linked-pair" cx="965" cy="963" r="3" fill="#343434"/>
 <g id="current-linked-pair" data-kind="current-input" data-source="linked-pair" data-target="paired-interface">
-<path d="M965 963H1010V1204H960" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
+<path d="M965 963V1204H910" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>
 </g>
 <g id="current-detection" data-kind="current-rule-application" data-bounds="24,994,1140,270">
 <rect x="24" y="994" width="1140" height="270" fill="none" rx="16" stroke="#93938e" stroke-width="1.7"/>
 <text id="copy-44" x="210" y="1032" font-size="32" font-weight="bold" fill="#343434" text-anchor="start" data-copy="true">Apply selected rules</text>
 <text id="copy-45" x="650" y="1032" font-size="28" font-weight="normal" fill="#666666" text-anchor="start" data-copy="true">Current observations only</text>
-<g id="app-only-interface" data-kind="alternative-mode" data-bounds="210,1044,750,80">
-<rect x="210" y="1044" width="750" height="80" fill="#e9f0f9" rx="12" stroke="none" stroke-width="0"/>
+<g id="app-only-interface" data-kind="alternative-mode" data-bounds="210,1044,700,80">
+<rect x="210" y="1044" width="700" height="80" fill="#e9f0f9" rx="12" stroke="none" stroke-width="0"/>
 <text id="copy-46" x="234" y="1077" font-size="29" font-weight="bold" fill="#343434" text-anchor="start" data-copy="true">App observations only</text>
 <text id="copy-47" x="234" y="1111" font-size="28" font-weight="normal" fill="#666666" text-anchor="start" data-copy="true">App rules</text>
 </g>
-<g id="paired-interface" data-kind="alternative-mode" data-bounds="210,1164,750,80">
-<rect x="210" y="1164" width="750" height="80" fill="#edf3e9" rx="12" stroke="none" stroke-width="0"/>
+<g id="paired-interface" data-kind="alternative-mode" data-bounds="210,1164,700,80">
+<rect x="210" y="1164" width="700" height="80" fill="#edf3e9" rx="12" stroke="none" stroke-width="0"/>
 <text id="copy-48" x="234" y="1197" font-size="29" font-weight="bold" fill="#343434" text-anchor="start" data-copy="true">App + linked browser observations</text>
 <text id="copy-49" x="234" y="1231" font-size="28" font-weight="normal" fill="#666666" text-anchor="start" data-copy="true">App + browser rules</text>
 </g>
-<text id="copy-50" x="585" y="1154" font-size="28" font-weight="normal" fill="#666666" text-anchor="middle" font-style="italic" data-copy="true">or</text>
+<text id="copy-50" x="560" y="1154" font-size="28" font-weight="normal" fill="#666666" text-anchor="middle" font-style="italic" data-copy="true">or</text>
 </g>
 <g id="load-selected-rules" data-kind="model-input" data-source="selected-rules" data-target="current-detection">
-<path d="M1405 927V963H1200V1026H1164" stroke="#80649b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#model-arrow)"/>
+<path d="M1405 927V1026H1164" stroke="#80649b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#model-arrow)"/>
 </g>
 <g id="selected-mode-result" data-kind="decision-output" data-source="current-detection" data-target="decision-vocabulary">
 <path d="M1164 1144H1305" stroke="#343434" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#input-arrow)"/>

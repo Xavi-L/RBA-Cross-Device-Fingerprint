@@ -1,18 +1,20 @@
-// Raster previews only. render_pdf_and_check.cjs exports the editable vector PDF.
+// Run render_pdf_and_check.cjs first: all new raster previews use its Chrome
+// pixels, so the same verified platform fonts drive the PNG, SVG view and PDF.
 const fs=require('fs'),path=require('path'),os=require('os');
 const deps=process.env.RBA_NODE_MODULES||path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules');
 const sharp=require(path.join(deps,'sharp'));
 const HERE=__dirname, OUT=path.join(HERE,'previews');
-const source=fs.readFileSync(path.join(HERE,'HybridGuard_overview_candidate.svg'),'utf8');
 const [W,H]=JSON.parse(fs.readFileSync(path.join(HERE,'layout.json'))).viewbox;
-function cropSvg(x,y,w,h,scale=1){
-  return Buffer.from(source.replace(/<svg\b[^>]*>/,tag=>tag.replace(/\bwidth="[^"]*"/,`width="${w*scale}"`).replace(/\bheight="[^"]*"/,`height="${h*scale}"`).replace(/\bviewBox="[^"]*"/,`viewBox="${x} ${y} ${w} ${h}"`)));
+async function cropRaster(buffer,x,y,w,h,scale=1){
+  return sharp(buffer).extract({left:x*2,top:y*2,width:w*2,height:h*2}).resize(Math.round(w*scale),Math.round(h*scale)).png().toBuffer();
 }
 function esc(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;');}
 function plate(w,h,labels){return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="100%" height="100%" fill="white"/><g font-family="Arial,sans-serif" fill="#4a5058">${labels.map(l=>`<text x="24" y="${l.y}" font-size="${l.size||23}">${esc(l.text)}</text>`).join('')}</g></svg>`);}
 async function main(){
   fs.mkdirSync(OUT,{recursive:true});
-  const png=await sharp(cropSvg(0,0,W,H,2),{density:72}).png().toBuffer();
+  const chrome=path.join(OUT,'chrome_full_2x.png');
+  if(fs.statSync(chrome).mtimeMs<fs.statSync(path.join(HERE,'HybridGuard_overview_candidate.svg')).mtimeMs)throw Error('Run the Chrome renderer after the SVG builder.');
+  const png=fs.readFileSync(chrome);
   await sharp(png).withMetadata({density:508}).png().toFile(path.join(HERE,'HybridGuard_overview_candidate.png'));
   const actual=await sharp(png).resize(Math.round(180/25.4*96)).withMetadata({density:96}).png().toBuffer();
   fs.writeFileSync(path.join(OUT,'actual_180mm_96dpi.png'),actual);
@@ -36,7 +38,20 @@ async function main(){
     ['detection_detail',[20,947,1758,337],1.1],
     ['geometry_detail',[45,474,1120,250],1.7],
     ['timezone_detail',[1205,120,580,259],1.5]
-  ]) await sharp(cropSvg(...b,s),{density:72}).png().toFile(path.join(OUT,name+'.png'));
+  ]) fs.writeFileSync(path.join(OUT,name+'.png'),await cropRaster(png,...b,s));
+  const before=fs.readFileSync(path.join(HERE,'finishing_baseline_55ca3bb/HybridGuard_overview_candidate.png'));
+  for(const [name,b,scale] of [
+    ['finishing_before_after_same_width',[0,0,W,H],1],
+    ['finishing_endpoints_before_after',[40,200,1130,730],1.25],
+    ['finishing_routes_before_after',[20,704,1180,567],1.25]
+  ]){
+    const [a,z]=await Promise.all([cropRaster(before,...b,scale),cropRaster(png,...b,scale)]);
+    const w=Math.round(b[2]*scale),h=Math.round(b[3]*scale);
+    await sharp(plate(w+48,h*2+136,[
+      {y:30,text:'BEFORE | reviewed 55ca3bb complete candidate'},
+      {y:h+97,text:'AFTER | same scale, crop and opacity'}
+    ])).composite([{input:a,left:24,top:45},{input:z,left:24,top:h+112}]).png().toFile(path.join(OUT,name+'.png'));
+  }
   const ref=await sharp(path.join(HERE,'reference/figure1_enlarged.png')).resize(W).png().toBuffer();
   const rm=await sharp(ref).metadata();
   await sharp(plate(W+48,rm.height+H+156,[
