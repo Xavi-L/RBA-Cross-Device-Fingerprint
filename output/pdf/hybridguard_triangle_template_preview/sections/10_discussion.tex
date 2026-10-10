@@ -1,0 +1,30 @@
+\section{Discussion, Limitations, and Ethics}
+\label{sec:discussion}
+
+\subsection{Consistency Is Evidence, Not Attestation}
+
+An explicit contradiction can expose partial manipulation, but consistency does not prove authenticity. A sufficiently capable adversary may rewrite multiple layers coherently, modify the collector, replay a complete payload, or emulate a known device profile. Gummy Browsers illustrates the broader possibility of targeted fingerprint mimicry~\cite{liu2022gummy}. HybridGuard's receipts and hashes establish how the research pipeline handled a payload; without hardware-backed attestation, they do not prove that every client-side value is truthful.
+
+\subsection{Normal Variability and Relation Calibration}
+
+The strongest current relations use coarse platform-family contradictions. Numeric and high-variance surfaces need much more benign data. Display dimensions depend on orientation, windowing, insets, zoom, and viewport semantics. Memory and hardware-concurrency APIs are bucketed or privacy-reduced. User-Agent values can be reduced or intentionally overridden. WebView and browser versions update independently. Languages, timezone, plugins, and WebGL may change for legitimate reasons. These facts justify not-assessed and soft-deviation states and explain why several controlled changes remain uncovered.
+
+\subsection{Dataset Scope}
+
+The current controlled results primarily use a limited emulator and collection ecosystem. Repeated sessions and configurations are not equivalent to independent devices. Historical records contain teacher labels, template effects, and duplicated profiles. The latest paired development snapshot is small and unlabeled. Consequently, the draft makes no claim about cross-brand generalization, longitudinal stability, unknown attacks, or production benign FPR. Dataset documentation should follow established guidance for recording collection, intended use, composition, and limitations~\cite{gebru2021datasheets,pushkarna2022datacards}.
+
+\subsection{Knowledge and Model Leakage}
+
+Relations or prompts designed after inspecting attack configurations can overfit semantic patterns even when no classifier is trained. The current expanded semantic evaluation includes a mixture of previously inspected and newly added configurations, but it was not preregistered and does not constitute an untouched final test. The formal study must freeze relations on training/development groups and evaluate once on held-out device, scenario, and configuration families.
+
+\subsection{Privacy and Responsible Release}
+
+Device and browser fingerprints can enable tracking even when individual fields appear non-identifying~\cite{laperdrix2020browser,w3c2025fingerprinting}. A public dataset should remove direct identifiers, rotate or hash stable profile keys, keep attack and provider control metadata separate from released signals, assess the re-identification risk of combinations with high entropy, and document permitted research uses. Raw payloads containing package, network, device, or account-linked information may require restricted release or derived representations rather than unrestricted publication.
+
+\subsection{Dual-Use Considerations}
+
+The controlled manipulation repository and relation catalog have dual-use value. Attack configurations can help evaluate defenses but can also teach an adversary which fields are observed; relation descriptions can reveal current blind spots. A release plan should separate reproducibility from operational exposure, avoid publishing live service credentials or provider identifiers, and consider delaying highly actionable bypass details until mitigations and broader evaluation are complete.
+
+\subsection{Author and Workstream Boundaries}
+
+The main system workstream owns multi-layer collection, backend provenance, schema/QC, evidence extraction, relation governance, runtime verification, and the overall evaluation framework. The controlled-manipulation workstream owns attack taxonomy, runners, exact configurations, execution evidence, manifests, and field-effect attribution. Results obtained by applying frozen main-system relations to qualified controlled pairs are joint experimental evidence. The final manuscript should reflect these roles in the contribution statement without using language that diminishes either workstream.
