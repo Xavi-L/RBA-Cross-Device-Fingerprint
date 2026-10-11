@@ -41,13 +41,13 @@ def shape(e):
     return (e.tag, tuple(sorted(e.attrib.items())), (e.text or '').strip(), tuple(shape(c) for c in e))
 
 
-def main():
-    old = ET.parse(BEFORE/'HybridGuard_overview_candidate.svg').getroot()
+def main(*, baseline=BEFORE, report_name="COMPRESSION_CHECK.json", workspace_snapshot="/tmp/hybridguard-compression-outside-before.bin"):
+    old = ET.parse(baseline/'HybridGuard_overview_candidate.svg').getroot()
     new = ET.parse(HERE/'HybridGuard_overview_candidate.svg').getroot()
     ids = {e.get('id'):e for e in new.iter() if e.get('id')}
     old_ids = {e.get('id'):e for e in old.iter() if e.get('id')}
     texts = [''.join(e.itertext()) for e in new.iter(NS+'text') if e.get('data-copy')]
-    frozen = json.loads((BEFORE/'CONTENT_MANIFEST.json').read_text())['candidate']
+    frozen = json.loads((baseline/'CONTENT_MANIFEST.json').read_text())['candidate']
     icons = lambda root: {g.get('data-icon'):tuple(shape(c) for c in g) for g in root.iter() if g.get('data-icon')}
     paths = {n:polyline(g.find(NS+'path').get('d')) for n,g in ids.items() if g.get('data-source')}
     old_paths = {n:polyline(g.find(NS+'path').get('d')) for n,g in old_ids.items() if g.get('data-source')}
@@ -87,8 +87,8 @@ def main():
     total=lambda tree,ps:sum(length(ps[n]) for n,g in tree.items() if g.get('data-kind')=='current-input')
     anchor=lambda tree:sum(length(polyline(p.get('d'))) for g in tree.values() if g.get('data-kind')=='object-group-anchors' for p in g.findall(NS+'path'))
     chrome=json.loads((HERE/'CHECK.json').read_text())
-    snapshot=json.loads((BEFORE/'SNAPSHOT.json').read_text())
-    snapshot_matches=all((BEFORE/n).read_bytes()==subprocess.check_output(['git','show',snapshot['starting_head']+':'+str(HERE.relative_to(ROOT)/n)],cwd=ROOT) for n in snapshot['files'])
+    snapshot=json.loads((baseline/'SNAPSHOT.json').read_text())
+    snapshot_matches=all((baseline/n).read_bytes()==subprocess.check_output(['git','show',snapshot['starting_head']+':'+str(HERE.relative_to(ROOT)/n)],cwd=ROOT) for n in snapshot['files'])
     layout_data=json.loads((HERE/'layout.json').read_text())
     report={
         'baseline':snapshot['starting_head'],'saved_baseline_matches_reviewed_commit':snapshot_matches,
@@ -97,7 +97,7 @@ def main():
         'allowed_layout_changes':'position, line breaks and alignment; font family, size, weight, italics and color are frozen',
         'font_family_preserved':old.find(NS+'style').text==new.find(NS+'style').text,
         'icon_vectors_preserved':icons(old)==icons(new),
-        'captions_byte_preserved':(HERE/'CAPTIONS.md').read_bytes()==(BEFORE/'CAPTIONS.md').read_bytes(),
+        'captions_byte_preserved':(HERE/'CAPTIONS.md').read_bytes()==(baseline/'CAPTIONS.md').read_bytes(),
         'size_mm':layout_data['size_mm'],'actual_geometry':geometry,'unexpected_intersections':unexpected,
         'object_anchor_length_before_after':[anchor(old_ids),anchor(ids)],
         'current_data_length_before_after':[total(old_ids,old_paths),total(ids,paths)],
@@ -105,7 +105,7 @@ def main():
         'chrome_layout_checks_pass':chrome['automated_checks_pass'],
     }
     report['pass']=all(report[k] for k in ['saved_baseline_matches_reviewed_commit','copy_and_counts_preserved','text_style_and_red_emphasis_preserved','font_family_preserved','icon_vectors_preserved','captions_byte_preserved','chrome_layout_checks_pass']) and all(geometry.values())
-    save('COMPRESSION_CHECK.json',report)
+    save(report_name,report)
 
     reader=PdfReader(HERE/'HybridGuard_overview_candidate.pdf')
     extracted=normalize(reader.pages[0].extract_text())
@@ -135,7 +135,7 @@ def main():
     figure=(template/'figures/overview_figure.tex').read_text()
     correct_include=r'\includegraphics[width=\textwidth]{figures/HybridGuard_overview_candidate.pdf}' in figure
     no_spacing_hack=not re.search(r'\\(?:vspace|vskip|enlargethispage|resizebox|scalebox|newgeometry)\b|height\s*=',figure)
-    old_template=json.loads((BEFORE/'TEMPLATE_CHECK.json').read_text())
+    old_template=json.loads((baseline/'TEMPLATE_CHECK.json').read_text())
     with pdfplumber.open(template/'hybridguard_draft.pdf') as pdf:
         candidates=[(i,p) for i,p in enumerate(pdf.pages,1) if any('TimesNewRomanPS' in c['fontname'] for c in p.chars)]
         assert len(candidates)==1
@@ -185,14 +185,14 @@ def main():
     status=subprocess.check_output(['git','status','--porcelain=v1','-z','--untracked-files=all'],cwd=ROOT)
     prefix=str(HERE.relative_to(ROOT)).encode()+b'/'
     outside=[r for r in status.split(b'\0') if r and not r[3:].startswith(prefix)]
-    prior=Path('/tmp/hybridguard-compression-outside-before.bin')
+    prior=Path(workspace_snapshot)
     workspace={
         'starting_head':snapshot['starting_head'],
         'head_unchanged':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT).decode().strip()==snapshot['starting_head'],
         'outside_candidate_status_unchanged':b'\0'.join(outside)==prior.read_bytes() if prior.exists() else None,
         'outside_status_records':len(outside),'formal_files_unchanged':chrome['formal_files_unchanged'],
         'pilot_status_unchanged':chrome['pilot_status_unchanged'],
-        'previous_baselines_unchanged':not subprocess.check_output(['git','diff','--name-only','--',str(HERE/'baseline'),str(HERE/'finishing_baseline_55ca3bb')],cwd=ROOT),
+        'previous_baselines_unchanged':not subprocess.check_output(['git','diff','--name-only','--',str(HERE/'baseline'),str(HERE/'finishing_baseline_55ca3bb'),str(HERE/'compression_baseline_86aa74c')],cwd=ROOT),
     }
     save('WORKSPACE_CHECK.json',workspace)
     print(json.dumps({'compression_pass':report['pass'],'pdf_pass':pdf_report['pass'],'template_pass':result['pass'],'fraction':fraction,'body_pdf_pt':body_sizes,'outside_candidate_unchanged':workspace['outside_candidate_status_unchanged']},ensure_ascii=False))

@@ -5,6 +5,49 @@ const {chromium}=require(path.join(deps,'playwright'));
 const HERE=__dirname,ROOT=path.resolve(HERE,'../../../..');
 const layout=JSON.parse(fs.readFileSync(path.join(HERE,'layout.json'),'utf8'));
 const [W,H]=layout.viewbox,[widthMM,heightMM]=layout.size_mm;
+function auditVisibleGeometry(){
+ const texts=[...document.querySelectorAll('[data-copy]')].map(t=>({node:t,text:t.textContent,b:t.getBoundingClientRect()}));
+ const distance=(q,b)=>Math.hypot(Math.max(b.left-q.x,0,q.x-b.right),Math.max(b.top-q.y,0,q.y-b.bottom));
+ const titleSlots={'device-observations':'One device, multiple observation points','app-observations':'Inside the app','offline-development':'Offline'};
+ const paths=[],violations=[],near=[],exemptions=[],arrows=[];
+ for(const p of document.querySelectorAll('svg path,svg line,svg polyline,svg polygon,svg rect')){
+  if(p.closest('defs,[data-icon]'))continue;
+  const style=getComputedStyle(p);
+  if(style.stroke==='none'||+style.opacity===0||+style.strokeOpacity===0)continue;
+  const parent=p.parentElement,flow=p.closest('[data-source]'),group=parent.id||parent.getAttribute('data-kind')||p.tagName;
+  const role=p.hasAttribute('data-direction-arrow')?'direction-arrow':flow?flow.dataset.kind:titleSlots[group]||group==='current-detection'?'scope-boundary':'auxiliary';
+  const n=p.getTotalLength(),ctm=p.getCTM(),points=[];
+  for(let i=0;i<=Math.ceil(n);i++)points.push(p.getPointAtLength(Math.min(i,n)).matrixTransform(ctm));
+  let closest={clearance_units:Infinity};
+  for(const t of texts){
+   const gap=Math.min(...points.map(q=>distance(q,t.b)))-parseFloat(style.strokeWidth)/2;
+   if(titleSlots[group]===t.text){exemptions.push({group,text:t.text,reason:'intentional title slot in scope outline'});continue;}
+   if(gap<closest.clearance_units)closest={text:t.text,clearance_units:gap};
+   const hit={group,role,d:p.getAttribute('d'),text:t.text,clearance_units:gap};
+   const target=flow&&document.getElementById(flow.dataset.target),targetRect=target?.querySelector(':scope > rect');
+   const last=points[points.length-1];
+   if(gap===0&&targetRect&&target.contains(t.node)&&last.y===+targetRect.getAttribute('y')&&last.x>=+targetRect.getAttribute('x')&&last.x<=+targetRect.getAttribute('x')+ +targetRect.getAttribute('width')){
+    exemptions.push({...hit,reason:'intentional entry at target top boundary; stroke only tangent to conservative font box, with no centerline penetration'});continue;
+   }
+   if(gap<=0)violations.push(hit);else if(gap<2)near.push(hit);
+  }
+  paths.push({group,role,d:p.getAttribute('d'),nearest_text:closest});
+  if(p.hasAttribute('data-direction-arrow')){
+   const end=p.getPointAtLength(n),prev=p.getPointAtLength(Math.max(0,n-1)),angle=Math.atan2(end.y-prev.y,end.x-prev.x);
+   const ref=(p.getAttribute('marker-end')||'').match(/^url\(#(.+)\)$/),marker=ref&&document.getElementById(ref[1]);
+   const glyph=marker&&marker.querySelector('path'),refX=+marker.getAttribute('refX'),refY=+marker.getAttribute('refY');
+   const glyphPoints=[];
+   if(glyph)for(let i=0;i<=Math.ceil(glyph.getTotalLength());i++){
+    const q=glyph.getPointAtLength(Math.min(i,glyph.getTotalLength())),x=q.x-refX,y=q.y-refY;
+    glyphPoints.push(new DOMPoint(end.x+x*Math.cos(angle)-y*Math.sin(angle),end.y+x*Math.sin(angle)+y*Math.cos(angle)).matrixTransform(ctm));
+   }
+   const b={left:Math.min(...glyphPoints.map(q=>q.x)),right:Math.max(...glyphPoints.map(q=>q.x)),top:Math.min(...glyphPoints.map(q=>q.y)),bottom:Math.max(...glyphPoints.map(q=>q.y))};
+   const glyphHits=texts.filter(t=>t.b.left<b.right&&t.b.right>b.left&&t.b.top<b.bottom&&t.b.bottom>b.top).map(t=>t.text);
+   arrows.push({group,segment:p.getAttribute('d'),marker:ref?.[1],marker_shape:glyph?.getAttribute('d'),marker_units:marker?.getAttribute('markerUnits'),orientation:marker?.getAttribute('orient'),unit_direction:[Math.cos(angle),Math.sin(angle)],endpoint:{x:end.x,y:end.y},rendered_head_bbox_units:b,head_text_intersections:glyphHits,fill:glyph&&getComputedStyle(glyph).fill,visible:!!glyph&&style.visibility!=='hidden'&&getComputedStyle(glyph).fill!=='none'});
+  }
+ }
+ return {audited_strokes:paths,text_intersections:violations,text_clearance_below_2_units:near,semantic_exemptions:exemptions,excluded:'icon-internal geometry, marker definitions and fill-only backgrounds; intentional title slots and boundary contacts are listed separately',direction_arrows:arrows};
+}
 async function main(){
  const browser=await chromium.launch({executablePath:process.env.RBA_CHROME||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
  try{
@@ -66,6 +109,15 @@ async function main(){
     right_margins_units:{system_web:gapFor('System–web consistency'),app_web:gapFor('Embedded webpage')},
     min_body_font_units:Math.min(...entries.map(t=>t.size)),times_new_roman_available:document.fonts.check('29px "Times New Roman"')};
   },{W,H});
+  report.visible_geometry=await page.evaluate(auditVisibleGeometry);
+  const before=await browser.newPage({viewport:{width:W,height:H}});
+  await before.setContent(`<style>html,body{margin:0}svg{width:${W}px;height:${H}px}</style>${fs.readFileSync(path.join(HERE,'direction_fix_baseline_393f0faa/HybridGuard_overview_candidate.svg'),'utf8')}`);
+  await before.evaluate(()=>document.fonts.ready);
+  const oldGeometry=await before.evaluate(auditVisibleGeometry);
+  report.baseline_auxiliary_text_intersections=oldGeometry.text_intersections.filter(v=>v.role==='auxiliary');
+  const contactKey=v=>JSON.stringify([v.group,v.d,v.text,v.clearance_units]);
+  report.visible_geometry.new_close_contacts=report.visible_geometry.text_clearance_below_2_units.filter(v=>!oldGeometry.text_clearance_below_2_units.some(old=>contactKey(old)===contactKey(v)));
+  await before.close();
   // Inspect actual platform fonts, not only CSS font-family or fonts.check.
   const cdp=await page.context().newCDPSession(page);
   await cdp.send('DOM.enable');await cdp.send('CSS.enable');
@@ -99,6 +151,7 @@ async function main(){
   report.automated_checks_pass=report.exact_visible_copy_preserved&&!report.text_overlaps.length&&!report.flow_or_relation_text_intersections.length&&!report.out_of_canvas.length&&
    !report.node_text_overflow.length&&!report.duplicate_ids.length&&!report.missing_marker_references.length&&!report.embedded_rasters&&!report.nested_svgs&&!report.text_compression&&!report.effects&&
    report.min_body_font_units>=28&&Object.values(report.scopes).every(Boolean)&&Object.values(report.semantic_regression).every(Boolean)&&Object.values(report.formal_files_unchanged).every(Boolean)&&report.pilot_status_unchanged&&report.no_platform_font_fallback&&!report.external_resources.length;
+  report.automated_checks_pass=report.automated_checks_pass&&!report.visible_geometry.text_intersections.length&&!report.visible_geometry.new_close_contacts.length&&report.visible_geometry.direction_arrows.length===2&&report.visible_geometry.direction_arrows.every(a=>a.visible&&!a.head_text_intersections.length);
   report.pdf={file:'HybridGuard_overview_candidate.pdf',requested_size_mm:[widthMM,heightMM],renderer:'Chrome headless print',paper_template_modified:false};
   // CSS page size keeps the 180 mm figure width; vector text is not a screenshot.
   await page.addStyleTag({content:`@page{size:${widthMM}mm ${heightMM}mm;margin:0}html,body{width:${widthMM}mm;height:${heightMM}mm;margin:0}svg{width:${widthMM}mm;height:${heightMM}mm;display:block}`});

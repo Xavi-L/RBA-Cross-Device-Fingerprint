@@ -98,10 +98,13 @@ def relation(id_,src,dst,d,state):
     group(id_,data_kind='relation',data_source=src,data_target=dst,data_status=state)
     add(path(d,C[color],LINE[state],stroke_dasharray={'studied':'10 7','context':'1 7'}.get(state),marker_start=marker,marker_end=marker))
     end()
-def flow(id_,kind,src,dst,d,model=False,arrow=True):
+def flow(id_,kind,src,dst,d,model=False,arrow=True,direction_segment=None):
     group(id_,data_kind=kind,data_source=src,data_target=dst)
     add(path(d,C['rule_outline'] if model else C['ink'],LINE['model'] if model else LINE['flow'],
              marker_end=f'url(#{"model" if model else "input"}-arrow)' if arrow else None))
+    if direction_segment:
+        # Reuse the data arrow on an interior segment, away from the join/corner.
+        add(path(direction_segment,C['ink'],LINE['flow'],marker_end='url(#input-arrow)',data_direction_arrow='true'))
     end()
 def node(id_):
     n=NODES[id_]; x,y=n['text']
@@ -174,8 +177,8 @@ def main():
     flow('current-app-exit','current-input','app-observations','app-branch','M780 214H856V285',arrow=False)
     add('<g id="app-branch" data-kind="data-branch" data-point="856,285"/>')
     flow('current-app-only','current-input','app-branch','app-only-interface','M856 285H898')
-    flow('current-app-for-pair','current-input','app-branch','linked-pair','M856 285V463',arrow=False)
-    flow('current-browser-for-pair','current-input','browser','linked-pair','M792 674H856V463',arrow=False)
+    flow('current-app-for-pair','current-input','app-branch','linked-pair','M856 285V463',arrow=False,direction_segment='M856 360V374')
+    flow('current-browser-for-pair','current-input','browser','linked-pair','M792 674H856V463',arrow=False,direction_segment='M856 582V568')
     add('<circle id="linked-pair" cx="856" cy="463" r="3" fill="#343434"/>')
     flow('current-linked-pair','current-input','linked-pair','paired-interface','M856 463H898')
     group('current-detection',data_kind='current-rule-application',data_bounds=','.join(map(str,BOX['detection'])))
@@ -200,7 +203,6 @@ def main():
     # The right column retains the two-case example and independent materials.
     group('timezone-example',data_kind='illustration',data_bounds=','.join(map(str,BOX['example'])))
     txt(1284,126,'Example: timezone',32,'bold')
-    add(path('M1270 141H1782',C['boundary'],1.2))
     txt(1284,164,'Normal system change',30,'bold')
     txt(1284,196,'System and web remain compatible',28)
     txt(1284,231,'Web-only modification',30,'bold')
