@@ -4,7 +4,6 @@ Run after the candidate PDF renderer. No source manuscript writes, class
 substitution, page geometry changes, height cap, or shell escape.
 """
 from pathlib import Path
-import hashlib
 import json
 import re
 import shutil
@@ -18,7 +17,7 @@ DEST = HERE / 'template_preview'
 
 def main():
     DEST.mkdir(exist_ok=True)
-    inputs = {}
+    inputs = []
     for src in sorted(SOURCE.rglob('*')):
         if not src.is_file() or src.suffix not in {'.tex', '.cls', '.bst', '.bib'}:
             continue
@@ -26,11 +25,11 @@ def main():
         dest = DEST / relative
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dest)
-        inputs[str(relative)] = hashlib.sha256(src.read_bytes()).hexdigest()
+        inputs.append(str(relative))
     (DEST / 'SOURCE_MANIFEST.json').write_text(json.dumps({
         'source': str(SOURCE.relative_to(ROOT)),
         'class_options': 'sigconf,anonymous,review',
-        'sha256': inputs,
+        'files': inputs,
         'copied_source_changes': ['figures/overview_figure.tex'],
         'formal_sources_written': False,
     }, indent=2) + '\n')
@@ -38,6 +37,7 @@ def main():
                  DEST / 'figures/HybridGuard_overview_candidate.pdf')
     figure = (SOURCE / 'figures/overview_figure.tex').read_text()
     caption = (HERE / 'CAPTIONS.md').read_text().split('## English\n\n', 1)[1].split('\n\n## 中文', 1)[0].strip()
+    assert (HERE / 'CAPTIONS.md').read_bytes() == (HERE / 'compression_baseline_86aa74c/CAPTIONS.md').read_bytes()
     caption_tex = caption.replace('–', '--').replace('’', "'")
     figure = re.sub(r'\\caption\{[^\n]*\}', lambda _: '\\caption{' + caption_tex + '}', figure)
     figure = figure.replace('HybridGuard_overview_triangle.pdf', 'HybridGuard_overview_candidate.pdf')
@@ -69,6 +69,9 @@ def main():
                '-interaction=nonstopmode', '-halt-on-error', 'hybridguard_draft.tex']
     with (DEST / 'build_console.txt').open('w') as output:
         result = subprocess.run(command, cwd=DEST, stdout=output, stderr=subprocess.STDOUT)
+    # Keep diagnostic text intact while avoiding generated trailing whitespace.
+    console = DEST / 'build_console.txt'
+    console.write_text('\n'.join(line.rstrip() for line in console.read_text().splitlines()) + '\n')
     print(json.dumps({'returncode': result.returncode, 'preview': str(DEST), 'command': command}))
     raise SystemExit(result.returncode)
 

@@ -3,14 +3,16 @@ const fs=require('fs'),path=require('path'),os=require('os'),cp=require('child_p
 const deps=process.env.RBA_NODE_MODULES||path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules');
 const {chromium}=require(path.join(deps,'playwright'));
 const HERE=__dirname,ROOT=path.resolve(HERE,'../../../..');
+const layout=JSON.parse(fs.readFileSync(path.join(HERE,'layout.json'),'utf8'));
+const [W,H]=layout.viewbox,[widthMM,heightMM]=layout.size_mm;
 async function main(){
  const browser=await chromium.launch({executablePath:process.env.RBA_CHROME||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
  try{
-  const page=await browser.newPage({viewport:{width:1800,height:1330},deviceScaleFactor:2});
+  const page=await browser.newPage({viewport:{width:W,height:H},deviceScaleFactor:2});
   const source=fs.readFileSync(path.join(HERE,'HybridGuard_overview_candidate.svg'),'utf8');
-  await page.setContent(`<html><head><title>HybridGuard overview - full visual candidate</title><style>html,body{margin:0;padding:0}svg{width:1800px;height:1330px;display:block}</style></head><body>${source}</body></html>`);
+  await page.setContent(`<html><head><title>HybridGuard overview - full visual candidate</title><style>html,body{margin:0;padding:0}svg{width:${W}px;height:${H}px;display:block}</style></head><body>${source}</body></html>`);
   await page.evaluate(()=>document.fonts.ready);
-  const report=await page.evaluate(()=>{
+  const report=await page.evaluate(({W,H})=>{
    const entries=[...document.querySelectorAll('[data-copy]')].map(t=>{const b=t.getBoundingClientRect();return {id:t.id,text:t.textContent,x:b.x,y:b.y,w:b.width,h:b.height,size:parseFloat(getComputedStyle(t).fontSize)}});
    const overlap=[];
    for(let i=0;i<entries.length;i++)for(let j=i+1;j<entries.length;j++){
@@ -54,19 +56,16 @@ async function main(){
    }
    const right=document.querySelector('[data-kind="inside-app-scope"]').dataset.bounds.split(',').map(Number);
    const gapFor=s=>{const t=entries.find(t=>t.text===s);return right[0]+right[2]-(t.x+t.w);};
-   const geom=entries.find(t=>t.text==='Not in current detector');
-   const lowerHeads=entries.filter(t=>['App container','Embedded webpage'].includes(t.text));
    return {texts:entries,text_overlaps:overlap,flow_or_relation_text_intersections:lineText,
-    out_of_canvas:entries.filter(t=>t.x<0||t.y<0||t.x+t.w>1800||t.y+t.h>1330),
+    out_of_canvas:entries.filter(t=>t.x<0||t.y<0||t.x+t.w>W||t.y+t.h>H),
     scopes,graph,node_text_overflow:nodeOverflow,duplicate_ids:duplicateIds,missing_marker_references:missing,
     embedded_rasters:document.querySelectorAll('svg image').length,nested_svgs:document.querySelectorAll('svg svg').length,
     text_compression:document.querySelectorAll('text[textLength],text[lengthAdjust]').length,
     effects:document.querySelectorAll('filter,linearGradient,radialGradient').length,
     external_resources:[...document.querySelectorAll('[href],[src],[xlink\\:href]')].map(e=>e.getAttribute('href')||e.getAttribute('src')||e.getAttribute('xlink:href')).filter(v=>v&&!v.startsWith('#')),
     right_margins_units:{system_web:gapFor('System–web consistency'),app_web:gapFor('Embedded webpage')},
-    geometry_label_clearance_above_node_titles:Math.min(...lowerHeads.map(t=>t.y))-(geom.y+geom.h),
     min_body_font_units:Math.min(...entries.map(t=>t.size)),times_new_roman_available:document.fonts.check('29px "Times New Roman"')};
-  });
+  },{W,H});
   // Inspect actual platform fonts, not only CSS font-family or fonts.check.
   const cdp=await page.context().newCDPSession(page);
   await cdp.send('DOM.enable');await cdp.send('CSS.enable');
@@ -100,9 +99,9 @@ async function main(){
   report.automated_checks_pass=report.exact_visible_copy_preserved&&!report.text_overlaps.length&&!report.flow_or_relation_text_intersections.length&&!report.out_of_canvas.length&&
    !report.node_text_overflow.length&&!report.duplicate_ids.length&&!report.missing_marker_references.length&&!report.embedded_rasters&&!report.nested_svgs&&!report.text_compression&&!report.effects&&
    report.min_body_font_units>=28&&Object.values(report.scopes).every(Boolean)&&Object.values(report.semantic_regression).every(Boolean)&&Object.values(report.formal_files_unchanged).every(Boolean)&&report.pilot_status_unchanged&&report.no_platform_font_fallback&&!report.external_resources.length;
-  report.pdf={file:'HybridGuard_overview_candidate.pdf',requested_size_mm:[180,133],renderer:'Chrome headless print',paper_template_modified:false};
+  report.pdf={file:'HybridGuard_overview_candidate.pdf',requested_size_mm:[widthMM,heightMM],renderer:'Chrome headless print',paper_template_modified:false};
   // CSS page size keeps the 180 mm figure width; vector text is not a screenshot.
-  await page.addStyleTag({content:'@page{size:180mm 133mm;margin:0}html,body{width:180mm;height:133mm;margin:0}svg{width:180mm;height:133mm;display:block}'});
+  await page.addStyleTag({content:`@page{size:${widthMM}mm ${heightMM}mm;margin:0}html,body{width:${widthMM}mm;height:${heightMM}mm;margin:0}svg{width:${widthMM}mm;height:${heightMM}mm;display:block}`});
   await page.pdf({path:path.join(HERE,'HybridGuard_overview_candidate.pdf'),preferCSSPageSize:true,printBackground:true,margin:{top:0,bottom:0,left:0,right:0},scale:1});
   fs.writeFileSync(path.join(HERE,'CHECK.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify({...report,texts:report.texts.length,actual_platform_fonts:report.platform_font_names},null,2));
