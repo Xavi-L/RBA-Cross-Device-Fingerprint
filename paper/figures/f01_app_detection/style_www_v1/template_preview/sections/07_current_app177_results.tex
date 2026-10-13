@@ -1,0 +1,59 @@
+\section{Current App177 Controlled Results}
+\label{sec:current-results}
+
+All values in this section are frozen controlled-relation observations. They describe how versioned relation catalogs behave on a versioned configuration set and are not estimates of real-world attack recall, benign false-positive rate, cross-device generalization, or production authentication performance.
+
+\subsection{Input Accounting}
+
+The expanded controlled input set contains 23 accepted attack manifests and 69 qualified baseline-active pairs. Two additional manifests are excluded explicitly: one lacks the expected active observation, and the other is an empty exploratory manifest. The source data also contain 69 historical post-intervention observations, but these records are ignored under the two-state protocol and do not contribute to any denominator or relation comparison. Across the accepted manifests, the controlled portfolio covers four tool families and fourteen exact configuration identifiers.
+
+The normal-input side contains 229 \appfp observations. The official-derived relation evaluator produces no strong alert on these records. Eighteen observations nevertheless have at least one relation that cannot be assessed because a premise is unavailable, unparseable, or outside the relation's declared scope, and 58 contain a soft provider/User-Agent deviation that is retained as context rather than promoted to a strong alert. The device-mined predicate path also produces no explicit alert, but its current decision package marks all 229 observations as insufficient evidence. The normal results therefore cannot be interpreted as a measured zero false-positive rate: the official-derived path has incomplete relation coverage on part of the set, while the device-mined path abstains rather than positively establishing normality.
+
+\subsection{Source-Separated Relation Transitions}
+
+\begin{table}[t]
+\caption{Current source-separated controlled results. Counts are qualified pairs, not population-level detection metrics.}
+\label{tab:current-source-results}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & Official-derived & Device-mined \\
+\midrule
+Executable relations/predicates & 9 & 10 \\
+Qualified baseline-active pairs & 69 & 69 \\
+Baseline strong alerts & 0 & 0 \\
+Active strong alerts & 51 & 33 \\
+No-alert $\rightarrow$ alert & 51 & 33 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:current-source-results} shows that the nine executable official-derived semantic relations yield 51 baseline-no-alert to active-alert transitions. The independently executed catalog of ten device-mined predicates yields 33 such transitions. Neither catalog produces a baseline strong alert among the 69 qualified comparisons, so the reported transitions are not caused by a relation already being active in the matched baseline.
+
+The larger transition count for the official-derived catalog should not be interpreted as proof that documentation-grounded knowledge is intrinsically superior to empirical rules. Fifteen early controlled pairs were inspected before the semantic catalog was frozen, and this retrospective exposure influenced the development context in which some relations were formulated. The remaining configurations were added later, but the expanded study was not preregistered and still uses the same controlled emulator and collection ecosystem. The defensible conclusion is therefore local: on this frozen set of accepted configurations, the current official-derived catalog covers more observed manipulations than the older frozen device-mined catalog.
+
+The official-derived transitions are concentrated in a small number of semantically strong relation families. Explicit desktop or script-like User-Agent and platform presentations contradict the Android host context; active interventions can also break the compatibility chain between the WebView provider, the default host User-Agent, and the runtime Chromium surface. An additional graphics relation identifies cases in which Native Android graphics evidence is paired with an explicit Windows/Direct3D WebGL presentation. Individual pairs may violate more than one relation, so relation-level explanations overlap and should not be counted as independent detections.
+
+\subsection{Overlap between Knowledge Sources}
+
+The two executable catalogs agree on 33 qualified pairs. These shared cases primarily involve interventions that expose a desktop or script surface inside an Android-hosted WebView, which both the semantic catalog and the older empirical predicate set represent as a strong contradiction. Eighteen additional pairs trigger only the official-derived catalog. The main source of this difference is the explicit Android-graphics versus Windows/Direct3D relation, which covers evaluated Stealth and WebGL configurations that the device-mined predicates do not encode. No qualified pair triggers only the device-mined catalog.
+
+The remaining 18 pairs trigger neither source even though direct payload comparison confirms at least one catalogued field change and the intervention evidence passes qualification. These pairs are not false evidence and are not reclassified as benign. They define the present coverage boundary of the frozen relations.
+
+\subsection{Uncovered Manipulation Families}
+
+One uncovered family changes only the WebDriver marker. The current policy does not treat this attribute alone as a strong integrity contradiction because automation interfaces have legitimate testing uses and because a single marker does not establish that the host and runtime identities are mutually incompatible. Detecting this family would require either a deployment policy that explicitly targets automation or additional correlated evidence that separates authorized testing from an unwanted automated session.
+
+A second family changes resource-facing values, specifically device memory and hardware concurrency. These fields are coarse, privacy-reduced, browser-dependent, and affected by device family and process behavior. The project has not yet calibrated a normal compatibility model between the Native resource view and the JavaScript-exposed buckets, so the current catalog leaves resource-only changes outside the strong relation set rather than imposing an arbitrary threshold.
+
+Language, plugin, and MIME manipulations form another uncovered group. Language preferences are user-configurable, while plugin and MIME surfaces vary across Chromium and WebView versions and may be reduced or empty by design. A strong rule based only on these values would risk converting normal browser-policy differences into alerts. Future work must first measure their stability within and across normal device and container groups and then determine whether they become useful when combined with stronger host evidence.
+
+Timezone-only changes are also uncovered. A timezone can change because of travel, user settings, enterprise configuration, remote access, or test automation; without location, clock, network, or longitudinal context, a mismatch is not necessarily an integrity violation. Similarly, screen-metrics-only interventions change viewport, logical-screen, or device-pixel-ratio observations, but the expected relationship depends on orientation, status and navigation insets, display cutouts, zoom, multi-window mode, and the distinction between layout and visual viewports. These fields require a tolerance model learned from paired normal observations rather than exact equality.
+
+The uncovered families demonstrate why HybridGuard separates field effects from relation alerts. Every listed intervention changed observable data, but only a subset created a contradiction that the frozen catalogs can currently justify as strong. Preserving the negative cases prevents the system from gaining apparent coverage by relabeling every difference as suspicious and provides a concrete agenda for benign calibration and adaptive-attack experiments.
+
+\subsection{Interpretation and Current Boundary}
+
+The strongest current evidence concerns categorical or coarse platform-family contradictions. An Android host paired with an explicit Windows, desktop, or script-oriented Web surface is difficult to explain as ordinary measurement noise. A WebView-provider/runtime chain that becomes incompatible under the evaluated intervention also provides a clear cross-layer signal, provided that custom User-Agent behavior is accounted for. The graphics relation is similarly strong only when the Web presentation contains explicit Windows/Direct3D semantics; the presence of ANGLE by itself is not treated as a violation because ANGLE is also used on Android.
+
+By contrast, numeric and high-variance evidence remains deliberately conservative. Display, memory, resource, sensor, battery, and timing values may be useful, but the current dataset is not broad enough to define normal device-family and temporal tolerances. The normal-input findings reinforce this point: even the provider/User-Agent chain exhibits soft deviations in legitimate-looking records, so a universal exact-match policy would overstate the evidence. The current results therefore support the narrower claim that explicit cross-layer relations can expose several controlled manipulations while making their non-coverage and non-assessment boundaries visible.

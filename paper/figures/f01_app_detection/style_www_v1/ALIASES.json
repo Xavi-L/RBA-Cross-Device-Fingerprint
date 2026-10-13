@@ -1,0 +1,179 @@
+{
+  "row_order_changed": false,
+  "column_order_changed": false,
+  "methods_source": "paper/figures/round1_app/data/methods.csv",
+  "configurations_source": "paper/figures/round1_app/data/configurations.csv",
+  "methods": [
+    {
+      "order": "1",
+      "scheme": "APP_FULL",
+      "short_name": "Full App",
+      "zh_name": "当前App完整方法",
+      "stage": "RETENTION",
+      "role": "complete_current_App_model",
+      "display_lines": [
+        "Full App"
+      ]
+    },
+    {
+      "order": "2",
+      "scheme": "A_NO_MTC_CAP",
+      "short_name": "No MTC alarm cap",
+      "zh_name": "去MTC正常报警上限",
+      "stage": "RETENTION",
+      "role": "complete_current_App_model",
+      "display_lines": [
+        "No MTC",
+        "alarm cap"
+      ]
+    },
+    {
+      "order": "3",
+      "scheme": "A_APP_WEB_ONLY",
+      "short_name": "App Web only",
+      "zh_name": "仅App网页",
+      "stage": "RETENTION",
+      "role": "complete_current_App_model",
+      "display_lines": [
+        "App Web",
+        "only"
+      ]
+    },
+    {
+      "order": "4",
+      "scheme": "A_NO_MEMORY_REL",
+      "short_name": "No memory relation",
+      "zh_name": "去系统—网页内存关系",
+      "stage": "RETENTION",
+      "role": "complete_current_App_model",
+      "display_lines": [
+        "No memory",
+        "relation"
+      ]
+    },
+    {
+      "order": "5",
+      "scheme": "A_NO_TIMEZONE_REL",
+      "short_name": "No timezone relation",
+      "zh_name": "去系统—网页时区关系",
+      "stage": "RETENTION",
+      "role": "complete_current_App_model",
+      "display_lines": [
+        "No timezone",
+        "relation"
+      ]
+    },
+    {
+      "order": "6",
+      "scheme": "APP_TREE",
+      "short_name": "Small App tree",
+      "zh_name": "固定小容量App决策树",
+      "stage": "FITTED",
+      "role": "fixed_small_App_tree",
+      "display_lines": [
+        "Small App",
+        "tree"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "order": "1",
+      "config_id": "w10-cdp-emulation-screen-metrics-only-v1",
+      "short_name": "Screen metrics",
+      "zh_name": "屏幕参数修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "2",
+      "config_id": "w10-cdp-emulation-timezone-only-v1",
+      "short_name": "Timezone only",
+      "zh_name": "时区单独修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "3",
+      "config_id": "w6-tool-054-legacy-default-v1",
+      "short_name": "Playwright preset",
+      "zh_name": "Playwright既有配置",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "4",
+      "config_id": "w6-tool-055-legacy-default-v1",
+      "short_name": "Puppeteer preset",
+      "zh_name": "Puppeteer既有配置",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "5",
+      "config_id": "w6-tool-056-legacy-default-v1",
+      "short_name": "CDP multi-field preset",
+      "zh_name": "CDP既有多字段配置",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "6",
+      "config_id": "w6-tool-058-legacy-default-v1",
+      "short_name": "Stealth preset",
+      "zh_name": "stealth既有配置",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "7",
+      "config_id": "w9-rule-boundary-cdp-platform-only-v1",
+      "short_name": "Platform only",
+      "zh_name": "平台标识单独修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "8",
+      "config_id": "w9-rule-boundary-cdp-resource-pair-v1",
+      "short_name": "CPU + memory",
+      "zh_name": "CPU与内存联合修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "9",
+      "config_id": "w9-rule-boundary-cdp-ua-only-v1",
+      "short_name": "UA only",
+      "zh_name": "UA单独修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "10",
+      "config_id": "w9-rule-boundary-cdp-ua-platform-desktop-v1",
+      "short_name": "UA + platform",
+      "zh_name": "UA与平台同时修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "11",
+      "config_id": "w9-rule-boundary-cdp-webdriver-only-v1",
+      "short_name": "Webdriver only",
+      "zh_name": "webdriver单独修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "12",
+      "config_id": "w9-stealth-boundary-languages-only-v1",
+      "short_name": "Language list",
+      "zh_name": "语言列表单独修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "13",
+      "config_id": "w9-stealth-boundary-plugins-mime-v1",
+      "short_name": "Plugins / MIME",
+      "zh_name": "插件/MIME信息修改",
+      "role": "controlled_modification_configuration"
+    },
+    {
+      "order": "14",
+      "config_id": "w9-stealth-boundary-webgl-pair-v1",
+      "short_name": "WebGL vendor / renderer",
+      "zh_name": "WebGL厂商/渲染器修改",
+      "role": "controlled_modification_configuration"
+    }
+  ]
+}
