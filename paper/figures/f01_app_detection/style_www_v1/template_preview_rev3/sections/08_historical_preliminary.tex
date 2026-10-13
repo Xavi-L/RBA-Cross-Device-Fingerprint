@@ -1,0 +1,42 @@
+\section{Historical and Preliminary Validation}
+\label{sec:historical}
+
+This section records earlier experiments because the current manuscript is an unlimited-length internal draft intended to preserve the project's design evolution. These experiments use earlier datasets, teacher-derived scores, duplicated profiles, and pipelines that differ from the current verified controlled evaluation. Their values are therefore discussed only as historical or preliminary evidence and are never merged numerically with the \appfp relation results in Section~\ref{sec:current-results}. A later submission may retain the most relevant material, move it to an appendix, or remove it once the final paired and independently grouped experiments are complete.
+
+\subsection{Raw-Feature and Consistency-Feature Ablations}
+
+Earlier experiments used 1,323 records labeled with an LLM-derived continuous risk score. A random-forest regressor compared Native, WebView, Web, and explicit consistency features under random holdout and grouped cross-validation. Random holdout produced near-saturated high-risk classification results, motivating a stricter grouped protocol that attempted to keep related device profiles and attack templates in the same fold.
+
+Under grouped cross-validation, a seven-feature tri-layer semantic set obtained MAE 2.281 and RMSE 3.358, compared with MAE 2.642 and RMSE 4.455 for the full raw-feature baseline. The narrow conclusion is that explicit semantic features can summarize the earlier teacher-label logic more effectively than a larger raw representation under that grouping heuristic. The experiment does not establish detection of independently verified attacks, because the target remains a teacher-generated risk score and the historical groups are not the current verified stable-device groups.
+
+\begin{table}[t]
+\caption{Selected historical grouped-CV results. These values predict teacher-derived risk scores and are not current attack metrics.}
+\label{tab:historical-grouped}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Feature set & Dim. & MAE & RMSE \\
+\midrule
+Raw all & 65 & 2.642 & 4.455 \\
+Native--WebView consistency & 8 & 2.608 & 4.408 \\
+Tri-layer semantic & 7 & 2.281 & 3.358 \\
+Raw all + consistency & 103 & 3.407 & 5.831 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Grouped LLM Evidence and External Fusion}
+
+A later prototype organized evidence into six groups and asked an LLM to generate structured sub-scores, with a positive ElasticNet or simpler non-negative model performing external fusion. This design was intended to keep total-score weights out of the prompt and make group contributions reproducible. The experiments also explored stable-profile weighting to reduce domination by repeated device images.
+
+These results remain preliminary. They inherit earlier labels and data duplication, and the full nested grouped evaluation was not completed on independently verified facts. The design is nevertheless useful as a future baseline because it separates semantic interpretation from numerical fusion and makes the learned weights inspectable.
+
+\subsection{Official-Knowledge Pilot}
+
+A targeted GLM-5.2 pilot compared direct scoring with and without official knowledge cards. On the targeted set, adding the knowledge context did not improve numerical error: MAE changed from 2.367 to 2.750 and RMSE from 3.291 to 4.649, while high-risk F1 remained saturated. The main observed value of the knowledge cards was qualitative: they reduced unsupported references to future-only evidence and exposed an important tolerance problem in which ADB, debuggable, and cleartext development context could be over-interpreted.
+
+This negative result shapes the current paper. Official documentation is used to ground field semantics, applicability, and counterexamples; it is not assumed to improve detection performance. Any future retrieval-augmented component must be evaluated against deterministic relation and no-knowledge baselines, and its gains may lie in citation validity or uncertainty handling rather than classification accuracy. General surveys on LLMs and retrieval-augmented generation provide context for this historical branch~\cite{hasanov2024llmcyber,gao2023rag}, but they do not validate the HybridGuard pilot.
+
+\subsection{Historical On-Device Branch}
+
+An earlier engineering branch exported lightweight models or rule summaries to Android for low-latency scoring. On-device inference literature motivates latency, privacy, and offline availability~\cite{sun2023shadownet,abadade2023tinyml}, but the branch is not a new learning algorithm and has not been evaluated against the current verified controlled truth. It should remain an implementation baseline or be removed from the final paper if the main contribution stays focused on provenance and cross-layer evidence.
