@@ -1,0 +1,22 @@
+\newsavebox{\FOnegraphicbox}
+\begingroup
+\makeatletter
+\let\FOneoriginalendfloatbox\@endfloatbox
+\def\@endfloatbox{\FOneoriginalendfloatbox
+\typeout{FONE-FLOAT-HEIGHT=\the\ht\@currbox}
+\typeout{FONE-FLOAT-DEPTH=\the\dp\@currbox}}
+\makeatother
+\begin{figure*}[t]
+  \centering
+  \sbox{\FOnegraphicbox}{\includegraphics[width=\textwidth]{figures/F01_main_rev2.pdf}}
+\typeout{FONE-TEXTWIDTH=\the\textwidth}
+\typeout{FONE-TEXTHEIGHT=\the\textheight}
+\typeout{FONE-GRAPHIC-WIDTH=\the\wd\FOnegraphicbox}
+\typeout{FONE-GRAPHIC-HEIGHT=\the\ht\FOnegraphicbox}
+\typeout{FONE-GRAPHIC-DEPTH=\the\dp\FOnegraphicbox}
+\usebox{\FOnegraphicbox}
+  \caption{Saved detection results for 14 App modification configurations and six methods. Cells show T/N with N=9 per row; pale blue marks partial detection (6/9). Totals over the 14 configurations are reported separately. Full App excludes standalone-browser C1 and unintegrated Host/resource conditions. Removing the MTC alarm cap cannot be judged superior here; normal-record costs are reported separately. These materials have a development-use history and are not a new experiment or blind test.}
+  \Description{Fourteen modification configurations in the original order and six App methods. Every cell shows the saved alarm count out of nine. White cells show zero or full detection; a very pale tint marks partial detection. The numbers carry all values. Zero detections and partial detections remain explicit.}
+  \label{fig:hybridguard-overview}\label{fig:app-modification-detection}
+\end{figure*}
+\endgroup
