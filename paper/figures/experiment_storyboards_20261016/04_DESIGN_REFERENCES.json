@@ -1,0 +1,38 @@
+{
+  "scope": "Targeted review of concrete WWW main-conference examples, not a survey of venue-wide chart frequencies.",
+  "references": [
+    {
+      "title": "PromptMM: Multi-Modal Knowledge Distillation for Recommendation with Prompt-Tuning",
+      "venue": "WWW 2024",
+      "table": 5,
+      "pdf_page_one_based": 7,
+      "url": "https://arxiv.org/pdf/2402.17188",
+      "html_url": "https://arxiv.org/html/2402.17188",
+      "observed_structure": "Methods and ablated variants in rows; dataset groups Netflix, Tiktok, Electronics as column groups, with R@20 and N@20 within each group.",
+      "adopted": "Place methods in rows and retain endpoint-specific, modification-specific results under grouped column headings."
+    },
+    {
+      "title": "IMF: Interactive Multimodal Fusion Model for Link Prediction",
+      "venue": "WWW 2023",
+      "table": 4,
+      "pdf_page_one_based": 7,
+      "url": "https://arxiv.org/pdf/2303.10816",
+      "observed_structure": "Compare S, S+V, S+T, S+V+T information-source combinations in rows, with MR, MRR, H@1, H@10 in columns.",
+      "adopted": "Directly compare Full App with Full App plus the cross-endpoint timezone check."
+    },
+    {
+      "title": "Beyond the Crawl: Unmasking Browser Fingerprinting in Real User Interactions",
+      "venue": "The Web Conference 2025",
+      "table": 5,
+      "version": "Author manuscript on OpenReview; numbering is version-specific",
+      "url": "https://openreview.net/pdf/ed73a9f8081b03dd34273b0ca0cc23011ac0e283.pdf",
+      "venue_confirmation": "https://research.google/pubs/beyond-the-crawl-unmasking-browser-fingerprinting-in-real-user-interactions/",
+      "observed_structure": "Fingerprinting types in rows and real-user versus automated-crawl counts in columns, retaining the type breakdown alongside a total.",
+      "adopted": "Keep the four modification families instead of showing only the aggregate gain."
+    }
+  ],
+  "design_decision": "A monochrome grouped comparison table with two method rows and one count-difference row. App and independent Browser each retain timezone and language columns. Total detections and normal alarms remain visible. Only changed detection cells are bold.",
+  "adaptation_not_copied_from_sources": "The count-difference row is a task-specific addition; literal n/N values preserve our small sample sizes. Bold marks changes, not statistical significance. No source's experimental conclusions are transferred to this study.",
+  "limits": "Source text/table structures and WWW venue identities were verified. This is not a claim of exact typography reproduction or of venue-wide requirements. Output is a discussion draft, not a final paper-scale validation.",
+  "english_caption": "Saved direction-specific detection counts for Full App and Full App plus the retained cross-endpoint timezone check (C1). The five additional detections occur only for Browser timezone modifications; App timezone detections are retained and both language families remain undetected. The last row reports changes in counts, not percentage points. All displayed counts agree across the three frozen configurations and are shown once. On the 46 normal positions both methods produce no alarms or unknown/failed outputs. These 60 positions have development-use history. On the separate historical MTC evaluation material (144 and 117 positions), alarm counts are unchanged within each configuration while unknown outputs increase from 14 to 17."
+}

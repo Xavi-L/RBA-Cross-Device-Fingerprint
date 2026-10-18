@@ -1,0 +1,164 @@
+{
+  "rows": [
+    {
+      "name": "内存",
+      "comparison": "网页内存 > 8 GiB → 系统上界",
+      "condition_ids": [
+        "R_WEB8",
+        "R_REL"
+      ],
+      "attack": [
+        {
+          "N": 18,
+          "T": 6,
+          "F": 12,
+          "U": 0,
+          "FAILED": 0
+        },
+        {
+          "N": 18,
+          "T": 18,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      ],
+      "normal": [
+        {
+          "N": 48,
+          "T": 0,
+          "F": 48,
+          "U": 0,
+          "FAILED": 0
+        },
+        {
+          "N": 48,
+          "T": 0,
+          "F": 48,
+          "U": 0,
+          "FAILED": 0
+        }
+      ],
+      "source": "paper/figures/round1_app/data/F03b.csv"
+    },
+    {
+      "name": "时区",
+      "comparison": "绝对偏移 → 系统时区参照",
+      "condition_ids": [
+        "R_ABSOLUTE",
+        "R_TZ"
+      ],
+      "attack": [
+        {
+          "N": 6,
+          "T": 6,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        {
+          "N": 6,
+          "T": 6,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      ],
+      "normal": [
+        {
+          "N": 30,
+          "T": 6,
+          "F": 24,
+          "U": 0,
+          "FAILED": 0
+        },
+        {
+          "N": 30,
+          "T": 0,
+          "F": 30,
+          "U": 0,
+          "FAILED": 0
+        }
+      ],
+      "source": "deliverables/timezone_relation_validation_v1/summary.json"
+    },
+    {
+      "name": "屏幕",
+      "comparison": "固定高度 → 宿主几何上界",
+      "condition_ids": [
+        "R_HEIGHT710",
+        "R_HOST_GEOMETRY"
+      ],
+      "attack": [
+        {
+          "N": 6,
+          "T": 6,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        },
+        {
+          "N": 6,
+          "T": 6,
+          "F": 0,
+          "U": 0,
+          "FAILED": 0
+        }
+      ],
+      "normal": [
+        {
+          "N": 66,
+          "T": 6,
+          "F": 60,
+          "U": 0,
+          "FAILED": 0
+        },
+        {
+          "N": 66,
+          "T": 0,
+          "F": 66,
+          "U": 0,
+          "FAILED": 0
+        }
+      ],
+      "source": "deliverables/screen_geometry_observation_v1/SUMMARY.json"
+    }
+  ],
+  "memory_no_effect": [
+    {
+      "N": 6,
+      "T": 0,
+      "F": 6,
+      "U": 0,
+      "FAILED": 0
+    },
+    {
+      "N": 6,
+      "T": 0,
+      "F": 6,
+      "U": 0,
+      "FAILED": 0
+    }
+  ],
+  "screen_same_web_comparison": {
+    "attack": {
+      "N": 6,
+      "T": 0,
+      "F": 6,
+      "U": 0,
+      "FAILED": 0
+    },
+    "normal": {
+      "N": 66,
+      "T": 0,
+      "F": 66,
+      "U": 0,
+      "FAILED": 0
+    }
+  },
+  "sources": [
+    "paper/figures/round1_app/data/F03b.csv",
+    "deliverables/timezone_relation_validation_v1/summary.json",
+    "deliverables/screen_geometry_observation_v1/SUMMARY.json"
+  ]
+}

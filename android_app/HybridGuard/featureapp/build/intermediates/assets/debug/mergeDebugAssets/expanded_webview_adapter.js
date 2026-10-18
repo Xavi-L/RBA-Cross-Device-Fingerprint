@@ -113,6 +113,37 @@
         updateResult: updateProbeUi
     };
 
+    // Auxiliary raw evidence, outside the fixed 177/67 field trees. The
+    // observer records both contexts; offline candidate scope is WebGL1.
+    function collectWebGLParameters(sessionId) {
+        var result = {
+            collection_revision: "featureapp-webgl-parameter-collection-v1",
+            read_status: "not_collected",
+            observation: null,
+            reason: "session_binding_missing"
+        };
+        if (typeof sessionId !== "string" || !sessionId) {
+            return result;
+        }
+        var observer = global.HybridGuardWebGLParameterObserver;
+        if (!observer || typeof observer.observe !== "function") {
+            result.read_status = "unsupported";
+            result.reason = "observer_module_missing";
+            return result;
+        }
+        try {
+            result.observation = observer.observe({
+                realmBinding: "featureapp:" + sessionId + ":main-frame"
+            });
+            result.read_status = "observed";
+            result.reason = null;
+        } catch (error) {
+            result.read_status = "runtime_error";
+            result.reason = global.HybridGuardWebProbe.describeError(error);
+        }
+        return result;
+    }
+
     function handoffPayload(sessionId, webViewData, probeResult) {
         if (
             !global.AndroidBridge ||
@@ -133,6 +164,9 @@
                 probe_statuses: probeResult.probe_statuses
             }
         };
+        if (probeResult.collection_observations) {
+            payload.collection_observations = probeResult.collection_observations;
+        }
         try {
             setStatus("Handing expanded payload to Android uploader...");
             global.AndroidBridge.submitExpandedPayload(JSON.stringify(payload));
@@ -156,6 +190,7 @@
                 navigator: "runtime_error",
                 screen: "runtime_error",
                 webgl: "runtime_error",
+                webgl2: "runtime_error",
                 execution: "runtime_error",
                 connection: "runtime_error",
                 audio: "runtime_error",
@@ -191,9 +226,19 @@
         }).then(function () {
             return global.HybridGuardWebProbe.collect({
                 canvasContainer: canvasBox,
-                onLog: log
+                onLog: log,
+                // Self-declared association with this App collection's main
+                // frame, not an assertion of native getter authenticity.
+                webdriverObservation: {
+                    realmBinding: "featureapp:" + currentSessionId + ":main-frame"
+                }
             });
         }).then(function (probeResult) {
+            var observations = probeResult.collection_observations || {
+                observation_schema_version: "app-web-observations-v1"
+            };
+            observations.webgl_parameter = collectWebGLParameters(currentSessionId);
+            probeResult.collection_observations = observations;
             var navigatorInfo = probeResult.web_data.navigator_layer;
             var screenInfo = probeResult.web_data.screen_layer;
             var webglInfo = probeResult.web_data.graphics_layer;

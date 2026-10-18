@@ -1,0 +1,80 @@
+{
+  "source": "02_clear_data.json",
+  "original_sources": [
+    "paper/figures/round1_app/data/F03b.csv",
+    "deliverables/timezone_relation_validation_v1/summary.json",
+    "deliverables/screen_geometry_observation_v1/SUMMARY.json"
+  ],
+  "groups": [
+    {
+      "specialist": "内存",
+      "attack_N": 18,
+      "normal_N": 48,
+      "rows": [
+        {
+          "condition": "网页内存 > 8 GiB",
+          "condition_id": "R_WEB8",
+          "reference": false,
+          "detected": 6,
+          "false_alarms": 0
+        },
+        {
+          "condition": "系统内存上界",
+          "condition_id": "R_REL",
+          "reference": true,
+          "detected": 18,
+          "false_alarms": 0
+        }
+      ]
+    },
+    {
+      "specialist": "时区",
+      "attack_N": 6,
+      "normal_N": 30,
+      "rows": [
+        {
+          "condition": "绝对时区偏移",
+          "condition_id": "R_ABSOLUTE",
+          "reference": false,
+          "detected": 6,
+          "false_alarms": 6
+        },
+        {
+          "condition": "系统时区参照",
+          "condition_id": "R_TZ",
+          "reference": true,
+          "detected": 6,
+          "false_alarms": 0
+        }
+      ]
+    },
+    {
+      "specialist": "屏幕",
+      "attack_N": 6,
+      "normal_N": 66,
+      "rows": [
+        {
+          "condition": "固定网页高度",
+          "condition_id": "R_HEIGHT710",
+          "reference": false,
+          "detected": 6,
+          "false_alarms": 6
+        },
+        {
+          "condition": "同网页视口关系",
+          "condition_id": "R_SAME_WEB",
+          "reference": false,
+          "detected": 0,
+          "false_alarms": 0
+        },
+        {
+          "condition": "宿主几何上界",
+          "condition_id": "R_HOST_GEOMETRY",
+          "reference": true,
+          "detected": 6,
+          "false_alarms": 0
+        }
+      ]
+    }
+  ]
+}

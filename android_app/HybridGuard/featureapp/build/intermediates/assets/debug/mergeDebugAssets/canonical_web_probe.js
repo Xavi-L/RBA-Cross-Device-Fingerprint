@@ -1,8 +1,9 @@
 (function (global) {
     "use strict";
 
-    var REVISION = "expanded-web-67-v1";
+    var REVISION = "expanded-web-67-v2";
     var STATUS_SCHEMA_VERSION = "browser-field-status-v1";
+    var APP_WEBDRIVER_OBSERVER_REVISION = "app-webdriver-observer-v1";
     var FIELD_PATHS = [
         "web_data.audio_layer.audio_context_supported",
         "web_data.audio_layer.audio_error",
@@ -321,10 +322,8 @@
     function getWebGLInfo() {
         var canvas = document.createElement("canvas");
         var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-        var gl2 = canvas.getContext("webgl2");
         var info = defaultWebGLInfo();
         info.context_available = !!gl;
-        info.webgl2_supported = !!gl2;
         if (gl) {
             var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
             if (debugInfo) {
@@ -339,6 +338,12 @@
                 arrayFrom(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE) || []).join("-");
         }
         return info;
+    }
+
+    function getWebGL2Support() {
+        // A canvas already bound to WebGL1 cannot create a WebGL2 context.
+        // This records context creation in the current environment, not GPU capability.
+        return !!document.createElement("canvas").getContext("webgl2");
     }
 
     function getNavigatorFeatures() {
@@ -577,9 +582,53 @@
         });
     }
 
-    function getAutomationFeatures() {
+    // App-only metadata. Presence and value reads are separate observations,
+    // not an atomic snapshot or proof that this realm exposes a native getter.
+    function observeWebdriver(realmBinding) {
+        var observation = {
+            api_present: null,
+            presence_read_status: "runtime_error",
+            value_read_status: "not_attempted",
+            value_type: null,
+            boolean_value: null,
+            observer_revision: APP_WEBDRIVER_OBSERVER_REVISION,
+            realm_binding: realmBinding
+        };
+        var observedNavigator;
+        try {
+            observedNavigator = navigator;
+            observation.api_present = "webdriver" in observedNavigator;
+            observation.presence_read_status = "observed";
+        } catch (_presenceError) {
+            return observation;
+        }
+        if (!observation.api_present) {
+            return observation;
+        }
+        try {
+            var value = observedNavigator.webdriver;
+            observation.value_type = typeof value;
+            observation.boolean_value = typeof value === "boolean" ? value : null;
+            observation.value_read_status = "observed";
+        } catch (_valueError) {
+            observation.value_read_status = "runtime_error";
+        }
+        return observation;
+    }
+
+    function getAutomationFeatures(webdriverObservation) {
         var result = defaultAutomationFeatures();
-        result.webdriver = navigator.webdriver === true;
+        if (webdriverObservation) {
+            if (webdriverObservation.presence_read_status === "runtime_error" ||
+                    webdriverObservation.value_read_status === "runtime_error") {
+                throw new Error("webdriver_observation_read_error");
+            }
+            // Reuse the one observed getter value; do not read it again for the
+            // legacy strict-true projection in the fixed 67-field contract.
+            result.webdriver = webdriverObservation.boolean_value === true;
+        } else {
+            result.webdriver = navigator.webdriver === true;
+        }
         result.plugins_count = navigator.plugins ? navigator.plugins.length : 0;
         result.mime_types_count = navigator.mimeTypes ? navigator.mimeTypes.length : 0;
         try {
@@ -677,6 +726,9 @@
     }
 
     function probeNameForField(fieldPath) {
+        if (fieldPath === "web_data.graphics_layer.webgl2_supported") {
+            return "webgl2";
+        }
         if (/\.canvas_hash$/.test(fieldPath)) {
             return "canvas";
         }
@@ -769,6 +821,12 @@
         options = options || {};
         var probeStatuses = {};
         var logger = typeof options.onLog === "function" ? options.onLog : function () {};
+        var webdriverObservationOptions = options.webdriverObservation;
+        if (webdriverObservationOptions &&
+                (typeof webdriverObservationOptions.realmBinding !== "string" ||
+                !webdriverObservationOptions.realmBinding.trim())) {
+            throw new Error("webdriver_observation_realm_binding_required");
+        }
 
         function probeKey(name) {
             return String(name || "unknown").toLowerCase().replace(/\s+/g, "_");
@@ -810,7 +868,10 @@
         }
 
         var webglInfo = safeSyncProbe("WebGL", getWebGLInfo, defaultWebGLInfo);
-        if (!webglInfo.context_available) {
+        webglInfo.webgl2_supported = safeSyncProbe(
+            "WebGL2", getWebGL2Support, function () { return false; }
+        );
+        if (!webglInfo.context_available && probeStatuses.webgl === "observed") {
             probeStatuses.webgl = "not_applicable";
             logger("WebGL context unavailable; emitted canonical fallback values", "bad");
         }
@@ -822,8 +883,15 @@
         var connectionInfo =
             safeSyncProbe("Connection", getConnectionFeatures, defaultConnectionFeatures);
         var fontInfo = safeSyncProbe("Font", getFontFeatures, defaultFontFeatures);
-        var automationInfo =
-            safeSyncProbe("Automation", getAutomationFeatures, defaultAutomationFeatures);
+        // Keep this metadata independent of the Automation group's fallback:
+        // a later plugins/mimeTypes exception must not erase the observation.
+        var webdriverObservation = webdriverObservationOptions ?
+            observeWebdriver(webdriverObservationOptions.realmBinding) : null;
+        var automationInfo = safeSyncProbe(
+            "Automation",
+            function () { return getAutomationFeatures(webdriverObservation); },
+            defaultAutomationFeatures
+        );
         var canvasHash = safeSyncProbe(
             "Canvas",
             function () {
@@ -863,17 +931,25 @@
                 automationInfo: automationInfo,
                 canvasHash: canvasHash
             });
-            return {
+            var probeResult = {
                 web_data: webData,
                 probe_statuses: probeStatuses,
                 collection_status: buildCollectionStatus(webData, probeStatuses)
             };
+            if (webdriverObservation) {
+                probeResult.collection_observations = {
+                    observation_schema_version: "app-web-observations-v1",
+                    webdriver: webdriverObservation
+                };
+            }
+            return probeResult;
         });
     }
 
     global.HybridGuardWebProbe = Object.freeze({
         REVISION: REVISION,
         STATUS_SCHEMA_VERSION: STATUS_SCHEMA_VERSION,
+        APP_WEBDRIVER_OBSERVER_REVISION: APP_WEBDRIVER_OBSERVER_REVISION,
         FIELD_PATHS: Object.freeze(FIELD_PATHS.slice(0)),
         sha256: sha256,
         collect: collect,
