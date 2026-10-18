@@ -1,0 +1,58 @@
+\section{Evaluation}
+\label{sec:eval}
+We ask four questions: which modifications are detected and which components matter (RQ1); what cost is hidden by controlled-normal results (RQ2); how contextual references change individual checks (RQ3); and where an external browser adds capability (RQ4).
+
+\subsection{Materials and Protocol}
+\paragraph{Controlled App benchmark.}
+The benchmark contains 378 positions: 14 modification configurations, three repetitions, three Android emulator environments (API 29, 30, and 36 with SwiftShader), and three stages per run. Admitted runs contain a normal pre-position, an effective modification, and a confirmed normal post-position. This gives 126 effective modifications and 252 normal records. The normal post-position is an evaluation/control record, not an input available to an earlier prediction. Three leave-one-environment-out configurations each use 252 training positions (84 modified, 168 normal) and 126 held-out positions (42 modified, 84 normal). We aggregate the disjoint held-out positions once. Development exposure to these environments and recipes means this partition is not evidence of unseen-tool or independent physical-device generalization.
+
+\paragraph{Historical normal records.}
+The mobile test-cloud (MTC) material comprises 891 representative records: 630 discovery records for constraints and tree training, 144 historical development records, and 117 historically reserved evaluation records. Representatives are manufacturer/model/Android-release combinations, not 891 independent physical devices; model families and known installation/session associations constrain grouping. The last two sets are reported separately. Each frozen model is applied to the same records; three model outputs do not triple the sample size. ``Normal'' means no study-defined target manipulation, not an attestation that a cloud device has no automation or debugging software.
+
+\paragraph{Specialist and paired material.}
+The memory study has 18 effective modifications and 48 normal records, plus six operations with no observable effect. The timezone study has six modifications and 30 normal records; six normal system changes are a subset of the 30. The screen study has six modifications and 66 normal records, including six normal layout expansions. The App--browser language/timezone material contains 60 paired positions: 14 effective modifications and 46 normal records, from an 18-position pilot and a 42-position matched batch. Normal records total $12+34$, not just the matched subset. These materials have development-use history and distinct roles. We do not add their denominators to produce an overall accuracy or an independent population sample.
+
+\paragraph{Methods.}
+\full denotes the saved App retention detector. Four ablations are retrained from their own sparse stage: remove the MTC alarm cap, use App-Web-only candidates, remove the memory reference, or remove the timezone reference. Removing the MTC cap raises its allowance to 630, while retaining MTC data, assessability and coverage constraints, and the controlled-normal budget. Web-only removes Native dependencies, so it changes available information as well as the relationships. The host-geometry specialist and Browser C1 are outside this pool.
+
+The App tree uses the same fold-specific admitted candidate representation, with separate true/false/unknown indicators, maximum depth three, minimum leaf size two, Gini splitting, and a fixed random seed. Training weight is one half for effective modifications, one quarter for controlled normals, and one quarter for MTC normals; modification weight is balanced across configurations. This is a fixed small-capacity reference, not the performance ceiling of machine learning or a classifier over all raw App fields. Rule rows use the saved \texttt{RETENTION} stage and tree rows the saved \texttt{FITTED} stage.
+
+\paragraph{Measures and reporting.}
+A detection is an alert on an effective modification; a normal alarm is an alert on a normal record. We retain no-alert, unknown, failed, and empty-model counts. Unknown records stay in denominators rather than being counted as benign. Percentages are descriptive ratios for the stated cohort; we do not estimate population recall, claim significance from repeated configurations, or invent confidence intervals from dependent positions. The tables transcribe frozen results; assembling this draft involved no new collection, fitting, selection, prediction, or timing.
+
+\subsection{RQ1: App Detection and Components}
+\input{tables/01_app_matrix}
+\full detects 105/126 modifications (83.3\%). It produces no alarms on the 252 controlled normal records. Table~\ref{tab:app} compresses the 14 configurations into five groups without dropping configurations: group membership requires matching complete outcome-count vectors across all six methods. Counts within a row are per original configuration, and the group-size column preserves the weighting. These are count equivalences, not claims of identical individual outputs across recipes.
+
+The resource modification accounts for the nine detections lost by Web-only and by removing the memory reference: both fall to 96/126. The small tree detects 72/126. Its additional misses include the tested timezone and plugin/MIME modifications as well as resource and screen modifications. This comparison identifies the behavior of the fixed representation and capacity; it does not show that rules generally outperform learned classifiers.
+
+All methods miss the nine webdriver-only and nine WebGL-identifier modifications. In the current historical-data-compatible pool, raw WebGL unavailability and loss of the original webdriver-false semantics prevent corresponding candidates from meeting assessability requirements. The result is a coverage limit of the admitted representation, not proof that these modifications are intrinsically undetectable.
+
+Removing the MTC alarm cap increases screen detections from six to nine and the total to 108/126. Removing the timezone reference leaves the total at 105/126 because an absolute offset condition substitutes on this benchmark. Neither observation is enough to choose a method: the first requires inspecting normal-record costs, and the second requires normal-setting changes.
+
+\subsection{RQ2: The Cost of Removing Normal Constraints}
+\input{tables/03_normal_cap}
+Table~\ref{tab:cap} shows why the extra three detections do not justify the cap-free variant. With the cap, model configurations 01/02 generate one alarm in each historical evaluation cohort; configuration 03 generates none. Removing the cap alarms on all 144 and all 117 records for every configuration. Both methods still generate 0/252 alarms in the controlled benchmark, so that normal set alone does not expose the failure.
+
+The cap-free models can select broad conditions such as hardware concurrency greater than one or a language-list length greater than one. These happen to respect the controlled-normal allowance while being common on the MTC records. The failure therefore concerns the support of the normal distribution, not only a different threshold along a well-calibrated tradeoff curve. The 630 training records tell the same story: with the cap, alarms are 6/6/0 and unknowns are 51 in each configuration; without it, all 630 alarm.
+
+Low alarm counts must also be read alongside unknowns. \full has 8/144 and 6/117 unknown outcomes, or 14/261 within each configuration. Removing its memory reference reduces the combined unknown count to 1/261 but loses resource detections. The small tree gives binary outputs even when unused candidate measurements are missing; that behavior does not recover those measurements. We thus report decision coverage as part of the result, rather than equating no recorded alarm with usable normal evidence.
+
+\subsection{RQ3: What Device References Change}
+\input{tables/02_mechanisms}
+Table~\ref{tab:mechanisms} compares \emph{fixed individual checks}, not complete-detector ablations. The three studies answer different questions and retain separate denominators.
+
+\paragraph{Memory.}
+The device-referenced bound detects all 18 effective memory modifications, while the Web-only $>8$ GiB check detects six. The additional 12 are the tested upward changes to 4 and 8 GiB; both conditions detect the six changes to 16 GiB. Both have 0/48 normal alarms. Six operations targeting 2 GiB have no observable effect and are excluded from the effective-modification denominator; neither check alarms on them. These results support the local value of a device-dependent bound, without showing sensitivity to downward, within-envelope, or coordinated changes.
+
+\paragraph{Timezone: distinguish system changes from report changes.}
+Both the Native-reference check and the absolute-offset check detect all six tested Web timezone modifications. Their normal alarms differ: zero versus six out of 30. The six alarms come from legitimate system changes. This explains why an unchanged aggregate score after removing the timezone relation does not imply that the relation is redundant. In the full-model replay, the no-timezone and Web-only ablations also alarm on those six normal changes, whereas \full does not.
+
+\paragraph{Screen geometry: retain detection without a layout shortcut.}
+The fixed Web-height threshold detects six modifications but also alarms on six of 66 normal records. A same-Web viewport relation gives no normal alarms but misses all six modifications. The host bound detects all six with 0/66 normal alarms, distinguishing the tested layout expansion from the tested report modification. This is a standalone result: \full configurations 01/02 still select the older height condition and alarm on those six normal layout changes; configuration 03 detects neither the changes nor the six modifications. We do not substitute the new condition's result for an unmeasured integrated-detector improvement.
+
+\subsection{RQ4: Where the External Browser Helps}
+\input{tables/04_paired}
+On the 60 paired positions, \full detects the two App timezone modifications, but neither App language modification nor any Browser modification. Adding the retained C1 relation detects all five Browser timezone modifications, yielding 7/14 instead of 2/14 (Table~\ref{tab:paired}). The five new detections belong to one family and one endpoint. The two App-language and five Browser-language modifications remain undetected; C1 is not a general cross-endpoint manipulation detector.
+
+Both methods have 0/46 normal alarms in this cohort, and the displayed counts agree across the three frozen configurations. They are displayed once, not summed to 21/42 detections or treated as independent replications. Historical normal evaluation supplies a further cost: within each configuration, adding C1 preserves the alarm count but increases unknowns from 14 to 17 out of the same combined 261 records. The two original historical groups remain distinct in the saved data. This targeted gain consequently neither proves complete evidence coverage nor demonstrates a universal zero-alarm rate.

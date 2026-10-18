@@ -1,0 +1,42 @@
+\documentclass[sigconf,anonymous,review]{acmart}
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\acmConference[WWW '27 submission draft]{The Web Conference}{2027}{}
+\acmYear{2027}
+\acmDOI{}
+\acmISBN{}
+\usepackage{booktabs,tabularx,multirow,makecell,enumitem,colortbl}
+\usepackage{xspace}
+\newcommand{\hg}{HybridGuard\xspace}
+\newcommand{\full}{\textsc{Full App}\xspace}
+\newcommand{\appfp}{\textsc{App177}\xspace}
+\newcommand{\browserfp}{\textsc{Browser67}\xspace}
+\newcommand{\pairedfp}{\textsc{paired244}\xspace}
+\newcommand{\hgstate}[1]{\ensuremath{\mathsf{#1}}}
+\begin{document}
+\title{HybridGuard: Cross-Layer Fingerprint Consistency for Android Web Environments}
+\begin{abstract}
+Mobile Web applications observe a device through Android APIs, the WebView host, and JavaScript. These reports overlap, but neither a plausible individual value nor agreement within one surface establishes their integrity. To the best of our knowledge, HybridGuard is the first framework to explicitly formulate mobile fingerprint manipulation detection as consistency checking across Android Native, the WebView host, and in-app Web observations. It separates observed values from unavailable evidence, selects compact detectors under normal-alarm and decision-coverage constraints, and supports a paired external-browser extension. Our controlled App study covers 14 manipulation configurations and uses 891 historical normal-device records for constraint training and evaluation. The full App detector flags 105 of 126 effective modifications (83.3\%) with no alarms on 252 controlled normal records. Removing the historical-normal alarm cap adds only three detections but alarms on every historical normal record. Fixed-check studies show that a device memory reference detects 12 modifications missed by a global threshold, while timezone and host-geometry references distinguish tested normal changes from isolated Web-report modifications. The geometry check remains a standalone study. On 60 paired App--browser positions, adding a cross-endpoint timezone check raises detections from 2/14 to 7/14, entirely through Browser timezone modifications; language modifications remain undetected. These results characterize the capabilities and costs of reference-based checks on development-exposed material, rather than unseen-device generalization or production fraud detection.
+\end{abstract}
+\begin{CCSXML}
+<ccs2012><concept><concept_id>10002978.10003022.10003028</concept_id><concept_desc>Security and privacy~Web application security</concept_desc><concept_significance>500</concept_significance></concept><concept><concept_id>10002978.10002997</concept_id><concept_desc>Security and privacy~Intrusion/anomaly detection and malware mitigation</concept_desc><concept_significance>300</concept_significance></concept></ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Security and privacy~Web application security}
+\ccsdesc[300]{Security and privacy~Intrusion/anomaly detection and malware mitigation}
+\keywords{browser fingerprinting, Android WebView, cross-layer consistency, manipulation detection, missing evidence}
+\maketitle
+\input{sections/01_introduction}
+\input{sections/02_background}
+\input{sections/03_method}
+\input{sections/04_evaluation}
+\input{sections/05_discussion}
+\input{sections/06_related}
+\input{sections/07_conclusion}
+\clearpage
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+\clearpage
+\appendix
+\balance
+\input{sections/08_appendix}
+\end{document}

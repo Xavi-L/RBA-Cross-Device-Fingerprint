@@ -1,0 +1,28 @@
+% English, editable adaptation of 03_normal_constraint_table (2026-10-16).
+\begin{table*}[t]
+  \caption{Normal-record outcomes with and without the MTC alarm cap. Removing the cap makes every record in both historical evaluation cohorts trigger an alarm, while controlled detections increase only from 105/126 to 108/126. Both methods still have 0/252 controlled-normal alarms. Counts are records, with unknown outcomes reported separately.}
+  \label{tab:cap}
+  \centering
+  \small
+  \setlength{\tabcolsep}{7pt}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l c c c c c c c@{}}
+    \toprule
+    \multirow{2}{*}{Historical cohort} & \multirow{2}{*}{\makecell{Model\\configuration}} & \multicolumn{3}{c}{With cap (Full App)} & \multicolumn{3}{c}{Without cap} \\
+    \cmidrule(lr){3-5}\cmidrule(l){6-8}
+    & & Alarm & No alarm & Unknown & Alarm & No alarm & Unknown \\
+    \midrule
+    \multirow{2}{*}{Evaluation ($N=144$)} & 01/02 & \textbf{1} & 135 & 8 & \multirow{2}{*}{\textbf{144}} & \multirow{2}{*}{0} & \multirow{2}{*}{0} \\
+    & 03 & \textbf{0} & 136 & 8 & & & \\
+    \addlinespace
+    \multirow{2}{*}{Reserved ($N=117$)} & 01/02 & \textbf{1} & 110 & 6 & \multirow{2}{*}{\textbf{117}} & \multirow{2}{*}{0} & \multirow{2}{*}{0} \\
+    & 03 & \textbf{0} & 111 & 6 & & & \\
+    \bottomrule
+  \end{tabular*}
+  \par\smallskip
+  \begin{minipage}{\textwidth}\footnotesize
+  Equal counts are merged for display; each configuration uses the same records, so denominators are not pooled. Failed and empty-model counts are zero.
+  The separate 630 constraint-training records yield 6/6/0 alarms and 51 unknowns per capped configuration (01/02/03), versus 630 alarms and no unknowns without the cap.
+  These historical cohorts are not a new blind evaluation.
+  \end{minipage}
+\end{table*}

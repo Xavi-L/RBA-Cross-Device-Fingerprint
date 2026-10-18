@@ -1,0 +1,27 @@
+% English, editable adaptation of 04_cross_endpoint_table (2026-10-16).
+\begin{table*}[t]
+  \caption{Increment from the retained cross-endpoint timezone check C1. All five additional detections are Browser timezone modifications; App timezone detection is preserved and both language families remain undetected. Bold marks changed counts, not statistical significance.}
+  \label{tab:paired}
+  \centering
+  \small
+  \setlength{\tabcolsep}{7pt}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l c c c c c c@{}}
+    \toprule
+    \multirow{2}{*}{Method} & \multicolumn{2}{c}{App modifications} & \multicolumn{2}{c}{Browser modifications} & \multirow{2}{*}{\makecell{Total\\detected}} & \multirow{2}{*}{\makecell{Normal\\alarms}} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}
+    & Timezone & Language & Timezone & Language & & \\
+    \midrule
+    Full App & 2/2 & 0/2 & 0/5 & 0/5 & 2/14 & 0/46 \\
+    Full App + C1 & 2/2 & 0/2 & \textbf{5/5} & 0/5 & \textbf{7/14} & 0/46 \\
+    \midrule
+    Count difference & 0 & 0 & $\mathbf{+5}$ & 0 & $\mathbf{+5}$ & 0 \\
+    \bottomrule
+  \end{tabular*}
+  \par\smallskip
+  \begin{minipage}{\textwidth}\footnotesize
+  These 60 paired positions have development-use history (14 effective modifications, 46 normal); unknown and failed counts are zero.
+  Counts agree across three frozen configurations and are shown once, without pooling or claiming equal record-level outputs.
+  On the separate historical MTC cohorts (144 and 117 records), alarms are unchanged within each configuration while combined unknowns increase from 14 to 17 out of 261.
+  \end{minipage}
+\end{table*}

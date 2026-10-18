@@ -1,0 +1,451 @@
+{
+  "grouping_keys": [
+    "N",
+    "T",
+    "F",
+    "U",
+    "FAILED",
+    "EMPTY_MODEL"
+  ],
+  "methods": [
+    "APP_FULL",
+    "A_NO_MTC_CAP",
+    "A_APP_WEB_ONLY",
+    "A_NO_MEMORY_REL",
+    "A_NO_TIMEZONE_REL",
+    "APP_TREE"
+  ],
+  "grouping_rule": "Equal full six-method state vectors; descriptive compression only.",
+  "source": "paper/figures/round1_app/data/F01.csv",
+  "groups": [
+    {
+      "label": "CPU＋内存",
+      "annotation": "网页单层、去内存关系\n均少检出9次",
+      "configuration_count": 1,
+      "members": [
+        "w9-rule-boundary-cdp-resource-pair-v1"
+      ],
+      "states_by_method": {
+        "APP_FULL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MTC_CAP": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_APP_WEB_ONLY": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MEMORY_REL": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "A_NO_TIMEZONE_REL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "APP_TREE": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ]
+      },
+      "counts": [
+        9,
+        9,
+        0,
+        0,
+        9,
+        0
+      ],
+      "merged_cells": [
+        {
+          "method_start": 0,
+          "method_end_exclusive": 2,
+          "T": 9,
+          "delta_vs_full": 0
+        },
+        {
+          "method_start": 2,
+          "method_end_exclusive": 4,
+          "T": 0,
+          "delta_vs_full": -9
+        },
+        {
+          "method_start": 4,
+          "method_end_exclusive": 5,
+          "T": 9,
+          "delta_vs_full": 0
+        },
+        {
+          "method_start": 5,
+          "method_end_exclusive": 6,
+          "T": 0,
+          "delta_vs_full": -9
+        }
+      ]
+    },
+    {
+      "label": "屏幕参数",
+      "annotation": "去MTC上限多检出3次\n正常代价见图03",
+      "configuration_count": 1,
+      "members": [
+        "w10-cdp-emulation-screen-metrics-only-v1"
+      ],
+      "states_by_method": {
+        "APP_FULL": [
+          9,
+          6,
+          3,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MTC_CAP": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_APP_WEB_ONLY": [
+          9,
+          6,
+          3,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MEMORY_REL": [
+          9,
+          6,
+          3,
+          0,
+          0,
+          0
+        ],
+        "A_NO_TIMEZONE_REL": [
+          9,
+          6,
+          3,
+          0,
+          0,
+          0
+        ],
+        "APP_TREE": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ]
+      },
+      "counts": [
+        6,
+        9,
+        6,
+        6,
+        6,
+        0
+      ],
+      "merged_cells": [
+        {
+          "method_start": 0,
+          "method_end_exclusive": 1,
+          "T": 6,
+          "delta_vs_full": 0
+        },
+        {
+          "method_start": 1,
+          "method_end_exclusive": 2,
+          "T": 9,
+          "delta_vs_full": 3
+        },
+        {
+          "method_start": 2,
+          "method_end_exclusive": 5,
+          "T": 6,
+          "delta_vs_full": 0
+        },
+        {
+          "method_start": 5,
+          "method_end_exclusive": 6,
+          "T": 0,
+          "delta_vs_full": -6
+        }
+      ]
+    },
+    {
+      "label": "时区、Plugins / MIME",
+      "annotation": "小树每类少检出9次",
+      "configuration_count": 2,
+      "members": [
+        "w10-cdp-emulation-timezone-only-v1",
+        "w9-stealth-boundary-plugins-mime-v1"
+      ],
+      "states_by_method": {
+        "APP_FULL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MTC_CAP": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_APP_WEB_ONLY": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MEMORY_REL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_TIMEZONE_REL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "APP_TREE": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ]
+      },
+      "counts": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        0
+      ],
+      "merged_cells": [
+        {
+          "method_start": 0,
+          "method_end_exclusive": 5,
+          "T": 9,
+          "delta_vs_full": 0
+        },
+        {
+          "method_start": 5,
+          "method_end_exclusive": 6,
+          "T": 0,
+          "delta_vs_full": -9
+        }
+      ]
+    },
+    {
+      "label": "共同检出配置*",
+      "annotation": "8类配置，各方法均检出",
+      "configuration_count": 8,
+      "members": [
+        "w6-tool-054-legacy-default-v1",
+        "w6-tool-055-legacy-default-v1",
+        "w6-tool-056-legacy-default-v1",
+        "w6-tool-058-legacy-default-v1",
+        "w9-rule-boundary-cdp-platform-only-v1",
+        "w9-rule-boundary-cdp-ua-only-v1",
+        "w9-rule-boundary-cdp-ua-platform-desktop-v1",
+        "w9-stealth-boundary-languages-only-v1"
+      ],
+      "states_by_method": {
+        "APP_FULL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MTC_CAP": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_APP_WEB_ONLY": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MEMORY_REL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "A_NO_TIMEZONE_REL": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "APP_TREE": [
+          9,
+          9,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "counts": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "merged_cells": [
+        {
+          "method_start": 0,
+          "method_end_exclusive": 6,
+          "T": 9,
+          "delta_vs_full": 0
+        }
+      ]
+    },
+    {
+      "label": "Webdriver、WebGL标识",
+      "annotation": "2类配置，各方法均漏检",
+      "configuration_count": 2,
+      "members": [
+        "w9-rule-boundary-cdp-webdriver-only-v1",
+        "w9-stealth-boundary-webgl-pair-v1"
+      ],
+      "states_by_method": {
+        "APP_FULL": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MTC_CAP": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "A_APP_WEB_ONLY": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "A_NO_MEMORY_REL": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "A_NO_TIMEZONE_REL": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "APP_TREE": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0
+        ]
+      },
+      "counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "merged_cells": [
+        {
+          "method_start": 0,
+          "method_end_exclusive": 6,
+          "T": 0,
+          "delta_vs_full": 0
+        }
+      ]
+    }
+  ],
+  "weighted_totals": {
+    "APP_FULL": 105,
+    "A_NO_MTC_CAP": 108,
+    "A_APP_WEB_ONLY": 96,
+    "A_NO_MEMORY_REL": 96,
+    "A_NO_TIMEZONE_REL": 105,
+    "APP_TREE": 72
+  }
+}
