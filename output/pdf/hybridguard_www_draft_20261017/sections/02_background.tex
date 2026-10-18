@@ -3,7 +3,7 @@
 \subsection{Multiple Views of One Execution}
 An Android hybrid Web execution provides three complementary, partially overlapping views. Native supplies system and hardware observations; the WebView Host supplies container, configuration, provider, and layout context; App Web exposes JavaScript-visible reports inside that WebView~\cite{android2026webview}. Let $E$ denote the relevant runtime state and container context, beyond a static device model or identifier. We write these observations as $N(E)$, $H(E)$, and $W(E)$ without assuming noiseless, complete, or deterministic API outputs. Associating observations from one execution supports comparison, without implying atomic sampling, trusted collection, or hardware attestation.
 
-The implemented \appfp measurement contract catalogs 84 Native, 26 Host, and 67 App Web fields. An external browser runs a separate Web execution on the same device. \browserfp catalogs 67 fields from that execution; \pairedfp represents linked App--browser observations. These counts describe implementation catalogs, not independent information or the inputs used by every detector.
+The implemented \appfp measurement contract catalogs 84 Native, 26 Host, and 67 App Web fields. An external Browser runs a separate Web execution on the same device. \browserfp catalogs 67 fields from that execution; \pairedfp represents linked App--browser observations. These counts describe implementation catalogs, not independent information or the inputs used by every detector.
 
 \subsection{Cross-Layer Consistency as Integrity Evidence}
 Integrity here concerns report manipulation; available evidence limits which relations can be assessed. A local Web-report modification can be illustrated as
@@ -26,7 +26,7 @@ The tested manipulations alter selected resource, browser, locale, display, and 
 
 Native and Host can also be manipulated. A reference left unchanged by a tested intervention is neither a trusted root nor evidence of statistical or administrative independence. Coordinated changes across compared views, collector control, or backend compromise may evade checks; resistance to these capabilities is unproven. Such evasion differs from misses caused by limited implemented relations or observation coverage.
 
-An alarm means an applicable integrity-check condition triggered; it does not confirm fraud, account takeover, malicious intent, or attacker identity. No alert does not establish authenticity. Evaluation units are saved \emph{record positions} or applicable paired positions; repeated operations are not independent devices. Experiment roles and operation records serve evaluation, not prediction.
+An alarm means an applicable integrity-check condition triggered; it does not confirm fraud, account takeover, malicious intent, or attacker identity. No alert does not establish authenticity.
 
 \subsection{Normal Variation and Missing Evidence}
 Normal system timezone, language, orientation, and application-layout changes affect comparability, as do API precision, units, support, and container state. Semantic relations can account for unit conversion, coarse reporting, measurement intervals, and container applicability. Legitimate differences require interpretation within these constraints; they are not automatically violations or unknown outcomes.

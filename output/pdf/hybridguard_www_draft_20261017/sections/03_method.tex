@@ -11,11 +11,11 @@
 \end{figure*}
 
 \subsection{Provenance-Bound Observation Collection}
-Comparison requires associating values with the execution and collection context they describe. Under the contracts in Section~\ref{sec:setting}, Native, Host, and App Web observations retain values and field states. Original records, receipts, and association metadata support source tracing and validity checks; they provide neither authenticated measurements nor atomic sampling.
+Comparison requires associating values with the execution and collection context they describe. Under the contracts in Section~\ref{sec:setting}, Native, Host, and App Web observations retain values and field states. Original records, receipts, and association metadata support source tracing and validity checks.
 
 Current collection intervals and stability information support applicable checks. In the geometry study, Host-before/after observations surround the Web snapshot within one collection; they are not attack-before and recovery-after records. Operation labels, experimental phases, and other pre-intervention or restoration records do not enter a current prediction.
 
-An external browser remains a separate execution context. Valid linkage forms paired observations; incomplete Browser collection preserves App-only data without inventing a Browser vector.
+Valid linkage to the external Browser forms paired observations; incomplete collection preserves App-only data without inventing a Browser vector.
 
 \subsection{State-Aware Semantic Consistency}
 An executable check combines operands, source and validity requirements, measurement interpretation, applicability conditions, and a trigger. Units, coarse reporting, and time context are handled according to the relevant API semantics. For a relation-conflict check, usable and applicable evidence violating $C_j$ triggers $r_j(x)$. The pool also contains single-field conditions, within-view relations, and admitted polarities; these are not all negations of $C_j$.
@@ -48,7 +48,7 @@ P &> H_{\mathrm{view}}+\epsilon,\\
 Snapshot binding and Host stability before and after that Web snapshot are prerequisites. Stability is assessed independently of Host--Web agreement, preserving stable contradictions as evidence. Valid dimensions, pixel ratio, and scale must be finite and positive. The implemented domain requires an attached, visible View, zero padding, and an identity View transform; outside-domain measurements yield \hgstate{U}, while binding failures yield \hgstate{FAILED}. The tolerance is an engineering choice, not a platform guarantee. This specialist check remains separate from \full and its candidate pool.
 
 \subsection{Constrained Detector Construction}
-Checks need detection information, normal-data availability, and bounded alarm and inconclusive-output costs. Maximizing controlled detections alone does not enforce these requirements. The App pool comprises 50 base templates and three fixed relations: Native memory, Native timezone, and same-Web viewport. Training-side numeric encoding and threshold expansion produce 65/65/56 atoms before admission, which considers admissible polarities. Historical evaluation records do not supply thresholds; their prior use in development is disclosed.
+Checks need detection information, normal-data availability, and bounded alarm and inconclusive-output costs. Maximizing controlled detections alone does not enforce these requirements. The App pool comprises 50 base templates and three fixed relations: Native memory, Native timezone, and same-Web viewport. Training-side numeric encoding and threshold expansion produce 65/65/56 atoms before admission, which considers admissible polarities. Historical evaluation records do not supply thresholds.
 
 For selected singleton-OR clauses $S$, the sparse stage uses
 \begin{equation}
@@ -62,7 +62,7 @@ Constraints allow at most eight singleton OR clauses, complexity 16, two conditi
 Retention starts from each configuration's own sparse solution and preserves existing training detections. Additions increase semantic coverage; same-group swaps use registered higher-quality alternatives and additionally forbid new controlled-normal alarms or losses of definite controlled outputs. All proposals remain feasible. Retention does not continue optimizing Equation~\ref{eq:selection}. Evaluation uses fixed saved retention models, without selecting stages or configurations per result cell.
 
 \subsection{Additional Observation Surface: External Browser}
-The extension tests whether a separate Web execution adds evidence beyond App observations. It is an optional evaluation mode, not a sequential fallback. The retained model combines the frozen App detector with C1, which triggers on unequal, validly linked App Web and Browser offsets using the same Web sign convention.
+The extension tests whether a separate Web execution adds evidence beyond App observations. It is an optional evaluation mode, not a sequential fallback. The retained cross-endpoint extension, \full+C1, combines \full with condition C1, which triggers on unequal, validly linked App Web and Browser offsets using the same Web sign convention.
 
 Both operands require observed status, observed-value quality, and finite numeric, non-Boolean values; zero and minus one are valid. Unavailable or inapplicable operands yield \hgstate{U}; association failures retain \hgstate{FAILED} precedence. C1 has no timestamp gate and does not inherit Native timezone interval handling, leaving asynchronous normal setting changes unresolved.
 
