@@ -1,0 +1,131 @@
+HybridGuard system design — content revised for a general CS audience
+Date: 2026-10-21
+
+DELIVERABLES
+HybridGuard_system_design_layout.svg — editable vector source; text remains text.
+HybridGuard_system_design_layout.pdf — vector figure with embedded fonts.
+HybridGuard_system_design_layout.png — 2700 × 990 preview.
+Canvas: 180 × 66 mm. Existing module positions and processing topology are retained.
+
+AUDIENCE AND PURPOSE
+This revision addresses a reader who understands computer systems but has not
+read the HybridGuard paper. The figure should communicate the target (integrity
+of reported environment information), the inputs, one concrete trigger mechanism,
+and the meaning of each result without requiring the paper's internal notation.
+
+CHANGES FROM THE PREVIOUS VERSION
+- Observation binding -> Link observations.
+- Native -> Native APIs; App Web -> App Web (JS).
+- Frozen detector -> Report integrity detector; Frozen rules -> Fixed rules.
+- State-aware checks -> Integrity checks; Within-view -> Single-view checks.
+- App Web-Browser (C1) -> App Web-Browser / Compare timezone offsets.
+- T/F/U/FAILED on the connecting arrow -> Check results.
+- Rule aggregation -> Combine results, with explicit result mappings.
+- Failure precedence -> Execution errors first.
+- Alert -> Manipulation alert.
+- A failed execution now explicitly states No decision.
+- App-only and App + linked Browser replace Full App and Full App + C1 in the
+  figure; the exact model-name mapping is retained below.
+- A compact illustrative memory check uses the unused upper-left space.
+
+ILLUSTRATIVE MEMORY CHECK
+This is a synthetic example of the implemented relation, not an experimental
+measurement or a performance claim. Assume valid and applicable operands from
+one bound App record: Native memory = 4 GiB, App Web memory = 8 GiB.
+The allowed Web upper bound is 2^(ceil(log2(4))) = 4 GiB. The reported Web value
+8 GiB exceeds that bound, so the selected memory check triggers.
+
+The relation is an upper-envelope check, not an equality test. For example,
+a lower Web exposure may remain compatible. Native measurements are contextual
+observations, not trusted ground truth. The example illustrates a check result;
+another selected dependency's execution failure still takes precedence at the
+detector level. It does not assert that every manipulation creates a detectable
+cross-view conflict.
+
+RESULT SEMANTICS
+- Triggered corresponds to T after the selected condition's polarity is applied.
+- A definitely false result corresponds to F, not a guarantee of authenticity.
+- Missing, unusable or inapplicable evidence may leave a condition undetermined
+  (U). It is not automatically a false result.
+- Execution or association failure of a selected dependency yields FAILED before
+  considering triggers, even if another selected condition is T.
+- Without such failure, any T yields a manipulation alert. A nonempty selected
+  set containing only F yields no alert. The remaining unresolved cases yield
+  insufficient evidence. Empty selected sets have a distinct implementation
+  status; the illustrated deployed configurations have selected checks.
+- An alert flags potential report manipulation. It is not proof of a particular
+  attack, and no alert does not certify safety, authenticity or a device identity.
+
+OBSERVATION AND CONFIGURATION BOUNDARIES
+Native, WebView Host and App Web reports retain their values, field states,
+receipts and collection context. The App reports belong to a bound execution;
+this does not imply atomic sampling. The optional Browser is a separate Web
+execution that must be validly linked. No synchronized universal sample is
+assumed. Host-Web geometry is a separate study, not a selected Full App check.
+
+App only in the figure corresponds to Full App. App + linked Browser corresponds
+to Full App + C1. C1 compares finite, usable App Web and Browser timezone offsets
+using the same Web sign convention. C1 is active only in the paired mode. Its
+current implementation has no timestamp gate; asynchronous normal setting
+changes remain an unresolved limitation. There is no sequential fallback or
+runtime retraining. Only failures relevant to selected checks fail the detector.
+
+Candidate checks and development data independently feed constrained offline
+selection. Fixed rules and parameters govern both check evaluation and result
+combination. Construction constrains normal alarms, definite-output coverage,
+and complexity. Boxes depict logical responsibilities, not separate services.
+
+PROPOSED FIGURE CAPTION
+System design of HybridGuard. Fixed integrity checks evaluate current Android
+environment reports. Native, WebView-host and JavaScript observations from one
+App execution are associated; a validly linked external Browser supports an
+optional timezone-offset check (C1). The memory example illustrates an
+upper-bound violation on valid inputs. Only selected checks contribute to the
+result: execution or association failures take precedence and suppress a
+detection decision; otherwise any trigger yields an alert, a nonempty set of
+all definitely false conditions yields no alert, and unresolved cases yield
+insufficient evidence. No alert does not establish authenticity. Offline
+selection constrains normal alarms, definite-output coverage and complexity.
+
+MANUSCRIPT SOURCE
+Repository: Xavi-L/RBA-Cross-Device-Fingerprint
+Source commit: 6c7440ad88bfde9d4efd3ae4562492b0db14b31c
+https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/6c7440ad88bfde9d4efd3ae4562492b0db14b31c/output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex
+
+VISUAL REFERENCES
+These are examples from published WWW papers, not an official WWW diagram style.
+The redraw borrows compositional principles, not artwork or system components.
+
+[1] Junhua Su and Alexandros Kapravelos. Automatic Discovery of Emerging Browser
+Fingerprinting Techniques. WWW 2023. Figure 1, PDF page 4.
+DOI: 10.1145/3543507.3583333
+https://kapravelos.com/publications/fptechniques-www23.pdf
+Used for: a dominant horizontal workflow, numbered stages, short labels, and
+auxiliary inputs attached to the relevant processing stage.
+
+[2] Rahul Kanyal and Smruti R. Sarangi. PanoptiChrome: A Modern In-browser Taint
+Analysis Framework. WWW 2024. Figure 2, PDF page 3.
+DOI: 10.1145/3589334.3645699
+https://srsarangi.github.io/files/papers/panoptichrome.pdf
+Used for: subsystem boundaries, nested responsibilities, restrained fills, and
+different shapes for processing blocks versus data/configuration artifacts.
+
+[3] Zengrui Liu, Jimmy Dani, Yinzhi Cao, Shujiang Wu, and Nitesh Saxena.
+The First Early Evidence of the Use of Browser Fingerprinting for Online
+Tracking. WWW 2025. Figure 1, PDF page 4 (measurement methodology).
+DOI: 10.1145/3696410.3714548
+https://nsaxena.engr.tamu.edu/wp-content/uploads/sites/238/2025/03/Browser_fingerprints_in_Advertisement__Copy_.pdf
+Used as a secondary reference for compact data-source icons and short stage
+labels, with explanations left to the caption and surrounding text.
+
+REVIEW SCOPE
+A simulated first-reading review without paper context identified ambiguity in
+the detection target, T/F polarity, C1, binding context and failure handling.
+That was a design diagnostic, not a human-reader study. This revision addresses
+those gaps in the figure and caption. Actual readers may still require the
+method section for formal admissibility conditions, selection constraints and
+complete check definitions.
+
+The exported SVG/PDF were rendered for visual review. The memory example and
+result mapping were checked against the method source. Repository files were
+read for fidelity; no GitHub commit or source file was changed.

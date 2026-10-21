@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="66mm" viewBox="0 0 1800 660" role="img" aria-labelledby="title desc">
+<title id="title">HybridGuard system design</title>
+<desc id="desc">HybridGuard detects evidence of manipulated environment reports. An illustrative memory check uses valid, bound Native and App Web reports of 4 and 8 GiB: the Web report exceeds the 4 GiB upper bound and the check triggers. Current App observations and an optionally linked Browser are associated with their values, field status, and provenance. Fixed selected checks evaluate individual views, Native-Web relations, and an optional App Web-Browser UTC-offset comparison C1. For a nonempty selected set, execution or association errors take priority and produce an execution-failure status without a detection decision. Otherwise any triggered check produces a manipulation alert; all checks untriggered produce no alert; the remaining unresolved cases produce insufficient evidence. Candidate checks and development data independently feed constrained offline rule selection. App-only and App-plus-linked-Browser are alternative configurations. A no-alert result does not establish authenticity or safety.</desc>
+<style>text{font-family:"Nimbus Sans","Arial",sans-serif}</style>
+<defs><marker id="flow" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="10" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1L11 5L1 9Z" fill="#65717B"/></marker><marker id="config" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="10" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1L11 5L1 9Z" fill="#72618D"/></marker></defs>
+<rect x="0" y="0" width="1800" height="660" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<g id="illustrative-memory-check">
+<text x="20" y="30" font-size="29" font-weight="700" fill="#365C7F" text-anchor="start">Example: memory check</text>
+<text x="20" y="81" font-size="28" font-weight="400" fill="#26313B" text-anchor="start">Native: 4 GiB  ·  App Web: 8 GiB</text>
+<text x="20" y="124" font-size="27" font-weight="400" fill="#596570" text-anchor="start">Web upper bound from Native: 4 GiB</text>
+<text x="20" y="168" font-size="28" font-weight="700" fill="#365C7F" text-anchor="start">8 &gt; 4  →  check triggers</text>
+</g>
+<g id="offline-construction">
+<text x="625" y="30" font-size="29" font-weight="700" fill="#72618D" text-anchor="start">Offline construction</text>
+<path d="M625 43H811L825 57V111H625Z" fill="#F4F0F8" stroke="#72618D" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M811 43V57H825" fill="none" stroke="#72618D" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="725" y="71" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">Candidate</text>
+<text x="725" y="100" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">checks</text>
+<path d="M625 126H811L825 140V194H625Z" fill="#F4F0F8" stroke="#72618D" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M811 126V140H825" fill="none" stroke="#72618D" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="725" y="154" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">Development</text>
+<text x="725" y="183" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">data</text>
+<rect x="900" y="91" width="245" height="91" rx="3" fill="white" stroke="#72618D" stroke-width="1.8"/>
+<text x="1022.5" y="129" font-size="29" font-weight="700" fill="#26313B" text-anchor="middle">Select rules</text>
+<text x="1022.5" y="162" font-size="26" font-weight="400" fill="#26313B" text-anchor="middle">with constraints</text>
+<path d="M1220 86H1470L1490 106V190H1220Z" fill="#F4F0F8" stroke="#72618D" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M1470 86V106H1490" fill="none" stroke="#72618D" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1355" y="128" font-size="29" font-weight="700" fill="#26313B" text-anchor="middle">Fixed rules</text>
+<text x="1355" y="163" font-size="28" font-weight="400" fill="#26313B" text-anchor="middle">+ parameters</text>
+<path d="M825 77H858V114H900" fill="none" stroke="#72618D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)"/>
+<path d="M825 160H900" fill="none" stroke="#72618D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)"/>
+<path d="M1145 138H1220" fill="none" stroke="#72618D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)"/>
+<path d="M1355 190V225" fill="none" stroke="#72618D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)"/>
+</g>
+<rect x="625" y="225" width="865" height="350" rx="9" fill="#FBFCFD" stroke="#A8B1BA" stroke-width="1.7" stroke-dasharray="8 5"/>
+<rect x="644" y="207" width="357" height="33" rx="0" fill="white" stroke="none" stroke-width="1.8"/>
+<text x="650" y="232" font-size="28" font-weight="700" fill="#596570" text-anchor="start">Report integrity detector</text>
+<g id="observation-binding">
+<circle cx="32" cy="254" r="12" fill="#26313B"/>
+<text x="32" y="262.5" font-size="24" font-weight="700" fill="white" text-anchor="middle">1</text>
+<text x="54" y="264" font-size="29" font-weight="700" fill="#26313B" text-anchor="start">Link observations</text>
+<rect x="20" y="285" width="260" height="174" rx="5" fill="#EDF3F8" stroke="#91A8BC" stroke-width="1.6"/>
+<rect x="36" y="303" width="32" height="57" rx="4" fill="white" stroke="#365C7F" stroke-width="2.2"/>
+<path d="M44 310H60M40 346H64" fill="none" stroke="#365C7F" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="52" cy="353" r="2" fill="#365C7F"/>
+<text x="84" y="319" font-size="29" font-weight="700" fill="#365C7F" text-anchor="start">Android App</text>
+<text x="84" y="359" font-size="28" font-weight="400" fill="#26313B" text-anchor="start">Native APIs</text>
+<text x="84" y="397" font-size="28" font-weight="400" fill="#26313B" text-anchor="start">WebView Host</text>
+<text x="84" y="435" font-size="28" font-weight="400" fill="#26313B" text-anchor="start">App Web (JS)</text>
+<rect x="20" y="487" width="260" height="84" rx="5" fill="#EFF6F3" stroke="#7BA399" stroke-width="1.6" stroke-dasharray="6 4"/>
+<rect x="36" y="505" width="43" height="34" rx="2" fill="white" stroke="#3D756C" stroke-width="2"/>
+<path d="M36 514H79" fill="none" stroke="#3D756C" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42" cy="509.5" r="1.3" fill="#3D756C"/>
+<circle cx="48" cy="509.5" r="1.3" fill="#3D756C"/>
+<circle cx="54" cy="509.5" r="1.3" fill="#3D756C"/>
+<text x="92" y="520" font-size="29" font-weight="700" fill="#3D756C" text-anchor="start">Browser</text>
+<text x="92" y="553" font-size="25" font-weight="400" fill="#26313B" text-anchor="start">linked · optional</text>
+<rect x="350" y="344" width="240" height="161" rx="3" fill="white" stroke="#365C7F" stroke-width="2"/>
+<text x="470" y="382" font-size="30" font-weight="700" fill="#26313B" text-anchor="middle">Link records</text>
+<path d="M362 399H578" fill="none" stroke="#B5C5D3" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="470" y="440" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">Values + status</text>
+<text x="470" y="478" font-size="26" font-weight="400" fill="#26313B" text-anchor="middle">Sources + context</text>
+<path d="M280 372H315V406" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M280 529H315V406" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="315" cy="406" r="3.3" fill="#65717B"/>
+<path d="M315 406H350" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M590 406H632" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="632" cy="406" r="3.1" fill="#65717B"/>
+<path d="M632 316V487" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M632 316H650" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M632 387H650" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M632 487H650" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+</g>
+<g id="state-aware-checks">
+<circle cx="662" cy="254" r="12" fill="#26313B"/>
+<text x="662" y="262.5" font-size="24" font-weight="700" fill="white" text-anchor="middle">2</text>
+<text x="684" y="264" font-size="29" font-weight="700" fill="#26313B" text-anchor="start">Integrity checks</text>
+<rect x="650" y="289" width="360" height="53" rx="3" fill="#EDF3F8" stroke="#8BA4BA" stroke-width="1.7"/>
+<text x="670" y="328" font-size="29" font-weight="700" fill="#26313B" text-anchor="start">Single-view checks</text>
+<rect x="650" y="347" width="360" height="79" rx="3" fill="#EDF3F8" stroke="#8BA4BA" stroke-width="1.7"/>
+<text x="670" y="378" font-size="29" font-weight="700" fill="#26313B" text-anchor="start">Native–Web</text>
+<text x="670" y="411" font-size="25" font-weight="400" fill="#596570" text-anchor="start">Memory / timezone relations</text>
+<rect x="650" y="447" width="360" height="80" rx="3" fill="#EFF6F3" stroke="#7BA399" stroke-width="1.7" stroke-dasharray="6 4"/>
+<text x="670" y="479" font-size="28" font-weight="700" fill="#26313B" text-anchor="start">App Web–Browser</text>
+<text x="670" y="513" font-size="26" font-weight="400" fill="#596570" text-anchor="start">Compare timezone offsets</text>
+<path d="M1010 316H1042V487H1010" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1010 387H1042" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1042" cy="406" r="3.3" fill="#65717B"/>
+<path d="M1042 406H1190" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1115" y="385" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">Check</text>
+<text x="1115" y="437" font-size="27" font-weight="400" fill="#596570" text-anchor="middle">results</text>
+<text x="650" y="557" font-size="25" font-weight="400" fill="#596570" text-anchor="start">Modes: App only  or  App + linked Browser</text>
+</g>
+<g id="rule-aggregation">
+<circle cx="1198" cy="254" r="12" fill="#26313B"/>
+<text x="1198" y="262.5" font-size="24" font-weight="700" fill="white" text-anchor="middle">3</text>
+<text x="1220" y="264" font-size="29" font-weight="700" fill="#26313B" text-anchor="start">Combine results</text>
+<text x="1325" y="315" font-size="26" font-weight="400" fill="#596570" text-anchor="middle">Execution errors first</text>
+<rect x="1190" y="341" width="270" height="130" rx="3" fill="white" stroke="#65717B" stroke-width="2"/>
+<text x="1325" y="376" font-size="27" font-weight="700" fill="#26313B" text-anchor="middle">Any triggered</text>
+<text x="1325" y="416" font-size="26" font-weight="400" fill="#26313B" text-anchor="middle">All definitely false</text>
+<text x="1325" y="456" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">Otherwise</text>
+<path d="M1460 367H1502" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M1460 407H1502" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M1460 447H1502" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M1325 471V623H1502" fill="none" stroke="#65717B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1410" y="610" font-size="25" font-weight="400" fill="#596570" text-anchor="middle">Error</text>
+</g>
+<g id="outputs">
+<text x="1519" y="315" font-size="29" font-weight="700" fill="#26313B" text-anchor="start">Decision</text>
+<rect x="1502" y="341" width="286" height="130" rx="3" fill="white" stroke="#A8B1BA" stroke-width="1.5"/>
+<text x="1518" y="376" font-size="27" font-weight="700" fill="#B63236" text-anchor="start">Manipulation alert</text>
+<text x="1518" y="416" font-size="27" font-weight="400" fill="#26313B" text-anchor="start">No alert</text>
+<text x="1518" y="456" font-size="27" font-weight="400" fill="#26313B" text-anchor="start">Insufficient evidence</text>
+<path d="M1502 582H1774L1788 596V654H1502Z" fill="white" stroke="#A8B1BA" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M1774 582V596H1788" fill="none" stroke="#A8B1BA" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1645" y="611" font-size="27" font-weight="400" fill="#26313B" text-anchor="middle">Execution failure</text>
+<text x="1645" y="641" font-size="25" font-weight="400" fill="#596570" text-anchor="middle">No decision</text>
+</g>
+</svg>

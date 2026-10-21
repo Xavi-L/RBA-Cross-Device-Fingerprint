@@ -7,6 +7,10 @@
 
 三轮入口：[第一轮App主体](round1_app/README.md) · [第二轮双端作用](round2_paired/README.md) · [第三轮方法／Host专项／成本](round3_overview/README.md)。当前制图状态见[制图清单](../../RBA_CURRENT_FIGURE_PLAN.md)，综合证据口径见[导师报告](../../RBA_EXPERIMENT_REPORT_FOR_ADVISOR.md)及[统一证据报告](../../deliverables/app_browser_evidence_consolidation_v1/REPORT.md)。旧两轮README中的“后续轮次未执行”是当轮停止点的历史说明；跨轮当前入口以本页及制图清单为准，旧交付文件保持原样。
 
+## 已冻结方法图（2026-10-21）
+
+[System design 冻结 v1](system_design/frozen_v1/README.md)：[论文 PDF](system_design/frozen_v1/HybridGuard_system_design_layout.pdf) · [可编辑 SVG](system_design/frozen_v1/HybridGuard_system_design_layout.svg) · [PNG 预览](system_design/frozen_v1/HybridGuard_system_design_layout.png) · [中英文图注](system_design/frozen_v1/CAPTIONS.md)。含复现脚本与冻结校验清单。该图解释观测关联、检查与结果汇总；三角 overview 另行评审，本次未替换历史图或正文引用。
+
 ## 方法
 
 | 素材 | 短问题 | 图稿 | 图注、数据／映射 | 来源入口 | 正文／附录候选（导师定） |
