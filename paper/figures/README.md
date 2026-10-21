@@ -9,7 +9,9 @@
 
 ## 已冻结方法图（2026-10-21）
 
-[System design 冻结 v1](system_design/frozen_v1/README.md)：[论文 PDF](system_design/frozen_v1/HybridGuard_system_design_layout.pdf) · [可编辑 SVG](system_design/frozen_v1/HybridGuard_system_design_layout.svg) · [PNG 预览](system_design/frozen_v1/HybridGuard_system_design_layout.png) · [中英文图注](system_design/frozen_v1/CAPTIONS.md)。含复现脚本与冻结校验清单。该图解释观测关联、检查与结果汇总；三角 overview 另行评审，本次未替换历史图或正文引用。
+[System design 冻结 v1](system_design/frozen_v1/README.md)：[论文 PDF](system_design/frozen_v1/HybridGuard_system_design_layout.pdf) · [可编辑 SVG](system_design/frozen_v1/HybridGuard_system_design_layout.svg) · [PNG 预览](system_design/frozen_v1/HybridGuard_system_design_layout.png) · [中英文图注](system_design/frozen_v1/CAPTIONS.md)。含复现脚本与冻结校验清单。该图解释观测关联、检查与结果汇总。
+
+[三角 Overview 冻结 v1](overview/frozen_v1/README.md)：[论文 PDF](overview/frozen_v1/HybridGuard_overview_layout.pdf) · [可编辑 SVG](overview/frozen_v1/HybridGuard_overview_layout.svg) · [PNG 预览](overview/frozen_v1/HybridGuard_overview_layout.png) · [中英文图注](overview/frozen_v1/CAPTIONS.md) · [完整材料包](overview/frozen_v1/HybridGuard_overview_materials.zip)。保留获批的原版视觉风格，并将底部灰色点线左端抬高 3 mm；含复现脚本、设计说明和校验清单。该图介绍三个观测面及关系范围，与 system design 分工使用。
 
 ## 方法
 

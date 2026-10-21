@@ -1,0 +1,112 @@
+HybridGuard overview — approved frozen v1
+Date: 2026-10-21
+Status: author-approved frozen v1, including the requested final geometry adjustment.
+
+DELIVERABLES AND SIZE
+HybridGuard_overview_layout.svg — editable vector source; text remains text.
+HybridGuard_overview_layout.pdf — vector PDF with embedded Nimbus Roman fonts.
+HybridGuard_overview_layout.png — 2064 x 1200 preview on white.
+Canvas: 86 x 50 mm, intended for one paper column.
+Node titles: approximately 8.8 pt; supporting labels: approximately 7.9 pt.
+
+ENGLISH CAPTION
+Complementary observation surfaces for cross-checking Android environment
+reports. The solid blue Native–App Web edge denotes memory and timezone
+consistency relations used by the current detector. Host–web geometry is
+implemented and evaluated separately, outside the current Full App detector
+and its candidate pool. The dotted Native–Host edge denotes shared context
+only, not an independent detection rule. Open arrowheads indicate comparisons,
+not communication paths or mutual authentication. Association within the same
+App execution does not imply atomic sampling, and no surface is trusted ground
+truth. Single-view checks, the optional linked Browser, and the complete
+decision process appear in the system-design figure.
+
+中文图注
+对 Android 环境报告进行交叉核验的互补观测面。蓝色 Native–App Web 实线表示
+当前检测器采用的内存和时区一致性关系。Host–web 几何已实现并接受独立评估，
+但未纳入当前 Full App 检测器及其候选池。Native–Host 点线仅表示共享上下文，
+不代表独立检测规则。开放式箭头表示比较关系，不表示通信路径或相互认证。
+同一次 App 执行中的关联不意味着原子同步采样，任何观测面都不是可信真值。
+单视图检查、可选的关联 Browser 和完整判定流程见 system design 图。
+
+FINAL AUTHOR-REQUESTED ADJUSTMENT
+The gray contextual edge's left endpoint was raised by 3 mm (SVG y=364 to
+y=334). Its right endpoint is unchanged. The short label leader now meets
+the adjusted edge at (323, 353.941). The other figure elements and all text
+are identical to the approved original-style revision.
+
+VISUAL REVISION
+The original split triangle is the visual base for this revision. The intervening
+boxed version was rejected for losing the original figure's visual character.
+- Restored the original serif typography, pale colored icon backgrounds, and
+  blue/ochre/gray relationship palette with the small red Cross-check heading.
+- Removed the large node containers and long label leaders. Preserved the
+  original triangle positions, asymmetric whitespace, open comparison
+  arrowheads, and light dashed App-execution boundary.
+- Reduced each node to two lines: Native APIs / Device & OS; App Web (JS) /
+  Embedded webpage; WebView Host / App container.
+- Made the blue operation explicit with Native–web consistency / Memory and
+  timezone. The caption states that these relations are used by the detector.
+- Kept Host–web geometry / Separate study and Shared context only short in
+  the figure. The caption explains the precise implementation boundaries.
+
+SEMANTIC BOUNDARIES
+The triangle introduces observation surfaces and cross-view relations; it is
+not a complete list of the current detector's checks. Full App also includes
+single-view checks. The three edges do not represent a symmetric three-way
+validation or voting loop and provide no trusted-reference guarantee.
+
+Memory checking uses an admissible upper envelope, not raw-value equality.
+Timezone checking accounts for representation and effective-offset semantics.
+Native–web consistency therefore describes relation checking; it does not
+claim that all reported values are directly equal across views.
+
+Separate study does not mean unimplemented, planned future work, or an optional
+switch in the current detector. The Native–Host dotted connection is not an
+independent detection rule; contextual information may still be relevant to
+other selected checks.
+
+SOURCE AND VISUAL REFERENCES
+Method baseline: Xavi-L/RBA-Cross-Device-Fingerprint,
+commit 6c7440ad88bfde9d4efd3ae4562492b0db14b31c.
+https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/6c7440ad88bfde9d4efd3ae4562492b0db14b31c/output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex
+
+The preceding design review inspected these WWW figures for presentation
+principles. None is claimed as a direct topological or methodological precedent
+for this three-surface triangle. Their visual templates are not copied here.
+
+PanoptiChrome, WWW 2024, Figure 1, PDF page 2:
+https://srsarangi.github.io/files/papers/panoptichrome.pdf
+Principle: distinguish a shared environment boundary from named cross-part links.
+
+InfoMAE, WWW 2025, Figure 3, PDF page 5:
+https://arxiv.org/pdf/2504.09707
+Principle: state relationship semantics with labels and line encodings.
+
+ACK-MMEA, WWW 2023, Figures 2–3, PDF pages 3–4:
+https://arxiv.org/pdf/2304.01563
+Principle: distinguish relationship and object states visually.
+
+From Promises to Practice / BroDroid, WWW 2024, Figure 4, PDF page 5:
+https://diaowenrui.github.io/paper/www24-liu.pdf
+Principle: encode a common source and different observation contexts explicitly.
+
+REVIEW AND USE
+The exported PDF was rendered and visually inspected against the original
+triangle. Labels, icons, and relationships fit without visible overlap or
+cropping. The PDF embeds its fonts and contains vector artwork. Visual and
+semantic design checks are not a human reader study or a measured comprehension
+claim.
+
+Use the PDF at column width, maintaining its aspect ratio. Use the English
+caption with a LaTeX cross-reference to the system-design figure.
+
+The materials archive contains a portable Python generator with its source
+artwork embedded. Python 3's standard library generates the SVG. Inkscape and
+Nimbus Roman are required for matching PDF and PNG export. Run:
+  python3 build_figure.py --output-dir build
+Or generate only the SVG:
+  python3 build_figure.py --output-dir build --svg-only
+
+The node icons retain the earlier overview's adapted Tabler Icons artwork.
+The complete MIT notice is embedded in the SVG and included in the archive.
