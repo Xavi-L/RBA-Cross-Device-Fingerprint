@@ -13,6 +13,10 @@
 
 [三角 Overview 冻结 v1](overview/frozen_v1/README.md)：[论文 PDF](overview/frozen_v1/HybridGuard_overview_layout.pdf) · [可编辑 SVG](overview/frozen_v1/HybridGuard_overview_layout.svg) · [PNG 预览](overview/frozen_v1/HybridGuard_overview_layout.png) · [中英文图注](overview/frozen_v1/CAPTIONS.md) · [完整材料包](overview/frozen_v1/HybridGuard_overview_materials.zip)。保留获批的原版视觉风格，并将底部灰色点线左端抬高 3 mm；含复现脚本、设计说明和校验清单。该图介绍三个观测面及关系范围，与 system design 分工使用。
 
+## 图2语义重绘 SVG（2026-10-23）
+
+[独立修订说明](system_design/semantic_vector_v1_20261023/README.md)：[可编辑 SVG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg) · [PNG 预览](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.png) · [论文 PDF](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.pdf) · [中英文图注](system_design/semantic_vector_v1_20261023/CAPTIONS.md) · [源码与素材包](system_design/semantic_vector_v1_20261023/source_materials.zip)。按本次选定版本重建上下两层结构，用内存上限、时区比较、规则精简与覆盖补足替换重复的装饰性清单；使用原始彩色 logo 和低饱和自绘元素。含生成脚本、素材来源许可、选定构图参考、来源映射及检查记录。本项作为独立版本归档。
+
 ## 方法
 
 | 素材 | 短问题 | 图稿 | 图注、数据／映射 | 来源入口 | 正文／附录候选（导师定） |
@@ -83,3 +87,4 @@ T为报警、F为未报警、U为无法判断、FAILED为执行／绑定失败�
 前两轮仅核对文件存在、命名和图注／数据链接；它们的原始视觉验收范围分别见[第一轮检查](round1_app/CHECK.json)和[第二轮检查](round2_paired/CHECK.json)。第三轮实际视觉与数值范围单列于[第三轮检查](round3_overview/CHECK.json)，不由其他格式或旧验收推定。本轮不重做实验、不复制整套raw／日志，不创建新网站或额外发布渠道。
 
 **F11仍为可选／未制作。** 剩余工作是导师选材、章节对应与版面／文字修订；不自动开启F11、新实验、调模型或整篇论文写作。
+
