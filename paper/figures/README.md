@@ -21,6 +21,10 @@
 
 [修订说明](overview/style_preserving_v4_20261023/README.md)：[可编辑 SVG](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) · [PNG 预览](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.png) · [源码与素材包](overview/style_preserving_v4_20261023/source_materials.zip)。以当前图1 v3 的嵌套观测面与 C1 记录比较布局为底稿，复用图2的彩色 App logo，并加强技术图标和叠层页面。65 个原文字对象的内容、位置、字号和字体完整保留，主要前景框与关系连线几何保持不变；SVG 为自包含纯矢量。附原始底稿、复现脚本、来源许可和核对记录。本项作为独立修订版归档。
 
+## 图3：三项跨层参照机制（2026-10-22 原稿）
+
+[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg) · [Python 绘图源码](fig3_mechanisms/source/build_fig3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。此为原始 review-v2 的机制示意，不是第一轮实验图 F03a，也不替代其统计结果；另保留原始素材 SHA-256 与再生成说明。
+
 ## 方法
 
 | 素材 | 短问题 | 图稿 | 图注、数据／映射 | 来源入口 | 正文／附录候选（导师定） |
