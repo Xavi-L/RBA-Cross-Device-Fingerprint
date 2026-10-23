@@ -1,4 +1,26 @@
-# Figure 3 — Contextual integrity mechanisms (review v2)
+# Figure 3 — Contextual integrity mechanisms
+
+## Current style revision: v3 (2026-10-23)
+
+[Editable SVG](HybridGuard_Fig3_mechanisms_v3.svg) · [PNG preview](HybridGuard_Fig3_mechanisms_v3.png) · [Source package](HybridGuard_Fig3_mechanisms_v3_source.zip) · [Python builder](source/build_fig3_v3.py) · [Preservation checks](STYLE_V3_CHECK.json) · [Asset credits](style_v3_assets/ATTRIBUTION.md)
+
+![Figure 3 v3](HybridGuard_Fig3_mechanisms_v3.png)
+
+This revision applies the visual language of the current [Figure 1 v4](../overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) and [Figure 2](../system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg): subdued blue-grey stacked frames and saturated semantic icons. Android and vector JS identifiers distinguish Native and Web; blue memory/clock/dimension pictograms identify the three mechanisms. Green/red marks reinforce match/mismatch, and a neutral silent-bell symbol accompanies the global comparator's no-trigger outcome.
+
+The **180 × 62 mm canvas, three-column arrangement, all 41 original text nodes and their full presentation attributes, and all 24 original scientific shapes are unchanged**. Original markers, arrows, brackets, dimensions and shared Host/viewport left edges retain their coordinates. The original footnote, standalone-study scope and bilingual caption remain applicable. Backgrounds, icons, and the exceeded-bound shading are additional vector geometry; there is no raster image embedded in the SVG and no external artwork dependency. Text remains editable.
+
+Rebuild v3 from this directory:
+
+```bash
+python3 source/build_fig3_v3.py --export
+```
+
+Python 3 rebuilds the SVG and preservation-check JSON using the original v2 SVG and the included assets. `--export` also requires Inkscape and produces a 3600 × 1240 PNG. Nimbus Roman matches the original typography. A PDF can be exported from the SVG in Inkscape when needed.
+
+The source ZIP includes v3 SVG, the baseline v2 SVG, the v3 builder, selected vector assets, asset notices/manifests, captions, and preservation checks. The original v2 artwork, builder and archive below remain the original source snapshot.
+
+## Original review-v2 source archive
 
 This directory preserves Figure 3 from `HybridGuard_three_figures_v2.zip` (2026-10-22). This schematic is **not** the earlier experimental `F03a` figure.
 
@@ -24,4 +46,4 @@ pdftoppm -png -singlefile -scale-to-x 3600 -scale-to-y -1 HybridGuard_Fig3_mecha
 
 For the original Nimbus Roman typography, install the font locally (font files are not redistributed here). The ZIP also contains legacy review-v2 versions of Fig1 and Fig2, which are deliberately not duplicated: their newer variants are already archived in sibling directories `../overview/` and `../system_design/`.
 
-**Archival scope:** The editable Figure 3 SVG and its code/metadata are committed here. Original PDF and PNG exports are not part of this directory; use the export commands to regenerate them.
+**Original-v2 archival scope:** The editable v2 SVG and its code/metadata are committed here. Original v2 PDF and PNG exports are not part of this directory; use the export commands to regenerate them. The v3 SVG and preview are the current visual revision linked above.

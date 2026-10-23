@@ -23,7 +23,7 @@
 
 ## 图3：三项跨层参照机制（2026-10-22 原稿）
 
-[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg) · [Python 绘图源码](fig3_mechanisms/source/build_fig3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md) · [源码 ZIP](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2_source.zip)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。此为原始 review-v2 的机制示意，不是第一轮实验图 F03a，也不替代其统计结果；另保留原始素材 SHA-256 与再生成说明。
+[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[当前 v3 可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.svg) · [PNG 预览](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.png) · [Python 绘图源码](fig3_mechanisms/source/build_fig3_v3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md) · [v3 源码 ZIP](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3_source.zip) · [原始 v2 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。2026-10-23 的 v3 按图1／图2风格增加彩色语义 icon、Android／JS 标识与叠层卡片，保持原有 41 处文字的全部属性、24 个科学图形的几何、180 × 62 mm 画布和三栏排版不变；附[核对记录](fig3_mechanisms/STYLE_V3_CHECK.json)和[素材归属](fig3_mechanisms/style_v3_assets/ATTRIBUTION.md)。此为机制示意，不是第一轮实验图 F03a，也不替代其统计结果；原始素材与校验值继续保留。
 
 ## 方法
 
@@ -95,5 +95,3 @@ T为报警、F为未报警、U为无法判断、FAILED为执行／绑定失败�
 前两轮仅核对文件存在、命名和图注／数据链接；它们的原始视觉验收范围分别见[第一轮检查](round1_app/CHECK.json)和[第二轮检查](round2_paired/CHECK.json)。第三轮实际视觉与数值范围单列于[第三轮检查](round3_overview/CHECK.json)，不由其他格式或旧验收推定。本轮不重做实验、不复制整套raw／日志，不创建新网站或额外发布渠道。
 
 **F11仍为可选／未制作。** 剩余工作是导师选材、章节对应与版面／文字修订；不自动开启F11、新实验、调模型或整篇论文写作。
-
-
