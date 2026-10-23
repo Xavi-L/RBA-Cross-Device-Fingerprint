@@ -48,6 +48,14 @@ USED_ASSETS: dict[str, dict] = {}
 _asset_count = 0
 _text_count = 0
 
+# Shared with Figures 1 and 3; values are physical radii at the SVG page size.
+FRAME_RADIUS_MM = {"container": 1.2, "card": 0.8, "label": 0.5}
+
+
+def radius(kind):
+    value = FRAME_RADIUS_MM[kind] * 1800 / 180
+    return int(value) if value.is_integer() else value
+
 
 def el(parent, tag, **attrs):
     node = ET.SubElement(parent, f"{{{SVG_NS}}}{tag}")
@@ -66,7 +74,9 @@ def group(parent, name, label=None, layer=False, transform=None):
     return node
 
 
-def box(p, x, y, w, h, fill="white", stroke=None, sw=1.6, r=8, dash=None, **extra):
+def box(p, x, y, w, h, fill="white", stroke=None, sw=1.6, r=None, dash=None, **extra):
+    if r is None:
+        r = radius("card")
     return el(p, "rect", x=x, y=y, width=w, height=h, rx=r,
               fill=fill, stroke=stroke or C["line"], stroke_width=sw,
               stroke_dasharray=dash, **extra)
@@ -94,11 +104,13 @@ def text(p, x, y, value, size=23, weight="normal", color=None, anchor="start", *
 
 
 def label(p, x, y, w, h, value, size=25, fill=None, stroke=None):
-    box(p, x, y, w, h, fill or C["blue_fill"], stroke or C["line_dark"], r=8)
+    box(p, x, y, w, h, fill or C["blue_fill"], stroke or C["line_dark"], r=radius("label"))
     text(p, x+w/2, y+h/2+size*.34, value, size, "bold", anchor="middle")
 
 
-def stack(p, x, y, w, h, fill="white", stroke=None, step=9, levels=3, r=7):
+def stack(p, x, y, w, h, fill="white", stroke=None, step=9, levels=3, r=None):
+    if r is None:
+        r = radius("card")
     for i in range(levels-1, 0, -1):
         box(p, x+i*step, y-i*step, w, h, C["pale"], stroke, r=r)
     return box(p, x, y, w, h, fill, stroke, r=r)
@@ -138,9 +150,12 @@ def clock(p, x, y, r=15, color=None):
     path(p, f"M {x} {y-r*.65} V {y} l {r*.46} {r*.27}", stroke=color, sw=2.5)
 
 
-def mini_page(p, x, y, w=73, h=49, fill=None):
-    box(p, x, y, w, h, fill or "white", C["line_dark"], 1.4, 3)
-    box(p, x+1.1, y+1.1, w-2.2, h*.23, C["blue_fill"], "none", 0, 2)
+def mini_page(p, x, y, w=73, h=49, fill=None, r=None):
+    # Keep small pictogram artwork intact; actual page cards opt into card radii.
+    page_radius = 3 if r is None else r
+    header_radius = 2 if r is None else max(0, r - 1.1)
+    box(p, x, y, w, h, fill or "white", C["line_dark"], 1.4, page_radius)
+    box(p, x+1.1, y+1.1, w-2.2, h*.23, C["blue_fill"], "none", 0, header_radius)
     line(p, x, y+h*.25, x+w, y+h*.25, C["line"], 1)
     for i in range(3):
         el(p, "circle", cx=x+5+i*4, cy=y+h*.12, r=1.25, fill=C["fine"])
@@ -234,7 +249,7 @@ def inline_asset(p, name, x, y, w, h=None, family="brands"):
 
 def page_content(p, x, y, w, h, logo=None):
     """Recognizable web-page content, not a decorative checklist."""
-    mini_page(p, x, y, w, h)
+    mini_page(p, x, y, w, h, r=radius("card"))
     picx,picy,picw,pich = x+14,y+h*.28,w*.34,h*.44
     box(p,picx,picy,picw,pich,"#DDE7F1",C["fine"],.8,4)
     el(p,"circle",cx=picx+picw*.67,cy=picy+pich*.26,r=pich*.1,fill="white")
@@ -251,7 +266,7 @@ def page_content(p, x, y, w, h, logo=None):
 
 def draw_top(root):
     p = group(root,"layer-selection","01 · Choose checks",True)
-    box(p,18,28,1764,303,C["panel"],C["line"],1.7,8,"9 6")
+    box(p,18,28,1764,303,C["panel"],C["line"],1.7,radius("container"),"9 6")
     label(p,43,5,300,47,"(a)  Choose checks",29,"white")
 
     records = group(p,"development-records","Normal and modified development records")
@@ -282,38 +297,38 @@ def draw_top(root):
     text(cand,510,301,"···",29,"bold",anchor="middle")
     arrow(p,650,180,681,height=18,head=15)
 
-    box(p,684,49,746,268,"none",C["fine"],1.6,11,"9 6")
+    box(p,684,49,746,268,"none",C["fine"],1.6,radius("container"),"9 6")
     filtering = group(p,"filter-candidates","Filter candidates using available development data")
-    box(filtering,701,79,244,228,C["pale"],C["fine"],1.2,11,"7 5")
+    box(filtering,701,79,244,228,C["pale"],C["fine"],1.2,radius("container"),"7 5")
     label(filtering,761,59,133,38,"Filter",25)
     path(filtering,"M 706 146 H 757 L 738 172 V 190 L 725 198 V 172 Z",fill=C["funnel_fill"],stroke=C["icon_amber"],sw=1.5)
-    box(filtering,765,110,167,68,"white",C["line"],1.2,5)
+    box(filtering,765,110,167,68,"white",C["line"],1.2,radius("card"))
     el(filtering,"circle",cx=803,cy=137,r=16,fill=C["blue_fill"],stroke=C["icon_blue"],stroke_width=4)
     line(filtering,791,151,781,162,C["icon_blue"],5)
     document(filtering,797,127,13,20,C["icon_blue"])
     line(filtering,840,117,840,170,C["fine"],1)
     text(filtering,851,137,"Usable",21,"bold")
     text(filtering,851,162,"data",21,"bold")
-    box(filtering,765,184,167,59,"white",C["line"],1.2,5)
+    box(filtering,765,184,167,59,"white",C["line"],1.2,radius("card"))
     document(filtering,778,202,22,29,C["icon_blue"])
     document(filtering,798,190,26,34,C["icon_blue"])
     text(filtering,851,209,"Enough",21,"bold")
     text(filtering,851,233,"data",21,"bold")
     document(filtering,798,250,26,30,C["line_dark"])
     cross(filtering,861,266,27)
-    box(filtering,749,286,157,23,C["rose_fill"],"none",0,5)
+    box(filtering,749,286,157,23,C["rose_fill"],"none",0,radius("label"))
     text(filtering,827.5,303,"Not selected",18,"bold",anchor="middle")
     arrow(filtering,946,180,982,height=16,head=14)
     check(filtering,957,155,19,circle=True)
 
     select = group(p,"select-sparse-set","Select a smaller set of checks")
-    box(select,986,110,192,188,C["panel"],C["fine"],1.2,10,"7 5")
+    box(select,986,110,192,188,C["panel"],C["fine"],1.2,radius("container"),"7 5")
     label(select,998,59,146,38,"Select",25)
     for x,kind in [(1001,"memory"),(1058,"time"),(1115,"page")]:
         token(select,x,123,kind,49,47)
     for x in [1025,1082,1139]:
         flow_line(select,f"M {x} 176 L 1082 210",C["flow"],1.4)
-    box(select,1018,216,130,56,C["blue_fill"],C["line"],1.3,8)
+    box(select,1018,216,130,56,C["blue_fill"],C["line"],1.3,radius("card"))
     token(select,1027,222,"memory",49,44)
     token(select,1083,222,"time",49,44)
     text(select,1159,244,"···",26,"bold",anchor="middle")
@@ -321,9 +336,9 @@ def draw_top(root):
     arrow(p,1180,180,1204,height=16,head=13)
 
     refine = group(p,"refine-coverage","Retain detections and add coverage")
-    box(refine,1206,80,222,189,C["pale"],C["fine"],1.2,10,"7 5")
+    box(refine,1206,80,222,189,C["pale"],C["fine"],1.2,radius("container"),"7 5")
     label(refine,1254,59,145,38,"Refine",25)
-    box(refine,1220,139,106,67,"white",C["line"],1.3,7)
+    box(refine,1220,139,106,67,"white",C["line"],1.3,radius("card"))
     token(refine,1227,149,"memory",43,46)
     clock(refine,1297,173,15)
     text(refine,1341,186,"+",37,"bold",C["sage"],"middle")
@@ -342,12 +357,12 @@ def draw_top(root):
 
 def draw_inputs(root):
     p = group(root,"layer-current-records","02 · Current App and Browser records",True)
-    box(p,37,404,654,470,C["panel"],C["line"],1.6,12)
-    box(p,50,421,624,286,"white",C["fine"],1.3,12)
+    box(p,37,404,654,470,C["panel"],C["line"],1.6,radius("container"))
+    box(p,50,421,624,286,"white",C["fine"],1.3,radius("container"))
     label(p,50,404,217,35,"Current records",24)
 
     apps = group(p,"app-logos","Illustrative App logos")
-    box(apps,75,448,286,170,"white",C["line"],1.4,10)
+    box(apps,75,448,286,170,"white",C["line"],1.4,radius("card"))
     label(apps,82,446,100,33,"Apps",23)
     for row,names in enumerate([["wechat","whatsapp","instagram"],["tiktok","youtube","alipay"]]):
         for col,name in enumerate(names):
@@ -360,7 +375,7 @@ def draw_inputs(root):
     line(p,380,446,380,620,C["fine"],1.2,"6 5")
 
     info = group(p,"device-info","Bound Native device information")
-    box(info,75,628,574,68,C["pale"],C["fine"],1.2,8,"7 5")
+    box(info,75,628,574,68,C["pale"],C["fine"],1.2,radius("card"),"7 5")
     inline_asset(info,"phone_android",99,637,49,49,"icons")
     text(info,183,655,"Device info",23,"bold")
     for x,y,w in [(183,666,101),(183,679,69),(330,666,175),(330,679,108)]:
@@ -368,34 +383,34 @@ def draw_inputs(root):
     inline_asset(info,"link",439,609,44,44,"icons")
 
     browser = group(p,"browser-web","Optional linked external browser pages")
-    box(browser,50,722,624,140,"white",C["line"],1.3,11)
+    box(browser,50,722,624,140,"white",C["line"],1.3,radius("container"))
     label(browser,50,722,185,35,"Browser web",23)
-    box(browser,257,727,112,27,C["blue_fill"],C["line"],1.1,5)
+    box(browser,257,727,112,27,C["blue_fill"],C["line"],1.1,radius("label"))
     text(browser,313,747,"Optional",20,anchor="middle")
     page_content(browser,454,740,200,79,"edge")
     page_content(browser,411,755,167,79,"firefox")
-    box(browser,201,768,286,76,C["pale"],C["fine"],1.1,6)
+    box(browser,201,768,286,76,C["pale"],C["fine"],1.1,radius("card"))
     page_content(browser,184,777,287,75,"chrome")
 
 
 def draw_checks(root):
     p = group(root,"layer-run-checks","03 · Run saved checks on current data",True)
-    box(p,767,404,608,470,C["panel"],C["line"],1.6,12)
+    box(p,767,404,608,470,C["panel"],C["line"],1.6,radius("container"))
     label(p,784,384,280,44,"Run saved checks",27,"white")
 
     mem = group(p,"memory-example","Memory: 3 GiB gives 4 GiB cap; Web 8 GiB exceeds it")
-    box(mem,784,440,577,155,"white",C["line"],1.3,9)
+    box(mem,784,440,577,155,"white",C["line"],1.3,radius("card"))
     label(mem,784,438,212,34,"Memory example",23)
     inline_asset(mem,"phone_android",796,492,53,65,"icons")
     text(mem,865,519,"Device:",22,"bold")
     text(mem,865,546,"3 GiB",22,"bold")
     arrow(mem,947,527,991,height=15,head=15)
-    box(mem,999,477,72,55,C["blue_fill"],C["line"],1.2,5)
+    box(mem,999,477,72,55,C["blue_fill"],C["line"],1.2,radius("label"))
     text(mem,1035,499,"Limit:",20,"bold",anchor="middle")
     text(mem,1035,522,"4 GiB",20,"bold",anchor="middle")
     line(mem,1035,534,1035,582,C["fine"],1.1,"5 4")
     text(mem,1186,493,"Web: 8 GiB",23,"bold",anchor="middle")
-    mini_page(mem,1091,505,187,65)
+    mini_page(mem,1091,505,187,65,r=radius("card"))
     box(mem,1101,533,164,22,C["memory_blue"],C["icon_blue"],1,0)
     box(mem,1183,533,82,22,C["memory_red"],C["rose"],1,0)
     line(mem,1183,519,1183,575,C["rose"],2,"5 4")
@@ -407,9 +422,9 @@ def draw_checks(root):
     text(mem,1321,567,"limit",18.5,"bold",C["rose"],"middle")
 
     c1 = group(p,"optional-browser-check","Optional linked App Web–Browser timezone check")
-    box(c1,784,608,577,107,"white",C["fine"],1.3,8,"7 5")
+    box(c1,784,608,577,107,"white",C["fine"],1.3,radius("card"),"7 5")
     label(c1,784,608,195,34,"Browser check",23)
-    box(c1,1256,615,87,26,C["blue_fill"],C["line"],1,5)
+    box(c1,1256,615,87,26,C["blue_fill"],C["line"],1,radius("label"))
     text(c1,1299.5,634,"Optional",18,anchor="middle")
     page_content(c1,809,651,96,56)
     clock(c1,895,696,16)
@@ -426,10 +441,10 @@ def draw_checks(root):
     text(c1,1240,693,"UTC+8",20)
 
     tz = group(p,"timezone-example","Equal and unequal effective time-zone offsets")
-    box(tz,784,726,577,137,"white",C["fine"],1.3,8,"7 5")
+    box(tz,784,726,577,137,"white",C["fine"],1.3,radius("card"),"7 5")
     label(tz,784,726,229,34,"Time zone example",23)
-    box(tz,802,762,544,91,"white",C["line"],1.1,6)
-    box(tz,803,763,542,32,"#E6EFF4","none",0,5)
+    box(tz,802,762,544,91,"white",C["line"],1.1,radius("card"))
+    box(tz,803,763,542,32,"#E6EFF4","none",0,radius("card")-1)
     line(tz,1026,763,1026,852,C["fine"],1)
     line(tz,1247,763,1247,852,C["fine"],1)
     line(tz,803,796,1345,796,C["fine"],1)
@@ -449,21 +464,21 @@ def draw_checks(root):
 
 def draw_results(root):
     p = group(root,"layer-results","04 · Evaluation results and execution states",True)
-    box(p,1441,404,321,470,"white",C["line"],1.6,12)
+    box(p,1441,404,321,470,"white",C["line"],1.6,radius("container"))
     label(p,1455,384,150,44,"Results",27,"white")
     for y,title,asset,fill,stroke in [
         (444,"Alert","high_priority",C["rose_fill"],C["rose"]),
         (529,"No alert","ok",C["sage_fill"],C["sage"]),
         (614,"Cannot tell","questions",C["blue_fill"],C["line"]),
     ]:
-        box(p,1504,y,241,74,fill,stroke,1.4,10)
+        box(p,1504,y,241,74,fill,stroke,1.4,radius("card"))
         inline_asset(p,asset,1520,y+8,57,57,"icons")
         text(p,1607,y+47,title,25,"bold")
     line(p,1456,711,1750,711,C["fine"],1.2,"6 5")
-    box(p,1461,725,284,56,C["pale"],C["line_dark"],1.2,8)
+    box(p,1461,725,284,56,C["pale"],C["line_dark"],1.2,radius("card"))
     document(p,1490,733,31,40,C["line_dark"])
     text(p,1554,761,"No checks",23,"bold")
-    box(p,1461,793,284,58,"#FCF6E9",C["amber"],1.2,8)
+    box(p,1461,793,284,58,"#FCF6E9",C["amber"],1.2,radius("card"))
     inline_asset(p,"warning",1483,798,48,48,"icons")
     text(p,1554,831,"Check failed",23,"bold")
 
@@ -513,7 +528,7 @@ def create_svg():
         path(marker,f"M 0 0 L {size} {size/2} L 0 {size} Z",fill=color,stroke="none",sw=0)
     bg = group(root,"layer-background","00 · Page and band frames",True)
     box(bg,0,0,1800,900,"white","none",0,0)
-    box(bg,18,370,1764,516,C["panel"],C["line"],1.7,8,"9 6")
+    box(bg,18,370,1764,516,C["panel"],C["line"],1.7,radius("container"),"9 6")
     label(bg,43,348,353,47,"(b)  Check current data",29,"white")
     draw_top(root)
     draw_inputs(root)
@@ -547,6 +562,13 @@ def validate(svg_path, root):
     for name in ["wechat","whatsapp","instagram","tiktok","youtube","alipay","chrome","firefox","edge"]:
         assert f"assets/brands/{name}.svg" in USED_ASSETS
     return {
+        "frame_corner_style": {
+            "date": "2026-10-23",
+            "radius_mm": FRAME_RADIUS_MM,
+            "svg_units_per_mm": 10,
+            "header_fill_rule": "Card radius minus the existing inset",
+            "scope": "Container, card/page, and label rectangles only; pictograms and data bars retain their artwork",
+        },
         "svg": {"file":svg_path.name,"viewBox":[0,0,1800,900],"physical_size_mm":[180,90],
                 "sha256":hashlib.sha256(svg_path.read_bytes()).hexdigest(),
                 "editable_text_elements":len(text_nodes),"native_svg_elements":sum(1 for _ in root.iter()),
@@ -571,6 +593,11 @@ def write_source_map():
         "status":"editable reconstruction of the user-selected visual concept",
         "repository":"Xavi-L/RBA-Cross-Device-Fingerprint",
         "source_commit":"fd0701f41657068bd56290447901dd24b827bfc1",
+        "corner_radius_revision": {
+            "date": "2026-10-23", "base_commit": "72a7b15ab3ec78eeb6315891e7ddc3a33550880d",
+            "radius_mm": FRAME_RADIUS_MM,
+            "scope": "Normalize similar frames across Figures 1–3; preserve bounds, text, colors, and connectors.",
+        },
         "color_revision":{
             "date":"2026-10-23", "base_commit":"98380b2e67ea7e4470ac97357dbae13abda0ff29",
             "scope":"Saturated semantic icons; geometry, text, connectors, and brand assets preserved.",
@@ -622,6 +649,10 @@ def main():
                              "pdf":{"page_size_mm":[180,90],"vector_export":True},
                              "inkscape_version":subprocess.check_output([inkscape,"--version"],text=True,
                                                                           stderr=subprocess.DEVNULL).strip()}
+        for suffix in ("png", "pdf"):
+            exported = ROOT / (STEM + "." + suffix)
+            report["exports"][suffix].update(
+                file=exported.name, sha256=hashlib.sha256(exported.read_bytes()).hexdigest())
     else:
         report["exports"] = {"skipped":True}
     # Human/render checks are a separate field so a rebuild never claims unseen visual review.

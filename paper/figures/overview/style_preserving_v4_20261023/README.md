@@ -19,7 +19,13 @@ The source is `../revision_v3_20261022/HybridGuard_Fig1_source_v3.zip`, read at 
 
 This is the **nested observation-surface v3 layout**: Native APIs and WebView Host / App Web on the left, separate external Browser above the C1 comparison on the right. It is not a reconstruction from the older triangle overview or the reverted icon-vector redraw.
 
-The builder verifies that all original visible text strings and their complete SVG attributes are unchanged, including positions, size, font selections, color, and anchors. The original page dimensions, all nine main foreground rectangles, and every comparison / record-excerpt relation retain their geometry. The original line widths, dashed/dotted patterns, and arrow endpoints are preserved.
+The builder verifies that all original visible text strings and their complete SVG attributes are unchanged, including positions, size, font selections, color, and anchors. The original page dimensions and all nine main foreground rectangles retain their positions and sizes. Every comparison / record-excerpt relation retains its geometry. The original line widths, dashed/dotted patterns, and arrow endpoints are preserved. Frame corner radii follow the shared policy below.
+
+## Shared corner radii — 2026-10-23
+
+Comparable frames now use the same printed radius as Figures 2 and 3: **1.2 mm for enclosing containers, 0.8 mm for cards, and 0.5 mm for labels and detail/status strips**. The original 178 mm page width is retained; `FRAME_RADIUS_MM` and `radius()` convert these values to SVG units. Stacked pages match the foreground card. Header fills use the matching card radius minus their existing 1-unit inset.
+
+This refinement changes only `rx`/`ry` on 33 specified frame rectangles. It preserves every element's position, size, color, order and visible text. Title knockouts, the canvas, neutral text backdrop, JS badge, brands and pictogram artwork retain their existing shapes. The builder checks this restriction before export; the SVG, both PNG previews, check record and source ZIP are synchronized.
 
 ## Visual changes
 

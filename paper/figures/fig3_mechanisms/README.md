@@ -8,7 +8,21 @@
 
 This revision applies the visual language of the current [Figure 1 v4](../overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) and [Figure 2](../system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg): subdued blue-grey stacked frames and saturated semantic icons. Android and vector JS identifiers distinguish Native and Web; blue memory/clock/dimension pictograms identify the three mechanisms. Green/red marks reinforce match/mismatch, and a neutral silent-bell symbol accompanies the global comparator's no-trigger outcome.
 
-The **180 × 62 mm canvas, three-column arrangement, all 41 original text nodes and their full presentation attributes, and all 24 original scientific shapes are unchanged**. Original markers, arrows, brackets, dimensions and shared Host/viewport left edges retain their coordinates. The original footnote, standalone-study scope and bilingual caption remain applicable. Backgrounds, icons, and the exceeded-bound shading are additional vector geometry; there is no raster image embedded in the SVG and no external artwork dependency. Text remains editable.
+The **180 × 62 mm canvas, three-column arrangement, all 41 original text nodes and their full presentation attributes, and the bounds and relationships of all 24 original scientific shapes are unchanged**. The corner-radius refinement below changes only the Host/viewport foreground rectangles' `rx` attributes within that original scientific geometry. Original markers, arrows, brackets, dimensions and shared Host/viewport left edges retain their coordinates. The original footnote, standalone-study scope and bilingual caption remain applicable. Backgrounds, icons, and the exceeded-bound shading are additional vector geometry; there is no raster image embedded in the SVG and no external artwork dependency. Text remains editable.
+
+### Shared corner-radius refinement — 2026-10-23
+
+The current Figures 1, 2 and 3 share a physical corner-radius scale, so equivalent frames keep the same curvature at their intended print sizes. This SVG uses **10 units per millimetre**.
+
+| Frame role | Radius | Figure 3 use |
+| --- | --- | --- |
+| Large container | 1.2 mm / 12 units | Shared policy; Figure 3 has no enclosing container frame. |
+| Content card or page | 0.8 mm / 8 units | All four mechanism cards and their backing layers, Host/viewport windows and their backing layers, and match/differ tiles. |
+| Label or highlight | 0.5 mm / 5 units | Outcome highlights, takeaway bands, standalone-study tag, and footer. |
+
+Card header fills use the matching **7.2-unit inset radius**. The Host and viewport chrome is clipped to matching **6.4-unit inset radii**, preventing square header or overflow fills from extending into rounded corners. These clips do not move or resize any artwork. Memory/ruler bars, icons, logos, text, colors, paths, arrows and scientific dimensions retain their original values.
+
+`FRAME_RADIUS_MM` in the builder records the shared scale. Its preservation check permits only the two specified foreground rectangles' `rx` changes; every other original scientific geometry attribute remains checked. The SVG, PNG preview, validation JSON and source ZIP are synchronized with this refinement.
 
 Rebuild v3 from this directory:
 

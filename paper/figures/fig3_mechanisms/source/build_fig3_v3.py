@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Restyle the original Fig3 without changing text or scientific geometry.
+"""Restyle Fig3, preserving text and scientific bounds while unifying frame radii.
 
 Pure vector artwork. Python standard library only; Inkscape exports previews.
 Run from any directory: python3 source/build_fig3_v3.py [--export]
@@ -30,10 +30,22 @@ C = dict(line="#718E9D", dark="#526E7F", fine="#9DB1BA",
          pale="#F4F7F9", panel="#FAFCFD", blue_fill="#EDF4F8",
          blue="#1976D2", green="#16A34A", red="#E53935",
          gold="#F4B52C", green_fill="#EFF6F0", red_fill="#FCF0EF")
+# Shared physical frame scale across the current Figures 1, 2 and 3.
+# The 1800-unit-wide canvas is 180 mm wide: 10 SVG units per millimetre.
+FRAME_RADIUS_MM = {"container": 1.2, "card": 0.8, "label": 0.5}
+SVG_UNITS_PER_MM = 10
+SCIENTIFIC_FRAME_BOUNDS = (("1280", "171", "265", "185"),
+                           ("1280", "212", "425", "104"))
 PANEL_IDS = ("device-context", "legitimate-cochange", "container-context")
 GEOMETRY_KEYS = ("d", "points", "x", "y", "width", "height", "rx", "ry",
                  "x1", "y1", "x2", "y2", "cx", "cy", "r",
                  "marker-start", "marker-end", "stroke-dasharray", "stroke-width")
+
+
+def frame_radius(role, inset=0):
+    value = round(FRAME_RADIUS_MM[role] * SVG_UNITS_PER_MM - inset, 6)
+    assert value >= 0, "A frame inset exceeds its corner radius"
+    return int(value) if value.is_integer() else value
 
 
 def el(parent, tag, **attrs):
@@ -48,7 +60,9 @@ def group(parent, name):
     return el(parent, "g", id=name)
 
 
-def rect(parent, x, y, w, h, fill="white", stroke=None, sw=1.5, rx=5, **attrs):
+def rect(parent, x, y, w, h, fill="white", stroke=None, sw=1.5, rx=None, **attrs):
+    if rx is None:
+        rx = frame_radius("card")
     return el(parent, "rect", x=x, y=y, width=w, height=h, rx=rx,
               fill=fill, stroke=stroke or C["line"], stroke_width=sw, **attrs)
 
@@ -83,7 +97,8 @@ def card(parent, name, x, y, w, h, band=True, fill="white", levels=2,
              C["pale"], C["fine"], 1.25)
     rect(g, x, y, w, h, fill, C["line"], 1.6)
     if band:
-        rect(g, x + .8, y + .8, w - 1.6, header_h - 1, C["blue_fill"], "none", 0, 4)
+        rect(g, x + .8, y + .8, w - 1.6, header_h - 1,
+             C["blue_fill"], "none", 0, frame_radius("card", inset=.8))
         if header_rule:
             path(g, f"M{x} {y+header_h}H{x+w}", C["fine"], 1.05)
     return g
@@ -124,11 +139,39 @@ def geometry_snapshot(svg):
             for name in PANEL_IDS}
 
 
+def expected_rounded_geometry(before):
+    """Allow only rx on the two original Host/viewport foreground rectangles.
+
+    All coordinates, widths, heights, scientific paths and other attributes stay
+    in the comparison. The original v2 baseline is never rewritten.
+    """
+    expected = copy.deepcopy(before)
+    matched = []
+    for tag, attrs in expected["container-context"]:
+        bounds = tuple(attrs.get(k) for k in ("x", "y", "width", "height"))
+        if tag == "rect" and bounds in SCIENTIFIC_FRAME_BOUNDS:
+            attrs["rx"] = str(frame_radius("card"))
+            matched.append(bounds)
+    assert sorted(matched) == sorted(SCIENTIFIC_FRAME_BOUNDS)
+    return expected
+
+
+def rounded_chrome_clip(defs, name, bounds, inset=1.6):
+    """Clip only inset window artwork; the original window bounds stay exact."""
+    x, y, w, h = map(float, bounds)
+    clip = el(defs, "clipPath", id=name, clipPathUnits="userSpaceOnUse")
+    el(clip, "rect", x=x + inset, y=y + inset,
+       width=w - 2 * inset, height=h - 2 * inset,
+       rx=frame_radius("card", inset=inset))
+    return f"url(#{name})"
+
+
 def build(export=False):
     baseline = ET.parse(BASE).getroot()
     svg = copy.deepcopy(baseline)
     text_before = text_snapshot(baseline)
     geometry_before = geometry_snapshot(baseline)
+    geometry_expected = expected_rounded_geometry(geometry_before)
     defs = next(n for n in svg if n.tag == "{" + NS + "}defs")
 
     for name in ("brand-android", "color-memory", "color-clock", "color-dimensions",
@@ -173,14 +216,14 @@ def build(export=False):
     under_a = prepend(a, group(a, "device-card-depth"))
     card(under_a, "global-threshold-card", 18, 117, 548, 169, header_h=32, header_rule=False)
     card(under_a, "native-envelope-card", 18, 300, 548, 204, header_h=37, header_rule=False)
-    rect(under_a, 23, 243, 276, 37, C["pale"], "none", 0, 4)
-    rect(under_a, 23, 452, 276, 39, C["red_fill"], "none", 0, 4)
+    rect(under_a, 23, 243, 276, 37, C["pale"], "none", 0, frame_radius("label"))
+    rect(under_a, 23, 452, 276, 39, C["red_fill"], "none", 0, frame_radius("label"))
     rect(under_a, 76, 201, 404, 18, "#C8E2FF", C["blue"], 1, 1)
     rect(under_a, 480, 201, 55, 18, C["pale"], C["fine"], 1, 1)
     rect(under_a, 76, 381, 202, 18, "#C8E2FF", C["blue"], 1, 1)
     rect(under_a, 278, 381, 202, 18, "#FCA5A5", C["red"], 1, 1)
     rect(under_a, 480, 381, 55, 18, C["pale"], C["fine"], 1, 1)
-    rect(under_a, 20, 524, 554, 38, C["blue_fill"], "none", 0, 4)
+    rect(under_a, 20, 524, 554, 38, C["blue_fill"], "none", 0, frame_radius("label"))
     icons_a = group(a, "device-semantic-icons")
     glyph(icons_a, "color-memory", 511, 25, 58)
     glyph(icons_a, "brand-android", 374, 67, 28)
@@ -196,14 +239,14 @@ def build(export=False):
     under_b = prepend(b, group(b, "timezone-card-depth"))
     card(under_b, "normal-system-change-card", 616, 117, 560, 164)
     card(under_b, "web-only-edit-card", 616, 300, 560, 154)
-    rect(under_b, 1072, 171, 91, 88, C["green_fill"], "none", 0, 5)
-    rect(under_b, 1072, 354, 91, 88, C["red_fill"], "none", 0, 5)
+    rect(under_b, 1072, 171, 91, 88, C["green_fill"], "none", 0, frame_radius("card"))
+    rect(under_b, 1072, 354, 91, 88, C["red_fill"], "none", 0, frame_radius("card"))
     for x in (826, 1003):
         for y in (190, 240):
             clock_state(under_b, x, y, C["green"], "#F7FCF8")
         clock_state(under_b, x, 373, C["fine"], C["pale"])
         clock_state(under_b, x, 423, C["red"], "#FFF9F8")
-    rect(under_b, 620, 524, 558, 38, C["blue_fill"], "none", 0, 4)
+    rect(under_b, 620, 524, 558, 38, C["blue_fill"], "none", 0, frame_radius("label"))
     icons_b = group(b, "timezone-semantic-icons")
     glyph(icons_b, "color-clock", 1113, 25, 58)
     for y in (175, 358):
@@ -213,19 +256,23 @@ def build(export=False):
     glyph(icons_b, "match", 1100, 174, 32)
     glyph(icons_b, "mismatch-symbol", 1100, 357, 32)
 
-    # C — the front Host/viewport rectangles and their shared x=1280 edge are exact.
+    # C — preserve Host/viewport bounds and shared x=1280; change only frame rx.
     under_c = prepend(c, group(c, "container-card-depth"))
-    rect(under_c, 1223, 62, 250, 39, "#FFF8E3", "none", 0, 4)
+    rect(under_c, 1223, 62, 250, 39, "#FFF8E3", "none", 0, frame_radius("label"))
     for step in (2, 1):
         rect(under_c, 1280 + step * 6, 171 - step * 6, 265, 185,
-             C["pale"], C["fine"], 1.35, 0)
-    rect(under_c, 1367, 484, 272, 35, C["red_fill"], "none", 0, 4)
-    rect(under_c, 1220, 524, 558, 38, C["blue_fill"], "none", 0, 4)
+             C["pale"], C["fine"], 1.35, frame_radius("card"))
+    rect(under_c, 1367, 484, 272, 35, C["red_fill"], "none", 0, frame_radius("label"))
+    rect(under_c, 1220, 524, 558, 38, C["blue_fill"], "none", 0, frame_radius("label"))
     host_front = next(n for n in c if n.tag == "{" + NS + "}rect" and n.get("width") == "265")
     viewport_front = next(n for n in c if n.tag == "{" + NS + "}rect" and n.get("width") == "425")
+    host_front.set("rx", str(frame_radius("card")))
+    viewport_front.set("rx", str(frame_radius("card")))
 
     # Host chrome is behind the viewport; the viewport keeps its original dimensions.
     host_chrome = group(c, "host-container-chrome")
+    host_chrome.set("clip-path", rounded_chrome_clip(
+        defs, "f3-host-chrome-clip", SCIENTIFIC_FRAME_BOUNDS[0]))
     rect(host_chrome, 1281.6, 172.6, 261.8, 26, C["blue_fill"], "none", 0, 0)
     path(host_chrome, "M1282 199H1543", C["fine"], 1)
     glyph(host_chrome, "color-phone", 1477, 175, 21)
@@ -236,11 +283,13 @@ def build(export=False):
     viewport_depth = group(c, "viewport-page-depth")
     for step in (2, 1):
         rect(viewport_depth, 1280 + step * 6, 212 - step * 6, 425, 104,
-             C["pale"], C["fine"], 1.35, 0)
+             C["pale"], C["fine"], 1.35, frame_radius("card"))
     c.remove(viewport_depth)
     c.insert(list(c).index(viewport_front), viewport_depth)
 
     viewport_chrome = group(c, "viewport-page-chrome")
+    viewport_chrome.set("clip-path", rounded_chrome_clip(
+        defs, "f3-viewport-chrome-clip", SCIENTIFIC_FRAME_BOUNDS[1]))
     rect(viewport_chrome, 1546.5, 213.6, 156.9, 100.8, "#FDE3E1", "none", 0, 0)
     rect(viewport_chrome, 1281.6, 213.6, 421.8, 15.4, "#F3EAD7", "none", 0, 0)
     for x in (1290, 1297, 1304):
@@ -259,13 +308,13 @@ def build(export=False):
 
     # Neutral footer backing: original divider and full explanatory footnote stay.
     footer = group(svg, "footer-backing")
-    rect(footer, 20, 586, 1760, 31, C["pale"], "none", 0, 3)
+    rect(footer, 20, 586, 1760, 31, C["pale"], "none", 0, frame_radius("label"))
     svg.remove(footer)
     index = next(i for i, n in enumerate(svg) if n.tag == "{" + NS + "}path" and n.get("d") == "M30 578L1770 578")
     svg.insert(index, footer)
 
     assert text_before == text_snapshot(svg), "An original text node or its presentation changed"
-    assert geometry_before == geometry_snapshot(svg), "An original scientific geometry changed"
+    assert geometry_expected == geometry_snapshot(svg), "Scientific geometry changed beyond the two permitted frame radii"
     assert dict(baseline.attrib) == dict(svg.attrib), "Canvas or accessibility metadata changed"
     assert not list(svg.iter("{" + NS + "}image")), "Raster artwork is not permitted"
     all_ids = [n.get("id") for n in svg.iter() if n.get("id")]
@@ -281,7 +330,7 @@ def build(export=False):
     # The serialized file is checked again, not only the in-memory DOM.
     reread = ET.parse(output).getroot()
     assert text_before == text_snapshot(reread)
-    assert geometry_before == geometry_snapshot(reread)
+    assert geometry_expected == geometry_snapshot(reread)
     checks = {
         "figure": STEM,
         "source_commit": "8d92b73e85aadf8ce2ce0ff5186d49122da6421f",
@@ -290,7 +339,23 @@ def build(export=False):
         "visible_text_nodes": len(text_before),
         "all_original_text_and_presentation_attributes_unchanged": True,
         "original_scientific_shapes": sum(map(len, geometry_before.values())),
-        "all_original_scientific_geometry_unchanged": True,
+        "all_original_scientific_geometry_except_two_frame_radii_unchanged": True,
+        "corner_radius_refinement": {
+            "date": "2026-10-23",
+            "frame_radius_mm": FRAME_RADIUS_MM,
+            "svg_units_per_mm": SVG_UNITS_PER_MM,
+            "card_radius_svg_units": frame_radius("card"),
+            "label_radius_svg_units": frame_radius("label"),
+            "header_inset_radius_svg_units": frame_radius("card", inset=.8),
+            "chrome_clip_inset_radius_svg_units": frame_radius("card", inset=1.6),
+            "scientific_frame_rx_whitelist": [
+                dict(zip(("x", "y", "width", "height"), bounds),
+                     rx=str(frame_radius("card")))
+                for bounds in SCIENTIFIC_FRAME_BOUNDS
+            ],
+            "scientific_ranges_rulers_icons_and_logos_unchanged": True,
+            "chrome_clipped_to_rounded_inset_bounds": True
+        },
         "original_text_css_unchanged": True,
         "original_standalone_scope_and_footnote_unchanged": True,
         "pure_vector": True,

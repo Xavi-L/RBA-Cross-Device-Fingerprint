@@ -2,6 +2,12 @@
 
 Reviewed on **2026-10-23** against `reference/approved_raster_concept.png`.
 
+## Shared frame-radius review — 2026-10-23
+
+Compared with commit `72a7b15ab3ec78eeb6315891e7ddc3a33550880d`, exactly **65 rectangle radii** changed. All 618 elements retain their order, text, and other SVG attributes. All 64 text nodes, original brand/technical pictograms, data bars, connector paths, frame bounds, and colors remain unchanged.
+
+Containers use 1.2 mm radii, cards/page frames 0.8 mm, and labels/highlights 0.5 mm, matching Figures 1 and 3. Page backs match their front frame; header fills follow the original inset. The regenerated PNG was inspected directly and independently reviewed: no corner bleed, text clipping, or layout regression was found. The synchronized PDF retains one 180 × 90 mm page, zero raster image objects, and embedded Nimbus Sans Regular/Bold subsets. The following sections retain the earlier composition and color-review history.
+
 ## Delivered structure
 
 - The two-band composition, compact placement, and plain English wording follow the selected concept.

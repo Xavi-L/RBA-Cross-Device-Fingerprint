@@ -2,6 +2,12 @@
 
 This directory contains an editable SVG reconstruction of the user-selected visual design dated **2026-10-23**. It replaces repeated decorative checklist rows with meaningful rule, value, and decision illustrations. The figure is archived as an independent revision; adding it here does not replace the existing frozen figure or update manuscript references.
 
+### Shared frame radii — 2026-10-23
+
+Figures 1–3 now share physical corner radii of **1.2 mm for enclosing containers, 0.8 mm for content cards and page frames, and 0.5 mm for labels/highlights**. At this figure's 180 mm width, these correspond to 12, 8, and 5 SVG units. Front and rear page outlines use the same card radius; header fills use that radius minus their existing inset.
+
+The revision changes only rectangle radii in the SVG. Frame positions and sizes, all 64 text objects and their attributes, arrows, colors, scientific data bars, and original logo/pictogram artwork retain their prior values. The build script, SVG, PNG, PDF, checks, and source package are synchronized. `FRAME_RADIUS_MM` in the portable builder records the shared style.
+
 ### Color refinement - 2026-10-23
 
 Semantic icons now use saturated red (`#E53935`), green (`#16A34A`), and blue (`#1976D2`). This strengthens the Filter rejection cross and acceptance check, timezone decisions, memory warning, clock and viewport pictograms, and data-inspection icons. Memory illustrations share blue/red fills, and the filter funnel uses gold. The Results alert and check instances use the same status palette, with a white check on green.

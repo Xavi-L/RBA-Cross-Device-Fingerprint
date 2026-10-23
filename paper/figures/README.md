@@ -1,5 +1,17 @@
 # 论文素材图集：供导师选用
 
+## 当前图1、图2、图3：圆角统一（2026-10-23）
+
+三张最新图已按用途统一框的圆角：**主容器 1.2 mm、内容卡片／页面框 0.8 mm、小标签／提示条 0.5 mm**。叠放前后框使用相同半径，内部底色按原有内缩距离适配圆角。图1保留 178 mm 画布宽度并换算 SVG 半径，图2／图3保留 180 mm 宽度，因此三图在原始输出尺寸下的同类框圆角一致。
+
+| 当前版本 | 可编辑 SVG | 预览 |
+| --- | --- | --- |
+| 图1 v4 | [SVG](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) | [PNG](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.png) |
+| 图2 semantic v1 | [SVG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg) | [PNG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.png) |
+| 图3 v3 | [SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.svg) | [PNG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.png) |
+
+本次保留全部文字及其属性、框的位置与大小、箭头、配色、logo 和技术图标。图3的 Host／viewport 前框只调整圆角，内部底色增加对应圆角裁切。SVG、生成脚本、现有导出格式和三个源码包已同步；原始归档版本保留。
+
 本入口按“方法—App主体—双端作用—正常代价—独立专项—成本”组织三轮独立素材。**初稿供导师选用；素材编号不是最终论文图号。** 正文／附录建议仅帮助选材，章节、图号、页数、版式与最终取舍仍由导师决定。三轮共14幅独立图稿及T05成本表已生成。第三轮F00、F09及T05的验收范围见[第三轮入口](round3_overview/README.md)与[CHECK.json](round3_overview/CHECK.json)。前两轮图稿与CSV保持原样；本轮新增F00正文版并修正F09的未整合对象措辞。
 
 
@@ -19,11 +31,11 @@
 
 ## 图1保留原布局的风格升级（2026-10-23）
 
-[修订说明](overview/style_preserving_v4_20261023/README.md)：[可编辑 SVG](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) · [PNG 预览](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.png) · [源码与素材包](overview/style_preserving_v4_20261023/source_materials.zip)。以当前图1 v3 的嵌套观测面与 C1 记录比较布局为底稿，复用图2的彩色 App logo，并加强技术图标和叠层页面。65 个原文字对象的内容、位置、字号和字体完整保留，主要前景框与关系连线几何保持不变；SVG 为自包含纯矢量。附原始底稿、复现脚本、来源许可和核对记录。本项作为独立修订版归档。
+[修订说明](overview/style_preserving_v4_20261023/README.md)：[可编辑 SVG](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) · [PNG 预览](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.png) · [源码与素材包](overview/style_preserving_v4_20261023/source_materials.zip)。以当前图1 v3 的嵌套观测面与 C1 记录比较布局为底稿，复用图2的彩色 App logo，并加强技术图标和叠层页面。65 个原文字对象的内容、位置、字号和字体完整保留，主要前景框的位置与大小、关系连线几何保持不变；SVG 为自包含纯矢量。附原始底稿、复现脚本、来源许可和核对记录。本项作为独立修订版归档。
 
 ## 图3：三项跨层参照机制（2026-10-22 原稿）
 
-[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[当前 v3 可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.svg) · [PNG 预览](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.png) · [Python 绘图源码](fig3_mechanisms/source/build_fig3_v3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md) · [v3 源码 ZIP](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3_source.zip) · [原始 v2 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。2026-10-23 的 v3 按图1／图2风格增加彩色语义 icon、Android／JS 标识与叠层卡片，保持原有 41 处文字的全部属性、24 个科学图形的几何、180 × 62 mm 画布和三栏排版不变；附[核对记录](fig3_mechanisms/STYLE_V3_CHECK.json)和[素材归属](fig3_mechanisms/style_v3_assets/ATTRIBUTION.md)。此为机制示意，不是第一轮实验图 F03a，也不替代其统计结果；原始素材与校验值继续保留。
+[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[当前 v3 可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.svg) · [PNG 预览](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3.png) · [Python 绘图源码](fig3_mechanisms/source/build_fig3_v3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md) · [v3 源码 ZIP](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v3_source.zip) · [原始 v2 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。2026-10-23 的 v3 按图1／图2风格增加彩色语义 icon、Android／JS 标识与叠层卡片，保持原有 41 处文字的全部属性、24 个科学图形的位置、尺寸与关系（本轮仅统一其中两个窗口框的圆角）、180 × 62 mm 画布和三栏排版不变；附[核对记录](fig3_mechanisms/STYLE_V3_CHECK.json)和[素材归属](fig3_mechanisms/style_v3_assets/ATTRIBUTION.md)。此为机制示意，不是第一轮实验图 F03a，也不替代其统计结果；原始素材与校验值继续保留。
 
 ## 方法
 

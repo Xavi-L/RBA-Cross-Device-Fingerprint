@@ -28,6 +28,13 @@ ET.register_namespace('inkscape', INK)
 C = dict(line='#718E9D', dark='#526E7F', fine='#9DB1BA', pale='#F4F7F9',
          panel='#FAFCFD', blue_fill='#EDF4F8', blue='#1976D2',
          green='#16A34A', red='#E53935', gold='#F4B52C')
+FRAME_RADIUS_MM = {'container': 1.2, 'card': 0.8, 'label': 0.5}
+SVG_UNITS_PER_MM = 1800 / 178
+
+
+def radius(kind):
+    """Use the same printed corner radius as Figures 2 and 3."""
+    return round(FRAME_RADIUS_MM[kind] * SVG_UNITS_PER_MM, 6)
 
 
 def el(parent, tag, **attrs):
@@ -117,8 +124,67 @@ def primary_boxes(svg):
     ids = ['same-app-execution', 'native-observation', 'webview-host',
            'app-web-observation', 'record-context', 'external-browser',
            'optional-c1', 'c1-app-excerpt', 'c1-browser-excerpt']
-    return {id_: {k:foreground(find_id(svg, id_)).get(k) for k in ['x','y','width','height','rx']}
+    return {id_: {k:foreground(find_id(svg, id_)).get(k) for k in ['x','y','width','height']}
             for id_ in ids}
+
+
+def normalize_frame_corners(svg):
+    """Change only listed frame radii; identity artwork and knockouts are untouched."""
+    before = [(n, dict(n.attrib), n.text, n.tail) for n in svg.iter()]
+    changed = set()
+    records = []
+
+    def rounded(n, kind, group_id, inset=0):
+        value = str(round(radius(kind) - inset, 6))
+        old = n.get('rx', '0')
+        n.set('rx', value)
+        if 'ry' in n.attrib:
+            n.set('ry', value)
+        changed.add(n)
+        records.append({'group': group_id, 'x': n.get('x'), 'y': n.get('y'),
+                        'category': kind, 'inset_svg_units': inset,
+                        'old_rx': old, 'rx': value})
+
+    for name in ('same-app-execution', 'webview-host', 'optional-c1'):
+        rounded(foreground(find_id(svg, name)), 'container', name)
+    for name in ('native-observation', 'app-web-observation', 'external-browser',
+                 'c1-app-excerpt', 'c1-browser-excerpt', 'record-context'):
+        g = find_id(svg, name)
+        rounded(foreground(g), 'card', name)
+        for child in g:
+            if child.get('id') == name + '-back-pages':
+                for n in child:
+                    rounded(n, 'card', name + '-back-pages')
+    for n in find_id(svg, 'app-brand-tray'):
+        if n.tag == '{'+NS+'}rect':
+            rounded(n, 'card', 'app-brand-tray')
+
+    # Insets preserve the card's curved top edge without moving any header bounds.
+    for name, x, y in [('native-observation', '49', '212'),
+                       ('app-web-observation', '624', '182'),
+                       ('external-browser', '1108', '43'),
+                       ('c1-app-excerpt', '1128', '382'),
+                       ('c1-browser-excerpt', '1454', '382')]:
+        n = next(n for n in find_id(svg, name)
+                 if n.tag == '{'+NS+'}rect' and n.get('x') == x and n.get('y') == y)
+        rounded(n, 'card', name + '-header', inset=1)
+
+    for name in ('native-observation', 'webview-host', 'app-web-observation', 'external-browser'):
+        for n in find_id(svg, name):
+            if n.tag == '{'+NS+'}rect' and n.get('width') == '107' and n.get('height') == '34':
+                rounded(n, 'label', name + '-field-count')
+    for name, x, y in [('webview-host', '623', '506'), ('optional-c1', '1127', '601')]:
+        n = next(n for n in find_id(svg, name)
+                 if n.tag == '{'+NS+'}rect' and n.get('x') == x and n.get('y') == y)
+        rounded(n, 'label', name + '-detail-strip')
+
+    assert [n for n, _, _, _ in before] == list(svg.iter()), 'Frame edit changed element order'
+    for n, attrs, text, tail in before:
+        allowed = {'rx', 'ry'} if n in changed else set()
+        assert {k:v for k,v in n.attrib.items() if k not in allowed} == {
+            k:v for k,v in attrs.items() if k not in allowed}, 'Frame edit changed a non-radius attribute'
+        assert (n.text, n.tail) == (text, tail), 'Frame edit changed text'
+    return records
 
 
 def build(export=True):
@@ -302,9 +368,11 @@ def build(export=True):
         'Android, Chrome and WebView icons are official identity assets; technical symbols use Tabler Icons.',
         'Android and Chrome retain their source identity assets. Six app marks are illustrative identities reused from Figure 2; they do not expand the evaluated app list. The WebView and technical pictograms are original editable vector drawings. The page offsets decorate record cards and do not add executions. Clock hands schematically indicate different effective offsets, not collection times. The red mismatch icon denotes the illustrated C1 condition outcome, not a detector-wide alert.')
 
-    # Hard checks target the user's actual constraints, not visual implementation details.
+    corner_changes = normalize_frame_corners(svg)
+
+    # Hard checks preserve placement, dimensions, text, and relations; radii are intentional.
     assert original_text_snapshot(svg) == original_text, 'Visible text or text layout changed'
-    assert primary_boxes(svg) == original_boxes, 'Primary card geometry changed'
+    assert primary_boxes(svg) == original_boxes, 'Primary card placement or dimensions changed'
     assert relation_snapshot(svg) == original_relations, 'Relation path geometry changed'
     assert not list(svg.iter('{'+NS+'}image')), 'Main SVG still has raster artwork'
     for n in svg.iter():
@@ -322,12 +390,19 @@ def build(export=True):
         'style_reference':'paper/figures/system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg',
         'visible_text_nodes':len(original_text),
         'all_text_strings_and_attributes_unchanged':True,
-        'all_primary_foreground_boxes_unchanged':True,
+        'all_primary_foreground_box_positions_and_sizes_unchanged':True,
         'all_relation_paths_and_dash_patterns_unchanged':True,
         'original_canvas_and_physical_size_unchanged':True,
         'embedded_raster_images':0,
         'external_resource_references':0,
         'new_app_brand_assets':6,
+        'corner_style': {
+            'radius_mm':FRAME_RADIUS_MM,
+            'svg_units_per_mm':SVG_UNITS_PER_MM,
+            'only_listed_frame_rx_ry_changed':True,
+            'frame_count':len(corner_changes),
+            'frames':corner_changes,
+        },
         'primary_foreground_boxes':original_boxes,
         'relations':original_relations,
         'baseline_svg_sha256':hashlib.sha256(BASE.read_bytes()).hexdigest(),
