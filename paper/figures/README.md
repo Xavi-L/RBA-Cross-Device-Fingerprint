@@ -15,7 +15,7 @@
 
 ## 图2语义重绘 SVG（2026-10-23）
 
-[独立修订说明](system_design/semantic_vector_v1_20261023/README.md)：[可编辑 SVG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg) · [PNG 预览](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.png) · [论文 PDF](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.pdf) · [中英文图注](system_design/semantic_vector_v1_20261023/CAPTIONS.md) · [源码与素材包](system_design/semantic_vector_v1_20261023/source_materials.zip)。按本次选定版本重建上下两层结构，用内存上限、时区比较、规则精简与覆盖补足替换重复的装饰性清单；使用原始彩色 logo 和低饱和自绘元素。含生成脚本、素材来源许可、选定构图参考、来源映射及检查记录。本项作为独立版本归档。
+[独立修订说明](system_design/semantic_vector_v1_20261023/README.md)：[可编辑 SVG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg) · [PNG 预览](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.png) · [论文 PDF](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.pdf) · [中英文图注](system_design/semantic_vector_v1_20261023/CAPTIONS.md) · [源码与素材包](system_design/semantic_vector_v1_20261023/source_materials.zip)。按本次选定版本重建上下两层结构，用内存上限、时区比较、规则精简与覆盖补足替换重复的装饰性清单；使用原始彩色 logo、鲜明红绿蓝语义图标及柔和辅助框线。2026-10-23 已增强 Filter 勾叉、时钟、尺寸箭头与内存示意等图标的饱和度，并同步 SVG、PNG、PDF 和源码包，布局与文字保持一致。含生成脚本、素材来源许可、选定构图参考、来源映射及检查记录。本项作为独立版本归档。
 
 ## 方法
 

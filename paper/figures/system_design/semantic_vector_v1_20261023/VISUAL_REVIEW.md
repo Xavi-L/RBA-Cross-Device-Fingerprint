@@ -9,7 +9,15 @@ Reviewed on **2026-10-23** against `reference/approved_raster_concept.png`.
 - The six App logos share one container. In-App Web pages have no browser logo. Optional external Browser pages carry Chrome, Firefox, and Edge logos.
 - The Saved checks supply arrow terminates at Run saved checks. The Browser auxiliary input uses a thin dashed arrow to the optional Browser check.
 - Memory and timezone examples retain the intended relations. The three main outcomes and two execution states remain visually distinct.
-- Original asset colors are preserved. Custom arrows, borders, ticks, crosses, and geometry use muted colors.
+- Brand colors and original asset files are preserved. Semantic ticks, crosses, clock and viewport pictograms, memory illustrations, and data-inspection icons use saturated accents. Structural arrows and borders remain muted. The displayed Alert and No alert icons use the same semantic red/green palette.
+
+## Color refinement review - 2026-10-23
+
+Compared with the SVG from commit `98380b2e67ea7e4470ac97357dbae13abda0ff29`, 121 `fill`/`stroke` attributes changed. Every other SVG attribute, element, and text value remains identical. The original SVG asset files were verified against their repository blob hashes.
+
+The regenerated 3500 x 1750 PNG and a fresh PDF rasterization were visually inspected. Filter rejection/acceptance, the timezone table, and memory warnings are clearly distinguishable from the supporting structure. Blue clocks, viewport arrows, and inspection icons share one accent; blue/red memory fills agree between small pictograms and the example panel. The small gold funnel adds emphasis without changing the composition. No new clipping, overlap, or connection issue was found. An independent second visual review reached the same result.
+
+PDF inspection confirmed one 180 x 90 mm page, zero image objects, and embedded Nimbus Sans font subsets. The updated SVG retains all 64 editable text elements and no raster or external-image dependencies.
 
 ## Adjustments made after inspecting the first export
 

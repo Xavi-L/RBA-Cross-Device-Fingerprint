@@ -31,10 +31,18 @@ ET.register_namespace("xlink", XLINK_NS)
 C = {
     "ink": "#23323C", "line": "#718E9D", "line_dark": "#526E7F",
     "fine": "#9DB1BA", "flow": "#7396A5", "flow_dark": "#527C90",
-    "sage": "#76987F", "sage_fill": "#EFF6F0",
-    "rose": "#B87574", "rose_fill": "#FCF0EF",
+    "sage": "#16A34A", "sage_fill": "#EFF6F0",
+    "rose": "#E53935", "rose_fill": "#FCF0EF",
+    "icon_blue": "#1976D2", "memory_blue": "#93C5FD", "memory_red": "#F87171",
+    "icon_amber": "#D99000", "funnel_fill": "#F4B52C",
     "paper": "#FFFFFF", "panel": "#FAFCFD", "blue_fill": "#EDF4F8",
     "gray": "#AAB3BC", "pale": "#F4F7F9", "amber": "#B79B70",
+}
+# Apply the semantic palette to displayed state symbols only. Original asset files
+# and brand colors stay intact; structural borders and flow arrows remain muted.
+ICON_RECOLORS = {
+    "high_priority": {"#F44336": C["rose"]},
+    "ok": {"#4CAF50": C["sage"], "#CCFF90": "#FFFFFF"},
 }
 USED_ASSETS: dict[str, dict] = {}
 _asset_count = 0
@@ -125,7 +133,7 @@ def cross(p, x, y, s=18, color=None):
 
 
 def clock(p, x, y, r=15, color=None):
-    color = color or C["line_dark"]
+    color = color or C["icon_blue"]
     el(p, "circle", cx=x, cy=y, r=r, fill=C["pale"], stroke=color, stroke_width=2.2)
     path(p, f"M {x} {y-r*.65} V {y} l {r*.46} {r*.27}", stroke=color, sw=2.5)
 
@@ -140,14 +148,14 @@ def mini_page(p, x, y, w=73, h=49, fill=None):
 
 def memory(p, x, y, w=76, h=45):
     mini_page(p, x, y, w, h)
-    box(p, x+6, y+h*.48, w*.82, h*.26, "#D3E0E6", C["line"], .8, 0)
-    box(p, x+w*.54, y+h*.48, w*.36, h*.26, "#EAC7C5", C["rose"], .8, 0)
+    box(p, x+6, y+h*.48, w*.82, h*.26, C["memory_blue"], C["icon_blue"], .8, 0)
+    box(p, x+w*.54, y+h*.48, w*.36, h*.26, C["memory_red"], C["rose"], .8, 0)
     line(p, x+w*.54, y+h*.29, x+w*.54, y+h*.92, C["rose"], 1.8, "4 3")
 
 
 def time_pair(p, x, y, r=14):
     clock(p, x+r, y+r, r)
-    text(p, x+r*2+13, y+r+8, "=", 24, "bold", C["flow"], "middle")
+    text(p, x+r*2+13, y+r+8, "=", 24, "bold", C["icon_blue"], "middle")
     clock(p, x+r*3+25, y+r, r)
 
 
@@ -156,9 +164,9 @@ def page_size(p, x, y, w=72, h=46, layered=False):
         box(p, x+7, y-6, w, h, C["pale"], C["fine"], 1, 3)
     mini_page(p, x, y, w, h)
     for yy, left, right in [(y+h*.51,x+12,x+w-12),(y+h*.78,x+8,x+w-8)]:
-        line(p, left, yy, right, yy, C["flow_dark"], 1.7)
-        path(p, f"M {left+4} {yy-3} L {left} {yy} L {left+4} {yy+3}", stroke=C["flow_dark"], sw=1.5)
-        path(p, f"M {right-4} {yy-3} L {right} {yy} L {right-4} {yy+3}", stroke=C["flow_dark"], sw=1.5)
+        line(p, left, yy, right, yy, C["icon_blue"], 1.7)
+        path(p, f"M {left+4} {yy-3} L {left} {yy} L {left+4} {yy+3}", stroke=C["icon_blue"], sw=1.5)
+        path(p, f"M {right-4} {yy-3} L {right} {yy} L {right-4} {yy+3}", stroke=C["icon_blue"], sw=1.5)
 
 
 def token(p, x, y, kind, w=49, h=49):
@@ -188,12 +196,15 @@ def inline_asset(p, name, x, y, w, h=None, family="brands"):
     prefix = f"asset-{_asset_count:02d}-{name}-"
     ids = {n.get("id"): prefix+n.get("id") for n in source.iter() if n.get("id")}
     source = copy.deepcopy(source)
+    recolors = ICON_RECOLORS.get(name, {}) if family == "icons" else {}
     for node in source.iter():
         if node.get("id"):
             node.set("id", ids[node.get("id")])
         for attr,value in list(node.attrib.items()):
             if attr == "id":
                 continue
+            if attr in {"fill", "stroke"}:
+                value = recolors.get(value, value)
             for old,new in ids.items():
                 value = value.replace(f"url(#{old})", f"url(#{new})")
                 if value == "#"+old:
@@ -217,6 +228,8 @@ def inline_asset(p, name, x, y, w, h=None, family="brands"):
     rel = str(asset_path.relative_to(ROOT))
     USED_ASSETS.setdefault(rel, {"sha256": hashlib.sha256(asset_path.read_bytes()).hexdigest(),
                                 "instances": []})["instances"].append(prefix+"instance")
+    if recolors:
+        USED_ASSETS[rel]["display_color_overrides"] = recolors
 
 
 def page_content(p, x, y, w, h, logo=None):
@@ -247,7 +260,7 @@ def draw_top(root):
         label(records,49,y-24,204,36,title,23)
         if modified:
             document(records,72,y+22,37,47,C["rose"])
-            box(records,80,y+47,20,6,"#DAB6B3","none",0,0)
+            box(records,80,y+47,20,6,C["memory_red"],"none",0,0)
         else:
             inline_asset(records,"document",64,y+20,50,50,"icons")
         for i,width in enumerate([122,101,69]):
@@ -273,17 +286,17 @@ def draw_top(root):
     filtering = group(p,"filter-candidates","Filter candidates using available development data")
     box(filtering,701,79,244,228,C["pale"],C["fine"],1.2,11,"7 5")
     label(filtering,761,59,133,38,"Filter",25)
-    path(filtering,"M 706 146 H 757 L 738 172 V 190 L 725 198 V 172 Z",fill="#C9B18C",stroke=C["amber"],sw=1.5)
+    path(filtering,"M 706 146 H 757 L 738 172 V 190 L 725 198 V 172 Z",fill=C["funnel_fill"],stroke=C["icon_amber"],sw=1.5)
     box(filtering,765,110,167,68,"white",C["line"],1.2,5)
-    el(filtering,"circle",cx=803,cy=137,r=16,fill=C["blue_fill"],stroke=C["line_dark"],stroke_width=4)
-    line(filtering,791,151,781,162,C["line_dark"],5)
-    document(filtering,797,127,13,20,C["flow"])
+    el(filtering,"circle",cx=803,cy=137,r=16,fill=C["blue_fill"],stroke=C["icon_blue"],stroke_width=4)
+    line(filtering,791,151,781,162,C["icon_blue"],5)
+    document(filtering,797,127,13,20,C["icon_blue"])
     line(filtering,840,117,840,170,C["fine"],1)
     text(filtering,851,137,"Usable",21,"bold")
     text(filtering,851,162,"data",21,"bold")
     box(filtering,765,184,167,59,"white",C["line"],1.2,5)
-    document(filtering,778,202,22,29,C["flow"])
-    document(filtering,798,190,26,34,C["flow"])
+    document(filtering,778,202,22,29,C["icon_blue"])
+    document(filtering,798,190,26,34,C["icon_blue"])
     text(filtering,851,209,"Enough",21,"bold")
     text(filtering,851,233,"data",21,"bold")
     document(filtering,798,250,26,30,C["line_dark"])
@@ -383,8 +396,8 @@ def draw_checks(root):
     line(mem,1035,534,1035,582,C["fine"],1.1,"5 4")
     text(mem,1186,493,"Web: 8 GiB",23,"bold",anchor="middle")
     mini_page(mem,1091,505,187,65)
-    box(mem,1101,533,164,22,"#D3E0E6",C["line"],1,0)
-    box(mem,1183,533,82,22,"#E5BAB8",C["rose"],1,0)
+    box(mem,1101,533,164,22,C["memory_blue"],C["icon_blue"],1,0)
+    box(mem,1183,533,82,22,C["memory_red"],C["rose"],1,0)
     line(mem,1183,519,1183,575,C["rose"],2,"5 4")
     text(mem,1183,590,"4 GiB",17.5,anchor="middle")
     text(mem,1267,590,"8 GiB",17.5,anchor="middle")
@@ -402,9 +415,9 @@ def draw_checks(root):
     clock(c1,895,696,16)
     text(c1,930,670,"App web",20.5,"bold")
     text(c1,930,693,"UTC+8",20.5)
-    line(c1,1031,661,1084,661,C["flow_dark"],2.3)
+    line(c1,1031,661,1084,661,C["icon_blue"],2.3)
     path(c1,"M 1040 653 L 1031 661 L 1040 669",stroke=C["sage"],sw=2.3)
-    path(c1,"M 1075 653 L 1084 661 L 1075 669",stroke=C["flow_dark"],sw=2.3)
+    path(c1,"M 1075 653 L 1084 661 L 1075 669",stroke=C["icon_blue"],sw=2.3)
     text(c1,1057,687,"Compare",18.5,"bold",anchor="middle")
     text(c1,1057,707,"time zones",18.5,"bold",anchor="middle")
     page_content(c1,1108,645,116,62,"chrome")
@@ -558,6 +571,11 @@ def write_source_map():
         "status":"editable reconstruction of the user-selected visual concept",
         "repository":"Xavi-L/RBA-Cross-Device-Fingerprint",
         "source_commit":"fd0701f41657068bd56290447901dd24b827bfc1",
+        "color_revision":{
+            "date":"2026-10-23", "base_commit":"98380b2e67ea7e4470ac97357dbae13abda0ff29",
+            "scope":"Saturated semantic icons; geometry, text, connectors, and brand assets preserved.",
+            "palette":{key:C[key] for key in ["rose","sage","icon_blue","memory_blue","memory_red","icon_amber","funnel_fill"]},
+        },
         "method_source":"output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex",
         "asset_bundle":"paper/figures/visual_assets/color_v2_20261022/HybridGuard_Color_Assets_v2_20261022.zip",
         "raster_composition_reference":"reference/approved_raster_concept.png",
@@ -615,3 +633,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

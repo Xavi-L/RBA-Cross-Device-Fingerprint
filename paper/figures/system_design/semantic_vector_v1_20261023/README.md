@@ -2,6 +2,12 @@
 
 This directory contains an editable SVG reconstruction of the user-selected visual design dated **2026-10-23**. It replaces repeated decorative checklist rows with meaningful rule, value, and decision illustrations. The figure is archived as an independent revision; adding it here does not replace the existing frozen figure or update manuscript references.
 
+### Color refinement - 2026-10-23
+
+Semantic icons now use saturated red (`#E53935`), green (`#16A34A`), and blue (`#1976D2`). This strengthens the Filter rejection cross and acceptance check, timezone decisions, memory warning, clock and viewport pictograms, and data-inspection icons. Memory illustrations share blue/red fills, and the filter funnel uses gold. The Results alert and check instances use the same status palette, with a white check on green.
+
+The refinement is based on commit `98380b2e67ea7e4470ac97357dbae13abda0ff29`. An element comparison confirms that only SVG `fill` and `stroke` values changed: all geometry, 64 text elements, and layout are identical. Structural frames, large background areas, flow connectors, and brand colors retain their prior treatment. The SVG, PNG, PDF, build script, and source ZIP are synchronized.
+
 ## Files
 
 | File | Purpose |
@@ -41,6 +47,7 @@ For changes that need to survive regeneration, edit `build_figure.py` or the doc
 - The upper flow uses distinct visual operations: admit usable candidates, reduce the set, add coverage, and save the checks. Ticks and crosses indicate actual acceptance or rejection relationships.
 - The memory panel shows a derived upper bound; the timezone panel compares concrete values. These replace repeated tick-and-text decorations.
 - Arrow weight, shape, and muted color distinguish the main flow, supporting comparisons, and optional Browser inputs. Brand colors remain in their original SVG assets.
+- Saturated red, green, and blue emphasize meaningful states and technical pictograms. Red/green result-icon color overrides are applied only to displayed instances; the original asset SVG files are retained.
 - The layout keeps the selection flow above current-record evaluation, with results alongside the examples.
 
 ## Method boundaries

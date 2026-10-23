@@ -7,6 +7,12 @@ SHA-256 values were checked against its `manifest.json` during extraction.
 The original bytes are retained here; figure placement, scaling, and internal-ID
 namespacing are performed by `../build_figure.py` when assembling the final SVG.
 
+The color refinement on 2026-10-23 also applies documented display-only color
+overrides to the `high_priority` and `ok` icon instances: the alert uses `#E53935`,
+and the check uses a `#16A34A` circle with a white mark. Their original source
+files remain unchanged. `../SOURCE_MAP.json` records the substitutions alongside
+the original source hashes. No brand colors are remapped.
+
 `source_manifest.json` records each asset's original source URL, archive path,
 license note, checksum, and local path. It also records the archive's Git blob ID
 and SHA-256. All nine brand files and seven technical icons are selected for this figure.
