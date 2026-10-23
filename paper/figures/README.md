@@ -23,7 +23,7 @@
 
 ## 图3：三项跨层参照机制（2026-10-22 原稿）
 
-[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg) · [Python 绘图源码](fig3_mechanisms/source/build_fig3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。此为原始 review-v2 的机制示意，不是第一轮实验图 F03a，也不替代其统计结果；另保留原始素材 SHA-256 与再生成说明。
+[Figure 3 源文件与说明](fig3_mechanisms/README.md)：[可编辑 SVG](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2.svg) · [Python 绘图源码](fig3_mechanisms/source/build_fig3.py) · [中英文图注](fig3_mechanisms/CAPTIONS.md) · [源码 ZIP](fig3_mechanisms/HybridGuard_Fig3_mechanisms_v2_source.zip)。三栏依次说明 Native 内存参照、时区正常协同变化与 Host 容器几何约束。此为原始 review-v2 的机制示意，不是第一轮实验图 F03a，也不替代其统计结果；另保留原始素材 SHA-256 与再生成说明。
 
 ## 方法
 

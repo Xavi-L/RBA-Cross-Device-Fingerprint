@@ -5,6 +5,7 @@ This directory preserves Figure 3 from `HybridGuard_three_figures_v2.zip` (2026-
 ## Contents
 
 - [HybridGuard_Fig3_mechanisms_v2.svg](HybridGuard_Fig3_mechanisms_v2.svg): original editable SVG, 180 × 62 mm
+- [HybridGuard_Fig3_mechanisms_v2_source.zip](HybridGuard_Fig3_mechanisms_v2_source.zip): ready-to-use source package (SVG, Python builder, captions, manifests)
 - [source/build_fig3.py](source/build_fig3.py): original Python vector builder
 - [CAPTIONS.md](CAPTIONS.md): English and Chinese figure captions
 - [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json): original SHA-256 checksums for the SVG, PNG, PDF and builder
