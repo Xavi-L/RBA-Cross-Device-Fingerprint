@@ -17,6 +17,10 @@
 
 [独立修订说明](system_design/semantic_vector_v1_20261023/README.md)：[可编辑 SVG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg) · [PNG 预览](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.png) · [论文 PDF](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.pdf) · [中英文图注](system_design/semantic_vector_v1_20261023/CAPTIONS.md) · [源码与素材包](system_design/semantic_vector_v1_20261023/source_materials.zip)。按本次选定版本重建上下两层结构，用内存上限、时区比较、规则精简与覆盖补足替换重复的装饰性清单；使用原始彩色 logo、鲜明红绿蓝语义图标及柔和辅助框线。2026-10-23 已增强 Filter 勾叉、时钟、尺寸箭头与内存示意等图标的饱和度，并同步 SVG、PNG、PDF 和源码包，布局与文字保持一致。含生成脚本、素材来源许可、选定构图参考、来源映射及检查记录。本项作为独立版本归档。
 
+## 图1保留原布局的风格升级（2026-10-23）
+
+[修订说明](overview/style_preserving_v4_20261023/README.md)：[可编辑 SVG](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.svg) · [PNG 预览](overview/style_preserving_v4_20261023/HybridGuard_Fig1_surfaces_v4.png) · [源码与素材包](overview/style_preserving_v4_20261023/source_materials.zip)。以当前图1 v3 的嵌套观测面与 C1 记录比较布局为底稿，复用图2的彩色 App logo，并加强技术图标和叠层页面。65 个原文字对象的内容、位置、字号和字体完整保留，主要前景框与关系连线几何保持不变；SVG 为自包含纯矢量。附原始底稿、复现脚本、来源许可和核对记录。本项作为独立修订版归档。
+
 ## 方法
 
 | 素材 | 短问题 | 图稿 | 图注、数据／映射 | 来源入口 | 正文／附录候选（导师定） |
@@ -87,4 +91,5 @@ T为报警、F为未报警、U为无法判断、FAILED为执行／绑定失败�
 前两轮仅核对文件存在、命名和图注／数据链接；它们的原始视觉验收范围分别见[第一轮检查](round1_app/CHECK.json)和[第二轮检查](round2_paired/CHECK.json)。第三轮实际视觉与数值范围单列于[第三轮检查](round3_overview/CHECK.json)，不由其他格式或旧验收推定。本轮不重做实验、不复制整套raw／日志，不创建新网站或额外发布渠道。
 
 **F11仍为可选／未制作。** 剩余工作是导师选材、章节对应与版面／文字修订；不自动开启F11、新实验、调模型或整篇论文写作。
+
 
