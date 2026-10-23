@@ -1,0 +1,42 @@
+HybridGuard workflow. Offline development filters, selects, and refines candidate
+checks under normal-alarm, coverage, and complexity constraints. Saved checks
+evaluate current App observations; an optional linked Browser adds the C1
+timezone-offset comparison. The offset examples illustrate one matching and one
+mismatching relation. For a nonempty selected set, required execution or
+association failures suppress a decision; otherwise any trigger yields an
+alert, all definitely untriggered checks yield no alert, and unresolved evidence
+yields cannot tell. An empty selected set is reported separately. No alert does
+not establish authenticity. Logos and offset examples are illustrative.
+
+State ordering (based on the current local working method section, line 23):
+1. Empty selected set -> No checks (EMPTY_MODEL).
+2. Otherwise a required execution/association failure -> Check failed (FAILED).
+3. Otherwise any selected check triggers -> Alert (T).
+4. Otherwise all selected conditions are definitely untriggered -> No alert (F).
+5. Otherwise -> Cannot tell (U).
+Only selected checks determine these states; errors in unselected fields alone
+do not make the detector fail. FAILED overrides T; T overrides U.
+
+Diagram shorthand
+Choose checks: offline construction, not adaptation on the current record.
+Refine: retained/complementary candidates subject to constraints, not an
+unconditional addition of arbitrary rules.
+In-app web: App Web observations; Device info compresses the Native and
+WebView-host observations from the same App execution.
+Browser check: C1, comparing validly linked App Web and external Browser offsets.
+The Browser is optional, not a sequential fallback or always-required source.
+Time zone example: human-readable UTC offsets after convention normalization;
+UTC+8 is not the literal JavaScript getTimezoneOffset value.
+
+Method evidence:
+output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex
+- line 21: conditional checks and polarities;
+- line 23: result-state combination;
+- lines 35-38: timezone validity and sign conventions;
+- lines 40-48: geometry scope;
+- lines 50-62: offline rule construction;
+- lines 64-69: optional linked-browser C1.
+
+中文说明：上方展示规则的离线准备，下方展示当前记录的检查。勾叉在筛选区表示
+选入和未选入，在时区例子中表示单项关系一致和不一致；未报警不能解释为设备
+真实或安全。空规则集、检查失败与证据不足分别保留。此稿只用于视觉审阅。
