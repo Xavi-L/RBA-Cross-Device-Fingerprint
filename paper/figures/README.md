@@ -13,6 +13,10 @@
 
 [三角 Overview 冻结 v1](overview/frozen_v1/README.md)：[论文 PDF](overview/frozen_v1/HybridGuard_overview_layout.pdf) · [可编辑 SVG](overview/frozen_v1/HybridGuard_overview_layout.svg) · [PNG 预览](overview/frozen_v1/HybridGuard_overview_layout.png) · [中英文图注](overview/frozen_v1/CAPTIONS.md) · [完整材料包](overview/frozen_v1/HybridGuard_overview_materials.zip)。保留获批的原版视觉风格，并将底部灰色点线左端抬高 3 mm；含复现脚本、设计说明和校验清单。该图介绍三个观测面及关系范围，与 system design 分工使用。
 
+## 图1图标三角概览 v2（2026-10-23）
+
+[新版说明](overview/icon_vector_v2_20261023/README.md)：[可编辑 SVG](overview/icon_vector_v2_20261023/HybridGuard_Fig1_overview_v2.svg) · [PNG 预览](overview/icon_vector_v2_20261023/HybridGuard_Fig1_overview_v2.png) · [论文 PDF](overview/icon_vector_v2_20261023/HybridGuard_Fig1_overview_v2.pdf) · [中英文图注](overview/icon_vector_v2_20261023/CAPTIONS.md) · [源码与素材包](overview/icon_vector_v2_20261023/source_materials.zip)。按图2当前风格重画：高饱和图标及 App logo、紧凑叠框、粗蓝实线／细金虚线／灰色点线的关系层次，以及直观主标题配技术副标题。保留 Native–App Web 当前检查、Host–Web 独立研究、Native–Host 仅共享上下文的三角语义。本项为待作者审阅的新版本，先前冻结版保留。
+
 ## 图2语义重绘 SVG（2026-10-23）
 
 [独立修订说明](system_design/semantic_vector_v1_20261023/README.md)：[可编辑 SVG](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.svg) · [PNG 预览](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.png) · [论文 PDF](system_design/semantic_vector_v1_20261023/HybridGuard_Fig2_semantic_v1.pdf) · [中英文图注](system_design/semantic_vector_v1_20261023/CAPTIONS.md) · [源码与素材包](system_design/semantic_vector_v1_20261023/source_materials.zip)。按本次选定版本重建上下两层结构，用内存上限、时区比较、规则精简与覆盖补足替换重复的装饰性清单；使用原始彩色 logo、鲜明红绿蓝语义图标及柔和辅助框线。2026-10-23 已增强 Filter 勾叉、时钟、尺寸箭头与内存示意等图标的饱和度，并同步 SVG、PNG、PDF 和源码包，布局与文字保持一致。含生成脚本、素材来源许可、选定构图参考、来源映射及检查记录。本项作为独立版本归档。

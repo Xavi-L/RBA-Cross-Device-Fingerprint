@@ -1,0 +1,27 @@
+# Asset sources and reuse notes
+
+Retrieved: 2026-10-22. These are research candidates for HybridGuard figures, not a completed figure design.
+
+## What is included
+
+18 image assets: 5 official product/platform/tool images and 13 Tabler outline icons. The manifest marks 14 as primary, WebView as optional, and CPU / Git branch / sort arrows as reserves. All SVG files parse as XML, and all raster files decode correctly. Original geometry and local SHA-256 hashes are in asset_manifest.json.
+
+## Official product/platform/tool images
+
+- Android flat green robot: https://developer.android.com/distribute/marketing-tools/brand-guidelines
+  - Direct SVG: https://developer.android.com/static/images/brand/android-head_flat.svg
+  - The robot is covered by CC BY 3.0 under the official page's specific robot section. Keep the official attribution in the eventual figure/material credits. Other Android marks have separate conditions.
+- Chrome: https://about.google/brand-resource-center/products-and-services/
+  - Direct SVG: https://www.google.com/chrome/static/images/chrome-logo-m100.svg
+  - This is a downloadable official Google brand asset. It is not licensed by Tabler MIT or by Chromium's open-source license. Retain original appearance and follow the linked Google brand guidance. Download availability does not by itself establish unrestricted reuse rights.
+- Playwright: https://github.com/microsoft/playwright/blob/main/packages/web/src/assets/playwright-logo.svg
+  - License source: https://github.com/microsoft/playwright/blob/main/LICENSE
+  - The fetched source is in the Apache-2.0 main repository. LICENSE-playwright.txt is included. Brand/trademark identity remains distinct from the software copyright license.
+- Puppeteer: https://pptr.dev/
+  - The homepage directly references the downloaded PNG: https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png
+  - Repository license: https://github.com/puppeteer/puppeteer/blob/main/LICENSE
+  - LICENSE-puppeteer.txt is included. The page does not separately state a per-image license, so the manifest does not claim a blanket open logo license.
+- Android System WebView: https://play.google.com/store/apps/details?hl=en&id=com.google.android.webview
+  - Official Google LLC product icon; actual downloaded format is WebP, 512 by 512.
+  - A separate open per-icon license was not found. Treat this as an optional unmodified product-identity asset under Google brand guidance, not as part of the MIT icon set.
+
