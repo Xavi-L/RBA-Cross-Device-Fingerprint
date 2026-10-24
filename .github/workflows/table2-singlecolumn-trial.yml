@@ -1,0 +1,139 @@
+name: Table 2 compact-layout trial
+
+on:
+  push:
+    branches:
+      - layout/table2-single-column-trial-20261024
+    paths:
+      - 'output/pdf/hybridguard_www_draft_20261017/tables/table_02.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/04_evaluation_protocol.tex'
+      - '.github/workflows/table2-singlecolumn-trial.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: layout/table2-single-column-trial-20261024
+          sparse-checkout: output/pdf/hybridguard_www_draft_20261017
+          filter: blob:none
+          fetch-depth: 1
+      - name: Compile ACM draft with pdfLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: output/pdf/hybridguard_www_draft_20261017
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Compare original vs single-column PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pymupdf
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz, re, json
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          before=fitz.open(root/'HybridGuard_WWW_Draft.pdf')
+          after=fitz.open(root/'main.pdf')
+          def position(doc):
+              for i,page in enumerate(doc):
+                  s=' '.join(page.get_text().split())
+                  if 'Evaluation materials and their roles.' in s:
+                      return i
+              raise RuntimeError('Table 2 caption could not be located')
+          a,b=position(before),position(after)
+          for doc,page_i,tag in [(before,a,'before'),(after,b,'after')]:
+              img=doc[page_i].get_pixmap(matrix=fitz.Matrix(1.6,1.6),alpha=False)
+              img.save(root/f'qa/table2_trial_{tag}.png')
+          tex=(root/'tables/table_02.tex').read_text()
+          assert r'\begin{table}[t]' in tex and r'\begin{table*}' not in tex
+          assert r'\begin{tabularx}{\columnwidth}' in tex
+          exact=['App & 126 & 252','Discovery & --- & 630',
+                 'Historical development & --- & 144',
+                 'Historically reserved & --- & 117',
+                 'Memory & 18 & 48','Timezone & 6 & 30',
+                 'Geometry & 6 & 66','App--Browser & 14 & 46']
+          assert all(s in tex for s in exact)
+          for phrase in ['Disjoint held-out positions','Training-side constraints and tree training',
+                         'Historical evaluation with development exposure',
+                         'not a newly blinded cohort','6 no-effect operations excluded',
+                         'Includes 6 normal system changes',
+                         'Includes 6 normal layout changes; not integrated',
+                         '60 development-used positions: pilot 18 + matched 42']:
+              assert phrase in tex, phrase
+          aux=(root/'main.aux').read_text()
+          keys=['sec:2','tab:related','tab:materials','tab:app','tab:specialists',
+                'tab:normals','tab:paired','fig:surfaces','fig:pipeline',
+                'fig:mechanisms','marker:main-text-end','TotPages']
+          pages={}
+          for key in keys:
+              lines=[s for s in aux.splitlines() if s.startswith(r'\newlabel{'+key+'}')]
+              assert len(lines)==1, f'missing/duplicate label {key}'
+              match=re.search(r'\{\{[^{}]*\}\{([0-9]+)\}', lines[0])
+              assert match, f'no page for {key}'
+              pages[key]=int(match.group(1))
+          assert pages['tab:related']==pages['sec:2']
+          assert pages['tab:materials']==b+1
+          assert pages['TotPages']==len(after)
+          overfull=[s for s in (root/'main.log').read_text(errors='replace').splitlines() if 'Overfull' in s]
+          report={'before_pages':len(before),'after_pages':len(after),
+                  'before_table2_page':a+1,'after_table2_page':b+1,
+                  'main_text_last_page':pages['marker:main-text-end'],
+                  'overfull_warnings':overfull,
+                  'page_labels':pages,
+                  'data_preserved':'8/8 material rows, exact counts, captions, footnote and all 8 role descriptions'}
+          (root/'qa/table2_trial_layout.json').write_text(json.dumps(report,indent=2)+'\n')
+          (root/'qa/table2_trial_layout.md').write_text(
+              '# Table 2 single-column trial\n\n'
+              f"- Before: {len(before)} pages; Table 2 on page {a+1}.\n"
+              f"- After: {len(after)} pages; Table 2 on page {b+1}.\n"
+              f"- Main-text last page after: {pages['marker:main-text-end']}.\n"
+              '- Changed double-column five-column table* to a grouped, four-column table.\n'
+              '- Eight material rows and all original numbers/role qualifiers retained.\n'
+              f"- Overfull warnings: {len(overfull)}.\n"
+              '- Preview images: qa/table2_trial_before.png and qa/table2_trial_after.png.\n')
+          (root/'HybridGuard_WWW_Draft_Table2_Trial.pdf').write_bytes((root/'main.pdf').read_bytes())
+          PY
+      - name: Repackage Overleaf trial source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          entries={}
+          src=root/'HybridGuard_WWW_Overleaf.zip'
+          assert src.exists()
+          with zipfile.ZipFile(src) as z:
+              entries={i.filename:(i,z.read(i.filename)) for i in z.infolist()}
+          for path in ['tables/table_02.tex','sections/03_method.tex',
+                       'sections/04_evaluation_protocol.tex','source/migrate_manuscript.py']:
+              keys=[k for k in entries if k.lstrip('./')==path or k.endswith('/'+path)]
+              assert len(keys)==1, (path,keys)
+              zi,_=entries[keys[0]]
+              entries[keys[0]]=(zi,(root/path).read_bytes())
+          trial=root/'HybridGuard_WWW_Table2_Trial_Overleaf.zip'
+          with zipfile.ZipFile(trial,'w') as z:
+              for info,data in entries.values():z.writestr(info,data)
+          with zipfile.ZipFile(trial) as z: assert z.testzip() is None
+          PY
+      - name: Publish trial PDF, source ZIP and visual comparisons
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$ROOT/HybridGuard_WWW_Draft_Table2_Trial.pdf" \
+            "$ROOT/HybridGuard_WWW_Table2_Trial_Overleaf.zip" \
+            "$ROOT/qa/table2_trial_layout.json" "$ROOT/qa/table2_trial_layout.md" \
+            "$ROOT/qa/table2_trial_before.png" "$ROOT/qa/table2_trial_after.png"
+          git commit -m "docs(paper): render compact Table 2 trial and comparison [skip ci]"
+          git push origin HEAD:layout/table2-single-column-trial-20261024
