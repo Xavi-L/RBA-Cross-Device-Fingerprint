@@ -12,4 +12,4 @@ Illustrative mechanisms on valid, applicable observations. (a) With Native memor
 
 Illustrative mechanisms on applicable observations. (a) A Web report of 8 GiB stays within the fixed 8 GiB comparator but exceeds the envelope derived from Native memory of 4 GiB. (b) Each Native or Web row shows normalized UTC offsets before and after an illustrative change. A system timezone change moves both together; a Web-only edit creates a mismatch. The bracket compares the two After offsets within the same observation; a historical Before input is not required. (c) A converted viewport dimension P exceeding the Host bound plus tolerance triggers the standalone geometry check. These schematics add no measured records.
 
-This caption belongs to v4. The main manuscript remains on v3 until its figure asset and caption are updated together.
+This caption belongs to v4. The manuscript uses Figure 3 v4 and the updated panel-(b) caption.

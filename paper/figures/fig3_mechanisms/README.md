@@ -16,7 +16,7 @@ Rebuild with Python 3; add `--export` for the PNG (requires Inkscape):
 python3 source/build_fig3_v4.py --export
 ```
 
-This is the latest figure artwork for review. The main manuscript and its compiled PDF still use v3; update the figure and compact v4 caption together when integrating. The v3 source snapshot and caption below remain available for that existing draft.
+This approved v4 artwork and the updated panel-(b) caption are integrated into the WWW manuscript. The v3 artwork and captions remain preserved as review history.
 
 ## Previous artwork revision: v3 (2026-10-23)
 
