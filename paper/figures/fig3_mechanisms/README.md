@@ -1,6 +1,24 @@
 # Figure 3 — Contextual integrity mechanisms
 
-## Current style revision: v3 (2026-10-23)
+## Latest artwork revision: v4 (2026-10-24)
+
+[Editable SVG](HybridGuard_Fig3_mechanisms_v4.svg) · [PNG preview](HybridGuard_Fig3_mechanisms_v4.png) · [Python builder](source/build_fig3_v4.py) · [Bilingual caption](CAPTIONS_v4.md) · [Design and screenshot assessment](DESIGN_V4_NOTES.md) · [Preservation checks](DESIGN_V4_CHECK.json)
+
+![Figure 3 v4](HybridGuard_Fig3_mechanisms_v4.png)
+
+Panel (b) now uses **Before / After column headings**, clear **Native / Web horizontal rows**, and illustrative **UTC+8 / UTC+9** values. The right-hand bracket compares the two After values. System changes produce Match; a Web-only change produces Mismatch. The arrows explain changes but do not require a historical Before input in the detector.
+
+Panels (a) and (c) are preserved exactly. Panel (c) remains a vector dimension schematic: a reported viewport dimension is not itself a screenshot region, and the archived geometry experiments provide no matching physical-phone screenshot pair.
+
+Rebuild with Python 3; add `--export` for the PNG (requires Inkscape):
+
+```bash
+python3 source/build_fig3_v4.py --export
+```
+
+This is the latest figure artwork for review. The main manuscript and its compiled PDF still use v3; update the figure and compact v4 caption together when integrating. The v3 source snapshot and caption below remain available for that existing draft.
+
+## Previous artwork revision: v3 (2026-10-23)
 
 [Editable SVG](HybridGuard_Fig3_mechanisms_v3.svg) · [PNG preview](HybridGuard_Fig3_mechanisms_v3.png) · [Source package](HybridGuard_Fig3_mechanisms_v3_source.zip) · [Python builder](source/build_fig3_v3.py) · [Preservation checks](STYLE_V3_CHECK.json) · [Asset credits](style_v3_assets/ATTRIBUTION.md)
 
@@ -64,4 +82,4 @@ pdftoppm -png -singlefile -scale-to-x 3600 -scale-to-y -1 HybridGuard_Fig3_mecha
 
 For the original Nimbus Roman typography, install the font locally (font files are not redistributed here). The ZIP also contains legacy review-v2 versions of Fig1 and Fig2, which are deliberately not duplicated: their newer variants are already archived in sibling directories `../overview/` and `../system_design/`.
 
-**Original-v2 archival scope:** The editable v2 SVG and its code/metadata are committed here. Original v2 PDF and PNG exports are not part of this directory; use the export commands to regenerate them. The v3 SVG and preview are the current visual revision linked above.
+**Original-v2 archival scope:** The editable v2 SVG and its code/metadata are committed here. Original v2 PDF and PNG exports are not part of this directory; use the export commands to regenerate them. The v3 SVG and preview are the previous visual revision used in the existing compiled draft.
