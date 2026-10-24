@@ -12,6 +12,8 @@ on:
       - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_02.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/source/migrate_manuscript.py'
       - 'output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/04_evaluation_protocol.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/05_results.tex'
 
 permissions:
   contents: write
@@ -90,6 +92,7 @@ jobs:
               f"- Table 1 page: {pages['tab:related']} (Section 2: {pages['sec:2']})\n"
               f"- Figure 3 page: {pages['fig:mechanisms']}\n"
               f"- Materials Table 2 page: {pages['tab:materials']}\n"
+              f"- Specialist Table 4 page: {pages['tab:specialists']}\n"
               f"- Main text end page: {pages['marker:main-text-end']}\n"
               f"- References end page: {pages['marker:references-end']}\n"
               f"- Total PDF pages: {pages['TotPages']}\n"
@@ -107,7 +110,8 @@ jobs:
           root=Path('output/pdf/hybridguard_www_draft_20261017')
           changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
                    'source/migrate_manuscript.py','floats/figure_01.tex',
-                   'floats/figure_02.tex','sections/03_method.tex','README.md']
+                   'floats/figure_02.tex','sections/03_method.tex',
+                   'sections/04_evaluation_protocol.tex','sections/05_results.tex','README.md']
           manifest_path=root/'qa/package_manifest.json'
           if manifest_path.exists():
               manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
@@ -139,7 +143,7 @@ jobs:
           os.replace(tmp,source_zip)
           with zipfile.ZipFile(source_zip,'r') as z:
               assert z.testzip() is None
-              for rel in changed[:7]:
+              for rel in changed[:9]:
                   matches=[n for n in z.namelist() if identify(n,rel)]
                   assert len(matches)==1 and z.read(matches[0])==(root/rel).read_bytes()
           print('Overleaf ZIP and working LaTeX source are synchronized.')
