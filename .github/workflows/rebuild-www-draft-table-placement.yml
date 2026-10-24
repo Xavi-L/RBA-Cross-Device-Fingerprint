@@ -1,0 +1,132 @@
+name: Rebuild WWW draft after LaTeX layout change
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/01_introduction.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/02_background_and_scope.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/main.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/tables/table_01.tex'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-www-draft-main
+  cancel-in-progress: false
+
+jobs:
+  compile-and-publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out draft source
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: output/pdf/hybridguard_www_draft_20261017
+          fetch-depth: 1
+      - name: Build ACM manuscript with pdfLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: output/pdf/hybridguard_www_draft_20261017
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Verify related-work Table 1 is in Section 2
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          aux=(root/'main.aux').read_text()
+          pdf=root/'main.pdf'
+          assert pdf.is_file() and pdf.stat().st_size>10000, 'PDF not generated'
+          keys=['sec:1','sec:2','sec:3','tab:related','tab:materials','tab:app',
+                'tab:specialists','tab:normals','tab:paired',
+                'fig:surfaces','fig:pipeline','fig:mechanisms']
+          pages={}
+          for key in keys:
+              lines=[line for line in aux.splitlines() if line.startswith(r'\newlabel{'+key+'}')]
+              assert len(lines)==1, f'missing or duplicated label: {key}'
+              m=re.search(r'\{\{[^{}]*\}\{([0-9]+)\}',lines[0])
+              assert m, f'cannot parse page of {key}: {lines[0]}'
+              pages[key]=int(m.group(1))
+          print('Layout labels:',pages)
+          assert pages['tab:related']==pages['sec:2'], (
+              f"Table 1 on page {pages['tab:related']}, Section 2 on page {pages['sec:2']}")
+          assert pages['tab:related']<=pages['sec:3'], 'Table 1 drifted beyond Section 3'
+          tables=[pages[f'tab:{x}'] for x in ['related','materials','app','specialists','normals','paired']]
+          assert tables==sorted(tables), 'Table order changed'
+          report=root/'qa/table_1_section2_placement_20261024.md'
+          report.write_text(
+              '# Table 1 placement validation (2026-10-24)\n\n'
+              f"- Related Work section (Section 2): PDF page {pages['sec:2']}\n"
+              f"- Table 1 (tab:related): PDF page {pages['tab:related']}\n"
+              f"- Section 3: PDF page {pages['sec:3']}\n"
+              '- All six table labels and all three figure labels resolve.\n'
+              '- No table data, caption, figure or experimental text was edited in this placement change.\n'
+              '- Compiled from main.tex using pdfLaTeX and latexmk.\n',
+              encoding='utf-8')
+          (root/'HybridGuard_WWW_Draft.pdf').write_bytes(pdf.read_bytes())
+          PY
+      - name: Update Overleaf ZIP from exactly the compiled source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile,os
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
+                   'source/migrate_manuscript.py']
+          manifest_path=root/'qa/package_manifest.json'
+          if manifest_path.exists():
+              manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+              for rel in changed:
+                  if rel in manifest.get('files',{}):
+                      data=(root/rel).read_bytes()
+                      manifest['files'][rel]={'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)}
+              manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+              changed.append('qa/package_manifest.json')
+          source_zip=root/'HybridGuard_WWW_Overleaf.zip'
+          assert source_zip.is_file(), f'Original Overleaf archive not found: {source_zip}'
+          with zipfile.ZipFile(source_zip,'r') as z:
+              entries=[(zi,z.read(zi.filename)) for zi in z.infolist()]
+          def identify(entry,rel):
+              name=entry.lstrip('./')
+              return name==rel or name.endswith('/'+rel)
+          for rel in changed:
+              matches=[i for i,(zi,_) in enumerate(entries) if identify(zi.filename,rel)]
+              if rel=='qa/package_manifest.json' and not matches:
+                  continue
+              assert len(matches)==1, f'Expected exactly one ZIP member for {rel}; got {matches}'
+              idx=matches[0]
+              zi,_=entries[idx]
+              entries[idx]=(zi,(root/rel).read_bytes())
+          tmp=source_zip.with_suffix('.rebuilt.zip')
+          with zipfile.ZipFile(tmp,'w') as z:
+              for zi,data in entries:
+                  z.writestr(zi,data)
+          os.replace(tmp,source_zip)
+          with zipfile.ZipFile(source_zip,'r') as z:
+              assert z.testzip() is None
+              for rel in changed[:3]:
+                  matches=[n for n in z.namelist() if identify(n,rel)]
+                  assert len(matches)==1 and z.read(matches[0])==(root/rel).read_bytes()
+          print('Overleaf ZIP and working LaTeX source are synchronized.')
+          PY
+      - name: Commit refreshed PDF, source ZIP, and placement report
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/package_manifest.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with Table 1 in Section 2 [skip ci]"
+            git push origin HEAD:main
+          fi
