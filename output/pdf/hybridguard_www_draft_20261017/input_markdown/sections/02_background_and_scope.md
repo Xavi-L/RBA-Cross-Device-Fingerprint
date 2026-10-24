@@ -6,7 +6,7 @@ Fingerprinting research examines relationships as well as individual attributes.
 
 WebView research examines both sides of the application–Web boundary. WVProfiler studies fingerprint exposure through Android WebView instrumentation [8]; Tracking Without Borders examines tracking across Java/Kotlin, JavaScript, and runtime behavior [9]; Cross-Boundary Mobile Tracking studies Java-to-JavaScript information diffusion [10]. Our focus is a current Web report's compatibility with associated Android device and container measurements, including relation applicability, missing evidence, and behavior under edits and legitimate changes. Table 1 maps these research scopes.
 
-**Table 1. Closely related research and the evidence it examines.** The comparison identifies the study focus rather than claiming absent capabilities or empirical superiority.
+**Table 1. Research scopes of selected related studies.** The comparison pairs their examined evidence and research focus with corresponding aspects investigated in HybridGuard.
 
 | Work | Evidence examined | Research focus | Focus of the present study |
 | --- | --- | --- | --- |
