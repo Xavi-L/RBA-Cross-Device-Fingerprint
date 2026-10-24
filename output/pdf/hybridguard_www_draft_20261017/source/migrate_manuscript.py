@@ -150,8 +150,23 @@ def polish_matrix_layout():
     section puts them beside their discussion. The baseline branch keeps its
     original float calls and therefore its original page layout.
     """
-    names = ['03_method.tex', '04_evaluation_protocol.tex', '05_results.tex']
+    names = ['01_introduction.tex', '02_background_and_scope.tex',
+             '03_method.tex', '04_evaluation_protocol.tex', '05_results.tex']
     texts = {name: (ROOT / 'sections' / name).read_text() for name in names}
+
+    # ACM double-column tables cannot float to the page where they are first
+    # registered. Queue Table 1 during the Introduction so it appears alongside
+    # the Section 2 prior-work discussion, not after Section 3 has started.
+    related = r'\input{tables/table_01.tex}'
+    assert texts['02_background_and_scope.tex'].count(related) == 1
+    texts['02_background_and_scope.tex'] = texts['02_background_and_scope.tex'].replace(
+        related, "% Table 1 was queued earlier to keep it with Section 2.")
+    intro_anchor = "Android hybrid applications offer complementary observations"
+    assert texts['01_introduction.tex'].count(intro_anchor) == 1
+    texts['01_introduction.tex'] = texts['01_introduction.tex'].replace(
+        intro_anchor,
+        "% Register the Related Work double-column table early for Section 2.\n"
+        + related + "\n\n" + intro_anchor)
 
     def matrix_only(command):
         return '\\ifHGMatrix\n' + command + '\n\\fi'

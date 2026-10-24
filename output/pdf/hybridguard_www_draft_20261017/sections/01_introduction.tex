@@ -3,6 +3,10 @@
 
 Web security decisions often depend on client reports about the execution environment. Browser-visible properties can help recognize returning clients or augment authentication \cite{ref01,ref02}, but a plausible value can still be fabricated. Targeted browser spoofing shows that an adversary can imitate fingerprint attributes through browser modifications \cite{ref03}. Assessing report integrity therefore requires evidence beyond the plausibility of individual values.
 
+% Register this double-column float early so it lands with Section 2's
+% related-work discussion rather than drifting into Section 3.
+\input{tables/table_01.tex}
+
 Android hybrid applications offer complementary observations of the same execution. JavaScript runs inside a WebView whose host and underlying Android environment expose partially overlapping information \cite{ref11}. A Web memory report may fit a global range yet exceed a device-specific envelope. A legitimate timezone change may move system and Web offsets together. Resizing the container may change webpage geometry without any report manipulation. These examples motivate interpreting Web reports against the context in which they were collected.
 
 Consistency checking is established in fingerprinting research \cite{ref04,ref06,ref07}. We ask a more specific question: \textbf{when do Native and Host references help distinguish a modified Web report from legitimate environmental variation, and what alarm and availability costs follow?} These references have their own timing, availability, and semantic limits. Their value depends on whether the relevant relationship can be assessed for the current observation.
