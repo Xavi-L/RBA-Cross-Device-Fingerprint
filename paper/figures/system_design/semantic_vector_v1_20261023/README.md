@@ -2,6 +2,12 @@
 
 This directory contains an editable SVG reconstruction of the user-selected visual design dated **2026-10-23**. It replaces repeated decorative checklist rows with meaningful rule, value, and decision illustrations. The figure is archived as an independent revision; adding it here does not replace the existing frozen figure or update manuscript references.
 
+### Icon and connector refinements - 2026-10-24
+
+The In-app web/Device info link is now vertical between the two cards. The optional Browser-input link is centered on the vertical middle section of its dashed arrow, with a small background clearance so dashes do not cross the icon. The Saved checks arrow shaft ends at the triangular arrowhead base, removing the rounded-cap protrusion at its tip. In the Browser check, the Chrome badge moves 10 SVG units left and 7 units up to separate it from the clock.
+
+All six displayed App logos use a rounded clip of the complete source canvas, with radius equal to 20% of its side, matching Figure 1 v5. Their original source assets and brand colors are retained. The 64 text objects and their attributes, outer dimensions, panel geometry, and scientific relations remain unchanged. The builder, SVG, PNG, PDF, and source package are synchronized; this revision is also used by the current manuscript figure inputs.
+
 ### Shared frame radii — 2026-10-23
 
 Figures 1–3 now share physical corner radii of **1.2 mm for enclosing containers, 0.8 mm for content cards and page frames, and 0.5 mm for labels/highlights**. At this figure's 180 mm width, these correspond to 12, 8, and 5 SVG units. Front and rear page outlines use the same card radius; header fills use that radius minus their existing inset.

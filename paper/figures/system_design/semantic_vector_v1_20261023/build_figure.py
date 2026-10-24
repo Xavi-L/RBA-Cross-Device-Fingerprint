@@ -50,6 +50,8 @@ _text_count = 0
 
 # Shared with Figures 1 and 3; values are physical radii at the SVG page size.
 FRAME_RADIUS_MM = {"container": 1.2, "card": 0.8, "label": 0.5}
+APP_LOGOS = {"wechat", "whatsapp", "instagram", "tiktok", "youtube", "alipay"}
+APP_LOGO_CORNER_RATIO = 0.2  # Same full-canvas corner ratio as Figure 1.
 
 
 def radius(kind):
@@ -238,16 +240,28 @@ def inline_asset(p, name, x, y, w, h=None, family="brands"):
     for k,v in source.attrib.items():
         if k not in {"x","y","width","height","viewBox","id","version"}:
             embedded.set(k,v)
+    artwork = embedded
+    if family == "brands" and name in APP_LOGOS:
+        # Clip the complete source canvas, never the painted-content bounds.
+        # This preserves open logo silhouettes as well as square backgrounds.
+        vx, vy, vw, vh = map(float, viewbox.split())
+        clip_id = prefix + "rounded-canvas"
+        defs = el(embedded, "defs")
+        clip = el(defs, "clipPath", id=clip_id, clipPathUnits="userSpaceOnUse")
+        el(clip, "rect", x=vx, y=vy, width=vw, height=vh,
+           rx=vw*APP_LOGO_CORNER_RATIO, ry=vh*APP_LOGO_CORNER_RATIO)
+        artwork = el(embedded, "g", clip_path=f"url(#{clip_id})")
     for child in source:
-        embedded.append(child)
+        artwork.append(child)
     rel = str(asset_path.relative_to(ROOT))
     USED_ASSETS.setdefault(rel, {"sha256": hashlib.sha256(asset_path.read_bytes()).hexdigest(),
                                 "instances": []})["instances"].append(prefix+"instance")
     if recolors:
         USED_ASSETS[rel]["display_color_overrides"] = recolors
+    return wrapper
 
 
-def page_content(p, x, y, w, h, logo=None):
+def page_content(p, x, y, w, h, logo=None, logo_offset=(0, 0)):
     """Recognizable web-page content, not a decorative checklist."""
     mini_page(p, x, y, w, h, r=radius("card"))
     picx,picy,picw,pich = x+14,y+h*.28,w*.34,h*.44
@@ -261,7 +275,7 @@ def page_content(p, x, y, w, h, logo=None):
         box(p,x+w*.47,yy,ww,max(3,h*.045),C["gray"],"none",0,0)
     box(p,x+14,y+h*.82,w*.68,max(3,h*.045),C["gray"],"none",0,0)
     if logo:
-        inline_asset(p,logo,x+w-48,y+7,36)
+        inline_asset(p,logo,x+w-48+logo_offset[0],y+7+logo_offset[1],36)
 
 
 def draw_top(root):
@@ -380,7 +394,8 @@ def draw_inputs(root):
     text(info,183,655,"Device info",23,"bold")
     for x,y,w in [(183,666,101),(183,679,69),(330,666,175),(330,679,108)]:
         box(info,x,y,w,6,C["gray"],"none",0,0)
-    inline_asset(info,"link",439,609,44,44,"icons")
+    link = inline_asset(info,"link",439,597,44,44,"icons")
+    link.set("transform", "rotate(90 461 619)")
 
     browser = group(p,"browser-web","Optional linked external browser pages")
     box(browser,50,722,624,140,"white",C["line"],1.3,radius("container"))
@@ -435,7 +450,7 @@ def draw_checks(root):
     path(c1,"M 1075 653 L 1084 661 L 1075 669",stroke=C["icon_blue"],sw=2.3)
     text(c1,1057,687,"Compare",18.5,"bold",anchor="middle")
     text(c1,1057,707,"time zones",18.5,"bold",anchor="middle")
-    page_content(c1,1108,645,116,62,"chrome")
+    page_content(c1,1108,645,116,62,"chrome",logo_offset=(-10,-7))
     clock(c1,1212,696,16)
     text(c1,1240,670,"Browser web",18.5,"bold")
     text(c1,1240,693,"UTC+8",20)
@@ -486,7 +501,9 @@ def draw_results(root):
 def draw_connections(root):
     p = group(root,"layer-connections","05 · Main, saved-rule, and optional-input flows",True)
     # The sole rule-supply edge ends at the check executor, never at Results.
-    flow_line(p,"M 1595 266 V 340 Q 1595 347 1588 347 H 1187 Q 1176 347 1176 358 V 394",
+    # End the shaft at the arrowhead base; its rounded cap must not protrude
+    # through the tip. The arrowhead still ends at the original y=397.
+    flow_line(p,"M 1595 266 V 340 Q 1595 347 1588 347 H 1187 Q 1176 347 1176 358 V 374",
               C["flow_dark"],8,"arrow-main",id="saved-to-run",data_source="saved-checks",data_target="layer-run-checks")
     arrow(p,700,535,758,C["flow"],23,23,id="current-to-run")
     arrow(p,1384,535,1435,C["flow"],23,22,id="run-to-results")
@@ -501,7 +518,11 @@ def draw_connections(root):
     flow_line(p,"M 703 770 Q 727 770 727 748 V 677 Q 727 662 743 662 H 793",
               C["line_dark"],2.5,"arrow-small","9 6",id="browser-to-c1",
               data_source="browser-web",data_target="optional-browser-check")
-    inline_asset(p,"link",683,751,39,39,"icons")
+    # Center the linkage cue on the long vertical segment, near the path's
+    # arc-length midpoint. Mask the dashes under its open vector artwork.
+    box(p,715,670.5,24,47,C["panel"],"none",0,0,id="browser-link-clearance")
+    link = inline_asset(p,"link",707.5,674.5,39,39,"icons")
+    link.set("transform", "rotate(90 727 694)")
 
 
 def create_svg():
@@ -522,7 +543,7 @@ def create_svg():
         "effective timezone offsets. Results are alert, no alert, or cannot tell, with "
         "separate no-checks and check-failed states. Logos and values are illustrative.")
     defs = el(root,"defs")
-    for name,color,size,refx in [("arrow-small",C["flow_dark"],9,8),("arrow-main",C["flow_dark"],23,20)]:
+    for name,color,size,refx in [("arrow-small",C["flow_dark"],9,8),("arrow-main",C["flow_dark"],23,0)]:
         marker = el(defs,"marker",id=name,viewBox=f"0 0 {size} {size}",refX=refx,refY=size/2,
                     markerWidth=size,markerHeight=size,markerUnits="userSpaceOnUse",orient="auto")
         path(marker,f"M 0 0 L {size} {size/2} L 0 {size} Z",fill=color,stroke="none",sw=0)
@@ -569,6 +590,15 @@ def validate(svg_path, root):
             "header_fill_rule": "Card radius minus the existing inset",
             "scope": "Container, card/page, and label rectangles only; pictograms and data bars retain their artwork",
         },
+        "detail_refinement": {
+            "date": "2026-10-24",
+            "app_logo_corner_ratio": APP_LOGO_CORNER_RATIO,
+            "app_logo_instances": 6,
+            "in_app_device_link": {"center": [461, 619], "rotation_degrees": 90},
+            "browser_input_link": {"center": [727, 694], "rotation_degrees": 90},
+            "browser_check_chrome_offset": [-10, -7],
+            "saved_arrow_shaft_ends_at_head_base": True,
+        },
         "svg": {"file":svg_path.name,"viewBox":[0,0,1800,900],"physical_size_mm":[180,90],
                 "sha256":hashlib.sha256(svg_path.read_bytes()).hexdigest(),
                 "editable_text_elements":len(text_nodes),"native_svg_elements":sum(1 for _ in root.iter()),
@@ -602,6 +632,12 @@ def write_source_map():
             "date":"2026-10-23", "base_commit":"98380b2e67ea7e4470ac97357dbae13abda0ff29",
             "scope":"Saturated semantic icons; geometry, text, connectors, and brand assets preserved.",
             "palette":{key:C[key] for key in ["rose","sage","icon_blue","memory_blue","memory_red","icon_amber","funnel_fill"]},
+        },
+        "detail_revision": {
+            "date": "2026-10-24", "base_commit": "9930f931306fd06c0228c5cdefd3896c307a2c1f",
+            "scope": "Vertical in-App/device link, centered Browser-input link, clean saved-check arrowhead, separated Chrome/clock, and rounded App logos.",
+            "app_logo_corner_ratio": APP_LOGO_CORNER_RATIO,
+            "original_assets_preserved": True,
         },
         "method_source":"output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex",
         "asset_bundle":"paper/figures/visual_assets/color_v2_20261022/HybridGuard_Color_Assets_v2_20261022.zip",

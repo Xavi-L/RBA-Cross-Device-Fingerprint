@@ -1,5 +1,13 @@
 # Visual and export review
 
+## Icon and connector review - 2026-10-24
+
+Compared with commit `9930f931306fd06c0228c5cdefd3896c307a2c1f`, the four requested details are corrected: the In-app web/Device info link is vertical, the Browser auxiliary-input link sits in the dashed connector's middle section, the Saved checks arrow no longer has a rounded cap protruding through its tip, and the Browser check's Chrome logo is separated from its lower-right clock. The six App logos share the same full-canvas 20% corner radius as Figure 1 v5.
+
+The 3500 x 1750 PNG, five detail crops, and a fresh PDF rasterization were inspected. An independent second visual review confirmed these changes without new collisions, clipping, or text movement. All 64 editable text elements and their full attributes are unchanged. The source asset files are unchanged. The SVG remains entirely vector, with 643 elements, no duplicate IDs, no raster images, and no external image dependencies. The PDF remains one 180 x 90 mm page with embedded Nimbus Sans fonts and zero raster images.
+
+The sections below preserve the earlier composition and color-review history.
+
 Reviewed on **2026-10-23** against `reference/approved_raster_concept.png`.
 
 ## Shared frame-radius review — 2026-10-23
