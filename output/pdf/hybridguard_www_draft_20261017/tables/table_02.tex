@@ -1,31 +1,36 @@
-% Current manuscript Table 2. Source: input_markdown/sections/04_evaluation_protocol.md.
-% Delta/N are count semantics, not accuracy or outcome symbols.
-\begin{table*}[t]
+% Table 2 single-column trial (2026-10-24).
+% Eight original material rows, exact counts, roles, boundaries, and footnote retained.
+% Group headings replace a dedicated material column to free width for the roles.
+\begin{table}[t]
   \caption{Evaluation materials and their roles. Counts are record positions, not independent physical devices.}
   \label{tab:materials}
   \centering
   \small
-  \setlength{\tabcolsep}{4pt}
+  \setlength{\tabcolsep}{2.4pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.105\textwidth} >{\raggedright\arraybackslash}p{0.195\textwidth} >{\centering\arraybackslash}p{0.055\textwidth} >{\centering\arraybackslash}p{0.055\textwidth} >{\raggedright\arraybackslash}X@{}}
+  \begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}p{0.26\columnwidth} >{\centering\arraybackslash}p{0.09\columnwidth} >{\centering\arraybackslash}p{0.09\columnwidth} >{\raggedright\arraybackslash}X@{}}
     \toprule
-    Material & Subset & $\Delta$ & $N$ & Role and evaluation boundary \\
+    Subset & $\Delta$ & $N$ & Role / boundary \\
     \midrule
-    \textbf{Controlled} & App & 126 & 252 & Disjoint held-out positions\textsuperscript{a} \\
+    \multicolumn{4}{@{}l}{\textbf{Controlled}} \\
+    App & 126 & 252 & Disjoint held-out positions\textsuperscript{a} \\
     \midrule
-    \multirow{3}{*}{\textbf{MTC}} & Discovery & --- & 630 & Training-side constraints and tree training \\
-      & Historical development & --- & 144 & Historical evaluation with development exposure \\
-      & Historically reserved & --- & 117 & Historical evaluation; not a newly blinded cohort \\
+    \multicolumn{4}{@{}l}{\textbf{MTC}} \\
+    Discovery & --- & 630 & Training-side constraints and tree training \\
+    Historical development & --- & 144 & Historical evaluation with development exposure \\
+    Historically reserved & --- & 117 & Historical evaluation; not a newly blinded cohort \\
     \midrule
-    \multirow{3}{*}{\textbf{Specialist}} & Memory & 18 & 48 & Fixed checks; 6 no-effect operations excluded \\
-      & Timezone & 6 & 30 & Includes 6 normal system changes \\
-      & Geometry & 6 & 66 & Includes 6 normal layout changes; not integrated \\
+    \multicolumn{4}{@{}l}{\textbf{Specialist}} \\
+    Memory & 18 & 48 & Fixed checks; 6 no-effect operations excluded \\
+    Timezone & 6 & 30 & Includes 6 normal system changes \\
+    Geometry & 6 & 66 & Includes 6 normal layout changes; not integrated \\
     \midrule
-    \textbf{Paired} & App--Browser & 14 & 46 & 60 development-used positions: pilot 18 + matched 42 \\
+    \multicolumn{4}{@{}l}{\textbf{Paired}} \\
+    App--Browser & 14 & 46 & 60 development-used positions: pilot 18 + matched 42 \\
     \bottomrule
   \end{tabularx}
   \par\vspace{2pt}
-  \parbox{\textwidth}{\footnotesize\raggedright
+  \parbox{\columnwidth}{\footnotesize\raggedright
     $\Delta$ = effective modifications; $N$ = normal records.\enspace
     \textsuperscript{a}\,Controlled App: 14 manipulation recipes $\times$ 3 repetitions $\times$ 3 environments.}
-\end{table*}
+\end{table}

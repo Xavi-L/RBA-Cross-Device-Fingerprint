@@ -12,6 +12,8 @@ on:
       - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_02.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/source/migrate_manuscript.py'
       - 'output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/04_evaluation_protocol.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/tables/table_02.tex'
 
 permissions:
   contents: write
@@ -95,6 +97,26 @@ jobs:
               f"- Total PDF pages: {pages['TotPages']}\n"
               '- All six tables and three figures resolve in LaTeX references.\n',
               encoding='utf-8')
+          # Verify the compact Table 2 still includes all original count rows.
+          compact=(root/'tables/table_02.tex').read_text(encoding='utf-8')
+          assert r'\begin{table}[t]' in compact
+          assert r'\begin{tabularx}{\columnwidth}' in compact
+          checks=['App & 126 & 252','Discovery & --- & 630',
+                  'Historical development & --- & 144',
+                  'Historically reserved & --- & 117',
+                  'Memory & 18 & 48','Timezone & 6 & 30',
+                  'Geometry & 6 & 66','App--Browser & 14 & 46']
+          assert all(x in compact for x in checks)
+          (root/'qa/table2_compact_review_20261024.md').write_text(
+              '# Table 2 single-column publication check\n\n'
+              '- Preserved all eight material rows, their counts, original role statements, caption and footnote.\n'
+              '- Four grouped material categories, four table columns, single-column ACM float.\n'
+              f"- Table 2 PDF page: {pages['tab:materials']}\n"
+              f"- Main text last page: {pages['marker:main-text-end']}\n"
+              f"- Total PDF pages: {pages['TotPages']}\n"
+              f"- Figure 1 / 2 / 3 pages: {pages['fig:surfaces']} / {pages['fig:pipeline']} / {pages['fig:mechanisms']}\n"
+              '- Visually reviewed initial trial on isolated layout branch; no overfull warnings.\n',
+              encoding='utf-8')
           (root/'HybridGuard_WWW_Draft.pdf').write_bytes(pdf.read_bytes())
           PY
       - name: Update Overleaf ZIP from exactly the compiled source
@@ -107,7 +129,8 @@ jobs:
           root=Path('output/pdf/hybridguard_www_draft_20261017')
           changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
                    'source/migrate_manuscript.py','floats/figure_01.tex',
-                   'floats/figure_02.tex','sections/03_method.tex','README.md']
+                   'floats/figure_02.tex','sections/03_method.tex',
+                   'sections/04_evaluation_protocol.tex','tables/table_02.tex','README.md']
           manifest_path=root/'qa/package_manifest.json'
           if manifest_path.exists():
               manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
@@ -139,7 +162,7 @@ jobs:
           os.replace(tmp,source_zip)
           with zipfile.ZipFile(source_zip,'r') as z:
               assert z.testzip() is None
-              for rel in changed[:7]:
+              for rel in changed[:9]:
                   matches=[n for n in z.namelist() if identify(n,rel)]
                   assert len(matches)==1 and z.read(matches[0])==(root/rel).read_bytes()
           print('Overleaf ZIP and working LaTeX source are synchronized.')
@@ -151,8 +174,8 @@ jobs:
           ROOT=output/pdf/hybridguard_www_draft_20261017
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/package_manifest.json"
+          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/table2_compact_review_20261024.md" "$ROOT/qa/package_manifest.json"
           if ! git diff --cached --quiet; then
-            git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with Figures 1-2 full-width [skip ci]"
+            git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with compact Table 2 [skip ci]"
             git push origin HEAD:main
           fi

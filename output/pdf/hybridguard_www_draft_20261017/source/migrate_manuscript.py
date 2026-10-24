@@ -179,11 +179,9 @@ def polish_matrix_layout():
         texts[name] = texts[name].replace(
             marker, matrix_only(command) + '\n\n' + marker)
 
-    materials = r'\input{tables/table_02.tex}'
-    assert texts['04_evaluation_protocol.tex'].count(materials) == 1
-    texts['04_evaluation_protocol.tex'] = texts['04_evaluation_protocol.tex'].replace(
-        materials, baseline_only(materials))
-    insert_before('03_method.tex', r'\hypertarget{sec:3-4}', materials)
+    # Compact Table 2 uses a single-column float registered in Section 4.1.
+    # Do not move its call into Section 3 like a double-column table*.
+    assert texts['04_evaluation_protocol.tex'].count(r'\input{tables/table_02.tex}') == 1
 
     matrix = r'\input{tables/table_03_matrix.tex}'
     original_branch = ('\\ifHGMatrix\n' + matrix +
