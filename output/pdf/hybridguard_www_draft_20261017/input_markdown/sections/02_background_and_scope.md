@@ -23,7 +23,7 @@ Let $E$ denote the execution state and container context. An observation $x = (N
 
 ![Figure 1. Associated observation surfaces and integration boundaries.](../figures/HybridGuard_Fig1_surfaces_v2.png)
 
-**Figure 1.** Complementary observation surfaces in HybridGuard. Solid blue denotes integrated Native–App Web memory and timezone relations. Dashed ochre denotes the standalone Host–Web geometry study, outside Integrated App and its candidate pool. The dotted Native–Host edge represents shared context only. A validly linked external Browser supports the optional C1 timezone comparison with App Web. Counts describe catalogued schema fields, not the inputs of every selected detector.
+**Figure 1.** HybridGuard observation surfaces and evaluation roles. Solid blue denotes Native–App Web memory and timezone checks incorporated into Integrated App. Dashed ochre marks Host–Web geometry evaluated separately from Integrated App candidate selection, while dotted Native–Host indicates shared context. A validly linked external Browser enables the optional C1 timezone comparison with App Web. Field counts indicate catalogued schema attributes; detectors select subsets for evaluation.
 
 A semantic relation $C_j$ constrains observations within a stated applicability domain. A local edit may replace $W(E)$ with $W^{\prime}(E)$ while leaving a reference unchanged; a legitimate change may move related observations together. Compatibility need not mean equality because APIs expose different units, precision, or abstractions. $E$ is explanatory notation, not ground truth available to the detector.
 
