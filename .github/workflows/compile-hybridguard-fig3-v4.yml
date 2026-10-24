@@ -1,0 +1,224 @@
+name: Integrate approved Figure 3 v4 into WWW draft
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/compile-hybridguard-fig3-v4.yml'
+      - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_03.tex'
+permissions:
+  contents: write
+concurrency:
+  group: rebuild-www-draft-main
+  cancel-in-progress: false
+jobs:
+  compile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out figure and existing manuscript
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            paper/figures
+            output/pdf/hybridguard_www_draft_20261017
+          filter: blob:none
+          fetch-depth: 1
+
+      - name: Install PDF tooling
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq inkscape poppler-utils
+          python3 -m pip install --quiet pymupdf
+
+      - name: Verify figure panels and export v4 PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          fig=Path('paper/figures/fig3_mechanisms')
+          ns='{http://www.w3.org/2000/svg}'
+          v3=ET.parse(fig/'HybridGuard_Fig3_mechanisms_v3.svg').getroot()
+          v4=ET.parse(fig/'HybridGuard_Fig3_mechanisms_v4.svg').getroot()
+          def find(root,id):
+              matches=[n for n in root.iter() if n.get('id')==id]
+              assert len(matches)==1,(id,len(matches))
+              return matches[0]
+          def snap(node):
+              return (node.tag,tuple(sorted(node.attrib.items())),
+                      (node.text or '').strip(),tuple(snap(c) for c in node))
+          assert v3.attrib==v4.attrib,'Figure canvas changed'
+          for id in ('device-context','container-context'):
+              assert snap(find(v3,id))==snap(find(v4,id)),id+' changed'
+          labels=[''.join(n.itertext()).strip()
+                  for n in find(v4,'legitimate-cochange').iter(ns+'text')]
+          for label in ('Before','After','Native','Web','UTC+8','UTC+9','Match','Mismatch'):
+              assert label in labels,label
+          assert labels.count('Native')==2 and labels.count('Web')==2
+          assert not list(v4.iter(ns+'image'))
+          tex=Path('output/pdf/hybridguard_www_draft_20261017/floats/figure_03.tex').read_text()
+          assert tex.count('HybridGuard_Fig3_mechanisms_v4.pdf')==1
+          assert 'HybridGuard_Fig3_mechanisms_v3.pdf' not in tex
+          assert tex.count(r'\label{fig:mechanisms}')==1
+          assert 'a historical Before input is not required' in tex
+          assert '(c) A converted viewport dimension P exceeding the Host bound plus tolerance triggers the standalone geometry check.' in tex
+          print('Verified: panel (a)/(c) unchanged, panel (b) new Native/Web rows')
+          PY
+          F=paper/figures/fig3_mechanisms
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          STEM=HybridGuard_Fig3_mechanisms_v4
+          inkscape "$F/$STEM.svg" --export-type=pdf --export-filename="$F/$STEM.pdf"
+          test -s "$F/$STEM.pdf"
+          cp "$F/$STEM.svg" "paper/figures/$STEM.svg"
+          cp "$F/$STEM.pdf" "paper/figures/$STEM.pdf"
+          cp "$F/$STEM.svg" "$ROOT/figures/$STEM.svg"
+          cp "$F/$STEM.pdf" "$ROOT/figures/$STEM.pdf"
+          pdfinfo "$F/$STEM.pdf" | grep -E 'Pages:|Page size:'
+
+      - name: Compile existing ACM manuscript without migration
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: output/pdf/hybridguard_www_draft_20261017
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Validate PDF and synchronize Overleaf ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz,hashlib,json,os,re,zipfile
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          fig=Path('paper/figures/fig3_mechanisms')
+          stem='HybridGuard_Fig3_mechanisms_v4'
+          newpdf=root/'main.pdf'
+          oldpdf=root/'HybridGuard_WWW_Draft.pdf'
+          vector=fig/(stem+'.pdf')
+          assert newpdf.stat().st_size>20000 and oldpdf.stat().st_size>20000
+          assert vector.stat().st_size>10000
+          before=fitz.open(oldpdf)
+          after=fitz.open(newpdf)
+          aux=(root/'main.aux').read_text()
+          keys=['sec:1','sec:2','sec:3','tab:related','tab:materials','tab:app',
+                'tab:specialists','tab:normals','tab:paired','fig:surfaces',
+                'fig:pipeline','fig:mechanisms','marker:main-text-end','TotPages']
+          pages={}
+          for key in keys:
+              match=[s for s in aux.splitlines() if s.startswith(r'\newlabel{'+key+'}')]
+              assert len(match)==1,(key,match)
+              m=re.search(r'\{\{[^{}]*\}\{([0-9]+)\}',match[0])
+              assert m,key
+              pages[key]=int(m.group(1))
+          assert pages['sec:2']==pages['tab:related']
+          tablepages=[pages['tab:'+name] for name in ('related','materials','app','specialists','normals','paired')]
+          assert tablepages==sorted(tablepages),tablepages
+          assert len(after)==pages['TotPages']
+          assert len(after)<=len(before)+1,(len(before),len(after))
+          page_num=pages['fig:mechanisms']-1
+          assert 0<=page_num<len(after)
+          assert 'Illustrative mechanisms on applicable observations' in after[page_num].get_text()
+          preview=root/'qa/figure3_v4_compiled_page_20261024.png'
+          after[page_num].get_pixmap(matrix=fitz.Matrix(1.7,1.7),alpha=False).save(preview)
+          assert preview.stat().st_size>10000
+          warnings=[s for s in (root/'main.log').read_text(errors='replace').splitlines()
+                    if s.startswith('Overfull')]
+          summary={'status':'PASS','figure':'Figure 3 v4',
+                   'panels_a_and_c_preserved':True,
+                   'panel_b':'Explicit Native/Web rows, Before/After, UTC+8/UTC+9',
+                   'vector_pdf_sha256':hashlib.sha256(vector.read_bytes()).hexdigest(),
+                   'svg_sha256':hashlib.sha256((fig/(stem+'.svg')).read_bytes()).hexdigest(),
+                   'figure_3_page':pages['fig:mechanisms'],
+                   'figure_1_page':pages['fig:surfaces'],
+                   'figure_2_page':pages['fig:pipeline'],
+                   'table_pages':tablepages,'pages_before':len(before),
+                   'pages_after':len(after),'overfull_warnings':warnings,
+                   'labels':pages}
+          (root/'qa/figure3_v4_integration_20261024.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          (root/'qa/figure3_v4_integration_20261024.md').write_text(
+              '# Figure 3 v4 integration verification\n\n'
+              '- Replaced only (b) with explicit Native/Web timezone rows.\n'
+              '- (a) and (c) scientific SVG nodes match the frozen v3.\n'
+              '- Updated only the Figure 3(b) manuscript caption clause.\n'
+              '- Figures 1/2, all six tables and manuscript prose are unchanged.\n'
+              f"- Figure 3 page {pages['fig:mechanisms']}; table pages {tablepages}.\n"
+              f"- Total pages {len(before)} to {len(after)}; overfull warnings {len(warnings)}.\n"
+              '- PDF page preview: qa/figure3_v4_compiled_page_20261024.png.\n')
+          (root/'HybridGuard_WWW_Draft.pdf').write_bytes(newpdf.read_bytes())
+          changed=['floats/figure_03.tex',f'figures/{stem}.svg',f'figures/{stem}.pdf']
+          manifest=root/'qa/package_manifest.json'
+          if manifest.exists():
+              data=json.loads(manifest.read_text())
+              inventory=data.setdefault('files',{})
+              for rel in changed:
+                  payload=(root/rel).read_bytes()
+                  inventory[rel]={'sha256':hashlib.sha256(payload).hexdigest(),
+                                  'bytes':len(payload)}
+              manifest.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+              changed.append('qa/package_manifest.json')
+          archive=root/'HybridGuard_WWW_Overleaf.zip'
+          with zipfile.ZipFile(archive) as z:
+              entries=[(info,z.read(info.filename)) for info in z.infolist()]
+          def matches(member,rel):
+              member=member.lstrip('./')
+              return member==rel or member.endswith('/'+rel)
+          old=[info.filename for info,_ in entries if matches(info.filename,'floats/figure_03.tex')]
+          assert len(old)==1,old
+          prefix=old[0][:-len('floats/figure_03.tex')]
+          for rel in changed:
+              idx=[i for i,(info,_) in enumerate(entries) if matches(info.filename,rel)]
+              assert len(idx)<=1,(rel,idx)
+              payload=(root/rel).read_bytes()
+              if idx:
+                  i=idx[0];entries[i]=(entries[i][0],payload)
+              elif rel!='qa/package_manifest.json':
+                  info=zipfile.ZipInfo(prefix+rel,date_time=(2026,10,24,0,0,0))
+                  info.compress_type=zipfile.ZIP_DEFLATED
+                  info.external_attr=0o100644<<16
+                  entries.append((info,payload))
+          temp=archive.with_name(archive.name+'.new')
+          with zipfile.ZipFile(temp,'w') as z:
+              for info,payload in entries:z.writestr(info,payload)
+          os.replace(temp,archive)
+          with zipfile.ZipFile(archive) as z:
+              assert z.testzip() is None
+              for rel in changed[:3]:
+                  found=[n for n in z.namelist() if matches(n,rel)]
+                  assert len(found)==1 and z.read(found[0])==(root/rel).read_bytes(),rel
+          readme=fig/'README.md'
+          val=readme.read_text()
+          oldphrase='This is the latest figure artwork for review. The main manuscript and its compiled PDF still use v3; update the figure and compact v4 caption together when integrating. The v3 source snapshot and caption below remain available for that existing draft.'
+          newphrase='This approved v4 artwork and the updated panel-(b) caption are integrated into the WWW manuscript. The v3 artwork and captions remain preserved as review history.'
+          assert val.count(oldphrase)==1
+          readme.write_text(val.replace(oldphrase,newphrase))
+          cap=fig/'CAPTIONS_v4.md'
+          val=cap.read_text()
+          oldphrase='The main manuscript remains on v3 until its figure asset and caption are updated together.'
+          assert val.count(oldphrase)==1
+          cap.write_text(val.replace(oldphrase,
+              'The manuscript uses Figure 3 v4 and the updated panel-(b) caption.'))
+          print('QA passed',json.dumps(summary,ensure_ascii=False))
+          PY
+
+      - name: Commit updated figure, PDF and exact matching Overleaf ZIP
+        run: |
+          set -euo pipefail
+          F=paper/figures/fig3_mechanisms
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          STEM=HybridGuard_Fig3_mechanisms_v4
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$F/$STEM.pdf" "$F/README.md" "$F/CAPTIONS_v4.md" \
+            "paper/figures/$STEM.svg" "paper/figures/$STEM.pdf" \
+            "$ROOT/figures/$STEM.svg" "$ROOT/figures/$STEM.pdf" \
+            "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" \
+            "$ROOT/qa/package_manifest.json" \
+            "$ROOT/qa/figure3_v4_integration_20261024.json" \
+            "$ROOT/qa/figure3_v4_integration_20261024.md" \
+            "$ROOT/qa/figure3_v4_compiled_page_20261024.png"
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(paper): integrate Figure 3 v4 timezone panel [skip ci]"
+            git push origin HEAD:main
+          fi
