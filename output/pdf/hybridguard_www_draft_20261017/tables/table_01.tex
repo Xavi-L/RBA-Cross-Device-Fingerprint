@@ -1,5 +1,6 @@
 % Current manuscript Table 1. Source: input_markdown/sections/02_background_and_scope.md.
-% Evidence types describe the evidence examined; they are not capability scores.
+% Three-column revision: evidence descriptions are inline, not coded as types.
+% Research scopes are not capability scores or claims of empirical superiority.
 \begin{table*}[t]
   \caption{Closely related research and the evidence it examines. The comparison identifies the study focus rather than claiming absent capabilities or empirical superiority.}
   \label{tab:related}
@@ -7,24 +8,17 @@
   \small
   \setlength{\tabcolsep}{4pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth} >{\centering\arraybackslash}p{0.048\textwidth} >{\raggedright\arraybackslash}p{0.325\textwidth} >{\raggedright\arraybackslash}X@{}}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}p{0.45\textwidth} >{\raggedright\arraybackslash}X@{}}
     \toprule
-    Work & Type & Research focus & Focus of the present study \\
+    Work & Evidence and research focus & Focus of this study \\
     \midrule
-    FP-Scanner~\cite{ref04} & \HGTag{D} & Countermeasure-induced inconsistencies & Associated Native/Host references \\
-    Picasso~\cite{ref05} & \HGTag{C} & Claimed device-class checking & Current-record semantic compatibility \\
-    FP-Inconsistent~\cite{ref06} & \HGTag{I} & Evasive bot traffic & Controlled edits vs.\ normal changes \\
-    BrowserFM~\cite{ref07} & \HGTag{G} & Configuration modeling and analysis & Applicability + evidence-availability costs \\
-    WebView studies~\cite{ref08,ref09,ref10} & \HGTag{S} & Exposure + cross-boundary tracking & Report-integrity assessment \\
+    FP-Scanner~\cite{ref04} & Browser-attribute and JS/HTTP inconsistencies induced by countermeasures & Associated Native/Host references \\
+    Picasso~\cite{ref05} & Canvas challenges for device-class checking & Current-record semantic compatibility \\
+    FP-Inconsistent~\cite{ref06} & Within-request and temporal inconsistencies in evasive bot traffic & Controlled edits versus normal changes \\
+    BrowserFM~\cite{ref07} & Dependencies among fingerprints and configurations & Applicability and evidence-availability costs \\
+    WebView studies~\cite{ref08,ref09,ref10} & App--Web information exposure and cross-boundary tracking & Web-report integrity assessment \\
     \midrule
-    \textbf{HybridGuard} & \HGTag{R} & Contextual references; explicit domains & Detection, normal alarms, unknown outcomes \\
+    \textbf{HybridGuard} & Native/Host/App Web relations under explicit applicability conditions; optional Browser & Detection, normal alarms, and unknown outcomes \\
     \bottomrule
-  \end{tabularx}
-  \par\vspace{2pt}
-  \footnotesize
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
-    \HGTag{D} Browser attributes; JavaScript/HTTP discrepancies & \HGTag{C} Canvas challenge responses \\
-    \HGTag{I} Within-request and temporal inconsistencies & \HGTag{G} Fingerprint/configuration dependencies \\
-    \HGTag{S} App, JavaScript, and runtime observations & \HGTag{R} Native, Host, App Web; Browser optional
   \end{tabularx}
 \end{table*}
