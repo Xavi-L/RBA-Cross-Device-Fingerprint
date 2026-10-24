@@ -6,9 +6,8 @@
 - Figure 1 page: 3
 - Figure 2 page: 4
 - Table 1 page: 2 (Section 2: 2)
-- Figure 3 page: 8
+- Figure 3 page: 7
 - Materials Table 2 page: 5
-- Specialist Table 4 page: 6
 - Main text end page: 9
 - References end page: 10
 - Total PDF pages: 11

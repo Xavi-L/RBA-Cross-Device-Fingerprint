@@ -193,15 +193,6 @@ def polish_matrix_layout():
         original_branch, baseline_only(r'\input{tables/table_03.tex}'))
     insert_before('04_evaluation_protocol.tex', r'\hypertarget{sec:4-2}', matrix)
 
-    # Register the single-column specialist table one page ahead so it can
-    # share the previous page with the compact matrix rather than displacing
-    # RQ2 and RQ3 prose around the enlarged figures.
-    specialists = r'\input{tables/table_04.tex}'
-    assert texts['05_results.tex'].count(specialists) == 1
-    texts['05_results.tex'] = texts['05_results.tex'].replace(
-        specialists, baseline_only(specialists))
-    insert_before('04_evaluation_protocol.tex', r'\hypertarget{sec:4-3}', specialists)
-
     # Keep Figure 3 at its RQ2 discussion rather than registering it next to
     # Table 3. This lets prose separate the full-width result table and figure.
 
