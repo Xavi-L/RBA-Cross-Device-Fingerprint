@@ -11,6 +11,7 @@ on:
       - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_01.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_02.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/source/migrate_manuscript.py'
+      - 'output/pdf/hybridguard_www_draft_20261017/sections/03_method.tex'
 
 permissions:
   contents: write
@@ -49,7 +50,8 @@ jobs:
           assert pdf.is_file() and pdf.stat().st_size>10000, 'PDF not generated'
           keys=['sec:1','sec:2','sec:3','tab:related','tab:materials','tab:app',
                 'tab:specialists','tab:normals','tab:paired',
-                'fig:surfaces','fig:pipeline','fig:mechanisms']
+                'fig:surfaces','fig:pipeline','fig:mechanisms',
+                'marker:main-text-end','marker:references-end','marker:appendix-end','TotPages']
           pages={}
           for key in keys:
               lines=[line for line in aux.splitlines() if line.startswith(r'\newlabel{'+key+'}')]
@@ -87,6 +89,10 @@ jobs:
               f"- Figure 2 page: {pages['fig:pipeline']}\n"
               f"- Table 1 page: {pages['tab:related']} (Section 2: {pages['sec:2']})\n"
               f"- Figure 3 page: {pages['fig:mechanisms']}\n"
+              f"- Materials Table 2 page: {pages['tab:materials']}\n"
+              f"- Main text end page: {pages['marker:main-text-end']}\n"
+              f"- References end page: {pages['marker:references-end']}\n"
+              f"- Total PDF pages: {pages['TotPages']}\n"
               '- All six tables and three figures resolve in LaTeX references.\n',
               encoding='utf-8')
           (root/'HybridGuard_WWW_Draft.pdf').write_bytes(pdf.read_bytes())
@@ -101,7 +107,7 @@ jobs:
           root=Path('output/pdf/hybridguard_www_draft_20261017')
           changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
                    'source/migrate_manuscript.py','floats/figure_01.tex',
-                   'floats/figure_02.tex','README.md']
+                   'floats/figure_02.tex','sections/03_method.tex','README.md']
           manifest_path=root/'qa/package_manifest.json'
           if manifest_path.exists():
               manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
@@ -133,7 +139,7 @@ jobs:
           os.replace(tmp,source_zip)
           with zipfile.ZipFile(source_zip,'r') as z:
               assert z.testzip() is None
-              for rel in changed[:6]:
+              for rel in changed[:7]:
                   matches=[n for n in z.namelist() if identify(n,rel)]
                   assert len(matches)==1 and z.read(matches[0])==(root/rel).read_bytes()
           print('Overleaf ZIP and working LaTeX source are synchronized.')
