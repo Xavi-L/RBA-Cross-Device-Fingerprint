@@ -8,7 +8,7 @@ Collection context also determines applicability. For Host geometry, snapshots i
 
 ![Figure 2. Offline construction and current-record evaluation.](../figures/HybridGuard_Fig2_pipeline_v2.png)
 
-**Figure 2.** Constrained selection and retention produce frozen rules for current-record evaluation. The ordered decision list returns the first matching case: EMPTY_MODEL for an empty selection; FAILED for a relevant execution or binding failure; otherwise ALERT for any T, NO ALERT for all F, and UNKNOWN for the remaining cases. App-only and App-plus-Browser are two evaluated configurations. Host geometry is outside their selected checks.
+**Figure 2.** Constrained selection and retention freeze checks for current-record evaluation. App-only and App-plus-Browser are the evaluated configurations; Host geometry remains standalone. Outputs follow the first matching case in Section 3.2.
 
 ## 3.2 Evidence States and Decisions
 

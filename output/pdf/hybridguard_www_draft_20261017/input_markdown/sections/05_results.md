@@ -2,7 +2,7 @@
 
 ## 5.1 RQ1: Detection and Component Comparisons
 
-Integrated App detects 105/126 controlled modifications with 0/252 controlled-normal alarms (Table 3). The refitted Web-only and no-memory alternatives each detect 96/126; all nine differences occur in the CPU-plus-memory recipe. Because each alternative rebuilds both construction stages, this gap measures performance after refitting. No-timezone retains 105/126 because an absolute-offset condition substitutes on this benchmark. Removing the MTC cap adds three screen detections, whose normal-data cost appears in Section 5.3. The fixed App tree detects 72/126.
+Integrated App detects 105/126 controlled modifications with 0/252 controlled-normal alarms (Table 3). The refitted Web-only and no-memory alternatives each detect 96/126; all nine differences occur in the CPU-plus-memory recipe. No-timezone retains 105/126 because an absolute-offset condition substitutes on this benchmark. Removing the MTC cap adds three screen detections, whose normal-data cost appears in Section 5.3. The fixed App tree detects 72/126.
 
 **Table 3. Controlled benchmark-position outcomes.** All methods have zero U, FAILED, and EMPTY_MODEL counts on these held-out positions. Ablations are separately refitted models.
 
@@ -14,8 +14,6 @@ Integrated App detects 105/126 controlled modifications with 0/252 controlled-no
 | No memory | 96/126 | 76.2 | 30 | 0/252 |
 | No timezone | 105/126 | 83.3 | 21 | 0/252 |
 | App tree | 72/126 | 57.1 | 54 | 0/252 |
-
-Integrated App detects 9/9 CPU-plus-memory and 6/9 screen modifications. It also detects all nine instances of the timezone-only and plugins/MIME recipes, and each of eight shared-detection recipes: Playwright, Puppeteer, CDP multi-field, and Stealth presets; platform-only, UA-only, UA-plus-platform, and language-list edits.
 
 All six methods miss 9/9 webdriver-only and 9/9 WebGL-identifier modifications. Historical raw WebGL unavailability and lost webdriver-false semantics limit the admission of their corresponding candidates. These misses therefore identify gaps in the evaluated representation and admission process; they do not establish intrinsic undetectability. Appendix A describes the recipe grouping, and the supplemental tables retain all 84 recipe-by-method cells.
 
@@ -75,7 +73,3 @@ On the 60 development-used positions that also support extension selection, C1 r
 | Normal alarms | 46 | 0 | 0 |
 
 C1 also raises historical unknowns from 8/144 to 11/144 in development, while leaving 6/117 in the historically reserved group. The combined count increases from 14/261 (5.4%) to 17/261 (6.5%) per model, with unchanged alarms. C1 has no timestamp gate, so the observed 0/46 normal alarms does not establish robustness to asynchronous legitimate timezone changes. The paired language operations differ from the language-list recipe detected in the App benchmark. C1 provides a targeted increment for the tested timezone edits, accompanied by lower definite-output coverage.
-
-## 5.5 Synthesis
-
-The specialist results show three uses of contextual references: device-specific memory bounds, interpretation of timezone co-change, and Host container bounds. The historical and paired studies show the accompanying costs. A useful check must distinguish the targeted report edits while controlling normal alarms and retaining enough evidence to return definite outputs. Detection coverage alone does not establish that balance.

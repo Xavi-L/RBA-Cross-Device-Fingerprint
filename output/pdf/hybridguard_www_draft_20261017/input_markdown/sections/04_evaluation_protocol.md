@@ -31,4 +31,4 @@ The App tree uses the same fold-specific admitted candidates, encoded as T/F/U i
 
 A detection is T on an effective modification; a normal alarm is T on a normal record. We retain F, U, FAILED, and EMPTY_MODEL separately. Unknowns remain in their denominators and count as neither definite no-alert decisions nor detections. Evaluating several model configurations does not create additional records, and equal aggregate counts do not imply identical predictions. We report descriptive counts without significance tests or population estimates.
 
-We reconcile saved state counts with recipe-level summaries and their experiment identifiers. Checks verify state partitions and agreement between detailed counts and reported totals. They assess the consistency of saved results and their presentation, without independently validating intervention labels or collection bindings. Appendix A distinguishes these checks from the detector implementation and its saved model and prediction artifacts.
+Checks reconcile saved state partitions and recipe-level aggregates, without independently validating intervention labels or collection bindings (Appendix A).

@@ -1,5 +1,19 @@
 # HybridGuard：表格可视化与紧凑版式
 
+## 当前版本：2026-10-24 正文去重
+
+当前默认入口为 `main.tex`（`main_matrix.tex` 仍为兼容入口）。按用户确认的推荐方案完成五处去重：删除 §5.5 Synthesis、删除 §5.1 对表 3 的逐项复述及重复的重新拟合说明、精简 §4.3 核对过程、精简图 2 图注。相应 Markdown 输入已同步。
+
+- 正文结束于第 8 页，参考文献从第 9 页开始，全文 10 页。
+- 图 1/2/3 位于第 3/4/7 页；表 1–6 位于第 2/5/6/6/7/8 页。
+- 摘要、方法正文、讨论、结论、三张图及六张表的数据与定稿内容保持一致。
+- PDF、当前 LaTeX 和 Overleaf ZIP 对应同一版；ZIP 中的表 1 已同步为最新三列版。
+- 本次编译与逐页检查记录见 `qa/deduplication_review_20261024.md`。
+- 直接使用 `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` 编译，或使用 `source/build_pdf.py --variant matrix --no-migrate`；不要运行会重新生成历史图源的迁移流程。
+
+以下记录保留各次历史调整的背景，页码以本节和本次核验记录为准。
+
+
 更新：2026-10-22。本轮按用户要求改进六张表的视觉表达、压缩表内重复内容、将 Table 5 改为单栏，并将 Table 3 与 Figure 3 分开排版。已批准的 A1、A2、A3、B1 正文继续保留；B2 未应用。交付文件沿用原名，版本内容已更新。
 
 **2026-10-23 合并版默认入口为 `main.tex`，与 `main_matrix.tex` 等价（两者都使用已验收的六表矩阵版），在 Overleaf 中选择 `main.tex`、pdfLaTeX。**
