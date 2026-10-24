@@ -38,4 +38,35 @@ The active selector, \path|hybridguard_agent/research/rule_learning_v2/semantic_
 
 Record-level outputs are retained in \path|deliverables/timezone_relation_validation_v1/predictions.jsonl.gz|, \path|deliverables/app177_core_ablation_v1/results/{full_predictions,predictions}.jsonl.gz|, and \path|deliverables/cross_endpoint_constrained_extension_v1/results/predictions.jsonl|. These archives support inspection beyond the aggregate tables; saved outputs and independently reproduced results remain distinct forms of evidence.
 
-Comparator provenance differs across studies. The 8 GiB condition was fixed in the memory study's \texttt{SETTINGS.json} before the 72-position collection that yielded 18 effective modifications and 48 normal positions; comparisons on the older controlled and MTC records were retrospective. The legacy 710 CSS-pixel height condition appears in the geometry study's \texttt{CONDITIONS\_\allowbreak{}FROZEN.json}, fixed before the formal 72-position batch and after six engineering smoke observations. The −480-minute comparator is the legacy absolute-offset condition from the saved B\_\allowbreak{}REL models; old and new model identities were frozen before the 36-position timezone collection. We treat these as controlled mechanism studies within development, without claiming independently preregistered comparator selection. The memory envelope and geometry tolerance are engineering hypotheses within their stated domains, and no threshold-sensitivity study is reported.
+Comparator provenance differs across studies. The 8 GiB condition was fixed in the memory study's \texttt{SETTINGS.json} before the 72-position collection that yielded 18 effective modifications and 48 normal positions; comparisons on the older controlled and MTC records were retrospective. The legacy 710 CSS-pixel height condition appears in the geometry study's \texttt{CONDITIONS\_\allowbreak{}FROZEN.json}, fixed before the formal 72-position batch and after six engineering smoke observations. The −480-minute comparator is the legacy absolute-offset condition from the saved B\_\allowbreak{}REL models; old and new model identities were frozen before the 36-position timezone collection. These are controlled mechanism studies conducted during development. The memory envelope and geometry tolerance remain engineering hypotheses within their stated domains. Appendix~\ref{app:geometry-tolerance} adds a post hoc sensitivity analysis of the Host geometry tolerance; memory-envelope sensitivity remains unexamined.
+
+\hypertarget{app:geometry-tolerance}{%
+\subsection{Host Geometry Tolerance and Post Hoc Sensitivity}\label{app:geometry-tolerance}}
+
+The standalone Host geometry check uses the frozen tolerance
+\[
+\epsilon(P,H_{\mathrm{view}})
+=2+4\cdot 2^{-23}\max(|P|,|H_{\mathrm{view}}|,1)
+\quad\text{pixels}.
+\]
+The constant 2 allocates one pixel to each of two layout edges as a study-specific quantization assumption. The factor \(2^{-23}\) is the float32 precision scale, and 4 is a fixed coefficient for the numerical margin. This reference scale sets the budget; the saved evaluator computes the comparison using Python \texttt{float} arithmetic. The archived rationale leaves an operation-level error derivation for the actual rendering chain open. Establishing a common error bound across WebView implementations requires further implementation-specific analysis. The specification was frozen during development after six engineering-smoke observations and before the formal v15 batch.
+
+We perform a \emph{post hoc sensitivity analysis} using only the 72 formal v15 observations saved in \path|deliverables/screen_geometry_observation_v1/predictions.jsonl.gz|. The 66 normal records satisfy \texttt{normal\_\allowbreak{}basis.supported}; the six effective interventions satisfy \texttt{observable\_\allowbreak{}intervention}. These are repeated observations from three emulator environments. Keeping the saved applicability, U/FAILED states, and subset labels fixed, we use each record's current Web operands and measured Host dimensions. We preserve the implementation's multiplication order: first DPR times \texttt{visualViewport.scale}, then the CSS dimension times that product. Each axis uses a strict \(>\) comparison, and axis outcomes are combined by the original OR rule. With \(M=\max(|P|,|H_{\mathrm{view}}|,1)\), the outcomes are:
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Tolerance (pixels) & \makecell{Normal\\alarms} & \makecell{Intervention\\detections} \\
+\midrule
+\(2\) & 36/66 & 6/6 \\
+\(2+1\cdot2^{-23}M\) & 0/66 & 6/6 \\
+\(2+2\cdot2^{-23}M\) & 0/66 & 6/6 \\
+\(2+4\cdot2^{-23}M\) (original) & 0/66 & 6/6 \\
+\(2+8\cdot2^{-23}M\) & 0/66 & 6/6 \\
+\(3\) & 0/66 & 6/6 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For each record, take the maximum of \(P-H_{\mathrm{view}}\) over width and height. Its largest normal value is approximately \(2.000038\) pixels; effective interventions span \(475.381\)--\(664.381\) pixels. Removing the relative term therefore changes decisions for normal observations near the 2-pixel boundary. Coefficients 1, 2, 4, and 8 yield identical decisions on all 72 records, leaving the choice among these coefficients unresolved by this batch. Assessing parameter optimality and performance against small near-boundary interventions requires additional observations. The fixed 3-pixel row serves as a sensitivity comparator; the original coefficient 4 remains the frozen setting. This retrospective analysis follows the original parameter selection, and independent validation of any revised tolerance requires fresh observations.
