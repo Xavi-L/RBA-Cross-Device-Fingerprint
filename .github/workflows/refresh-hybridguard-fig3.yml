@@ -1,0 +1,168 @@
+name: Refresh HybridGuard Figure 3 and WWW Draft
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'paper/figures/fig3_mechanisms/source/build_fig3_v3.py'
+      - '.github/workflows/refresh-hybridguard-fig3.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            paper/figures
+            output/pdf/hybridguard_www_draft_20261017
+          filter: blob:none
+          fetch-depth: 1
+      - name: Install vector exporter
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq inkscape poppler-utils
+      - name: Generate Figure 3 SVG PNG and vector PDF
+        run: |
+          set -euo pipefail
+          F=paper/figures/fig3_mechanisms
+          python3 "$F/source/build_fig3_v3.py" --export
+          inkscape "$F/HybridGuard_Fig3_mechanisms_v3.svg" --export-type=pdf --export-filename="$F/HybridGuard_Fig3_mechanisms_v3.pdf"
+      - name: Validate and sync figure sources
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from shutil import copy2
+          import zipfile,os,hashlib,json,xml.etree.ElementTree as ET
+          fig=Path('paper/figures/fig3_mechanisms')
+          parent=Path('paper/figures')
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          stem='HybridGuard_Fig3_mechanisms_v3'
+          footer='Illustrative examples on valid, applicable inputs; quantitative results are reported separately.'
+          svg=fig/(stem+'.svg'); pdf=fig/(stem+'.pdf'); png=fig/(stem+'.png')
+          tree=ET.parse(svg).getroot()
+          assert tree.get('height')=='57.4mm' and tree.get('viewBox')=='0 0 1800 574'
+          assert footer not in svg.read_text()
+          assert not any(n.get('d')=='M30 578L1770 578' for n in tree.iter())
+          assert not any(n.get('id')=='footer-backing' for n in tree.iter())
+          assert png.stat().st_size>10000 and pdf.stat().st_size>10000
+          checks=json.loads((fig/'STYLE_V3_CHECK.json').read_text())
+          assert checks['visible_text_nodes']==40
+          assert checks['svg_sha256']==hashlib.sha256(svg.read_bytes()).hexdigest()
+          for folder in [parent,root/'figures']:
+              for p in [svg,pdf]:copy2(p,folder/p.name)
+          archive=fig/(stem+'_source.zip')
+          with zipfile.ZipFile(archive) as z:
+              entries=[(i,z.read(i.filename)) for i in z.infolist()]
+          content={
+              stem+'.svg':svg,stem+'.png':png,'source/build_fig3_v3.py':fig/'source/build_fig3_v3.py',
+              'STYLE_V3_CHECK.json':fig/'STYLE_V3_CHECK.json','README.md':fig/'README.md'}
+          def match(member,rel):
+              member=member.lstrip('./')
+              return member==rel or member.endswith('/'+rel)
+          for rel,p in content.items():
+              indexes=[i for i,(info,_) in enumerate(entries) if match(info.filename,rel)]
+              assert len(indexes)<=1,(rel,indexes)
+              if rel in (stem+'.svg','source/build_fig3_v3.py'):assert len(indexes)==1
+              for i in indexes:entries[i]=(entries[i][0],p.read_bytes())
+          temp=archive.with_name(archive.name+'.new')
+          with zipfile.ZipFile(temp,'w') as z:
+              for info,data in entries:z.writestr(info,data)
+          os.replace(temp,archive)
+          with zipfile.ZipFile(archive) as z:assert z.testzip() is None
+          PY
+      - name: Compile ACM manuscript
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: output/pdf/hybridguard_www_draft_20261017
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Validate manuscript and update Overleaf source ZIP
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re,json,zipfile,os,hashlib
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          result=root/'main.pdf'
+          assert result.is_file() and result.stat().st_size>20000
+          caption=(root/'floats/figure_03.tex').read_text()
+          assert 'Illustrative mechanisms on applicable observations' in caption
+          assert 'These schematics add no measured records' in caption
+          keys=['sec:2','tab:related','tab:materials','tab:app','tab:specialists',
+                'tab:normals','tab:paired','fig:surfaces','fig:pipeline',
+                'fig:mechanisms','marker:main-text-end','TotPages']
+          aux=(root/'main.aux').read_text()
+          pages={}
+          for key in keys:
+              lines=[l for l in aux.splitlines() if l.startswith(r'\newlabel{'+key+'}')]
+              assert len(lines)==1,key
+              m=re.search(r'\{\{[^{}]*\}\{([0-9]+)\}',lines[0])
+              assert m,key
+              pages[key]=int(m.group(1))
+          assert pages['sec:2']==pages['tab:related']
+          report=root/'qa/figure3_footer_removal_20261024.md'
+          report.write_text(
+              '# Figure 3 redundant footer removal\n\n'
+              '- Removed bottom disclaimer, ornamental divider and footer backing.\n'
+              '- Tightened canvas from 180 x 62 mm to 180 x 57.4 mm without stretching panels.\n'
+              '- Existing caption already explains illustrative applicable inputs and no extra measured records, so caption is unchanged.\n'
+              '- Other 40 text nodes and original scientific geometry are preserved by SVG builder checks.\n'
+              f"- Figure 3 PDF page: {pages['fig:mechanisms']}\n"
+              f"- Main-text ending page: {pages['marker:main-text-end']}\n"
+              f"- Total PDF pages: {pages['TotPages']}\n"
+              '- Six table and three figure labels remain resolved.\n')
+          (root/'HybridGuard_WWW_Draft.pdf').write_bytes(result.read_bytes())
+          rels=['figures/HybridGuard_Fig3_mechanisms_v3.svg',
+                'figures/HybridGuard_Fig3_mechanisms_v3.pdf']
+          manifest=root/'qa/package_manifest.json'
+          if manifest.is_file():
+              data=json.loads(manifest.read_text())
+              for rel in rels:
+                  if rel in data.get('files',{}):
+                      raw=(root/rel).read_bytes()
+                      data['files'][rel]={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)}
+              manifest.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+              rels.append('qa/package_manifest.json')
+          zip_path=root/'HybridGuard_WWW_Overleaf.zip'
+          with zipfile.ZipFile(zip_path) as z:
+              entries=[(info,z.read(info.filename)) for info in z.infolist()]
+          def match(member,rel):
+              member=member.lstrip('./')
+              return member==rel or member.endswith('/'+rel)
+          for rel in rels:
+              indexes=[i for i,(info,_) in enumerate(entries) if match(info.filename,rel)]
+              if rel=='qa/package_manifest.json' and not indexes:continue
+              assert len(indexes)==1,(rel,indexes)
+              for i in indexes:entries[i]=(entries[i][0],(root/rel).read_bytes())
+          tmp=zip_path.with_name(zip_path.name+'.new')
+          with zipfile.ZipFile(tmp,'w') as z:
+              for info,data in entries:z.writestr(info,data)
+          os.replace(tmp,zip_path)
+          with zipfile.ZipFile(zip_path) as z:
+              assert z.testzip() is None
+              for rel in rels[:2]:
+                  members=[n for n in z.namelist() if match(n,rel)]
+                  assert len(members)==1 and z.read(members[0])==(root/rel).read_bytes()
+          print('Manuscript build successful, pages:',pages)
+          PY
+      - name: Commit published figure and PDF
+        run: |
+          set -euo pipefail
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          F=paper/figures/fig3_mechanisms
+          STEM=HybridGuard_Fig3_mechanisms_v3
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$F/$STEM.svg" "$F/$STEM.png" "$F/$STEM.pdf" \
+            "$F/STYLE_V3_CHECK.json" "$F/HybridGuard_Fig3_mechanisms_v3_source.zip" \
+            "paper/figures/$STEM.svg" "paper/figures/$STEM.pdf" \
+            "$ROOT/figures/$STEM.svg" "$ROOT/figures/$STEM.pdf" \
+            "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" \
+            "$ROOT/qa/package_manifest.json" "$ROOT/qa/figure3_footer_removal_20261024.md"
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(fig3): publish concise Figure 3 and rebuilt paper [skip ci]"
+            git push origin HEAD:main
+          fi
