@@ -1,0 +1,398 @@
+{
+  "date": "2026-10-22",
+  "status": "APPROVED_EDITS_APPLIED_AND_VERIFIED",
+  "approved_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "B1"
+  ],
+  "paper_text_edits_applied": true,
+  "applied": [
+    {
+      "id": "A1",
+      "source_review_id": "R1",
+      "title": "给 semantic coverage 和 semantic quality 操作定义",
+      "priority": "优先建议",
+      "short_title": "方法指标未定义",
+      "section": "§3.4；附录 A.5",
+      "location_text": "§3.4：semantic coverage / quality",
+      "pages": [
+        4
+      ],
+      "quote": "Additions must preserve training detections, increase semantic coverage, and satisfy the alarm and coverage constraints.",
+      "assessment": "前一段刚定义 definite-output coverage，后一段引入未定义的 semantic coverage；读者可能把二者当作同一指标，也可能把 semantic quality 当成条件准确率或证据可信度。实际实现的 coverage 按语义组与训练修改记录去重，quality 是预登记的观测/语义偏好。",
+      "proposal": "Semantic coverage counts distinct (semantic group, modified training record) trigger pairs using the training detection weights, with groups assigned from field semantics. Semantic quality sums predefined preference scores for positive literals; these scores express observation preferences, not measured accuracy or independent evidence.",
+      "placement": "在 §3.4 retention 段第一句之后插入；后续约束句保持。",
+      "evidence": [
+        {
+          "path": "rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/retention.py",
+          "lines": "11–55, 58–64",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/rule_learning_v2/retention.py"
+        },
+        {
+          "path": "rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/semantic_selection.py",
+          "lines": "1–6, 63–70, 85–94, 144–147, 168–170",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/rule_learning_v2/semantic_selection.py"
+        }
+      ],
+      "net_added_words": 42,
+      "word_budget": "主文",
+      "confidence": "高",
+      "applied": true,
+      "requires_new_experiment": false,
+      "changes_results": false,
+      "changes_abstract": false,
+      "status": "APPLIED_AND_VERIFIED"
+    },
+    {
+      "id": "A2",
+      "source_review_id": "R2",
+      "title": "定义 same-Web viewport 对照实际比较的量",
+      "priority": "优先建议",
+      "short_title": "对照比较量未定义",
+      "section": "§3.4 首段；§5.2 Host container context；Table 4",
+      "location_text": "§3.4：same-Web viewport 对照",
+      "pages": [
+        4
+      ],
+      "quote": "The App pool contains 50 base templates and three fixed relations: Native memory, Native timezone, and same-Web viewport.",
+      "assessment": "Native memory、Native timezone、Host geometry 均有明确操作定义；same-Web viewport 却只出现名称与 0/6、0/66 结果。不了解代码的读者无法判断它与 Host 上界的差别，也容易把 Host 的 DPR×scale 换算误套到这个同 Web 对照上。",
+      "proposal": "The same-Web comparator flags either visual-viewport dimension exceeding the corresponding window.innerWidth or window.innerHeight by more than 1 CSS pixel, using positive, same-probe observations when visual-viewport scale is at least one.",
+      "placement": "在 §3.4 首段第一句列出三个固定关系之后插入，或紧邻 §5.2 首次解释该对照时插入一次；不重复两处添加。",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/mtc_screen_relations.py",
+          "lines": "10–35, 77–121",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/mtc_screen_relations.py",
+          "git_blob": "6401801764504e2f3776516baf6dfc28c893c8cb"
+        },
+        {
+          "path": "rba_review/repo_evidence/deliverables/app177_core_ablation_v1/CANDIDATES.json",
+          "lines": "3093–3139",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app177_core_ablation_v1/CANDIDATES.json"
+        },
+        {
+          "path": "rba_review/repo_evidence/deliverables/screen_geometry_observation_v1/CONDITIONS_FROZEN.json",
+          "lines": "31–35",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/screen_geometry_observation_v1/CONDITIONS_FROZEN.json"
+        }
+      ],
+      "net_added_words": 30,
+      "word_budget": "主文",
+      "confidence": "高",
+      "applied": true,
+      "requires_new_experiment": false,
+      "changes_results": false,
+      "changes_abstract": false,
+      "status": "APPLIED_AND_VERIFIED"
+    },
+    {
+      "id": "A3",
+      "source_review_id": "E2",
+      "title": "解释附录诊断代号与四视图/划分的实际范围",
+      "priority": "优先建议",
+      "short_title": "附录代号与划分未定义",
+      "section": "附录 A.3；对应 §6.2",
+      "location_text": "附录 A.3：资源条件、四视图与批次划分",
+      "pages": [
+        9
+      ],
+      "quote": "S0 detects 13/26; S0+M and S0+W detect 19/26; S0+B detects 16/26.\n\nThe relation-augmented P0 fit yields 14/14 detections and 0/46 normal alarms; under P2, the relation-augmented view yields 4/8 and 6/34.",
+      "assessment": "这些标签仅列出结果，没有给出其指代。读者既不能理解哪些资源条件未通过接入，也不能判断 P0 的拟合成绩与 P2 的整批留出诊断区别。四视图限定于语言/时区字段，并非全部 App/Browser 字段的模型上限；该范围对理解主文 §6.2 的论断有直接影响。",
+      "proposal": "S0 is the frozen Integrated App + C1 baseline. M adds a Native-to-Browser memory-envelope check, W tests inequality between App-Web and Browser memory reports, and B tests Browser memory above 8 GiB.\n\nThe four-view diagnostic uses language and timezone measurements: App only, Browser only, their concatenation, and the concatenation augmented by C1/C2 states. P0 trains on the 630 discovery normals and both paired batches. P1 and P2 withhold the 18-position pilot and 42-position matched batch, respectively, while training on the discovery normals and the other batch.",
+      "placement": "第一段放在 A.3 的 S07 数字前；第二段放在 S08 的 P0/P2 数字前。保留已有 development-use 和非独立复现实验的限定。",
+      "evidence": [
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/rx_common.py",
+          "lines": "9–11",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_constrained_extension_v1/rx_common.py"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "lines": "5, 14, 20, 60",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_constrained_extension_v1/REPORT.md"
+        },
+        {
+          "path": "deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md",
+          "lines": "3–15",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md"
+        },
+        {
+          "path": "deliverables/cross_endpoint_four_view_comparison_v1/PROTOCOL.md",
+          "lines": "9, 19–21",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/cross_endpoint_four_view_comparison_v1/PROTOCOL.md"
+        },
+        {
+          "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/supplement/S08_full_aggregate_table.md",
+          "data_items": "P0 V_BOTH_REL 14/14, 0/46; P1 V_BOTH_REL 6/6, 0/12; P2 V_BOTH_REL 4/8, 6/34"
+        }
+      ],
+      "net_added_words": 86,
+      "word_budget": "附录",
+      "confidence": "高",
+      "applied": true,
+      "requires_new_experiment": false,
+      "changes_results": false,
+      "changes_abstract": false,
+      "status": "APPLIED_AND_VERIFIED"
+    },
+    {
+      "id": "B1",
+      "source_review_id": "E3",
+      "title": "明确 Native memory 的观测口径",
+      "priority": "建议一并补充",
+      "short_title": "内存测量口径",
+      "section": "§3.3 Native memory envelope",
+      "location_text": "§3.3：Native memory 观测口径",
+      "pages": [
+        3
+      ],
+      "quote": "For observed, finite, positive memory measurements in GiB from the same bound App record",
+      "assessment": "GiB 说明单位，但没有说明 m_native 是内核可见总量，不能由空闲内存或零售标称 RAM 代入。当前字段名和数据处理是正确的；补一句可让读者准确复现 envelope 的输入。",
+      "proposal": "Here, m_native is kernel-visible total memory reported by Android ActivityManager.MemoryInfo.totalMem, converted to GiB; m_web is the Web deviceMemory report.",
+      "placement": "在内存公式之后、解释 Device Memory draft 之前；实际排版沿用现有数学变量和等宽 API 名。",
+      "evidence": [
+        {
+          "path": "/workspace/scratch/fff1267c1d19/rba_review/repo_evidence/deliverables/memory_relation_validation_v1/SOURCES.md",
+          "lines": "5, 17",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/memory_relation_validation_v1/SOURCES.md"
+        },
+        {
+          "path": "deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md",
+          "lines": "8",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md"
+        }
+      ],
+      "net_added_words": 19,
+      "word_budget": "主文",
+      "confidence": "高",
+      "applied": true,
+      "requires_new_experiment": false,
+      "changes_results": false,
+      "changes_abstract": false,
+      "status": "APPLIED_AND_VERIFIED"
+    }
+  ],
+  "not_applied": [
+    "B2"
+  ],
+  "word_counts": {
+    "main": 91,
+    "appendix": 86,
+    "total": 177
+  },
+  "pdf": {
+    "name": "HybridGuard_layout_v1_matrix.pdf",
+    "sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+    "main_pages": 8,
+    "total_pages": 10,
+    "labels": {
+      "sec:1": {
+        "number": "1",
+        "page": 1
+      },
+      "sec:2": {
+        "number": "2",
+        "page": 2
+      },
+      "sec:2-1": {
+        "number": "2.1",
+        "page": 2
+      },
+      "sec:2-2": {
+        "number": "2.2",
+        "page": 2
+      },
+      "sec:2-3": {
+        "number": "2.3",
+        "page": 2
+      },
+      "sec:3": {
+        "number": "3",
+        "page": 2
+      },
+      "sec:3-1": {
+        "number": "3.1",
+        "page": 2
+      },
+      "sec:3-2": {
+        "number": "3.2",
+        "page": 2
+      },
+      "sec:3-3": {
+        "number": "3.3",
+        "page": 2
+      },
+      "tab:related": {
+        "number": "1",
+        "page": 3
+      },
+      "fig:surfaces": {
+        "number": "1",
+        "page": 3
+      },
+      "fig:pipeline": {
+        "number": "2",
+        "page": 4
+      },
+      "sec:3-4": {
+        "number": "3.4",
+        "page": 4
+      },
+      "tab:materials": {
+        "number": "2",
+        "page": 5
+      },
+      "sec:3-5": {
+        "number": "3.5",
+        "page": 5
+      },
+      "sec:4": {
+        "number": "4",
+        "page": 5
+      },
+      "sec:4-1": {
+        "number": "4.1",
+        "page": 5
+      },
+      "sec:4-2": {
+        "number": "4.2",
+        "page": 5
+      },
+      "sec:4-3": {
+        "number": "4.3",
+        "page": 5
+      },
+      "tab:app": {
+        "number": "3",
+        "page": 6
+      },
+      "fig:mechanisms": {
+        "number": "3",
+        "page": 6
+      },
+      "sec:5": {
+        "number": "5",
+        "page": 6
+      },
+      "sec:5-1": {
+        "number": "5.1",
+        "page": 6
+      },
+      "tab:specialists": {
+        "number": "4",
+        "page": 7
+      },
+      "sec:5-2": {
+        "number": "5.2",
+        "page": 7
+      },
+      "sec:5-3": {
+        "number": "5.3",
+        "page": 7
+      },
+      "sec:5-4": {
+        "number": "5.4",
+        "page": 7
+      },
+      "sec:5-5": {
+        "number": "5.5",
+        "page": 7
+      },
+      "sec:6": {
+        "number": "6",
+        "page": 7
+      },
+      "sec:6-1": {
+        "number": "6.1",
+        "page": 7
+      },
+      "tab:normals": {
+        "number": "5",
+        "page": 8
+      },
+      "tab:paired": {
+        "number": "6",
+        "page": 8
+      },
+      "sec:6-2": {
+        "number": "6.2",
+        "page": 8
+      },
+      "sec:6-3": {
+        "number": "6.3",
+        "page": 8
+      },
+      "sec:6-4": {
+        "number": "6.4",
+        "page": 8
+      },
+      "sec:7": {
+        "number": "7",
+        "page": 8
+      },
+      "marker:main-text-end": {
+        "number": "7",
+        "page": 8
+      },
+      "marker:references-end": {
+        "number": "7",
+        "page": 9
+      },
+      "app:main": {
+        "number": "A",
+        "page": 9
+      },
+      "app:1": {
+        "number": "A.1",
+        "page": 9
+      },
+      "app:2": {
+        "number": "A.2",
+        "page": 9
+      },
+      "app:3": {
+        "number": "A.3",
+        "page": 9
+      },
+      "app:4": {
+        "number": "A.4",
+        "page": 10
+      },
+      "app:5": {
+        "number": "A.5",
+        "page": 10
+      },
+      "marker:appendix-end": {
+        "number": "A.5",
+        "page": 10
+      },
+      "TotPages": {
+        "number": "10",
+        "page": 10
+      }
+    }
+  },
+  "previous_assessment": "reviews/history_v2/final_read_assessment.json",
+  "previous_pdf_sha256": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080",
+  "verification_reports": [
+    "reviews/approved_content_review.json",
+    "qa/approved_integrity_check.json",
+    "qa/approved_layout_check.json",
+    "qa/package_rebuild_check.json"
+  ],
+  "source_package_verification": {
+    "status": "PASS",
+    "tested_bundle_sha256": "7b06ad13925d39334b67f7a04f1695ec49e15c4692aa47e20652486670455c60",
+    "compile_input_count": 59,
+    "all_page_texts_equal": true,
+    "all_page_pixels_equal": true
+  },
+  "author_facts": {
+    "MTC_use_and_public_dataset_permission": "Explicitly confirmed by the author in the conversation.",
+    "institution": "Beihang University",
+    "ethics": "Author understands there is no applicable review requirement; no formal approval, exemption, or institutional determination is asserted.",
+    "scope": "Updated notes only; no additional data-collection, ethics, or artifact-availability text added to the manuscript."
+  }
+}

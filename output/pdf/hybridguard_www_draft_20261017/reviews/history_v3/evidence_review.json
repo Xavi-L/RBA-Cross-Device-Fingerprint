@@ -1,0 +1,664 @@
+{
+  "date": "2026-10-22",
+  "status": "FINAL_READ_COMPLETE_NO_MANUSCRIPT_EDITS",
+  "scope": "Read-only factual, methodological and results-evidence consistency review.",
+  "manuscript_changes_applied": false,
+  "abstract_locked": true,
+  "figures_locked": true,
+  "source_base": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown",
+  "repository_commit": "d58e0680728f9adfdd5b550d00fd3f1674460b1e",
+  "conclusion": "未发现必须改动结果、分母或锁定摘要的硬错误。优先补足已有方法和诊断结果的定义；其余两项为局部澄清。所有修改仅为建议，尚未应用。",
+  "issue_counts": {
+    "must_clarify": 2,
+    "shared_with_reader": 1,
+    "suggestions": 2,
+    "author_confirmation_existing": 2,
+    "numeric_or_result_corrections": 0
+  },
+  "issues": [
+    {
+      "id": "E1",
+      "title": "为 retention 的 semantic coverage 与 semantic quality 补操作定义",
+      "classification": "必须",
+      "priority": "优先澄清（与 reader R1 合并，只计一次）",
+      "severity": "方法说明缺口；非结果错误",
+      "owner": "reader R1 / evidence cross-check",
+      "confidence": "高",
+      "section": "§3.4；附录 A.5",
+      "v2_pages": [
+        4,
+        10
+      ],
+      "source_file": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/sections/03_method.md",
+      "source_lines": [
+        45,
+        47
+      ],
+      "quotes": [
+        "Additions must preserve training detections, increase semantic coverage, and satisfy the alarm and coverage constraints.",
+        "Same-group swaps to registered higher-quality alternatives"
+      ],
+      "why": "前一段的 definite-output coverage 已有定义，而 semantic coverage 和 semantic quality 在主文与附录均未操作化。读者不能判断 retention 保留了什么，可能误以为是字段覆盖率、准确率或独立证据强度。实际 coverage 对 (语义组, 训练修改记录) 触发对去重后按训练检测权重求和；同一记录可被不同组分别计入。quality 只对正向文字的预登记偏好分数求和。",
+      "proposal": "Semantic coverage counts distinct (semantic group, modified training record) trigger pairs using the training detection weights, with groups assigned from field semantics. Semantic quality sums predefined preference scores for positive literals; these scores express observation preferences, not measured accuracy or independent evidence.",
+      "placement": "在 §3.4 retention 段第一句之后插入两句；与 reader R1 采用同一修改，不重复添加。",
+      "evidence": [
+        {
+          "path": "/workspace/scratch/fff1267c1d19/rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/retention.py",
+          "lines": "11–55, 58–64",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/rule_learning_v2/retention.py"
+        },
+        {
+          "path": "/workspace/scratch/fff1267c1d19/rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/semantic_selection.py",
+          "lines": "1–6, 63–70, 85–94, 144–147, 168–170, 273–302",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/rule_learning_v2/semantic_selection.py"
+        }
+      ],
+      "implementation_facts": {
+        "coverage_pairs": "distinct (signal_group, record index) pairs with selected literal T, over problem.weights",
+        "coverage_weight": "sum problem.weights[i] once per distinct pair",
+        "quality": "sum registered quality for POSITIVE literals; other polarities contribute 0",
+        "grouping": "metadata/field semantics; grouping does not assert predicate equivalence"
+      },
+      "changes_abstract": false,
+      "changes_results": false,
+      "requires_new_experiment": false,
+      "applied": false
+    },
+    {
+      "id": "E2",
+      "title": "解释附录诊断代号与四视图/划分的实际范围",
+      "classification": "必须",
+      "priority": "优先澄清",
+      "severity": "附录自足性缺口；非数值错误",
+      "confidence": "高",
+      "section": "附录 A.3；对应 §6.2",
+      "v2_pages": [
+        9
+      ],
+      "source_file": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/supplement/00_Appendix_English.md",
+      "source_lines": [
+        19,
+        21
+      ],
+      "quotes": [
+        "S0 detects 13/26; S0+M and S0+W detect 19/26; S0+B detects 16/26.",
+        "The relation-augmented P0 fit yields 14/14 detections and 0/46 normal alarms; under P2, the relation-augmented view yields 4/8 and 6/34."
+      ],
+      "why": "这些标签仅列出结果，没有给出其指代。读者既不能理解哪些资源条件未通过接入，也不能判断 P0 的拟合成绩与 P2 的整批留出诊断区别。四视图限定于语言/时区字段，并非全部 App/Browser 字段的模型上限；该范围对理解主文 §6.2 的论断有直接影响。",
+      "proposal": "S0 is the frozen Integrated App + C1 baseline. M adds a Native-to-Browser memory-envelope check, W tests inequality between App-Web and Browser memory reports, and B tests Browser memory above 8 GiB.\n\nThe four-view diagnostic uses language and timezone measurements: App only, Browser only, their concatenation, and the concatenation augmented by C1/C2 states. P0 trains on the 630 discovery normals and both paired batches. P1 and P2 withhold the 18-position pilot and 42-position matched batch, respectively, while training on the discovery normals and the other batch.",
+      "placement": "第一段放在 A.3 的 S07 数字前；第二段放在 S08 的 P0/P2 数字前。保留已有 development-use 和非独立复现实验的限定。",
+      "evidence": [
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/rx_common.py",
+          "lines": "9–11",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_constrained_extension_v1/rx_common.py"
+        },
+        {
+          "path": "deliverables/app_resource_constrained_extension_v1/REPORT.md",
+          "lines": "5, 14, 20, 60",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_constrained_extension_v1/REPORT.md"
+        },
+        {
+          "path": "deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md",
+          "lines": "3–15",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md"
+        },
+        {
+          "path": "deliverables/cross_endpoint_four_view_comparison_v1/PROTOCOL.md",
+          "lines": "9, 19–21",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/cross_endpoint_four_view_comparison_v1/PROTOCOL.md"
+        },
+        {
+          "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/supplement/S08_full_aggregate_table.md",
+          "data_items": "P0 V_BOTH_REL 14/14, 0/46; P1 V_BOTH_REL 6/6, 0/12; P2 V_BOTH_REL 4/8, 6/34"
+        }
+      ],
+      "definitions": {
+        "S0": "frozen Integrated App + C1; no added resource condition",
+        "M": "R_NATIVE_BROWSER_MEMORY",
+        "W": "R_WEB_MEMORY_DIFFERENCE",
+        "B": "D_BROWSER_MEMORY8",
+        "V_APP": "7 derived App language/timezone fields",
+        "V_BROWSER": "4 derived Browser language/timezone fields",
+        "V_BOTH": "concatenated 11 fields",
+        "V_BOTH_REL": "same 11 fields plus original C1/C2 T/F/U states",
+        "P0": {
+          "training": 690,
+          "composition": "630 discovery + 18 pilot + 42 matched"
+        },
+        "P1": {
+          "training": 672,
+          "composition": "630 discovery + 42 matched",
+          "heldout": 18
+        },
+        "P2": {
+          "training": 648,
+          "composition": "630 discovery + 18 pilot",
+          "heldout": 42
+        }
+      },
+      "changes_abstract": false,
+      "changes_results": false,
+      "requires_new_experiment": false,
+      "applied": false
+    },
+    {
+      "id": "E3",
+      "title": "明确 Native memory 的观测口径",
+      "classification": "建议",
+      "priority": "次一级建议",
+      "severity": "可重复性用语澄清；现有公式未发现错误",
+      "confidence": "高",
+      "section": "§3.3 Native memory envelope",
+      "v2_pages": [
+        2,
+        3
+      ],
+      "source_file": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/sections/03_method.md",
+      "source_lines": [
+        21,
+        25
+      ],
+      "quotes": [
+        "For observed, finite, positive memory measurements in GiB from the same bound App record"
+      ],
+      "why": "GiB 说明单位，但没有说明 m_native 是内核可见总量，不能由空闲内存或零售标称 RAM 代入。当前字段名和数据处理是正确的；补一句可让读者准确复现 envelope 的输入。",
+      "proposal": "Here, m_native is kernel-visible total memory reported by Android ActivityManager.MemoryInfo.totalMem, converted to GiB; m_web is the Web deviceMemory report.",
+      "placement": "在内存公式之后、解释 Device Memory draft 之前；实际排版沿用现有数学变量和等宽 API 名。",
+      "evidence": [
+        {
+          "path": "/workspace/scratch/fff1267c1d19/rba_review/repo_evidence/deliverables/memory_relation_validation_v1/SOURCES.md",
+          "lines": "5, 17",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/memory_relation_validation_v1/SOURCES.md"
+        },
+        {
+          "path": "deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md",
+          "lines": "8",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app_resource_paired_validation_v1/FIELD_SEMANTICS.md"
+        }
+      ],
+      "changes_abstract": false,
+      "changes_results": false,
+      "requires_new_experiment": false,
+      "applied": false
+    },
+    {
+      "id": "E4",
+      "title": "具体说明固定 tzdb 与设备 tzdb 版本未记录的边界",
+      "classification": "建议",
+      "priority": "次一级建议",
+      "severity": "局限具体化；非已证明的误报警或实现错误",
+      "confidence": "高",
+      "section": "§6.3；关联 §3.3 Native timezone reference",
+      "v2_pages": [
+        3,
+        8
+      ],
+      "source_file": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/sections/06_discussion.md",
+      "source_lines": [
+        15
+      ],
+      "quotes": [
+        "API changes, WebView providers, timing, locale conventions, and container behavior can alter a relation’s applicability."
+      ],
+      "related_quote": "The Native IANA zone and collection interval determine the effective UTC offset under the fixed timezone database, 2026c.",
+      "why": "现稿已列一般漂移风险，但没有交代设备侧 tzdb 版本未记录。原始专项报告明确承认它可能与固定 2026c 有规则差异；这说明在时间区间可靠、zone ID 可解析的情况下，合法偏移也可能不一致。补充能使固定数据库的证据边界更具体，不把可能性升级为已观察到的错误。",
+      "proposal": "The device-side timezone database version was not recorded, so differences from the fixed 2026c database can also produce legitimate offset disagreements.",
+      "placement": "在 §6.3 一般漂移句之后补一句；不改摘要、不重写主结果。",
+      "evidence": [
+        {
+          "path": "/workspace/scratch/fff1267c1d19/rba_review/repo_evidence/deliverables/timezone_relation_validation_v1/REPORT.md",
+          "lines": "143–145",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/timezone_relation_validation_v1/REPORT.md"
+        }
+      ],
+      "changes_abstract": false,
+      "changes_results": false,
+      "requires_new_experiment": false,
+      "applied": false
+    },
+    {
+      "id": "A1",
+      "title": "作者核定实际采集与数据管理事实",
+      "classification": "作者确认",
+      "priority": "沿用既有待办；非新实验要求",
+      "severity": "代码不能替作者证明的研究事实",
+      "confidence": "高（缺失判断）；具体事实待作者提供",
+      "section": "§6.4",
+      "v2_pages": [
+        8
+      ],
+      "source_file": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/sections/06_discussion.md",
+      "source_lines": [
+        23,
+        25
+      ],
+      "quotes": [
+        "Our controlled manipulations use emulators, and historical normals come from cloud-device collection."
+      ],
+      "why": "现文准确说明可验证的来源与权限，但账号/设备授权、是否涉及真实用户、保留期限、实际伦理审查结论不能仅凭代码确定。既有 AUTHOR_FACTS_TO_CONFIRM.md 已列出这些作者事实，应由真实记录决定是否需要补入；不要写未经确认的批准、豁免或无人类参与声明。",
+      "proposal": "Controlled and cloud-device observations were collected during [verified dates] using [verified authorization/account scope]. [Verified participant or real-user status.] Access to the retained data is restricted to [verified scope], with [verified retention policy]. [Verified review or exemption statement, if applicable.]",
+      "placement": "这只是带占位符的填写模板，不是可直接应用的论文稿。待作者确认后再形成 §6.4 的最短准确表述。",
+      "evidence": [
+        {
+          "path": "/workspace/scratch/fff1267c1d19/hybridguard_text_v1/notes/AUTHOR_FACTS_TO_CONFIRM.md",
+          "lines": "5–14"
+        }
+      ],
+      "changes_abstract": false,
+      "changes_results": false,
+      "requires_new_experiment": false,
+      "author_facts_required": true,
+      "applied": false
+    },
+    {
+      "id": "A2",
+      "title": "作者核定评审可访问的实际制品入口",
+      "classification": "作者确认",
+      "priority": "沿用既有待办；按实际发布安排处理",
+      "severity": "制品访问陈述待定；不是实现缺失",
+      "confidence": "高",
+      "section": "附录 A.3 / A.5",
+      "v2_pages": [
+        9,
+        10
+      ],
+      "source_file": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/supplement/00_Appendix_English.md",
+      "source_lines": [
+        17,
+        29,
+        33
+      ],
+      "quotes": [
+        "The implementation archive provides the 50 base templates and three relations",
+        "Record-level outputs are retained in"
+      ],
+      "why": "附录已写清实现目录、模型与逐记录输出位置；但论文没有明确评审可访问入口，正文源包中的 S01–S09 也不能自动等同于完整实现 archive。需根据实际匿名发布安排确认入口和包含内容，不应自行把可识别作者的仓库链接放入匿名稿。",
+      "proposal": "The anonymized artifact at [verified review-access URL] contains [verified contents], including the implementation, saved models, and aggregate result tables.",
+      "placement": "仅在入口与内容真实可用时加入附录 A.5；若实际尚未开放，则按真实状态改写，不能承诺不存在的制品。",
+      "evidence": [
+        {
+          "path": "/workspace/scratch/fff1267c1d19/hybridguard_text_v1/notes/AUTHOR_FACTS_TO_CONFIRM.md",
+          "lines": "16–18"
+        },
+        {
+          "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v1/input_markdown/supplement/00_Appendix_English.md",
+          "lines": "17, 29–33"
+        }
+      ],
+      "changes_abstract": false,
+      "changes_results": false,
+      "requires_new_experiment": false,
+      "author_facts_required": true,
+      "applied": false
+    }
+  ],
+  "passed_checks": [
+    {
+      "id": "P1",
+      "classification": "可保留",
+      "title": "锁定摘要与正文/表格的核心量一致",
+      "evidence": [
+        "00_abstract.md:11",
+        "05_results.md:5, 30–46",
+        "data/01_App总体.csv",
+        "data/04_专项条件.csv"
+      ],
+      "finding": "105/126 与 0/252；memory 18/18 vs 6/18 且均0/48；timezone均6/6、0/30 vs6/30；geometry均6/6、0/66 vs6/66 均一致。摘要既有 separate fixed-check / separate geometry 边界由正文进一步明确，不需改摘要。"
+    },
+    {
+      "id": "P2",
+      "classification": "可保留",
+      "title": "Table 3 分组权重与总计一致",
+      "evidence": [
+        "tables/table_03_matrix.tex",
+        "input_markdown/supplement/00_Appendix_English.md:17",
+        "data/02_App分类.csv"
+      ],
+      "finding": "14 recipes × 6 methods=84 cells；五组大小1/1/2/8/2，每recipe 9个有效修改。加权检测数105/108/96/96/105/72，总分母126；漏检21/18/30/30/21/54及百分比均一致。分组表注只声称完整state-count vectors一致，不把同计数误称同预测。"
+    },
+    {
+      "id": "P3",
+      "classification": "可保留",
+      "title": "九个 App 差异确有逐记录输出支持",
+      "evidence": [
+        "deliverables/app177_core_ablation_v1/results/full_predictions.jsonl.gz",
+        "deliverables/app177_core_ablation_v1/results/predictions.jsonl.gz"
+      ],
+      "finding": "按 (sample_id, fold_id) 对齐 controlled/heldout/RETENTION 的378个位置。Web-only与no-memory各仅9个 T→F，全属于 CPU-plus-memory recipe；其余369一致。No-timezone为0个状态差异。No-cap仅3个F→T，均为screen recipe。可以保留 all nine differences occur…；结论不是从相同总计推测。"
+    },
+    {
+      "id": "P4",
+      "classification": "可保留",
+      "title": "三配置、历史 cohort 和分母未混用",
+      "evidence": [
+        "05_results.md:52–61, 65–77",
+        "04_evaluation_protocol.md",
+        "data/03_MTC正常.csv",
+        "data/06_双端历史正常.csv"
+      ],
+      "finding": "01/02只因同计数并列，未池化；144/117分组、独立列出的630训练normal，以及每模型14/261→17/261的unknown计数一致。paired 14 modifications +46 normals是60位置，未因为3模型膨胀成42个攻击。历史development exposure限制已在正文说明。"
+    },
+    {
+      "id": "P5",
+      "classification": "可保留",
+      "title": "refit、standalone specialist 与证据范围已区分",
+      "evidence": [
+        "05_results.md:5, 24, 42–46",
+        "06_discussion.md:5–11, 19",
+        "00_Appendix_English.md:5, 35"
+      ],
+      "finding": "九个主benchmark差异与十二个memory专项新增检测明确分开；Host geometry不在Integrated App；固定比较器不被宣称为通用最优上限；refitted alternatives不等于删单规则的因果归因。"
+    },
+    {
+      "id": "P6",
+      "classification": "可保留",
+      "title": "T/F/U/FAILED、retention约束和停止原因已一致",
+      "evidence": [
+        "03_method.md:15–17, 45–47, 51",
+        "06_discussion.md:17",
+        "00_Appendix_English.md:25, 31",
+        "rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/semantic_selection.py:273–302"
+      ],
+      "finding": "必要输入失败优先于T；U未被当normal，未选字段缺失不会自动fail；EMPTY_MODEL先处理。主文区分addition与swap的额外nonregression要求。deadline为60秒，保存fit实际因heuristic stopping结束，未写成超时。benchmark无FAILED不等于未实现失败语义。C1无timestamp gate已明确。"
+    }
+  ],
+  "saved_prediction_verification": {
+    "only_saved_outputs_read": true,
+    "new_experiments_run": false,
+    "models_refit": false,
+    "record_key": [
+      "sample_id",
+      "fold_id"
+    ],
+    "filters": {
+      "cohort": "controlled",
+      "subset": "heldout",
+      "stage": "RETENTION"
+    },
+    "full_blob_sha": "026485d5c602e48c9c82c3ba2f2ff21b31c3405f",
+    "ablation_blob_sha": "3d09e00306518706675e10f3a8c8ab9887545103",
+    "git_blob_hashes_verified": true,
+    "full_rows": 3771,
+    "ablation_rows": 33939,
+    "matched_positions": 378,
+    "normal_positions": 252,
+    "modification_positions": 126,
+    "comparisons": [
+      {
+        "scheme": "A_APP_WEB_ONLY",
+        "matched_positions": 378,
+        "full_counts": {
+          "F": 273,
+          "T": 105
+        },
+        "other_counts": {
+          "F": 282,
+          "T": 96
+        },
+        "differences": 9,
+        "by_scenario": {
+          "w9-rule-boundary-cdp-resource-pair-v1": 9
+        },
+        "by_transition": {
+          "T->F": 9
+        },
+        "records": [
+          {
+            "sample_id": "webgl1fresh-3373ac4b-b283-446f-8995-3cf186aae9f5",
+            "fold_id": "WEBGL1-LOEO-v1-01",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-8074e4c2-2cd3-440b-87e6-bea6510e79c3",
+            "fold_id": "WEBGL1-LOEO-v1-01",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-dc054460-72b4-4b7f-98bf-a51cf067be89",
+            "fold_id": "WEBGL1-LOEO-v1-01",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-4c9af072-354a-4aaf-9a84-be1caf9bb3d6",
+            "fold_id": "WEBGL1-LOEO-v1-02",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-7c1b3f9b-cc49-4474-8c23-303a6c6186d6",
+            "fold_id": "WEBGL1-LOEO-v1-02",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-f3bcc4db-420e-4266-b35e-4aeb75d122a3",
+            "fold_id": "WEBGL1-LOEO-v1-02",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-35d0479a-3a0a-481a-82eb-6b18e1fcafeb",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-566322bb-b443-4a1b-a556-543fd992d7ae",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-9ad06364-8bf4-4420-91d9-f23462df639d",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          }
+        ]
+      },
+      {
+        "scheme": "A_NO_MEMORY_REL",
+        "matched_positions": 378,
+        "full_counts": {
+          "F": 273,
+          "T": 105
+        },
+        "other_counts": {
+          "F": 282,
+          "T": 96
+        },
+        "differences": 9,
+        "by_scenario": {
+          "w9-rule-boundary-cdp-resource-pair-v1": 9
+        },
+        "by_transition": {
+          "T->F": 9
+        },
+        "records": [
+          {
+            "sample_id": "webgl1fresh-3373ac4b-b283-446f-8995-3cf186aae9f5",
+            "fold_id": "WEBGL1-LOEO-v1-01",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-8074e4c2-2cd3-440b-87e6-bea6510e79c3",
+            "fold_id": "WEBGL1-LOEO-v1-01",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-dc054460-72b4-4b7f-98bf-a51cf067be89",
+            "fold_id": "WEBGL1-LOEO-v1-01",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-4c9af072-354a-4aaf-9a84-be1caf9bb3d6",
+            "fold_id": "WEBGL1-LOEO-v1-02",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-7c1b3f9b-cc49-4474-8c23-303a6c6186d6",
+            "fold_id": "WEBGL1-LOEO-v1-02",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-f3bcc4db-420e-4266-b35e-4aeb75d122a3",
+            "fold_id": "WEBGL1-LOEO-v1-02",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-35d0479a-3a0a-481a-82eb-6b18e1fcafeb",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-566322bb-b443-4a1b-a556-543fd992d7ae",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          },
+          {
+            "sample_id": "webgl1fresh-9ad06364-8bf4-4420-91d9-f23462df639d",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w9-rule-boundary-cdp-resource-pair-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "T",
+            "other": "F"
+          }
+        ]
+      },
+      {
+        "scheme": "A_NO_TIMEZONE_REL",
+        "matched_positions": 378,
+        "full_counts": {
+          "F": 273,
+          "T": 105
+        },
+        "other_counts": {
+          "F": 273,
+          "T": 105
+        },
+        "differences": 0,
+        "by_scenario": {},
+        "by_transition": {},
+        "records": []
+      },
+      {
+        "scheme": "A_NO_MTC_CAP",
+        "matched_positions": 378,
+        "full_counts": {
+          "F": 273,
+          "T": 105
+        },
+        "other_counts": {
+          "F": 270,
+          "T": 108
+        },
+        "differences": 3,
+        "by_scenario": {
+          "w10-cdp-emulation-screen-metrics-only-v1": 3
+        },
+        "by_transition": {
+          "F->T": 3
+        },
+        "records": [
+          {
+            "sample_id": "webgl1fresh-26b37391-195f-443c-8acb-aed02cc6bb6f",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w10-cdp-emulation-screen-metrics-only-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "F",
+            "other": "T"
+          },
+          {
+            "sample_id": "webgl1fresh-c8bb538c-fd3e-4986-aaad-eb82b98ad6d2",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w10-cdp-emulation-screen-metrics-only-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "F",
+            "other": "T"
+          },
+          {
+            "sample_id": "webgl1fresh-eaed3e03-9353-4ad1-baaa-942250fa3ee2",
+            "fold_id": "WEBGL1-LOEO-v1-03",
+            "scenario": "w10-cdp-emulation-screen-metrics-only-v1",
+            "identity": "EFFECTIVE_INTERVENTION",
+            "full": "F",
+            "other": "T"
+          }
+        ]
+      }
+    ]
+  },
+  "pagination_note": "已只读核对最终稳定 v2 PDF。报告页码按 PDF 页码（1–10）；章节与正文源行号同时保留。S0/P0/P2 在最终 PDF 中仅出现在第9页 A.3 结果句，没有定义；P1未在论文中展开。semantic coverage/quality 在第4页和第10页仅用于约束/排序，没有操作定义。",
+  "pdf": {
+    "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v2/build/matrix/HybridGuard_layout_v1_matrix.pdf",
+    "sha256": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080",
+    "pages": 10,
+    "main_text_pages": 8
+  },
+  "no_definition_check": {
+    "pdf_s0_pages": [
+      9
+    ],
+    "pdf_p0_pages": [
+      9
+    ],
+    "pdf_p1_pages": [],
+    "pdf_p2_pages": [
+      9
+    ],
+    "semantic_terms_pages": [
+      4,
+      10
+    ],
+    "totalmem_present_in_pdf": false,
+    "kernel_visible_present_in_pdf": false,
+    "context_reviewed": true
+  }
+}
+

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="70mm" viewBox="0 0 1800 700" role="img" aria-labelledby="title description">
+<title id="title">HybridGuard: current-record evaluation and offline construction</title>
+<desc id="description">Offline selection uses candidate checks and development data under alarm, coverage, and complexity constraints to supply frozen rules. Current App observations, with an optional linked Browser, are associated by value, status, and provenance. Selected checks include single-view predicates, Native-Web memory and timezone relations, and optional C1 timezone comparison. The ordered decision tests are: an empty selected set yields EMPTY_MODEL; a required execution or binding failure yields FAILED; otherwise any T yields ALERT, all F yields NO ALERT, and every remaining case yields UNKNOWN. T means a triggered predicate, F a definite non-trigger, U unknown, and FAILED a relevant execution or association failure. App-only and App-plus-linked-Browser are alternative configurations, not a fallback sequence. Only current observations are evaluated. Host geometry is not included in the integrated detector.</desc>
+<style>text{font-family:"Nimbus Roman","Times New Roman",Times,serif; fill:#343434}</style>
+<defs>
+<marker id="flow" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="10" markerHeight="10" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L9 5L1 9Z" fill="#687078"/></marker>
+<marker id="config" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="10" markerHeight="10" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L9 5L1 9Z" fill="#72618d"/></marker>
+</defs>
+<rect width="1800" height="700" fill="white"/>
+
+<text x="30" y="38" font-size="31" font-weight="700" text-anchor="start" style="fill:#72618d">Offline construction</text>
+<rect x="30" y="60" width="268" height="100" rx="4" fill="#f4f0f8" stroke="#72618d" stroke-width="1.7"/>
+<text x="164" y="97" font-size="29" font-weight="700" text-anchor="middle" style="fill:#343434">Candidate checks</text>
+<text x="164" y="134" font-size="28" font-weight="400" text-anchor="middle" style="fill:#343434">Development data</text>
+<path d="M298 110H350" fill="none" stroke="#72618d" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)"/>
+<rect x="350" y="60" width="404" height="100" rx="4" fill="white" stroke="#72618d" stroke-width="1.7"/>
+<text x="552" y="98" font-size="30" font-weight="700" text-anchor="middle" style="fill:#343434">Select and retain rules</text>
+<text x="552" y="135" font-size="27" font-weight="400" text-anchor="middle" style="fill:#687078">Alarm · coverage · complexity</text>
+<path d="M754 110H806" fill="none" stroke="#72618d" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)"/>
+<rect x="806" y="60" width="280" height="100" rx="4" fill="#f4f0f8" stroke="#72618d" stroke-width="1.7"/>
+<text x="946" y="98" font-size="30" font-weight="700" text-anchor="middle" style="fill:#343434">Frozen rules</text>
+<text x="946" y="135" font-size="28" font-weight="400" text-anchor="middle" style="fill:#343434">and parameters</text>
+<text x="1200" y="38" font-size="31" font-weight="700" text-anchor="start" style="fill:#687078">Evaluated configurations</text>
+<circle cx="1210" cy="88" r="5" fill="#507cc4"/>
+<text x="1228" y="97" font-size="29" font-weight="700" text-anchor="start" style="fill:#507cc4">App only</text>
+<text x="1447" y="97" font-size="27" font-weight="400" text-anchor="start" style="fill:#687078">Integrated App</text>
+<circle cx="1210" cy="134" r="5" fill="#3d756c"/>
+<text x="1228" y="143" font-size="29" font-weight="700" text-anchor="start" style="fill:#3d756c">App + Browser</text>
+<text x="1447" y="143" font-size="27" font-weight="400" text-anchor="start" style="fill:#687078">Integrated App + C1</text>
+<path d="M30 190H1770" fill="none" stroke="#d7dcdf" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="43" cy="227" r="13" fill="#343434"/>
+<text x="43" y="236" font-size="24" font-weight="700" text-anchor="middle" style="fill:white">1</text>
+<text x="68" y="237" font-size="32" font-weight="700" text-anchor="start" style="fill:#343434">Bind observations</text>
+<circle cx="663" cy="227" r="13" fill="#343434"/>
+<text x="663" y="236" font-size="24" font-weight="700" text-anchor="middle" style="fill:white">2</text>
+<text x="688" y="237" font-size="32" font-weight="700" text-anchor="start" style="fill:#343434">Evaluate selected checks</text>
+<circle cx="1179" cy="227" r="13" fill="#343434"/>
+<text x="1179" y="236" font-size="24" font-weight="700" text-anchor="middle" style="fill:white">3</text>
+<text x="1204" y="237" font-size="32" font-weight="700" text-anchor="start" style="fill:#343434">Resolve and return</text>
+<rect x="30" y="298" width="246" height="183" rx="4" fill="#f2f5fa" stroke="#9bafc7" stroke-width="1.7"/>
+<text x="153" y="337" font-size="30" font-weight="700" text-anchor="middle" style="fill:#507cc4">Current App</text>
+<text x="153" y="380" font-size="28" font-weight="400" text-anchor="middle" style="fill:#343434">Native APIs</text>
+<text x="153" y="418" font-size="28" font-weight="400" text-anchor="middle" style="fill:#343434">WebView Host</text>
+<text x="153" y="456" font-size="28" font-weight="400" text-anchor="middle" style="fill:#343434">App Web (JS)</text>
+<rect x="30" y="518" width="246" height="87" rx="4" fill="#eff6f3" stroke="#88aaa1" stroke-width="1.7" stroke-dasharray="6 4"/>
+<text x="153" y="553" font-size="29" font-weight="700" text-anchor="middle" style="fill:#3d756c">Linked Browser</text>
+<text x="153" y="585" font-size="27" font-weight="400" text-anchor="middle" style="fill:#687078">optional</text>
+<rect x="341" y="357" width="251" height="176" rx="4" fill="white" stroke="#507cc4" stroke-width="1.8"/>
+<text x="466.5" y="398" font-size="31" font-weight="700" text-anchor="middle" style="fill:#343434">Bind records</text>
+<path d="M357 416H576" fill="none" stroke="#c5d1df" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="466.5" y="450" font-size="28" font-weight="400" text-anchor="middle" style="fill:#343434">Values + status</text>
+<text x="466.5" y="487" font-size="27" font-weight="400" text-anchor="middle" style="fill:#343434">Sources + context</text>
+<text x="466.5" y="518" font-size="26" font-weight="400" text-anchor="middle" style="fill:#687078">Bound observations</text>
+<path d="M276 389H308V445" fill="none" stroke="#687078" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M276 561H308V445" fill="none" stroke="#687078" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="308" cy="445" r="3.4" fill="#687078"/>
+<path d="M308 445H341" fill="none" stroke="#687078" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M592 445H628" fill="none" stroke="#687078" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="628" y="273" width="482" height="379" rx="7" fill="#fcfcfd" stroke="#b4bcc4" stroke-width="1.6" stroke-dasharray="7 5"/>
+<path d="M946 160V176H1128V285H1110" fill="none" stroke="#72618d" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#config)" stroke-dasharray="6 4"/>
+<rect x="650" y="298" width="433" height="63" rx="4" fill="#f2f5fa" stroke="#9bafc7" stroke-width="1.6"/>
+<text x="671" y="338" font-size="30" font-weight="700" text-anchor="start" style="fill:#343434">Single-view predicates</text>
+<rect x="650" y="376" width="433" height="90" rx="4" fill="#f2f5fa" stroke="#9bafc7" stroke-width="1.6"/>
+<text x="671" y="412" font-size="30" font-weight="700" text-anchor="start" style="fill:#343434">Native-Web relations</text>
+<text x="671" y="448" font-size="28" font-weight="400" text-anchor="start" style="fill:#687078">Memory / timezone</text>
+<rect x="650" y="485" width="433" height="82" rx="4" fill="#eff6f3" stroke="#88aaa1" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="671" y="518" font-size="29" font-weight="700" text-anchor="start" style="fill:#3d756c">App Web-Browser (C1)</text>
+<text x="671" y="552" font-size="27" font-weight="400" text-anchor="start" style="fill:#687078">Timezone · linked mode only</text>
+<path d="M637 330V526" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M628 445H637" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M637 330H650" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M637 421H650" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M637 526H650" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<path d="M1083 330H1096V526H1083" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1083 421H1096" fill="none" stroke="#687078" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1096" cy="445" r="3.1" fill="#687078"/>
+<path d="M1096 445H1166" fill="none" stroke="#687078" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="650" y="605" font-size="26" font-weight="400" text-anchor="start" style="fill:#687078">T: trigger</text>
+<text x="829" y="605" font-size="26" font-weight="400" text-anchor="start" style="fill:#687078">F: definite non-trigger</text>
+<text x="650" y="636" font-size="26" font-weight="400" text-anchor="start" style="fill:#687078">U: unknown</text>
+<text x="829" y="636" font-size="26" font-weight="400" text-anchor="start" style="fill:#687078">FAILED: failure</text>
+<text x="1168" y="277" font-size="27" font-weight="400" text-anchor="start" style="fill:#687078">Ordered tests; first matching case</text>
+<rect x="1166" y="297" width="604" height="355" rx="4" fill="white" stroke="#9da7b0" stroke-width="1.7"/>
+<path d="M1166 360H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1166 442H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1166 512H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1166 582H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="1526" y="298" width="243" height="353" fill="#f5f7f9"/>
+<path d="M1526 360H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1526 442H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1526 512H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1526 582H1770" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1526 297V652" fill="none" stroke="#d0d6dc" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1190" y="337.5" font-size="25" font-weight="400" text-anchor="start" style="fill:#687078">1</text>
+<text x="1220" y="337.5" font-size="27" font-weight="400" text-anchor="start" style="fill:#343434">Empty selected set</text>
+<path d="M1489 328.5H1514" fill="none" stroke="#687078" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1543" y="337.5" font-size="26" font-weight="700" text-anchor="start" style="fill:#687078">EMPTY_MODEL</text>
+<text x="1190" y="410.0" font-size="25" font-weight="400" text-anchor="start" style="fill:#687078">2</text>
+<text x="1220" y="394.0" font-size="27" font-weight="400" text-anchor="start" style="fill:#343434">Required execution /</text>
+<text x="1220" y="425.0" font-size="27" font-weight="400" text-anchor="start" style="fill:#343434">binding failure</text>
+<path d="M1489 401.0H1514" fill="none" stroke="#687078" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1543" y="410.0" font-size="26" font-weight="700" text-anchor="start" style="fill:#687078">FAILED</text>
+<text x="1190" y="486.0" font-size="25" font-weight="400" text-anchor="start" style="fill:#687078">3</text>
+<text x="1220" y="486.0" font-size="27" font-weight="400" text-anchor="start" style="fill:#343434">Otherwise, any T</text>
+<path d="M1489 477.0H1514" fill="none" stroke="#687078" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1543" y="486.0" font-size="26" font-weight="700" text-anchor="start" style="fill:#a4533e">ALERT</text>
+<text x="1190" y="556.0" font-size="25" font-weight="400" text-anchor="start" style="fill:#687078">4</text>
+<text x="1220" y="556.0" font-size="27" font-weight="400" text-anchor="start" style="fill:#343434">Otherwise, all F</text>
+<path d="M1489 547.0H1514" fill="none" stroke="#687078" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1543" y="556.0" font-size="26" font-weight="700" text-anchor="start" style="fill:#343434">NO ALERT</text>
+<text x="1190" y="626.0" font-size="25" font-weight="400" text-anchor="start" style="fill:#687078">5</text>
+<text x="1220" y="626.0" font-size="27" font-weight="400" text-anchor="start" style="fill:#343434">Otherwise</text>
+<path d="M1489 617.0H1514" fill="none" stroke="#687078" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#flow)"/>
+<text x="1543" y="626.0" font-size="26" font-weight="700" text-anchor="start" style="fill:#687078">UNKNOWN</text>
+<text x="30" y="687" font-size="26" font-weight="400" text-anchor="start" style="fill:#687078">Current observations only; no intervention labels or recovery records.</text>
+<text x="1770" y="687" font-size="26" font-weight="400" text-anchor="end" style="fill:#687078">Return state + check results + associated evidence</text>
+</svg>

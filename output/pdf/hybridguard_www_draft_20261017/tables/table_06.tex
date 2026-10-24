@@ -1,0 +1,26 @@
+% Table 6: detection symbols apply to modifications, never the normal-alarm row.
+% Source: input_markdown/sections/05_results.md.
+\begin{table}[t]
+  \caption{Paired App--Browser outcomes with development-use history. App = Integrated App; T counts detected modifications or normal alarms. U and FAILED are zero.}
+  \label{tab:paired}
+  \centering
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}X c >{\centering\arraybackslash}p{0.25\columnwidth} >{\centering\arraybackslash}p{0.29\columnwidth}@{}}
+    \toprule
+    Record family & $N$ & App: T & App + C1: T \\
+    \midrule
+    App timezone & 2 & \HGFull\,2 & \HGFull\,2 \\
+    App language & 2 & \HGNone\,0 & \HGNone\,0 \\
+    Browser timezone & 5 & \HGNone\,0 & \HGFull\,5 \\
+    Browser language & 5 & \HGNone\,0 & \HGNone\,0 \\
+    \midrule
+    Normal alarms & 46 & 0 & 0 \\
+    \bottomrule
+  \end{tabularx}
+  \par\smallskip
+  \begin{minipage}{\columnwidth}\footnotesize
+  Modification rows: \HGFull\ all $N$ detected; \HGNone\ none detected.
+  \end{minipage}
+\end{table}

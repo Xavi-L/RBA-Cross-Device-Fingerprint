@@ -1,0 +1,259 @@
+{
+  "status": "PASS_WITH_EXISTING_NONBLOCKING_NOTES",
+  "date": "2026-10-22",
+  "scope": "Pure typesetting changes for the matrix version; prose changes await user evaluation and approval.",
+  "selected_candidate": "Candidate 1, reduced to three float-registration moves.",
+  "changed_files": [
+    "source/migrate_manuscript.py",
+    "sections/03_method.tex",
+    "sections/04_evaluation_protocol.tex",
+    "sections/05_results.tex",
+    "qa/migration.json"
+  ],
+  "layout_changes": [
+    {
+      "float": "Table 2",
+      "registration": "Before subsection 3.5, matrix branch only",
+      "purpose": "Allow page-5 top placement with section 4."
+    },
+    {
+      "float": "Table 3 matrix",
+      "registration": "Before subsection 4.2, matrix branch only",
+      "purpose": "Keep the matrix on page 6 while moving the preceding materials table."
+    },
+    {
+      "float": "Figure 3",
+      "registration": "Before subsection 4.3, matrix branch only",
+      "purpose": "Allow page-6 top placement with the start of subsection 5.2."
+    }
+  ],
+  "before_matrix_float_pages": {
+    "fig:surfaces": 3,
+    "fig:pipeline": 4,
+    "fig:mechanisms": 7,
+    "tab:related": 3,
+    "tab:materials": 6,
+    "tab:app": 6,
+    "tab:specialists": 6,
+    "tab:normals": 8,
+    "tab:paired": 8
+  },
+  "after_matrix_float_pages": {
+    "tab:related": 3,
+    "fig:surfaces": 3,
+    "fig:pipeline": 4,
+    "tab:materials": 5,
+    "tab:app": 6,
+    "fig:mechanisms": 6,
+    "tab:specialists": 7,
+    "tab:normals": 8,
+    "tab:paired": 8
+  },
+  "variants": {
+    "baseline": {
+      "pdf": "build/baseline/HybridGuard_layout_v1.pdf",
+      "sha256": "28bb791543852e0cd132773e321750b9e11b59fd1da0194cbca3cd51a85a6ee7",
+      "bytes": 555324,
+      "pages": 10,
+      "labels": {
+        "tab:related": 3,
+        "fig:surfaces": 3,
+        "fig:pipeline": 4,
+        "sec:5": 5,
+        "sec:5-1": 5,
+        "sec:5-2": 5,
+        "tab:materials": 6,
+        "fig:mechanisms": 6,
+        "tab:app": 6,
+        "tab:specialists": 7,
+        "sec:5-3": 7,
+        "sec:5-4": 7,
+        "sec:5-5": 7,
+        "tab:normals": 8,
+        "tab:paired": 8,
+        "marker:main-text-end": 8,
+        "marker:references-end": 9,
+        "app:main": 9,
+        "marker:appendix-end": 10
+      },
+      "raster_identical_to_v1_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "warnings": [
+        "Class acmart Warning: ACM reference format is mandatory ",
+        "Overfull \\vbox (1.499pt too high) has occurred while \\output is active []"
+      ],
+      "unresolved_reference": false
+    },
+    "matrix": {
+      "pdf": "build/matrix/HybridGuard_layout_v1_matrix.pdf",
+      "sha256": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080",
+      "bytes": 562287,
+      "pages": 10,
+      "labels": {
+        "tab:related": 3,
+        "fig:surfaces": 3,
+        "fig:pipeline": 4,
+        "tab:materials": 5,
+        "sec:5": 5,
+        "sec:5-1": 5,
+        "tab:app": 6,
+        "fig:mechanisms": 6,
+        "sec:5-2": 6,
+        "tab:specialists": 7,
+        "sec:5-3": 7,
+        "sec:5-4": 7,
+        "sec:5-5": 7,
+        "tab:normals": 8,
+        "tab:paired": 8,
+        "marker:main-text-end": 8,
+        "marker:references-end": 9,
+        "app:main": 9,
+        "marker:appendix-end": 10
+      },
+      "raster_identical_to_v1_pages": [
+        1,
+        2,
+        3,
+        4,
+        9,
+        10
+      ],
+      "warnings": [
+        "Class acmart Warning: ACM reference format is mandatory ",
+        "Overfull \\vbox (1.499pt too high) has occurred while \\output is active []"
+      ],
+      "unresolved_reference": false
+    }
+  },
+  "content_checks": {
+    "protected_files_byte_identical": 59,
+    "protected_files": [
+      "figures/CAPTIONS.md",
+      "figures/FROZEN.json",
+      "figures/HybridGuard_Fig1_surfaces_v2.pdf",
+      "figures/HybridGuard_Fig1_surfaces_v2.png",
+      "figures/HybridGuard_Fig1_surfaces_v2.svg",
+      "figures/HybridGuard_Fig2_pipeline_v2.pdf",
+      "figures/HybridGuard_Fig2_pipeline_v2.png",
+      "figures/HybridGuard_Fig2_pipeline_v2.svg",
+      "figures/HybridGuard_Fig3_mechanisms_v2.pdf",
+      "figures/HybridGuard_Fig3_mechanisms_v2.png",
+      "figures/HybridGuard_Fig3_mechanisms_v2.svg",
+      "floats/figure_01.tex",
+      "floats/figure_02.tex",
+      "floats/figure_03.tex",
+      "tables/table_01.tex",
+      "tables/table_02.tex",
+      "tables/table_03.tex",
+      "tables/table_03_matrix.tex",
+      "tables/table_04.tex",
+      "tables/table_05.tex",
+      "tables/table_06.tex",
+      "input_markdown/sections/00_abstract.md",
+      "input_markdown/sections/01_introduction.md",
+      "input_markdown/sections/02_background_and_scope.md",
+      "input_markdown/sections/03_method.md",
+      "input_markdown/sections/04_evaluation_protocol.md",
+      "input_markdown/sections/05_results.md",
+      "input_markdown/sections/06_discussion.md",
+      "input_markdown/sections/07_conclusion.md",
+      "input_markdown/sections/08_references.md",
+      "input_markdown/supplement/00_Appendix_English.md",
+      "input_markdown/supplement/S01_full_aggregate_table.md",
+      "input_markdown/supplement/S02_full_aggregate_table.md",
+      "input_markdown/supplement/S03_full_aggregate_table.md",
+      "input_markdown/supplement/S04_full_aggregate_table.md",
+      "input_markdown/supplement/S05_full_aggregate_table.md",
+      "input_markdown/supplement/S06_full_aggregate_table.md",
+      "input_markdown/supplement/S07_full_aggregate_table.md",
+      "input_markdown/supplement/S08_full_aggregate_table.md",
+      "input_markdown/supplement/S09_full_aggregate_table.md",
+      "data/01_App总体.csv",
+      "data/02_App分类.csv",
+      "data/03_MTC正常.csv",
+      "data/04_专项条件.csv",
+      "data/05_双端分类型.csv",
+      "data/06_双端历史正常.csv",
+      "data/07_资源接入.csv",
+      "data/08_四视图诊断.csv",
+      "data/09_既有离线成本.csv",
+      "notes/AUTHOR_FACTS_TO_CONFIRM.md",
+      "notes/abstract_lock.json",
+      "notes/abstract_restore_body_hashes.json",
+      "notes/source_invariants.json",
+      "frontmatter.tex",
+      "main.tex",
+      "main_matrix.tex",
+      "references.bib",
+      "acmart.cls",
+      "ACM-Reference-Format.bst"
+    ],
+    "sections": [
+      {
+        "file": "sections/01_introduction.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/02_background_and_scope.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/03_method.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/04_evaluation_protocol.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/05_results.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/06_discussion.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/07_conclusion.tex",
+        "prose_identical_after_float_directives_removed": true
+      },
+      {
+        "file": "sections/08_appendix.tex",
+        "prose_identical_after_float_directives_removed": true
+      }
+    ],
+    "frozen_assets": 9,
+    "bibliography_entries": 15,
+    "no_font_margin_leading_or_image_size_change": true,
+    "all_float_contents_byte_identical": true
+  },
+  "visual_review": "All ten final matrix pages rendered. Pages 1–4 and 9–10 are raster-identical to the previously reviewed v1. Pages 5–8 were individually inspected and are byte-identical to the selected candidate-1 renders; no clipping, overlap, or unreadable table/figure text.",
+  "reproducibility": "Default build_pdf.py runs migrate_manuscript.py, whose polish_matrix_layout function deterministically applies the three matrix-only moves; --no-migrate retains the resulting editable TeX.",
+  "rejected_tradeoff": {
+    "candidate": 3,
+    "float_pages": {
+      "Table 2": 5,
+      "Table 3": 5,
+      "Figure 3": 6,
+      "Table 4": 6,
+      "Table 5": 7,
+      "Table 6": 7
+    },
+    "reason": "Although Tables 5/6 appeared earlier, results floats preceded their sections more heavily: Figure 3 sat above section 4.2 and Tables 5/6 appeared before section 5.2. This worsened reading order."
+  },
+  "remaining_notes": [
+    "Tables 5 and 6 remain on page 8, one page after their first discussion. Advancing them without changing content worsened reading order, so this placement is retained.",
+    "Table 4 moves from page 6 to page 7, alongside the detailed mechanism paragraphs; Figure 3 now accompanies the start of section 5.2 on page 6.",
+    "The existing printacmref=false template warning and final-output 1.499pt overfull vbox remain unchanged; no visible clipping or new overfull hbox."
+  ]
+}

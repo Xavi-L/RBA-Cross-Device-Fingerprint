@@ -1,0 +1,21 @@
+% Current manuscript Table 3. Source: input_markdown/sections/05_results.md.
+\begin{table}[t]
+  \caption{Controlled benchmark-position outcomes. All methods have zero U, FAILED, and EMPTY\_MODEL counts on these held-out positions. Ablations are separately refitted models.}
+  \label{tab:app}
+  \centering
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}p{0.28\columnwidth} *{4}{>{\centering\arraybackslash}X}@{}}
+    \toprule
+    Method & \makecell{Detected /\\modified} & \makecell{Detection\\(\%)} & Missed & \makecell{Normal\\alarms} \\
+    \midrule
+    Integrated App & 105/126 & 83.3 & 21 & 0/252 \\
+    No MTC cap & 108/126 & 85.7 & 18 & 0/252 \\
+    Web-only & 96/126 & 76.2 & 30 & 0/252 \\
+    No memory & 96/126 & 76.2 & 30 & 0/252 \\
+    No timezone & 105/126 & 83.3 & 21 & 0/252 \\
+    App tree & 72/126 & 57.1 & 54 & 0/252 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}

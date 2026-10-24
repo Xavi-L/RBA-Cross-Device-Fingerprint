@@ -1,0 +1,27 @@
+% Table 5: single-column cohort groups; bars use the exact T/F/U proportions.
+% Source: input_markdown/sections/05_results.md.
+\begin{table}[t]
+  \caption{Historical-normal outcomes, reported as T / F / U: alarm / definite no alert / unknown. Configurations 01 and 02 have equal counts and are displayed together, not pooled. FAILED and EMPTY\_MODEL are zero.}
+  \label{tab:normals}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\columnwidth}{@{}l *{2}{>{\centering\arraybackslash}X}@{}}
+    \toprule
+    Config. & Integrated App & No cap \\
+    \midrule
+    \multicolumn{3}{@{}l}{\textbf{Historical development} ($N=144$)} \\
+    01 / 02 & \makecell{1 / 135 / 8\\\HGOutcomeBar{1}{135}{8}{0.30\columnwidth}} & \makecell{144 / 0 / 0\\\HGOutcomeBar{144}{0}{0}{0.30\columnwidth}} \\
+    03 & \makecell{0 / 136 / 8\\\HGOutcomeBar{0}{136}{8}{0.30\columnwidth}} & \makecell{144 / 0 / 0\\\HGOutcomeBar{144}{0}{0}{0.30\columnwidth}} \\
+    \addlinespace[2pt]
+    \multicolumn{3}{@{}l}{\textbf{Historically reserved} ($N=117$)} \\
+    01 / 02 & \makecell{1 / 110 / 6\\\HGOutcomeBar{1}{110}{6}{0.30\columnwidth}} & \makecell{117 / 0 / 0\\\HGOutcomeBar{117}{0}{0}{0.30\columnwidth}} \\
+    03 & \makecell{0 / 111 / 6\\\HGOutcomeBar{0}{111}{6}{0.30\columnwidth}} & \makecell{117 / 0 / 0\\\HGOutcomeBar{117}{0}{0}{0.30\columnwidth}} \\
+    \bottomrule
+  \end{tabularx}
+  \par\smallskip
+  \begin{minipage}{\columnwidth}\footnotesize
+  Bars show the same T / F / U proportions: dark gray / light gray / outlined white. A fully dark bar means every normal record triggered an alarm.
+  \end{minipage}
+\end{table}

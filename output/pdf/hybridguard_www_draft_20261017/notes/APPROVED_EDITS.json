@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-22",
+  "status": "APPLIED_AND_VERIFIED",
+  "approved_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "B1"
+  ],
+  "not_approved": [
+    "B2"
+  ],
+  "approval_source": "User instruction in this conversation: 现在进行A1、A2、A3，并一并补充 B1的修改",
+  "base_pdf_sha256": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080",
+  "proposals": [
+    {
+      "id": "A1",
+      "proposal": "Semantic coverage counts distinct (semantic group, modified training record) trigger pairs using the training detection weights, with groups assigned from field semantics. Semantic quality sums predefined preference scores for positive literals; these scores express observation preferences, not measured accuracy or independent evidence.",
+      "placement": "在 §3.4 retention 段第一句之后插入；后续约束句保持。",
+      "net_added_words": 42
+    },
+    {
+      "id": "A2",
+      "proposal": "The same-Web comparator flags either visual-viewport dimension exceeding the corresponding window.innerWidth or window.innerHeight by more than 1 CSS pixel, using positive, same-probe observations when visual-viewport scale is at least one.",
+      "placement": "在 §3.4 首段第一句列出三个固定关系之后插入，或紧邻 §5.2 首次解释该对照时插入一次；不重复两处添加。",
+      "net_added_words": 30
+    },
+    {
+      "id": "A3",
+      "proposal": "S0 is the frozen Integrated App + C1 baseline. M adds a Native-to-Browser memory-envelope check, W tests inequality between App-Web and Browser memory reports, and B tests Browser memory above 8 GiB.\n\nThe four-view diagnostic uses language and timezone measurements: App only, Browser only, their concatenation, and the concatenation augmented by C1/C2 states. P0 trains on the 630 discovery normals and both paired batches. P1 and P2 withhold the 18-position pilot and 42-position matched batch, respectively, while training on the discovery normals and the other batch.",
+      "placement": "第一段放在 A.3 的 S07 数字前；第二段放在 S08 的 P0/P2 数字前。保留已有 development-use 和非独立复现实验的限定。",
+      "net_added_words": 86
+    },
+    {
+      "id": "B1",
+      "proposal": "Here, m_native is kernel-visible total memory reported by Android ActivityManager.MemoryInfo.totalMem, converted to GiB; m_web is the Web deviceMemory report.",
+      "placement": "在内存公式之后、解释 Device Memory draft 之前；实际排版沿用现有数学变量和等宽 API 名。",
+      "net_added_words": 19
+    }
+  ],
+  "final_pdf_sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+  "final_pdf_pages": {
+    "main": 8,
+    "total": 10
+  },
+  "verification_reports": [
+    "reviews/approved_content_review.json",
+    "qa/approved_integrity_check.json",
+    "qa/approved_layout_check.json",
+    "qa/package_rebuild_check.json"
+  ]
+}

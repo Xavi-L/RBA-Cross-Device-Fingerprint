@@ -1,0 +1,32 @@
+% Table 4: grouped fixed checks; symbols encode observed detection counts only.
+% Source: input_markdown/sections/05_results.md.
+\begin{table}[t]
+  \caption{Fixed specialist comparisons. Normal denominators include six system changes (Timezone) and six layout changes (Geometry). U and FAILED are zero. Six no-effect memory operations are excluded from 18 effective modifications and 48 normals.}
+  \label{tab:specialists}
+  \centering
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.21\columnwidth} >{\centering\arraybackslash}p{0.17\columnwidth}@{}}
+    \toprule
+    Fixed check & \makecell{Detected /\\modified} & \makecell{Normal\\alarms} \\
+    \midrule
+    \multicolumn{3}{@{}l}{\textbf{Memory}} \\
+    Web memory $>$ 8 GiB & \HGPartial\,6/18 & 0/48 \\
+    Native memory envelope & \HGFull\,18/18 & 0/48 \\
+    \addlinespace[2pt]
+    \multicolumn{3}{@{}l}{\textbf{Timezone}} \\
+    Absolute Web offset & \HGFull\,6/6 & \HGWarn\,6/30 \\
+    Native timezone reference & \HGFull\,6/6 & 0/30 \\
+    \addlinespace[2pt]
+    \multicolumn{3}{@{}l}{\textbf{Geometry}} \\
+    Fixed Web height & \HGFull\,6/6 & \HGWarn\,6/66 \\
+    Same-Web viewport relation & \HGNone\,0/6 & 0/66 \\
+    Host upper bound (standalone) & \HGFull\,6/6 & 0/66 \\
+    \bottomrule
+  \end{tabularx}
+  \par\smallskip
+  \begin{minipage}{\columnwidth}\footnotesize
+  Detection on tested modifications: \HGFull\ all; \HGPartial\ some; \HGNone\ none. \HGWarn\ nonzero normal alarms.
+  \end{minipage}
+\end{table}

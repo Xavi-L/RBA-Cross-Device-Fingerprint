@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-22",
+  "status": "FINAL_READ_COMPLETE_PROPOSALS_NOT_APPLIED",
+  "scope": "Expert computer-science reader unfamiliar with this project; read-only narrative, terminology and main-text self-containment review.",
+  "base": "hybridguard_latex_v1/input_markdown (text fixed throughout v2 layout work)",
+  "manuscript_changes_applied": false,
+  "abstract_locked": true,
+  "high_priority_count": 2,
+  "recommended_scope": "After user approval, consider R1 and R2 first; R3 optional; do not move the full final-rule inventory into the main text.",
+  "candidates": [
+    {
+      "id": "R1",
+      "title": "给 semantic coverage 和 semantic quality 操作定义",
+      "priority": "优先澄清",
+      "severity": "方法说明缺口；非结果错误",
+      "confidence": "高",
+      "section": "§3.4；附录 A.5",
+      "source_file": "input_markdown/sections/03_method.md",
+      "source_lines": [
+        45,
+        47
+      ],
+      "quote": "Additions must preserve training detections, increase semantic coverage, and satisfy the alarm and coverage constraints.",
+      "risk": "前一段刚定义 definite-output coverage，后一段引入未定义的 semantic coverage；读者可能把二者当作同一指标，也可能把 semantic quality 当成条件准确率或证据可信度。实际实现的 coverage 按语义组与训练修改记录去重，quality 是预登记的观测/语义偏好。",
+      "proposal": "Semantic coverage counts distinct (semantic group, modified training record) trigger pairs using the training detection weights, with groups assigned from field semantics. Semantic quality sums predefined preference scores for positive literals; these scores express observation preferences, not measured accuracy or independent evidence.",
+      "placement": "在 §3.4 retention 段第一句之后插入；后续约束句保持。",
+      "evaluation": "建议本轮评估通过后优先补充。它解释已有算法，不增添能力或实验，主要解决方法自足性与三个 coverage/quality 术语的混淆。",
+      "evidence": [
+        {
+          "path": "rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/retention.py",
+          "lines": "11–55, 58–64",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/rule_learning_v2/retention.py"
+        },
+        {
+          "path": "rba_review/repo_evidence/hybridguard_agent/research/rule_learning_v2/semantic_selection.py",
+          "lines": "1–6, 63–70, 85–94, 144–147, 168–170",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/rule_learning_v2/semantic_selection.py"
+        }
+      ],
+      "requires_new_experiment": false,
+      "changes_abstract": false,
+      "changes_results": false,
+      "applied": false,
+      "proposal_words": 42,
+      "replaced_words": 0,
+      "net_added_words": 42,
+      "v2_pages": [
+        4,
+        10
+      ],
+      "final_context_recheck": "第 4 页紧接 definite-output coverage 定义后使用这两个术语；第 10 页附录虽给出排序顺序，仍未解释它们如何计算。故此项在最终版中仍成立。"
+    },
+    {
+      "id": "R2",
+      "title": "定义 same-Web viewport 对照实际比较的量",
+      "priority": "优先澄清",
+      "severity": "主对照解释缺口；非数值错误",
+      "confidence": "高",
+      "section": "§3.4 首段；§5.2 Host container context；Table 4",
+      "source_file": "input_markdown/sections/03_method.md",
+      "source_lines": [
+        37
+      ],
+      "quote": "The App pool contains 50 base templates and three fixed relations: Native memory, Native timezone, and same-Web viewport.",
+      "risk": "Native memory、Native timezone、Host geometry 均有明确操作定义；same-Web viewport 却只出现名称与 0/6、0/66 结果。不了解代码的读者无法判断它与 Host 上界的差别，也容易把 Host 的 DPR×scale 换算误套到这个同 Web 对照上。",
+      "proposal": "The same-Web comparator flags either visual-viewport dimension exceeding the corresponding window.innerWidth or window.innerHeight by more than 1 CSS pixel, using positive, same-probe observations when visual-viewport scale is at least one.",
+      "placement": "在 §3.4 首段第一句列出三个固定关系之后插入，或紧邻 §5.2 首次解释该对照时插入一次；不重复两处添加。",
+      "evaluation": "建议本轮评估通过后优先补充。已核对实际实现：scale≥1 是门槛，比较双方均为 CSS 像素；不乘 scale，不用 DPR 或 Host。无需新公式、新图、新表或实验。",
+      "evidence": [
+        {
+          "path": "hybridguard_agent/research/mtc_screen_relations.py",
+          "lines": "10–35, 77–121",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/mtc_screen_relations.py",
+          "git_blob": "6401801764504e2f3776516baf6dfc28c893c8cb"
+        },
+        {
+          "path": "rba_review/repo_evidence/deliverables/app177_core_ablation_v1/CANDIDATES.json",
+          "lines": "3093–3139",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/app177_core_ablation_v1/CANDIDATES.json"
+        },
+        {
+          "path": "rba_review/repo_evidence/deliverables/screen_geometry_observation_v1/CONDITIONS_FROZEN.json",
+          "lines": "31–35",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/screen_geometry_observation_v1/CONDITIONS_FROZEN.json"
+        }
+      ],
+      "requires_new_experiment": false,
+      "changes_abstract": false,
+      "changes_results": false,
+      "applied": false,
+      "proposal_words": 30,
+      "replaced_words": 0,
+      "net_added_words": 30,
+      "v2_pages": [
+        4,
+        7
+      ],
+      "final_context_recheck": "第 7 页表格与 Host 段明确给出对照结果，但没有补充 same-Web 的操作定义；第 4 页也仅列名。此项确实影响读者理解比较对象，仍应优先。"
+    },
+    {
+      "id": "R3",
+      "title": "用一句具体说明关联核验依据",
+      "priority": "可选补充",
+      "severity": "实现说明偏抽象；当前边界已清楚",
+      "confidence": "中高",
+      "section": "§3.1 第 1 段",
+      "source_file": "input_markdown/sections/03_method.md",
+      "source_lines": [
+        5
+      ],
+      "quote": "Source records and receipts support these binding checks.",
+      "risk": "records、receipts 和 binding checks 都较抽象；读者能理解先关联再比较，但看不到核对哪些身份信息。正文和 Figure 2 已足够说明作用顺序、非原子采样和非硬件证明，因此不是当前论证成立的缺口。",
+      "proposal": "App binding checks require matching record and session identities; paired inputs additionally cross-check pair identifiers, receipt identifiers, payload hashes, and collection batches.",
+      "replaces": "Source records and receipts support these binding checks.",
+      "placement": "若采纳，仅替换 §3.1 的这一句。",
+      "evaluation": "可选；版面紧张时保留现文即可。不要为此添加接口表、协议流程或把回执描述为密码学签名证明。已有语义足够，新增句仅增强可核验的直观性。",
+      "evidence": [
+        {
+          "path": "rba_review/repo_evidence/hybridguard_agent/research/mtc_relation_sources.py",
+          "lines": "85–127",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/hybridguard_agent/research/mtc_relation_sources.py"
+        },
+        {
+          "path": "rba_review/repo_evidence/deliverables/cross_endpoint_constrained_extension_v1/prepare_current.py",
+          "lines": "10–30",
+          "url": "https://github.com/Xavi-L/RBA-Cross-Device-Fingerprint/blob/d58e0680728f9adfdd5b550d00fd3f1674460b1e/deliverables/cross_endpoint_constrained_extension_v1/prepare_current.py"
+        }
+      ],
+      "requires_new_experiment": false,
+      "changes_abstract": false,
+      "changes_results": false,
+      "applied": false,
+      "proposal_words": 22,
+      "replaced_words": 8,
+      "net_added_words": 14,
+      "v2_pages": [
+        2,
+        4
+      ],
+      "final_context_recheck": "第 2 页关联段和第 4 页 Figure 2 已共同解释关联的作用与执行顺序，也明确不代表原子采样或硬件证明。现文足以支撑当前研究边界，故不升级为必改。"
+    },
+    {
+      "id": "R4",
+      "title": "是否把最终模型概要放回主文",
+      "priority": "暂不搬完整规则清单",
+      "severity": "可选的信息摆放选择",
+      "confidence": "中",
+      "section": "§3.4 末尾；附录 A.5",
+      "source_file": "input_markdown/supplement/00_Appendix_English.md",
+      "source_lines": [
+        29
+      ],
+      "quote": "The resulting models have 6/6/5 clauses and complexity 12/12/10.",
+      "risk": "主文讲了构造过程与最多八条的限制，实际最终规模和完整条件仅在附录。不过引言已交代 Native memory/timezone 被集成，结果说明了额外 height 条件的行为，附录 A.5 已完整列出模型；并不存在模型未记录的问题。",
+      "proposal": "Final retention models contain six, six, and five clauses for configurations 01–03, respectively (Appendix A.5).",
+      "placement": "若作者希望让 compact detectors 更具体，可在 §3.4 末尾插入这一句；完整规则清单继续留在附录。",
+      "evaluation": "不建议本轮将完整清单搬入主文：收益小于篇幅和术语负担。短规模句也不是必需，可待优先澄清项落版后再决定。",
+      "evidence": [
+        {
+          "path": "input_markdown/supplement/00_Appendix_English.md",
+          "lines": "29"
+        },
+        {
+          "path": "input_markdown/sections/01_introduction.md",
+          "lines": "9"
+        },
+        {
+          "path": "input_markdown/sections/05_results.md",
+          "lines": "46"
+        }
+      ],
+      "requires_new_experiment": false,
+      "changes_abstract": false,
+      "changes_results": false,
+      "applied": false,
+      "proposal_words": 15,
+      "replaced_words": 0,
+      "net_added_words": 15,
+      "v2_pages": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "final_context_recheck": "第 1 页已有整合 memory/timezone 的贡献说明，第 7 页解释配置 01/02 与 03 的 height 条件差异，第 10 页给出完整清单与规模。读者可追溯模型，不存在需要补救的核心遗漏。"
+    }
+  ],
+  "preserve": [
+    "冻结摘要保持不变；已有贡献定位和结果层级不需要重写。",
+    "保留 Native/Host 非可信根、告警不等于恶意、无告警不等于真实性等边界；目前已足够，无需叠加新免责声明。",
+    "保留 main benchmark 九个差异与 memory specialist 十二个新增检测的分离说明。",
+    "保留 Host geometry 独立专项、未加入 Integrated App 的明确说明。",
+    "保留 refitted comparisons、historical development exposure、paired development-use 和 C1 无 timestamp gate 的限定。",
+    "保留 T/F/U 与 ALERT/NO ALERT/UNKNOWN 的显式映射；此前审读提过的问题已解决。",
+    "保留 Table 3 矩阵及总计，不需为了写作精简删掉分类信息。",
+    "未发现需要全稿语法润色或把现有主结论改写得更强的理由。"
+  ],
+  "evidence_note": "Repository implementation references are pinned to d58e0680728f9adfdd5b550d00fd3f1674460b1e. mtc_screen_relations.py was fetched read-only through GitHub and its actual predicate checked.",
+  "pagination_note": "Read-only alignment completed against the final stable v2 PDF, verified by SHA-256. Candidate issues were checked in their full main-text and appendix contexts; no source or build changes were made.",
+  "final_pdf": {
+    "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v2/build/matrix/HybridGuard_layout_v1_matrix.pdf",
+    "sha256": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080",
+    "pages": 10,
+    "main_pages": 8
+  },
+  "recommended_net_added_words": 72,
+  "final_decision": "R1/R2 remain the two high-value clarifications after the final PDF context review. R3 is optional; keep the complete model inventory in Appendix A.5 and defer R4."
+}

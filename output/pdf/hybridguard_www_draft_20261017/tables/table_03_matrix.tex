@@ -1,0 +1,36 @@
+% Table 3: grayscale detection symbols retain the original grouped outcomes.
+% Source: baseline_source/overleaf/tables/01_app_matrix.tex; total-rate-miss rows retained.
+\begin{table*}[t]
+  \caption{Controlled benchmark positions: detections among nine effective modifications per original recipe; parentheses show nonzero differences from Integrated App. Only identical complete six-method state-count vectors are grouped; recipe counts retain weights. Ablations are separately refitted.}
+  \label{tab:app}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\textwidth}{@{}l c *{6}{>{\centering\arraybackslash}X}@{}}
+    \toprule
+    Modification group & Recipes & Integrated App & No MTC cap & Web-only & No memory & No timezone & App tree \\
+    \midrule
+    CPU + memory & 1 & \HGFull\,9 & \HGFull\,9 & \HGNone\,$0\;(-9)$ & \HGNone\,$0\;(-9)$ & \HGFull\,9 & \HGNone\,$0\;(-9)$ \\
+    \addlinespace[2pt]
+    Screen metrics & 1 & \HGPartial\,6 & \HGFull\,$9\;(+3)$ & \HGPartial\,6 & \HGPartial\,6 & \HGPartial\,6 & \HGNone\,$0\;(-6)$ \\
+    \addlinespace[2pt]
+    Timezone; plugins/MIME & 2 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 & \HGNone\,$0\;(-9)$ \\
+    \addlinespace[2pt]
+    Shared detections$^{\dagger}$ & 8 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 & \HGFull\,9 \\
+    \addlinespace[2pt]
+    Webdriver; WebGL IDs & 2 & \HGNone\,0 & \HGNone\,0 & \HGNone\,0 & \HGNone\,0 & \HGNone\,0 & \HGNone\,0 \\
+    \midrule
+    \textbf{Total detections} & 14 & \textbf{105/126} & \textbf{108/126} & \textbf{96/126} & \textbf{96/126} & \textbf{105/126} & \textbf{72/126} \\
+    Detection (\%) & --- & 83.3 & 85.7 & 76.2 & 76.2 & 83.3 & 57.1 \\
+    Missed & --- & 21 & 18 & 30 & 30 & 21 & 54 \\
+    \bottomrule
+  \end{tabularx}
+  \par\smallskip
+  \begin{minipage}{\textwidth}\footnotesize
+  Tested detections: \HGFull\ all nine; \HGPartial\ $0<d<9$; \HGNone\ none. Symbols do not rank overall quality.
+  $^{\dagger}$Playwright, Puppeteer, CDP multi-field, and Stealth presets; platform-only, UA-only, UA-plus-platform, and language-list edits.
+  All methods: 0/252 controlled-normal alarms and zero U, FAILED, and EMPTY\_MODEL on these held-out positions.
+  Saved results: \textsc{retention} for rule models, \textsc{fitted} for the tree. Three extra no-cap screen detections carry a separate normal-record cost (Table~\ref{tab:normals}).
+  \end{minipage}
+\end{table*}

@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "reviewer": "tables36_visual",
+  "review_type": "final_render_visual_inspection",
+  "pdf_path": "build/matrix/HybridGuard_layout_v1_matrix.pdf",
+  "pdf_sha256": "82fb37b0970666015928762e7c6913621474f28b80dab32ce014eb74274cd72e",
+  "pdf_sha256_rechecked_unchanged": true,
+  "pdf_pages": 10,
+  "main_text_ends_on_page": 8,
+  "references_begin_on_page": 9,
+  "render_directory": "qa/render_final",
+  "render_dimensions_px": [980, 1268],
+  "render_verification": {
+    "method": "RGB pixel comparison against in-memory PyMuPDF render of the bound PDF",
+    "matrix_scale": 1.6,
+    "all_inspected_renders_match": true
+  },
+  "full_page_review_pages": [1, 2, 4, 9, 10],
+  "focused_supplementary_review_pages": [6, 7, 8],
+  "not_visually_reviewed_by_this_reviewer": [3, 5],
+  "status": "pass",
+  "blocking_issues": [],
+  "required_fixes": [],
+  "source_files_modified": [],
+  "page_results": [
+    {
+      "page": 1,
+      "scope": "full_page",
+      "status": "pass",
+      "png_sha256": "531d65e40f72e32d0ed0305e9dca0c2b52aa975e152d1116b42845499b54fed0",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Title, author line, abstract, CCS, keywords, introduction, conference footer, and page number fit without collision."
+    },
+    {
+      "page": 2,
+      "scope": "full_page",
+      "status": "pass",
+      "png_sha256": "10ab4fff974fb2c1fe4ceb6038245eae09de1fb4de15187bd27005fdf20c7611",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Heading hierarchy and columns are clear; the bottom-right displayed equation remains above the page number."
+    },
+    {
+      "page": 4,
+      "scope": "full_page",
+      "status": "pass",
+      "png_sha256": "b2f8680c1b6138b5b066f9020b2d27242229dde8d1cabd4a8dff327fd55d065d",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Figure 2, its caption, body text, and displayed equation remain complete and separate."
+    },
+    {
+      "page": 6,
+      "scope": "focused_table_4_and_surroundings",
+      "status": "pass",
+      "png_sha256": "4324e53ec976b8317ce1fcca468c12a84c7c89eabe7c770bf6c90c18abc39001",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Table 4 groups, count fractions, full/partial/none symbols, warning triangles, standalone qualifier, and small legend are clear."
+    },
+    {
+      "page": 7,
+      "scope": "supplementary_table_5_and_flow",
+      "status": "pass",
+      "png_sha256": "e9054791102fe317e2e6cbdcd09387ee528cc0635907f3dead4d29e2a7f7c43e",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Table 5 is single-column with all numeric triples, cohort headings, bars, and legend visible; Figure 3 is separate from Table 3 on page 6."
+    },
+    {
+      "page": 8,
+      "scope": "focused_table_6_and_main_text_end",
+      "status": "pass",
+      "png_sha256": "22f8e87f551359c138f92c9cf572729289517a8313eb931cbf7c355cb210142b",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Table 6 has a clear one-line header and readable legend; the normal-alarm row is independently ruled and numeric. Conclusion fits on page 8."
+    },
+    {
+      "page": 9,
+      "scope": "full_page",
+      "status": "pass",
+      "png_sha256": "709ccfab7dfdedcd7740714f167ced4f0fa88480b399173a76c99d9d498b822e",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "References and wrapped URLs fit; Appendix A begins below references and continues cleanly into the right column."
+    },
+    {
+      "page": 10,
+      "scope": "full_page",
+      "status": "pass",
+      "png_sha256": "298ce283f5cba5ef91190295fb70b966668565fc039eeae070f780fcaf3f1257",
+      "render_matches_pdf": true,
+      "clipping_observed": false,
+      "overlap_observed": false,
+      "text_blocks_outside_page": 0,
+      "finding": "Appendix headings, prose, and long monospace paths wrap inside their columns; lower-page whitespace follows the natural end of the appendix."
+    }
+  ],
+  "legend_checks": [
+    {
+      "table": 4,
+      "page": 6,
+      "body_text_size_pt": 6.974,
+      "check_symbol_size_pt": 7.273,
+      "complete": true,
+      "readable": true,
+      "missing_glyphs_observed": false,
+      "crosses_column_boundary": false,
+      "semantic_scope_visible": "Detection on tested modifications; nonzero normal alarms use a distinct warning triangle."
+    },
+    {
+      "table": 6,
+      "page": 8,
+      "body_text_size_pt": 6.974,
+      "check_symbol_size_pt": 7.273,
+      "complete": true,
+      "readable": true,
+      "missing_glyphs_observed": false,
+      "crosses_column_boundary": false,
+      "semantic_scope_visible": "Full/none symbols apply only to modification rows; the separate normal-alarm row contains plain numeric counts."
+    }
+  ],
+  "written_files": [
+    "qa/table_visual_review.md",
+    "qa/table_visual_review.json"
+  ]
+}

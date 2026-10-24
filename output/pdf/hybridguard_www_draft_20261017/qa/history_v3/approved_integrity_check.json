@@ -1,0 +1,962 @@
+{
+  "date": "2026-10-22",
+  "status": "PASS",
+  "scope": "仅核验用户批准A1/A2/A3/B1及明确允许的局部表格排版差异；只读论文，不编译，不运行实验。",
+  "base_root": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v2",
+  "target_root": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v3",
+  "approved_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "B1"
+  ],
+  "not_approved": [
+    "B2"
+  ],
+  "final_pdf_sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+  "checks": [
+    {
+      "id": "approved_insertions_only",
+      "title": "两份Markdown与对应TeX仅增加A1/A2/A3/B1；B1与后续原说明同段",
+      "passed": true,
+      "detail": [
+        {
+          "path": "input_markdown/sections/03_method.md",
+          "matches_v2_plus_exact_approved_insertions": true,
+          "sha256_v2": "266b5753cbc81a815f19c61bba1ee4d16d6a5311f048cf4ae4b0d6c0a2fa1a7e",
+          "sha256_v3": "78de8eb7cbf018ab04fa09b280f98208b8244f335d961320b6f10873e1f00f30"
+        },
+        {
+          "path": "sections/03_method.tex",
+          "matches_v2_plus_exact_approved_insertions": true,
+          "sha256_v2": "0ec6438e5dd310809ad69378cd599a83776fe6bc4ead6f9b0934e31d4e30559e",
+          "sha256_v3": "9727f4e6e4038a5f12121df339bdfc8a5f504ec9e742a8e7d924749eaab24d70"
+        },
+        {
+          "path": "input_markdown/supplement/00_Appendix_English.md",
+          "matches_v2_plus_exact_approved_insertions": true,
+          "sha256_v2": "1b05aba6843f7b1ae061acacb370944d173b0455f08e54f0d7f46575e338a3b4",
+          "sha256_v3": "4d1e45594c5c7f505b2bcc32538f720c6b91f1d9e19584ae3bbaff4c695257c1"
+        },
+        {
+          "path": "sections/08_appendix.tex",
+          "matches_v2_plus_exact_approved_insertions": true,
+          "sha256_v2": "02debe7af7cf2b13465b278665609cb575f0a464da41d3df80aed8defb26b6c3",
+          "sha256_v3": "b03dbe2fd1263a9b77a2d67dc1c7fe165cd7401364fd6dee36144c93491c7ce1"
+        }
+      ]
+    },
+    {
+      "id": "approved_source_occurrences",
+      "title": "每段获批提案在对应源文件恰出现一次",
+      "passed": true,
+      "detail": [
+        {
+          "path": "input_markdown/sections/03_method.md",
+          "proposal_id": "A1",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "input_markdown/sections/03_method.md",
+          "proposal_id": "A2",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "input_markdown/sections/03_method.md",
+          "proposal_id": "B1",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "sections/03_method.tex",
+          "proposal_id": "A1",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "sections/03_method.tex",
+          "proposal_id": "A2",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "sections/03_method.tex",
+          "proposal_id": "B1",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "input_markdown/supplement/00_Appendix_English.md",
+          "proposal_id": "A3.resource",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "input_markdown/supplement/00_Appendix_English.md",
+          "proposal_id": "A3.four_view",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "sections/08_appendix.tex",
+          "proposal_id": "A3.resource",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        },
+        {
+          "path": "sections/08_appendix.tex",
+          "proposal_id": "A3.four_view",
+          "occurrences": 1,
+          "expected_occurrences": 1
+        }
+      ]
+    },
+    {
+      "id": "protected_byte_identical",
+      "title": "57份受保护源文件逐字节相同（四张允许格式调整表另验）",
+      "passed": true,
+      "detail": {
+        "count": 57,
+        "files": [
+          {
+            "path": "ACM-Reference-Format.bst",
+            "identical": true,
+            "sha256_v2": "dd98deea9118229dcd97904e34ebe77d6a3df1427dbd32f132200ccf785039b7",
+            "sha256_v3": "dd98deea9118229dcd97904e34ebe77d6a3df1427dbd32f132200ccf785039b7"
+          },
+          {
+            "path": "acmart.cls",
+            "identical": true,
+            "sha256_v2": "625c4a4e0ae91fa5cf701170531cd8a31ecb0b2ffb2247d26ebd04de16ce7966",
+            "sha256_v3": "625c4a4e0ae91fa5cf701170531cd8a31ecb0b2ffb2247d26ebd04de16ce7966"
+          },
+          {
+            "path": "baseline_source/abstract_verbatim.txt",
+            "identical": true,
+            "sha256_v2": "db2a9d1a54fd6ca7000521a302b5d7e0524fb7fcea716e402bf3206f243d074e",
+            "sha256_v3": "db2a9d1a54fd6ca7000521a302b5d7e0524fb7fcea716e402bf3206f243d074e"
+          },
+          {
+            "path": "data/01_App总体.csv",
+            "identical": true,
+            "sha256_v2": "0324d93b6edd2b3d77d3c9970ebc368ba2067b3e28e8f98bfdcfafd29683c6b1",
+            "sha256_v3": "0324d93b6edd2b3d77d3c9970ebc368ba2067b3e28e8f98bfdcfafd29683c6b1"
+          },
+          {
+            "path": "data/02_App分类.csv",
+            "identical": true,
+            "sha256_v2": "d745358db6ffa02d9d8967f322a2c60671104eb48d7e255eb03501e21677ce70",
+            "sha256_v3": "d745358db6ffa02d9d8967f322a2c60671104eb48d7e255eb03501e21677ce70"
+          },
+          {
+            "path": "data/03_MTC正常.csv",
+            "identical": true,
+            "sha256_v2": "947740357b7487864747ff653f1e922904ea32122fe85a22fa722097b946c589",
+            "sha256_v3": "947740357b7487864747ff653f1e922904ea32122fe85a22fa722097b946c589"
+          },
+          {
+            "path": "data/04_专项条件.csv",
+            "identical": true,
+            "sha256_v2": "336b9a0e499378540fdad714131833b5fa72ec995f2966e926d4e5cb31646eea",
+            "sha256_v3": "336b9a0e499378540fdad714131833b5fa72ec995f2966e926d4e5cb31646eea"
+          },
+          {
+            "path": "data/05_双端分类型.csv",
+            "identical": true,
+            "sha256_v2": "b94d2b5a5fd564a147026f44bc3865f7c7153f7317f18ad88053c1274f660df3",
+            "sha256_v3": "b94d2b5a5fd564a147026f44bc3865f7c7153f7317f18ad88053c1274f660df3"
+          },
+          {
+            "path": "data/06_双端历史正常.csv",
+            "identical": true,
+            "sha256_v2": "451a3b2c5b4e103627408dc1e35f676b6212c14c3e46245fe577a2a7469ceed1",
+            "sha256_v3": "451a3b2c5b4e103627408dc1e35f676b6212c14c3e46245fe577a2a7469ceed1"
+          },
+          {
+            "path": "data/07_资源接入.csv",
+            "identical": true,
+            "sha256_v2": "841b81c172caa702f13eeb350cb4f84c15c34842f425d12a678f60ed15d09eaf",
+            "sha256_v3": "841b81c172caa702f13eeb350cb4f84c15c34842f425d12a678f60ed15d09eaf"
+          },
+          {
+            "path": "data/08_四视图诊断.csv",
+            "identical": true,
+            "sha256_v2": "398d00dea8f2ac284ee5501dc1864f28444a411bd3cbbb924f633d112a03c166",
+            "sha256_v3": "398d00dea8f2ac284ee5501dc1864f28444a411bd3cbbb924f633d112a03c166"
+          },
+          {
+            "path": "data/09_既有离线成本.csv",
+            "identical": true,
+            "sha256_v2": "0064d046f9054edce388856580507e97644b75615e06da76d83e3b29e9e3001e",
+            "sha256_v3": "0064d046f9054edce388856580507e97644b75615e06da76d83e3b29e9e3001e"
+          },
+          {
+            "path": "figures/CAPTIONS.md",
+            "identical": true,
+            "sha256_v2": "0a31bf8dc89277d87d7a68d9206dba87698bb873d136b05c86f4ecb23e81cad9",
+            "sha256_v3": "0a31bf8dc89277d87d7a68d9206dba87698bb873d136b05c86f4ecb23e81cad9"
+          },
+          {
+            "path": "figures/FROZEN.json",
+            "identical": true,
+            "sha256_v2": "e3c5765a0a1d2c3e2ec7e164aac0890bf67fa023278d0fdd79ceefac57c46d96",
+            "sha256_v3": "e3c5765a0a1d2c3e2ec7e164aac0890bf67fa023278d0fdd79ceefac57c46d96"
+          },
+          {
+            "path": "figures/HybridGuard_Fig1_surfaces_v2.pdf",
+            "identical": true,
+            "sha256_v2": "3805d0b554613b5ec1848332d0f9d24e5c57862d99a38468fcf7cff50cf9aba7",
+            "sha256_v3": "3805d0b554613b5ec1848332d0f9d24e5c57862d99a38468fcf7cff50cf9aba7"
+          },
+          {
+            "path": "figures/HybridGuard_Fig1_surfaces_v2.png",
+            "identical": true,
+            "sha256_v2": "1668b3c28c1b9a072ce6c2b6754529e546892c55024084b93b4663b477eb4f18",
+            "sha256_v3": "1668b3c28c1b9a072ce6c2b6754529e546892c55024084b93b4663b477eb4f18"
+          },
+          {
+            "path": "figures/HybridGuard_Fig1_surfaces_v2.svg",
+            "identical": true,
+            "sha256_v2": "1902dbfd175a8c43a9ede95cf8be3b5f2336fca80007f0e7e022963bb9c7c43d",
+            "sha256_v3": "1902dbfd175a8c43a9ede95cf8be3b5f2336fca80007f0e7e022963bb9c7c43d"
+          },
+          {
+            "path": "figures/HybridGuard_Fig2_pipeline_v2.pdf",
+            "identical": true,
+            "sha256_v2": "c336ac1d49ee31dfb32d0804eb41276259fb0651364a6e6c6bd21fe6dea11292",
+            "sha256_v3": "c336ac1d49ee31dfb32d0804eb41276259fb0651364a6e6c6bd21fe6dea11292"
+          },
+          {
+            "path": "figures/HybridGuard_Fig2_pipeline_v2.png",
+            "identical": true,
+            "sha256_v2": "abce5b952d3c4d8bcb694c870f984c26a458ca67c1b40e2605ff9fa6aca65464",
+            "sha256_v3": "abce5b952d3c4d8bcb694c870f984c26a458ca67c1b40e2605ff9fa6aca65464"
+          },
+          {
+            "path": "figures/HybridGuard_Fig2_pipeline_v2.svg",
+            "identical": true,
+            "sha256_v2": "0d8649f97ddb8b708bc5578d0fb1ba54f2fa1f05297ccba7d77e5be0b2ff26c6",
+            "sha256_v3": "0d8649f97ddb8b708bc5578d0fb1ba54f2fa1f05297ccba7d77e5be0b2ff26c6"
+          },
+          {
+            "path": "figures/HybridGuard_Fig3_mechanisms_v2.pdf",
+            "identical": true,
+            "sha256_v2": "da1f63419b7cfe9c32b2df7e2eb458086324872ecb60ce1a7d9b583a2bf4bafc",
+            "sha256_v3": "da1f63419b7cfe9c32b2df7e2eb458086324872ecb60ce1a7d9b583a2bf4bafc"
+          },
+          {
+            "path": "figures/HybridGuard_Fig3_mechanisms_v2.png",
+            "identical": true,
+            "sha256_v2": "7a0a399ecd8d7dafab6e4526549832ccca983144f567a17671523676b84e6182",
+            "sha256_v3": "7a0a399ecd8d7dafab6e4526549832ccca983144f567a17671523676b84e6182"
+          },
+          {
+            "path": "figures/HybridGuard_Fig3_mechanisms_v2.svg",
+            "identical": true,
+            "sha256_v2": "531e2ef097495bd2dd9e4943f3eb30ed89fbafff163dee18447a1d6a13ceecf7",
+            "sha256_v3": "531e2ef097495bd2dd9e4943f3eb30ed89fbafff163dee18447a1d6a13ceecf7"
+          },
+          {
+            "path": "floats/figure_01.tex",
+            "identical": true,
+            "sha256_v2": "91cedddfea3227feefd9e7336ea0bf77b667ba89c1a502efc380451fb83ca2f3",
+            "sha256_v3": "91cedddfea3227feefd9e7336ea0bf77b667ba89c1a502efc380451fb83ca2f3"
+          },
+          {
+            "path": "floats/figure_02.tex",
+            "identical": true,
+            "sha256_v2": "ab899f5046393e22065d3183a90107609eff189b772fb300eefdc1f3ad5b3efe",
+            "sha256_v3": "ab899f5046393e22065d3183a90107609eff189b772fb300eefdc1f3ad5b3efe"
+          },
+          {
+            "path": "floats/figure_03.tex",
+            "identical": true,
+            "sha256_v2": "e63df10845d2f7cc15a6e7e9ea30c125a45c0650614136ee3c9f1a6aad5194fd",
+            "sha256_v3": "e63df10845d2f7cc15a6e7e9ea30c125a45c0650614136ee3c9f1a6aad5194fd"
+          },
+          {
+            "path": "frontmatter.tex",
+            "identical": true,
+            "sha256_v2": "666f3d06eeafc53d1595741e93d899d35a2286296bd2b38425c9f2798f7ca977",
+            "sha256_v3": "666f3d06eeafc53d1595741e93d899d35a2286296bd2b38425c9f2798f7ca977"
+          },
+          {
+            "path": "input_markdown/sections/00_abstract.md",
+            "identical": true,
+            "sha256_v2": "45245ded7f77fd520f934d08e9204edffba883c881eccd0cc1594b77bbe0f8bd",
+            "sha256_v3": "45245ded7f77fd520f934d08e9204edffba883c881eccd0cc1594b77bbe0f8bd"
+          },
+          {
+            "path": "input_markdown/sections/01_introduction.md",
+            "identical": true,
+            "sha256_v2": "e773d45195456c574e68be277cb8887ff8012468a848c3d708b63635f6e9a439",
+            "sha256_v3": "e773d45195456c574e68be277cb8887ff8012468a848c3d708b63635f6e9a439"
+          },
+          {
+            "path": "input_markdown/sections/02_background_and_scope.md",
+            "identical": true,
+            "sha256_v2": "636fe4f2f6a7ed86862730520883b6916d71793ac2895f7fd765e145eb8bd5fc",
+            "sha256_v3": "636fe4f2f6a7ed86862730520883b6916d71793ac2895f7fd765e145eb8bd5fc"
+          },
+          {
+            "path": "input_markdown/sections/04_evaluation_protocol.md",
+            "identical": true,
+            "sha256_v2": "4c61c56fd0fb03fa9f226c551f4802fbb43ee6c1c27c4d1e57d74ff8d4cbf05b",
+            "sha256_v3": "4c61c56fd0fb03fa9f226c551f4802fbb43ee6c1c27c4d1e57d74ff8d4cbf05b"
+          },
+          {
+            "path": "input_markdown/sections/05_results.md",
+            "identical": true,
+            "sha256_v2": "2afb28636646bcbc5f36a5f781ea982727989292204c948b3493df703f3a5994",
+            "sha256_v3": "2afb28636646bcbc5f36a5f781ea982727989292204c948b3493df703f3a5994"
+          },
+          {
+            "path": "input_markdown/sections/06_discussion.md",
+            "identical": true,
+            "sha256_v2": "c6953ba1da2ede045999383d472b993d676d53633a307aa0de1528030620baa9",
+            "sha256_v3": "c6953ba1da2ede045999383d472b993d676d53633a307aa0de1528030620baa9"
+          },
+          {
+            "path": "input_markdown/sections/07_conclusion.md",
+            "identical": true,
+            "sha256_v2": "4b61012971783d53510c3ab2f763b7ab950695ea4cf8e02f6766d3352d3eb6eb",
+            "sha256_v3": "4b61012971783d53510c3ab2f763b7ab950695ea4cf8e02f6766d3352d3eb6eb"
+          },
+          {
+            "path": "input_markdown/sections/08_references.md",
+            "identical": true,
+            "sha256_v2": "674559c7ed44eedea22e3ff9bf66470fa44c55d68953f44014e9add82cf9984d",
+            "sha256_v3": "674559c7ed44eedea22e3ff9bf66470fa44c55d68953f44014e9add82cf9984d"
+          },
+          {
+            "path": "input_markdown/supplement/S01_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "2bc43d8f6e68c8b1c0b7933f3903e8ee95c14398b725073802537d1b7fefb2ab",
+            "sha256_v3": "2bc43d8f6e68c8b1c0b7933f3903e8ee95c14398b725073802537d1b7fefb2ab"
+          },
+          {
+            "path": "input_markdown/supplement/S02_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "eadf459655ba8cdbbf574818a76a11c97454f61855512191294cf1073d4f65f7",
+            "sha256_v3": "eadf459655ba8cdbbf574818a76a11c97454f61855512191294cf1073d4f65f7"
+          },
+          {
+            "path": "input_markdown/supplement/S03_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "9c4c5b9cf1aae8157c4aaf22d7bae0c0157e13316c95d92bf1fbabc7160f2201",
+            "sha256_v3": "9c4c5b9cf1aae8157c4aaf22d7bae0c0157e13316c95d92bf1fbabc7160f2201"
+          },
+          {
+            "path": "input_markdown/supplement/S04_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "71fefe6fe0010b039c554be79083b801a1249db93322f82c8242eacb7d4d4412",
+            "sha256_v3": "71fefe6fe0010b039c554be79083b801a1249db93322f82c8242eacb7d4d4412"
+          },
+          {
+            "path": "input_markdown/supplement/S05_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "1015891ac25a629eb444a0e1225ae38ad40b91d761225636f6f9396f0757d8de",
+            "sha256_v3": "1015891ac25a629eb444a0e1225ae38ad40b91d761225636f6f9396f0757d8de"
+          },
+          {
+            "path": "input_markdown/supplement/S06_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "83133b8e703c5aef7e40966575bdbae4ab77f1f293c4dbb642e410440ec0eaca",
+            "sha256_v3": "83133b8e703c5aef7e40966575bdbae4ab77f1f293c4dbb642e410440ec0eaca"
+          },
+          {
+            "path": "input_markdown/supplement/S07_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "4bb639a5a13c53617aeaf4cc9c4f68384cc89d6ca79b0f88c509b207e6fc6b7a",
+            "sha256_v3": "4bb639a5a13c53617aeaf4cc9c4f68384cc89d6ca79b0f88c509b207e6fc6b7a"
+          },
+          {
+            "path": "input_markdown/supplement/S08_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "4ef754b445bdb6626928bb8acade5193daff94d50a1d3f5665844b2c8b6eede9",
+            "sha256_v3": "4ef754b445bdb6626928bb8acade5193daff94d50a1d3f5665844b2c8b6eede9"
+          },
+          {
+            "path": "input_markdown/supplement/S09_full_aggregate_table.md",
+            "identical": true,
+            "sha256_v2": "0aad3ba38fbd4b7a9279c33c9faa6b4797b2ac7269ed0e70b4212f33b4899a27",
+            "sha256_v3": "0aad3ba38fbd4b7a9279c33c9faa6b4797b2ac7269ed0e70b4212f33b4899a27"
+          },
+          {
+            "path": "main.tex",
+            "identical": true,
+            "sha256_v2": "0d737ebeb447578ce6ee3a02fc23a84e430c81f254b878e3dcfb5a63f7bb850d",
+            "sha256_v3": "0d737ebeb447578ce6ee3a02fc23a84e430c81f254b878e3dcfb5a63f7bb850d"
+          },
+          {
+            "path": "main_matrix.tex",
+            "identical": true,
+            "sha256_v2": "51338dd9f6239061fc944219f1e401f983932901986c659a8fab1ce121df9521",
+            "sha256_v3": "51338dd9f6239061fc944219f1e401f983932901986c659a8fab1ce121df9521"
+          },
+          {
+            "path": "notes/abstract_lock.json",
+            "identical": true,
+            "sha256_v2": "fb0b3ab175fd60f2568230481876fb43289e00877c7c76945c33c96073d7034e",
+            "sha256_v3": "fb0b3ab175fd60f2568230481876fb43289e00877c7c76945c33c96073d7034e"
+          },
+          {
+            "path": "references.bib",
+            "identical": true,
+            "sha256_v2": "bd48ede643f451413e3e24808819bea10a399c7943e2c6637649cbf470692b8d",
+            "sha256_v3": "bd48ede643f451413e3e24808819bea10a399c7943e2c6637649cbf470692b8d"
+          },
+          {
+            "path": "sections/01_introduction.tex",
+            "identical": true,
+            "sha256_v2": "151c4a01270d5195a50d45118277de818f69514d5489ae1196dd01fa775bbc9d",
+            "sha256_v3": "151c4a01270d5195a50d45118277de818f69514d5489ae1196dd01fa775bbc9d"
+          },
+          {
+            "path": "sections/02_background_and_scope.tex",
+            "identical": true,
+            "sha256_v2": "52b36b1b4b0d3009c9dfbc850dfba493b8e184365a5d3a7e556ea8d42b39f269",
+            "sha256_v3": "52b36b1b4b0d3009c9dfbc850dfba493b8e184365a5d3a7e556ea8d42b39f269"
+          },
+          {
+            "path": "sections/04_evaluation_protocol.tex",
+            "identical": true,
+            "sha256_v2": "4d26fbbd4ab11183eff21e009961f6137765d3a56e3c5f74b6edcd2a248dd678",
+            "sha256_v3": "4d26fbbd4ab11183eff21e009961f6137765d3a56e3c5f74b6edcd2a248dd678"
+          },
+          {
+            "path": "sections/05_results.tex",
+            "identical": true,
+            "sha256_v2": "1a5e60b225e283d7c23a5719f1c1751cd0284a2c10a3a9cff71e685797fd10e8",
+            "sha256_v3": "1a5e60b225e283d7c23a5719f1c1751cd0284a2c10a3a9cff71e685797fd10e8"
+          },
+          {
+            "path": "sections/06_discussion.tex",
+            "identical": true,
+            "sha256_v2": "521a7d21f4b59964e3dc0a54b17b63034768a77728c928b730d68d1b33cb0a15",
+            "sha256_v3": "521a7d21f4b59964e3dc0a54b17b63034768a77728c928b730d68d1b33cb0a15"
+          },
+          {
+            "path": "sections/07_conclusion.tex",
+            "identical": true,
+            "sha256_v2": "8f88ffb7e2de42062df3aca5a614d92a3a8d2e8db31d0f895674a6d59723eef0",
+            "sha256_v3": "8f88ffb7e2de42062df3aca5a614d92a3a8d2e8db31d0f895674a6d59723eef0"
+          },
+          {
+            "path": "tables/table_03.tex",
+            "identical": true,
+            "sha256_v2": "653d338ded4d5c908f2b1715668262cfdd46aab6d44e3add07e4a4d9b4efcdab",
+            "sha256_v3": "653d338ded4d5c908f2b1715668262cfdd46aab6d44e3add07e4a4d9b4efcdab"
+          },
+          {
+            "path": "tables/table_04.tex",
+            "identical": true,
+            "sha256_v2": "1b9cd010ab80eb5d768ba5fbd23e834c37fb16084286660970ae5abc2a554de4",
+            "sha256_v3": "1b9cd010ab80eb5d768ba5fbd23e834c37fb16084286660970ae5abc2a554de4"
+          },
+          {
+            "path": "tables/table_05.tex",
+            "identical": true,
+            "sha256_v2": "8c43db66937c4e5d5adbcbd5d6d7d3cf360b020d892b99c4e05e3d5655e021cd",
+            "sha256_v3": "8c43db66937c4e5d5adbcbd5d6d7d3cf360b020d892b99c4e05e3d5655e021cd"
+          }
+        ]
+      }
+    },
+    {
+      "id": "authorized_table_formatting",
+      "title": "Table 1/2/3 matrix/6仅授权列宽与表头换行变化",
+      "passed": true,
+      "detail": [
+        {
+          "path": "tables/table_01.tex",
+          "sha256_v2": "7cd18cda3486975aeab98a4a345110a3084b240c5c27a13f4ac38a9e31223f87",
+          "sha256_v3": "feadc7fbf5692568fc6b10c9bfa41e575fb8c480797a30cc092cafb5b8a36499",
+          "matrix_visible_content_identical": true,
+          "nonmatrix_visible_content_identical": true,
+          "caption_byte_identical": true,
+          "number_token_sequence_identical": true,
+          "font_row_spacing_tabcolsep_identical": true,
+          "total_width_identical": true,
+          "total_width": "\\textwidth",
+          "normalization": "仅移除经人工逐行检查的列定义条件块、以占位符替换tabularx列规格；展开实际分支表头宏，将makecell内部两反斜杠换行为同词空格；不删可见单元格内容。",
+          "column_declarations": [
+            "\\def\\HGWorkColumn{0.172}",
+            "\\newcolumntype{E}{p{0.272\\textwidth}}",
+            "\\newcolumntype{R}{p{0.252\\textwidth}}",
+            "\\def\\HGWorkColumn{0.145}",
+            "\\newcolumntype{E}{X}",
+            "\\newcolumntype{R}{X}"
+          ],
+          "passed": true
+        },
+        {
+          "path": "tables/table_02.tex",
+          "sha256_v2": "a3136574170c4705f0963f3b83906a43be80123023c451ee3a03cfb06d06b200",
+          "sha256_v3": "e2b8ecd95f02fec4f8a1e5f52ef77f8347e57e7970646caa2bdaacb37a5ed5e8",
+          "matrix_visible_content_identical": true,
+          "nonmatrix_visible_content_identical": true,
+          "caption_byte_identical": true,
+          "number_token_sequence_identical": true,
+          "font_row_spacing_tabcolsep_identical": true,
+          "total_width_identical": true,
+          "total_width": "\\textwidth",
+          "normalization": "仅移除经人工逐行检查的列定义条件块、以占位符替换tabularx列规格；展开实际分支表头宏，将makecell内部两反斜杠换行为同词空格；不删可见单元格内容。",
+          "column_declarations": [
+            "\\def\\HGMaterialColumn{0.19}",
+            "\\def\\HGModifiedColumn{0.09}",
+            "\\def\\HGNormalColumn{0.06}",
+            "\\def\\HGMaterialColumn{0.205}",
+            "\\def\\HGModifiedColumn{0.135}",
+            "\\def\\HGNormalColumn{0.10}"
+          ],
+          "passed": true
+        },
+        {
+          "path": "tables/table_03_matrix.tex",
+          "sha256_v2": "4c68542b8861693c2122aca19367c43b5183397ed16ce548c3bfe9f6bf3fad27",
+          "sha256_v3": "f14fd26733beefb69ea1c567b32666db2ce71f46df0d14af25d9807b9644679e",
+          "matrix_visible_content_identical": true,
+          "nonmatrix_visible_content_identical": true,
+          "caption_byte_identical": true,
+          "number_token_sequence_identical": true,
+          "font_row_spacing_tabcolsep_identical": true,
+          "total_width_identical": true,
+          "total_width": "\\textwidth",
+          "normalization": "仅移除经人工逐行检查的列定义条件块、以占位符替换tabularx列规格；展开实际分支表头宏，将makecell内部两反斜杠换行为同词空格；不删可见单元格内容。",
+          "column_declarations": [],
+          "passed": true
+        },
+        {
+          "path": "tables/table_06.tex",
+          "sha256_v2": "edde5646c76c521f2706c670df132eef2b71d3509e914eb24cbc6f0eb9bf1fa2",
+          "sha256_v3": "2593eaaa0020234274a610c35e8305139e00a31f76a1f012c9b7b52f0b2c0afc",
+          "matrix_visible_content_identical": true,
+          "nonmatrix_visible_content_identical": true,
+          "caption_byte_identical": true,
+          "number_token_sequence_identical": true,
+          "font_row_spacing_tabcolsep_identical": true,
+          "total_width_identical": true,
+          "total_width": "\\columnwidth",
+          "normalization": "仅移除经人工逐行检查的列定义条件块、以占位符替换tabularx列规格；展开实际分支表头宏，将makecell内部两反斜杠换行为同词空格；不删可见单元格内容。",
+          "column_declarations": [
+            "\\def\\HGPairedFamilyColumn{0.26}",
+            "\\newcolumntype{I}{p{0.25\\columnwidth}}",
+            "\\def\\HGPairedAppHeader{Integrated App: T}",
+            "\\def\\HGPairedCOneHeader{Integrated App + C1: T}",
+            "\\def\\HGPairedFamilyColumn{0.34}",
+            "\\newcolumntype{I}{X}",
+            "\\def\\HGPairedAppHeader{\\makecell{Integrated\\\\App: T}}",
+            "\\def\\HGPairedCOneHeader{\\makecell{Integrated App\\\\+ C1: T}}"
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "nine_frozen_assets",
+      "title": "三张图的SVG/PDF/PNG共9份资产符合冻结哈希",
+      "passed": true,
+      "detail": [
+        {
+          "path": "figures/HybridGuard_Fig1_surfaces_v2.svg",
+          "expected_sha256": "1902dbfd175a8c43a9ede95cf8be3b5f2336fca80007f0e7e022963bb9c7c43d",
+          "actual_sha256": "1902dbfd175a8c43a9ede95cf8be3b5f2336fca80007f0e7e022963bb9c7c43d",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig1_surfaces_v2.pdf",
+          "expected_sha256": "3805d0b554613b5ec1848332d0f9d24e5c57862d99a38468fcf7cff50cf9aba7",
+          "actual_sha256": "3805d0b554613b5ec1848332d0f9d24e5c57862d99a38468fcf7cff50cf9aba7",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig1_surfaces_v2.png",
+          "expected_sha256": "1668b3c28c1b9a072ce6c2b6754529e546892c55024084b93b4663b477eb4f18",
+          "actual_sha256": "1668b3c28c1b9a072ce6c2b6754529e546892c55024084b93b4663b477eb4f18",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig2_pipeline_v2.svg",
+          "expected_sha256": "0d8649f97ddb8b708bc5578d0fb1ba54f2fa1f05297ccba7d77e5be0b2ff26c6",
+          "actual_sha256": "0d8649f97ddb8b708bc5578d0fb1ba54f2fa1f05297ccba7d77e5be0b2ff26c6",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig2_pipeline_v2.pdf",
+          "expected_sha256": "c336ac1d49ee31dfb32d0804eb41276259fb0651364a6e6c6bd21fe6dea11292",
+          "actual_sha256": "c336ac1d49ee31dfb32d0804eb41276259fb0651364a6e6c6bd21fe6dea11292",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig2_pipeline_v2.png",
+          "expected_sha256": "abce5b952d3c4d8bcb694c870f984c26a458ca67c1b40e2605ff9fa6aca65464",
+          "actual_sha256": "abce5b952d3c4d8bcb694c870f984c26a458ca67c1b40e2605ff9fa6aca65464",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig3_mechanisms_v2.svg",
+          "expected_sha256": "531e2ef097495bd2dd9e4943f3eb30ed89fbafff163dee18447a1d6a13ceecf7",
+          "actual_sha256": "531e2ef097495bd2dd9e4943f3eb30ed89fbafff163dee18447a1d6a13ceecf7",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig3_mechanisms_v2.pdf",
+          "expected_sha256": "da1f63419b7cfe9c32b2df7e2eb458086324872ecb60ce1a7d9b583a2bf4bafc",
+          "actual_sha256": "da1f63419b7cfe9c32b2df7e2eb458086324872ecb60ce1a7d9b583a2bf4bafc",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        },
+        {
+          "path": "figures/HybridGuard_Fig3_mechanisms_v2.png",
+          "expected_sha256": "7a0a399ecd8d7dafab6e4526549832ccca983144f567a17671523676b84e6182",
+          "actual_sha256": "7a0a399ecd8d7dafab6e4526549832ccca983144f567a17671523676b84e6182",
+          "matches_frozen": true,
+          "identical_to_v2": true
+        }
+      ]
+    },
+    {
+      "id": "abstract_source",
+      "title": "摘要源文保持锁定原文、257词、三段",
+      "passed": true,
+      "detail": {
+        "words": 257,
+        "paragraphs": 3,
+        "locked_sha256": "db2a9d1a54fd6ca7000521a302b5d7e0524fb7fcea716e402bf3206f243d074e",
+        "expected_locked_sha256": "db2a9d1a54fd6ca7000521a302b5d7e0524fb7fcea716e402bf3206f243d074e",
+        "markdown_sha256": "45245ded7f77fd520f934d08e9204edffba883c881eccd0cc1594b77bbe0f8bd",
+        "expected_markdown_sha256": "45245ded7f77fd520f934d08e9204edffba883c881eccd0cc1594b77bbe0f8bd",
+        "markdown_body_equals_locked": true,
+        "frontmatter_identical": true
+      }
+    },
+    {
+      "id": "no_unapproved_additions",
+      "title": "B2及采集授权/伦理/匿名入口新说法未进入正文",
+      "passed": true,
+      "detail": {
+        "B2_exact_proposal_occurrences": 0,
+        "discussion_tex_identical_to_v2": true,
+        "discussion_markdown_identical_to_v2": true,
+        "basis": "非批准源文逐字节相同；批准文件由v2加确切提案重建，无额外作者事实或制品承诺。"
+      }
+    },
+    {
+      "id": "author_notes_scope",
+      "title": "作者权限与BUAA事实仅更新notes，未升级伦理认定或进入正文",
+      "passed": true,
+      "detail": {
+        "path": "notes/AUTHOR_FACTS_TO_CONFIRM.md",
+        "sha256": "8ec6f85037cd9c2d00e372351d1c34a490a5d6ca3904300127392b34f8b78d1e",
+        "identical_to_v2": false,
+        "status": "PASS_AUTHOR_FACTS_RECORDED_ONLY_IN_NOTES",
+        "lines": {
+          "source_of_confirmation": "3, 7–9",
+          "server_receipt_dates": "11–19",
+          "institution_and_ethics": "21–23",
+          "artifact_access": "25–30"
+        },
+        "findings": [
+          "MTC研究使用、论文发表与公开数据集允许被记录为作者明确确认，未声称代理独立审核许可文件。",
+          "北京航空航天大学及据作者了解没有相关要求被准确记录，未升级为正式批准、豁免或机构正式无需审查认定。",
+          "接收日期限定为服务端接收时间；公开主仓库与匿名入口尚未核验如实记录。",
+          "§6.4与§4.1的Markdown/TeX继续逐字节等于v2；上述作者事实未额外进入论文。"
+        ],
+        "new_fact_claims_allowed_in_paper": false
+      }
+    },
+    {
+      "id": "layout_controls_preserved",
+      "title": "v2浮动登记、图尺寸、模板字号/行距/页边距/页高不变；无遗留试排指令",
+      "passed": true,
+      "detail": {
+        "files": [
+          {
+            "path": "main.tex",
+            "identical": true
+          },
+          {
+            "path": "main_matrix.tex",
+            "identical": true
+          },
+          {
+            "path": "sections/01_introduction.tex",
+            "identical": true
+          },
+          {
+            "path": "sections/04_evaluation_protocol.tex",
+            "identical": true
+          },
+          {
+            "path": "floats/figure_01.tex",
+            "identical": true
+          },
+          {
+            "path": "floats/figure_02.tex",
+            "identical": true
+          },
+          {
+            "path": "floats/figure_03.tex",
+            "identical": true
+          },
+          {
+            "path": "acmart.cls",
+            "identical": true
+          }
+        ],
+        "new_body_directive_counts": {
+          "\\looseness": 0,
+          "\\tolerance": 0,
+          "\\allowbreak": 0
+        },
+        "table_spacing_check": "另见authorized_table_formatting；四表字号、arraystretch、tabcolsep与总宽均相同。"
+      }
+    },
+    {
+      "id": "final_pdf",
+      "title": "最终PDF摘要、三段、提案次数及8页主文/10页全文通过",
+      "passed": true,
+      "detail": {
+        "status": "PASS",
+        "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v3/build/matrix/HybridGuard_layout_v1_matrix.pdf",
+        "sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+        "expected_sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+        "bytes": 563746,
+        "pages": 10,
+        "main_text_pages": 8,
+        "conclusion_page": 8,
+        "appendix_start_page": 9,
+        "references_start_page": 9,
+        "abstract_matches_locked_after_layout_normalization": true,
+        "abstract_words": 257,
+        "abstract_source_paragraphs": 3,
+        "abstract_rendered_paragraph_starts": [
+          {
+            "text_start": "Web services use browser-visible environment reports to recognize",
+            "bbox": [
+              53.368,
+              160.863,
+              294.046,
+              169.739
+            ]
+          },
+          {
+            "text_start": "HybridGuard associates observations from the same hybrid Web",
+            "bbox": [
+              63.761,
+              248.534,
+              294.044,
+              257.41
+            ]
+          },
+          {
+            "text_start": "Across 14 controlled manipulation configurations, Hybrid-",
+            "bbox": [
+              63.761,
+              314.109,
+              295.559,
+              323.165
+            ]
+          }
+        ],
+        "abstract_normalization": "NFKC ligature normalization; repair line-ending word splits against locked/proposal word vocabulary; collapse layout whitespace. No paraphrase or numeric normalization.",
+        "proposal_occurrences": [
+          {
+            "id": "A1",
+            "fragment": 1,
+            "occurrences": 1,
+            "pages": [
+              4
+            ]
+          },
+          {
+            "id": "A2",
+            "fragment": 1,
+            "occurrences": 1,
+            "pages": [
+              4
+            ]
+          },
+          {
+            "id": "A3",
+            "fragment": 1,
+            "occurrences": 1,
+            "pages": [
+              9
+            ]
+          },
+          {
+            "id": "A3",
+            "fragment": 2,
+            "occurrences": 1,
+            "pages": [
+              9
+            ]
+          },
+          {
+            "id": "B1",
+            "fragment": 1,
+            "occurrences": 1,
+            "pages": [
+              3
+            ]
+          }
+        ],
+        "B2_exact_proposal_occurrences": 0
+      }
+    },
+    {
+      "id": "baseline_pdf_identity",
+      "title": "v2基准PDF身份正确",
+      "passed": true,
+      "detail": {
+        "sha256": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080",
+        "expected": "4d49d439f85e67b11ef261b346caeadf4b90d7cb42ce45460d8fe16874e6b080"
+      }
+    }
+  ],
+  "failures": [],
+  "source_passed": true,
+  "source_approved_net_words": {
+    "A1": 42,
+    "A2": 30,
+    "A3": 86,
+    "B1": 19,
+    "main_text_total": 91,
+    "appendix_total": 86
+  },
+  "author_facts_notes": {
+    "path": "notes/AUTHOR_FACTS_TO_CONFIRM.md",
+    "sha256": "8ec6f85037cd9c2d00e372351d1c34a490a5d6ca3904300127392b34f8b78d1e",
+    "identical_to_v2": false,
+    "status": "PASS_AUTHOR_FACTS_RECORDED_ONLY_IN_NOTES",
+    "lines": {
+      "source_of_confirmation": "3, 7–9",
+      "server_receipt_dates": "11–19",
+      "institution_and_ethics": "21–23",
+      "artifact_access": "25–30"
+    },
+    "findings": [
+      "MTC研究使用、论文发表与公开数据集允许被记录为作者明确确认，未声称代理独立审核许可文件。",
+      "北京航空航天大学及据作者了解没有相关要求被准确记录，未升级为正式批准、豁免或机构正式无需审查认定。",
+      "接收日期限定为服务端接收时间；公开主仓库与匿名入口尚未核验如实记录。",
+      "§6.4与§4.1的Markdown/TeX继续逐字节等于v2；上述作者事实未额外进入论文。"
+    ],
+    "new_fact_claims_allowed_in_paper": false
+  },
+  "pdf_check": {
+    "status": "PASS",
+    "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v3/build/matrix/HybridGuard_layout_v1_matrix.pdf",
+    "sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+    "expected_sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+    "bytes": 563746,
+    "pages": 10,
+    "main_text_pages": 8,
+    "conclusion_page": 8,
+    "appendix_start_page": 9,
+    "references_start_page": 9,
+    "abstract_matches_locked_after_layout_normalization": true,
+    "abstract_words": 257,
+    "abstract_source_paragraphs": 3,
+    "abstract_rendered_paragraph_starts": [
+      {
+        "text_start": "Web services use browser-visible environment reports to recognize",
+        "bbox": [
+          53.368,
+          160.863,
+          294.046,
+          169.739
+        ]
+      },
+      {
+        "text_start": "HybridGuard associates observations from the same hybrid Web",
+        "bbox": [
+          63.761,
+          248.534,
+          294.044,
+          257.41
+        ]
+      },
+      {
+        "text_start": "Across 14 controlled manipulation configurations, Hybrid-",
+        "bbox": [
+          63.761,
+          314.109,
+          295.559,
+          323.165
+        ]
+      }
+    ],
+    "abstract_normalization": "NFKC ligature normalization; repair line-ending word splits against locked/proposal word vocabulary; collapse layout whitespace. No paraphrase or numeric normalization.",
+    "proposal_occurrences": [
+      {
+        "id": "A1",
+        "fragment": 1,
+        "occurrences": 1,
+        "pages": [
+          4
+        ]
+      },
+      {
+        "id": "A2",
+        "fragment": 1,
+        "occurrences": 1,
+        "pages": [
+          4
+        ]
+      },
+      {
+        "id": "A3",
+        "fragment": 1,
+        "occurrences": 1,
+        "pages": [
+          9
+        ]
+      },
+      {
+        "id": "A3",
+        "fragment": 2,
+        "occurrences": 1,
+        "pages": [
+          9
+        ]
+      },
+      {
+        "id": "B1",
+        "fragment": 1,
+        "occurrences": 1,
+        "pages": [
+          3
+        ]
+      }
+    ],
+    "B2_exact_proposal_occurrences": 0
+  },
+  "allowed_layout_changes_retained": [
+    "Table1: column widths only (matrix mode)",
+    "Table2: column widths only (matrix mode)",
+    "Table3 matrix: two-line makecell headers changed to identical words on one line; column structure unchanged",
+    "Table6: column widths and same-word single-line headers (matrix mode)",
+    "B1 joined to the following original Device Memory paragraph with a single space"
+  ],
+  "withdrawn_layout_experiments": [
+    "float registration changes",
+    "htbp placement experiments",
+    "looseness/tolerance adjustments",
+    "extra API allowbreak directives"
+  ],
+  "reviewer_mutations": [
+    "qa/approved_integrity_check.json",
+    "qa/approved_integrity_check.md"
+  ]
+}

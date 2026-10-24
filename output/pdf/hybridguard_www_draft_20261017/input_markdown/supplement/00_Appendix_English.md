@@ -1,0 +1,35 @@
+# Appendix A. Configuration and Reproducibility Details
+
+## A.1 Saved Model Identities
+
+App configurations 01, 02, and 03 hold out emulator API 29, 30, and 36, respectively. APP_FULL denotes the retained B_REL_TZ models, called Integrated App in the main text. A_NO_MTC_CAP, A_APP_WEB_ONLY, A_NO_MEMORY_REL, and A_NO_TIMEZONE_REL are refitted alternatives. APP_TREE uses saved FITTED outputs; rule models use saved RETENTION outputs. PAIRED_BASE is the frozen App detector plus C1. These names do not add Host geometry to Integrated App.
+
+The candidate-state tree uses scikit-learn 1.7.2, splitter=best, random_state=20261006, no class-weight override, and a positive-class probability threshold of 0.5. Its admitted pools contain 63, 63, and 54 atoms, each encoded by three state indicators; these are smaller than the pre-admission pools. Fifteen positions in each controlled held-out set and 73/891 MTC records have an unknown candidate. A fitted path need not use that candidate, so binary predictions do not imply complete observation.
+
+## A.2 Candidate Admission and Extension Choice
+
+Threshold expansion uses training-only quantiles 0.25, 0.5, and 0.75. Candidate support requires at least three complete true/false triplets and at least two triggered modification triplets in at least one bundle/environment, alongside normal assessability. For Browser extension, feasible choices among none, C1, C2, and C1+C2 are ranked by the equal mean detection ratio across App timezone, App language, Browser timezone, and Browser language. Ties prefer fewer additions and then a fixed set order. This ranking is part of development-side selection.
+
+The fixed timezone comparator triggers above −480 minutes; the old Web-height comparator triggers above 710 CSS pixels. Native timezone uses effective offsets under the fixed implementation database. Geometry follows Section 3.3. C1 requires both status and quality markers, accepts finite numeric offsets including zero and minus one, and applies no timestamp gate.
+
+## A.3 Full Tables and Statistical Units
+
+S01–S09 retain the nine aggregate tables, including adverse outcomes. Chinese source field names preserve the input schema; main-text tables use English labels. S02 contains 14 recipes × 6 methods = 84 rows. Its five count-pattern groups have sizes 1, 1, 2, 8, and 2, with nine effective modifications per recipe. Weighted sums reproduce 105, 108, 96, 96, 105, and 72 detections. App language-list edits are distinct from the paired study's language operations.
+
+S07 reports resource-admission comparisons on 26 modified and 718 normal development positions, plus a separate replay of 261 historical normals. S0 is the frozen Integrated App + C1 baseline. M adds a Native-to-Browser memory-envelope check, W tests inequality between App-Web and Browser memory reports, and B tests Browser memory above 8 GiB. S0 detects 13/26; S0+M and S0+W detect 19/26; S0+B detects 16/26. These additions fail coverage and/or normal-alarm admission criteria, so they do not replace the retained App-plus-C1 results on 14 paired modifications.
+
+S08 reports a four-view development diagnostic. The four-view diagnostic uses language and timezone measurements: App only, Browser only, their concatenation, and the concatenation augmented by C1/C2 states. P0 trains on the 630 discovery normals and both paired batches. P1 and P2 withhold the 18-position pilot and 42-position matched batch, respectively, while training on the discovery normals and the other batch. The relation-augmented P0 fit yields 14/14 detections and 0/46 normal alarms; under P2, the relation-augmented view yields 4/8 and 6/34. These settings are not independent replications. S09 times cached_from_adapted execution in batches of 60 over ten rounds. Its microseconds-per-position medians and batch-amortized p95 values exclude acquisition and communication; they are neither per-request latency percentiles nor end-to-end costs.
+
+## A.4 Verification Scope
+
+Presentation checks verify state partitions, aggregate/detail agreement, row counts, figure and table references, and file hashes. They establish consistency between saved results and the manuscript, without independently validating intervention labels, source-record identity, or collection bindings. The implementation also contains tests for decision states and binding failures. Those tests are distinct from the benchmark outcomes reported here.
+
+## A.5 Implementation and Comparator Provenance
+
+The implementation archive provides the 50 base templates and three relations in `deliverables/app177_core_ablation_v1/CANDIDATES.json`, with their dependencies in `CANDIDATE_DEPENDENCIES.md`. Final B_REL_TZ models are saved under `deliverables/timezone_relation_validation_v1/trials/B_REL_TZ__WEBGL1-LOEO-v1-{01,02,03}__RETENTION/model.json`. All three select Native–Web timezone and memory relations, MIME type count above zero, the first-language relation (`RSR-LANG-FIRST-v1`), and the registered UA/platform condition (`CAT:NW-006`). Configurations 01/02 also select Web inner height above 710 CSS pixels; configuration 03 does not. The resulting models have 6/6/5 clauses and complexity 12/12/10.
+
+The active selector, `hybridguard_agent/research/rule_learning_v2/semantic_selection.py`, ranks feasible retention proposals by higher macro-averaged detection gain, higher semantic-coverage gain, fewer controlled-normal alarms, higher minimum phase coverage, lower complexity, higher semantic quality, and finally a structural key. The six saved B_REL_TZ fits terminate through their heuristic stopping criteria, with recorded elapsed times of 0.19–0.48 seconds. The 60-second deadline is applied to each fit and is not their recorded stopping reason.
+
+Record-level outputs are retained in `deliverables/timezone_relation_validation_v1/predictions.jsonl.gz`, `deliverables/app177_core_ablation_v1/results/{full_predictions,predictions}.jsonl.gz`, and `deliverables/cross_endpoint_constrained_extension_v1/results/predictions.jsonl`. These archives support inspection beyond the aggregate tables; saved outputs and independently reproduced results remain distinct forms of evidence.
+
+Comparator provenance differs across studies. The 8 GiB condition was fixed in the memory study's `SETTINGS.json` before the 72-position collection that yielded 18 effective modifications and 48 normal positions; comparisons on the older controlled and MTC records were retrospective. The legacy 710 CSS-pixel height condition appears in the geometry study's `CONDITIONS_FROZEN.json`, fixed before the formal 72-position batch and after six engineering smoke observations. The −480-minute comparator is the legacy absolute-offset condition from the saved B_REL models; old and new model identities were frozen before the 36-position timezone collection. We treat these as controlled mechanism studies within development, without claiming independently preregistered comparator selection. The memory envelope and geometry tolerance are engineering hypotheses within their stated domains, and no threshold-sensitivity study is reported.

@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-22",
+  "status": "PASS",
+  "source_content_verdict": "PASS",
+  "final_verdict_pending_pdf": false,
+  "scope": "Only the four explicitly approved additions A1/A2/A3/B1; targeted comparison against the final assessment and unchanged v2 source. No broader rewriting or new fact research.",
+  "approved_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "B1"
+  ],
+  "unapproved_ids_not_applied": [
+    "B2",
+    "D1",
+    "D2",
+    "F1",
+    "F2"
+  ],
+  "assessment_reference": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v2/reviews/final_read_assessment.json",
+  "input_file_count_v2": 19,
+  "input_file_count_v3": 19,
+  "byte_identical_other_input_files": 17,
+  "source_checks": {
+    "identical_input_file_sets": true,
+    "only_two_approved_input_files_changed": true,
+    "method_exactly_restored_by_removing_approved_insertions": true,
+    "appendix_exactly_restored_by_removing_approved_insertions": true,
+    "B2_not_inserted": true,
+    "B1_single_space_continuation_to_original_paragraph": true
+  },
+  "items": [
+    {
+      "id": "A1",
+      "status": "PASS",
+      "source_file": "sections/03_method.md",
+      "source_lines": [
+        47
+      ],
+      "approved_proposal": "Semantic coverage counts distinct (semantic group, modified training record) trigger pairs using the training detection weights, with groups assigned from field semantics. Semantic quality sums predefined preference scores for positive literals; these scores express observation preferences, not measured accuracy or independent evidence.",
+      "inserted_text": "Semantic coverage counts distinct (semantic group, modified training record) trigger pairs using the training detection weights, with groups assigned from field semantics. Semantic quality sums predefined preference scores for positive literals; these scores express observation preferences, not measured accuracy or independent evidence.",
+      "exact_match_after_allowed_formatting": true,
+      "occurrences_per_inserted_paragraph": [
+        1
+      ],
+      "placement_check": "§3.4 retention 段第一句之后，原有 Additions 约束句之前；先定义再使用，原有约束和结果边界均保留。",
+      "net_added_words": 42,
+      "semantic_check": "与已批准定义一致；未改动谓词、阈值、研究范围或实验结果。",
+      "pdf_pages": [
+        4
+      ],
+      "pdf_complete_and_unique": true,
+      "pdf_paragraph_checks": [
+        {
+          "paragraph": 1,
+          "occurrences": [
+            {
+              "page": 4,
+              "count": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "status": "PASS",
+      "source_file": "sections/03_method.md",
+      "source_lines": [
+        37
+      ],
+      "approved_proposal": "The same-Web comparator flags either visual-viewport dimension exceeding the corresponding window.innerWidth or window.innerHeight by more than 1 CSS pixel, using positive, same-probe observations when visual-viewport scale is at least one.",
+      "inserted_text": "The same-Web comparator flags either visual-viewport dimension exceeding the corresponding `window.innerWidth` or `window.innerHeight` by more than 1 CSS pixel, using positive, same-probe observations when visual-viewport scale is at least one.",
+      "exact_match_after_allowed_formatting": true,
+      "occurrences_per_inserted_paragraph": [
+        1
+      ],
+      "placement_check": "§3.4 首段列出三个固定关系之后，仅插入一次；紧接对应名称，后续模板构造说明完整保留。",
+      "net_added_words": 30,
+      "semantic_check": "与已批准定义一致；未改动谓词、阈值、研究范围或实验结果。",
+      "pdf_pages": [
+        4
+      ],
+      "pdf_complete_and_unique": true,
+      "pdf_paragraph_checks": [
+        {
+          "paragraph": 1,
+          "occurrences": [
+            {
+              "page": 4,
+              "count": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "status": "PASS",
+      "source_file": "supplement/00_Appendix_English.md",
+      "source_lines": [
+        19,
+        21
+      ],
+      "approved_proposal": "S0 is the frozen Integrated App + C1 baseline. M adds a Native-to-Browser memory-envelope check, W tests inequality between App-Web and Browser memory reports, and B tests Browser memory above 8 GiB.\n\nThe four-view diagnostic uses language and timezone measurements: App only, Browser only, their concatenation, and the concatenation augmented by C1/C2 states. P0 trains on the 630 discovery normals and both paired batches. P1 and P2 withhold the 18-position pilot and 42-position matched batch, respectively, while training on the discovery normals and the other batch.",
+      "inserted_text": "S0 is the frozen Integrated App + C1 baseline. M adds a Native-to-Browser memory-envelope check, W tests inequality between App-Web and Browser memory reports, and B tests Browser memory above 8 GiB.\n\nThe four-view diagnostic uses language and timezone measurements: App only, Browser only, their concatenation, and the concatenation augmented by C1/C2 states. P0 trains on the 630 discovery normals and both paired batches. P1 and P2 withhold the 18-position pilot and 42-position matched batch, respectively, while training on the discovery normals and the other batch.",
+      "exact_match_after_allowed_formatting": true,
+      "occurrences_per_inserted_paragraph": [
+        1,
+        1
+      ],
+      "placement_check": "第一段位于 A.3 的 S07 统计范围之后、S0 数值之前；第二段位于 S08 四视图诊断引入句之后、P0/P2 数值之前。development-use、非独立复现与接入失败限定仍在。",
+      "net_added_words": 86,
+      "semantic_check": "与已批准定义一致；未改动谓词、阈值、研究范围或实验结果。",
+      "pdf_pages": [
+        9
+      ],
+      "pdf_complete_and_unique": true,
+      "pdf_paragraph_checks": [
+        {
+          "paragraph": 1,
+          "occurrences": [
+            {
+              "page": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "paragraph": 2,
+          "occurrences": [
+            {
+              "page": 9,
+              "count": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B1",
+      "status": "PASS",
+      "source_file": "sections/03_method.md",
+      "source_lines": [
+        25
+      ],
+      "approved_proposal": "Here, m_native is kernel-visible total memory reported by Android ActivityManager.MemoryInfo.totalMem, converted to GiB; m_web is the Web deviceMemory report.",
+      "inserted_text": "Here, $m_{\\mathrm{native}}$ is kernel-visible total memory reported by Android `ActivityManager.MemoryInfo.totalMem`, converted to GiB; $m_{\\mathrm{web}}$ is the Web `deviceMemory` report.",
+      "exact_match_after_allowed_formatting": true,
+      "occurrences_per_inserted_paragraph": [
+        1
+      ],
+      "placement_check": "§3.3 Native memory envelope 公式之后、Device Memory draft 说明之前；与紧随的原 Device Memory 说明合成一段，仅用单个空格衔接。数学变量与 API 等宽格式保留，字词和先后位置不变。",
+      "net_added_words": 19,
+      "semantic_check": "与已批准定义一致；未改动谓词、阈值、研究范围或实验结果。",
+      "paragraph_formatting_exception": "The new B1 sentence and the original following Device Memory paragraph share one paragraph. Removing B1 plus its trailing single space restores v2 exactly.",
+      "pdf_pages": [
+        3
+      ],
+      "pdf_complete_and_unique": true,
+      "pdf_paragraph_checks": [
+        {
+          "paragraph": 1,
+          "occurrences": [
+            {
+              "page": 3,
+              "count": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "word_counts": {
+    "main": 91,
+    "appendix": 86,
+    "total": 177
+  },
+  "allowed_formatting_exceptions": {
+    "A2": "window.innerWidth/window.innerHeight rendered as inline code.",
+    "B1": "m_native/m_web use existing math notation; API names use inline code. B1 shares the following original Device Memory paragraph, with a single space between sentences; no words or their order changed."
+  },
+  "input_hashes": [
+    {
+      "path": "sections/03_method.md",
+      "v2_sha256": "266b5753cbc81a815f19c61bba1ee4d16d6a5311f048cf4ae4b0d6c0a2fa1a7e",
+      "v3_sha256": "78de8eb7cbf018ab04fa09b280f98208b8244f335d961320b6f10873e1f00f30"
+    },
+    {
+      "path": "supplement/00_Appendix_English.md",
+      "v2_sha256": "1b05aba6843f7b1ae061acacb370944d173b0455f08e54f0d7f46575e338a3b4",
+      "v3_sha256": "4d1e45594c5c7f505b2bcc32538f720c6b91f1d9e19584ae3bbaff4c695257c1"
+    }
+  ],
+  "substantive_issues": [],
+  "pdf_check": {
+    "status": "PASS",
+    "checked": true,
+    "path": "/workspace/scratch/fff1267c1d19/hybridguard_latex_v3/build/matrix/HybridGuard_layout_v1_matrix.pdf",
+    "sha256": "bd00d76b84fb1da0a9c04c88a82a9113fc74377cf0e83e4380480e6f588f99dc",
+    "size_bytes": 563746,
+    "total_pages": 10,
+    "main_pages": 8,
+    "main_text_ends_page": 8,
+    "item_presence": [
+      {
+        "id": "A1",
+        "pages": [
+          4
+        ],
+        "complete": true,
+        "unique": true
+      },
+      {
+        "id": "A2",
+        "pages": [
+          4
+        ],
+        "complete": true,
+        "unique": true
+      },
+      {
+        "id": "A3",
+        "pages": [
+          9
+        ],
+        "complete": true,
+        "unique": true
+      },
+      {
+        "id": "B1",
+        "pages": [
+          3
+        ],
+        "complete": true,
+        "unique": true
+      }
+    ],
+    "B2_proposal_occurrences": 0,
+    "matching_method": "Each complete approved paragraph matched once after Unicode NFKC normalization and ignoring PDF whitespace/line wraps, hyphens, and mathematical subscript formatting. Source exactness was independently established by restoring v2 after removing only the approved insertions.",
+    "abstract": {
+      "status": "PASS",
+      "page": 1,
+      "source_byte_identical_to_v2": true,
+      "source_sha256": "45245ded7f77fd520f934d08e9204edffba883c881eccd0cc1594b77bbe0f8bd",
+      "pdf_extracted_text_exactly_identical_to_v2": true,
+      "pdf_extracted_characters": 1975,
+      "pdf_extracted_sha256": "93e51dba9bee4ca896827bbb96b6350824591cf73e2ac349b0ac41003ae0f77a"
+    },
+    "scope": "Targeted content and frozen-abstract verification only; no new compilation or full-paper rereading."
+  },
+  "reviewer_actions": {
+    "manuscript_modified": false,
+    "source_modified": false,
+    "compiled": false,
+    "experiments_run": false,
+    "new_fact_research": false,
+    "only_review_files_written": true
+  },
+  "latest_source_recheck": "After the owner-authorized B1 paragraph join, both changed input files still restore exactly to v2 by removing only the approved additions; A1/A2/B1 and both A3 paragraphs each occur once; all other 17 input files remain byte-identical.",
+  "final_verdict": "PASS"
+}

@@ -1,0 +1,22 @@
+:root { color-scheme: light; --ink: #172a38; --muted: #526777; --line: #d7e1e8; --accent: #176f79; }
+* { box-sizing: border-box; }
+html { background: #eaf0f4; scroll-behavior: smooth; }
+body { max-width: 1120px; margin: 36px auto; padding: 48px 60px; background: #fff; color: var(--ink); font: 16px/1.8 -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif; box-shadow: 0 6px 32px #18334410; }
+.eyebrow { font-size: 12px; letter-spacing: 2px; color: var(--accent); font-weight: 700; }
+h1 { font-size: 34px; line-height: 1.35; margin: 14px 0 22px; }
+h2 { margin-top: 48px; padding-top: 12px; border-top: 2px solid var(--line); font-size: 24px; }
+h3 { margin-top: 32px; font-size: 20px; color: #185a66; }
+p { margin: 16px 0; }
+.status { padding: 15px 18px; border-left: 4px solid var(--accent); background: #eaf5f4; color: #15505a; font-size: 15px; font-weight: 600; }
+table { border-collapse: collapse; width: 100%; margin: 22px 0; font-size: 14px; line-height: 1.65; }
+th { text-align: left; padding: 11px 12px; background: #edf3f6; border-bottom: 2px solid #b9cdd8; }
+td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) { background: #f8fafb; }
+blockquote { margin: 18px 0; padding: 14px 22px; border-left: 3px solid #91aeba; background: #f4f7f9; color: #243d4d; font-family: Georgia,"Noto Serif CJK SC",serif; font-size: 17px; line-height: 1.65; overflow-wrap: anywhere; }
+blockquote p { margin: 4px 0; }
+code { font: .88em/1.5 "SFMono-Regular",Consolas,monospace; background: #eef2f5; padding: 2px 4px; border-radius: 3px; overflow-wrap: anywhere; }
+a { color: #086f86; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+li { margin: 6px 0; }
+strong { font-weight: 700; }
+@media (max-width: 760px) { body { margin: 0; padding: 28px 18px; } h1 { font-size: 27px; } h2 { font-size: 22px; } table { display: block; overflow-x: auto; font-size: 13px; } th,td { padding: 9px 10px; min-width: 70px; } }
+@media print { html { background: white; } body { margin: 0; padding: 0; max-width: none; box-shadow: none; font-size: 10pt; } h1 { font-size: 21pt; } h2 { font-size: 15pt; break-after: avoid; } h3 { font-size: 12pt; break-after: avoid; } blockquote { font-size: 10pt; } table { font-size: 9pt; } a { color: inherit; } }

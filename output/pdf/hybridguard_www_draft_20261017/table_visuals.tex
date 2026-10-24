@@ -1,0 +1,25 @@
+% Shared, semantic visual vocabulary for the paper's tables.
+% Exact counts remain printed alongside every outcome symbol or bar.
+\usepackage{tikz}
+\newcommand{\HGTag}[1]{\begingroup
+  \setlength{\fboxsep}{1.2pt}\setlength{\fboxrule}{0.3pt}%
+  \fbox{\textsf{\bfseries #1}}\endgroup}
+\newcommand{\HGFull}{\ensuremath{\checkmark}}
+\newcommand{\HGNone}{\ensuremath{\times}}
+\newcommand{\HGWarn}{\ensuremath{\triangle}}
+\newcommand{\HGPartial}{\tikz[baseline=-0.5ex,x=1ex,y=1ex]{%
+  \path[fill=black] (0,0)--(0,0.48)
+    arc[start angle=90,end angle=270,radius=0.48]--cycle;
+  \draw[line width=0.35pt] (0,0) circle[radius=0.48];}}
+% T = alert, F = definite no alert, U = unknown. T is not a success label.
+\newcommand{\HGOutcomeBar}[4]{\begingroup
+  \pgfmathsetmacro{\HGTotal}{#1+#2+#3}%
+  \tikz[baseline=-0.15ex,x=#4,y=1ex]{%
+    \fill[black!78] (0,0) rectangle ({#1/\HGTotal},0.5);
+    \fill[black!18] ({#1/\HGTotal},0)
+      rectangle ({(#1+#2)/\HGTotal},0.5);
+    \fill[white] ({(#1+#2)/\HGTotal},0) rectangle (1,0.5);
+    \draw[black!60,line width=0.2pt] (0,0) rectangle (1,0.5);
+    \draw[black!60,line width=0.2pt] ({(#1+#2)/\HGTotal},0)
+      --({(#1+#2)/\HGTotal},0.5);
+  }\endgroup}
