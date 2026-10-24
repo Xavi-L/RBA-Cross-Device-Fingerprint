@@ -8,6 +8,9 @@ on:
       - 'output/pdf/hybridguard_www_draft_20261017/sections/02_background_and_scope.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/main.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/tables/table_01.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_01.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_02.tex'
+      - 'output/pdf/hybridguard_www_draft_20261017/source/migrate_manuscript.py'
 
 permissions:
   contents: write
@@ -70,6 +73,22 @@ jobs:
               '- No table data, caption, figure or experimental text was edited in this placement change.\n'
               '- Compiled from main.tex using pdfLaTeX and latexmk.\n',
               encoding='utf-8')
+          for figure,old_width in [('figure_01',0.82),('figure_02',0.90)]:
+              src=(root/'floats'/f'{figure}.tex').read_text(encoding='utf-8')
+              assert r'\includegraphics[width=\textwidth]' in src
+          total=pages.get('TotPages')
+          report2=root/'qa/figures_1_2_fullwidth_20261024.md'
+          report2.write_text(
+              '# Figure 1 and Figure 2 full-width LaTeX trial (2026-10-24)\n\n'
+              '- Figure 1: 0.82 -> 1.00 textwidth (1.220x linear scale).\n'
+              '- Figure 2: 0.90 -> 1.00 textwidth (1.111x linear scale).\n'
+              '- Vector PDF/SVG graphics and captions are unchanged; aspect ratios are preserved.\n'
+              f"- Figure 1 page: {pages['fig:surfaces']}\n"
+              f"- Figure 2 page: {pages['fig:pipeline']}\n"
+              f"- Table 1 page: {pages['tab:related']} (Section 2: {pages['sec:2']})\n"
+              f"- Figure 3 page: {pages['fig:mechanisms']}\n"
+              '- All six tables and three figures resolve in LaTeX references.\n',
+              encoding='utf-8')
           (root/'HybridGuard_WWW_Draft.pdf').write_bytes(pdf.read_bytes())
           PY
       - name: Update Overleaf ZIP from exactly the compiled source
@@ -81,7 +100,8 @@ jobs:
           import hashlib,json,zipfile,os
           root=Path('output/pdf/hybridguard_www_draft_20261017')
           changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
-                   'source/migrate_manuscript.py']
+                   'source/migrate_manuscript.py','floats/figure_01.tex',
+                   'floats/figure_02.tex','README.md']
           manifest_path=root/'qa/package_manifest.json'
           if manifest_path.exists():
               manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
@@ -113,7 +133,7 @@ jobs:
           os.replace(tmp,source_zip)
           with zipfile.ZipFile(source_zip,'r') as z:
               assert z.testzip() is None
-              for rel in changed[:3]:
+              for rel in changed[:6]:
                   matches=[n for n in z.namelist() if identify(n,rel)]
                   assert len(matches)==1 and z.read(matches[0])==(root/rel).read_bytes()
           print('Overleaf ZIP and working LaTeX source are synchronized.')
@@ -125,8 +145,8 @@ jobs:
           ROOT=output/pdf/hybridguard_www_draft_20261017
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/package_manifest.json"
+          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/package_manifest.json"
           if ! git diff --cached --quiet; then
-            git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with Table 1 in Section 2 [skip ci]"
+            git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with Figures 1-2 full-width [skip ci]"
             git push origin HEAD:main
           fi

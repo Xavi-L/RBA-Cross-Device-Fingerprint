@@ -19,7 +19,7 @@ TABLE_LABELS = {
     5: 'normals', 6: 'paired',
 }
 FIGURES = {
-    1: ('HybridGuard_Fig1_surfaces_v2', 'surfaces', '0.82\\textwidth',
+    1: ('HybridGuard_Fig1_surfaces_v2', 'surfaces', '\\textwidth',
         'Native, WebView Host, and App Web observations form complementary surfaces. '
         'Memory and timezone relations are integrated; Host geometry is a separate '
         'study. An external Browser supplies an optional linked timezone reference.'),
