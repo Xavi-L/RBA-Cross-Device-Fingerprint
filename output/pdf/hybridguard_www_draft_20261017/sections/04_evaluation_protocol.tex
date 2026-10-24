@@ -6,9 +6,8 @@
 
 We evaluate controlled App detection (RQ1), the contribution of semantic references (RQ2), normal alarms and evidence availability (RQ3), and the increment from a linked Browser (RQ4). Table~\ref{tab:materials} defines each study's denominator and role. Rates describe coverage of recorded positions, not independent devices or unseen attacks. Because the studies have different development histories and may overlap in source records or analysis ranges, we report them separately.
 
-\ifHGMatrix\else
+% Single-column materials table remains next to Section 4.1 discussion.
 \input{tables/table_02.tex}
-\fi
 
 The controlled App benchmark uses API 29, 30, and 36 emulators with SwiftShader. Fourteen manipulation recipes, three repetitions, and three environments yield 126 effective modifications. Each run contributes a normal pre-intervention record and a confirmed post-restoration record, yielding 252 correlated normal positions. Model configurations 01, 02, and 03 hold out API 29, 30, and 36, respectively. Each model uses 84 modified and 168 normal training positions, then evaluates 42 modified and 84 normal held-out positions. We aggregate these disjoint held-out positions once. Prior development exposure to the recipes and environments limits claims about unseen tools and physical devices.
 
