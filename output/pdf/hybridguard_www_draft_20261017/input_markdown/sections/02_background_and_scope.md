@@ -25,9 +25,9 @@ Let $E$ denote the execution state and container context. An observation $x = (N
 
 **Figure 1.** HybridGuard observation surfaces and evaluation roles. Solid blue denotes Native–App Web memory and timezone checks incorporated into Integrated App. Dashed ochre marks Host–Web geometry evaluated separately from Integrated App candidate selection, while dotted Native–Host indicates shared context. A validly linked external Browser enables the optional C1 timezone comparison with App Web. Field counts indicate catalogued schema attributes; detectors select subsets for evaluation.
 
-A semantic relation $C_j$ constrains observations within a stated applicability domain. A local edit may replace $W(E)$ with $W^{\prime}(E)$ while leaving a reference unchanged; a legitimate change may move related observations together. Compatibility need not mean equality because APIs expose different units, precision, or abstractions. $E$ is explanatory notation, not ground truth available to the detector.
+A semantic relation $C_j$ constrains observations within a stated applicability domain. A local edit may replace $W(E)$ with $W^{\prime}(E)$ while a reference stays unchanged; a legitimate change may shift related observations together. Compatibility accounts for differences in API units, precision, and abstractions. The notation $E$ describes the execution context; checks use the collected measurements.
 
-We call a violation within an applicable relation **conditional report-integrity evidence**: the jointly observed values violate the declared constraint. This identifies an incompatibility without determining which operand was altered or establishing either operand's truth. A trigger counts as a detection only on a known effective modification.
+A violation of an applicable relation provides **conditional report-integrity evidence**: the observed values conflict with the declared constraint. The evidence identifies a relational inconsistency, while attribution to an altered operand and the underlying true values remain unresolved. In evaluation, a trigger on a known effective modification counts as a detection.
 
 ## 2.3 Adversary and Claim Boundary
 
