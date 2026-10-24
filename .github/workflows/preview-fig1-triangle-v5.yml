@@ -1,0 +1,98 @@
+name: Review-only Figure 1 triangular SVG preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'paper/figures/overview/triangle_uniform_v5_20261024/HybridGuard_Fig1_triangle_v5.svg'
+      - '.github/workflows/preview-fig1-triangle-v5.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  render-svg-preview:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            paper/figures/overview/triangle_uniform_v5_20261024
+          fetch-depth: 1
+      - name: Validate SVG geometry and relationship semantics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          from collections import Counter
+          from pathlib import Path
+          root=Path('paper/figures/overview/triangle_uniform_v5_20261024')
+          svg=root/'HybridGuard_Fig1_triangle_v5.svg'
+          tree=ET.parse(svg).getroot()
+          S='{http://www.w3.org/2000/svg}'
+          def find(name):
+              a=[x for x in tree.iter() if x.get('id')==name]
+              assert len(a)==1,(name,len(a))
+              return a[0]
+          assert tree.get('viewBox')=='0 0 1800 800'
+          assert tree.get('width')=='178mm'
+          labels=Counter(''.join(x.itertext()).strip() for x in tree.iter(S+'text'))
+          assert sum(labels.values())==65
+          assert labels['Native APIs']==labels['App Web']==labels['WebView Host']==1
+          assert labels['View bounds · padding']==1
+          assert labels['View transform · stability']==1
+          card=find('webview-host-observation-card')
+          f=[x for x in card if x.tag==S+'rect']
+          assert f[0].get('width')=='370' and f[0].get('height')=='148'
+          assert len(list(find('webview-host-observation-card-back-pages'))) == 2
+          # Check semantic arrows: same width, same marker head path and bidirectionality,
+          # but distinct palette and controlled secondary dash patterns.
+          relations=[
+              ('integrated-native-web','#326b96',None),
+              ('standalone-host-web-geometry','#a6772e','12 8'),
+              ('native-host-context','#7e8993','1.5 10'),
+          ]
+          for id_,color,dash in relations:
+              link=[n for n in find(id_) if n.tag==S+'path' and n.get('marker-start','').startswith('url(#tri-')]
+              assert len(link)==1,id_
+              a=link[0]
+              assert a.get('stroke-width')=='6'
+              assert a.get('stroke')==color
+              assert a.get('marker-end')
+              assert a.get('stroke-dasharray')==dash
+          heads=[find(id_) for id_ in ['tri-integrated','tri-standalone','tri-context']]
+          assert len({tuple((n[0].get('d'), n.get('markerWidth'),n.get('markerHeight')) for n in heads)})==1
+          assert not list(tree.iter(S+'image'))
+          ids=[n.get('id') for n in tree.iter() if n.get('id')]
+          assert len(ids)==len(set(ids))
+          print('SVG validated: 65 original text nodes, uniform Host card, three 6-unit equal-head arrows; no raster.')
+          PY
+      - name: Install SVG raster renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq inkscape
+      - name: Export PNG for design review (NOT the manuscript)
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=paper/figures/overview/triangle_uniform_v5_20261024
+          inkscape "$ROOT/HybridGuard_Fig1_triangle_v5.svg" \
+            --export-area-page --export-type=png --export-width=2400 \
+            --export-filename="$ROOT/HybridGuard_Fig1_triangle_v5.png"
+          test -s "$ROOT/HybridGuard_Fig1_triangle_v5.png"
+      - name: Publish standalone review preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=paper/figures/overview/triangle_uniform_v5_20261024
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$ROOT/HybridGuard_Fig1_triangle_v5.png"
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(fig1): export SVG-only triangle design preview [skip ci]"
+            git push origin HEAD:main
+          fi
