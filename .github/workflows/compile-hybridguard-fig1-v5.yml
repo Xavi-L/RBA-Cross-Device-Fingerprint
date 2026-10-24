@@ -1,0 +1,208 @@
+name: Compile Figure 1 v5 into HybridGuard draft
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/compile-hybridguard-fig1-v5.yml'
+      - 'paper/figures/overview/triangle_uniform_v5_20261024/HybridGuard_Fig1_triangle_v5.svg'
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out draft and Figure 1 source
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            paper/figures/overview/triangle_uniform_v5_20261024
+            output/pdf/hybridguard_www_draft_20261017
+          filter: blob:none
+          fetch-depth: 1
+      - name: Install vector converter and PDF inspector
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq inkscape poppler-utils
+          python3 -m pip install --quiet pymupdf
+
+      - name: Export approved Figure 1 SVG to vector PDF
+        run: |
+          set -euo pipefail
+          SRC=paper/figures/overview/triangle_uniform_v5_20261024
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          STEM=HybridGuard_Fig1_triangle_v5
+          inkscape "$SRC/$STEM.svg" --export-type=pdf --export-filename="$SRC/$STEM.pdf"
+          test -s "$SRC/$STEM.pdf"
+          cp "$SRC/$STEM.svg" "$ROOT/figures/$STEM.svg"
+          cp "$SRC/$STEM.pdf" "$ROOT/figures/$STEM.pdf"
+          pdfinfo "$SRC/$STEM.pdf" | grep -E 'Pages:|Page size:'
+
+      - name: Select v5 in existing Figure 1 LaTeX float
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          svg=ET.parse(root/'figures/HybridGuard_Fig1_triangle_v5.svg').getroot()
+          ns='{http://www.w3.org/2000/svg}'
+          labels=[''.join(x.itertext()).strip() for x in svg.iter(ns+'text')]
+          assert len(labels)==65
+          assert all(labels.count(s)==1 for s in ('Native APIs','App Web','WebView Host'))
+          for name in ('integrated-native-web','standalone-host-web-geometry','native-host-context'):
+              found=[x for x in svg.iter() if x.get('id')==name]
+              assert len(found)==1,name
+              links=[x for x in found[0] if x.tag==ns+'path' and
+                     x.get('marker-start','').startswith('url(#tri-')]
+              assert len(links)==1 and links[0].get('stroke-width')=='6',name
+          tex=root/'floats/figure_01.tex'
+          text=tex.read_text()
+          original=r'\includegraphics[width=\textwidth]{figures/HybridGuard_Fig1_surfaces_v4.pdf}'
+          desired=r'\includegraphics[width=\textwidth]{figures/HybridGuard_Fig1_triangle_v5.pdf}'
+          assert text.count(original)==1
+          assert text.count(r'\caption{')==1 and text.count(r'\label{fig:surfaces}')==1
+          tex.write_text(text.replace(original,desired))
+          assert tex.read_text().replace(desired,original)==text,'Caption or unrelated LaTeX changed'
+          print('Preserved the Figure 1 caption; selected the v5 vector figure.')
+          PY
+
+      - name: Compile ACM manuscript from existing LaTeX (no migration)
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: output/pdf/hybridguard_www_draft_20261017
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Verify PDF and update editable Overleaf ZIP
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz,json,re,hashlib,os,zipfile
+          root=Path('output/pdf/hybridguard_www_draft_20261017')
+          newpdf=root/'main.pdf'
+          oldpdf=root/'HybridGuard_WWW_Draft.pdf'
+          vector=root/'figures/HybridGuard_Fig1_triangle_v5.pdf'
+          source=root/'figures/HybridGuard_Fig1_triangle_v5.svg'
+          assert newpdf.stat().st_size>20000 and vector.stat().st_size>10000
+          keys=['sec:2','tab:related','tab:materials','tab:app','tab:specialists',
+                'tab:normals','tab:paired','fig:surfaces','fig:pipeline',
+                'fig:mechanisms','marker:main-text-end','TotPages']
+          aux=(root/'main.aux').read_text()
+          pages={}
+          for key in keys:
+              lines=[s for s in aux.splitlines() if s.startswith(r'\newlabel{'+key+'}')]
+              assert len(lines)==1,key
+              m=re.search(r'\{\{[^{}]*\}\{([0-9]+)\}',lines[0])
+              assert m,key
+              pages[key]=int(m.group(1))
+          assert pages['sec:2']==pages['tab:related']
+          order=[pages['tab:'+x] for x in ('related','materials','app','specialists','normals','paired')]
+          assert order==sorted(order)
+          before=fitz.open(oldpdf)
+          after=fitz.open(newpdf)
+          assert len(after)==pages['TotPages']
+          assert len(after)<=len(before)+1,'Figure 1 caused unexpected page growth'
+          figpage=pages['fig:surfaces']-1
+          assert 0<=figpage<len(after)
+          preview=root/'qa/figure1_v5_compiled_page_20261024.png'
+          after[figpage].get_pixmap(matrix=fitz.Matrix(1.6,1.6),alpha=False).save(preview)
+          text=after[figpage].get_text()
+          assert 'Complementary observation surfaces' in text, 'Figure 1 caption missing'
+          warnings=[s for s in (root/'main.log').read_text(errors='replace').splitlines()
+                    if s.startswith('Overfull')]
+          summary={
+            'status':'PASS',
+            'svg_source':'paper/figures/overview/triangle_uniform_v5_20261024/HybridGuard_Fig1_triangle_v5.svg',
+            'vector_pdf_sha256':hashlib.sha256(vector.read_bytes()).hexdigest(),
+            'svg_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+            'figure_1_page':pages['fig:surfaces'],
+            'figure_2_page':pages['fig:pipeline'],
+            'figure_3_page':pages['fig:mechanisms'],
+            'table_pages':order,
+            'main_text_last_page':pages['marker:main-text-end'],
+            'previous_pages':len(before),'current_pages':len(after),
+            'overfull_warnings':warnings,
+            'caption_unchanged':True,'other_figures_and_tables_unchanged':True,
+            'labels':pages
+          }
+          (root/'qa/figure1_v5_compile_20261024.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          (root/'qa/figure1_v5_compile_20261024.md').write_text(
+            '# Figure 1 v5 integration and verification\n\n'
+            '- Replaced the Figure 1 v4 vector graphic with the approved v5 three-card triangle.\n'
+            '- Existing caption, Figures 2/3, all six tables, and manuscript prose retained.\n'
+            f"- Figure 1 page: {pages['fig:surfaces']}; Figure 2 / 3: {pages['fig:pipeline']} / {pages['fig:mechanisms']}.\n"
+            f"- Table 1 and Related Work: page {pages['tab:related']}.\n"
+            f"- Total pages: {len(before)} to {len(after)}. Main text ends page {pages['marker:main-text-end']}.\n"
+            f"- Overfull log warnings: {len(warnings)}.\n"
+            '- Compiled PDF page preview: qa/figure1_v5_compiled_page_20261024.png.\n')
+          (root/'HybridGuard_WWW_Draft.pdf').write_bytes(newpdf.read_bytes())
+
+          # Match Overleaf ZIP exactly to the successfully compiled LaTeX and SVG/PDF.
+          files=['floats/figure_01.tex','figures/HybridGuard_Fig1_triangle_v5.svg',
+                 'figures/HybridGuard_Fig1_triangle_v5.pdf']
+          manifest=root/'qa/package_manifest.json'
+          if manifest.exists():
+              data=json.loads(manifest.read_text())
+              inventory=data.setdefault('files',{})
+              for rel in files:
+                  payload=(root/rel).read_bytes()
+                  inventory[rel]={'sha256':hashlib.sha256(payload).hexdigest(),
+                                  'bytes':len(payload)}
+              manifest.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+              files.append('qa/package_manifest.json')
+          archive=root/'HybridGuard_WWW_Overleaf.zip'
+          with zipfile.ZipFile(archive) as z:
+              entries=[(info,z.read(info.filename)) for info in z.infolist()]
+          def matches(name,rel):
+              name=name.lstrip('./')
+              return name==rel or name.endswith('/'+rel)
+          orig=[info.filename for info,_ in entries if matches(info.filename,'floats/figure_01.tex')]
+          assert len(orig)==1,orig
+          prefix=orig[0][:-len('floats/figure_01.tex')]
+          for rel in files:
+              matches_idx=[i for i,(info,_) in enumerate(entries) if matches(info.filename,rel)]
+              assert len(matches_idx)<=1,(rel,matches_idx)
+              payload=(root/rel).read_bytes()
+              if matches_idx:
+                  i=matches_idx[0]
+                  entries[i]=(entries[i][0],payload)
+              elif rel!='qa/package_manifest.json':
+                  zi=zipfile.ZipInfo(prefix+rel,date_time=(2026,10,24,0,0,0))
+                  zi.compress_type=zipfile.ZIP_DEFLATED
+                  zi.external_attr=0o100644<<16
+                  entries.append((zi,payload))
+          staging=archive.with_name(archive.name+'.new')
+          with zipfile.ZipFile(staging,'w') as z:
+              for info,payload in entries:z.writestr(info,payload)
+          os.replace(staging,archive)
+          with zipfile.ZipFile(archive) as z:
+              assert z.testzip() is None
+              for rel in files[:3]:
+                  found=[name for name in z.namelist() if matches(name,rel)]
+                  assert len(found)==1 and z.read(found[0])==(root/rel).read_bytes(),rel
+          print('QA passed:',json.dumps(summary,ensure_ascii=False))
+          PY
+
+      - name: Publish compiled PDF and matching Overleaf source
+        run: |
+          set -euo pipefail
+          ROOT=output/pdf/hybridguard_www_draft_20261017
+          SRC=paper/figures/overview/triangle_uniform_v5_20261024/HybridGuard_Fig1_triangle_v5.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$SRC" "$ROOT/floats/figure_01.tex" \
+            "$ROOT/figures/HybridGuard_Fig1_triangle_v5.svg" \
+            "$ROOT/figures/HybridGuard_Fig1_triangle_v5.pdf" \
+            "$ROOT/HybridGuard_WWW_Draft.pdf" \
+            "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/package_manifest.json" \
+            "$ROOT/qa/figure1_v5_compile_20261024.json" \
+            "$ROOT/qa/figure1_v5_compile_20261024.md" \
+            "$ROOT/qa/figure1_v5_compiled_page_20261024.png"
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(paper): compile approved Figure 1 v5 into WWW draft [skip ci]"
+            git push origin HEAD:main
+          fi
