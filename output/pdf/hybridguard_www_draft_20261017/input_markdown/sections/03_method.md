@@ -2,7 +2,7 @@
 
 ## 3.1 Collection and Association
 
-HybridGuard preserves field values, collection states, and association context so that each comparison can be traced to the execution it describes. Source records and receipts support these binding checks. If external Browser collection is unavailable, the collector retains the App record without synthesizing Browser values. Association identifies the relevant observations; it does not imply atomic sampling or hardware attestation.
+HybridGuard preserves field values, collection states, and association context so that each comparison can be traced to the execution it describes. Source records and receipts support these binding checks. If external Browser collection is unavailable, the collector retains the App record without synthesizing Browser values. Association links observations through recorded context and provenance, supporting comparisons across separately sampled, software-reported measurements.
 
 Collection context also determines applicability. For Host geometry, snapshots immediately before and after the Web snapshot establish Host stability within one collection. These are separate from the pre-intervention and post-restoration records used to evaluate the experiment. The detector uses only the current observation. Figure 2 separates this evaluation path from offline model construction.
 
@@ -14,7 +14,7 @@ Collection context also determines applicability. For Host geometry, snapshots i
 
 Each condition specifies its operands, source requirements, interpretation, applicability domain, and trigger. Its output is $r_j(x) \in \{\mathrm{T}, \mathrm{F}, \mathrm{U}, \mathrm{FAILED}\}$: T is an applicable, assessable trigger; F is a definite non-trigger; U indicates missing, insufficient, or inapplicable evidence; and FAILED records a relevant execution or association failure. An empty selection returns EMPTY_MODEL.
 
-For a nonempty selection, required-input failures take precedence. Otherwise, any T produces ALERT, all F produces NO ALERT, and every remaining combination produces UNKNOWN. We record these three detector outputs as T, F, and U, respectively. A T can therefore coexist with another condition's U but cannot override FAILED. Missing unselected fields do not fail the detector. These states describe the available evidence: F does not certify authenticity, and U does not silently become a normal decision.
+For a nonempty selection, required-input failures take precedence. Otherwise, any T produces ALERT, all F produces NO ALERT, and every remaining combination produces UNKNOWN. We record these three detector outputs as T, F, and U, respectively. A T can therefore coexist with another condition's U but cannot override FAILED. Missing unselected fields do not fail the detector. These outputs characterize the available evidence: F records a definite non-trigger across selected checks, while U preserves unresolved evidence; neither establishes authenticity.
 
 ## 3.3 Semantic References
 
