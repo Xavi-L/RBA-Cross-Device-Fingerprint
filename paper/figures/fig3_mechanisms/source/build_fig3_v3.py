@@ -17,6 +17,9 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "HybridGuard_Fig3_mechanisms_v3"
+REDUNDANT_FOOTER = "Illustrative examples on valid, applicable inputs; quantitative results are reported separately."
+TRIMMED_VIEWBOX = "0 0 1800 574"
+TRIMMED_HEIGHT = "57.4mm"
 BASE = ROOT / "HybridGuard_Fig3_mechanisms_v2.svg"
 ASSETS = ROOT / "style_v3_assets"
 NS = "http://www.w3.org/2000/svg"
@@ -170,6 +173,8 @@ def build(export=False):
     baseline = ET.parse(BASE).getroot()
     svg = copy.deepcopy(baseline)
     text_before = text_snapshot(baseline)
+    preserved_text = [item for item in text_before if item[1] != REDUNDANT_FOOTER]
+    assert len(text_before) - len(preserved_text) == 1, "Expected one redundant footer"
     geometry_before = geometry_snapshot(baseline)
     geometry_expected = expected_rounded_geometry(geometry_before)
     defs = next(n for n in svg if n.tag == "{" + NS + "}defs")
@@ -306,16 +311,23 @@ def build(export=False):
     glyph(icons_c, "color-host", 1237, 119, 31)
     glyph(icons_c, "alert", 1645, 484, 31)
 
-    # Neutral footer backing: original divider and full explanatory footnote stay.
-    footer = group(svg, "footer-backing")
-    rect(footer, 20, 586, 1760, 31, C["pale"], "none", 0, frame_radius("label"))
-    svg.remove(footer)
-    index = next(i for i, n in enumerate(svg) if n.tag == "{" + NS + "}path" and n.get("d") == "M30 578L1770 578")
-    svg.insert(index, footer)
+    # This footer repeats the published caption; preserve only the three
+    # scientific panels and crop the unused bottom strip.
+    notes = [n for n in svg if n.tag == "{" + NS + "}text"
+             and "".join(n.itertext()).strip() == REDUNDANT_FOOTER]
+    rules = [n for n in svg if n.tag == "{" + NS + "}path"
+             and n.get("d") == "M30 578L1770 578"]
+    assert len(notes) == len(rules) == 1
+    svg.remove(notes[0])
+    svg.remove(rules[0])
+    svg.set("viewBox", TRIMMED_VIEWBOX)
+    svg.set("height", TRIMMED_HEIGHT)
 
-    assert text_before == text_snapshot(svg), "An original text node or its presentation changed"
+    assert preserved_text == text_snapshot(svg), "A remaining original label changed"
     assert geometry_expected == geometry_snapshot(svg), "Scientific geometry changed beyond the two permitted frame radii"
-    assert dict(baseline.attrib) == dict(svg.attrib), "Canvas or accessibility metadata changed"
+    assert all(svg.get(k) == v for k, v in baseline.attrib.items()
+               if k not in ("height", "viewBox")), "Other canvas metadata changed"
+    assert svg.get("viewBox") == TRIMMED_VIEWBOX and svg.get("height") == TRIMMED_HEIGHT
     assert not list(svg.iter("{" + NS + "}image")), "Raster artwork is not permitted"
     all_ids = [n.get("id") for n in svg.iter() if n.get("id")]
     assert len(all_ids) == len(set(all_ids)), "Duplicate SVG IDs"
@@ -329,15 +341,18 @@ def build(export=False):
     ET.ElementTree(svg).write(output, encoding="utf-8", xml_declaration=True)
     # The serialized file is checked again, not only the in-memory DOM.
     reread = ET.parse(output).getroot()
-    assert text_before == text_snapshot(reread)
+    assert preserved_text == text_snapshot(reread)
     assert geometry_expected == geometry_snapshot(reread)
     checks = {
         "figure": STEM,
         "source_commit": "8d92b73e85aadf8ce2ce0ff5186d49122da6421f",
         "base_svg_sha256": hashlib.sha256(BASE.read_bytes()).hexdigest(),
         "canvas": dict(svg.attrib),
-        "visible_text_nodes": len(text_before),
-        "all_original_text_and_presentation_attributes_unchanged": True,
+        "visible_text_nodes": len(preserved_text),
+        "all_remaining_original_text_and_presentation_attributes_unchanged": True,
+        "removed_duplicate_caption_footer": REDUNDANT_FOOTER,
+        "removed_footer_rule": "M30 578L1770 578",
+        "trimmed_canvas_height_from_mm": 62,
         "original_scientific_shapes": sum(map(len, geometry_before.values())),
         "all_original_scientific_geometry_except_two_frame_radii_unchanged": True,
         "corner_radius_refinement": {
@@ -357,7 +372,8 @@ def build(export=False):
             "chrome_clipped_to_rounded_inset_bounds": True
         },
         "original_text_css_unchanged": True,
-        "original_standalone_scope_and_footnote_unchanged": True,
+        "original_standalone_scope_unchanged": True,
+        "scientific_caption_not_modified": True,
         "pure_vector": True,
         "self_contained_svg": True,
         "semantic_icon_instances": len(list(svg.iter("{" + NS + "}use"))),
@@ -377,7 +393,7 @@ def build(export=False):
     if export:
         subprocess.run(["inkscape", str(output), "--export-type=png",
                         "--export-width=3600", "--export-filename=" + str(ROOT / (STEM + ".png"))], check=True)
-    print(json.dumps({"svg": str(output), "preserved_text_nodes": len(text_before),
+    print(json.dumps({"svg": str(output), "preserved_text_nodes": len(preserved_text),
                       "preserved_scientific_shapes": checks["original_scientific_shapes"]}, ensure_ascii=False))
 
 
