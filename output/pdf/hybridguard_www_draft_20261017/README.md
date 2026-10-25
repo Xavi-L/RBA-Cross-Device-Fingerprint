@@ -1,5 +1,15 @@
 # HybridGuard：表格可视化与紧凑版式
 
+## 当前版本：2026-10-25 匿名数据集发布与摘要一致性修订
+
+- 已将 Cross-View Consistency Dataset v1.0 加入摘要、Introduction、§4.3、§6.4、结论和附录；发布入口位于第一页 Introduction 末尾。
+- 摘要为用户本轮明确授权修订的三段、238 词版本；历史提交摘要仍保留在 `baseline_source/`，不再约束当前稿件逐字不变。
+- 正文结束于第 8 页，参考文献从第 9 页开始，全文 11 页；正文 Table 3 在第 6 页、Figure 3 在第 7 页，各正文图表距相应讨论不超过一页。
+- 新数据为 1,509 条 observations：558 App177、951 Paired244；618 条实验记录有存档证据标签，891 条 MTC 保持 unlabeled。六个 memory no-effect 操作保留在公开包中，但不加入实验检测/正常分母。
+- 发布范围是去标识观测、文档、加载和验证脚本；原研究实现与完整检测器预测重放不包含在此公开包内。
+- ACM 模板、字号、页边距、全部方法参数、三张图、六张正文表的数字、18 条参考文献均保留。已有附录敏感性分析的数值未改，表格改为具标题和交叉引用的 Table 7，以消除页尾列平衡溢出。
+- `frontmatter.tex`、相关 `.tex`、对应 Markdown、PDF 与 Overleaf ZIP 同步。以当前 LaTeX 为准，直接编译 `main.tex`；不要运行历史 Markdown 迁移脚本。
+- 修改依据与核验详见 `qa/dataset_release_revision_20261025.md` 和 `qa/current_compilation_20261025.md`。以下章节为历史记录。
 
 ## 当前版本：2026-10-25 全量 LaTeX 重新编译
 

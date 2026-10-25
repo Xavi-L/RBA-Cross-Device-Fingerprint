@@ -20,6 +20,6 @@ Host geometry remains a standalone mechanism study. Its current domain excludes 
 
 ## 6.4 Data Collection and Privacy
 
-Environment observations collected for integrity checking may also enable tracking [9,12]. Controlled modifications in this study use emulators, while historical normal records come from cloud-device collection. The MTC collector requests network access and network-state observation; contacts, messages, photos, location, camera, and microphone lie outside its requested permission scope. Fingerprint attributes can nevertheless remain identifying, motivating careful control of their collection and retention.
+Environment observations collected for integrity checking may also enable tracking [9,12,18]. Controlled modifications use emulators; historical MTC records come from cloud-device collection. The MTC collector requests network access and network-state observation, excluding contacts, messages, photos, location, camera, and microphone. The public release uses random record identifiers and suppresses identifying strings, high-entropy values, and precise timestamps while separating privacy suppression from collection missingness. Retained attributes and grouping may still enable linkage.
 
-HybridGuard assesses client-report integrity. Deployments should minimize retained observations and evaluate policies for acting on uncertain evidence. Authentication success, account-takeover prevention, and fraud reduction are downstream outcomes requiring separate evaluation.
+Deployments should minimize retained observations and handle uncertain evidence; effects on authentication, account takeover, and fraud require separate evaluation.
