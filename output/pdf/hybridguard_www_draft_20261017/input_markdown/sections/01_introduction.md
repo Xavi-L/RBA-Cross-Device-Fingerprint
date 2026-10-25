@@ -17,6 +17,6 @@ We make three contributions:
 
 **Mechanism evidence.** Exploratory fixed-check comparisons examine how device-specific memory bounds, timezone co-change, and Host container context distinguish the tested report edits from legitimate variation.
 
-**Alarm and availability analysis.** Refitted detectors and a linked-Browser extension quantify modification coverage, normal alarms, and definite outputs in the studied settings.
+**Alarm and availability analysis.** Refitted detectors and a linked-Browser extension quantify modification coverage, normal alarms, and definite outputs.
 
 **Code and Data Release.** To support research on cross-view consistency, we release our dataset, loading and validation scripts, and documentation at [https://anonymous.4open.science/r/cross-view-consistency-artifact-27D2/](https://anonymous.4open.science/r/cross-view-consistency-artifact-27D2/).

@@ -4,7 +4,7 @@
 
 We evaluate controlled App detection (RQ1), the contribution of semantic references (RQ2), normal alarms and evidence availability (RQ3), and the increment from a linked Browser (RQ4). Table 2 defines each study's denominator and role. Each study's reported rates summarize outcomes across its recorded evaluation positions. Because the studies have different development histories and may overlap in source records or analysis ranges, we report them separately.
 
-**Table 2. Evaluation materials and their roles.** Counts are record positions, not independent physical devices. MTC normal denotes collection context; its public labels remain unverified.
+**Table 2. Evaluation materials and their roles.** Counts are record positions, not independent physical devices. MTC normal denotes collection context; MTC records are released as unlabeled.
 
 | Material | Effective modifications | Normal records | Evaluation role |
 | --- | --- | --- | --- |
@@ -31,4 +31,4 @@ The App tree uses the same fold-specific admitted candidates, encoded as T/F/U i
 
 T counts as a detection on an effective modification and as an alarm on a normal-context record. We tabulate F, U, FAILED, and EMPTY_MODEL separately, retaining U in the denominators and preserving each study's record counts.
 
-The public Cross-View Consistency Dataset v1.0 contains 1,509 observations (558 App177; 951 Paired244): 618 controlled, specialist, and linked-Browser records with labels checked against archived evidence, and 891 unlabeled MTC records. Its six no-effect memory operations are excluded from Table 2's evaluation denominators. Schemas, annotations, and explicit availability and redaction states support analysis of retained measurements. Loading and validation scripts check relationships and reproduce descriptive statistics; privacy suppression of decision-relevant values prevents replay of all original detector scores. Appendix A.4 details release scope and manuscript reconciliation.
+The public Cross-View Consistency Dataset v1.0 contains 1,509 observations (558 App177; 951 Paired244): 618 controlled, specialist, and linked-Browser records with labels checked against archived evidence, and 891 unlabeled MTC records. Its six no-effect memory operations are excluded from Table 2's evaluation denominators. Schemas, annotations, and explicit availability and redaction states support analysis of retained measurements. Loading and validation scripts check relationships and reproduce descriptive statistics; detector outcomes are supplied as archived annotations. Appendix A.4 details release scope and manuscript reconciliation.
