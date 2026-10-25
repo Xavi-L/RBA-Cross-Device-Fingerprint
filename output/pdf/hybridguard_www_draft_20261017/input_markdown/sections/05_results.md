@@ -47,7 +47,7 @@ The specialist studies evaluate fixed checks separately from the fitted detector
 
 Removing the historical-normal alarm cap raises controlled detection from 105 to 108 but alarms on every record in both historical groups (Table 5). Both alternatives have 0/252 controlled-normal alarms, so the controlled benchmark alone conceals this cost. Saved uncapped models include broad conditions such as hardware concurrency greater than one and language-list length greater than one. The controlled-normal budget alone does not adequately constrain these checks on MTC records.
 
-**Table 5. Historical-normal outcomes.** T denotes alarm, F definite no alert, and U unknown. Configurations 01 and 02 have equal counts and are displayed together, not pooled. FAILED and EMPTY_MODEL are zero.
+**Table 5. Historical-normal decision counts by cohort.** Entries report T (alarm), F (definite no alert), and U (unknown). Configurations 01 and 02 share identical per-model counts and one display row. FAILED and EMPTY_MODEL are zero throughout.
 
 | Cohort | N | Configuration | Integrated App: T / F / U | No cap: T / F / U |
 | --- | --- | --- | --- | --- |
@@ -56,11 +56,11 @@ Removing the historical-normal alarm cap raises controlled detection from 105 to
 | Historically reserved | 117 | 01 / 02 | 1 / 110 / 6 | 117 / 0 / 0 |
 | Historically reserved | 117 | 03 | 0 / 111 / 6 | 117 / 0 / 0 |
 
-On the separate 630 training normals, Integrated App configurations 01/02/03 produce 6/6/0 alarms and 51 unknowns each; uncapped models alarm on all 630. We keep these training outcomes separate from evaluation. Each Integrated App configuration yields 14/261 unknowns across the two historical evaluation groups. Removing memory reduces that count to 1/261 but also loses resource detections. A tree can return a definite label when some candidate states are unknown, because its traversed path need not use those candidates. Binary output does not imply complete observation.
+On the separate 630 training normals, Integrated App configurations 01/02/03 produce 6/6/0 alarms and 51 unknowns each; uncapped models alarm on all 630. We keep these training outcomes separate from evaluation. Each Integrated App configuration yields 14/261 unknowns across the two historical evaluation groups. Removing memory reduces that count to 1/261 but also loses resource detections. A tree can return a definite label when some candidate states are unknown, because its traversed path need not use those candidates.
 
 ## 5.4 RQ4: Increment from a Linked Browser
 
-On the 60 development-used positions that also support extension selection, C1 raises detection from 2/14 to 7/14 (Table 6). All five additions are Browser timezone modifications. The extension preserves App timezone detections but adds no language detections; both methods have 0/46 normal alarms. All three frozen configurations give these counts, which we report once rather than as 42 modified positions. The results describe the selected extension on this material, without estimating future paired-data performance.
+On the 60 paired App–Browser positions used during extension development (14 effective modifications and 46 normals), adding C1 raises detection from 2/14 to 7/14 (Table 6). All five additional detections arise from Browser timezone edits; App timezone detection remains 2/2, while the tested App and Browser language edits remain undetected. Both configurations yield 0/46 normal alarms. These aggregate counts hold for each of the three frozen App models and are presented once for the shared 60-position set.
 
 **Table 6. Paired App–Browser outcomes.** T is detection for modification rows and alarm for the normal row. U and FAILED are zero on this paired material; it has development-use history.
 
@@ -72,4 +72,4 @@ On the 60 development-used positions that also support extension selection, C1 r
 | Browser language | 5 | 0 | 0 |
 | Normal alarms | 46 | 0 | 0 |
 
-C1 also raises historical unknowns from 8/144 to 11/144 in development, while leaving 6/117 in the historically reserved group. The combined count increases from 14/261 (5.4%) to 17/261 (6.5%) per model, with unchanged alarms. C1 has no timestamp gate, so the observed 0/46 normal alarms does not establish robustness to asynchronous legitimate timezone changes. The paired language operations differ from the language-list recipe detected in the App benchmark. C1 provides a targeted increment for the tested timezone edits, accompanied by lower definite-output coverage.
+C1 also raises historical unknowns from 8/144 to 11/144 in development, while leaving 6/117 in the historically reserved group. The combined count increases from 14/261 (5.4%) to 17/261 (6.5%) per model, with unchanged alarms. Asynchronous legitimate timezone changes remain an untested operating condition for C1's timestamp-independent offset comparison. The paired language tests cover App- and Browser-side report edits; the App benchmark separately evaluates a Web language-list modification recipe. C1 provides a targeted increment for the tested timezone edits, accompanied by lower definite-output coverage.
