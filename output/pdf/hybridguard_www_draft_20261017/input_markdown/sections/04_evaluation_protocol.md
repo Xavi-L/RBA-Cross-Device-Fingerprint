@@ -2,7 +2,7 @@
 
 ## 4.1 Questions and Materials
 
-We evaluate controlled App detection (RQ1), the contribution of semantic references (RQ2), normal alarms and evidence availability (RQ3), and the increment from a linked Browser (RQ4). Table 2 defines each study's denominator and role. Rates describe coverage of recorded positions, not independent devices or unseen attacks. Because the studies have different development histories and may overlap in source records or analysis ranges, we report them separately.
+We evaluate controlled App detection (RQ1), the contribution of semantic references (RQ2), normal alarms and evidence availability (RQ3), and the increment from a linked Browser (RQ4). Table 2 defines each study's denominator and role. Each study's reported rates summarize outcomes across its recorded evaluation positions. Because the studies have different development histories and may overlap in source records or analysis ranges, we report them separately.
 
 **Table 2. Evaluation materials and their roles.** Counts are record positions, not independent physical devices.
 
@@ -19,7 +19,7 @@ We evaluate controlled App detection (RQ1), the contribution of semantic referen
 
 The controlled App benchmark uses API 29, 30, and 36 emulators with SwiftShader. Fourteen manipulation recipes, three repetitions, and three environments yield 126 effective modifications. Each run contributes a normal pre-intervention record and a confirmed post-restoration record, yielding 252 correlated normal positions. Model configurations 01, 02, and 03 hold out API 29, 30, and 36, respectively. Each model uses 84 modified and 168 normal training positions, then evaluates 42 modified and 84 normal held-out positions. We aggregate these disjoint held-out positions once. Prior development exposure to the recipes and environments limits claims about unseen tools and physical devices.
 
-A mobile test-cloud (MTC) representative identifies a manufacturer, model, and Android-release combination. The resulting 891 records are not 891 independent devices. The 630-record discovery group supplies training constraints and tree training; the historical 144- and 117-record groups have development-use history and remain separately reported. “Normal” means absence of the target manipulation, without certifying authenticity or excluding debugging and automation.
+The mobile test-cloud (MTC) collection contains 891 records organized by manufacturer, model, and Android release, with representatives recurring across collection positions. The 630-record discovery group supplies training constraints and tree training; the historical cohorts of 144 and 117 records have prior development exposure and are reported separately. Here, “normal” refers to records without the target manipulation, while debugging and automation may remain part of the collection context.
 
 ## 4.2 Compared Methods
 
