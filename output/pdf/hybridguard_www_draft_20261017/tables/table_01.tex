@@ -7,42 +7,42 @@
   \label{tab:related}
   \centering
   \small
-  \setlength{\tabcolsep}{7pt}
-  \renewcommand{\arraystretch}{1.08}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X*{7}{c}@{}}
+  \setlength{\tabcolsep}{4.7pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.237\textwidth}>{\raggedright\arraybackslash}X*{7}{c}@{}}
     \toprule
-    \multirow{2}{*}{Study} &
+    \multirow{2}{*}{Study} & \multirow{2}{*}{Research focus} &
       \multicolumn{4}{c}{Observation surfaces} &
       \multicolumn{3}{c}{Assessment scope} \\
-    \cmidrule(lr){2-5}\cmidrule(l){6-8}
-    & Native & Host & \makecell{App\\Web} & Browser &
+    \cmidrule(lr){3-6}\cmidrule(l){7-9}
+    & & Native & Host & \makecell{App\\Web} & Browser &
       \makecell{Cross-layer\\checks} &
       \makecell{Benign\\change\\evaluation} &
       \makecell{Unknown\\outcome\\handling} \\
     \midrule
-    FP-Scanner~\cite{ref04}
+    FP-Scanner~\cite{ref04} & Spoofing-induced inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
       & \HGNone & \HGNone & \HGNone \\
-    Picasso~\cite{ref05}
+    Picasso~\cite{ref05} & Canvas-based device classification
       & \HGNone & \HGNone & \HGNone & \HGFull
       & \HGNone & \HGNone & \HGNone \\
-    FP-Inconsistent~\cite{ref06}
+    FP-Inconsistent~\cite{ref06} & Evasive-bot fingerprint inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
       & \HGNone & \HGNone & \HGNone \\
-    BrowserFM~\cite{ref07}
+    BrowserFM~\cite{ref07} & Fingerprint dependency modeling
       & \HGNone & \HGNone & \HGNone & \HGFull
       & \HGNone & \HGNone & \HGNone \\
-    WVProfiler~\cite{ref08}
+    WVProfiler~\cite{ref08} & WebView fingerprint exposure
       & \HGFull & \HGNone & \HGFull & \HGNone
       & \HGNone & \HGNone & \HGNone \\
-    Tracking Without Borders~\cite{ref09}
+    Tracking Without Borders~\cite{ref09} & Mobile--Web tracking links
       & \HGFull & \HGNone & \HGFull & \HGNone
       & \HGNone & \HGNone & \HGNone \\
-    Cross-Boundary Mobile Tracking~\cite{ref10}
+    Cross-Boundary Mobile Tracking~\cite{ref10} & Java-to-JavaScript data flows
       & \HGFull & \HGNone & \HGFull & \HGNone
       & \HGNone & \HGNone & \HGNone \\
     \midrule
-    \textbf{HybridGuard (ours)}
+    \textbf{HybridGuard (ours)} & \textbf{Cross-layer report integrity}
       & \HGFull & \HGFull\textsuperscript{a} & \HGFull
       & \HGFull\textsuperscript{b}
       & \HGFull & \HGFull & \HGFull \\
