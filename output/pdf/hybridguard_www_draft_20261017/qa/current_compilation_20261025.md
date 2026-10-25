@@ -5,5 +5,5 @@
 - LaTeX files synchronized in Overleaf ZIP: 22.
 - Total archived source files synchronized: 145.
 - Overfull box warnings: 0.
-- PDF SHA-256: 9ffef3328d81063e47c35b5b013401e32d57d4be42d37c44726555c88c20ef50.
-- ZIP SHA-256: ff9f87a0ef88403b008abf4ca0758107e158d9db7f76324597dc568033a5906f.
+- PDF SHA-256: 8d6477d5b402b39457fdc9b9ecf690a0c3e9c550d3a83ea882d92f9e4409184b.
+- ZIP SHA-256: 0afe9375e79b079234d0aad1bf5430a29b51bb6158bc16a0d4cee862478166a2.

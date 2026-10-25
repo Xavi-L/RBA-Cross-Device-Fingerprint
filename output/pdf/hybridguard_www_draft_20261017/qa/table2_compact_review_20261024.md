@@ -5,5 +5,5 @@
 - Table 2 PDF page: 5
 - Main text last page: 8
 - Total PDF pages: 10
-- Figure 1 / 2 / 3 pages: 3 / 4 / 6
+- Figure 1 / 2 / 3 pages: 3 / 4 / 7
 - Visually reviewed initial trial on isolated layout branch; no overfull warnings.

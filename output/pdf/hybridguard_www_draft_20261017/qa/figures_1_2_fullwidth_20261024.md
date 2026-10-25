@@ -6,7 +6,7 @@
 - Figure 1 page: 3
 - Figure 2 page: 4
 - Table 1 page: 2 (Section 2: 2)
-- Figure 3 page: 6
+- Figure 3 page: 7
 - Materials Table 2 page: 5
 - Main text end page: 8
 - References end page: 9
