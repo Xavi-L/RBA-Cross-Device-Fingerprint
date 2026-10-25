@@ -1,65 +1,56 @@
-% Rebuild source for refreshed WWW draft PDF and synchronized Overleaf ZIP.
-% Scope matrix: a tick denotes an explicitly examined surface or assessment;
-% a cross denotes a topic outside the cited study's stated research scope.
-% The optional Browser and standalone Host checks are marked in the notes.
+% Related-work scope comparison: textual study profiles replace the
+% three binary assessment-scope columns.
 \begin{table*}[t]
-  \caption{Comparison of observation surfaces and integrity-assessment scope in related studies.}
+  \caption{Research focus, observation surfaces, and study profiles of related work.}
   \label{tab:related}
   \centering
   \small
-  \setlength{\tabcolsep}{4.7pt}
+  \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.237\textwidth}>{\raggedright\arraybackslash}X*{7}{c}@{}}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.185\textwidth}>{\centering\arraybackslash}p{0.057\textwidth}>{\centering\arraybackslash}p{0.047\textwidth}>{\centering\arraybackslash}p{0.063\textwidth}>{\centering\arraybackslash}p{0.071\textwidth}*{3}{>{\raggedright\arraybackslash}X}@{}}
     \toprule
     \multirow{2}{*}{Study} & \multirow{2}{*}{Research focus} &
       \multicolumn{4}{c}{Observation surfaces} &
-      \multicolumn{3}{c}{Assessment scope} \\
+      \multicolumn{3}{c}{Study profile} \\
     \cmidrule(lr){3-6}\cmidrule(l){7-9}
     & & Native & Host & \makecell{App\\Web} & Browser &
-      \makecell{Cross-layer\\checks} &
-      \makecell{Benign\\change\\evaluation} &
-      \makecell{Unknown\\outcome\\handling} \\
+      Approach & Setting & Output \\
     \midrule
     FP-Scanner~\cite{ref04} & Spoofing-induced inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & \HGNone & \HGNone & \HGNone \\
+      & Inconsistency tests & Browser defenses & Alteration cues \\
     Picasso~\cite{ref05} & Canvas-based device classification
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & \HGNone & \HGNone & \HGNone \\
+      & Canvas challenges & Web clients & Device-class check \\
     FP-Inconsistent~\cite{ref06} & Evasive-bot fingerprint inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & \HGNone & \HGNone & \HGNone \\
+      & Spatial + temporal rules & Bot traffic & Bot-detection rules \\
     BrowserFM~\cite{ref07} & Fingerprint dependency modeling
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & \HGNone & \HGNone & \HGNone \\
+      & Feature models & Browser configs. & Dependency queries \\
     WVProfiler~\cite{ref08} & WebView fingerprint exposure
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & \HGNone & \HGNone & \HGNone \\
+      & Framework probes & Hybrid apps & Exposure findings \\
     Tracking Without Borders~\cite{ref09} & Mobile--Web tracking links
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & \HGNone & \HGNone & \HGNone \\
+      & Static/dynamic analysis & Android apps & Tracking practices \\
     Cross-Boundary Mobile Tracking~\cite{ref10} & Java-to-JavaScript data flows
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & \HGNone & \HGNone & \HGNone \\
+      & Runtime traces & WebView apps & Data-flow paths \\
     \midrule
     \textbf{HybridGuard (ours)} & \textbf{Cross-layer report integrity}
       & \HGFull & \HGFull\textsuperscript{a} & \HGFull
       & \HGFull\textsuperscript{b}
-      & \HGFull & \HGFull & \HGFull \\
+      & Semantic checks & Edits + benign changes & Alert / no alert / unknown \\
     \bottomrule
   \end{tabularx}
   \par\vspace{2pt}
   \begin{minipage}{\textwidth}
     \footnotesize
-    \emph{Notes.} \HGFull: explicitly examined within the study's scope;
-    \HGNone: outside its stated focus.
-    Native covers Android app/system-side observations, Host covers WebView
-    container measurements, and App Web covers embedded-Web observations.
-    Cross-layer checks assess Web-report integrity against associated
-    Native/Host references. Benign-change evaluation measures false alarms
-    under legitimate environmental or configuration changes.
-    Unknown-outcome handling distinguishes insufficient or inapplicable
-    evidence from a definite no-alert result.
+    \emph{Notes.} \HGFull\ denotes an examined observation surface;
+    \HGNone\ denotes a surface outside the study's reported setup.
+    Native is the Android app/system side, Host is WebView container context,
+    and App Web is embedded-Web observation.
     \textsuperscript{a}Host geometry is evaluated separately from Integrated App.
     \textsuperscript{b}Browser is an optional linked extension.
   \end{minipage}
