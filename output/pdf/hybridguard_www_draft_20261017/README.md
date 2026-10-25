@@ -1,5 +1,25 @@
 # HybridGuard：表格可视化与紧凑版式
 
+## 当前版本：2026-10-25 全文限定语整理与页数恢复
+
+- 按本轮要求重组此前标出的重复限定：集中说明真实性与归因边界，直接对照主实验与 specialist 结果，将 Host 集成要求集中至 Discussion，合并部署和几何容差分析中的重复验证说明。
+- 改动 5 个章节文件及 Table 3 的一处重复表注；对应 Markdown 同步。方法 Markdown 中原有的 Host 段和固定 0.005 解释漂移也已对齐当前 LaTeX。
+- 摘要、实验数字、公式、引用、负面结果、三张图和全部表体保留；ACM 模板、字号、页边距、图表尺寸及既有 `main.tex` 排版设置未变。
+- 本次实编：正文结束于第 8 页，参考文献从第 9 页开始，全文 11 页；正文 8 页与全文 12 页上限均通过。
+- Table 1 位于第 2 页，Table 3 在第 6 页，Figure 3 在第 7 页；正文九个图表距对应讨论均不超过一页。
+- PDF 与 Overleaf ZIP 已同步。150 个包内成员保留，独立解包编译成功，11 页的文字与渲染结果均一致；无 overfull box 或未定义引用。
+- 详细核验见 `qa/current_compilation_20261025.md` 和 `qa/float_proximity_20261025.md`。直接编译 `main.tex`，不运行历史 Markdown 迁移。下文是此前版本记录，旧页数仅对应当时版本。
+
+## 当前版本：2026-10-25 Table 1 与 Overleaf 项目包同步
+
+- 纳入远程提交 `faac01fe` 的 Table 1 描述性研究概况列：Approach / Setting / Output。
+- 打包当前工作区源码，保留已有 `main.tex` 中的 `stfloats` 与 Section 2 后的 `\FloatBarrier`；使用 `main.tex`、pdfLaTeX 直接编译。
+- 本次实编：正文结束于第 9 页，参考文献从第 10 页开始，全文 12 页；当前正文比原定 8 页目标多 1 页。
+- Table 1 在第 2 页；Table 3 在第 6 页，Figure 3 在第 7 页。正文九个图表与对应讨论的页差均不超过一页。
+- 正式 PDF 与 Overleaf ZIP 已同步；ZIP 保留现有 150 个成员，包含全部当前 LaTeX、参考文献和图表源，不包含编译缓存。
+- 独立解包编译成功；12 页的提取文字与渲染像素均与工作区编译结果一致。无 overfull box 或未定义引用。
+- 编译记录见 `qa/current_compilation_20261025.md`，图表页码见 `qa/float_proximity_20261025.md`。本次未改写正文；下文为此前版本记录，旧页数与核验结果仅对应当时版本。
+
 ## 当前版本：2026-10-25 匿名数据集发布与摘要一致性修订
 
 - 已将 Cross-View Consistency Dataset v1.0 加入摘要、Introduction、§4.3、§6.4、结论和附录；发布入口位于第一页 Introduction 末尾。

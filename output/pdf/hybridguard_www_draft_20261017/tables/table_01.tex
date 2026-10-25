@@ -16,32 +16,32 @@
     & & Native & Host & \makecell{App\\Web} & Browser &
       Approach & Setting & Output \\
     \midrule
-    FP-Scanner~\cite{ref04} & Spoofing inconsistencies
+    FP-Scanner~\cite{ref04} & Spoofing-induced inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Mismatch tests & Privacy tools & Alteration cues \\
-    Picasso~\cite{ref05} & Device classification
+      & Inconsistency tests & Browser defenses & Alteration cues \\
+    Picasso~\cite{ref05} & Canvas-based device classification
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Canvas probes & Web clients & Class verdicts \\
-    FP-Inconsistent~\cite{ref06} & Evasive-bot detection
+      & Canvas challenges & Web clients & Device-class check \\
+    FP-Inconsistent~\cite{ref06} & Evasive-bot fingerprint inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Rule mining & Bot traffic & Bot detection \\
-    BrowserFM~\cite{ref07} & Fingerprint dependencies
+      & Spatial + temporal rules & Bot traffic & Bot-detection rules \\
+    BrowserFM~\cite{ref07} & Fingerprint dependency modeling
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Feature models & Configs. & Model queries \\
-    WVProfiler~\cite{ref08} & WebView exposure
+      & Feature models & Browser configs. & Dependency queries \\
+    WVProfiler~\cite{ref08} & WebView fingerprint exposure
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & OS probes & Hybrid apps & Privacy leaks \\
-    Tracking Without Borders~\cite{ref09} & Mobile--Web tracking
+      & Framework probes & Hybrid apps & Exposure findings \\
+    Tracking Without Borders~\cite{ref09} & Mobile--Web tracking links
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & Static/dynamic & Android apps & Tracking risks \\
-    Cross-Boundary Mobile Tracking~\cite{ref10} & Java--JS data flows
+      & Static/dynamic analysis & Android apps & Tracking practices \\
+    Cross-Boundary Mobile Tracking~\cite{ref10} & Java-to-JavaScript data flows
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & Runtime traces & WebView apps & Leakage paths \\
+      & Runtime traces & WebView apps & Data-flow paths \\
     \midrule
-    \textbf{HybridGuard (ours)} & \textbf{Web-report integrity}
+    \textbf{HybridGuard (ours)} & \textbf{Cross-layer report integrity}
       & \HGFull & \HGFull\textsuperscript{a} & \HGFull
       & \HGFull\textsuperscript{b}
-      & Rule checks & Edits + benign changes & Alert / no alert / unknown \\
+      & Semantic checks & Edits + benign changes & Alert / no alert / unknown \\
     \bottomrule
   \end{tabularx}
   \par\vspace{2pt}

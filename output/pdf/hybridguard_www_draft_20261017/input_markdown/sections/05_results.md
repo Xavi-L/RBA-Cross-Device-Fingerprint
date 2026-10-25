@@ -37,11 +37,11 @@ The specialist studies evaluate fixed checks separately from the fitted detector
 | Geometry | Same-Web viewport relation | 0/6 | 0/66 |
 | Geometry | Host upper bound (standalone) | 6/6 | 0/66 |
 
-**Device-specific memory context.** The nine CPU-plus-memory positions separating Integrated App from the refitted alternatives also trigger the fixed 8 GiB check. That main-benchmark difference alone does not establish the need for a device-specific reference. The memory specialist supplies the distinction: the Native envelope detects 18/18 modifications, versus 6/18 for the global threshold, with 0/48 normal alarms for both. Its twelve additional detections are upward edits to 4 and 8 GiB; both checks detect six edits to 16 GiB. Neither triggers on the six no-effect operations targeting 2 GiB. These twelve specialist detections are separate from the nine App-model differences and concern the tested upward edits.
+**Device-specific memory context.** The fixed 8 GiB check also detects the nine CPU-plus-memory positions separating Integrated App from the refitted alternatives. The separate memory specialist distinguishes the checks: the Native envelope detects 18/18 modifications versus 6/18 for the global threshold, with 0/48 normal alarms for both. The twelve additional detections are upward edits to 4 and 8 GiB. Both checks detect the six edits to 16 GiB and leave the six no-effect operations targeting 2 GiB unflagged.
 
 **Legitimate timezone co-change.** Both checks detect 6/6 modifications. The absolute-offset check also alarms on six normal system changes; the Native reference avoids those alarms. Thus, unchanged main-benchmark detection after removing Native timezone hides a difference in handling legitimate changes.
 
-**Host container context.** The fixed Web-height check detects 6/6 modifications but alarms on 6/66 normals. The same-Web viewport relation avoids normal alarms yet misses all six modifications. The Host bound achieves 6/6 detection and 0/66 alarms. This standalone result does not describe Integrated App: configurations 01/02 retain the old height check and alarm on the six normal layout changes, while configuration 03 misses the six modifications. Integrating the Host specialist requires a separate model-construction evaluation.
+**Host container context.** The fixed Web-height check detects 6/6 modifications but alarms on 6/66 normals. The same-Web viewport relation avoids normal alarms yet misses all six modifications. The standalone Host bound achieves 6/6 detection and 0/66 alarms. In Integrated App, configurations 01/02 retain the old height check and alarm on the six normal layout changes, while configuration 03 misses the six modifications.
 
 ## 5.3 RQ3: Alarms and Availability
 

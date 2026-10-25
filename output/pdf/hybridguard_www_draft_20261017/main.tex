@@ -10,6 +10,8 @@
 \acmISBN{}
 \usepackage{tabularx,multirow,makecell,enumitem,colortbl,xurl}
 \usepackage{placeins}
+% Permit Table 1 to stay at the foot of its related-work page.
+\usepackage{stfloats}
 \input{table_visuals}
 \DeclareUnicodeCharacter{2212}{\ensuremath{-}}
 \newif\ifHGMatrix
@@ -21,6 +23,8 @@
 \input{frontmatter}
 \input{sections/01_introduction}
 \input{sections/02_background_and_scope}
+% Keep the Section 2 table and overview before the design section.
+\FloatBarrier
 \input{sections/03_method}
 \input{sections/04_evaluation_protocol}
 \input{sections/05_results}
