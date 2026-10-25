@@ -64,6 +64,17 @@ jobs:
               assert m, f'cannot parse page of {key}: {lines[0]}'
               pages[key]=int(m.group(1))
           print('Layout labels:',pages)
+          # Diagnose any spill beyond the eight-page body without changing ACM spacing.
+          import subprocess, sys
+          subprocess.run([sys.executable,'-m','pip','install','--quiet','pymupdf'],check=True)
+          import fitz
+          with fitz.open(pdf) as diagnosis:
+              for n in (7,8):
+                  if n < len(diagnosis):
+                      plain = re.sub(r'\s+', ' ', diagnosis[n].get_text())
+                      print(f'Page {n+1}: {len(plain)} text characters')
+                      print(f'PAGE {n+1} START:',plain[:1100])
+                      print(f'PAGE {n+1} END:',plain[-900:])
           assert pages['marker:main-text-end']<=8, ('Main text exceeds eight pages',pages['marker:main-text-end'])
           assert pages['tab:related']==pages['sec:2'], (
               f"Table 1 on page {pages['tab:related']}, Section 2 on page {pages['sec:2']}")
