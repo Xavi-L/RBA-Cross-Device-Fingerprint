@@ -15,15 +15,15 @@ Integrated App detects 105/126 controlled modifications with 0/252 controlled-no
 | No timezone | 105/126 | 83.3 | 21 | 0/252 |
 | App tree | 72/126 | 57.1 | 54 | 0/252 |
 
-All six methods miss 9/9 webdriver-only and 9/9 WebGL-identifier modifications. Historical raw WebGL unavailability and lost webdriver-false semantics limit the admission of their corresponding candidates. These misses therefore identify gaps in the evaluated representation and admission process; they do not establish intrinsic undetectability. Appendix A describes the recipe grouping, and the supplemental tables retain all 84 recipe-by-method cells.
+All six methods miss 9/9 webdriver-only and 9/9 WebGL-identifier modifications. Historical raw WebGL unavailability and lost webdriver-false semantics limit the admission of their corresponding candidates. These misses expose gaps in the available feature representation and candidate-admission process for the tested edits. Appendix A describes the recipe grouping, and the supplemental tables retain all 84 recipe-by-method cells.
 
 ## 5.2 RQ2: What References Contribute
 
-The specialist studies evaluate fixed checks separately from the fitted detectors to distinguish three mechanisms (Figure 3; Table 4). Their comparators use Web memory above 8 GiB, Web timezone offset above −480 minutes, and Web height above 710 CSS pixels. These study-specific thresholds support mechanism comparisons rather than universal Web-validity limits or claims of optimized baseline performance. Appendix A.5 describes their recorded freezing and the scope of these comparisons.
+The specialist studies evaluate fixed checks separately from the fitted detectors to distinguish three mechanisms (Figure 3; Table 4). Their comparators use Web memory above 8 GiB, Web timezone offset above −480 minutes, and Web height above 710 CSS pixels. The fixed thresholds provide study-specific reference points for comparing the three semantic mechanisms. Appendix A.5 describes their recorded freezing and the scope of these comparisons.
 
 ![Figure 3. How contextual references contribute.](../figures/HybridGuard_Fig3_mechanisms_v2.png)
 
-**Figure 3.** Illustrative mechanisms on applicable observations. (a) A Web report of 8 GiB stays within the fixed 8 GiB comparator but exceeds the envelope derived from Native memory of 4 GiB. (b) After offsets are converted to the same sign convention, a normal system change moves Native and Web together, whereas a Web-only edit creates a mismatch. (c) A converted viewport dimension P exceeding the Host bound plus tolerance triggers the standalone geometry check. These schematics add no measured records.
+**Figure 3.** Illustrative mechanisms on applicable observations. (a) A Web report of 8 GiB stays within the fixed 8 GiB comparator but exceeds the envelope derived from Native memory of 4 GiB. (b) After offsets are converted to the same sign convention, a normal system change moves Native and Web together, whereas a Web-only edit creates a mismatch. (c) A converted viewport dimension P exceeding the Host bound plus tolerance triggers the standalone geometry check.
 
 **Table 4. Fixed specialist comparisons.** Normal system changes (6) and layout changes (6) are included in their respective normal denominators. U and FAILED are zero throughout. Six no-effect memory operations are excluded from both the 18 effective modifications and the 48 normals.
 
