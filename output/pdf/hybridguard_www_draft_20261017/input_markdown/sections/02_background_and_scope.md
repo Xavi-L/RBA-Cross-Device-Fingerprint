@@ -1,6 +1,6 @@
 # 2 Background, Prior Work, and Scope
 
-## 2.1 Fingerprint Consistency and Contextual References
+## 2.1 Fingerprint Consistency
 
 Fingerprinting research examines relationships as well as individual attributes. FP-Scanner detects countermeasure-induced inconsistencies, including discrepancies across JavaScript and HTTP reports [4]. Picasso compares canvas challenge responses against device-class expectations [5]. FP-Inconsistent studies spatial and temporal inconsistencies in evasive bot traffic [6]. BrowserFM models dependencies among fingerprints, system characteristics, and browser configurations [7]. Our study builds on this use of consistency as evidence.
 
@@ -17,7 +17,7 @@ WebView research examines both sides of the application–Web boundary. WVProfil
 | WebView studies [8–10] | App, JavaScript, and runtime observations | Exposure and cross-boundary tracking | Report-integrity assessment |
 | HybridGuard | Native, Host, App Web; optional Browser | Contextual references under explicit domains | Detection, normal alarms, and unknown outcomes |
 
-## 2.2 Observation Surfaces and Conditional Compatibility
+## 2.2 Surfaces and Compatibility
 
 Let $E$ denote the execution state and container context. An observation $x = (N(E), H(E), W(E))$ associates Native system and hardware measurements, WebView Host context, and App Web reports. The App schema has 177 catalogued fields: 84 Native, 26 Host, and 67 App Web. An optional Browser contributes 67 fields from a separate Web execution, yielding a 244-field paired schema when validly associated. Selected detectors use subsets of these fields. Association does not imply atomic sampling, and no surface is trusted ground truth.
 

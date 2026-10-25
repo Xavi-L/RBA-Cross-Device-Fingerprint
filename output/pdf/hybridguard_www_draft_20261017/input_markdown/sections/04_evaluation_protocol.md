@@ -29,6 +29,6 @@ The App tree uses the same fold-specific admitted candidates, encoded as T/F/U i
 
 ## 4.3 Measures and Reconciliation
 
-A T decision counts as a detection on an effective modification and as a normal alarm on a normal record. We tabulate F (definite no alert), U (unresolved evidence), FAILED, and EMPTY_MODEL separately, retaining U positions in the corresponding denominators. Model comparisons preserve each study's original record counts and distinguish aggregate totals from record-level predictions. Counts and proportions summarize the observed evaluation positions.
+A T decision counts as a detection on an effective modification and as a normal alarm on a normal record. We tabulate F (definite no alert), U (unresolved evidence), FAILED, and EMPTY_MODEL separately, retaining U positions in the corresponding denominators. Model comparisons preserve each study's original record counts and distinguish aggregate totals from record-level predictions.
 
 We reconcile saved output-state partitions and recipe-level counts with the reported totals and experiment identifiers. These presentation checks assess the consistency of archived results and their tabulation (Appendix A).

@@ -2,7 +2,7 @@
 \section{Results}\label{sec:5}}
 
 \hypertarget{sec:5-1}{%
-\subsection{RQ1: Detection and Component Comparisons}\label{sec:5-1}}
+\subsection{RQ1: Detection and Ablations}\label{sec:5-1}}
 
 Integrated App detects 105/126 controlled modifications with 0/252 controlled-normal alarms (Table~\ref{tab:app}). The refitted Web-only and no-memory alternatives each detect 96/126; all nine differences occur in the CPU-plus-memory recipe. No-timezone retains 105/126 because an absolute-offset condition substitutes on this benchmark. Removing the MTC cap adds three screen detections, whose normal-data cost appears in Section~\ref{sec:5-3}. The fixed App tree detects 72/126.
 
@@ -19,16 +19,16 @@ All six methods miss 9/9 webdriver-only and 9/9 WebGL-identifier modifications. 
 \hypertarget{sec:5-2}{%
 \subsection{RQ2: What References Contribute}\label{sec:5-2}}
 
-The specialist studies evaluate fixed checks separately from the fitted detectors to distinguish three mechanisms (Figure~\ref{fig:mechanisms}; Table~\ref{tab:specialists}). Their comparators use Web memory above 8 GiB, Web timezone offset above −480 minutes, and Web height above 710 CSS pixels. The fixed thresholds provide study-specific reference points for comparing the three semantic mechanisms. Appendix~\ref{app:5} describes their recorded freezing and the scope of these comparisons.
+The specialist studies evaluate fixed checks separately from the fitted detectors to distinguish three mechanisms (Figure~\ref{fig:mechanisms}; Table~\ref{tab:specialists}). Their comparators use Web memory above 8 GiB, Web timezone offset above −480 minutes, and Web height above 710 CSS pixels. Appendix~\ref{app:5} describes their recorded freezing and the scope of these comparisons.
 
 \textbf{Device-specific memory context.} The nine CPU-plus-memory positions separating Integrated App from the refitted alternatives also trigger the fixed 8 GiB check. That main-benchmark difference alone does not establish the need for a device-specific reference. The memory specialist supplies the distinction: the Native envelope detects 18/18 modifications, versus 6/18 for the global threshold, with 0/48 normal alarms for both. Its twelve additional detections are upward edits to 4 and 8 GiB; both checks detect six edits to 16 GiB. Neither triggers on the six no-effect operations targeting 2 GiB. These twelve specialist detections are separate from the nine App-model differences and concern the tested upward edits.
 
-\textbf{Legitimate timezone co-change.} Both checks detect 6/6 modifications. The absolute-offset check also alarms on six normal system changes; the Native reference avoids those alarms. Thus, unchanged main-benchmark detection after removing Native timezone hides a difference in handling legitimate changes. Modification totals alone do not expose this benefit.
+\textbf{Legitimate timezone co-change.} Both checks detect 6/6 modifications. The absolute-offset check also alarms on six normal system changes; the Native reference avoids those alarms. Thus, unchanged main-benchmark detection after removing Native timezone hides a difference in handling legitimate changes.
 
 \textbf{Host container context.} The fixed Web-height check detects 6/6 modifications but alarms on 6/66 normals. The same-Web viewport relation avoids normal alarms yet misses all six modifications. The Host bound achieves 6/6 detection and 0/66 alarms. This standalone result does not describe Integrated App: configurations 01/02 retain the old height check and alarm on the six normal layout changes, while configuration 03 misses the six modifications. Integrating the Host specialist requires a separate model-construction evaluation.
 
 \hypertarget{sec:5-3}{%
-\subsection{RQ3: Normal Alarms and Unavailable Evidence}\label{sec:5-3}}
+\subsection{RQ3: Alarms and Availability}\label{sec:5-3}}
 
 Removing the historical-normal alarm cap raises controlled detection from 105 to 108 but alarms on every record in both historical groups (Table~\ref{tab:normals}). Both alternatives have 0/252 controlled-normal alarms, so the controlled benchmark alone conceals this cost. Saved uncapped models include broad conditions such as hardware concurrency greater than one and language-list length greater than one. The controlled-normal budget alone does not adequately constrain these checks on MTC records.
 
@@ -41,4 +41,4 @@ On the 60 paired App--Browser positions used during extension development (14 ef
 
 \input{tables/table_06.tex}
 
-C1 also raises historical unknowns from 8/144 to 11/144 in development, while leaving 6/117 in the historically reserved group. The combined count increases from 14/261 (5.4\%) to 17/261 (6.5\%) per model, with unchanged alarms. Asynchronous legitimate timezone changes remain an untested operating condition for C1's timestamp-independent offset comparison. The paired language tests cover App- and Browser-side report edits; the App benchmark separately evaluates a Web language-list modification recipe. C1 provides a targeted increment for the tested timezone edits, accompanied by lower definite-output coverage.
+C1 also raises historical unknowns from 8/144 to 11/144 in development, while leaving 6/117 in the historically reserved group. The combined count increases from 14/261 (5.4\%) to 17/261 (6.5\%) per model, with unchanged alarms. Asynchronous legitimate timezone changes remain an untested operating condition for C1's timestamp-independent offset comparison. The paired language tests cover App- and Browser-side report edits; the App benchmark separately evaluates a Web language-list modification recipe.
