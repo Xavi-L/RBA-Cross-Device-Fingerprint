@@ -130,7 +130,8 @@ jobs:
           changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
                    'source/migrate_manuscript.py','floats/figure_01.tex',
                    'floats/figure_02.tex','sections/03_method.tex',
-                   'sections/04_evaluation_protocol.tex','tables/table_02.tex','README.md']
+                   'sections/04_evaluation_protocol.tex','tables/table_02.tex',
+                   'tables/table_01.tex','README.md']
           manifest_path=root/'qa/package_manifest.json'
           if manifest_path.exists():
               manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
