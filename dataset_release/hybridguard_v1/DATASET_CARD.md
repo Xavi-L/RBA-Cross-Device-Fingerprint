@@ -2,13 +2,13 @@
 
 ## Status and purpose
 
-Version: `1.0-internal-candidate`. Publication: `NOT_APPROVED`. License: `PENDING_APPROVAL`. Public sample count: zero. Intended purpose: inspect cross-view consistency and evidence availability using existing controlled and historical observations corresponding to an anonymous WWW 2027 manuscript.
+Version: `1.0-reviewer-release`. Public authorization: `CONFIRMED_BY_PROJECT_LEAD`, explicitly reported by the user on 2026-10-25 for all selected sources, including MTC. Authorized release records: 1,509. License: `PENDING_SELECTION`; no open license is applied. The separately built reviewer archive contains all 1,509 observations; the tracked repository data directory contains zero samples and no platform upload is performed. Intended purpose: inspect cross-view consistency and evidence availability using existing controlled and historical observations corresponding to an anonymous WWW 2027 manuscript.
 
 ## Collection and population
 
 Controlled App and three specialist studies use repeated observations from API 29, 30 and 36 emulator environments. The linked Browser development study uses two recorded emulator/Browser contexts. MTC is a historical cloud collection selected through frozen manufacturer/model/Android-release representatives; its transitive grouping uses model, installation and session evidence. Group identities are not verified physical-device identities. Selection favors available paired observations and is not a probability sample of Android users or devices.
 
-The frozen MTC archive routes 1,699 App records to 1,028 paired, 654 App-only, 11 partial and six repeated observations. Its paper cohort selects 891 of the paired observations. The 137 other paired rows, all 654 App-only rows and other routing classes are not added to this paper-linked candidate. Alternate snapshots and saved prediction rows are not independent observations.
+The frozen MTC archive routes 1,699 App records to 1,028 paired, 654 App-only, 11 partial and six repeated observations. Its paper cohort selects 891 of the paired observations. The 137 other paired rows, all 654 App-only rows and other routing classes are not added to this paper-linked release. Alternate snapshots and saved prediction rows are not independent observations.
 
 ## Annotation process
 
@@ -28,10 +28,10 @@ Actual distributions and field availability/redaction counts are in `statistics.
 
 ## Ethics, access and residual risk
 
-No new collection is authorized or performed by this package. Code cannot establish consent, device authorization, platform redistribution rights or institutional-review status. The recorded MTC requirements call for separate approval before publishing raw data, derived fields or logs. No approval is inferred from their presence in a repository.
+The project lead has confirmed public authorization for controlled experiments, specialist experiments, Linked Browser and MTC. This explicit user-provided confirmation supersedes earlier pending-authorization statements; source ownership and third-party publication permission are not reopened here. No new collection is performed. The packaging task does not independently establish institutional-review or exemption details and makes no affirmative claim about them.
 
-A release-specific random identity mapping is private. High-entropy/free-text fingerprints, persistent IDs, precise times, sensitive paths and infrastructure are omitted or suppressed. Remaining hardware, geometry, language/timezone and grouping combinations can still support linking or reidentification, including linkage to already available source records. The public file-level inventory is for audit, not a claim of unlinkability. Manual field/subset review, consent/ownership basis, platform scope, institutional review and final licensing remain required.
+A release-specific random identity mapping is private. High-entropy/free-text fingerprints, persistent IDs, precise times, sensitive paths and infrastructure are omitted or suppressed. Remaining hardware, geometry, language/timezone and grouping combinations can still support linking or reidentification, including linkage to already available source records. Original source paths, file-level hashes and row provenance are excluded from the Reviewer Release. Their removal reduces direct provenance linkage but does not prove unlinkability to other available records. The existing field projection and all authorized source subsets are retained. The remaining decisions are license selection and review-safe hosting metadata, as detailed in `RELEASE_REVIEW.md`.
 
 ## Recommended and unsupported use
 
-Use the candidate to inspect controlled mechanisms and missingness within its recorded context. Do not use it to claim unseen-device/tool generalization, broad real-world attack prevalence, independent replication across repeated experiments, or complete reproduction of original unredacted detector scores. Do not merge unlabeled historical records into supervised negatives without a separate defensible labeling protocol. Do not infer missing Browser values or multiply saved model/fold outputs into observation counts.
+Use the release to inspect controlled mechanisms and missingness within its recorded context. Do not use it to claim unseen-device/tool generalization, broad real-world attack prevalence, independent replication across repeated experiments, or complete reproduction of original unredacted detector scores. Do not merge unlabeled historical records into supervised negatives without a separate defensible labeling protocol. Do not infer missing Browser values or multiply saved model/fold outputs into observation counts.

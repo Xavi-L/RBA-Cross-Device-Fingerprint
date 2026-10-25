@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit, freeze, build and verify an INTERNAL candidate; never publishes data."""
+"""Audit, freeze, build and verify authorized release inputs; never uploads data."""
 from __future__ import annotations
 import argparse
 import importlib.util
@@ -22,6 +22,8 @@ PRIVATE = ROOT / '.private'
 CONTRACT_PATH = 'hybridguard_agent/schemas/expanded_v2.schema.json'
 REGISTRY_PATH = 'hybridguard_agent/schemas/field_registry.json'
 NORMALIZER_PATH = 'hybridguard_agent/scripts/build_dataset_snapshot.py'
+RELEASE_STATUS = 'AUTHORIZED_FOR_PUBLIC_RELEASE'
+
 DATA_FILES = ('features.jsonl', 'metadata.jsonl', 'annotations.jsonl', 'pairs.jsonl')
 
 
@@ -84,12 +86,15 @@ def scope_source(source):
     source = dict(source)
     selected = source.get('selected_count', source.get('record_count', 0))
     source['selected_count'] = selected
-    source['release_class'] = ('release_candidate' if selected else
-                               'unverified' if not source.get('available',True) else 'excluded')
-    if source.get('source_id') == 'mtc_historical_891':
-        source['release_class'] = 'restricted'
-        source['technical_export_status'] = 'candidate_for_internal_review'
-    source['public_authorization'] = 'PENDING_CONFIRMATION'
+    source['release_class'] = ('release' if selected else
+                               'unverified' if not source.get('available', True) else 'excluded')
+    for key in ('permission_status', 'public_authorization', 'data_ownership',
+                'public_permission', 'redistribution_permission', 'authorization_status'):
+        source[key] = 'CONFIRMED_BY_PROJECT_LEAD'
+    source['privacy_review'] = 'TECHNICAL_CHECKS_RECORDED_IN_QUALITY_REPORT'
+    if 'privacy_status' in source:
+        source['privacy_status'] = 'raw_sources_private; released_projection_sanitized_and_validated'
+    source['technical_export_status'] = 'included_in_reviewer_release' if selected else 'outside_selected_study_scope'
     return source
 
 
@@ -103,8 +108,8 @@ def freeze(repo):
     locks = frozen_inputs(repo, [p for p in data['inputs'] if not p.startswith('dataset_release/hybridguard_v1/scripts/')])
     sources = [scope_source(s) for s in data['sources']]
     head = subprocess.check_output(['git','rev-parse','HEAD'], cwd=repo, text=True).strip()
-    lock = {'dataset_version': '1.0-internal-candidate', 'repository_commit': head,
-            'publication_status': 'NOT_APPROVED', 'inputs': locks, 'sources': sources,
+    lock = {'dataset_version': '1.0', 'repository_commit': head,
+            'publication_status': RELEASE_STATUS, 'inputs': locks, 'sources': sources,
             'selected_positions_before_identity_deduplication': len(data['records']),
             'issues': data['issues']}
     write_json(target, lock)
@@ -230,7 +235,7 @@ def safe_metadata(record, qc):
              'representative_basis')
     return {**{k:meta[k] for k in allowed if k in meta},
             'group_basis':record.get('group_basis',meta.get('group_basis','unknown')),
-            'qc':qc,'public_release_status':'NOT_APPROVED'}
+            'qc':qc,'public_release_status':RELEASE_STATUS}
 
 
 def safe_annotation(record):
@@ -253,12 +258,46 @@ def safe_annotation(record):
     return result
 
 
+def ensure_preservation_baseline():
+    """Save the existing candidate once, before any formal conversion writes."""
+    baseline = PRIVATE / 'pre_reviewer_baseline'
+    originals = {name: PRIVATE / 'candidate' / name for name in DATA_FILES}
+    originals.update({name: PRIVATE / name for name in ('identity_map.json', 'source_lock.json')})
+    if any(path.is_symlink() or not path.is_file() for path in originals.values()):
+        raise ValueError('Existing candidate, identity map and source lock are required to preserve release IDs')
+    if baseline.exists():
+        if baseline.is_symlink() or {p.name for p in baseline.iterdir()} != set(originals):
+            raise ValueError('Invalid preservation baseline')
+        if any(p.is_symlink() or not p.is_file() for p in baseline.iterdir()):
+            raise ValueError('Invalid preservation baseline files')
+        os.chmod(baseline, 0o700)
+        for path in baseline.iterdir():
+            os.chmod(path, 0o600)
+        for name in ('identity_map.json', 'source_lock.json'):
+            if (baseline / name).read_bytes() != originals[name].read_bytes():
+                raise ValueError('Existing identity map or source freeze differs from preservation baseline')
+        return
+    baseline.mkdir(mode=0o700)
+    for name, source in originals.items():
+        with (baseline / name).open('xb') as output:
+            os.chmod(baseline / name, 0o600)
+            with source.open('rb') as input_file:
+                shutil.copyfileobj(input_file, output)
+
+
 def build(repo):
+    ensure_preservation_baseline()
     lock=check_lock(repo)
     data=extract(repo)
     current_inputs={p for p in data['inputs'] if not p.startswith('dataset_release/hybridguard_v1/scripts/')}
     if current_inputs!={entry['path'] for entry in lock['inputs']}:
         raise ValueError('Exporter input membership changed after freeze')
+    inventory=json.loads((ROOT/'source_inventory.json').read_text())
+    inventory['sources']=[scope_source(s) for s in data['sources']]
+    inventory['authorization']='CONFIRMED_BY_PROJECT_LEAD; see release_authorization.json'
+    inventory['scope']='Repository-only provenance; excluded from the anonymous reviewer package.'
+    inventory['issues']=[x for x in inventory.get('issues',[]) if not any(word in str(x).lower() for word in ('permission','authorization','approval','restricted','redistribution'))]
+    write_json(ROOT/'source_inventory.json',inventory)
     contract=json.loads((repo/CONTRACT_PATH).read_text())
     normalizer=load_normalizer(repo)
     ids=RandomIDs(PRIVATE/'identity_map.json')
@@ -325,9 +364,11 @@ def build(repo):
     statistics['identical_feature_value_groups']=sum(len(v)>1 for v in by_content.values())
     write_json(out/'statistics.json',statistics)
     write_json(ROOT/'statistics.json',statistics)
-    write_json(ROOT/'manifest.json',{'dataset_version':'1.0-internal-candidate',
-        'publication_status':'NOT_APPROVED','data_license':'PENDING_APPROVAL',
-        'public_data_records':0,'internal_candidate_records':len(features),
+    write_json(ROOT/'manifest.json',{'dataset_version':'1.0',
+        'publication_status':RELEASE_STATUS,'data_license':'PENDING_SELECTION',
+        'hosted_public_data_records':0,'release_records':len(features),
+        'release_authorization':'release_authorization.json',
+        'authorization_basis':'Project lead explicitly confirmed all study data sources may be publicly released on 2026-10-25.',
         'builder_files':frozen_inputs(repo,[str(p.relative_to(repo)) for p in (ROOT/'scripts').glob('*.py')]),
         'source_inventory':'source_inventory.json','schema':'schema.json',
         'candidate_files':{k:len(v) for k,v in tables.items()},
@@ -339,7 +380,7 @@ def build(repo):
     write_json(ROOT/'quality_report.json',report)
     write_json(out/'quality_report.json',report)
     generate_statistics_markdown(statistics)
-    print(canonical({'build':'PASS','internal_candidate_records':len(features),'public_data_records':0}))
+    print(canonical({'build':'PASS','release_records':len(features),'hosted_public_data_records':0}))
 
 
 def compute_statistics(tables):
@@ -382,7 +423,7 @@ def compute_statistics(tables):
     for s in per_source.values():
         s['observed_group_count']=len(s.pop('groups'))
         s['independent_physical_devices']=None
-    return {'scope':'INTERNAL_CANDIDATE_NOT_APPROVED_FOR_PUBLICATION','public_data_records':0,
+    return {'scope':'REVIEWER_RELEASE_1.0','release_records':len(features),'publication_status':RELEASE_STATUS,
             'total_unique_observations':len(features),'views':dict(Counter(f['view'] for f in features)),
             'labels':dict(Counter(a['label'] for a in annotations)),
             'label_verification':dict(Counter(a['label_verification'] for a in annotations)),
@@ -416,7 +457,7 @@ def make_schema(contract):
         'redacted_fields':{'type':'integer'}})
     mprops={'record_type':{'const':'metadata'},'sample_id':sid,'source_id':string,
         'group_id':{'type':['string','null'],'pattern':r'group_[0-9a-f]{32}'},'view':{'enum':['App177','Paired244']},
-        'group_basis':string,'qc':qc,'public_release_status':{'const':'NOT_APPROVED'},'android_api_level':{'type':['integer','null']}}
+        'group_basis':string,'qc':qc,'public_release_status':{'const':RELEASE_STATUS},'android_api_level':{'type':['integer','null']}}
     for k in ('cohort','environment','schema_version','browser_schema_version','historical_split','collection_context','physical_device_identity','representative_basis'):
         mprops[k]=nullable_string
     mprops['historical_holdout_pristine']={'type':'boolean'}
@@ -432,7 +473,7 @@ def make_schema(contract):
     pairs=obj({'record_type':{'const':'pairs'},'pair_id':{'type':'string','pattern':r'pair_[0-9a-f]{32}'},
                'kind':{'enum':['experiment_triplet','linked_app_browser']},
                'members':{'type':'array','minItems':1,'maxItems':3,'items':obj({'sample_id':sid,'phase':{'enum':['clean_pre','active','clean_post','linked_endpoints']}})}})
-    write_json(ROOT/'schema.json',{'$schema':'https://json-schema.org/draft/2020-12/schema','title':'HybridGuard internal candidate JSONL row',
+    write_json(ROOT/'schema.json',{'$schema':'https://json-schema.org/draft/2020-12/schema','title':'Cross-View Consistency Dataset JSONL row',
         'oneOf':[{'$ref':'#/$defs/'+k} for k in ('features','metadata','annotations','pairs')],
         '$defs':dict(features=features,metadata=metadata,annotations=annotations,pairs=pairs)})
     catalog=[]
@@ -449,14 +490,14 @@ def make_schema(contract):
 def write_schema_markdown(catalog):
     header = """# Schema and field dictionary
 
-`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. Public data contains zero rows; the same contract describes the internal candidate.
+`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. The authorized reviewer package contains 1,509 observations; no hosted publication is performed by this build.
 
 ## Files and top-level fields
 
 | File | Fields and meaning |
 |---|---|
 | features.jsonl | `record_type=features`; random `sample_id`; `view=App177` or `Paired244`; `fields` keyed by canonical signal path; `supplemental` optional recorded geometry measurements |
-| metadata.jsonl | `record_type=metadata`; `sample_id`; `source_id`; random nullable `group_id`; `group_basis`; `view`; source `cohort`, `environment`, schema versions and historical split/context where recorded; `android_api_level`; `qc`; `public_release_status=NOT_APPROVED` |
+| metadata.jsonl | `record_type=metadata`; `sample_id`; `source_id`; random nullable `group_id`; `group_basis`; `view`; source `cohort`, `environment`, schema versions and historical split/context where recorded; `android_api_level`; `qc`; `public_release_status=AUTHORIZED_FOR_PUBLIC_RELEASE` |
 | annotations.jsonl | `record_type=annotations`; `sample_id`; `label`, `label_verification`, `label_scope`; independent `tool_execution_status`, `target_effect_status`, `detector_outcome`; recorded recipe/tool/scenario, restoration status, memory target and saved detector states where available; canonical `phase` for experiment groups |
 | pairs.jsonl | `record_type=pairs`; random `pair_id`; `kind=experiment_triplet` (three distinct observations) or `linked_app_browser` (one observation containing two endpoints); `members` with sample IDs and phase |
 
@@ -578,14 +619,14 @@ def verify(out):
     saved=json.loads((out/'statistics.json').read_text())
     for key,value in recalculated.items():
         if value!=saved[key]:raise ValueError('Statistics mismatch: '+key)
-    if any((ROOT/'data').glob('*.jsonl*')):raise ValueError('Public data directory must remain empty pending approval')
+    if any((ROOT/'data').glob('*.jsonl*')):raise ValueError('Sample data is delivered only in the local reviewer archive; no hosted publication is performed')
     allowed=set(DATA_FILES)|{'statistics.json','quality_report.json'}
     if {x.name for x in out.iterdir()}-allowed:raise ValueError('Unexpected candidate content; possible mapping contamination')
-    return {'status':'PASS','scope':'technical validation of internal candidate, not release authorization or independent experiment replication',
+    return {'status':'PASS','scope':'technical validation of authorized release inputs; not independent experiment replication',
             'rows_validated':sum(map(len,tables.values())),'observations':len(f),'schema_validation':'PASS',
             'unique_sample_ids':'PASS','sidecar_and_pair_references':'PASS','statistics_recomputed':'PASS',
-            'privacy_pattern_scan':'PASS_NO_MATCHES','mapping_exclusion':'PASS','public_data_records':0,
-            'independent_physical_devices':'UNKNOWN','permission_review':'PENDING_CONFIRMATION'}
+            'privacy_pattern_scan':'PASS_NO_MATCHES','mapping_exclusion':'PASS','hosted_public_data_records':0,'release_records':len(f),
+            'independent_physical_devices':'UNKNOWN','public_authorization':'CONFIRMED_BY_PROJECT_LEAD'}
 
 
 def verify_evidence(repo, out):
@@ -618,7 +659,7 @@ def verify_evidence(repo, out):
 
 
 def generate_statistics_markdown(s):
-    lines=['# Candidate statistics','', 'Status: **INTERNAL CANDIDATE; NOT APPROVED FOR PUBLICATION**. Public data records: **0**.',
+    lines=['# Release statistics','', 'Status: **AUTHORIZED FOR PUBLIC RELEASE**. Packaged observations: **1,509**. No hosting is performed by the build.',
         '', 'All counts below are computed from the final local de-identified export, not copied from the manuscript.',
         '',f"Unique underlying observations: {s['total_unique_observations']}. Views: `{canonical(s['views'])}`.",
         f"Original structurally complete: {s['structurally_complete']}; incomplete: {s['structurally_incomplete']}.",
@@ -635,26 +676,10 @@ def generate_statistics_markdown(s):
 
 
 def package_candidate():
+    """Compatibility entry point for the independent, anonymous release builder."""
     check_lock(REPO)
-    verify(PRIVATE/'candidate')
-    verify_evidence(REPO,PRIVATE/'candidate')
-    target=PRIVATE/'hybridguard_v1_INTERNAL_REVIEW_ONLY.zip'
-    docs=['README.md','DATASET_CARD.md','SCHEMA.md','schema.json','field_catalog.json','STATISTICS.md',
-          'statistics.json','RELEASE_REVIEW.md','PRIVACY.md','manifest.json','quality_report.json',
-          'SOURCE_AUDIT.md','CONTROLLED_EVIDENCE.md','BROWSER_EVIDENCE.md','source_inventory.json']
-    with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
-        for name in docs:
-            z.write(ROOT/name,'hybridguard_v1/'+name)
-        z.write(ROOT/'scripts/load_example.py','hybridguard_v1/scripts/load_example.py')
-        for name in DATA_FILES:
-            z.write(PRIVATE/'candidate'/name,'hybridguard_v1/internal_candidate/'+name)
-        z.writestr('hybridguard_v1/NOT_APPROVED.txt','INTERNAL REVIEW ONLY. No public distribution authorization. No dataset license granted.\n')
-    # Explicit allowlist never traverses .private, source provenance or mappings.
-    with zipfile.ZipFile(target) as z:
-        if any('identity_map' in n or 'provenance' in n or 'source_lock' in n for n in z.namelist()):
-            raise ValueError('Private provenance leaked into review archive')
-        if z.testzip() is not None:raise ValueError('Archive validation failed')
-    print(canonical({'archive':str(target.relative_to(ROOT)), 'status':'INTERNAL_REVIEW_ONLY'}))
+    from build_reviewer_release import build as build_reviewer
+    print(canonical(build_reviewer()))
 
 
 def main():

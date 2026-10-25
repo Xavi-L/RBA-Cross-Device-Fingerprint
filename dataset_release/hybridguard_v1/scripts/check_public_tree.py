@@ -17,7 +17,7 @@ def check():
         if len(value)>3:names.add(value)
     remote=subprocess.check_output(['git','remote','get-url','origin'],cwd=repo,text=True).strip()
     names.add(remote.rstrip('/').rsplit('/',2)[-2].rsplit(':',1)[-1])
-    public=[p for p in ROOT.rglob('*') if p.is_file() and '.private' not in p.parts and '__pycache__' not in p.parts]
+    public=[p for p in ROOT.rglob('*') if p.is_file() and '.private' not in p.parts and '__pycache__' not in p.parts and 'reviewer_release' not in p.parts]
     for path in public:
         if path.suffix in {'.zip','.gz','.jsonl'}:
             raise ValueError('Candidate/sample/archive content cannot enter tracked release tree')
@@ -39,6 +39,6 @@ def check():
             raise ValueError('Private/sample path is already tracked')
     return {'status':'PASS','intended_public_files':len(public),'author_identity_scan':'PASS',
             'public_prose_and_json_privacy_scan':'PASS','private_and_public_sample_git_ignores':'PASS',
-            'scope':'pattern and allowlist checks; manual anonymity/privacy approval remains pending'}
+            'scope':'repository-tree checks; standalone artifact anonymity is checked by build_reviewer_release.py'}
 
 if __name__=='__main__':print(json.dumps(check(),sort_keys=True))

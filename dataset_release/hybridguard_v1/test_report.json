@@ -1,0 +1,262 @@
+{
+  "status": "PASS",
+  "tests_run": 62,
+  "existing_tests": 28,
+  "new_release_tests": 34,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 8.112,
+  "command": "python3 -m unittest discover -s dataset_release/hybridguard_v1/tests -v",
+  "tests": [
+    {
+      "name": "test_browser_release.BrowserReleaseIntegrationTests.test_execution_effect_and_predictions_are_separate",
+      "result": "PASS"
+    },
+    {
+      "name": "test_browser_release.BrowserReleaseIntegrationTests.test_original_statuses_and_private_provenance",
+      "result": "PASS"
+    },
+    {
+      "name": "test_browser_release.BrowserReleaseIntegrationTests.test_raw_observation_units_and_complete_grouping",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_all_absent_browser_cannot_masquerade_as_paired",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_dangling_and_missing_endpoint_links_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_endpoint_phase_is_not_arbitrary",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_fabricated_value_in_absent_slot_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_missing_feature_or_injected_public_identity_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_private_mapping_file_in_candidate_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_qc_semantic_flags_are_recomputed",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_statistics_corruption_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_suppressed_text_cannot_be_restored_by_changing_redaction_flag",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_triplet_cannot_merge_unrelated_sources",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_triplet_phase_matches_annotation",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.CandidateVerificationTests.test_valid_app_and_paired_candidate",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_boolean_is_not_a_numeric_measurement",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_empty_browser_cannot_create_paired_view",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_false_and_zero_are_observed_values",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_free_text_and_runtime_clocks_are_suppressed",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_observed_state_requires_original_slot",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_original_missing_slot_and_unavailable_status_are_distinct",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.NormalizeTests.test_unrecorded_status_does_not_become_observed",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.PrivateBoundaryTests.test_frozen_input_drift_is_rejected_even_at_same_size",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.PrivateBoundaryTests.test_package_checks_source_lock_before_writing_archive",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.PrivateBoundaryTests.test_private_destination_rejects_base_escape_and_symlink",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.PrivateBoundaryTests.test_random_mapping_persists_without_deriving_identifier",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.SchemaAndPrivacyTests.test_privacy_scanner_detects_sensitive_text_without_echoing_it",
+      "result": "PASS"
+    },
+    {
+      "name": "test_release.SchemaAndPrivacyTests.test_schema_rejects_missing_extra_and_wrong_types",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_full_projection_preserves_candidate_ids_values_labels_and_relations",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_isolated_loader_validator_and_statistics_work_without_repository",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_standalone_validator_rejects_same_size_statistics_corruption",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_standalone_validator_rejects_unexpected_private_file",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_allowed_filename_cannot_hide_a_symlink",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_directory_symlink_is_not_followed_into_package",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_exact_file_allowlist_rejects_missing_and_extra_private_files",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_prose_and_script_literals_cannot_leak_email_or_credentials",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_source_paths_digests_and_author_denylist_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_zip_comments_and_extra_metadata_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_zip_extra_members_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_zip_metadata_and_bytes_are_deterministic",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPackageBoundaryTests.test_zip_traversal_absolute_paths_and_symlink_members_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerParserTests.test_ambiguous_json_and_nonfinite_numbers_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerParserTests.test_portable_privacy_scan_detects_identifiers_and_links_without_echoing",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPreservationBaselineTests.test_baseline_copies_existing_ids_and_lock_once_with_private_permissions",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPreservationBaselineTests.test_build_preservation_guard_runs_before_source_or_output_mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPreservationBaselineTests.test_initial_missing_input_is_rejected_without_creating_partial_baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerPreservationBaselineTests.test_missing_or_changed_existing_identity_map_and_lock_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_approval_is_not_a_label_or_availability_upgrade",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_authorized_projection_validates_without_repository_objects",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_internal_status_cannot_pass_formal_release_schema",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_missing_duplicate_or_dangling_endpoint_relationship_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_missing_slot_cannot_acquire_a_value_or_observed_state",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_mtc_effect_and_detector_states_cannot_be_fabricated",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_no_effect_operation_is_not_reclassified_as_modified",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_numeric_zero_and_boolean_false_survive_statistics",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_original_missing_slots_remain_absent_and_unsupported",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_qc_cannot_claim_redacted_values_are_retained",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_redaction_policy_cannot_be_bypassed_with_unrecognized_text",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_schema_omitted_extra_and_wrong_type_fields_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_sidecar_identifier_and_view_corruption_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_triplet_phase_or_group_corruption_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerSemanticTests.test_unrecorded_collector_status_cannot_be_promoted_to_observed",
+      "result": "PASS"
+    }
+  ],
+  "scope": "Dataset extraction and Reviewer Release tests; not new research experiments or detector evaluation."
+}

@@ -1,6 +1,6 @@
 # Controlled and specialist evidence
 
-These sources are technically exportable candidates. Public permission, data ownership, redistribution permission and privacy approval remain `PENDING_CONFIRMATION`. The checks below verify consistency of existing records; they are not a new physical experiment or independent replication.
+All 558 selected controlled and specialist observations are included in the authorized Reviewer Release. The user explicitly confirmed the project lead's public authorization on 2026-10-25. Existing privacy filtering remains unchanged. The checks below verify consistency of existing records; they are not a new physical experiment or independent replication.
 
 | Source | Selected observations | Normal controls | Effective modifications | No effect | Complete triplets |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -44,10 +44,10 @@ Saved outputs across folds, retained models, ablations and historical replays re
 
 The Host geometry v15 replay repeats the same 72 selected observations and is excluded as a duplicate. Six preliminary geometry smoke observations and the later 12-position v16 engineering study are outside the frozen formal task. The latter retains ten evaluated positions and two `FAILED_EVIDENCE` positions; it is not merged into the formal benchmark. Exclusion does not relabel failures or unknown outcomes as successes.
 
-Within this adapter, the selected source session identities do not overlap. This does not establish statistical independence between studies, devices or reused emulator environments. The global build must separately check overlap against other adapters.
+Within this adapter, the selected source session identities do not overlap. This does not establish statistical independence between studies, devices or reused emulator environments. The global build checks overlap against the other adapters.
 
 ## Privacy and release boundary
 
 The adapter returns original payloads, identifiers and exact source locators only to the private build pipeline. Public-facing records require release-specific random IDs and an explicit feature/metadata privacy policy. Raw session IDs, installation IDs, receipt IDs, document IDs, exact timestamps, local paths and internal infrastructure details must not be copied into the public package.
 
-Geometry supplemental evidence contains document/session identifiers and detailed clocks. It remains private unless a dedicated allowlist extracts only approved measurements and status fields. Raw execution receipt filenames also contain exact timestamps. Consequently, the exact input inventory belongs in the private freeze manifest. A public source inventory may retain a hash of the source file content while replacing a timestamp-bearing or sample-specific basename with `<private-record-file>`; exact filenames and record-level mappings remain private. These content hashes establish input consistency and do not establish anonymity or publication permission. Hashing original identifiers does not establish anonymity.
+Geometry supplemental evidence contains document/session identifiers and detailed clocks. It remains private unless a dedicated allowlist extracts only approved measurements and status fields. Raw execution receipt filenames also contain exact timestamps. Consequently, the exact input inventory belongs in the private freeze manifest. The repository-facing source inventory retains file-content hashes and masks timestamp-bearing or sample-specific basenames. This inventory is excluded entirely from the Reviewer Release, because original source hashes and paths could expose provenance. These content hashes establish input consistency and do not establish anonymity. Public authorization is recorded separately in the release manifest. Hashing original identifiers does not establish anonymity.

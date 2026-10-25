@@ -1,78 +1,68 @@
-# HybridGuard dataset v1.0 candidate
+# HybridGuard dataset v1.0 — Reviewer Release
 
-**INTERNAL CANDIDATE — NOT APPROVED FOR PUBLICATION.** This directory ships reproducible extraction code, schema, aggregate statistics and review documents. The tracked `data/` directory contains **zero observations**. No dataset license has been selected. Do not upload the candidate or this repository as an anonymous artifact before the reviews in `RELEASE_REVIEW.md` are completed.
+**Public release of all 1,509 selected observations is authorized.** On 2026-10-25, the user explicitly confirmed the project lead's authorization for every included source: controlled experiments, specialist experiments, Linked Browser and MTC. This supersedes the earlier pending-authorization state. The existing privacy projection is retained. A dataset license has not yet been selected; see `RELEASE_REVIEW.md` and `reviewer_templates/LICENSE_OPTIONS.md` for the remaining license decision. No external upload is performed by the build.
 
-HybridGuard studies consistency between Android Native, WebView Host, App Web and a linked Browser Web observation. This candidate uses existing frozen records associated with the current anonymous WWW 2027 submission. It contains no new collection, attacks, training or detector evaluation. Saved detector outcomes are annotation evidence, not new results.
+This directory contains the extraction implementation and repository-facing evidence. The separately built **Reviewer Release** is self-contained and excludes source locators, source digests, private mappings and repository history. The tracked `data/` directory still contains zero observations; this describes repository hosting, not the authorized release scope or archive contents.
+
+HybridGuard studies consistency between Android Native, WebView Host, App Web and a linked Browser Web observation. The release uses existing frozen records associated with the current anonymous WWW 2027 submission. It performs no new collection, attacks, training or detector evaluation. Saved detector outcomes remain annotation evidence.
 
 ## Sources and statistical units
 
-The internal de-identified export contains 1,509 original observations: 558 App177 and 951 Paired244. There are 1,506 structurally complete observations and three incomplete MTC observations. A view name identifies the observed endpoint arrangement and nominal schema, not a guarantee that every value exists or survives privacy suppression.
+The release contains **1,509 observations: 558 App177 and 951 Paired244**. There are 1,506 structurally complete observations and three incomplete MTC observations, each lacking five original fields. A view identifies the actual endpoint arrangement and nominal schema; it does not guarantee that every value exists or survives privacy suppression.
 
-| Task subset | Observations | Interpretation |
+| Task subset | Observations | Recorded evidence |
 |---|---:|---|
-| Controlled App | 378 | 14 recipes × 3 repetitions × 3 emulator environments; 126 modified and 252 correlated pre/post controls |
-| Historical MTC | 891 | Frozen representatives, historical discovery/development/reserved cohorts of 630/144/117; unlabeled |
+| Controlled App | 378 | 126 modified and 252 correlated pre/post controls |
+| Historical MTC | 891 | Historical discovery/development/reserved cohorts of 630/144/117; all unlabeled |
 | Memory specialist | 72 | 18 modifications, 48 controls and 6 no-effect operations |
 | Timezone specialist | 36 | 6 modifications and 30 controls, including legitimate system changes |
 | Host geometry specialist | 72 | 6 modifications and 66 controls; separate synchronized geometry measurements |
 | Linked Browser development | 60 | Pilot 18 + matched 42; 14 modifications and 46 controls |
 
-These are observations and experimental positions, **not 1,509 independent devices**. Source-specific grouping is retained through random IDs. Physical-device identity is not established. Studies share development history and emulator environments; their observation totals must not be used as independent replication counts. See `SOURCE_AUDIT.md`, `CONTROLLED_EVIDENCE.md` and `BROWSER_EVIDENCE.md`.
+The 618 non-MTC labels are verified against recorded evidence: 170 modified, 442 normal controls and six no-effect operations. The 891 MTC observations remain `unlabeled`. These are observations and experimental positions, **not 1,509 independent devices**. Physical-device identity and independence are unknown. Studies share development history and emulator environments. No new train/validation/test split is created. See `SOURCE_AUDIT.md`, `CONTROLLED_EVIDENCE.md` and `BROWSER_EVIDENCE.md`.
 
 ## Layout
 
-- `schema.json`, `SCHEMA.md`, `field_catalog.json`: row contract, field types, units, availability and per-field privacy policy.
-- `statistics.json`, `STATISTICS.md`: statistics computed from the final internal candidate, clearly separated from the zero-row public scope.
-- `source_inventory.json`: audited source scope and file hashes; timestamp-bearing receipt basenames are hidden. Exact paths, row bindings and identity mappings are private.
-- `manifest.json`, `quality_report.json`: version, publication gate and technical checks.
-- `scripts/`, `tests/`: standard-library Python implementation and tests.
-- `.private/candidate/`: ignored internal JSONL export. `.private/identity_map.json`, `provenance.jsonl`, `source_lock.json` and audits are **never** included in the review ZIP or committed.
-- `data/`: placeholder only, pending explicit authorization and privacy approval.
+- `schema.json`, `SCHEMA.md`, `field_catalog.json`: row contract, field types, units, availability and privacy policy.
+- `statistics.json`, `STATISTICS.md`, `quality_report.json`: computed statistics and validation results.
+- `manifest.json`: release scope, authorization statement, version and license status.
+- `source_inventory.json`: repository-facing source audit. Original source paths and digests are excluded from the Reviewer Release.
+- `scripts/`, `tests/`: Python implementation and tests; `reviewer_templates/` contains independent package documentation.
+- `.private/candidate/`: sanitized intermediate data; `.private/` also holds private source bindings and the reusable identity map. These private materials are excluded from the release.
+- `reviewer_release/Cross_View_Consistency_Dataset_v1.0_Reviewer.zip`: generated self-contained release archive, ignored by Git.
+- `data/`: repository-hosting placeholder; it is not the release payload.
 
-Each observation joins `features.jsonl`, `metadata.jsonl` and `annotations.jsonl` on a random `sample_id`. `pairs.jsonl` represents 206 verified clean/active/post groups and 951 linked App–Browser observations. `features` contains only values, availability and privacy disposition; cohort, grouping, tools, labels and detector outputs are separate. Geometry measurements are explicitly outside the fixed 177/244 slots in `features.supplemental`.
+Each observation joins `features.jsonl`, `metadata.jsonl` and `annotations.jsonl` on the existing random `sample_id`. `pairs.jsonl` preserves 206 three-phase experiment groups and 951 real linked App–Browser observations. Features contain values, availability and privacy disposition; labels, grouping, tools and saved detector outcomes are separate. Synchronized geometry remains supplemental to the nominal 177/244 slots.
 
 ## Rebuild and validation
 
-Requirements: Python 3.10 or later and access to the frozen repository sources, including the available nested research checkout. No third-party Python dependencies are needed. From the repository root:
+Requirements for rebuilding from original evidence: Python 3.10 or later and the frozen repository sources, including the available nested research checkout. No third-party Python dependencies are required. From the repository root:
 
 ```sh
 python3 dataset_release/hybridguard_v1/scripts/release.py all
-python3 -m unittest discover -s dataset_release/hybridguard_v1/tests -v
 python3 dataset_release/hybridguard_v1/scripts/release.py verify
-python3 dataset_release/hybridguard_v1/scripts/load_example.py --data dataset_release/hybridguard_v1/.private/candidate
-python3 dataset_release/hybridguard_v1/scripts/release.py package
+python3 dataset_release/hybridguard_v1/scripts/build_reviewer_release.py
+python3 -m unittest discover -s dataset_release/hybridguard_v1/tests -v
 ```
 
-The first `all` call freezes existing sources; later calls refuse changed source files. Exporter code revisions are recorded separately in `manifest.json`. A private mapping is reused so repeated builds retain release IDs. An independently created mapping intentionally yields different random IDs and the same observation-level statistics. The frozen source paths/hashes can be checked, but code cannot supply missing redistribution permission. Missing source files fail explicitly; a documentation-only checkout cannot rebuild the candidate.
+Before writing, the extraction build automatically preserves the existing four candidate tables, private random-ID map and source lock in an immutable local comparison baseline. A missing map or changed baseline fails explicitly; it does not regenerate identifiers. The extraction build checks frozen inputs and reuses the private random-ID map. It does not change original records, labels, cohort membership or pairing. Missing evidence fails explicitly. A documentation-only checkout cannot reconstruct the original-source export; reviewers do not need those sources to load or validate the supplied release.
 
-The packager creates `.private/hybridguard_v1_INTERNAL_REVIEW_ONLY.zip` by an explicit allowlist. It contains de-identified candidate data and review documents, **no raw data, private mappings, row provenance, source lock or Git history**. It remains an internal review archive and is not an approved anonymous upload.
+Extract `reviewer_release/Cross_View_Consistency_Dataset_v1.0_Reviewer.zip` into a new directory, change into its `cross_view_consistency_v1` folder and run:
 
-## Loading example
-
-The following runs from this dataset directory after a successful build:
-
-```python
-from pathlib import Path
-from scripts.load_example import load
-records = load(Path('.private/candidate'))
-features, metadata, annotation = records[0]
-assert features['sample_id'] == metadata['sample_id'] == annotation['sample_id']
-cell = features['fields']['web_data.device_memory']
-# A usable value requires checking status and redaction, not only a non-null value.
-usable = cell['collection_status'] == 'observed' and cell['redaction'] == 'none'
-print(len(records), usable)
+```sh
+python3 validate.py --root .
+python3 load_example.py --data .
+python3 validate.py --root . --recompute-statistics ../recomputed-statistics.json
 ```
 
-Within an extracted internal review ZIP, use `python3 scripts/load_example.py --data internal_candidate`.
+The optional statistics output must be a new file outside the package. The validator requires the original 18-file inventory and rejects extra package entries.
+
+The validator recomputes released-data statistics and checks schema, labels, references, completeness and packaging constraints. It validates the released projection and does not reproduce original detector predictions. `VALIDATION.md` records actual executed checks and results.
 
 ## Research uses and limits
 
-Suitable uses include evidence-availability analysis, controlled target-effect analysis, memory/timezone consistency and the separately recorded Host-geometry measurements. Paired244 supports linked-endpoint diagnostics; App177 has no Browser endpoint and is not interchangeable with Paired244.
+Suitable uses include field-availability and redaction analysis, controlled target-effect analysis, memory/timezone consistency and separately recorded Host geometry. Paired244 supports linked-endpoint diagnostics; App177 has no Browser endpoint. `normal_control` describes the declared controlled condition, not comprehensive benignness. An observed collector status does not resolve legacy sentinel ambiguity.
 
-This privacy-filtered candidate **does not reproduce every original detector input or every manuscript score**. It suppresses build/device strings, user agents, renderer strings, fingerprint hashes, exact timestamps, infrastructure and other free text. Annotation effects refer to the original evidence, even where target fields are suppressed. Numeric/boolean features and narrowly validated language/timezone/geometry semantics remain potentially identifying in combination. See `PRIVACY.md`.
+The release **cannot fully reproduce original detector inputs or all manuscript scores**. Build/device strings, user agents, renderer strings, fingerprint hashes, exact timestamps and other sensitive values remain suppressed. Original intervention labels remain attached even when the changed field is suppressed. Saved detector outcomes are neither rerun predictions nor labeling ground truth.
 
-`normal_control` means no declared target intervention in a supported controlled position, not comprehensive benignness. MTC observations remain `unlabeled`; reported no-target collection context does not establish a benign ground-truth label. Legacy collector `observed` status does not resolve sentinel ambiguity or prove scientific validity. No train/validation/test split is generated. Historical cohort membership is provenance with prior development exposure.
-
-## Paper and permission status
-
-Association: the current anonymous WWW 2027 manuscript, Evaluation Protocol, Results and reproducibility appendix. No author names, affiliations, email addresses or public repository URL are included here. Anonymous hosting, data ownership, third-party redistribution scope, institutional review, field-level risk and a dataset license require separate human approval. A pattern scan is not an anonymization guarantee.
+Direct identity and infrastructure removal does not establish mathematical anonymity. Retained numeric, categorical, language/timezone, geometry and grouping combinations can support linkage, including to previously available records. Repository-facing evidence is deliberately excluded from the reviewer archive; do not upload this source directory as a substitute. Final hosting metadata and the selected sharing URL require manual inspection for double-blind review. See `PRIVACY.md` and `FIGSHARE_UPLOAD.md`.

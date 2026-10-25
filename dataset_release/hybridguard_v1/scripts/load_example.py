@@ -12,7 +12,7 @@ def load(directory):
     for name in ('features','metadata','annotations'):
         path=directory/(name+'.jsonl')
         if not path.exists():
-            raise ValueError('No authorized public samples are shipped; use an explicitly provided internal candidate directory.')
+            raise ValueError('Required dataset table is missing; provide the unpacked reviewer package directory.')
         rows=[json.loads(line) for line in path.read_text().splitlines() if line.strip()]
         tables[name]={r['sample_id']:r for r in rows}
         if len(tables[name])!=len(rows):raise ValueError('Repeated sample ID')

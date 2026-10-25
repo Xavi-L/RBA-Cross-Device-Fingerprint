@@ -1,3 +1,5 @@
-# Public data gate
+# Repository data location
 
-No public observations are included. All source authorizations and final field-level privacy decisions remain pending. Internal candidates are stored in the ignored `.private/candidate/` directory. Do not copy samples here or override Git ignore rules until a separately reviewed release is explicitly approved.
+All 1,509 selected observations are authorized for public release, including all 891 MTC records, according to the project lead confirmation explicitly reported by the user on 2026-10-25. The tracked repository data directory remains empty; zero hosted records here does not mean zero records in the release.
+
+The independent Reviewer Release builder writes the full sanitized data and standalone loading/validation scripts to an ignored build directory and packages `reviewer_release/Cross_View_Consistency_Dataset_v1.0_Reviewer.zip`. Reviewers load the data files from the extracted archive root. Private mappings, exact source references and raw evidence stay outside that archive. No third-party upload is performed. License selection remains explicit and pending.

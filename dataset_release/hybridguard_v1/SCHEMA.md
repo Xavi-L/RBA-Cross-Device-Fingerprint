@@ -1,13 +1,13 @@
 # Schema and field dictionary
 
-`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. Public data contains zero rows; the same contract describes the internal candidate.
+`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. The authorized reviewer package contains 1,509 observations; no hosted publication is performed by this build.
 
 ## Files and top-level fields
 
 | File | Fields and meaning |
 |---|---|
 | features.jsonl | `record_type=features`; random `sample_id`; `view=App177` or `Paired244`; `fields` keyed by canonical signal path; `supplemental` optional recorded geometry measurements |
-| metadata.jsonl | `record_type=metadata`; `sample_id`; `source_id`; random nullable `group_id`; `group_basis`; `view`; source `cohort`, `environment`, schema versions and historical split/context where recorded; `android_api_level`; `qc`; `public_release_status=NOT_APPROVED` |
+| metadata.jsonl | `record_type=metadata`; `sample_id`; `source_id`; random nullable `group_id`; `group_basis`; `view`; source `cohort`, `environment`, schema versions and historical split/context where recorded; `android_api_level`; `qc`; `public_release_status=AUTHORIZED_FOR_PUBLIC_RELEASE` |
 | annotations.jsonl | `record_type=annotations`; `sample_id`; `label`, `label_verification`, `label_scope`; independent `tool_execution_status`, `target_effect_status`, `detector_outcome`; recorded recipe/tool/scenario, restoration status, memory target and saved detector states where available; canonical `phase` for experiment groups |
 | pairs.jsonl | `record_type=pairs`; random `pair_id`; `kind=experiment_triplet` (three distinct observations) or `linked_app_browser` (one observation containing two endpoints); `members` with sample IDs and phase |
 

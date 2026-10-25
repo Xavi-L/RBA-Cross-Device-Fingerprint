@@ -1,6 +1,6 @@
-# Candidate statistics
+# Release statistics
 
-Status: **INTERNAL CANDIDATE; NOT APPROVED FOR PUBLICATION**. Public data records: **0**.
+Status: **AUTHORIZED FOR PUBLIC RELEASE**. Packaged observations: **1,509**. No hosting is performed by the build.
 
 All counts below are computed from the final local de-identified export, not copied from the manuscript.
 

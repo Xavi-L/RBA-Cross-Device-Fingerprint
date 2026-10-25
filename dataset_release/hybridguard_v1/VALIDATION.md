@@ -1,25 +1,33 @@
-# Validation record
+# Release validation
 
-Result: **PASS for internal technical preparation; publication NOT_APPROVED**.
+Result: **PASS** for the authorized Reviewer Release v1.0. All selected sources have project-lead public authorization. Dataset and bundled-code licenses remain unselected; no upload was performed.
 
-Commands executed from the repository root:
+## Executed checks
 
-```sh
-python3 dataset_release/hybridguard_v1/scripts/release.py all
-python3 dataset_release/hybridguard_v1/scripts/release.py build
-python3 dataset_release/hybridguard_v1/scripts/release.py verify
-python3 -m unittest discover -s dataset_release/hybridguard_v1/tests -v
-python3 dataset_release/hybridguard_v1/scripts/check_public_tree.py
-python3 dataset_release/hybridguard_v1/scripts/load_example.py --data dataset_release/hybridguard_v1/.private/candidate
-python3 dataset_release/hybridguard_v1/scripts/release.py package
-```
+| Check | Result |
+|---|---|
+| Existing dataset tests | 28 passed |
+| Added release tests | 34 passed |
+| Entire dataset suite | 62 passed, 0 failed, 0 errors, 0 skipped; 8.112 seconds |
+| Source freeze and original evidence reconciliation | Passed for all 1,509 observations |
+| Preconversion preservation baseline | Feature values, annotations, pairs, random IDs, source groups, redactions and missingness unchanged; metadata only updates authorization status |
+| Historical private source lock and identity map | Byte-for-byte unchanged |
+| Schema, feature policy, field types and availability | 5,684 JSONL rows validated |
+| Observations and views | 1,509: 558 App177 + 951 Paired244 |
+| Recorded-evidence labels | 618: 170 modified + 442 normal_control + 6 no_effect |
+| MTC uncertainty and missingness | All 891 remain unlabeled; 3 each lack 5 original App fields |
+| Relationships | 206 experiment triplets + 951 real linked-endpoint associations |
+| Standalone isolated loading | Passed outside repository using isolated Python, standard library only; all 1,509 loaded |
+| Standalone statistics | Exact equality for all exported aggregates and field-level distributions |
+| Package inventory and integrity | Exactly 18 allowlisted files; byte sizes and ZIP CRC passed |
+| ZIP metadata | Fixed neutral timestamps/permissions; no path traversal, links, extra fields or comments |
+| Anonymous artifact content | No matched original source paths/digests/UUIDs, known author identities, email, credentials, project links or document author metadata |
+| Private material exclusion | No mapping, provenance, raw captures, internal logs, Git history or repository source audit |
+| Rebuild failure behavior | Final archive replaced only after isolated validation succeeds; existing identity map cannot be silently regenerated |
+| Repository diff and sample ignores | Passed; generated samples and archive remain ignored |
 
-- 28 focused tests passed: missingness and false/zero preservation, no invented Browser, source bindings and linked study labels, random-ID persistence, symlink/path boundaries, schema types, privacy policy enforcement, corrupted statistics/relationships and frozen-source checks before packaging.
-- 767 original input files are covered by the frozen source lock. Their current contents matched the recorded digests; originals were not edited.
-- All 1,509 exported observations reconciled with original feature/annotation evidence. Record types, unique IDs, one-to-one sidecars and 1,157 relationships passed validation. Historical MTC labels remain unverified.
-- Five candidate files (four JSONL sidecars plus statistics) were byte-identical on an unchanged rebuild using the private release-ID map.
-- The actual README Python loading block executed successfully. The independent CLI loader returned 1,509 observations with 558 App177 and 951 Paired244.
-- The internal review ZIP contains 21 allowlisted entries. Its four data sidecars matched the reviewed candidate bytes; archive integrity and path checks passed. It was extracted into an isolated private temporary directory, and the bundled loader returned the same counts without the original repository sources.
-- Public prose/JSON and intended tracked files passed the author-identity/pattern scan. Timestamp-bearing receipt basenames are masked. Private/sample paths are ignored and not tracked. Synthetic negative-test fixtures are explicitly excluded from prose/data scanning.
+The negative tests cover schema and type errors, missing/extra tables, duplicate JSON keys, non-finite values, same-size statistic corruption, unknown-label promotion, no-effect labels, phase/group mismatches, missing fields, unredacted values, leaked mapping/identities/credentials/digests, symbolic links, unsafe ZIP paths and metadata, and baseline loss or modification. Deterministic ZIP output is exercised with different source filesystem times.
 
-These checks establish consistency of the exported projection and saved evidence. They do not prove independent physical-device counts, global anonymity, redistribution rights, new experiment replication, or reproduction of original detector scores after feature suppression.
+Commands and individual test results are in `test_report.json`; the final artifact file sizes and standalone results are in `reviewer_release_report.json`. The builder keeps the fresh isolation directory location in private build records only. The release archive is `reviewer_release/Cross_View_Consistency_Dataset_v1.0_Reviewer.zip`.
+
+These checks verify released-data consistency and recorded-source agreement. They do not establish independent physical-device counts, independent experimental replication, full replay of the original detector or immunity to external content matching. Future hosting-page anonymity is untested until the manually chosen sharing mode is inspected. Source ownership and public redistribution authorization are confirmed, not pending.
