@@ -63,6 +63,7 @@ jobs:
               assert m, f'cannot parse page of {key}: {lines[0]}'
               pages[key]=int(m.group(1))
           print('Layout labels:',pages)
+          assert pages['marker:main-text-end']<=8, ('Main text exceeds eight pages',pages['marker:main-text-end'])
           assert pages['tab:related']==pages['sec:2'], (
               f"Table 1 on page {pages['tab:related']}, Section 2 on page {pages['sec:2']}")
           assert pages['tab:related']<=pages['sec:3'], 'Table 1 drifted beyond Section 3'
@@ -120,54 +121,135 @@ jobs:
               encoding='utf-8')
           (root/'HybridGuard_WWW_Draft.pdf').write_bytes(pdf.read_bytes())
           PY
-      - name: Update Overleaf ZIP from exactly the compiled source
+      - name: Synchronize all current LaTeX sources and verify compiled PDF
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m pip install --quiet pymupdf
           python3 - <<'PY'
           from pathlib import Path
-          import hashlib,json,zipfile,os
-          root=Path('output/pdf/hybridguard_www_draft_20261017')
-          changed=['sections/01_introduction.tex','sections/02_background_and_scope.tex',
-                   'source/migrate_manuscript.py','floats/figure_01.tex',
-                   'floats/figure_02.tex','sections/03_method.tex',
-                   'sections/04_evaluation_protocol.tex','tables/table_02.tex',
-                   'tables/table_01.tex','README.md']
-          manifest_path=root/'qa/package_manifest.json'
-          if manifest_path.exists():
-              manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
-              for rel in changed:
-                  if rel in manifest.get('files',{}):
-                      data=(root/rel).read_bytes()
-                      manifest['files'][rel]={'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)}
-              manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-              changed.append('qa/package_manifest.json')
-          source_zip=root/'HybridGuard_WWW_Overleaf.zip'
-          assert source_zip.is_file(), f'Original Overleaf archive not found: {source_zip}'
-          with zipfile.ZipFile(source_zip,'r') as z:
-              entries=[(zi,z.read(zi.filename)) for zi in z.infolist()]
-          def identify(entry,rel):
-              name=entry.lstrip('./')
-              return name==rel or name.endswith('/'+rel)
-          for rel in changed:
-              matches=[i for i,(zi,_) in enumerate(entries) if identify(zi.filename,rel)]
-              if rel=='qa/package_manifest.json' and not matches:
+          import hashlib, json, os, re, zipfile
+          import fitz
+
+          root = Path('output/pdf/hybridguard_www_draft_20261017')
+          outpdf = root / 'HybridGuard_WWW_Draft.pdf'
+          assert outpdf.stat().st_size > 30000
+          aux = (root / 'main.aux').read_text()
+          def page_of(label):
+              rows = [line for line in aux.splitlines()
+                      if line.startswith(r'\newlabel{' + label + '}')]
+              assert len(rows) == 1, (label, len(rows))
+              match = re.search(r'\{\{[^{}]*\}\{([0-9]+)\}', rows[0])
+              assert match, (label, rows[0])
+              return int(match.group(1))
+          body_end = page_of('marker:main-text-end')
+          total = page_of('TotPages')
+          assert body_end <= 8, f'Main text over eight pages: {body_end}'
+          with fitz.open(outpdf) as document:
+              assert len(document) == total
+              collected = re.sub(r'\s+', ' ',
+                  ' '.join(page.get_text() for page in document)).lower()
+              for phrase in ('historical-normal decision counts by cohort',
+                             'fingerprint attributes can nevertheless remain identifying',
+                             'asynchronous legitimate timezone changes remain'):
+                  assert phrase in collected, f'New text absent from PDF: {phrase}'
+              assert all(page.get_text().strip() for page in document)
+              for page in document:
+                  raster = page.get_pixmap(matrix=fitz.Matrix(0.6, 0.6),
+                                          alpha=False)
+                  assert raster.width > 200 and raster.height > 200
+
+          logfile = (root / 'main.log').read_text(errors='replace')
+          assert 'There were undefined references' not in logfile
+          overfull = len(re.findall(r'Overfull \\[hv]box', logfile))
+
+          readme_path = root / 'README.md'
+          readme = readme_path.read_text(encoding='utf-8')
+          heading = '## 当前版本：2026-10-25 全量 LaTeX 重新编译'
+          if heading not in readme:
+              summary = ('\n\n' + heading + '\n\n'
+                  '以 main 分支最新 main.tex 编译；保留已定稿图表，不运行历史迁移。\n'
+                  f'- 正文结束在第 {body_end} 页；全文 {total} 页。\n'
+                  '- 当前 PDF 与 Overleaf ZIP 的所有 LaTeX、参考文献及图表源同步。\n'
+                  '- 编译验证记录：qa/current_compilation_20261025.md。\n')
+              pos = readme.index('\n')
+              readme_path.write_text(readme[:pos+1] + summary + readme[pos+1:],
+                                     encoding='utf-8')
+
+          archive_path = root / 'HybridGuard_WWW_Overleaf.zip'
+          manifest_path = root / 'qa/package_manifest.json'
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          known = set(manifest['files'])
+          with zipfile.ZipFile(archive_path) as archive:
+              entries = [(item, archive.read(item.filename))
+                         for item in archive.infolist()]
+          def find_rel(name):
+              matches = [rel for rel in known
+                         if name == rel or name.endswith('/' + rel)]
+              return max(matches, key=len) if matches else None
+
+          replacements = {}
+          members = []
+          for info, saved_data in entries:
+              rel = find_rel(info.filename)
+              if rel is None:
+                  if info.filename.endswith('qa/package_manifest.json'):
+                      members.append((info, None))
+                      continue
+                  assert info.is_dir() or not info.filename.endswith('.tex'), (
+                      'Unknown TeX member: ' + info.filename)
+                  members.append((info, saved_data))
                   continue
-              assert len(matches)==1, f'Expected exactly one ZIP member for {rel}; got {matches}'
-              idx=matches[0]
-              zi,_=entries[idx]
-              entries[idx]=(zi,(root/rel).read_bytes())
-          tmp=source_zip.with_suffix('.rebuilt.zip')
-          with zipfile.ZipFile(tmp,'w') as z:
-              for zi,data in entries:
-                  z.writestr(zi,data)
-          os.replace(tmp,source_zip)
-          with zipfile.ZipFile(source_zip,'r') as z:
-              assert z.testzip() is None
-              for rel in changed[:9]:
-                  matches=[n for n in z.namelist() if identify(n,rel)]
-                  assert len(matches)==1 and z.read(matches[0])==(root/rel).read_bytes()
-          print('Overleaf ZIP and working LaTeX source are synchronized.')
+              live = root / rel
+              assert live.is_file(), ('Missing source: ' + rel)
+              assert rel not in replacements, ('Duplicated member: ' + rel)
+              replacements[rel] = live.read_bytes()
+              members.append((info, replacements[rel]))
+          assert known == set(replacements), (
+              'ZIP manifest mismatch: ' + str(sorted(known - set(replacements))))
+          required_tex = {p.relative_to(root).as_posix()
+                          for tree in ('sections', 'tables', 'floats')
+                          for p in (root / tree).glob('*.tex')}
+          required_tex.update(['main.tex','main_matrix.tex','frontmatter.tex','table_visuals.tex'])
+          assert required_tex.issubset(replacements), (
+              'Current TeX missing from ZIP: ' + str(sorted(required_tex - set(replacements))))
+
+          def digest(data):
+              return hashlib.sha256(data).hexdigest()
+          manifest['date'] = '2026-10-25'
+          manifest['files'] = {rel: {'sha256':digest(data),'bytes':len(data)}
+                               for rel, data in sorted(replacements.items())}
+          manifest_bytes = (json.dumps(manifest,ensure_ascii=False,indent=2)
+                            + '\n').encode('utf-8')
+          manifest_path.write_bytes(manifest_bytes)
+          rebuilt = archive_path.with_suffix('.new.zip')
+          manifest_written = False
+          with zipfile.ZipFile(rebuilt,'w') as archive:
+              for info, data in members:
+                  if data is None:
+                      data = manifest_bytes
+                      manifest_written = True
+                  archive.writestr(info, data)
+          assert manifest_written, 'Manifest was absent from Overleaf ZIP'
+          with zipfile.ZipFile(rebuilt) as archive:
+              assert archive.testzip() is None
+              for info in archive.infolist():
+                  rel = find_rel(info.filename)
+                  if rel in required_tex:
+                      assert archive.read(info.filename) == (root / rel).read_bytes(), rel
+          os.replace(rebuilt, archive_path)
+
+          doc = ('# WWW draft compiled from current LaTeX, 2026-10-25\n\n'
+                 '- Entry: main.tex; historical migration: not run.\n'
+                 f'- Main text end: PDF page {body_end}; total {total} pages.\n'
+                 f'- LaTeX files synchronized in Overleaf ZIP: {len(required_tex)}.\n'
+                 f'- Total archived source files synchronized: {len(replacements)}.\n'
+                 f'- Overfull box warnings: {overfull}.\n'
+                 f'- PDF SHA-256: {digest(outpdf.read_bytes())}.\n'
+                 f'- ZIP SHA-256: {digest(archive_path.read_bytes())}.\n')
+          (root / 'qa/current_compilation_20261025.md').write_text(
+              doc,encoding='utf-8')
+          print(doc)
           PY
       - name: Commit refreshed PDF, source ZIP, and placement report
         shell: bash
@@ -176,9 +258,9 @@ jobs:
           ROOT=output/pdf/hybridguard_www_draft_20261017
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/table2_compact_review_20261024.md" "$ROOT/qa/package_manifest.json"
+          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/table2_compact_review_20261024.md" "$ROOT/qa/package_manifest.json" "$ROOT/qa/current_compilation_20261025.md" "$ROOT/README.md"
           if ! git diff --cached --quiet; then
-            git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with compact Table 2 [skip ci]"
+            git commit -m "docs(paper): compile latest LaTeX and synchronize PDF with Overleaf ZIP [skip ci]"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
