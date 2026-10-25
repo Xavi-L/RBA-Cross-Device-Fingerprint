@@ -41,6 +41,10 @@ jobs:
           labels=Counter(''.join(x.itertext()).strip() for x in tree.iter(S+'text'))
           assert sum(labels.values())==67
           assert labels['Native APIs']==labels['App Web']==labels['WebView Host']==1
+          title_nodes=[next(t for t in tree.iter(S+'text') if ''.join(t.itertext()).strip()==name)
+                       for name in ('Native APIs','App Web','WebView Host')]
+          assert all(t.get('font-size')=='32' and t.get('font-weight')=='bold' and
+                     t.get('class')=='heading' for t in title_nodes)
           assert labels['View bounds · padding']==1
           assert labels['View transform · stability']==1
           assert labels['Provider · version']==1

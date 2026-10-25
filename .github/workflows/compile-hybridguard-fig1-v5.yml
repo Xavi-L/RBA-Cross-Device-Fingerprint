@@ -52,6 +52,10 @@ jobs:
           labels=[''.join(x.itertext()).strip() for x in svg.iter(ns+'text')]
           assert len(labels)==67
           assert all(labels.count(s)==1 for s in ('Native APIs','App Web','WebView Host'))
+          titles={name:next(t for t in svg.iter(ns+'text') if ''.join(t.itertext()).strip()==name)
+                  for name in ('Native APIs','App Web','WebView Host')}
+          assert all(t.get('font-size')=='32' and t.get('font-weight')=='bold'
+                     and t.get('class')=='heading' for t in titles.values()), titles
           for name in ('integrated-native-web','standalone-host-web-geometry','native-host-context'):
               found=[x for x in svg.iter() if x.get('id')==name]
               assert len(found)==1,name
