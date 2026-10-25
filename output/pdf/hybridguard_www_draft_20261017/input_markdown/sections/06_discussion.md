@@ -12,9 +12,9 @@ Development diagnostics show further limits. A relation-augmented tree fits the 
 
 ## 6.3 Availability, Drift, and Integration
 
-Missing evidence affects both candidate admission and current decisions. The webdriver and WebGL misses expose gaps in the selected representation, while C1 shows how adding a reference can reduce definite-output coverage. API changes, WebView providers, timing, locale conventions, and container behavior can alter a relation's applicability. Longitudinal robustness and transfer of attack results to physical devices remain unmeasured. A deployment policy must determine how to handle U and FAILED; neither state by itself establishes normality or attack.
+Evidence availability shapes both candidate admission and current-record decisions. The missed webdriver and WebGL modifications reveal gaps in the selected representation, while C1 illustrates how an additional reference can reduce definite-output coverage. Changes in APIs, WebView providers, timing, locale conventions, or container behavior may also affect relation applicability. Longitudinal robustness and transfer of the attack results to physical devices require further evaluation. Deployment policies must handle U as unresolved evidence and FAILED as an execution or association failure, treating both as non-definitive outcomes.
 
-The reported benchmark evaluations include U outcomes but no FAILED or EMPTY_MODEL outcomes. They therefore do not measure how often execution failures, rejected associations, or empty selections would occur in deployment, or how an operational policy should respond to them.
+The benchmark results include U outcomes, with zero occurrences of FAILED or EMPTY_MODEL. Deployment-oriented evaluation is needed to estimate the frequency of execution failures, rejected associations, and empty selections and to assess response policies for these states.
 
 Host geometry remains a standalone mechanism study. Its current domain excludes nonzero padding and nonidentity transforms. Integrating it would require evaluating detection, alarms, availability, and complexity across window modes, keyboard interactions, and physical devices. The available cached-evaluation timings exclude collection and communication, so end-to-end runtime cost also remains open.
 
