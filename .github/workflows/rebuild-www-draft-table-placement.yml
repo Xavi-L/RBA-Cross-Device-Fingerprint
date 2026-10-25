@@ -8,6 +8,7 @@ on:
       - 'output/pdf/hybridguard_www_draft_20261017/sections/02_background_and_scope.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/main.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/tables/table_01.tex'
+      - '.github/workflows/rebuild-www-draft-table-placement.yml'
       - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_01.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/floats/figure_02.tex'
       - 'output/pdf/hybridguard_www_draft_20261017/source/migrate_manuscript.py'
@@ -178,5 +179,6 @@ jobs:
           git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/table2_compact_review_20261024.md" "$ROOT/qa/package_manifest.json"
           if ! git diff --cached --quiet; then
             git commit -m "docs(paper): rebuild WWW PDF and Overleaf ZIP with compact Table 2 [skip ci]"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
