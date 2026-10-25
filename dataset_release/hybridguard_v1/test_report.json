@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "tests_run": 62,
-  "existing_tests": 28,
-  "new_release_tests": 34,
+  "tests_run": 74,
+  "previously_existing_tests": 62,
+  "new_license_tests": 12,
   "skipped": 0,
   "failures": 0,
   "errors": 0,
-  "elapsed_seconds": 8.112,
+  "elapsed_seconds": 8.011,
   "command": "python3 -m unittest discover -s dataset_release/hybridguard_v1/tests -v",
   "tests": [
     {
@@ -130,11 +130,59 @@
       "result": "PASS"
     },
     {
+      "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_license_change_preserves_sha256_of_all_five_data_files",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_selected_data_license_and_anonymous_attribution_notice",
+      "result": "PASS"
+    },
+    {
       "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_standalone_validator_rejects_same_size_statistics_corruption",
       "result": "PASS"
     },
     {
       "name": "test_reviewer_release.ReviewerArchiveIntegrationTests.test_standalone_validator_rejects_unexpected_private_file",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicenseContractTests.test_data_license_scope_excludes_software_and_license_notice",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicenseContractTests.test_manifest_license_schema_cannot_be_missing_or_weakened",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicenseContractTests.test_missing_new_license_file_and_extra_old_options_file_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicenseContractTests.test_notice_must_have_official_license_and_no_pending_data_license",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicenseContractTests.test_pending_wrong_url_and_misassigned_license_scopes_are_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicenseContractTests.test_valid_license_contract_reaches_data_validation",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicensePreservationTests.test_change_to_any_one_of_the_five_data_files_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicensePreservationTests.test_documentation_only_change_preserves_all_five_data_digests",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicensePreservationTests.test_duplicate_data_member_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "test_reviewer_release.ReviewerLicensePreservationTests.test_missing_data_member_is_rejected",
       "result": "PASS"
     },
     {
@@ -258,5 +306,5 @@
       "result": "PASS"
     }
   ],
-  "scope": "Dataset extraction and Reviewer Release tests; not new research experiments or detector evaluation."
+  "scope": "Dataset and license-only Reviewer Release regression tests; no new experiments or detector evaluation."
 }

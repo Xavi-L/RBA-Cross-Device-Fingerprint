@@ -17,10 +17,15 @@ from pathlib import Path
 DATA_FILES = ('features.jsonl', 'metadata.jsonl', 'annotations.jsonl', 'pairs.jsonl')
 PACKAGE_FILES = frozenset(DATA_FILES) | {
     'schema.json', 'field_catalog.json', 'statistics.json', 'README.md',
-    'DATASET_CARD.md', 'RELEASE_REVIEW.md', 'LICENSE_OPTIONS.md', 'FIGSHARE_UPLOAD.md',
+    'DATASET_CARD.md', 'RELEASE_REVIEW.md', 'LICENSE_DATA.md', 'FIGSHARE_UPLOAD.md',
     'SCHEMA.md', 'STATISTICS.md', 'validate.py', 'load_example.py',
     'quality_report.json', 'manifest.json',
 }
+DATA_LICENSE = 'CC-BY-4.0'
+DATA_LICENSE_URL = 'https://creativecommons.org/licenses/by/4.0/'
+SOFTWARE_LICENSE = 'NOT_SPECIFIED'
+SOFTWARE_FILES = ('load_example.py', 'validate.py')
+DATA_LICENSE_FILES = frozenset(PACKAGE_FILES) - {*SOFTWARE_FILES, 'LICENSE_DATA.md'}
 RELEASE_STATUS = 'AUTHORIZED_FOR_PUBLIC_RELEASE'
 BROWSER = 'browser_web_data'
 LAYER_COUNTS = {'android_native_data': 84, 'webview_data': 26,
@@ -29,6 +34,29 @@ SOURCE_COUNTS = {'controlled_main': 378, 'specialist_memory': 72,
                  'specialist_timezone': 36, 'specialist_geometry': 72,
                  'linked_browser_pilot18': 18, 'linked_browser_b2b42': 42,
                  'mtc_historical_891': 891}
+
+
+def manifest_license_schema():
+    """Return the machine contract for the manifest's license declarations only."""
+    def scope(files):
+        names = sorted(files)
+        return {'type': 'array', 'items': {'type': 'string', 'enum': names},
+                'minItems': len(names), 'maxItems': len(names), 'const': names}
+
+    properties = {
+        'data_license': {'type': 'string', 'const': DATA_LICENSE},
+        'data_license_url': {'type': 'string', 'const': DATA_LICENSE_URL},
+        'data_license_file': {'type': 'string', 'const': 'LICENSE_DATA.md'},
+        'data_license_scope': scope(DATA_LICENSE_FILES),
+        'software_license': {'type': 'string', 'const': SOFTWARE_LICENSE},
+        'software_license_scope': scope(SOFTWARE_FILES),
+    }
+    return {
+        'type': 'object', 'title': 'Reviewer manifest licensing declarations',
+        'description': 'CC BY 4.0 applies to the enumerated data resources. The two software files have a separately declared license status.',
+        'properties': properties, 'required': list(properties), 'additionalProperties': True,
+    }
+
 
 DROP_NUMERIC = {'build_time_ms', 'elapsed_realtime_ms', 'uptime_ms', 'first_install_time',
                 'last_update_time', 'performance_time_origin'}
@@ -524,10 +552,32 @@ def validate(package_root):
     if {path.name for path in contents} != PACKAGE_FILES:
         raise ValueError('Unexpected or missing package file')
     manifest = read_json(root / 'manifest.json')
-    expected_manifest = {'release_records': 1509, 'publication_status': RELEASE_STATUS,
-                         'dataset_version': '1.0', 'data_license': 'PENDING_SELECTION'}
+    schema = read_json(root / 'schema.json')
+    definitions = schema.get('$defs') if isinstance(schema, dict) else None
+    license_schema = manifest_license_schema()
+    if not isinstance(definitions, dict) or definitions.get('reviewer_manifest_licensing') != license_schema:
+        raise ValueError('Missing or weakened manifest license schema')
+    validate_schema(manifest, definitions['reviewer_manifest_licensing'], schema)
+    expected_manifest = {
+        'release_records': 1509, 'publication_status': RELEASE_STATUS,
+        'dataset_version': '1.0', 'data_license': DATA_LICENSE,
+        'data_license_url': DATA_LICENSE_URL, 'data_license_file': 'LICENSE_DATA.md',
+        'data_license_scope': sorted(DATA_LICENSE_FILES),
+        'software_license': SOFTWARE_LICENSE, 'software_license_scope': sorted(SOFTWARE_FILES),
+    }
     if any(manifest.get(key) != value for key, value in expected_manifest.items()):
         raise ValueError('Manifest version, scope, status or license mismatch')
+    license_notice = (root / 'LICENSE_DATA.md').read_text(encoding='utf-8')
+    if (not re.search(r'\bCreative\s+Commons\s+Attribution\s+4\.0\s+International\b', license_notice, re.I)
+            or DATA_LICENSE not in license_notice or DATA_LICENSE_URL not in license_notice):
+        raise ValueError('Data license notice must identify CC BY 4.0 and its official terms')
+    unselected_data_license = (
+        r'\bPENDING_(?:SELECTION|APPROVAL)\b',
+        r'\b(?:data(?:set)?|reuse)[ -]?licen[cs]e\b[^\n.]{0,90}\b(?:pending|unselected|not (?:yet )?selected)\b',
+        r'\bno\s+(?:data(?:set)?|reuse)[ -]?licen[cs]e\b[^\n.]{0,40}\b(?:selected|granted|applied)\b',
+    )
+    if any(re.search(pattern, license_notice, re.I) for pattern in unselected_data_license):
+        raise ValueError('Data license notice still contains an unselected-license statement')
     inventory = manifest.get('file_inventory')
     if not isinstance(inventory, list) or any(not isinstance(entry, dict) or set(entry) != {'path', 'bytes'} for entry in inventory):
         raise ValueError('Manifest requires a path/byte-size package inventory')
@@ -536,7 +586,7 @@ def validate(package_root):
     if any(type(entry['bytes']) is not int or entry['bytes'] != (root / entry['path']).stat().st_size for entry in inventory):
         raise ValueError('Manifest package file-size mismatch')
     tables = load_tables(root)
-    report = validate_tables(tables, read_json(root / 'schema.json'), read_json(root / 'field_catalog.json'))
+    report = validate_tables(tables, schema, read_json(root / 'field_catalog.json'))
     recalculated = compute_statistics(tables)
     if recalculated != read_json(root / 'statistics.json'):
         raise ValueError('Exported statistics do not exactly match recomputation')
@@ -558,7 +608,8 @@ def validate(package_root):
             raise ValueError('Version 1 original missingness changed')
     report.update(statistics_recomputed='PASS', release_records=1509,
                   publication_status=RELEASE_STATUS, version_1_counts='PASS',
-                  package_file_inventory='PASS')
+                  package_file_inventory='PASS', data_license=DATA_LICENSE,
+                  data_license_binding='PASS', software_license=SOFTWARE_LICENSE)
     return report
 
 

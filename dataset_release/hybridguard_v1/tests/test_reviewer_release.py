@@ -7,6 +7,7 @@ without the authorized local release input.
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib
 import json
 import os
@@ -23,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 CANDIDATE = ROOT / ".private" / "candidate"
 ARCHIVE = ROOT / "reviewer_release" / "Cross_View_Consistency_Dataset_v1.0_Reviewer.zip"
+LICENSE_BASELINE_ARCHIVE = ROOT / ".private" / "license_update_baseline" / "old_reviewer.zip"
 sys.path.insert(0, str(SCRIPTS))
 
 
@@ -238,6 +240,180 @@ class ReviewerParserTests(unittest.TestCase):
                 self.assertNotIn(value, json.dumps(findings))
         self.assertIn("source_identity_key", self.runtime.privacy_findings({"session_id": "fixture"}))
         self.assertEqual(self.runtime.privacy_findings({"measurement": 13800000000, "language": "en-US"}), {})
+
+
+class ReviewerLicenseContractTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.runtime = importlib.import_module("reviewer_runtime")
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix="reviewer-license-")
+        self.addCleanup(self.temporary.cleanup)
+        self.package = Path(self.temporary.name)
+        for name in self.runtime.PACKAGE_FILES:
+            (self.package / name).write_text('{}\n')
+        self.notice = ("Creative Commons Attribution 4.0 International\n"
+                       "CC-BY-4.0\nhttps://creativecommons.org/licenses/by/4.0/\n")
+        (self.package / "LICENSE_DATA.md").write_text(self.notice)
+        (self.package / "schema.json").write_text(json.dumps({
+            "$defs": {"reviewer_manifest_licensing": self.runtime.manifest_license_schema()}}))
+        self.manifest = {
+            "release_records": 1509,
+            "publication_status": "AUTHORIZED_FOR_PUBLIC_RELEASE",
+            "dataset_version": "1.0", "data_license": "CC-BY-4.0",
+            "data_license_url": "https://creativecommons.org/licenses/by/4.0/",
+            "data_license_file": "LICENSE_DATA.md",
+            "data_license_scope": sorted(self.runtime.DATA_LICENSE_FILES),
+            "software_license": "NOT_SPECIFIED",
+            "software_license_scope": ["load_example.py", "validate.py"],
+        }
+        self.save_manifest()
+
+    def save_manifest(self):
+        self.manifest["file_inventory"] = [
+            {"path": name, "bytes": (self.package / name).stat().st_size}
+            for name in sorted(self.runtime.PACKAGE_FILES - {"manifest.json"})]
+        (self.package / "manifest.json").write_text(json.dumps(self.manifest))
+
+    def test_data_license_scope_excludes_software_and_license_notice(self):
+        self.assertEqual(self.runtime.DATA_LICENSE, "CC-BY-4.0")
+        self.assertEqual(self.runtime.DATA_LICENSE_URL, "https://creativecommons.org/licenses/by/4.0/")
+        self.assertEqual(self.runtime.SOFTWARE_LICENSE, "NOT_SPECIFIED")
+        self.assertEqual(len(self.runtime.PACKAGE_FILES), 18)
+        self.assertIn("LICENSE_DATA.md", self.runtime.PACKAGE_FILES)
+        self.assertNotIn("LICENSE_OPTIONS.md", self.runtime.PACKAGE_FILES)
+        self.assertEqual(set(self.runtime.DATA_LICENSE_FILES), set(self.runtime.PACKAGE_FILES)
+                         - {"validate.py", "load_example.py", "LICENSE_DATA.md"})
+        self.assertEqual(len(self.runtime.DATA_LICENSE_FILES), 15)
+
+    def test_valid_license_contract_reaches_data_validation(self):
+        # A valid license contract must pass before the deliberately synthetic
+        # data fixture is read. No full release data are required by this test.
+        with mock.patch.object(self.runtime, "load_tables", side_effect=RuntimeError("data validation reached")):
+            with self.assertRaisesRegex(RuntimeError, "data validation reached"):
+                self.runtime.validate(self.package)
+
+    def test_pending_wrong_url_and_misassigned_license_scopes_are_rejected(self):
+        mutations = (
+            ("data_license", "PENDING_SELECTION"),
+            ("data_license", "PENDING_APPROVAL"),
+            ("data_license_url", "https://creativecommons.org/publicdomain/zero/1.0/"),
+            ("data_license_file", "LICENSE_OPTIONS.md"),
+            ("data_license_scope", sorted(self.runtime.DATA_LICENSE_FILES - {"statistics.json"})),
+            ("data_license_scope", sorted(self.runtime.DATA_LICENSE_FILES | {"validate.py"})),
+            ("data_license_scope", sorted(self.runtime.DATA_LICENSE_FILES | {"LICENSE_DATA.md"})),
+            ("software_license", "CC-BY-4.0"),
+            ("software_license", "MIT"),
+            ("software_license_scope", ["validate.py"]),
+            ("software_license_scope", ["features.jsonl", "load_example.py", "validate.py"]),
+        )
+        original = copy.deepcopy(self.manifest)
+        for key, value in mutations:
+            with self.subTest(field=key, changed_value=value):
+                self.manifest = copy.deepcopy(original)
+                self.manifest[key] = value
+                self.save_manifest()
+                with mock.patch.object(self.runtime, "load_tables") as load:
+                    with self.assertRaisesRegex(ValueError, "license"):
+                        self.runtime.validate(self.package)
+                    load.assert_not_called()
+
+    def test_missing_new_license_file_and_extra_old_options_file_are_rejected(self):
+        notice = self.package / "LICENSE_DATA.md"
+        notice.unlink()
+        with self.assertRaisesRegex(ValueError, "package file"):
+            self.runtime.validate(self.package)
+        notice.write_text(self.notice)
+        (self.package / "LICENSE_OPTIONS.md").write_text("Legacy license options\n")
+        with self.assertRaisesRegex(ValueError, "package file"):
+            self.runtime.validate(self.package)
+
+    def test_notice_must_have_official_license_and_no_pending_data_license(self):
+        invalid_notices = (
+            self.notice.replace("CC-BY-4.0", "CC0-1.0"),
+            self.notice.replace("https://creativecommons.org/licenses/by/4.0/", "unavailable"),
+            self.notice + "Dataset license remains PENDING_SELECTION.\n",
+            self.notice + "The data license remains pending.\n",
+        )
+        for notice in invalid_notices:
+            with self.subTest(notice=notice):
+                (self.package / "LICENSE_DATA.md").write_text(notice)
+                self.save_manifest()
+                with self.assertRaisesRegex(ValueError, "license"):
+                    self.runtime.validate(self.package)
+
+    def test_manifest_license_schema_cannot_be_missing_or_weakened(self):
+        for weakened in (None, {"type": "object"}):
+            with self.subTest(schema=weakened):
+                definitions = {} if weakened is None else {"reviewer_manifest_licensing": weakened}
+                (self.package / "schema.json").write_text(json.dumps({"$defs": definitions}))
+                self.save_manifest()
+                with self.assertRaisesRegex(ValueError, "license schema"):
+                    self.runtime.validate(self.package)
+
+
+class ReviewerLicensePreservationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.builder = importlib.import_module("build_reviewer_release")
+        cls.runtime = importlib.import_module("reviewer_runtime")
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix="reviewer-license-digests-")
+        self.addCleanup(self.temporary.cleanup)
+        self.base = Path(self.temporary.name)
+        self.filenames = (*self.runtime.DATA_FILES, "statistics.json")
+        self.before = self.base / "before.zip"
+        self.after = self.base / "after.zip"
+
+    def make_archive(self, path, changed=None, missing=None, duplicate=None, note="before license update"):
+        with zipfile.ZipFile(path, "w") as archive:
+            for name in self.filenames:
+                if name != missing:
+                    text = "changed fixture\n" if name == changed else "unchanged fixture\n"
+                    archive.writestr(self.builder.PREFIX + name, text)
+            archive.writestr(self.builder.PREFIX + "README.md", note)
+            if duplicate:
+                import warnings
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore", UserWarning)
+                    archive.writestr(self.builder.PREFIX + duplicate, "unchanged fixture\n")
+
+    def test_documentation_only_change_preserves_all_five_data_digests(self):
+        self.make_archive(self.before)
+        self.make_archive(self.after, note="selected CC BY 4.0")
+        report = self.builder.verify_data_unchanged(self.before, self.after)
+        self.assertEqual(report["status"], "PASS")
+        self.assertEqual(set(report["files"]), set(self.filenames))
+        for entry in report["files"].values():
+            self.assertTrue(entry["unchanged"])
+            self.assertEqual(entry["before_sha256"], entry["after_sha256"])
+        self.assertEqual(self.builder.data_file_digests(self.before), self.builder.data_file_digests(self.after))
+
+    def test_change_to_any_one_of_the_five_data_files_is_rejected(self):
+        self.make_archive(self.before)
+        for name in self.filenames:
+            with self.subTest(filename=name):
+                self.make_archive(self.after, changed=name)
+                with self.assertRaises(ValueError):
+                    self.builder.verify_data_unchanged(self.before, self.after)
+
+    def test_missing_data_member_is_rejected(self):
+        self.make_archive(self.before)
+        self.make_archive(self.after, missing="statistics.json")
+        with self.assertRaises(ValueError):
+            self.builder.verify_data_unchanged(self.before, self.after)
+        with self.assertRaises(ValueError):
+            self.builder.verify_data_unchanged(self.after, self.before)
+
+    def test_duplicate_data_member_is_rejected(self):
+        self.make_archive(self.before)
+        self.make_archive(self.after, duplicate="features.jsonl")
+        with self.assertRaises(ValueError):
+            self.builder.verify_data_unchanged(self.before, self.after)
+        with self.assertRaises(ValueError):
+            self.builder.verify_data_unchanged(self.after, self.before)
 
 
 class ReviewerPreservationBaselineTests(unittest.TestCase):
@@ -480,6 +656,41 @@ class ReviewerArchiveIntegrationTests(unittest.TestCase):
         for row in before:
             row["public_release_status"] = "AUTHORIZED_FOR_PUBLIC_RELEASE"
         self.assertEqual(after, before)
+
+    def test_selected_data_license_and_anonymous_attribution_notice(self):
+        manifest = json.loads((self.package / "manifest.json").read_text())
+        self.assertEqual(manifest["data_license"], "CC-BY-4.0")
+        self.assertEqual(manifest["data_license_url"], "https://creativecommons.org/licenses/by/4.0/")
+        self.assertEqual(manifest["data_license_file"], "LICENSE_DATA.md")
+        self.assertEqual(manifest["data_license_scope"], sorted(self.runtime.DATA_LICENSE_FILES))
+        self.assertEqual(manifest["software_license"], "NOT_SPECIFIED")
+        self.assertEqual(manifest["software_license_scope"], ["load_example.py", "validate.py"])
+        notice = (self.package / "LICENSE_DATA.md").read_text()
+        self.assertIn("Creative Commons Attribution 4.0 International", notice)
+        self.assertIn("https://creativecommons.org/licenses/by/4.0/", notice)
+        self.assertIn("https://creativecommons.org/licenses/by/4.0/legalcode.en", notice)
+        self.assertIn("Attribution during anonymous review", notice)
+        self.assertIn("no personal author identity", notice)
+        self.assertIn("NOT_SPECIFIED", notice)
+        self.assertNotIn("PENDING_SELECTION", notice)
+        self.assertFalse((self.package / "LICENSE_OPTIONS.md").exists())
+
+    @unittest.skipUnless(LICENSE_BASELINE_ARCHIVE.is_file(), "Local pre-license archive is unavailable")
+    def test_license_change_preserves_sha256_of_all_five_data_files(self):
+        filenames = (*self.runtime.DATA_FILES, "statistics.json")
+        with zipfile.ZipFile(LICENSE_BASELINE_ARCHIVE) as before:
+            old_manifest = json.loads(before.read(self.builder.PREFIX + "manifest.json"))
+            self.assertEqual(old_manifest["data_license"], "PENDING_SELECTION")
+            for name in filenames:
+                with self.subTest(filename=name):
+                    old_digest = hashlib.sha256(before.read(self.builder.PREFIX + name)).hexdigest()
+                    new_digest = hashlib.sha256((self.package / name).read_bytes()).hexdigest()
+                    self.assertEqual(new_digest, old_digest)
+            old_schema = json.loads(before.read(self.builder.PREFIX + "schema.json"))
+            new_schema = json.loads((self.package / "schema.json").read_text())
+            self.assertEqual(new_schema["oneOf"], old_schema["oneOf"])
+            for definition in ("features", "metadata", "annotations", "pairs"):
+                self.assertEqual(new_schema["$defs"][definition], old_schema["$defs"][definition])
 
     def test_isolated_loader_validator_and_statistics_work_without_repository(self):
         env = {key: value for key, value in os.environ.items() if key not in {"PYTHONPATH", "PYTHONHOME"}}

@@ -1,6 +1,6 @@
 # Schema and field dictionary
 
-`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. The authorized reviewer package contains 1,509 observations; no hosted publication is performed by this build.
+`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. The additional `reviewer_manifest_licensing` definition binds the Manifest to CC-BY-4.0 data resources and separately records the bundled scripts as NOT_SPECIFIED; it does not change any data-row contract. The authorized reviewer package contains 1,509 observations; no hosted publication is performed by this build.
 
 ## Files and top-level fields
 

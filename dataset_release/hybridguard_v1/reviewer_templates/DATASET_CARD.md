@@ -2,7 +2,7 @@
 
 ## Purpose and release status
 
-The dataset supports inspection of cross-view consistency, controlled target effects, field availability and recorded mechanism studies across Android Native, WebView Host, App Web and linked Browser Web contexts. This release includes all 1,509 selected observations. Public authorization for all included sources, including MTC, has been confirmed by the project lead. The data reuse license is pending explicit selection; this card does not grant additional rights. No new collection, fitting, detector evaluation or attack execution is performed to create this release.
+The dataset supports inspection of cross-view consistency, controlled target effects, field availability and recorded mechanism studies across Android Native, WebView Host, App Web and linked Browser Web contexts. This release includes all 1,509 selected observations. Public authorization for all included sources, including MTC, has been confirmed by the project lead. The selected data license is **Creative Commons Attribution 4.0 International (`CC-BY-4.0`)**. It applies to the 15 designated data/documentation resources listed in `LICENSE_DATA.md`; the bundled scripts are excluded and retain software-license status `NOT_SPECIFIED`. No new collection, fitting, detector evaluation or attack execution is performed to create this release.
 
 ## Population and dependence
 

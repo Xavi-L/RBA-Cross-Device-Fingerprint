@@ -1,6 +1,6 @@
 # HybridGuard dataset v1.0 — Reviewer Release
 
-**Public release of all 1,509 selected observations is authorized.** On 2026-10-25, the user explicitly confirmed the project lead's authorization for every included source: controlled experiments, specialist experiments, Linked Browser and MTC. This supersedes the earlier pending-authorization state. The existing privacy projection is retained. A dataset license has not yet been selected; see `RELEASE_REVIEW.md` and `reviewer_templates/LICENSE_OPTIONS.md` for the remaining license decision. No external upload is performed by the build.
+**Public release of all 1,509 selected observations is authorized.** On 2026-10-25, the user explicitly confirmed the project lead's authorization for every included source: controlled experiments, specialist experiments, Linked Browser and MTC. This supersedes the earlier pending-authorization state. The existing privacy projection is retained. The data and designated accompanying resources are licensed under **Creative Commons Attribution 4.0 International (`CC-BY-4.0`)**; see `LICENSE_DATA.md` for scope and anonymous attribution. The bundled scripts have software-license status `NOT_SPECIFIED` and are excluded from this data-license grant. No external upload is performed by the build.
 
 This directory contains the extraction implementation and repository-facing evidence. The separately built **Reviewer Release** is self-contained and excludes source locators, source digests, private mappings and repository history. The tracked `data/` directory still contains zero observations; this describes repository hosting, not the authorized release scope or archive contents.
 
@@ -56,6 +56,8 @@ python3 validate.py --root . --recompute-statistics ../recomputed-statistics.jso
 ```
 
 The optional statistics output must be a new file outside the package. The validator requires the original 18-file inventory and rejects extra package entries.
+
+For a license-only rebuild, preserve the previously published ZIP separately and pass `--preserve-data-from /path/to/previous.zip` to `build_reviewer_release.py`. The builder compares SHA-256 for the four JSONL tables and statistics.json before replacing the final ZIP; any difference fails. The before/after comparison and final archive checksum are recorded in `reviewer_release_report.json` and `license_update_report.json`.
 
 The validator recomputes released-data statistics and checks schema, labels, references, completeness and packaging constraints. It validates the released projection and does not reproduce original detector predictions. `VALIDATION.md` records actual executed checks and results.
 

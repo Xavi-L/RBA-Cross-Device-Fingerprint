@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import zipfile
+import reviewer_runtime as runtime
 from collections import Counter, defaultdict
 from pathlib import Path
 from common import (APP_LAYERS, BROWSER, COUNTS, LABELS, ROOT, STATES, RandomIDs,
@@ -365,7 +366,10 @@ def build(repo):
     write_json(out/'statistics.json',statistics)
     write_json(ROOT/'statistics.json',statistics)
     write_json(ROOT/'manifest.json',{'dataset_version':'1.0',
-        'publication_status':RELEASE_STATUS,'data_license':'PENDING_SELECTION',
+        'publication_status':RELEASE_STATUS,'data_license':runtime.DATA_LICENSE,
+        'data_license_url':runtime.DATA_LICENSE_URL,'data_license_file':'LICENSE_DATA.md',
+        'data_license_scope':sorted(runtime.DATA_LICENSE_FILES),
+        'software_license':runtime.SOFTWARE_LICENSE,'software_license_scope':sorted(runtime.SOFTWARE_FILES),
         'hosted_public_data_records':0,'release_records':len(features),
         'release_authorization':'release_authorization.json',
         'authorization_basis':'Project lead explicitly confirmed all study data sources may be publicly released on 2026-10-25.',
@@ -475,7 +479,8 @@ def make_schema(contract):
                'members':{'type':'array','minItems':1,'maxItems':3,'items':obj({'sample_id':sid,'phase':{'enum':['clean_pre','active','clean_post','linked_endpoints']}})}})
     write_json(ROOT/'schema.json',{'$schema':'https://json-schema.org/draft/2020-12/schema','title':'Cross-View Consistency Dataset JSONL row',
         'oneOf':[{'$ref':'#/$defs/'+k} for k in ('features','metadata','annotations','pairs')],
-        '$defs':dict(features=features,metadata=metadata,annotations=annotations,pairs=pairs)})
+        '$defs':dict(features=features,metadata=metadata,annotations=annotations,pairs=pairs,
+                     reviewer_manifest_licensing=runtime.manifest_license_schema())})
     catalog=[]
     for key,types in fields_for(contract,True).items():
         source_key=key.replace(BROWSER+'.','web_data.',1)
@@ -490,7 +495,7 @@ def make_schema(contract):
 def write_schema_markdown(catalog):
     header = """# Schema and field dictionary
 
-`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. The authorized reviewer package contains 1,509 observations; no hosted publication is performed by this build.
+`schema.json` is a JSON Schema draft 2020-12 row union. The standard-library validator implements every keyword used in this file and rejects unsupported keywords. Structural and referential constraints between files are checked separately. The additional `reviewer_manifest_licensing` definition binds the Manifest to CC-BY-4.0 data resources and separately records the bundled scripts as NOT_SPECIFIED; it does not change any data-row contract. The authorized reviewer package contains 1,509 observations; no hosted publication is performed by this build.
 
 ## Files and top-level fields
 

@@ -1,6 +1,6 @@
 # Cross-View Consistency Dataset v1.0 — Reviewer Release
 
-This self-contained release contains **1,509 de-identified Android, WebView and linked Browser observations** associated with an anonymous WWW 2027 submission. The project lead has confirmed public authorization for every included source. All controlled experiments, specialist experiments, Linked Browser observations and selected MTC records are included. The dataset reuse license remains **PENDING_SELECTION**; `LICENSE_OPTIONS.md` records recommendations without applying a license.
+This self-contained release contains **1,509 de-identified Android, WebView and linked Browser observations** associated with an anonymous WWW 2027 submission. The project lead has confirmed public authorization for every included source. All controlled experiments, specialist experiments, Linked Browser observations and selected MTC records are included. The data and designated accompanying resources are licensed under **Creative Commons Attribution 4.0 International (`CC-BY-4.0`)**; `LICENSE_DATA.md` states the scope and anonymous attribution. The bundled scripts are excluded from the data-license grant and have software-license status `NOT_SPECIFIED`.
 
 ## Load and validate
 
@@ -80,7 +80,7 @@ The package contains exactly 18 files:
 | `SCHEMA.md` | Human-readable field and record dictionary |
 | `STATISTICS.md` | Human-readable aggregate statistics |
 | `RELEASE_REVIEW.md` | Confirmed authorization and remaining decisions |
-| `LICENSE_OPTIONS.md` | Unapplied license recommendations |
+| `LICENSE_DATA.md` | CC BY 4.0 notice, licensed-resource scope and anonymous attribution |
 | `FIGSHARE_UPLOAD.md` | Suggested title, English description, keywords and upload file |
 
 Use retained values to inspect availability, redaction, cross-view consistency, controlled mechanisms and recorded geometry. Reproduce aggregate counts and relationships using the validator. Do not infer missing Browser values, turn model-output rows into additional observations, or count repeated environments as independent replications.

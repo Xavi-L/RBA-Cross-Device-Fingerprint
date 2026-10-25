@@ -7,6 +7,7 @@ artifact. The frozen source lock and existing random ID map remain unchanged.
 from __future__ import annotations
 import argparse
 import getpass
+import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -27,7 +28,7 @@ PACKAGE_FILES = runtime.PACKAGE_FILES
 PREFIX = 'cross_view_consistency_v1/'
 ARCHIVE_NAME = 'Cross_View_Consistency_Dataset_v1.0_Reviewer.zip'
 TEMPLATES = ('README.md', 'DATASET_CARD.md', 'RELEASE_REVIEW.md',
-             'LICENSE_OPTIONS.md', 'FIGSHARE_UPLOAD.md')
+             'LICENSE_DATA.md', 'FIGSHARE_UPLOAD.md')
 FIXED_TIME = (1980, 1, 1, 0, 0, 0)
 
 
@@ -156,7 +157,38 @@ def verify_preservation(tables):
     return 'PASS_ALL_RECORDS_IDS_LABELS_RELATIONSHIPS_REDACTIONS_AND_MISSINGNESS'
 
 
-def build():
+DATA_CONTENT_FILES = runtime.DATA_FILES + ('statistics.json',)
+
+
+def data_file_digests(archive_path):
+    """Hash only the five published data resources required for license updates."""
+    result = {}
+    with zipfile.ZipFile(archive_path) as archive:
+        names = archive.namelist()
+        for name in DATA_CONTENT_FILES:
+            member = PREFIX + name
+            if names.count(member) != 1:
+                raise ValueError('Missing or duplicate data member: ' + name)
+            checksum = hashlib.sha256()
+            with archive.open(member) as stream:
+                for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+                    checksum.update(chunk)
+            result[name] = checksum.hexdigest()
+    return result
+
+
+def verify_data_unchanged(before_archive, after_archive):
+    before = data_file_digests(before_archive)
+    after = data_file_digests(after_archive)
+    if before != after:
+        changed = sorted(name for name in before if before[name] != after[name])
+        raise ValueError('Published data changed during metadata-only update: ' + ', '.join(changed))
+    return {'status': 'PASS', 'algorithm': 'SHA-256',
+            'files': {name: {'before_sha256': before[name], 'after_sha256': after[name],
+                             'unchanged': True} for name in DATA_CONTENT_FILES}}
+
+
+def build(preserve_data_from=None):
     private = ROOT / '.private'
     candidate = private / 'candidate'
     # This is the independent packaging path. Source-building remains an
@@ -195,7 +227,11 @@ def build():
             'dataset_version': '1.0', 'title': 'Cross-View Consistency Dataset v1.0',
             'publication_status': runtime.RELEASE_STATUS, 'release_records': 1509,
             'public_authorization': 'Project lead explicitly confirmed all included sources may be publicly released.',
-            'source_ids': sorted(statistics['sources']), 'data_license': 'PENDING_SELECTION',
+            'source_ids': sorted(statistics['sources']), 'data_license': runtime.DATA_LICENSE,
+            'data_license_url': runtime.DATA_LICENSE_URL, 'data_license_file': 'LICENSE_DATA.md',
+            'data_license_scope': sorted(runtime.DATA_LICENSE_FILES),
+            'software_license': runtime.SOFTWARE_LICENSE,
+            'software_license_scope': sorted(runtime.SOFTWARE_FILES),
             'independent_physical_devices': None, 'independent_experiment_replication': False,
             'file_inventory': inventory,
             'inventory_scope': 'All package files except this manifest; byte sizes, no original source digests or paths.',
@@ -230,6 +266,11 @@ def build():
             raise ValueError('Independent directory did not load every observation')
         # Inspect the bytes actually extracted, including their documentation.
         audit_anonymity(unpacked, terms, digests)
+        comparison_archive = Path(preserve_data_from) if preserve_data_from is not None else target
+        comparison = (verify_data_unchanged(comparison_archive, pending_archive)
+                      if comparison_archive.exists() else None)
+        if preserve_data_from is not None and comparison is None:
+            raise ValueError('Requested pre-update archive does not exist')
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(pending_archive, target)
         inventory.append({'path': 'manifest.json', 'bytes': (stage / 'manifest.json').stat().st_size})
@@ -240,15 +281,22 @@ def build():
                   'candidate_preservation': preservation, 'source_evidence_agreement': evidence,
                   'validation': validation, 'anonymity': anonymity, 'archive_validation': archive_report,
                   'standalone_validation': standalone, 'standalone_loading': loaded,
-                  'statistics_recomputed_outside_repository': 'PASS', 'data_license': 'PENDING_SELECTION'}
+                  'statistics_recomputed_outside_repository': 'PASS', 'data_license': runtime.DATA_LICENSE,
+                  'data_license_url': runtime.DATA_LICENSE_URL, 'software_license': runtime.SOFTWARE_LICENSE,
+                  'archive_sha256': hashlib.sha256(target.read_bytes()).hexdigest()}
+        if comparison is not None:
+            report['published_data_content_preservation'] = comparison
         write_json(ROOT / 'reviewer_release_report.json', report)
         write_json(private / 'reviewer_isolation.json', {'directory': str(unpacked), 'report': report})
     return report
 
 
 def main():
-    argparse.ArgumentParser(description=__doc__).parse_args()
-    report = build()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--preserve-data-from', type=Path, metavar='PREVIOUS_ZIP',
+                        help='Require identical SHA-256 for four JSONL files and statistics.json before replacing the ZIP')
+    args = parser.parse_args()
+    report = build(preserve_data_from=args.preserve_data_from)
     print(canonical({key: report[key] for key in ('status', 'archive', 'archive_bytes', 'release_records')}))
 
 
