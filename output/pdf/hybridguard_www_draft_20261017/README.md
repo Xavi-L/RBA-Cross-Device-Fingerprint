@@ -1,5 +1,13 @@
 # HybridGuard：表格可视化与紧凑版式
 
+## 当前版本：2026-10-25 Table 1 方法、证据与评估重设计
+
+- 以本地已核验的最新论文为基线，仅修改 Table 1；Study、Research focus、观测面标记和 Host/Browser 脚注全部保留。
+- 后三列改为 Method / Evidence / Evaluation，逐篇查阅七篇文献的方法及实际评估设置；来源与完整英文表见 `qa/table1_method_evidence_evaluation_20261025.md`。
+- 保留 `small` 字号，仅调整表内列宽；新三列每格不超过两行。
+- 完整编译正文 8 页、全文 11 页；Table 1 仍在第 2 页，其他正文图表页码不变。无 Overfull box 或未定义引用。
+- PDF 与 Overleaf ZIP 已同步；151 个包内成员与本地一致，独立解包编译的 11 页文字和渲染像素完全一致。详情见 `qa/current_compilation_20261025.md`。以下为历史版本记录。
+
 ## 当前版本：2026-10-25 全文限定语整理与页数恢复
 
 - 按本轮要求重组此前标出的重复限定：集中说明真实性与归因边界，直接对照主实验与 specialist 结果，将 Host 集成要求集中至 Discussion，合并部署和几何容差分析中的重复验证说明。

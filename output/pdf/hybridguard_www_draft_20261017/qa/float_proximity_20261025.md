@@ -1,4 +1,4 @@
-# Float proximity and pagination check (2026-10-25 prose consolidation)
+# Float proximity and pagination check (2026-10-25 Table 1 redesign)
 
 Verified from fresh `build/main.aux`; all main-paper floats have an explicit prose reference.
 
@@ -18,4 +18,4 @@ Verified from fresh `build/main.aux`; all main-paper floats have an explicit pro
 - Table 3 on p.6 and Figure 3 on p.7: PASS.
 - Main text ends on p.8; references begin on p.9; total: 11 pages.
 - Main-text <= 8 pages: PASS. Total <= 12 pages: PASS.
-- Page-budget recovery comes from prose consolidation; template, font sizes, margins, figure sizes, and main.tex settings are unchanged.
+- Float pages match the latest local baseline. Only Table 1 column widths and wording change; template, font sizes, margins, other figures/tables, and main.tex are unchanged.

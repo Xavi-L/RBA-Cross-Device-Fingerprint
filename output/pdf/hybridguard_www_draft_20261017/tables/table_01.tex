@@ -1,53 +1,53 @@
-% Related-work scope comparison: textual study profiles replace the
-% three binary assessment-scope columns.
+% Related-work comparison: method, concrete evidence, and evaluation setup.
 \begin{table*}[t]
-  \caption{Research focus, observation surfaces, and study profiles of related work.}
+  \caption{Research focus, observation surfaces, methods, evidence, and evaluation settings of related work.}
   \label{tab:related}
   \centering
   \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.185\textwidth}>{\centering\arraybackslash}p{0.057\textwidth}>{\centering\arraybackslash}p{0.047\textwidth}>{\centering\arraybackslash}p{0.063\textwidth}>{\centering\arraybackslash}p{0.071\textwidth}*{3}{>{\raggedright\arraybackslash}X}@{}}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.175\textwidth}>{\centering\arraybackslash}p{0.052\textwidth}>{\centering\arraybackslash}p{0.041\textwidth}>{\centering\arraybackslash}p{0.055\textwidth}>{\centering\arraybackslash}p{0.064\textwidth}*{3}{>{\raggedright\arraybackslash}X}@{}}
     \toprule
     \multirow{2}{*}{Study} & \multirow{2}{*}{Research focus} &
       \multicolumn{4}{c}{Observation surfaces} &
-      \multicolumn{3}{c}{Study profile} \\
+      \multicolumn{3}{c}{Study design} \\
     \cmidrule(lr){3-6}\cmidrule(l){7-9}
     & & Native & Host & \makecell{App\\Web} & Browser &
-      Approach & Setting & Output \\
+      Method & Evidence & Evaluation \\
     \midrule
     FP-Scanner~\cite{ref04} & Spoofing-induced inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Inconsistency tests & Browser defenses & Alteration cues \\
+      & Consistency checks & JavaScript--HTTP differences & Countermeasure trials \\
     Picasso~\cite{ref05} & Canvas-based device classification
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Canvas challenges & Web clients & Device-class check \\
+      & Challenge--response & Canvas rendering variation & Live traffic deployment \\
     FP-Inconsistent~\cite{ref06} & Evasive-bot fingerprint inconsistencies
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Spatial + temporal rules & Bot traffic & Bot-detection rules \\
+      & Rule discovery & Spatial + temporal inconsistencies & Bot and human traffic \\
     BrowserFM~\cite{ref07} & Fingerprint dependency modeling
       & \HGNone & \HGNone & \HGNone & \HGFull
-      & Feature models & Browser configs. & Dependency queries \\
+      & Feature modeling & Configuration--attribute links & Chromium configurations \\
     WVProfiler~\cite{ref08} & WebView fingerprint exposure
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & Framework probes & Hybrid apps & Exposure findings \\
+      & Runtime instrumentation & Headers and URLs & AndroZoo app sample \\
     Tracking Without Borders~\cite{ref09} & Mobile--Web tracking links
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & Static/dynamic analysis & Android apps & Tracking practices \\
+      & Static/dynamic analysis & API calls and traffic & Six-region app runs \\
     Cross-Boundary Mobile Tracking~\cite{ref10} & Java-to-JavaScript data flows
       & \HGFull & \HGNone & \HGFull & \HGNone
-      & Runtime traces & WebView apps & Data-flow paths \\
+      & Cross-context tracing & Injections and exfiltration & Instrumented app crawls \\
     \midrule
     \textbf{HybridGuard (ours)} & \textbf{Cross-layer report integrity}
       & \HGFull & \HGFull\textsuperscript{a} & \HGFull
       & \HGFull\textsuperscript{b}
-      & Semantic checks & Edits + benign changes & Alert / no alert / unknown \\
+      & Conditional semantic checks & Cross-view consistency & Controlled edits; benign changes \\
     \bottomrule
   \end{tabularx}
   \par\vspace{2pt}
   \begin{minipage}{\textwidth}
     \footnotesize
-    \emph{Notes.} \HGFull\ denotes an examined observation surface;
+    \emph{Notes.} Method, Evidence, and Evaluation summarize each study's technique, signals, and validation setup.
+    \HGFull\ denotes an examined observation surface;
     \HGNone\ denotes a surface outside the study's reported setup.
     Native is the Android app/system side, Host is WebView container context,
     and App Web is embedded-Web observation.
