@@ -1,6 +1,6 @@
 # Table 2 single-column publication check
 
-- Preserved all eight material rows, their counts, original role statements, caption and footnote.
+- Preserved all eight material rows, numeric counts, and study roles; expanded the caption and footnote to clarify denominators and normal-position accounting.
 - Four grouped material categories, four table columns, single-column ACM float.
 - Table 2 PDF page: 5
 - Main text last page: 9

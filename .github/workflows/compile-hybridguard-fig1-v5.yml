@@ -205,6 +205,17 @@ jobs:
             "$ROOT/qa/figure1_v5_compiled_page_20261024.png"
           if ! git diff --cached --quiet; then
             git commit -m "docs(paper): refresh Figure 1 v5 vector and WWW draft [skip ci]"
-            git pull --rebase origin main
-            git push origin HEAD:main
+            # An unrelated manuscript edit may land between fetch and push.
+            # Retry only fast-forward/rebased publishes; do not overwrite a newer head.
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              echo "Concurrent branch update; retrying Figure 1 artifact publish ($attempt/5)"
+              sleep "$attempt"
+            done
+            echo "Could not publish Figure 1 artifacts without overwriting concurrent changes" >&2
+            exit 1
           fi
