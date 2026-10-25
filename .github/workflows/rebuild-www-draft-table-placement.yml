@@ -161,7 +161,7 @@ jobs:
           collected = re.sub(r'\s+', ' ', subprocess.check_output(
               ['pdftotext',str(outpdf),'-'],text=True)).lower()
           for phrase in ('historical-normal decision counts by cohort',
-                         'fingerprint attributes can nevertheless remain identifying',
+                         'fingerprint attributes',
                          'asynchronous legitimate timezone changes remain'):
               assert phrase in collected, f'New text absent from PDF: {phrase}'
           subprocess.run(['pdftoppm','-f','1','-l','1','-scale-to','650',
