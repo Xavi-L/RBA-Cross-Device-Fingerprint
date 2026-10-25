@@ -16,8 +16,8 @@
     \cmidrule(lr){2-5}\cmidrule(l){6-8}
     & Native & Host & \makecell{App\\Web} & Browser &
       \makecell{Cross-layer\\checks} &
-      \makecell{Benign\\changes} &
-      \makecell{Unknown\\states} \\
+      \makecell{Benign\\change\\evaluation} &
+      \makecell{Unknown\\outcome\\handling} \\
     \midrule
     FP-Scanner~\cite{ref04}
       & \HGNone & \HGNone & \HGNone & \HGFull
@@ -55,7 +55,10 @@
     Native covers Android app/system-side observations, Host covers WebView
     container measurements, and App Web covers embedded-Web observations.
     Cross-layer checks assess Web-report integrity against associated
-    Native/Host references.
+    Native/Host references. Benign-change evaluation measures false alarms
+    under legitimate environmental or configuration changes.
+    Unknown-outcome handling distinguishes insufficient or inapplicable
+    evidence from a definite no-alert result.
     \textsuperscript{a}Host geometry is evaluated separately from Integrated App.
     \textsuperscript{b}Browser is an optional linked extension.
   \end{minipage}
