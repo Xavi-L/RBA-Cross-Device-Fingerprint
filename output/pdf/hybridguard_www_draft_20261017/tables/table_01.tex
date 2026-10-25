@@ -1,24 +1,62 @@
-% Current manuscript Table 1. Source: input_markdown/sections/02_background_and_scope.md.
-% Three-column revision: evidence descriptions are inline, not coded as types.
-% The comparison describes evidence emphasis and research scope.
+% Scope matrix: a tick denotes an explicitly examined surface or assessment;
+% a cross denotes a topic outside the cited study's stated research scope.
+% The optional Browser and standalone Host checks are marked in the notes.
 \begin{table*}[t]
-  \caption{Research scopes of selected related studies. The comparison pairs their examined evidence and research focus with corresponding aspects investigated in HybridGuard.}
+  \caption{Comparison of observation surfaces and integrity-assessment scope in related studies.}
   \label{tab:related}
   \centering
   \small
-  \setlength{\tabcolsep}{4pt}
-  \renewcommand{\arraystretch}{1.12}
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}p{0.45\textwidth} >{\raggedright\arraybackslash}X@{}}
+  \setlength{\tabcolsep}{7pt}
+  \renewcommand{\arraystretch}{1.08}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X*{7}{c}@{}}
     \toprule
-    Work & Evidence and research focus & Focus of this study \\
+    \multirow{2}{*}{Study} &
+      \multicolumn{4}{c}{Observation surfaces} &
+      \multicolumn{3}{c}{Assessment scope} \\
+    \cmidrule(lr){2-5}\cmidrule(l){6-8}
+    & Native & Host & \makecell{App\\Web} & Browser &
+      \makecell{Cross-layer\\checks} &
+      \makecell{Benign\\changes} &
+      \makecell{Unknown\\states} \\
     \midrule
-    FP-Scanner~\cite{ref04} & Browser-attribute and JS/HTTP inconsistencies induced by countermeasures & Associated Native/Host references \\
-    Picasso~\cite{ref05} & Canvas challenges for device-class checking & Current-record semantic compatibility \\
-    FP-Inconsistent~\cite{ref06} & Within-request and temporal inconsistencies in evasive bot traffic & Controlled edits versus normal changes \\
-    BrowserFM~\cite{ref07} & Dependencies among fingerprints and configurations & Applicability and evidence-availability costs \\
-    WebView studies~\cite{ref08,ref09,ref10} & App--Web information exposure and cross-boundary tracking & Web-report integrity assessment \\
+    FP-Scanner~\cite{ref04}
+      & \HGNone & \HGNone & \HGNone & \HGFull
+      & \HGNone & \HGNone & \HGNone \\
+    Picasso~\cite{ref05}
+      & \HGNone & \HGNone & \HGNone & \HGFull
+      & \HGNone & \HGNone & \HGNone \\
+    FP-Inconsistent~\cite{ref06}
+      & \HGNone & \HGNone & \HGNone & \HGFull
+      & \HGNone & \HGNone & \HGNone \\
+    BrowserFM~\cite{ref07}
+      & \HGNone & \HGNone & \HGNone & \HGFull
+      & \HGNone & \HGNone & \HGNone \\
+    WVProfiler~\cite{ref08}
+      & \HGFull & \HGNone & \HGFull & \HGNone
+      & \HGNone & \HGNone & \HGNone \\
+    Tracking Without Borders~\cite{ref09}
+      & \HGFull & \HGNone & \HGFull & \HGNone
+      & \HGNone & \HGNone & \HGNone \\
+    Cross-Boundary Mobile Tracking~\cite{ref10}
+      & \HGFull & \HGNone & \HGFull & \HGNone
+      & \HGNone & \HGNone & \HGNone \\
     \midrule
-    \textbf{HybridGuard} & Native/Host/App Web relations under explicit applicability conditions; optional Browser & Detection, normal alarms, and unknown outcomes \\
+    \textbf{HybridGuard (ours)}
+      & \HGFull & \HGFull\textsuperscript{a} & \HGFull
+      & \HGFull\textsuperscript{b}
+      & \HGFull & \HGFull & \HGFull \\
     \bottomrule
   \end{tabularx}
+  \par\vspace{2pt}
+  \begin{minipage}{\textwidth}
+    \footnotesize
+    \emph{Notes.} \HGFull: explicitly examined within the study's scope;
+    \HGNone: outside its stated focus.
+    Native covers Android app/system-side observations, Host covers WebView
+    container measurements, and App Web covers embedded-Web observations.
+    Cross-layer checks assess Web-report integrity against associated
+    Native/Host references.
+    \textsuperscript{a}Host geometry is evaluated separately from Integrated App.
+    \textsuperscript{b}Browser is an optional linked extension.
+  \end{minipage}
 \end{table*}
