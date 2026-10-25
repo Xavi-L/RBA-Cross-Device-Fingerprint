@@ -135,6 +135,11 @@ jobs:
               encoding='utf-8')
           (root/'HybridGuard_WWW_Draft.pdf').write_bytes(pdf.read_bytes())
           PY
+      - name: Check figure and table proximity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 output/pdf/hybridguard_www_draft_20261017/qa/check_float_proximity.py
       - name: Synchronize all current LaTeX sources and verify compiled PDF
         shell: bash
         run: |
@@ -268,7 +273,7 @@ jobs:
           ROOT=output/pdf/hybridguard_www_draft_20261017
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/table2_compact_review_20261024.md" "$ROOT/qa/package_manifest.json" "$ROOT/qa/current_compilation_20261025.md" "$ROOT/README.md"
+          git add "$ROOT/HybridGuard_WWW_Draft.pdf" "$ROOT/HybridGuard_WWW_Overleaf.zip" "$ROOT/qa/table_1_section2_placement_20261024.md" "$ROOT/qa/figures_1_2_fullwidth_20261024.md" "$ROOT/qa/table2_compact_review_20261024.md" "$ROOT/qa/package_manifest.json" "$ROOT/qa/current_compilation_20261025.md" "$ROOT/qa/float_proximity_20261025.md" "$ROOT/README.md"
           if ! git diff --cached --quiet; then
             git commit -m "docs(paper): compile latest LaTeX and synchronize PDF with Overleaf ZIP [skip ci]"
             git pull --rebase origin main

@@ -19,7 +19,7 @@ WebView research examines both sides of the application–Web boundary. WVProfil
 
 ## 2.2 Surfaces and Compatibility
 
-Let $E$ denote the execution state and container context. An observation $x = (N(E), H(E), W(E))$ associates Native system and hardware measurements, WebView Host context, and App Web reports. The App schema has 177 catalogued fields: 84 Native, 26 Host, and 67 App Web. An optional Browser contributes 67 fields from a separate Web execution, yielding a 244-field paired schema when validly associated. Selected detectors use subsets of these fields. Association does not imply atomic sampling, and no surface is trusted ground truth.
+Let $E$ denote the execution state and container context. An observation $x = (N(E), H(E), W(E))$ associates Native system and hardware measurements, WebView Host context, and App Web reports. The App schema has 177 catalogued fields: 84 Native, 26 Host, and 67 App Web. An optional Browser contributes 67 fields from a separate Web execution, yielding a 244-field paired schema when validly associated. Selected detectors use subsets of these fields. Association does not imply atomic sampling, and no surface is trusted ground truth. Figure 1 summarizes the observation surfaces and their evaluation roles.
 
 ![Figure 1. Associated observation surfaces and integration boundaries.](../figures/HybridGuard_Fig1_surfaces_v2.png)
 
