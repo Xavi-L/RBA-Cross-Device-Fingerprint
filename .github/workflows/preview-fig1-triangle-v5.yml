@@ -39,13 +39,17 @@ jobs:
           assert tree.get('viewBox')=='0 0 1800 800'
           assert tree.get('width')=='178mm'
           labels=Counter(''.join(x.itertext()).strip() for x in tree.iter(S+'text'))
-          assert sum(labels.values())==65
+          assert sum(labels.values())==67
           assert labels['Native APIs']==labels['App Web']==labels['WebView Host']==1
           assert labels['View bounds · padding']==1
           assert labels['View transform · stability']==1
+          assert labels['Provider · version']==1
+          assert labels['App identity · settings']==1
+          assert find('app-web-observation').get('transform')=='translate(0,-55)'
           card=find('webview-host-observation-card')
+          assert card.get('transform')=='translate(0,-63)'
           f=[x for x in card if x.tag==S+'rect']
-          assert f[0].get('width')=='370' and f[0].get('height')=='148'
+          assert f[0].get('width')=='370' and f[0].get('height')=='211'
           assert len(list(find('webview-host-observation-card-back-pages'))) == 2
           # Check semantic arrows: same width, same marker head path and bidirectionality,
           # but distinct palette and controlled secondary dash patterns.
@@ -67,7 +71,7 @@ jobs:
           assert not list(tree.iter(S+'image'))
           ids=[n.get('id') for n in tree.iter() if n.get('id')]
           assert len(ids)==len(set(ids))
-          print('SVG validated: 65 original text nodes, uniform Host card, three 6-unit equal-head arrows; no raster.')
+          print('SVG validated: 67 text nodes, expanded Host card, three 6-unit equal-head arrows; no raster.')
           PY
       - name: Install SVG raster renderer
         shell: bash
@@ -93,6 +97,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$ROOT/HybridGuard_Fig1_triangle_v5.png"
           if ! git diff --cached --quiet; then
-            git commit -m "docs(fig1): export SVG-only triangle design preview [skip ci]"
+            git commit -m "docs(fig1): refresh SVG triangle design preview [skip ci]"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi

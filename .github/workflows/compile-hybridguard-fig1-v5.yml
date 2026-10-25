@@ -50,7 +50,7 @@ jobs:
           svg=ET.parse(root/'figures/HybridGuard_Fig1_triangle_v5.svg').getroot()
           ns='{http://www.w3.org/2000/svg}'
           labels=[''.join(x.itertext()).strip() for x in svg.iter(ns+'text')]
-          assert len(labels)==65
+          assert len(labels)==67
           assert all(labels.count(s)==1 for s in ('Native APIs','App Web','WebView Host'))
           for name in ('integrated-native-web','standalone-host-web-geometry','native-host-context'):
               found=[x for x in svg.iter() if x.get('id')==name]
@@ -60,13 +60,10 @@ jobs:
               assert len(links)==1 and links[0].get('stroke-width')=='6',name
           tex=root/'floats/figure_01.tex'
           text=tex.read_text()
-          original=r'\includegraphics[width=\textwidth]{figures/HybridGuard_Fig1_surfaces_v4.pdf}'
           desired=r'\includegraphics[width=\textwidth]{figures/HybridGuard_Fig1_triangle_v5.pdf}'
-          assert text.count(original)==1
+          assert text.count(desired)==1, 'Figure 1 must already reference the v5 vector figure'
           assert text.count(r'\caption{')==1 and text.count(r'\label{fig:surfaces}')==1
-          tex.write_text(text.replace(original,desired))
-          assert tex.read_text().replace(desired,original)==text,'Caption or unrelated LaTeX changed'
-          print('Preserved the Figure 1 caption; selected the v5 vector figure.')
+          print('Preserved the current Figure 1 float and caption.')
           PY
 
       - name: Compile ACM manuscript from existing LaTeX (no migration)
@@ -111,7 +108,7 @@ jobs:
           preview=root/'qa/figure1_v5_compiled_page_20261024.png'
           after[figpage].get_pixmap(matrix=fitz.Matrix(1.6,1.6),alpha=False).save(preview)
           text=after[figpage].get_text()
-          assert 'Complementary observation surfaces' in text, 'Figure 1 caption missing'
+          assert 'HybridGuard observation surfaces' in text, 'Figure 1 caption missing'
           warnings=[s for s in (root/'main.log').read_text(errors='replace').splitlines()
                     if s.startswith('Overfull')]
           summary={
@@ -203,6 +200,7 @@ jobs:
             "$ROOT/qa/figure1_v5_compile_20261024.md" \
             "$ROOT/qa/figure1_v5_compiled_page_20261024.png"
           if ! git diff --cached --quiet; then
-            git commit -m "docs(paper): compile approved Figure 1 v5 into WWW draft [skip ci]"
+            git commit -m "docs(paper): refresh Figure 1 v5 vector and WWW draft [skip ci]"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
