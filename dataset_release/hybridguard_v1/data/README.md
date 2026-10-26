@@ -1,0 +1,5 @@
+# Repository data location
+
+All 1,509 selected observations are authorized for public release, including all 891 MTC records, according to the project lead confirmation explicitly reported by the user on 2026-10-25. The tracked repository data directory remains empty; zero hosted records here does not mean zero records in the release.
+
+The independent Reviewer Release builder writes the full sanitized data and standalone loading/validation scripts to an ignored build directory and packages `reviewer_release/Cross_View_Consistency_Dataset_v1.0_Reviewer.zip`. Reviewers load the data files from the extracted archive root. Private mappings, exact source references and raw evidence stay outside that archive. No third-party upload is performed. The data and designated accompanying resources are licensed under Creative Commons Attribution 4.0 International (`CC-BY-4.0`), as scoped in `LICENSE_DATA.md`. Bundled scripts are excluded from that grant and have software-license status `NOT_SPECIFIED`.
